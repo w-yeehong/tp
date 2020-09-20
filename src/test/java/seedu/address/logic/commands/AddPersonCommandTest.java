@@ -1,19 +1,7 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import org.junit.jupiter.api.Test;
-
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -23,45 +11,56 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+public class AddPersonCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddPersonCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        AddPersonCommandTest.ModelStubAcceptingPersonAdded modelStub = new AddPersonCommandTest.ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddPersonCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        AddPersonCommand AddPersonCommand = new AddPersonCommand(validPerson);
+        AddPersonCommandTest.ModelStub modelStub = new AddPersonCommandTest.ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> AddPersonCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddPersonCommand addAliceCommand = new AddPersonCommand(alice);
+        AddPersonCommand addBobCommand = new AddPersonCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddPersonCommand addAliceCommandCopy = new AddPersonCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -152,7 +151,7 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithPerson extends AddPersonCommandTest.ModelStub {
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -170,7 +169,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class ModelStubAcceptingPersonAdded extends AddPersonCommandTest.ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
@@ -190,5 +189,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }

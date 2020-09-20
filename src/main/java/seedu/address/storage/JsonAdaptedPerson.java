@@ -10,10 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PeriodOfStay;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Temperature;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,23 +26,23 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String temperature;
+    private final String periodOfStay;
     private final String phone;
-    private final String email;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String age;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("temperature") String temperature,
+            @JsonProperty("periodOfStay") String periodOfStay, @JsonProperty("phone") String phone,
+            @JsonProperty("age") String age) {
         this.name = name;
+        this.temperature = temperature;
+        this.periodOfStay = periodOfStay;
         this.phone = phone;
-        this.email = email;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.age = age;
     }
 
     /**
@@ -48,11 +50,10 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        temperature = source.getTemperature().toString();
+        periodOfStay = source.getPeriodOfStay().toString();
         phone = source.getPhone().value;
-        email = source.getEmail().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        age = source.getAge().toString();
     }
 
     /**
@@ -61,11 +62,6 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -73,6 +69,26 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (temperature == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Temperature.class.getSimpleName()));
+        }
+
+        if (!Temperature.isValidTemperature(temperature)) {
+            throw new IllegalValueException(Temperature.MESSAGE_CONSTRAINTS);
+        }
+
+        final Temperature modelTemp = new Temperature(temperature);
+
+        if (periodOfStay == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PeriodOfStay.class.getSimpleName()));
+        }
+
+        if (!PeriodOfStay.isValidPeriodOfStay(periodOfStay)) {
+            throw new IllegalValueException(PeriodOfStay.MESSAGE_CONSTRAINTS);
+        }
+
+        final PeriodOfStay modelPeriod = new PeriodOfStay(periodOfStay);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -82,16 +98,15 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (age == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Age.isValidAge(age)) {
+            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Age modelAge = new Age(age);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
+        return new Person(modelName, modelTemp, modelPeriod, modelPhone, modelAge);
     }
 
 }

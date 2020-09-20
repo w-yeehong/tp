@@ -52,8 +52,8 @@ public class PeriodOfStay {
 
     @Override
     public String toString() {
-        return startDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + " to "
-                + endDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+        return startDate.format(DateTimeFormatter.ofPattern("yyyyMMdd")) + "-"
+                + endDate.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
     }
 
     @Override

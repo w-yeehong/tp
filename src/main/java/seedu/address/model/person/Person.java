@@ -67,7 +67,9 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getAge().equals(getAge()));
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getPeriodOfStay().equals(getPeriodOfStay())
+                && otherPerson.getAge().equals(getAge());
     }
 
     /**

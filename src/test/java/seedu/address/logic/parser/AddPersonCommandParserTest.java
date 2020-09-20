@@ -1,13 +1,12 @@
 package seedu.address.logic.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -53,15 +52,15 @@ public class AddPersonCommandParserTest {
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + TEMP_DESC_BOB
-                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddCommand(expectedPerson));
+                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPersonCommand(expectedPerson));
 /*
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
 
  */
@@ -73,14 +72,14 @@ public class AddPersonCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY ,
-                new AddCommand(expectedPerson));
+                new AddPersonCommand(expectedPerson));
     }
 
  */
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
@@ -115,8 +114,4 @@ public class AddPersonCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
                 + PHONE_DESC_BOB + AGE_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
     }
-
-
-
-
 }
