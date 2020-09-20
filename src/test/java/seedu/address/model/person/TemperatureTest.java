@@ -32,7 +32,7 @@ public class TemperatureTest {
         assertFalse(Temperature.isValidTemperature("37.")); //no digit after decimal
         assertFalse(Temperature.isValidTemperature("3 7.6")); //spaces within digits
 
-        // valid phone numbers
+        // valid temperature
         assertTrue(Temperature.isValidTemperature("36.7"));
         assertTrue(Temperature.isValidTemperature("36.0"));
     }

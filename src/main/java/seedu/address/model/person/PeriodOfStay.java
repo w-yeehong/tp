@@ -1,0 +1,77 @@
+package seedu.address.model.person;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+/**
+ * Represents a Person's period of stay in the facility.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPeriodOfStay(String)}
+ */
+public class PeriodOfStay {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Period of stay should be in the format YYYYMMDD-YYYYMMDD.";
+
+    public static final String VALIDATION_REGEX = "\\d{8}[-]\\d{8}";
+
+    public final LocalDate startDate; 
+    public final LocalDate endDate;
+
+    /**
+     * Constructs a {@code PeriodOfStay}.
+     * @param periodOfStay A valid period of stay.
+     */
+    public PeriodOfStay(String periodOfStay) {
+        requireNonNull(periodOfStay);
+        checkArgument(isValidPeriodOfStay(periodOfStay), MESSAGE_CONSTRAINTS);
+        startDate = LocalDate.parse(periodOfStay.split("-")[0], DateTimeFormatter.ofPattern("yyyyMMdd"));
+        endDate = LocalDate.parse(periodOfStay.split("-")[1], DateTimeFormatter.ofPattern("yyyyMMdd"));
+    }
+
+    /**
+     * Returns true if a given string is a valid period of stay.
+     */
+    public static boolean isValidPeriodOfStay(String test) {
+        boolean isRegexCorrect = test.matches(VALIDATION_REGEX);
+        if (isRegexCorrect) {
+            boolean isStartDateValid = false;
+            boolean isEndDateValid = false;
+            boolean isStartBeforeEnd = false;
+            String[] dates = test.split("-");
+            try {
+                LocalDate start = LocalDate.parse(dates[0], DateTimeFormatter.ofPattern("yyyyMMdd"));
+                isStartDateValid = true;
+                LocalDate end = LocalDate.parse(dates[1], DateTimeFormatter.ofPattern("yyyyMMdd"));
+                isEndDateValid = true;
+                isStartBeforeEnd = (start.compareTo(end) < 0);
+            } catch (DateTimeParseException e) {
+                //do nothing
+            }
+            return isStartDateValid && isEndDateValid && isStartBeforeEnd;
+        }
+       return false;
+    }
+
+    @Override
+    public String toString() {
+        return startDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + " to "
+                + endDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PeriodOfStay // instanceof handles nulls
+                && startDate.compareTo(((PeriodOfStay) other).startDate) == 0
+                && endDate.compareTo(((PeriodOfStay) other).endDate) == 0); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return this.toString().hashCode();
+    }
+}
