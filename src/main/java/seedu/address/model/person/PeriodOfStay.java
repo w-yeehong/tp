@@ -18,7 +18,7 @@ public class PeriodOfStay {
 
     public static final String VALIDATION_REGEX = "\\d{8}[-]\\d{8}";
 
-    public final LocalDate startDate; 
+    public final LocalDate startDate;
     public final LocalDate endDate;
 
     /**
@@ -38,22 +38,16 @@ public class PeriodOfStay {
     public static boolean isValidPeriodOfStay(String test) {
         boolean isRegexCorrect = test.matches(VALIDATION_REGEX);
         if (isRegexCorrect) {
-            boolean isStartDateValid = false;
-            boolean isEndDateValid = false;
-            boolean isStartBeforeEnd = false;
             String[] dates = test.split("-");
             try {
-                LocalDate start = LocalDate.parse(dates[0], DateTimeFormatter.ofPattern("yyyyMMdd"));
-                isStartDateValid = true;
-                LocalDate end = LocalDate.parse(dates[1], DateTimeFormatter.ofPattern("yyyyMMdd"));
-                isEndDateValid = true;
-                isStartBeforeEnd = (start.compareTo(end) < 0);
+                LocalDate start = LocalDate.parse(dates[0], DateTimeFormatter.ofPattern("yyyyMMdd")); //check start date
+                LocalDate end = LocalDate.parse(dates[1], DateTimeFormatter.ofPattern("yyyyMMdd")); //check end date
+                return start.compareTo(end) < 0; //check start date less than end date
             } catch (DateTimeParseException e) {
-                //do nothing
+                return false;
             }
-            return isStartDateValid && isEndDateValid && isStartBeforeEnd;
         }
-       return false;
+        return false;
     }
 
     @Override
