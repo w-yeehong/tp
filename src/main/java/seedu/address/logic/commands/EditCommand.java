@@ -34,7 +34,8 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the person's name used in the displayed person list. "
+            + "Name must match exactly with the name of the person to be edited in the person list."
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -50,31 +51,43 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
+    private final String personToBeEdited;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param personToBeEdited name in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(String personToBeEdited, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(personToBeEdited);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.personToBeEdited = personToBeEdited;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Index index = Index.fromZeroBased(0);
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        for (int i = 1; i <= lastShownList.size(); i++) {
+            String personName = lastShownList.get(i-1).getName().toString();
+            boolean isValidPerson = personName.trim().toLowerCase().equals(personToBeEdited);
+            if (isValidPerson) {
+                index = Index.fromZeroBased(i);
+                break;
+            }
+        }
+
+        if (index.getZeroBased() == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownList.get(index.getZeroBased() - 1);
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -116,7 +129,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return personToBeEdited.equals(e.personToBeEdited)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
