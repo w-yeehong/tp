@@ -2,10 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -35,13 +39,16 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the person's name used in the displayed person list. "
-            + "Name must match exactly with the name of the person to be edited in the person list."
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: NAME (must match exactly with the name of the person to be edited in the person list) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TEMPERATURE + "TEMPERATURE] "
+            + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_PERIOD_OF_STAY + "PERIOD OF STAY] "
+            + "[" + PREFIX_NOTES + "NOTE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -103,6 +110,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
+    //TODO: update constructor fields
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
@@ -110,8 +118,13 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Temperature updatedTemperature = editPersonDescriptor.getTemperature().orElse(personToEdit.getTemperature());
+        Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
+        PeriodOfStay updatedPeriodOfStay = editPersonDescriptor
+                .getPeriodOfStay()
+                .orElse(personToEdit.getPeriodOfStay());
+        Set<Note> updatedNotes = editPersonDescriptor.getTags().orElse(personToEdit.getNotes());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
@@ -137,11 +150,16 @@ public class EditCommand extends Command {
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
+    //TODO remove some of the field in this class after Person is modified
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
+        private Temperature temperature;
+        private Age age;
+        private PeriodOfStay periodOfStay;
+        private Set<Note> notes;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -155,6 +173,10 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setTemperature(toCopy.temperature);
+            setAge(toCopy.age);
+            setPeriodOfStay(toCopy.periodOfStay);
+            setNotes(toCopy.notes);
             setTags(toCopy.tags);
         }
 
@@ -197,6 +219,38 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setTemperature(Temperature temperature) {
+            this.temperature = temperature;
+        }
+
+        public Optional<Temperature> getTemperature() {
+            return Optional.ofNullable(temperature);;
+        }
+
+        public void setAge(Age age) {
+            this.age = age;
+        }
+
+        public Optional<Age> getAge() {
+            return Optional.ofNullable(age);;
+        }
+
+        public void setPeriodOfStay(PeriodOfStay periodOfStay) {
+            this.periodOfStay = periodOfStay;
+        }
+
+        public Optional<PeriodOfStay> getPeriodOfStay() {
+            return Optional.ofNullable(periodOfStay);;
+        }
+
+        public void setNotes(Set<Note> notes) {
+            this.notes = (notes != null) ? new HashSet<>(notes) : null;
+        }
+
+        public Optional<Set<Note>> getNotes() {
+            return (notes != null) ? Optional.of(Collections.unmodifiableSet(Note)) : Optional.empty();
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -233,6 +287,10 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getTemperature().equals(e.getTemperature())
+                    && getAge().equals(e.getAge())
+                    && getPeriodOfStay().equals(e.getPeriodOfStay())
+                    && getNotes().equals(e.getNotes())
                     && getTags().equals(e.getTags());
         }
     }
