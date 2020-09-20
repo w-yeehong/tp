@@ -3,10 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PeriodOfStay;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Temperature;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,22 +19,26 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_TEMPERATURE = "36.8";
+    public static final String DEFAULT_PERIOD = "20201001-20201014";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
+    public static final String DEFAULT_AGE = "37";
 
     private Name name;
+    private Temperature temperature;
+    private PeriodOfStay periodOfStay;
     private Phone phone;
-    private Email email;
-    private Set<Tag> tags;
+    private Age age;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        temperature = new Temperature(DEFAULT_TEMPERATURE);
+        periodOfStay = new PeriodOfStay(DEFAULT_PERIOD);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        tags = new HashSet<>();
+        age = new Age(DEFAULT_AGE);
     }
 
     /**
@@ -39,9 +46,10 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        temperature = personToCopy.getTemperature();
+        periodOfStay = personToCopy.getPeriodOfStay();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        tags = new HashSet<>(personToCopy.getTags());
+        age = personToCopy.getAge();
     }
 
     /**
@@ -53,13 +61,20 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Sets the {@code Temperature} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withTemperature(String temperature) {
+        this.temperature = new Temperature(temperature);
         return this;
     }
 
+    /**
+     * Sets the {@code Period of stay} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPeriodOfStay(String periodOfStay) {
+        this.periodOfStay = new PeriodOfStay(periodOfStay);
+        return this;
+    }
 
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
@@ -70,15 +85,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Age} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withAge(String age) {
+        this.age = new Age(age);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, tags);
+        return new Person(name, temperature, periodOfStay, phone, age);
     }
 
 }

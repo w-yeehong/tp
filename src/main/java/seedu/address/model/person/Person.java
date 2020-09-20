@@ -10,27 +10,30 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the app.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
     private final Name name;
+    private final Temperature temperature;
+    private final PeriodOfStay periodOfStay;
     private final Phone phone;
-    private final Email email;
+    private final Age age;
 
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+    public Person(Name name, Temperature temperature, PeriodOfStay periodOfStay,
+                  Phone phone, Age age) {
+        requireAllNonNull(name, temperature, periodOfStay, phone, age);
         this.name = name;
+        this.temperature = temperature;
+        this.periodOfStay = periodOfStay;
         this.phone = phone;
-        this.email = email;
-        this.tags.addAll(tags);
+        this.age = age;
     }
 
     public Name getName() {
@@ -41,16 +44,16 @@ public class Person {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Temperature getTemperature() {
+        return temperature;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public PeriodOfStay getPeriodOfStay() {
+        return periodOfStay;
+    }
+
+    public Age getAge() {
+        return age;
     }
 
     /**
@@ -64,7 +67,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getAge().equals(getAge()));
     }
 
     /**
@@ -83,27 +86,30 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
+                && otherPerson.getTemperature().equals(getTemperature())
+                && otherPerson.getPeriodOfStay().equals(getPeriodOfStay())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getAge().equals(getAge());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, temperature, periodOfStay, phone, age);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append(" Temperature: ")
+                .append(getTemperature())
+                .append(" Period of stay: ")
+                .append(getPeriodOfStay())
                 .append(" Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Age: ")
+                .append(getAge());
         return builder.toString();
     }
 
