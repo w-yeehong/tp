@@ -25,7 +25,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Temperature;
 
-public class EditCommand extends Command {
+public class EditPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -56,7 +56,7 @@ public class EditCommand extends Command {
      * @param personToBeEdited name in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(String personToBeEdited, EditPersonDescriptor editPersonDescriptor) {
+    public EditPatientCommand(String personToBeEdited, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(personToBeEdited);
         requireNonNull(editPersonDescriptor);
 
@@ -126,12 +126,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditPatientCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditPatientCommand e = (EditPatientCommand) other;
         return personToBeEdited.equals(e.personToBeEdited)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }

@@ -8,10 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
 
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class EditCommandParser {
+public class EditPatientCommandParser {
 
 
     /**
@@ -20,7 +20,7 @@ public class EditCommandParser {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditPatientCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
@@ -28,7 +28,7 @@ public class EditCommandParser {
 
         String personTobeEdited = argMultimap.getPreamble().trim().toLowerCase();
 
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
+        EditPatientCommand.EditPersonDescriptor editPersonDescriptor = new EditPatientCommand.EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -50,10 +50,10 @@ public class EditCommandParser {
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditPatientCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(personTobeEdited, editPersonDescriptor);
+        return new EditPatientCommand(personTobeEdited, editPersonDescriptor);
     }
 
 }
