@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
@@ -50,7 +49,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Comment comment = new Comment("-");
         try {
             comment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENTS).get());
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             //unhandled because comment will be initialised already
         }
 

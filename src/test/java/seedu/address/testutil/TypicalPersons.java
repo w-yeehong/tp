@@ -28,13 +28,13 @@ public class TypicalPersons {
             .withPhone("94351253").withAge("31").withComment("Vegan").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withTemperature("38.0").withPeriodOfStay("20200810-20200824")
-            .withPhone("98765432").withAge("67").withComment("-").build();
+            .withPhone("98765432").withAge("67").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withTemperature("38.3").withPeriodOfStay("20200910-20200917")
             .withPhone("95352563").withAge("17").withComment("asthmatic").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withTemperature("36.3").withPeriodOfStay("20200808-20200809")
-            .withPhone("87652533").withAge("55").withComment("-").build();
+            .withPhone("87652533").withAge("55").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withTemperature("37.4").withPeriodOfStay("20200707-20200719")
             .withPhone("9482224").withAge("81").build();

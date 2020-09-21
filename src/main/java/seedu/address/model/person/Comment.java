@@ -9,9 +9,13 @@ import static java.util.Objects.requireNonNull;
 public class Comment {
     public final String value;
 
-    public Comment(String remark) {
-        requireNonNull(remark);
-        value = remark;
+    /**
+     * Constructs a {@code Comment}.
+     * @param comment A valid comment
+     */
+    public Comment(String comment) {
+        requireNonNull(comment);
+        value = comment;
     }
 
     @Override

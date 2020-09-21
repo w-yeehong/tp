@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.NewCommandTestUtil.COMMENT;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_AGE_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PERIOD_BOB;
@@ -45,6 +46,10 @@ public class PersonTest {
 
         //same name, same phone, same age, same period of stay, diff temp -> returns true
         editedAlice = new PersonBuilder(ALICE).withTemperature(VALID_TEMP_BOB).build();
+        assertTrue(ALICE.isSamePerson(editedAlice));
+
+        //diff comments but all attributes same -> returns true
+        editedAlice = new PersonBuilder(ALICE).withComment(COMMENT).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
     }
 

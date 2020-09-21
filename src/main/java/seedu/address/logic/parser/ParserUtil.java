@@ -113,6 +113,11 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
+    /**
+     * Parses a {@code String comment} into a {@code Comment}
+     * Leading and trailing whitespaces will be trimmed
+     * @return an "-" comment if no comment is added
+     */
     public static Comment parseComment(String comment) {
         if (comment == null) {
             return new Comment("-");
