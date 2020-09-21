@@ -19,6 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class NewCommandTestUtil {
 
@@ -54,6 +55,18 @@ public class NewCommandTestUtil {
     public static final String COMMENT = "History of heart attack";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final EditPatientCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditPatientCommand.EditPersonDescriptor DESC_BOB;
+
+    static {
+        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withTemperature(VALID_TEMP_AMY).withPeriodOfStay(VALID_PERIOD_AMY)
+                .withAge(VALID_AGE_AMY).withComment(COMMENT).build();
+        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withTemperature(VALID_TEMP_BOB).withPeriodOfStay(VALID_PERIOD_BOB)
+                .withAge(VALID_AGE_BOB).withComment(NO_COMMENT).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>

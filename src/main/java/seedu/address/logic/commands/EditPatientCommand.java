@@ -25,6 +25,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Temperature;
 
+/**
+ * Edit a patient in address book with the selected name.
+ * Input of name is case insensitive.
+ */
 public class EditPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
@@ -51,7 +55,7 @@ public class EditPatientCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * Constructs an EditCommand.
+     * Constructs an EditCommand to edit the patient with the name {@code String}.
      *
      * @param personToBeEdited name in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
@@ -60,7 +64,7 @@ public class EditPatientCommand extends Command {
         requireNonNull(personToBeEdited);
         requireNonNull(editPersonDescriptor);
 
-        this.personToBeEdited = personToBeEdited;
+        this.personToBeEdited = personToBeEdited.trim().toLowerCase();
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -73,7 +77,7 @@ public class EditPatientCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         for (int i = 1; i <= lastShownList.size(); i++) {
-            String personName = lastShownList.get(i-1).getName().toString();
+            String personName = lastShownList.get(i - 1).getName().toString();
             boolean isValidPerson = personName.trim().toLowerCase().equals(personToBeEdited);
             if (isValidPerson) {
                 index = Index.fromZeroBased(i);
@@ -100,6 +104,10 @@ public class EditPatientCommand extends Command {
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
+     *
+     * @param personToEdit Person that is to be edited.
+     * @param editPersonDescriptor Details to edit the person with.
+     * @return Person that has been edited.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
@@ -116,27 +124,20 @@ public class EditPatientCommand extends Command {
                 updatedPhone, updatedAge, updatedComment);
     }
 
-
-
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
+        if (other == this) { //short circuit if same object
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof EditPatientCommand)) {
+        if (!(other instanceof EditPatientCommand)) { // instanceof handles nulls
             return false;
         }
 
-        // state check
-        EditPatientCommand e = (EditPatientCommand) other;
+        EditPatientCommand e = (EditPatientCommand) other; // state check
         return personToBeEdited.equals(e.personToBeEdited)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
-
-
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -151,7 +152,13 @@ public class EditPatientCommand extends Command {
         private Comment comment;
 
         public EditPersonDescriptor() {}
-        
+
+
+        /**
+         * Constructs a EditPersonDescriptor object with the following fields.
+         *
+         * @param toCopy EditPersonDescriptor to copy the fields from.
+         */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
@@ -160,7 +167,7 @@ public class EditPatientCommand extends Command {
             setPeriodOfStay(toCopy.periodOfStay);
             setComment(toCopy.comment);
         }
-        
+
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, temperature, age, periodOfStay, comment);
         }
@@ -215,18 +222,15 @@ public class EditPatientCommand extends Command {
 
         @Override
         public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
+            if (other == this) { // short circuit if same object
                 return true;
             }
 
-            // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditPersonDescriptor)) { // instanceof handles nulls
                 return false;
             }
 
-            // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditPersonDescriptor e = (EditPersonDescriptor) other; // state check
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

@@ -11,14 +11,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class EditPatientCommandParser {
-
+/**
+ * Parses input arguments and creates a new EditPatientCommand object.
+ */
+public class EditPatientCommandParser implements Parser<EditPatientCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditPatientCommand
+     * and returns an EditPatientCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args that are inputted by the user.
+     * @return EditPatientCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EditPatientCommand parse(String args) throws ParseException {
         requireNonNull(args);
