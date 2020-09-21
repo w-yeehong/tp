@@ -30,9 +30,9 @@ public class Age {
      * Returns true if a given string is a valid age.
      */
     public static boolean isValidAge(String test) {
-        return test.matches(VALIDATION_REGEX) &&
-                (Integer.parseInt(test) >= 0) &&
-                (Integer.parseInt(test) < 120);
+        return test.matches(VALIDATION_REGEX)
+                && (Integer.parseInt(test) >= 0)
+                && (Integer.parseInt(test) < 120);
     }
 
     @Override

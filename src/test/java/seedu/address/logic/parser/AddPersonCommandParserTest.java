@@ -1,24 +1,13 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.AddPersonCommand;
-import seedu.address.model.person.Age;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PeriodOfStay;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Temperature;
-import seedu.address.testutil.PersonBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_AMY;
+import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_AGE_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_PERIOD_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_TEMP_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.PERIOD_DESC_AMY;
@@ -37,6 +26,18 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.BOB;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PeriodOfStay;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Temperature;
+import seedu.address.testutil.PersonBuilder;
+
 
 public class AddPersonCommandParserTest {
 
@@ -71,7 +72,7 @@ public class AddPersonCommandParserTest {
                 + PHONE_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB, new AddPersonCommand(expectedPerson));
     }
 
-/* for remark TODO
+    /* for remark TODO
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
@@ -80,7 +81,7 @@ public class AddPersonCommandParserTest {
                 new AddPersonCommand(expectedPerson));
     }
 
- */
+    */
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
@@ -139,6 +140,7 @@ public class AddPersonCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
-                + PHONE_DESC_BOB + AGE_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
+                + PHONE_DESC_BOB + AGE_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
     }
 }

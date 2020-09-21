@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PERIOD_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_BOB;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -27,7 +26,8 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // different phone and temp -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withTemperature(VALID_TEMP_BOB).build();
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .withTemperature(VALID_TEMP_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // different name -> returns false
@@ -43,7 +43,7 @@ public class PersonTest {
                 .withAge(VALID_AGE_BOB).withPeriodOfStay(VALID_PERIOD_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-       //same name, same phone, same age, same period of stay, diff temp -> returns true
+        //same name, same phone, same age, same period of stay, diff temp -> returns true
         editedAlice = new PersonBuilder(ALICE).withTemperature(VALID_TEMP_BOB).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
     }

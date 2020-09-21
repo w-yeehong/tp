@@ -34,10 +34,6 @@ public class PersonUtil {
         return sb.toString();
     }
 
-    /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
-     */
-
     /*
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

@@ -36,7 +36,7 @@ public class PeriodOfStayTest {
         assertFalse(PeriodOfStay.isValidPeriodOfStay("20201801-20201001")); //no such month
         assertFalse(PeriodOfStay.isValidPeriodOfStay("20200901-20200801")); //end date before start date
 
-       //valid period of stay
+        //valid period of stay
         assertTrue(PeriodOfStay.isValidPeriodOfStay("20190308-20190506"));
         assertTrue(PeriodOfStay.isValidPeriodOfStay("20200913-20200914"));
     }
