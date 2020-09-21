@@ -2,38 +2,34 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the app.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
     private final Name name;
+    private final Temperature temperature;
+    private final PeriodOfStay periodOfStay;
     private final Phone phone;
-    private final Email email;
-
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Age age;
+    private final Comment comment; //an optional field, if null is initialised to "-"
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Temperature temperature, PeriodOfStay periodOfStay,
+                  Phone phone, Age age, Comment comment) {
+        requireAllNonNull(name, temperature, periodOfStay, phone, age);
         this.name = name;
+        this.temperature = temperature;
+        this.periodOfStay = periodOfStay;
         this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.age = age;
+        this.comment = comment == null ? new Comment("-") : comment;
     }
 
     public Name getName() {
@@ -44,20 +40,20 @@ public class Person {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Temperature getTemperature() {
+        return temperature;
     }
 
-    public Address getAddress() {
-        return address;
+    public PeriodOfStay getPeriodOfStay() {
+        return periodOfStay;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Age getAge() {
+        return age;
+    }
+
+    public Comment getComment() {
+        return comment;
     }
 
     /**
@@ -71,7 +67,9 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getPeriodOfStay().equals(getPeriodOfStay())
+                && otherPerson.getAge().equals(getAge());
     }
 
     /**
@@ -90,30 +88,32 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
+                && otherPerson.getTemperature().equals(getTemperature())
+                && otherPerson.getPeriodOfStay().equals(getPeriodOfStay())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getAge().equals(getAge());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, temperature, periodOfStay, phone, age);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append(" Temperature: ")
+                .append(getTemperature())
+                .append(" Period of stay: ")
+                .append(getPeriodOfStay())
                 .append(" Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Age: ")
+                .append(getAge())
+                .append(" Comment: ")
+                .append(getComment());
         return builder.toString();
     }
 
