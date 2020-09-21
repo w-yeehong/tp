@@ -1,12 +1,16 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
+    "temperature": "36.7",
+    "periodOfStay": "20200103-20200117",
     "phone": "94351253",
-    "email": "alice@example.com",
-    "tagged": [ "friends" ]
+    "age": "19"
   }, {
     "name": "Alice Pauline",
+    "temperature": "37.2",
+    "periodOfStay": "20200103-20200117",
     "phone": "94351253",
-    "email": "pauline@example.com"
+    "age": "19"
   } ]
 }
+

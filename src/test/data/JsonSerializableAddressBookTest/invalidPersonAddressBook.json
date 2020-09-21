@@ -1,7 +1,9 @@
 {
   "persons": [ {
     "name": "Hans Muster",
+    "temperature" : "36",
+    "periodOfStay" : "20200908-20201716",
     "phone": "9482424",
-    "email": "invalid@email!3e"
+    "age": "26"
   } ]
 }
