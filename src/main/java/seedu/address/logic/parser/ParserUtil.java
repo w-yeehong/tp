@@ -132,7 +132,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    //to delete
+    //TODO to delete
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
@@ -148,7 +148,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    //to delete
+    //TODO to delete
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
@@ -161,7 +161,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    //to delete
+    //TODO to delete
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
