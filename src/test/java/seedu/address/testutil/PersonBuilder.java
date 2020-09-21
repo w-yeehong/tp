@@ -1,15 +1,13 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Comment;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PeriodOfStay;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.person.Temperature;
 
 /**
  * A utility class to help with building Person objects.
@@ -17,25 +15,29 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_TEMPERATURE = "36.8";
+    public static final String DEFAULT_PERIOD = "20201001-20201014";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_AGE = "37";
+    public static final String DEFAULT_COMMENT = "-";
 
     private Name name;
+    private Temperature temperature;
+    private PeriodOfStay periodOfStay;
     private Phone phone;
-    private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private Age age;
+    private Comment comment;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        temperature = new Temperature(DEFAULT_TEMPERATURE);
+        periodOfStay = new PeriodOfStay(DEFAULT_PERIOD);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        age = new Age(DEFAULT_AGE);
+        comment = new Comment(DEFAULT_COMMENT);
     }
 
     /**
@@ -43,10 +45,11 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        temperature = personToCopy.getTemperature();
+        periodOfStay = personToCopy.getPeriodOfStay();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        age = personToCopy.getAge();
+        comment = personToCopy.getComment();
     }
 
     /**
@@ -58,18 +61,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Sets the {@code Temperature} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withTemperature(String temperature) {
+        this.temperature = new Temperature(temperature);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Period of stay} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withPeriodOfStay(String periodOfStay) {
+        this.periodOfStay = new PeriodOfStay(periodOfStay);
         return this;
     }
 
@@ -82,15 +85,22 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Age} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withAge(String age) {
+        this.age = new Age(age);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Comment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withComment(String comment) {
+        this.comment = new Comment(comment);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, temperature, periodOfStay, phone, age, comment);
     }
-
 }
