@@ -34,6 +34,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
+        //different period of stay -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPeriodOfStay(VALID_PERIOD_BOB).build();
+        assertFalse(ALICE.isSamePerson(editedAlice));
+
         // same name, same phone, different attributes -> returns false
         editedAlice = new PersonBuilder(ALICE).withTemperature(VALID_TEMP_BOB)
                 .withAge(VALID_AGE_BOB).withPeriodOfStay(VALID_PERIOD_BOB).build();
