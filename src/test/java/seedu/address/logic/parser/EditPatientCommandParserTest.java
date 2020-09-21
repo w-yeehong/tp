@@ -59,11 +59,16 @@ public class EditPatientCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS); // invalid age
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_PERIOD_DESC, PeriodOfStay.MESSAGE_CONSTRAINTS); // invalid period
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_TEMP_DESC, Temperature.MESSAGE_CONSTRAINTS); // invalid temperature
+        assertParseFailure(parser, VALID_NAME_AMY + INVALID_NAME_DESC,
+                Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, VALID_NAME_AMY + INVALID_PHONE_DESC,
+                Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, VALID_NAME_AMY + INVALID_AGE_DESC,
+                Age.MESSAGE_CONSTRAINTS); // invalid age
+        assertParseFailure(parser, VALID_NAME_AMY + INVALID_PERIOD_DESC,
+                PeriodOfStay.MESSAGE_CONSTRAINTS); // invalid period
+        assertParseFailure(parser, VALID_NAME_AMY + INVALID_TEMP_DESC,
+                Temperature.MESSAGE_CONSTRAINTS); // invalid temperature
 
         // invalid phone followed by valid age
         assertParseFailure(parser, VALID_NAME_AMY + INVALID_PHONE_DESC + AGE_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -82,9 +87,9 @@ public class EditPatientCommandParserTest {
         String userInput = VALID_NAME_AMY + PHONE_DESC_BOB + AGE_DESC_AMY
                 + TEMP_DESC_AMY + PERIOD_DESC_AMY + NAME_DESC_AMY;
 
-        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withAge(VALID_AGE_AMY).withTemperature(VALID_TEMP_AMY)
-                .withPeriodOfStay(VALID_PERIOD_AMY).build();
+        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB).withAge(VALID_AGE_AMY)
+                .withTemperature(VALID_TEMP_AMY).withPeriodOfStay(VALID_PERIOD_AMY).build();
         EditPatientCommand expectedCommand = new EditPatientCommand(VALID_NAME_AMY, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -94,8 +99,8 @@ public class EditPatientCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         String userInput = VALID_NAME_AMY + PHONE_DESC_BOB + AGE_DESC_AMY;
 
-        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withAge(VALID_AGE_AMY).build();
+        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withPhone(VALID_PHONE_BOB).withAge(VALID_AGE_AMY).build();
         EditPatientCommand expectedCommand = new EditPatientCommand(VALID_NAME_AMY, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -105,7 +110,8 @@ public class EditPatientCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         String userInput = VALID_NAME_AMY + NAME_DESC_AMY;
-        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_AMY).build();
         EditPatientCommand expectedCommand = new EditPatientCommand(VALID_NAME_AMY, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -146,8 +152,9 @@ public class EditPatientCommandParserTest {
                 + PERIOD_DESC_AMY + PHONE_DESC_AMY + AGE_DESC_AMY + TEMP_DESC_AMY + PERIOD_DESC_AMY
                 + PHONE_DESC_BOB + AGE_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB;
 
-        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withAge(VALID_AGE_BOB).withTemperature(VALID_TEMP_BOB).withPeriodOfStay(VALID_PERIOD_BOB)
+        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withPhone(VALID_PHONE_BOB).withAge(VALID_AGE_BOB).withTemperature(VALID_TEMP_BOB)
+                .withPeriodOfStay(VALID_PERIOD_BOB)
                 .build();
         EditPatientCommand expectedCommand = new EditPatientCommand(VALID_NAME_AMY, descriptor);
 
@@ -158,7 +165,8 @@ public class EditPatientCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         String userInput = VALID_NAME_AMY + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditPatientCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withPhone(VALID_PHONE_BOB).build();
         EditPatientCommand expectedCommand = new EditPatientCommand(VALID_NAME_AMY, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
