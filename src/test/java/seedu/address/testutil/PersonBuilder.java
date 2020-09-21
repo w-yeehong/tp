@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 
 import seedu.address.model.person.Age;
+import seedu.address.model.person.Comment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PeriodOfStay;
 import seedu.address.model.person.Person;
@@ -18,12 +19,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PERIOD = "20201001-20201014";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_AGE = "37";
+    public static final String DEFAULT_COMMENT = "-";
 
     private Name name;
     private Temperature temperature;
     private PeriodOfStay periodOfStay;
     private Phone phone;
     private Age age;
+    private Comment comment;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -34,6 +37,7 @@ public class PersonBuilder {
         periodOfStay = new PeriodOfStay(DEFAULT_PERIOD);
         phone = new Phone(DEFAULT_PHONE);
         age = new Age(DEFAULT_AGE);
+        comment = new Comment(DEFAULT_COMMENT);
     }
 
     /**
@@ -45,6 +49,7 @@ public class PersonBuilder {
         periodOfStay = personToCopy.getPeriodOfStay();
         phone = personToCopy.getPhone();
         age = personToCopy.getAge();
+        comment = personToCopy.getComment();
     }
 
     /**
@@ -87,8 +92,15 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, temperature, periodOfStay, phone, age);
+    /**
+     * Sets the {@code Comment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withComment(String comment) {
+        this.comment = new Comment(comment);
+        return this;
     }
 
+    public Person build() {
+        return new Person(name, temperature, periodOfStay, phone, age, comment);
+    }
 }

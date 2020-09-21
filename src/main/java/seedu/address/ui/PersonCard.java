@@ -37,6 +37,8 @@ public class PersonCard extends UiPart<Region> {
     private Label periodOfStay;
     @FXML
     private Label age;
+    @FXML
+    private Label comment;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,6 +52,7 @@ public class PersonCard extends UiPart<Region> {
         periodOfStay.setText("Period of stay: " + person.getPeriodOfStay().toString());
         phone.setText("Phone number: " + person.getPhone().value);
         age.setText("Age: " + person.getAge().toString());
+        comment.setText("Comment: " + person.getComment().toString());
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Age;
+import seedu.address.model.person.Comment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PeriodOfStay;
 import seedu.address.model.person.Person;
@@ -23,6 +24,7 @@ class JsonAdaptedPerson {
     private final String periodOfStay;
     private final String phone;
     private final String age;
+    private final String comment;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -30,12 +32,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("temperature") String temperature,
             @JsonProperty("periodOfStay") String periodOfStay, @JsonProperty("phone") String phone,
-            @JsonProperty("age") String age) {
+            @JsonProperty("age") String age, @JsonProperty("comment") String comment) {
         this.name = name;
         this.temperature = temperature;
         this.periodOfStay = periodOfStay;
         this.phone = phone;
         this.age = age;
+        this.comment = comment;
     }
 
     /**
@@ -47,6 +50,7 @@ class JsonAdaptedPerson {
         periodOfStay = source.getPeriodOfStay().toString();
         phone = source.getPhone().value;
         age = source.getAge().toString();
+        comment = source.getComment().toString();
     }
 
     /**
@@ -101,7 +105,13 @@ class JsonAdaptedPerson {
         }
         final Age modelAge = new Age(age);
 
-        return new Person(modelName, modelTemp, modelPeriod, modelPhone, modelAge);
+        if (comment == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Comment.class.getSimpleName()));
+        }
+
+        final Comment modelComment = new Comment(comment);
+
+        return new Person(modelName, modelTemp, modelPeriod, modelPhone, modelAge, modelComment);
     }
 
 }

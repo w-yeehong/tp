@@ -16,19 +16,20 @@ public class Person {
     private final PeriodOfStay periodOfStay;
     private final Phone phone;
     private final Age age;
-
+    private final Comment comment; //an optional field, if null is initialised to "-"
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Temperature temperature, PeriodOfStay periodOfStay,
-                  Phone phone, Age age) {
+                  Phone phone, Age age, Comment comment) {
         requireAllNonNull(name, temperature, periodOfStay, phone, age);
         this.name = name;
         this.temperature = temperature;
         this.periodOfStay = periodOfStay;
         this.phone = phone;
         this.age = age;
+        this.comment = comment == null ? new Comment("-") : comment;
     }
 
     public Name getName() {
@@ -49,6 +50,10 @@ public class Person {
 
     public Age getAge() {
         return age;
+    }
+
+    public Comment getComment() {
+        return comment;
     }
 
     /**
@@ -106,7 +111,9 @@ public class Person {
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Age: ")
-                .append(getAge());
+                .append(getAge())
+                .append(" Comment: ")
+                .append(getComment());
         return builder.toString();
     }
 

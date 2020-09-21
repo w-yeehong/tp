@@ -11,11 +11,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PERIOD_OF_STAY = new Prefix("d/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_AGE = new Prefix("a/");
-
     public static final Prefix PREFIX_COMMENTS = new Prefix("c/");
-
-    //to be deleted VVV
-    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
 
 }
