@@ -79,14 +79,14 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addPersonCommand = seedu.address.logic.commands.AddPersonCommand.COMMAND_WORD
+        String addPatientCommand = seedu.address.logic.commands.AddPatientCommand.COMMAND_WORD
                 + NAME_DESC_AMY + TEMP_DESC_AMY
                 + PERIOD_DESC_AMY + PHONE_DESC_AMY + AGE_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addPersonCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addPatientCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test

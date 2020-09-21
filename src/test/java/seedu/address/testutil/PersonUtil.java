@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
 
-import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.model.person.Person;
 
 /**
@@ -17,8 +17,8 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddPersonCommand(Person person) {
-        return AddPersonCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddPatientCommand(Person person) {
+        return AddPatientCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**

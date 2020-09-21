@@ -29,7 +29,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PeriodOfStay;
@@ -39,9 +39,9 @@ import seedu.address.model.person.Temperature;
 import seedu.address.testutil.PersonBuilder;
 
 
-public class AddPersonCommandParserTest {
+public class AddPatientCommandParserTest {
 
-    private AddPersonCommandParser parser = new AddPersonCommandParser();
+    private AddPatientCommandParser parser = new AddPatientCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -49,27 +49,27 @@ public class AddPersonCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + TEMP_DESC_BOB
-                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPersonCommand(expectedPerson));
+                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + TEMP_DESC_BOB
-                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPersonCommand(expectedPerson));
+                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
 
         //multiple temperature - last temp accepted
         assertParseSuccess(parser, NAME_DESC_BOB + TEMP_DESC_AMY + TEMP_DESC_BOB
-                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPersonCommand(expectedPerson));
+                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
 
         //multiple period of stay - last period of stay accepted
         assertParseSuccess(parser, NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_AMY
-                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPersonCommand(expectedPerson));
+                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
 
         //multiple phone - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
-                + PHONE_DESC_AMY + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPersonCommand(expectedPerson));
+                + PHONE_DESC_AMY + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
 
         //multiple age - last age accepted
         assertParseSuccess(parser, NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
-                + PHONE_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB, new AddPersonCommand(expectedPerson));
+                + PHONE_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
     }
 
     /* for remark TODO
@@ -78,14 +78,14 @@ public class AddPersonCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY ,
-                new AddPersonCommand(expectedPerson));
+                new AddPatientCommand(expectedPerson));
     }
 
     */
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
@@ -141,6 +141,6 @@ public class AddPersonCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
                 + PHONE_DESC_BOB + AGE_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
     }
 }
