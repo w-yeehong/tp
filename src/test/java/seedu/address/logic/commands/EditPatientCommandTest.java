@@ -108,7 +108,7 @@ public class EditPatientCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in address book
+        // Edit person in filtered list into a duplicate in address book
         Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditPatientCommand editCommand = new EditPatientCommand("Alice Pauline",
                 new EditPersonDescriptorBuilder(personInList).build());
@@ -128,24 +128,24 @@ public class EditPatientCommandTest {
     public void equals() {
         final EditPatientCommand standardCommand = new EditPatientCommand("Amy Bee", DESC_AMY);
 
-        // same values -> returns true
+        // Same values -> returns true
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         EditPatientCommand commandWithSameValues = new EditPatientCommand("Amy Bee", copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
-        // same object -> returns true
+        // Same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
 
         // null -> returns false
         assertFalse(standardCommand.equals(null));
 
-        // different types -> returns false
+        // Different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different index -> returns false
+        // Different index -> returns false
         assertFalse(standardCommand.equals(new EditPatientCommand("Bob Choo", DESC_AMY)));
 
-        // different descriptor -> returns false
+        // Different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditPatientCommand("Amy Bee", DESC_BOB)));
     }
 
