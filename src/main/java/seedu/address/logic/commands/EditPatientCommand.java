@@ -31,7 +31,7 @@ import seedu.address.model.person.Temperature;
  */
 public class EditPatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editpatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the person's name used in the displayed person list. "
