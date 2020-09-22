@@ -86,7 +86,7 @@ public class EditPatientCommand extends Command {
         }
 
         if (index.getZeroBased() == 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased() - 1);
