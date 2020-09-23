@@ -71,11 +71,12 @@ Format: `help`
 
 Adds a quarantined individual to the application.
 
-Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]…​`
+Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The comment field for the quarantined individual is optional.
-</div>
+* Adds a quarantined individual with the specified name, temperature, period of stay, phone number and age.
+* Temperature must be to 1 decimal place (e.g. 37.0 instead of 37).
+* Period of stay is in the format YYYYMMDD-YYYYMMDD.
+* It is optional to include the comment field for the quarantined individual.
 
 Examples:
 * `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35`
