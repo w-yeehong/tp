@@ -1,16 +1,13 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.logic.commands.EditPatientCommand.EditPersonDescriptor;
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Comment;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PeriodOfStay;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Temperature;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -34,9 +31,10 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setAge(person.getAge());
+        descriptor.setPeriodOfStay(person.getPeriodOfStay());
+        descriptor.setComment(person.getComment());
+        descriptor.setTemperature(person.getTemperature());
     }
 
     /**
@@ -56,28 +54,34 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Age} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditPersonDescriptorBuilder withAge(String age) {
+        descriptor.setAge(new Age(age));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code PeriodOfStay} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withPeriodOfStay(String periodOfStay) {
+        descriptor.setPeriodOfStay(new PeriodOfStay(periodOfStay));
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
+     * Sets the {@code Comment} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withComment(String comment) {
+        descriptor.setComment(new Comment(comment));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Temperature} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTemperature(String temperature) {
+        descriptor.setTemperature(new Temperature(temperature));
         return this;
     }
 

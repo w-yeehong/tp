@@ -2,45 +2,52 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
+    "temperature": "36.8",
+    "periodOfStay": "20200911-20200918",
     "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "age": "31",
+    "comment" : "Vegan"
   }, {
     "name" : "Benson Meier",
+    "temperature": "38.0",
+    "periodOfStay": "20200810-20200824",
     "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "age": "67",
+    "comment" : "-"
   }, {
     "name" : "Carl Kurz",
+    "temperature": "38.3",
+    "periodOfStay": "20200910-20200917",
     "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "age": "17",
+    "comment": "asthmatic"
   }, {
     "name" : "Daniel Meier",
+    "temperature": "36.3",
+    "periodOfStay": "20200808-20200809",
     "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "age": "55",
+    "comment" : "-"
   }, {
     "name" : "Elle Meyer",
+    "temperature": "37.4",
+    "periodOfStay": "20200707-20200719",
     "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "age": "81",
+    "comment" : "-"
   }, {
     "name" : "Fiona Kunz",
+    "temperature": "36.1",
+    "periodOfStay": "20201004-20201019",
     "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tagged" : [ ]
+    "age": "11",
+    "comment" : "-"
   }, {
     "name" : "George Best",
+    "temperature": "36.4",
+    "periodOfStay": "20201101-20201114",
     "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "tagged" : [ ]
+    "age": "28",
+    "comment" : "-"
   } ]
 }

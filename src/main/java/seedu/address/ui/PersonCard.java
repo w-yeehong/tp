@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
@@ -35,11 +32,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label temperature;
     @FXML
-    private Label email;
+    private Label periodOfStay;
     @FXML
-    private FlowPane tags;
+    private Label age;
+    @FXML
+    private Label comment;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,12 +48,11 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        temperature.setText("Temperature: " + person.getTemperature().toString());
+        periodOfStay.setText("Period of stay: " + person.getPeriodOfStay().toString());
+        phone.setText("Phone number: " + person.getPhone().value);
+        age.setText("Age: " + person.getAge().toString());
+        comment.setText("Comment: " + person.getComment().toString());
     }
 
     @Override
