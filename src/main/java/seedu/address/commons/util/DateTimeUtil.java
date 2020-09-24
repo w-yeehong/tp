@@ -60,7 +60,7 @@ public class DateTimeUtil {
      * parse-java.lang.CharSequence-java.time.temporal.TemporalQuery-
      *
      * @param text The text to parse, cannot be null.
-     * @param query The
+     * @param query A way to retrieve information from a temporal-based object.
      * @param formatters Formatters to parse the text with, cannot be null.
      * @param <T> A date-time class, usually a {@code TemporalAccessor}.
      * @return The date-time object parsed from text.
