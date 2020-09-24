@@ -88,22 +88,21 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a patient : `editpatient`
 
-Edits an existing person in the address book.
+Edits an existing patient in the application.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the patient with the specified `NAME`. The name refers to the name of the patient inputted into the application eariler. The name **must match exactly with the name of the patient**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* `NAME` is case-insensitive.
+* `TEMPERATURE` must be to 1 decimal place (e.g. 37.0 instead of 37).
+* `PERIOD_OF_STAY` is in the format YYYYMMDD-YYYYMMDD.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
 
 ### Locating persons by name: `find`
 
