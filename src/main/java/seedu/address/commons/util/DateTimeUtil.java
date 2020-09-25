@@ -87,7 +87,7 @@ public class DateTimeUtil {
 
     /**
      * Creates a {@code DateTimeFormatter} with default values of time.
-     * If a time conforms to the time format, the {@cod DateTimeFormatter} sets the parsed date-time
+     * If a time conforms to the time format, the {@code DateTimeFormatter} sets the parsed date-time
      * to that value. Otherwise, the hour and minute of the parsed date-time are set to 0.
      *
      * @param dateFormat The pattern for the date portion of a string parsed by  a{@code DateTimeFormatter}.
