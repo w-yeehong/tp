@@ -42,23 +42,23 @@ public class DateTimeUtilTest {
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "30122020", LocalDate::from, DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
-                "30-12-2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY));
+                "30 Dec 2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "30/12/2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY));
 
-        // EP: invalid text for DATE_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED
+        // EP: invalid text for DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
-                "20201230", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED));
+                "20201230", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
-                "2020-12-30", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED));
+                "Dec 30 2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
-                "30/12/2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED));
+                "30/12/2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED));
 
         // EP: invalid text for DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "20201230", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
-                "30-12-2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED));
+                "30 Dec 2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "2020/12/30", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED));
     }
@@ -69,27 +69,27 @@ public class DateTimeUtilTest {
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "30122020 2359", LocalDateTime::from, DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
-                "2020-12-30 2359", LocalDateTime::from, DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME));
+                "30 Dec 2020 2359", LocalDateTime::from, DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "30/12/2020 2359", LocalDateTime::from, DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME));
 
-        // EP: invalid text for DATETIME_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED_OPTIONAL_TIME
+        // EP: invalid text for DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "20201230 2359", LocalDateTime::from,
-                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED_OPTIONAL_TIME));
+                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
-                "2020-12-30 2359", LocalDateTime::from,
-                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED_OPTIONAL_TIME));
+                "Dec 30 2020 2359", LocalDateTime::from,
+                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "30/12/2020 2359", LocalDateTime::from,
-                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED_OPTIONAL_TIME));
+                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME));
 
         // EP: invalid text for DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "20201230 2359", LocalDateTime::from,
                 DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
-                "30-12-2020", LocalDateTime::from,
+                "30 Dec 2020 2359", LocalDateTime::from,
                 DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME));
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
                 "2020/12/30", LocalDateTime::from,
@@ -100,7 +100,7 @@ public class DateTimeUtilTest {
     public void parseFirstMatching_manyDateFormattersInvalidText_throwsDateTimeParseException() {
         DateTimeFormatter[] formatters = {
             DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY,
-            DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED,
+            DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED,
             DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED
         };
 
@@ -116,7 +116,7 @@ public class DateTimeUtilTest {
     public void parseFirstMatching_manyDateTimeFormattersInvalidText_throwsDateTimeParseException() {
         DateTimeFormatter[] formatters = {
             DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
-            DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED_OPTIONAL_TIME,
+            DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME,
             DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
         };
 
@@ -138,7 +138,7 @@ public class DateTimeUtilTest {
         assertEquals(date, DateTimeUtil.parseFirstMatching(
                 "20201230", LocalDate::from, DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY));
         assertEquals(date, DateTimeUtil.parseFirstMatching(
-                "30-12-2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED));
+                "30 Dec 2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED));
         assertEquals(date, DateTimeUtil.parseFirstMatching(
                 "30/12/2020", LocalDate::from, DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED));
     }
@@ -159,8 +159,8 @@ public class DateTimeUtilTest {
                 "20201230 2359", LocalDateTime::from,
                 DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME));
         assertEquals(dateTime, DateTimeUtil.parseFirstMatching(
-                "30-12-2020 2359", LocalDateTime::from,
-                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED_OPTIONAL_TIME));
+                "30 Dec 2020 2359", LocalDateTime::from,
+                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME));
         assertEquals(dateTime, DateTimeUtil.parseFirstMatching(
                 "30/12/2020 2359", LocalDateTime::from,
                 DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME));
@@ -176,8 +176,8 @@ public class DateTimeUtilTest {
                 "20201230", LocalDateTime::from,
                 DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME));
         assertEquals(dateWithDefaultTime, DateTimeUtil.parseFirstMatching(
-                "30-12-2020", LocalDateTime::from,
-                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED_OPTIONAL_TIME));
+                "30 Dec 2020", LocalDateTime::from,
+                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME));
         assertEquals(dateWithDefaultTime, DateTimeUtil.parseFirstMatching(
                 "30/12/2020", LocalDateTime::from,
                 DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME));
@@ -187,19 +187,19 @@ public class DateTimeUtilTest {
     public void parseFirstMatching_manyDateFormatterValidText_correctObject() {
         DateTimeFormatter[] formatters = {
             DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY,
-            DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED,
+            DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED,
             DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED
         };
 
         int year = 2020;
         int month = 12;
         int day = 30;
-
         LocalDate date = LocalDate.of(year, month, day);
+
         assertEquals(date, DateTimeUtil.parseFirstMatching(
                 "20201230", LocalDate::from, formatters));
         assertEquals(date, DateTimeUtil.parseFirstMatching(
-                "30-12-2020", LocalDate::from, formatters));
+                "30 Dec 2020", LocalDate::from, formatters));
         assertEquals(date, DateTimeUtil.parseFirstMatching(
                 "30/12/2020", LocalDate::from, formatters));
     }
@@ -208,7 +208,7 @@ public class DateTimeUtilTest {
     public void parseFirstMatching_manyDateTimeFormatterValidText_correctObject() {
         DateTimeFormatter[] formatters = {
             DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
-            DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED_OPTIONAL_TIME,
+            DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME,
             DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
         };
 
@@ -225,7 +225,7 @@ public class DateTimeUtilTest {
         assertEquals(dateWithCustomTime, DateTimeUtil.parseFirstMatching(
                 "20201230 2359", LocalDateTime::from, formatters));
         assertEquals(dateWithCustomTime, DateTimeUtil.parseFirstMatching(
-                "30-12-2020 2359", LocalDateTime::from, formatters));
+                "30 Dec 2020 2359", LocalDateTime::from, formatters));
         assertEquals(dateWithCustomTime, DateTimeUtil.parseFirstMatching(
                 "30/12/2020 2359", LocalDateTime::from, formatters));
 
@@ -239,7 +239,7 @@ public class DateTimeUtilTest {
         assertEquals(dateWithDefaultTime, DateTimeUtil.parseFirstMatching(
                 "20201230", LocalDateTime::from, formatters));
         assertEquals(dateWithDefaultTime, DateTimeUtil.parseFirstMatching(
-                "30-12-2020", LocalDateTime::from, formatters));
+                "30 Dec 2020", LocalDateTime::from, formatters));
         assertEquals(dateWithDefaultTime, DateTimeUtil.parseFirstMatching(
                 "30/12/2020", LocalDateTime::from, formatters));
     }
