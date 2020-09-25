@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.PriorityQueue;
 import java.util.Scanner;
+
 import seedu.address.model.RoomBook;
 import seedu.address.model.hotel.Room;
 
@@ -14,9 +15,13 @@ public class RoomOccupancyStorage {
     private Path fileNumOfRooms;
     private Path roomsOccupied;
 
+    /**
+     * Creates RoomOccupancyStorage object that reads the number of rooms a hotel has and the rooms which are
+     * occupied
+     */
     public RoomOccupancyStorage(Path fileNumOfRooms, Path roomsOccupied) {
         this.fileNumOfRooms = fileNumOfRooms;
-        this.roomsOccupied  = roomsOccupied;
+        this.roomsOccupied = roomsOccupied;
     }
 
     /**

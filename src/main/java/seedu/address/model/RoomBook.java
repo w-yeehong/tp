@@ -3,8 +3,8 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.PriorityQueue;
 import java.util.logging.Logger;
-import seedu.address.commons.core.LogsCenter;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.Room;
 import seedu.address.storage.JsonAddressBookStorage;
 
@@ -15,13 +15,18 @@ public class RoomBook {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private int numOfRooms;
-    private PriorityQueue<Room> rooms = new PriorityQueue<>();
+    private PriorityQueue<Room> rooms;
     private Room[] roomsInArray;
     private Path fileNumOfRooms;
     private Path roomsOccupied;
 
+    /** Creates default RoomBook() object where all fields are null**/
     public RoomBook() {}
 
+    /**
+     * Creates a RoomBook object using the information given in files containing information about
+     * which rooms are occupied and number of rooms
+     */
     public RoomBook(PriorityQueue<Room> rooms, Room[] roomsInArray, int numOfRooms, Path fileNumOfRooms,
                     Path roomsOccupied) {
         this.rooms = rooms;

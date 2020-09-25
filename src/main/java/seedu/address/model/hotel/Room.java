@@ -1,6 +1,7 @@
 package seedu.address.model.hotel;
 
 import java.util.Objects;
+
 import seedu.address.model.person.Person;
 
 /**
@@ -11,11 +12,17 @@ public class Room implements Comparable<Room> {
     private boolean isOccupied;
     private Person person;
 
+    /**
+     * Creates room object where roomNumber and isOccupied values are values given by user
+     */
     public Room(int roomNumber, boolean isOccupied) {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
     }
 
+    /**
+     * Creates room object where isOccupied is always false
+     */
     public Room(int roomNumber) {
         this.roomNumber = roomNumber;
         this.isOccupied = false;
@@ -37,11 +44,15 @@ public class Room implements Comparable<Room> {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Room room = (Room) o;
-        return roomNumber == room.roomNumber &&
-                isOccupied == room.isOccupied;
+        return roomNumber == room.roomNumber
+                && isOccupied == room.isOccupied;
     }
 
     @Override
@@ -51,16 +62,16 @@ public class Room implements Comparable<Room> {
 
     @Override
     public int compareTo(Room room) {
-        if(room.isOccupied == this.isOccupied) {
+        if (room.isOccupied == this.isOccupied) {
             if (room.roomNumber < this.roomNumber) {
                 return 1;
-            }else{
+            } else {
                 return -1;
             }
-        }else {
-            if(room.isOccupied) {
+        } else {
+            if (room.isOccupied) {
                 return -1;
-            }else {
+            } else {
                 return 1;
             }
         }

@@ -75,7 +75,8 @@ public class AddressBookParser {
             return new FindRoomCommand();
 
         case AddNumberOfRoomsCommand.COMMAND_WORD:
-                return new AddNumberOfRoomsParser().parse(arguments);
+            return new AddNumberOfRoomsParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.util.PriorityQueue;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.Room;
@@ -18,12 +19,12 @@ public class FindRoomCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         PriorityQueue<Room> rooms = model.getRooms();
-        if(model.getNumOfRooms() == 0) {
+        if (model.getNumOfRooms() == 0) {
             throw new CommandException(NUMBER_OF_ROOMS_UNDEFINED);
         }
         Room room = rooms.peek();
         assert room != null;
-        if(room.isOccupied()){
+        if (room.isOccupied()) {
             throw new CommandException(MESSAGE_NO_EMPTY_ROOM);
         }
         return new CommandResult(room.toString() + " is empty");
