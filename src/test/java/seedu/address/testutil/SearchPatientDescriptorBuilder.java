@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.SearchPatientCommand.SearchPatientDescriptor;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.TemperatureRange;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.TemperatureRange;
 
 /**
  * A utility class to help with building SearchPatientDescriptor objects.

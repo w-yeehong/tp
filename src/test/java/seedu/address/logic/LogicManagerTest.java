@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.NewCommandTestUtil.PERIOD_DESC_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.TEMP_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPatients.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -20,20 +20,21 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.patient.AddPatientCommand;
+import seedu.address.logic.commands.patient.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.RoomOccupancyStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -86,12 +87,12 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addPatientCommand = seedu.address.logic.commands.AddPatientCommand.COMMAND_WORD
+        String addPatientCommand = AddPatientCommand.COMMAND_WORD
                 + NAME_DESC_AMY + TEMP_DESC_AMY
                 + PERIOD_DESC_AMY + PHONE_DESC_AMY + AGE_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).build();
+        Patient expectedPatient = new PatientBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addPatient(expectedPatient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
 
         assertCommandFailure(addPatientCommand, CommandException.class, expectedMessage, expectedModel);
@@ -99,7 +100,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPatientList().remove(0));
     }
 
     /**

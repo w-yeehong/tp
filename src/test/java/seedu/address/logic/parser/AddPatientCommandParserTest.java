@@ -25,18 +25,19 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPatients.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddPatientCommand;
-import seedu.address.model.person.Age;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PeriodOfStay;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Temperature;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.logic.commands.patient.AddPatientCommand;
+import seedu.address.logic.parser.patient.AddPatientCommandParser;
+import seedu.address.model.patient.Age;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.PeriodOfStay;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Temperature;
+import seedu.address.testutil.PatientBuilder;
 
 
 public class AddPatientCommandParserTest {
@@ -45,40 +46,40 @@ public class AddPatientCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).build();
+        Patient expectedPatient = new PatientBuilder(BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + TEMP_DESC_BOB
-                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
+                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + TEMP_DESC_BOB
-                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
+                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         //multiple temperature - last temp accepted
         assertParseSuccess(parser, NAME_DESC_BOB + TEMP_DESC_AMY + TEMP_DESC_BOB
-                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
+                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         //multiple period of stay - last period of stay accepted
         assertParseSuccess(parser, NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_AMY
-                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
+                + PERIOD_DESC_BOB + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         //multiple phone - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
-                + PHONE_DESC_AMY + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
+                + PHONE_DESC_AMY + PHONE_DESC_BOB + AGE_DESC_BOB, new AddPatientCommand(expectedPatient));
 
         //multiple age - last age accepted
         assertParseSuccess(parser, NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
-                + PHONE_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB, new AddPatientCommand(expectedPerson));
+                + PHONE_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB, new AddPatientCommand(expectedPatient));
     }
 
     /* for remark TODO
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY ,
-                new AddPatientCommand(expectedPerson));
+                new AddPatientCommand(expectedPatient));
     }
 
     */

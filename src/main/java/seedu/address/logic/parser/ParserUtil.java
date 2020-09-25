@@ -9,14 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Age;
-import seedu.address.model.person.Comment;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PeriodOfStay;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Temperature;
-import seedu.address.model.person.TemperatureRange;
+import seedu.address.model.patient.Age;
+import seedu.address.model.patient.Comment;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.PeriodOfStay;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Temperature;
+import seedu.address.model.patient.TemperatureRange;
 import seedu.address.model.tag.Tag;
 
 /**

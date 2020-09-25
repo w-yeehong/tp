@@ -2,7 +2,7 @@ package seedu.address.model.hotel;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.tasks.Task;
 
 /**
@@ -11,8 +11,9 @@ import seedu.address.model.tasks.Task;
 public class Room implements Comparable<Room> {
     private int roomNumber;
     private boolean isOccupied;
-    private Person person;
+    private Patient person;
     private Task task;
+
     /**
      * Creates room object where roomNumber and isOccupied values are values given by user
      */
