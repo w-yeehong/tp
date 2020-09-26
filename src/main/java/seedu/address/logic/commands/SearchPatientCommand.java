@@ -36,10 +36,10 @@ public class SearchPatientCommand extends Command {
     public static final String MESSAGE_SEARCH_PERSON_LIST_SUCCESS = "Person match your criteria found: \n";
 
     private final SearchPatientDescriptor searchPatientDescriptor;
-    private final int AREANOTFOUND = 0;
-    private final int AREAISNAME = 1;
-    private final int AREAISTEMPERATURE = 2;
-    private final int TOOMANYAREA = 3;
+    private final int areaNotFound = 0;
+    private final int areaIsName = 1;
+    private final int areaIsTemperature = 2;
+    private final int tooManyArea = 3;
 
     /**
      * Constructs an SearchPatientCommand to edit the patient with the name {@code String}.
@@ -55,15 +55,15 @@ public class SearchPatientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        final int AREA_TO_SERACH = this.confirmArea(searchPatientDescriptor);
+        final int areaToSearch = this.confirmArea(searchPatientDescriptor);
         ArrayList<Person> personWithinTemperatureRange = new ArrayList<>();
         List<Person> personList = model.getFilteredPersonList();
 
-        if (AREA_TO_SERACH == AREANOTFOUND) {
+        if (areaToSearch == areaNotFound) {
             throw new CommandException(MESSAGE_NOT_FOUND);
         }
 
-        else if (AREA_TO_SERACH == AREAISNAME) {
+        else if (areaToSearch == areaIsName) {
             String nameToSearch = searchPatientDescriptor.getName().toString().trim().toLowerCase();
             Person personFound = personList.get(0);
             boolean isPersonFound = false;
@@ -83,7 +83,7 @@ public class SearchPatientCommand extends Command {
             }
         }
 
-        else if (AREA_TO_SERACH == AREAISTEMPERATURE) {
+        else if (areaToSearch == areaIsTemperature) {
             double startingTemperature = searchPatientDescriptor.getTemperatureRange().getStartingTemperature();
             double endingTemperature = searchPatientDescriptor.getTemperatureRange().getEndingTemperature();
             for (Person person : personList) {
@@ -99,7 +99,7 @@ public class SearchPatientCommand extends Command {
                 return new CommandResult(MESSAGE_SEARCH_PERSON_LIST_SUCCESS
                         + getListOutput(personWithinTemperatureRange));
             }
-        } else if (AREA_TO_SERACH == TOOMANYAREA) {
+        } else if (areaToSearch == tooManyArea) {
             return new CommandResult(Messages.MESSAGE_TOO_MANY_COMMANDS);
         }
         return null;
@@ -126,18 +126,18 @@ public class SearchPatientCommand extends Command {
     public int confirmArea(SearchPatientDescriptor searchPatientDescriptor) {
         if (searchPatientDescriptor.getOptionalName().isEmpty()
                 && searchPatientDescriptor.getOptionalTemperatureRange().isEmpty()) {
-            return AREANOTFOUND;
+            return areaNotFound;
         }
         else if (searchPatientDescriptor.getOptionalName().isPresent()
                 && searchPatientDescriptor.getOptionalTemperatureRange().isEmpty()) {
-            return AREAISNAME;
+            return areaIsName;
         }
         else if (searchPatientDescriptor.getOptionalName().isEmpty()
                 && searchPatientDescriptor.getOptionalTemperatureRange().isPresent()) {
-            return AREAISTEMPERATURE;
+            return areaIsTemperature;
         }
         else {
-            return TOOMANYAREA;
+            return tooManyArea;
         }
 
     }

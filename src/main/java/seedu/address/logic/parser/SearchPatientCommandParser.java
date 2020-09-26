@@ -21,7 +21,7 @@ public class SearchPatientCommandParser implements Parser<SearchPatientCommand> 
      */
     public SearchPatientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME,  PREFIX_TEMP_RANGE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TEMP_RANGE);
 
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 && !arePrefixesPresent(argMultimap, PREFIX_TEMP_RANGE))
@@ -29,14 +29,16 @@ public class SearchPatientCommandParser implements Parser<SearchPatientCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
         }
 
-        SearchPatientCommand.SearchPatientDescriptor searchPatientDescriptor =  new SearchPatientCommand.SearchPatientDescriptor();
+        SearchPatientCommand.SearchPatientDescriptor searchPatientDescriptor
+                = new SearchPatientCommand.SearchPatientDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             searchPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
         if (argMultimap.getValue(PREFIX_TEMP_RANGE).isPresent()) {
-            searchPatientDescriptor.setTemperatureRange(ParserUtil.parseTemperatureRange(argMultimap.getValue(PREFIX_TEMP_RANGE).get()));
+            searchPatientDescriptor.setTemperatureRange(ParserUtil
+                    .parseTemperatureRange(argMultimap.getValue(PREFIX_TEMP_RANGE).get()));
         }
 
         return new SearchPatientCommand(searchPatientDescriptor);
