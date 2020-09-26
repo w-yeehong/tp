@@ -29,8 +29,8 @@ public class SearchPatientCommandParser implements Parser<SearchPatientCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
         }
 
-        SearchPatientCommand.SearchPatientDescriptor searchPatientDescriptor
-                = new SearchPatientCommand.SearchPatientDescriptor();
+        SearchPatientCommand.SearchPatientDescriptor searchPatientDescriptor =
+                new SearchPatientCommand.SearchPatientDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             searchPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
