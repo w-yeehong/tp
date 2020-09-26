@@ -15,6 +15,7 @@ public class RoomOccupancyStorage {
     private Path fileNumOfRooms;
     private Path roomsOccupied;
 
+    public RoomOccupancyStorage() {}
     /**
      * Creates RoomOccupancyStorage object that reads the number of rooms a hotel has and the rooms which are
      * occupied
