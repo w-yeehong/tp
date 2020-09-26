@@ -67,7 +67,7 @@ public class SearchPatientCommand extends Command {
             String nameToSearch = searchPatientDescriptor.getName().toString().trim().toLowerCase();
             Person personFound = personList.get(0);
             boolean isPersonFound = false;
-            
+
             for (Person person : personList) {
                 String personName = person.getName().toString().trim().toLowerCase();
                 if (personName.equals(nameToSearch)) {
