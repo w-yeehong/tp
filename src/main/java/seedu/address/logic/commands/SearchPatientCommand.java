@@ -191,4 +191,5 @@ public class SearchPatientCommand extends Command {
                     && getTemperatureRange().equals(e.getTemperatureRange());
         }
     }
+    
 }
