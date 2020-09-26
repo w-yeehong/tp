@@ -1,21 +1,22 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP_RANGE;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SearchPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
 /**
- * Parses input arguments and creates a new AddPatientCommand object
+ * Parses input arguments and creates a new SearchPatientCommand object
  */
 public class SearchPatientCommandParser implements Parser<SearchPatientCommand> {
+
     /**
-     * Parses the given {@code String} of arguments in the context of the AddPatientCommand
-     * and returns an AddPatientCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SearchPatientCommand
+     * and returns an SearchPatientCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public SearchPatientCommand parse(String args) throws ParseException {
@@ -28,19 +29,17 @@ public class SearchPatientCommandParser implements Parser<SearchPatientCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
         }
 
-
-        SearchPatientCommand.SearchPersonDescriptor searchPersonDescriptor =  new SearchPatientCommand.SearchPersonDescriptor();
+        SearchPatientCommand.SearchPatientDescriptor searchPatientDescriptor =  new SearchPatientCommand.SearchPatientDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            searchPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            searchPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
         if (argMultimap.getValue(PREFIX_TEMP_RANGE).isPresent()) {
-            searchPersonDescriptor.setTemperatureRange(ParserUtil.parseTemperatureRange(argMultimap.getValue(PREFIX_TEMP_RANGE).get()));
+            searchPatientDescriptor.setTemperatureRange(ParserUtil.parseTemperatureRange(argMultimap.getValue(PREFIX_TEMP_RANGE).get()));
         }
 
-
-        return new SearchPatientCommand(searchPersonDescriptor);
+        return new SearchPatientCommand(searchPatientDescriptor);
     }
 
     /**
