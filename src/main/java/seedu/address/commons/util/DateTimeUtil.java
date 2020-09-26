@@ -18,9 +18,9 @@ public class DateTimeUtil {
     public static final DateTimeFormatter DATE_FORMAT_YEAR_MONTH_DAY =
             DateTimeFormatter.ofPattern("yyyyMMdd");
 
-    /** e.g. 20-9-2020 */
-    public static final DateTimeFormatter DATE_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED =
-            DateTimeFormatter.ofPattern("d-M-yyyy");
+    /** e.g. 20 Sep 2020 */
+    public static final DateTimeFormatter DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED =
+            DateTimeFormatter.ofPattern("d MMM yyyy");
 
     /** e.g. 20/9/2020 */
     public static final DateTimeFormatter DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED =
@@ -32,9 +32,9 @@ public class DateTimeUtil {
     public static final DateTimeFormatter DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME =
             createFormatterWithOptionalTime("yyyyMMdd", " HHmm");
 
-    /** e.g. 20-9-2020 (time defaults to 0000) or 20-9-2020 2359 */
-    public static final DateTimeFormatter DATETIME_FORMAT_DAY_MONTH_YEAR_HYPHEN_DELIMITED_OPTIONAL_TIME =
-            createFormatterWithOptionalTime("d-M-yyyy", " HHmm");
+    /** e.g. 20 Sep 2020 (time defaults to 0000) or 20 Sep 2020 2359 */
+    public static final DateTimeFormatter DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME =
+            createFormatterWithOptionalTime("d MMM yyyy", " HHmm");
 
     /** e.g. 20/9/2020 (time defaults to 0000) or 20/09/2020 2359 */
     public static final DateTimeFormatter DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME =
@@ -87,7 +87,7 @@ public class DateTimeUtil {
 
     /**
      * Creates a {@code DateTimeFormatter} with default values of time.
-     * If a time conforms to the time format, the {@cod DateTimeFormatter} sets the parsed date-time
+     * If a time conforms to the time format, the {@code DateTimeFormatter} sets the parsed date-time
      * to that value. Otherwise, the hour and minute of the parsed date-time are set to 0.
      *
      * @param dateFormat The pattern for the date portion of a string parsed by  a{@code DateTimeFormatter}.
