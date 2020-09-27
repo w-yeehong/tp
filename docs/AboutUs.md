@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Lee Ming De
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mingde.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/LeeMingDe)]
+[[portfolio](team/mingde.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration (version the code, maintain the code repository and integrate various parts into a software)
