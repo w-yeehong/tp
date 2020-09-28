@@ -8,6 +8,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -34,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
+    private Image logoPicture = new Image(this.getClass().getResourceAsStream("/images/covigent_logo.png"));
+
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
@@ -41,7 +45,7 @@ public class MainWindow extends UiPart<Stage> {
     private RoomListPanel roomListPanel;
 
     @FXML
-    private HBox covigentLogoPlaceholder;
+    private ImageView logoIcon;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -86,6 +90,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+    }
+
+    public void displayAppIcon() {
+        logoIcon.setImage(logoPicture);
     }
 
     public Stage getPrimaryStage() {
