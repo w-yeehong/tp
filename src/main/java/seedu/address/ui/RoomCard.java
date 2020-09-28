@@ -41,7 +41,7 @@ public class RoomCard extends UiPart<Region> {
         super(FXML);
         this.room = room;
         roomNumber.setText(String.format("Room #%d", room.getRoomNumber()));
-        if (room.isOccupied()){
+        if (room.isOccupied()) {
             showOccupancy.setImage(occupied);
         } else {
             showOccupancy.setImage(unoccupied);
