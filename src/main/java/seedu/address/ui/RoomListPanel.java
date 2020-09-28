@@ -15,7 +15,7 @@ import seedu.address.model.hotel.Room;
  */
 public class RoomListPanel extends UiPart<Region> {
     private static final String FXML = "RoomListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(RoomListPanel.class);
 
     @FXML
     private ListView<Room> roomListView;

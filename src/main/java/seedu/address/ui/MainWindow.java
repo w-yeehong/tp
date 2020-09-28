@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -45,6 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private RoomListPanel roomListPanel;
+    private RoomDetailsPanel roomDetailsPanel;
 
     @FXML
     private ImageView logoIcon;
@@ -75,6 +77,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane roomListPanelPlaceHolder;
+
+    //TODO Handle this logic, not very sure how
+    @FXML
+    private AnchorPane roomDetailsPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -148,8 +154,12 @@ public class MainWindow extends UiPart<Stage> {
         occupied.setOccupied(true);
         ObservableList<Room> test = FXCollections.observableArrayList(new Room(1), new Room(5),
                 new Room(2), new Room(3), occupied);
+
         roomListPanel = new RoomListPanel(test);
         roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
+
+        roomDetailsPanel = new RoomDetailsPanel(test.get(1));
+        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
