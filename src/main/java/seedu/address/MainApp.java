@@ -60,7 +60,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(userPrefs.getNumberOfRoomsFilePath(),
-                userPrefs.getNumberOfRoomsFilePath());
+                userPrefs.getRoomsOccupiedFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
 
         initLogging(config);
@@ -100,7 +100,6 @@ public class MainApp extends Application {
             initialData = new AddressBook();
             readOnlyRoomOccupancy = new RoomBook();
         }
-
         return new ModelManager(initialData, userPrefs, readOnlyRoomOccupancy);
     }
 

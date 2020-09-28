@@ -70,6 +70,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        System.out.println(addressBookStorage.getAddressBookFilePath());
         saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
     }
 
@@ -82,6 +83,12 @@ public class StorageManager implements Storage {
     @Override
     public RoomBook readRoomOccupancyStorage() throws IOException {
         return roomOccupancyStorage.readOnlyRoomOccupancy();
+    }
+
+    @Override
+    public void saveRoomBook(RoomBook roomBook) throws IOException {
+        roomOccupancyStorage.saveNumberOfRooms(roomBook, roomOccupancyStorage.getFileNumOfRooms());
+        roomOccupancyStorage.saveOccupiedRooms(roomBook, roomOccupancyStorage.getRoomsOccupied());
     }
 
 }

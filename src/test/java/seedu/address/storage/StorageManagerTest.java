@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +15,9 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.RoomBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.hotel.Room;
 
 public class StorageManagerTest {
 
@@ -26,7 +30,9 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, new RoomOccupancyStorage());
+        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(getTempFilePath("nr"),
+                getTempFilePath("ro"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -65,4 +71,18 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getAddressBookFilePath());
     }
 
+    @Test
+    public void saveRoomOccupancyStorage() throws IOException {
+        PriorityQueue<Room> rooms = new PriorityQueue<>();
+        Room[] roomsInArray = new Room[10];
+        for (int i = 0; i < 10; i++) {
+            Room room = new Room(i + 1);
+            rooms.add(room);
+            roomsInArray[i] = room;
+        }
+        RoomBook roomBook = new RoomBook(rooms, roomsInArray, 10);
+        storageManager.saveRoomBook(roomBook);
+        RoomBook roomBook1 = storageManager.readRoomOccupancyStorage();
+        assertEquals(roomBook, roomBook1);
+    }
 }

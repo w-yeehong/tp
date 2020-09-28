@@ -33,4 +33,11 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     /** Reads the data of number of rooms and occupied rooms into RoomBook **/
     RoomBook readRoomOccupancyStorage() throws IOException;
 
+    /**
+     * Saves the information given by user into a hard disk. Such information includes number of rooms and room number
+     * of occupied rooms
+     * @param roomBook contains user inputs
+     * @throws IOException
+     */
+    void saveRoomBook(RoomBook roomBook) throws IOException;
 }

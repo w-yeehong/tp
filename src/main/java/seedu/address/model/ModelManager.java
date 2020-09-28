@@ -23,7 +23,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final RoomBook readOnlyRoomOccupancy;
+    private final RoomBook roomBook;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -38,7 +38,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.readOnlyRoomOccupancy = readOnlyRoomOccupancy;
+        this.roomBook = readOnlyRoomOccupancy;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -148,22 +148,27 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && roomBook.equals(other.roomBook);
     }
 
     //=========== RoomBook =============================================================
 
     public PriorityQueue<Room> getRooms() {
-        return this.readOnlyRoomOccupancy.getRooms();
+        return this.roomBook.getRooms();
     }
 
     public int getNumOfRooms() {
-        return this.readOnlyRoomOccupancy.getNumOfRooms();
+        return this.roomBook.getNumOfRooms();
     }
 
-    public Path getPathOfNumberOfRooms() {
-        return readOnlyRoomOccupancy.getFileNumOfRooms();
+    public void addNumberOfRooms(int num) {
+        roomBook.addNumberOfRooms(num);
+    }
+    public RoomBook getRoomBook() {
+        return roomBook;
     }
 }

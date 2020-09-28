@@ -3,6 +3,7 @@ package seedu.address.model.hotel;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.tasks.Task;
 
 /**
  * Represents Room in the app
@@ -11,13 +12,15 @@ public class Room implements Comparable<Room> {
     private int roomNumber;
     private boolean isOccupied;
     private Person person;
-
+    private Task task;
     /**
      * Creates room object where roomNumber and isOccupied values are values given by user
      */
     public Room(int roomNumber, boolean isOccupied) {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
+        this.person = null;
+        this.task = null;
     }
 
     /**
@@ -26,6 +29,8 @@ public class Room implements Comparable<Room> {
     public Room(int roomNumber) {
         this.roomNumber = roomNumber;
         this.isOccupied = false;
+        this.person = null;
+        this.task = null;
     }
     public int getRoomNumber() {
         return roomNumber;
