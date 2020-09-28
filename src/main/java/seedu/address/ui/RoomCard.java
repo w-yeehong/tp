@@ -24,13 +24,15 @@ public class RoomCard extends UiPart<Region> {
      */
 
     public final Room room;
-    private Image unoccupied = new Image("resources/images/green_circle.png");
-    private Image occupied = new Image("resources/images/red_circle.png");
+    private Image unoccupied = new Image(this.getClass().getResourceAsStream("/images/green_circle.png"));
+    private Image occupied = new Image(this.getClass().getResourceAsStream("/images/red_circle.png"));
 
     @FXML
     private HBox cardPane;
     @FXML
     private Label roomNumber;
+    @FXML
+    private ImageView showOccupancy;
 
     /**
      * Creates a {@code RoomCode} with the given {@code Room} and index to display.
@@ -38,26 +40,12 @@ public class RoomCard extends UiPart<Region> {
     public RoomCard(Room room) {
         super(FXML);
         this.room = room;
-        roomNumber.setText(String.format("# %d", room.getRoomNumber()));
+        roomNumber.setText(String.format("Room #%d", room.getRoomNumber()));
         if (room.isOccupied()){
-            this.unoccupiedRoom();
+            showOccupancy.setImage(occupied);
         } else {
-            this.occupiedRoom();
+            showOccupancy.setImage(unoccupied);
         }
-    }
-
-    private void unoccupiedRoom() {
-        ImageView view = new ImageView(unoccupied);
-        view.setFitHeight(40);
-        view.setPreserveRatio(true);
-        roomNumber.setGraphic(view);
-    }
-
-    private void occupiedRoom() {
-        ImageView view = new ImageView(occupied);
-        view.setFitHeight(40);
-        view.setPreserveRatio(true);
-        roomNumber.setGraphic(view);
     }
 
     @Override
