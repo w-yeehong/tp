@@ -22,7 +22,7 @@ class FindRoomCommandTest {
     }
 
     @Test
-    void execute_numberOfRooms_Success() {
+    void execute_numberOfRooms_success() {
         Model model = new ModelManager(new AddressBook(), new UserPrefs(), new RoomList());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomList());
         model.addRooms(100);
