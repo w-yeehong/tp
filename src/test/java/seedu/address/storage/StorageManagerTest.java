@@ -16,7 +16,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.RoomBook;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.hotel.Room;
 
@@ -81,9 +81,9 @@ public class StorageManagerTest {
             rooms.add(room);
             roomsInArray[i] = room;
         }
-        RoomBook roomBook = new RoomBook(rooms, roomsInArray, 10);
-        storageManager.saveRoomBook(roomBook);
-        RoomBook roomBook1 = storageManager.readRoomOccupancyStorage();
-        assertEquals(roomBook, roomBook1);
+        RoomList roomList = new RoomList(rooms, roomsInArray, 10);
+        storageManager.saveRoomList(roomList);
+        RoomList roomList1 = storageManager.readRoomOccupancyStorage();
+        assertEquals(roomList, roomList1);
     }
 }

@@ -7,7 +7,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.RoomBook;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -30,14 +30,15 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
-    /** Reads the data of number of rooms and occupied rooms into RoomBook **/
-    RoomBook readRoomOccupancyStorage() throws IOException;
+    /** Reads the data of number of rooms and occupied rooms into RoomList **/
+    RoomList readRoomOccupancyStorage() throws IOException;
 
     /**
      * Saves the information given by user into a hard disk. Such information includes number of rooms and room number
      * of occupied rooms
-     * @param roomBook contains user inputs
+     * @param roomList contains user inputs
      * @throws IOException
      */
-    void saveRoomBook(RoomBook roomBook) throws IOException;
+    void saveRoomList(RoomList roomList) throws IOException;
+
 }

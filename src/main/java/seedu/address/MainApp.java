@@ -20,7 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.RoomBook;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
@@ -73,7 +73,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and RoomBook
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and RoomList
      * and {@code userPrefs}. <br>
      * The data from the sample address book and addressBook will be used instead if {@code storage}'s address book is
      * not found,or an empty address book will be used instead if errors occur when reading {@code storage}'s
@@ -82,9 +82,14 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        RoomBook readOnlyRoomOccupancy;
-        try {
+        RoomList readOnlyRoomOccupancy;
+        try{
             readOnlyRoomOccupancy = storage.readRoomOccupancyStorage();
+        } catch (IOException ioe) {
+            readOnlyRoomOccupancy = new RoomList();
+        }
+        try {
+
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
@@ -94,11 +99,9 @@ public class MainApp extends Application {
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
-            readOnlyRoomOccupancy = new RoomBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
-            readOnlyRoomOccupancy = new RoomBook();
         }
         return new ModelManager(initialData, userPrefs, readOnlyRoomOccupancy);
     }

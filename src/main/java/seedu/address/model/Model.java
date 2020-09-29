@@ -99,5 +99,5 @@ public interface Model {
 
     void addNumberOfRooms(int num);
 
-    RoomBook getRoomBook();
+    RoomList getRoomList();
 }

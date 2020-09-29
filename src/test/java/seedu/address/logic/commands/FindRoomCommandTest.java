@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.RoomBook;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.hotel.Room;
 
@@ -16,7 +16,7 @@ class FindRoomCommandTest {
 
     @Test
     void execute_numberOfRooms_notDefined() {
-        Model model = new ModelManager(new AddressBook(), new UserPrefs(), new RoomBook());
+        Model model = new ModelManager(new AddressBook(), new UserPrefs(), new RoomList());
 
         assertCommandFailure(new FindRoomCommand(), model, FindRoomCommand.NUMBER_OF_ROOMS_UNDEFINED);
     }
@@ -27,8 +27,8 @@ class FindRoomCommandTest {
 
     @Test
     void execute() {
-        Model model = new ModelManager(new AddressBook(), new UserPrefs(), new RoomBook());
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomBook());
+        Model model = new ModelManager(new AddressBook(), new UserPrefs(), new RoomList());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomList());
         model.addNumberOfRooms(100);
         expectedModel.addNumberOfRooms(100);
         String expectedMessage = new Room(1) + " is empty";

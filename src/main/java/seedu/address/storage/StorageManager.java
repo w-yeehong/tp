@@ -9,7 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.RoomBook;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -81,14 +81,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public RoomBook readRoomOccupancyStorage() throws IOException {
+    public RoomList readRoomOccupancyStorage() throws IOException {
         return roomOccupancyStorage.readOnlyRoomOccupancy();
     }
 
-    @Override
-    public void saveRoomBook(RoomBook roomBook) throws IOException {
-        roomOccupancyStorage.saveNumberOfRooms(roomBook, roomOccupancyStorage.getFileNumOfRooms());
-        roomOccupancyStorage.saveOccupiedRooms(roomBook, roomOccupancyStorage.getRoomsOccupied());
+
+    public void saveRoomList(RoomList roomList) throws IOException {
+        roomOccupancyStorage.saveNumberOfRooms(roomList, roomOccupancyStorage.getFileNumOfRooms());
+        roomOccupancyStorage.saveOccupiedRooms(roomList, roomOccupancyStorage.getRoomsOccupied());
     }
 
 }

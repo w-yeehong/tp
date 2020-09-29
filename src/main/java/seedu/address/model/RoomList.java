@@ -12,7 +12,7 @@ import seedu.address.storage.JsonAddressBookStorage;
 /**
  * Contains information regarding the Room information
  */
-public class RoomBook {
+public class RoomList {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private int numOfRooms;
@@ -20,14 +20,14 @@ public class RoomBook {
     private Room[] roomsInArray = new Room[0];
 
 
-    /** Creates default RoomBook() object where all fields are null**/
-    public RoomBook() {}
+    /** Creates default RoomList() object where all fields are null**/
+    public RoomList() {}
 
     /**
-     * Creates a RoomBook object using the information given in files containing information about
+     * Creates a RoomList object using the information given in files containing information about
      * which rooms are occupied and number of rooms
      */
-    public RoomBook(PriorityQueue<Room> rooms, Room[] roomsInArray, int numOfRooms) {
+    public RoomList(PriorityQueue<Room> rooms, Room[] roomsInArray, int numOfRooms) {
         this.rooms = rooms;
         this.roomsInArray = roomsInArray;
         this.numOfRooms = numOfRooms;
@@ -80,16 +80,16 @@ public class RoomBook {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        RoomBook roomBook = (RoomBook) o;
-        if (rooms != null && roomBook.rooms != null) {
+        RoomList roomList = (RoomList) o;
+        if (rooms != null && roomList.rooms != null) {
             PriorityQueue<Room> copy = new PriorityQueue<>(rooms);
-            PriorityQueue<Room> copy1 = new PriorityQueue<>(roomBook.rooms);
-            return numOfRooms == roomBook.numOfRooms
+            PriorityQueue<Room> copy1 = new PriorityQueue<>(roomList.rooms);
+            return numOfRooms == roomList.numOfRooms
                     && equals(copy, copy1)
-                    && Arrays.equals(roomsInArray, roomBook.roomsInArray);
+                    && Arrays.equals(roomsInArray, roomList.roomsInArray);
         } else {
-            return numOfRooms == roomBook.numOfRooms
-                    && Arrays.equals(roomsInArray, roomBook.roomsInArray);
+            return numOfRooms == roomList.numOfRooms
+                    && Arrays.equals(roomsInArray, roomList.roomsInArray);
         }
     }
 

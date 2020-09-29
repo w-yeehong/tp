@@ -23,14 +23,14 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final RoomBook roomBook;
+    private final RoomList roomList;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        RoomBook readOnlyRoomOccupancy) {
+                        RoomList readOnlyRoomOccupancy) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -38,12 +38,12 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.roomBook = readOnlyRoomOccupancy;
+        this.roomList = readOnlyRoomOccupancy;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new RoomBook());
+        this(new AddressBook(), new UserPrefs(), new RoomList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -152,23 +152,23 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && roomBook.equals(other.roomBook);
+                && roomList.equals(other.roomList);
     }
 
-    //=========== RoomBook =============================================================
+    //=========== RoomList =============================================================
 
     public PriorityQueue<Room> getRooms() {
-        return this.roomBook.getRooms();
+        return this.roomList.getRooms();
     }
 
     public int getNumOfRooms() {
-        return this.roomBook.getNumOfRooms();
+        return this.roomList.getNumOfRooms();
     }
 
     public void addNumberOfRooms(int num) {
-        roomBook.addNumberOfRooms(num);
+        roomList.addNumberOfRooms(num);
     }
-    public RoomBook getRoomBook() {
-        return roomBook;
+    public RoomList getRoomList() {
+        return roomList;
     }
 }

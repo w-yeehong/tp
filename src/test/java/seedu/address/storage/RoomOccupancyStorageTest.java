@@ -10,12 +10,12 @@ import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.RoomBook;
+import seedu.address.model.RoomList;
 import seedu.address.model.hotel.Room;
 
 class RoomOccupancyStorageTest {
     @Test
-    public void readAndSaveRoomBook_allInOrder_success() throws Exception {
+    public void readAndSaveRoomList_allInOrder_success() throws Exception {
         PriorityQueue<Room> rooms = new PriorityQueue<>();
         Room[] roomsInArray = new Room[10];
         for (int i = 0; i < 10; i++) {
@@ -23,14 +23,14 @@ class RoomOccupancyStorageTest {
             rooms.add(room);
             roomsInArray[i] = room;
         }
-        RoomBook roomBook = new RoomBook(rooms, roomsInArray, 10);
+        RoomList roomList = new RoomList(rooms, roomsInArray, 10);
         Path numberOfRooms = Paths.get("blah");
         Path roomsOccupied = Paths.get("lah");
         RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(numberOfRooms, roomsOccupied);
-        roomOccupancyStorage.saveNumberOfRooms(roomBook, numberOfRooms);
-        roomOccupancyStorage.saveOccupiedRooms(roomBook, roomsOccupied);
-        RoomBook roomBook1 = roomOccupancyStorage.readOnlyRoomOccupancy();
-        assertEquals(roomBook, roomBook1);
+        roomOccupancyStorage.saveNumberOfRooms(roomList, numberOfRooms);
+        roomOccupancyStorage.saveOccupiedRooms(roomList, roomsOccupied);
+        RoomList roomList1 = roomOccupancyStorage.readOnlyRoomOccupancy();
+        assertEquals(roomList, roomList1);
 
         rooms = new PriorityQueue<>();
         for (int i = 0; i < 10; i++) {
@@ -41,49 +41,49 @@ class RoomOccupancyStorageTest {
             rooms.add(room);
             roomsInArray[i] = room;
         }
-        roomBook = new RoomBook(rooms, roomsInArray, 10);
+        roomList = new RoomList(rooms, roomsInArray, 10);
         numberOfRooms = Paths.get("blah");
         roomsOccupied = Paths.get("lah");
         roomOccupancyStorage = new RoomOccupancyStorage(numberOfRooms, roomsOccupied);
-        roomOccupancyStorage.saveNumberOfRooms(roomBook, numberOfRooms);
-        roomOccupancyStorage.saveOccupiedRooms(roomBook, roomsOccupied);
-        roomBook1 = roomOccupancyStorage.readOnlyRoomOccupancy();
-        assertEquals(roomBook, roomBook1);
+        roomOccupancyStorage.saveNumberOfRooms(roomList, numberOfRooms);
+        roomOccupancyStorage.saveOccupiedRooms(roomList, roomsOccupied);
+        roomList1 = roomOccupancyStorage.readOnlyRoomOccupancy();
+        assertEquals(roomList, roomList1);
     }
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveRoomBookNumberOfRooms(null, "SomeFile.txt",
+        assertThrows(NullPointerException.class, () -> saveRoomListNumberOfRooms(null, "SomeFile.txt",
                 "random.txt"));
-        assertThrows(NullPointerException.class, () -> saveRoomBookRoomsOccupied(null, "SomeFile.txt",
+        assertThrows(NullPointerException.class, () -> saveRoomListRoomsOccupied(null, "SomeFile.txt",
                 "random.txt"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveRoomBookRoomsOccupied(RoomBook roomBook, String filePath, String roomsOccuppied) {
+    private void saveRoomListRoomsOccupied(RoomList roomList, String filePath, String roomsOccuppied) {
         try {
             new RoomOccupancyStorage(Paths.get(filePath), Paths.get(roomsOccuppied))
-                    .saveOccupiedRooms(roomBook, Paths.get(roomsOccuppied));
+                    .saveOccupiedRooms(roomList, Paths.get(roomsOccuppied));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
-    private void saveRoomBookNumberOfRooms(RoomBook roomBook, String filePath, String roomsOccuppied) {
+    private void saveRoomListNumberOfRooms(RoomList roomList, String filePath, String roomsOccuppied) {
         try {
             new RoomOccupancyStorage(Paths.get(filePath), Paths.get(roomsOccuppied))
-                    .saveOccupiedRooms(roomBook, Paths.get(roomsOccuppied));
+                    .saveOccupiedRooms(roomList, Paths.get(roomsOccuppied));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveRoomBookNumberOfRooms(new RoomBook(),
+        assertThrows(NullPointerException.class, () -> saveRoomListNumberOfRooms(new RoomList(),
                 null, null));
-        assertThrows(NullPointerException.class, () -> saveRoomBookRoomsOccupied(new RoomBook(),
+        assertThrows(NullPointerException.class, () -> saveRoomListRoomsOccupied(new RoomList(),
                 null, null));
     }
 }
