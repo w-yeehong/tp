@@ -29,8 +29,8 @@ class FindRoomCommandTest {
     void execute() {
         Model model = new ModelManager(new AddressBook(), new UserPrefs(), new RoomList());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomList());
-        model.addNumberOfRooms(100);
-        expectedModel.addNumberOfRooms(100);
+        model.addRooms(100);
+        expectedModel.addRooms(100);
         String expectedMessage = new Room(1) + " is empty";
         assertCommandSuccess(new FindRoomCommand(), model, expectedMessage, expectedModel);
     }

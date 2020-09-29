@@ -165,8 +165,8 @@ public class ModelManager implements Model {
         return this.roomList.getNumOfRooms();
     }
 
-    public void addNumberOfRooms(int num) {
-        roomList.addNumberOfRooms(num);
+    public void addRooms(int num) {
+        roomList.addRooms(num);
     }
     public RoomList getRoomList() {
         return roomList;

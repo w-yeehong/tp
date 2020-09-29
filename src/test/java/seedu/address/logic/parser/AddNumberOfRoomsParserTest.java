@@ -1,21 +1,21 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.AddNumberOfRoomsParser.NO_ARGUMENTS_GIVEN;
-import static seedu.address.logic.parser.AddNumberOfRoomsParser.NUMBER_OF_ROOMS_GIVEN_IN_DIGITS;
+import static seedu.address.logic.parser.AddRoomsParser.NO_ARGUMENTS_GIVEN;
+import static seedu.address.logic.parser.AddRoomsParser.NUMBER_OF_ROOMS_GIVEN_IN_DIGITS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddNumberOfRoomsCommand;
+import seedu.address.logic.commands.AddRoomsCommand;
 
-class AddNumberOfRoomsParserTest {
-    private AddNumberOfRoomsParser parser = new AddNumberOfRoomsParser();
+class AddRoomsParserTest {
+    private AddRoomsParser parser = new AddRoomsParser();
     @Test
     void parse() {
         String input = "123";
-        assertParseSuccess(parser, input, new AddNumberOfRoomsCommand(123));
+        assertParseSuccess(parser, input, new AddRoomsCommand(123));
     }
 
     @Test

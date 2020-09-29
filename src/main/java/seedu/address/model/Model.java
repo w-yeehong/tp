@@ -97,7 +97,7 @@ public interface Model {
      */
     int getNumOfRooms();
 
-    void addNumberOfRooms(int num);
+    void addRooms(int num);
 
     RoomList getRoomList();
 }

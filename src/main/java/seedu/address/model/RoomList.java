@@ -62,13 +62,11 @@ public class RoomList {
      *
      * @param numOfRooms is the number of rooms to be added
      */
-    public void addNumberOfRooms(int numOfRooms) {
+    public void addRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
         addRooms();
     }
-    public void addRoom(int roomNum) {
 
-    }
     public Room[] getRoomsInArray() {
         return this.roomsInArray;
     }

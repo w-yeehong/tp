@@ -164,7 +164,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void addNumberOfRooms(int num) {
+        public void addRooms(int num) {
 
         }
 
