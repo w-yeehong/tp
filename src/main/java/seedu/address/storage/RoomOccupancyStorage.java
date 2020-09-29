@@ -17,7 +17,6 @@ import seedu.address.model.hotel.Room;
 public class RoomOccupancyStorage {
     private Path fileNumOfRooms;
     private Path roomsOccupied;
-    private int numberOfRoomsOccupied = -1;
     public RoomOccupancyStorage() {}
     /**
      * Creates RoomOccupancyStorage object that reads the number of rooms a hotel has and the rooms which are
@@ -54,15 +53,18 @@ public class RoomOccupancyStorage {
                 rooms.add(room);
                 roomsInArray[i] = room;
             }
-            for (int i = 0; i < numberOfRoomsOccupied; i++) {
-                String roomNum = roomsOccupiedFile.next();
+            while (roomsOccupiedFile.hasNextLine()) {
+                String roomNum = roomsOccupiedFile.nextLine();
+                if (roomNum.isEmpty()) {
+                    break;
+                }
                 int roomNumber = Integer.parseInt(roomNum); //room number that is currently occupied
                 Room room = roomsInArray[roomNumber - 1];
                 rooms.remove(room);
                 room.setOccupied(true);
                 roomsInArray[roomNumber - 1] = room;
                 rooms.add(room);
-            } ;
+            }
         } else {
             roomsInArray = null;
             numOfRooms = 0;
@@ -96,12 +98,9 @@ public class RoomOccupancyStorage {
         File file = fileRoomsOccupied.toFile();
         FileWriter fileWriter = new FileWriter(file);
         Room[] rooms = roomBook.getRoomsInArray();
-        System.out.println(rooms.length);
-        numberOfRoomsOccupied = 0;
         for (int i = 0; i < rooms.length; i++) {
             Room room = rooms[i];
             if (room.isOccupied()) {
-                numberOfRoomsOccupied++;
                 fileWriter.write(Integer.toString(i + 1) + "\n");
             }
         }
