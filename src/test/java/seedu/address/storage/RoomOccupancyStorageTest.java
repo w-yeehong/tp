@@ -24,8 +24,8 @@ class RoomOccupancyStorageTest {
             roomsInArray[i] = room;
         }
         RoomList roomList = new RoomList(rooms, roomsInArray, 10);
-        Path numberOfRooms = Paths.get("blah");
-        Path roomsOccupied = Paths.get("lah");
+        Path numberOfRooms = Paths.get("numberOfRooms");
+        Path roomsOccupied = Paths.get("roomsOccupied");
         RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(numberOfRooms, roomsOccupied);
         roomOccupancyStorage.saveNumberOfRooms(roomList, numberOfRooms);
         roomOccupancyStorage.saveOccupiedRooms(roomList, roomsOccupied);
@@ -42,8 +42,8 @@ class RoomOccupancyStorageTest {
             roomsInArray[i] = room;
         }
         roomList = new RoomList(rooms, roomsInArray, 10);
-        numberOfRooms = Paths.get("blah");
-        roomsOccupied = Paths.get("lah");
+        numberOfRooms = Paths.get("numberOfRooms");
+        roomsOccupied = Paths.get("roomsOccupied");
         roomOccupancyStorage = new RoomOccupancyStorage(numberOfRooms, roomsOccupied);
         roomOccupancyStorage.saveNumberOfRooms(roomList, numberOfRooms);
         roomOccupancyStorage.saveOccupiedRooms(roomList, roomsOccupied);
