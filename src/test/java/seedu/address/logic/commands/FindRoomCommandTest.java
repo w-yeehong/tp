@@ -21,17 +21,13 @@ class FindRoomCommandTest {
         assertCommandFailure(new FindRoomCommand(), model, FindRoomCommand.NUMBER_OF_ROOMS_UNDEFINED);
     }
 
-    void execute_roomOccupied() {
-
-    }
-
     @Test
-    void execute() {
+    void execute_numberOfRooms_Success() {
         Model model = new ModelManager(new AddressBook(), new UserPrefs(), new RoomList());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomList());
         model.addRooms(100);
         expectedModel.addRooms(100);
-        String expectedMessage = new Room(1) + " is empty";
+        String expectedMessage = String.format(FindRoomCommand.MESSAGE_SUCCESS, new Room(1));
         assertCommandSuccess(new FindRoomCommand(), model, expectedMessage, expectedModel);
     }
 }

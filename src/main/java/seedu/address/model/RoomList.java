@@ -48,12 +48,14 @@ public class RoomList {
     }
 
     private void addRooms() {
-        roomsInArray = new Room[numOfRooms];
-        rooms = new PriorityQueue<>();
-        for (int i = 0; i < numOfRooms; i++) {
-            Room room = new Room(i + 1);
-            rooms.add(room);
-            roomsInArray[i] = room;
+        if (numOfRooms > 0) {
+            roomsInArray = new Room[numOfRooms];
+            rooms = new PriorityQueue<>();
+            for (int i = 0; i < numOfRooms; i++) {
+                Room room = new Room(i + 1);
+                rooms.add(room);
+                roomsInArray[i] = room;
+            }
         }
     }
 

@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveRoomList(model.getRoomList());
         } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE);
         }
         try {
             storage.saveAddressBook(model.getAddressBook());

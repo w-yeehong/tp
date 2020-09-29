@@ -10,7 +10,9 @@ import seedu.address.model.Model;
  */
 public class AddRoomsCommand extends Command {
     public static final String COMMAND_WORD = "addrooms";
-    public static final String ZERO_CANNOT_BE_AN_INPUT = "please input a positive value";
+    public static final String MESSAGE_ZERO_CANNOT_BE_AN_INPUT = "please input a positive value";
+    public static final String MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT = "please check your value! "
+            + "You have input a negative value!";
     public static final String MESSAGE_SUCCESS = "%d rooms are added in your hotel";
     private int numOfRooms;
 
@@ -23,26 +25,12 @@ public class AddRoomsCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (numOfRooms == 0) {
-            throw new CommandException(ZERO_CANNOT_BE_AN_INPUT);
+            throw new CommandException(MESSAGE_ZERO_CANNOT_BE_AN_INPUT);
+        } else if (numOfRooms < 0) {
+            throw new CommandException(MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
         }
         model.addRooms(numOfRooms);
         return new CommandResult(String.format(MESSAGE_SUCCESS, numOfRooms));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AddRoomsCommand that = (AddRoomsCommand) o;
-        return numOfRooms == that.numOfRooms;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(numOfRooms);
-    }
 }
