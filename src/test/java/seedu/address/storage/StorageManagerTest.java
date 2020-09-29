@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -30,8 +31,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(getTempFilePath("nr"),
-                getTempFilePath("ro"));
+        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("nr"),
+                Paths.get("ro"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
     }
 
