@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/chiamyunqing.png" width="200px">
 
-[[github](https://github.com/chiamyunqing)]
+[[Github](https://github.com/chiamyunqing)]
 
 * Role: Developer
 * Responsibilities: Testing
