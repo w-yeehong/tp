@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import java.util.Objects;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -31,4 +33,20 @@ public class AddRoomsCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, numOfRooms));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AddRoomsCommand that = (AddRoomsCommand) o;
+        return numOfRooms == that.numOfRooms;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numOfRooms);
+    }
 }
