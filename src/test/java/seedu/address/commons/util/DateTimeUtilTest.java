@@ -99,9 +99,9 @@ public class DateTimeUtilTest {
     @Test
     public void parseFirstMatching_manyDateFormattersInvalidText_throwsDateTimeParseException() {
         DateTimeFormatter[] formatters = {
-                DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY,
-                DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED,
-                DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED
+            DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY,
+            DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED,
+            DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED
         };
 
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
@@ -115,9 +115,9 @@ public class DateTimeUtilTest {
     @Test
     public void parseFirstMatching_manyDateTimeFormattersInvalidText_throwsDateTimeParseException() {
         DateTimeFormatter[] formatters = {
-                DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
-                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME,
-                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
+            DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
+            DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME,
+            DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
         };
 
         assertThrows(DateTimeParseException.class, () -> DateTimeUtil.parseFirstMatching(
@@ -186,9 +186,9 @@ public class DateTimeUtilTest {
     @Test
     public void parseFirstMatching_manyDateFormatterValidText_correctObject() {
         DateTimeFormatter[] formatters = {
-                DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY,
-                DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED,
-                DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED
+            DateTimeUtil.DATE_FORMAT_YEAR_MONTH_DAY,
+            DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED,
+            DateTimeUtil.DATE_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED
         };
 
         int year = 2020;
@@ -207,9 +207,9 @@ public class DateTimeUtilTest {
     @Test
     public void parseFirstMatching_manyDateTimeFormatterValidText_correctObject() {
         DateTimeFormatter[] formatters = {
-                DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
-                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME,
-                DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
+            DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
+            DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME,
+            DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
         };
 
         int year = 2020;
