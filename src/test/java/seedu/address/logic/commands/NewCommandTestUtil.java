@@ -25,6 +25,8 @@ import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 public class NewCommandTestUtil {
 
+    // Patients
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_TEMP_AMY = "36.7";
@@ -71,6 +73,13 @@ public class NewCommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withTemperature(VALID_TEMP_BOB).withPeriodOfStay(VALID_PERIOD_BOB)
                 .withAge(VALID_AGE_BOB).withComment(NO_COMMENT).build();
     }
+
+    // Tasks
+
+    public static final String VALID_DESCRIPTION_REMIND_PATIENT = "Remind Alice to change bedsheets.";
+    public static final String VALID_DESCRIPTION_ORDER_BEDSHEET = "Order new bedsheets for Room #3.";
+    public static final String VALID_DATETIME_DUE_REMIND_PATIENT = "20201230 2359";
+    public static final String VALID_DATETIME_DUE_ORDER_BEDSHEET = "20201023 1930";
 
     /**
      * Executes the given {@code command}, confirms that <br>

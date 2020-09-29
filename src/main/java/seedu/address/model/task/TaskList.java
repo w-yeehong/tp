@@ -37,11 +37,6 @@ public class TaskList implements Iterable<Task> {
         internalList.add(toAdd);
     }
 
-    public void setTasks(TaskList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
      * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
@@ -66,6 +61,11 @@ public class TaskList implements Iterable<Task> {
         if (!internalList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
+    }
+
+    public void setTasks(TaskList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**

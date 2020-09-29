@@ -16,17 +16,17 @@ import seedu.address.commons.util.DateTimeUtil;
  */
 public class DateTimeDue {
 
-    private static final DateTimeFormatter[] ALLOWED_DATETIME_FORMATS = {
-        DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
-        DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
-    };
-
     public static final String MESSAGE_CONSTRAINTS = "Due dates should adhere to one of the "
             + "following formats:\n"
             + "1. yyyyMMdd (e.g. 20201230)\n"
             + "2. d/M/yyyy (e.g. 30/12/2020)\n"
             + "Format 2 allows a single digit for day and month (e.g. 1/1/2020); \n"
             + "Format 1 does not.";
+
+    private static final DateTimeFormatter[] ALLOWED_DATETIME_FORMATS = {
+        DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
+        DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
+    };
 
     public final LocalDateTime value;
 
