@@ -5,9 +5,12 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -36,6 +39,9 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
+    private HBox covigentLogoPlaceholder;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
@@ -43,6 +49,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private TabPane patientRoomTabs;
+
+    @FXML
+    private Tab patientTab;
+
+    @FXML
+    private Tab roomTab;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
