@@ -63,7 +63,21 @@ Covigent is a desktop app for managing information of quarantined individuals an
   
 </div>
 
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+
+
+
+### Adding a patient: `addpatient`
+
 ### 3.2 Add a patient: `addpatient`
+
 
 Adds a quarantined individual to the application.
 
@@ -78,6 +92,35 @@ Examples:
 * `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35`
 * `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
 
+
+### Add number of rooms in hotel: `addRooms`
+
+Adds the number of room in a hotel
+
+Format: `addRooms NUMBER_OF_ROOMS`
+
+* Adds NUMBER_OF_ROOMS rooms into the hotel system 
+
+Examples:
+* `addRooms 123`
+* `addRooms 400`
+
+### Finds the next room which is free to use: `findRoom`
+
+Finds the room with the lowest room number that is free for use
+
+Format: `findRoom`
+
+* Finds the room number of least value that can be safely used for accommodation
+
+Examples:
+* `findRoom`
+
+### Listing all persons : `list`
+
+Shows a list of all persons in the address book.
+
+Format: `list`
 
 ### 3.3 Edit a patient: `editpatient`
 
@@ -98,7 +141,54 @@ Examples:
 
 ### 3.4 Save the data
 
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+ 
+
+### Deleting a person : `delete`
+
+Deletes the specified person from the address book.
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Archiving data files `[coming in v2.0]`
+
+_{explain the feature here}_
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,5 +204,14 @@ Covigent data are saved in the hard disk automatically after any command that ch
 Action | Format, Examples
 --------|------------------
 **Add Patient** | `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]` <br> e.g.,`addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
+**Add Rooms** | `addRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
+**Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g.,`editpatient James Lee t/36.5`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find Room** | `findRoom` <br> e.g `findRoom`
+**List** | `list`
+**Help** | `help`
+=======
 **Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g.,`editpatient James Lee t/36.5`
 
