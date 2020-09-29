@@ -3,14 +3,27 @@ layout: page
 title: User Guide
 ---
 
-Covigent is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Covigent can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+# Covigent - User Guide
 
-* Table of Contents
-{:toc}
+1. [Introduction](#1-introduction)
+2. [Quick Start](#2-quick-start)
+3. [Features](#3-features)<br>
+    3.1 [Command Format](#31-command-format)<br>
+    3.2 [Add a patient: `addpatient`](#32-add-a-patient-addpatient)<br>
+    3.3 [Edit a patient: `editpatient`](#33-edit-a-patient-editpatient)<br>
+    3.4 [Save the data](#34-save-the-data)<br>
+ 4. [FAQ](#4-faq)
+ 5. [Command Summary](#5-command-summary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Introduction
+
+Covigent is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Covigent can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+
+
+## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -32,10 +45,11 @@ Covigent is a desktop app for managing information of quarantined individuals an
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
+### 3.1 Command Format
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -49,7 +63,7 @@ Covigent is a desktop app for managing information of quarantined individuals an
   
 </div>
 
-### Adding a patient: `addpatient`
+### 3.2 Add a patient: `addpatient`
 
 Adds a quarantined individual to the application.
 
@@ -65,7 +79,7 @@ Examples:
 * `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
 
 
-### Editing a patient : `editpatient`
+### 3.3 Edit a patient: `editpatient`
 
 Edits an existing patient in the application.
 
@@ -82,20 +96,20 @@ Examples:
 *  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` Edits the temperature, age and period of stay of alex to be `36.7`, `21` and `20200303-20200315` respectively.
 
-### Saving the data
+### 3.4 Save the data
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Covigent home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 5. Command summary
 
 Action | Format, Examples
 --------|------------------
