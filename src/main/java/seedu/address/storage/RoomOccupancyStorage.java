@@ -96,7 +96,7 @@ public class RoomOccupancyStorage {
         File file = fileRoomsOccupied.toFile();
         FileWriter fileWriter = new FileWriter(file);
         Room[] rooms = roomBook.getRoomsInArray();
-        String string = "";
+        System.out.println(rooms.length);
         numberOfRoomsOccupied = 0;
         for (int i = 0; i < rooms.length; i++) {
             Room room = rooms[i];

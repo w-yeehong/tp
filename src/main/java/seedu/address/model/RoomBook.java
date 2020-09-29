@@ -16,8 +16,8 @@ public class RoomBook {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private int numOfRooms;
-    private PriorityQueue<Room> rooms;
-    private Room[] roomsInArray;
+    private PriorityQueue<Room> rooms = new PriorityQueue<>();
+    private Room[] roomsInArray = new Room[0];
 
 
     /** Creates default RoomBook() object where all fields are null**/
@@ -81,12 +81,16 @@ public class RoomBook {
             return false;
         }
         RoomBook roomBook = (RoomBook) o;
-        PriorityQueue<Room> copy = new PriorityQueue<>(rooms);
-        PriorityQueue<Room> copy1 = new PriorityQueue<>(roomBook.rooms);
-        boolean value = numOfRooms == roomBook.numOfRooms
-                && equals(copy, copy1)
-                && Arrays.equals(roomsInArray, roomBook.roomsInArray);
-        return value;
+        if(rooms != null && roomBook.rooms != null) {
+            PriorityQueue<Room> copy = new PriorityQueue<>(rooms);
+            PriorityQueue<Room> copy1 = new PriorityQueue<>(roomBook.rooms);
+            return numOfRooms == roomBook.numOfRooms
+                    && equals(copy, copy1)
+                    && Arrays.equals(roomsInArray, roomBook.roomsInArray);
+        } else {
+            return numOfRooms == roomBook.numOfRooms
+                    && Arrays.equals(roomsInArray, roomBook.roomsInArray);
+        }
     }
 
     /**

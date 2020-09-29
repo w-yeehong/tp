@@ -64,13 +64,26 @@ class RoomBookTest {
             rooms2.add(room);
         }
 
+
         //2 PriorityQueue of rooms with same content -> returns true
         assertTrue(roomBook.equals(rooms1, rooms2));
 
+        for (int i = 0; i < 10; i++) {
+            Room room = new Room(i);
+            rooms1.add(room);
+            rooms2.add(room);
+        }
+
         Room room = rooms2.poll();
+
         //2 PriorityQueue of different size -> returns false
         assertFalse(roomBook.equals(rooms1, rooms2));
 
+        for (int i = 0; i < 10; i++) {
+            Room r = new Room(i);
+            rooms1.add(r);
+            rooms2.add(r);
+        }
         rooms2.add(room);
         rooms1.poll();
         rooms1.add(new Room(100));
