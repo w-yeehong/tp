@@ -29,24 +29,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Noorul Azlina
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/itssodium.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/itssodium)] 
+[[portfolio](team/noorul.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Code Quality 
+* Responsibilities: Looks after code quality, ensures adherence to coding standards
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### 
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+
+[[github](http://github.com/itssodium)]
+[[portfolio](team/noorul.md)]
+
 
 ### James Doe
 
