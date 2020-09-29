@@ -12,5 +12,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_AGE = new Prefix("a/");
     public static final Prefix PREFIX_COMMENTS = new Prefix("c/");
+    public static final Prefix PREFIX_TEMP_RANGE = new Prefix("tr/");
 
 }

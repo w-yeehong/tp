@@ -24,6 +24,13 @@ public class Temperature {
         value = Double.parseDouble(temperature);
     }
 
+    /**
+     * Returns the float value of the temperature reading.
+     */
+    public double getValue () {
+        return this.value;
+    }
+
 
     /**
      * Returns true if a given string is a valid temperature.
