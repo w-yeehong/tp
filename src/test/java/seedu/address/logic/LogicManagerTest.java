@@ -80,7 +80,9 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, new RoomOccupancyStorage());
+        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("haha"),
+                Paths.get("hehe"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
