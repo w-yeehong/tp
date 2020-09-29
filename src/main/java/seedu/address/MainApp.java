@@ -83,13 +83,12 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         RoomList readOnlyRoomOccupancy;
-        try{
+        try {
             readOnlyRoomOccupancy = storage.readRoomOccupancyStorage();
         } catch (IOException ioe) {
             readOnlyRoomOccupancy = new RoomList();
         }
         try {
-
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");

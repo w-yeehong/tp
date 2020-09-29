@@ -85,7 +85,7 @@ public class StorageManager implements Storage {
         return roomOccupancyStorage.readOnlyRoomOccupancy();
     }
 
-
+    @Override
     public void saveRoomList(RoomList roomList) throws IOException {
         roomOccupancyStorage.saveNumberOfRooms(roomList, roomOccupancyStorage.getFileNumOfRooms());
         roomOccupancyStorage.saveOccupiedRooms(roomList, roomOccupancyStorage.getRoomsOccupied());
