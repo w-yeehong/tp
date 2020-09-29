@@ -52,8 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/mingde.png" width="200px">
 
-[[github](http://github.com/LeeMingDe)]
-[[portfolio](team/mingde.md)]
+[[Github](http://github.com/LeeMingDe)]
 
 * Role: Developer
 * Responsibilities: Integration (version the code, maintain the code repository and integrate various parts into a software)
