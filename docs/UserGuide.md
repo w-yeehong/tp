@@ -67,6 +67,8 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
+
+
 ### Adding a patient: `addpatient`
 
 Adds a quarantined individual to the application.
@@ -81,6 +83,29 @@ Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [
 Examples:
 * `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35`
 * `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
+
+### Add number of rooms in hotel: `addRooms`
+
+Adds the number of room in a hotel
+
+Format: `addRooms NUMBER_OF_ROOMS`
+
+* Adds NUMBER_OF_ROOMS rooms into the hotel system 
+
+Examples:
+* `addRooms 123`
+* `addRooms 400`
+
+### Finds the next room which is free to use: `findRoom`
+
+Finds the room with the lowest room number that is free for use
+
+Format: `findRoom`
+
+* Finds the room number of least value that can be safely used for accommodation
+
+Examples:
+* `findRoom`
 
 ### Listing all persons : `list`
 
@@ -122,6 +147,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+ 
 
 ### Deleting a person : `delete`
 
@@ -171,9 +197,12 @@ _{explain the feature here}_
 Action | Format, Examples
 --------|------------------
 **Add Patient** | `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]` <br> e.g.,`addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
+**Add Rooms** | `addRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g.,`editpatient James Lee t/36.5`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find Room** | `findRoom` <br> e.g `findRoom`
 **List** | `list`
 **Help** | `help`
+
