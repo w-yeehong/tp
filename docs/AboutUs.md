@@ -34,7 +34,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/itssodium.png" width="200px">
 
 [[github](http://github.com/itssodium)] 
-[[portfolio](team/noorul.md)]
 
 * Role: Code Quality 
 * Responsibilities: Looks after code quality, ensures adherence to coding standards
