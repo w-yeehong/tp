@@ -81,7 +81,7 @@ public class RoomBook {
             return false;
         }
         RoomBook roomBook = (RoomBook) o;
-        if(rooms != null && roomBook.rooms != null) {
+        if (rooms != null && roomBook.rooms != null) {
             PriorityQueue<Room> copy = new PriorityQueue<>(rooms);
             PriorityQueue<Room> copy1 = new PriorityQueue<>(roomBook.rooms);
             return numOfRooms == roomBook.numOfRooms
