@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.AddRoomsParser.NO_ARGUMENTS_GIVEN;
-import static seedu.address.logic.parser.AddRoomsParser.NUMBER_OF_ROOMS_GIVEN_IN_DIGITS;
+import static seedu.address.commons.core.Messages.NO_ARGUMENTS_GIVEN;
+import static seedu.address.commons.core.Messages.NUMBER_OF_ROOMS_GIVEN_IN_DIGITS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
