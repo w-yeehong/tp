@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lee Ming De
 
-<img src="images/mingde.png" width="200px">
+<img src="images/leemingde.png" width="200px">
 
 [[Github](http://github.com/LeeMingDe)]
 
