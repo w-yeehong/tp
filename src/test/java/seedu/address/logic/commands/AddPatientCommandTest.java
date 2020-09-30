@@ -165,7 +165,7 @@ public class AddPatientCommandTest {
 
         @Override
         public void addRooms(int num) {
-
+            //code here because it overrides the method in interface Model
         }
 
         @Override

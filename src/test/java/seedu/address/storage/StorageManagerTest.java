@@ -33,6 +33,7 @@ public class StorageManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("nr"),
                 Paths.get("ro"));
+        //files nr short for numberOfRooms and ro is short form for roomsOccupied.
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
     }
 

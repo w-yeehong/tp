@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.NO_ARGUMENTS_GIVEN;
+import static seedu.address.commons.core.Messages.NUMBER_OF_ROOMS_GIVEN_IN_DIGITS;
 
 import seedu.address.logic.commands.AddRoomsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -9,10 +11,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class AddRoomsParser implements Parser<AddRoomsCommand> {
 
-    public static final String NO_ARGUMENTS_GIVEN = "no arguments are given";
-    public static final String NUMBER_OF_ROOMS_GIVEN_IN_DIGITS = "Please give the number of digits in numbers\n"
-            + " Example: 200";
-    private static int numberOfRooms = -1;
     /**
      * Parses the given {@code String} of arguments in the context of the AddPatientCommand
      * and returns an AddRoomsCommand object for execution.
@@ -24,6 +22,7 @@ public class AddRoomsParser implements Parser<AddRoomsCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NO_ARGUMENTS_GIVEN));
             //if user does not give number of room
         }
+        int numberOfRooms = -1; //used so that it can be used to test for NumberFormatException
         try {
             numberOfRooms = Integer.parseInt(trimmedArgs);
         } catch (NumberFormatException nfe) {

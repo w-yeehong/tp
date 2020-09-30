@@ -19,7 +19,7 @@ public class FileUtil {
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(URI)})}},
+     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String, String...)})}},
      * otherwise returns false.
      * @param path A string representing the file path. Cannot be null.
      */
@@ -60,7 +60,7 @@ public class FileUtil {
      */
     public static void createParentDirsOfFile(Path file) throws IOException {
         Path parentDir = file.getParent();
-        System.out.println(parentDir);
+
         if (parentDir != null) {
             Files.createDirectories(parentDir);
         }
