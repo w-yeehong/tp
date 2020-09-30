@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.PeriodOfStay;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Temperature;
+import seedu.address.model.person.TemperatureRange;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -66,6 +67,21 @@ public class ParserUtil {
             throw new ParseException(Temperature.MESSAGE_CONSTRAINTS);
         }
         return new Temperature(trimmedTemp);
+    }
+
+    /**
+     * Parses a {@code String temperature} into a {@code Temperature}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code temperature} is invalid.
+     */
+    public static TemperatureRange parseTemperatureRange(String tempRange) throws ParseException {
+        requireNonNull(tempRange);
+        String trimmedTempRange = tempRange.trim();
+        if (!TemperatureRange.isValidTemperatureRange(trimmedTempRange)) {
+            throw new ParseException(TemperatureRange.MESSAGE_CONSTRAINTS_TEMPERATURERANGE);
+        }
+        return new TemperatureRange(trimmedTempRange);
     }
 
     /**

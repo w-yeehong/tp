@@ -12,8 +12,8 @@ import seedu.address.model.hotel.Room;
 public class FindRoomCommand extends Command {
     public static final String COMMAND_WORD = "findroom";
     public static final String MESSAGE_NO_EMPTY_ROOM = "There are unfortunately no more empty rooms!";
-    private static final String NUMBER_OF_ROOMS_UNDEFINED = "Please define number of rooms";
-
+    public static final String NUMBER_OF_ROOMS_UNDEFINED = "Please define number of rooms";
+    public static final String MESSAGE_SUCCESS = "%s is empty";
     public FindRoomCommand() {}
 
     @Override
@@ -27,6 +27,6 @@ public class FindRoomCommand extends Command {
         if (room.isOccupied()) {
             throw new CommandException(MESSAGE_NO_EMPTY_ROOM);
         }
-        return new CommandResult(room.toString() + " is empty");
+        return new CommandResult(String.format(MESSAGE_SUCCESS, room));
     }
 }

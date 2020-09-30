@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.RoomBook;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -48,7 +49,9 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, new RoomOccupancyStorage());
+        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("numberOfRooms"),
+                Paths.get("roomsOccupied"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -77,7 +80,9 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, new RoomOccupancyStorage());
+        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("numberOfRooms"),
+                Paths.get("roomsOccupied"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -88,6 +93,7 @@ public class LogicManagerTest {
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+
         assertCommandFailure(addPatientCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
@@ -104,7 +110,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+                                      Model expectedModel) throws CommandException, ParseException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
@@ -132,7 +138,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomBook());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

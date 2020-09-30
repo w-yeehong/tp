@@ -235,59 +235,62 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+* Needs to manage a significant number of patients and their tasks
+* Needs to manage a significant number of rooms
+* Wants to keep track of patients and their tasks efficiently
+* Wants to look up patients, rooms and tasks details quickly
+* Prefers desktop apps over other types
+* Prefers typing to mouse interactions
+* Prefers all information to be available at one place
+* Can type fast
+* Is reasonably comfortable using Command Line Interface (CLI) apps
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* Covigent is a handy tool for quarantine facility managers to manage the rooms and patients in the quarantine facility with increased productivity.
+* Covigent stores and retrieves information faster than a typical mouse/GUI driven app.
 
 
 ### User stories
+
+
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | staff of a quarantine facility       | key in new patient information | better serve them                |
+| `* * *`  | staff of a quarantine facility       | edit patient information       | update his/her health status                                                                  |
+| `* * *`  | staff of a quarantine facility       | key in new task information    | keep track of the details of the tasks that I must complete                                  |
+| `* * *`  | staff of a quarantine facility       | view which rooms are empty     |allocate patients to them |
+| `* *`    | staff of the quarantine facility     | indicate that I have completed the task in the room | let other staff know that they no longer have to handle them
+| `* *`      | staff of a quarantine facility | find out all the outstanding tasks left in each room |  serve the quarantined individuals better                                               |
+| `* *` | staff of a quarantine facility | quickly search through patient information | find the patients that match my criteria
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is`Covigent` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Allocates a patient to a room**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a patient into the system.
+2. System adds the patient.
+3. User requests to allocate the patient to a specified room.
+4. System adds the patient to the specified room number.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 4a. System realises that the specified room is not empty.
+
+   * 4a1. System displays an error message.
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -300,7 +303,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
