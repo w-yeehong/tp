@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wee Yee Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/w-yeehong.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](https://github.com/w-yeehong)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Project Coordination
 
 ### Jane Doe
 
@@ -29,24 +28,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Noorul Azlina
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/itssodium.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/itssodium)] 
+
+* Role: Code Quality 
+* Responsibilities: Looks after code quality, ensures adherence to coding standards
+
+### Chiam Yun Qing
+
+<img src="images/chiamyunqing.png" width="200px">
+
+[[Github](https://github.com/chiamyunqing)]
 
 * Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
 ### Lee Ming De
 

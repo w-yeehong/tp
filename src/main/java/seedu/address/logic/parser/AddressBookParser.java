@@ -6,8 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddNumberOfRoomsCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.AddRoomsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -17,6 +17,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindRoomCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SearchPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,6 +54,9 @@ public class AddressBookParser {
         case EditPatientCommand.COMMAND_WORD:
             return new EditPatientCommandParser().parse(arguments);
 
+        case SearchPatientCommand.COMMAND_WORD:
+            return new SearchPatientCommandParser().parse(arguments);
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -74,8 +78,8 @@ public class AddressBookParser {
         case FindRoomCommand.COMMAND_WORD:
             return new FindRoomCommand();
 
-        case AddNumberOfRoomsCommand.COMMAND_WORD:
-            return new AddNumberOfRoomsParser().parse(arguments);
+        case AddRoomsCommand.COMMAND_WORD:
+            return new AddRoomsParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

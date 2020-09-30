@@ -97,8 +97,7 @@ public interface Model {
      */
     int getNumOfRooms();
 
-    /**
-     * Returns Path of file that contains number of rooms
-     */
-    public Path getPathOfNumberOfRooms();
+    void addRooms(int num);
+
+    RoomList getRoomList();
 }

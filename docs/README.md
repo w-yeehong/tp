@@ -1,10 +1,8 @@
-Covigent
-
-Covigent
+### Covigent
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W12-1/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![Ui](images/Ui.png)
 
 Covigent is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Covigent can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
 
