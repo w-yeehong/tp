@@ -13,7 +13,7 @@ title: User Guide
     3.3 [Edit a patient: `editpatient`](#33-edit-a-patient-editpatient)<br>
     3.4 [Add rooms in hotel: `addRooms`](#34-add-rooms-in-hotel-addrooms)<br>
     3.5 [Finds the next room which is free to use: `findRoom`](#35-finds-the-next-room-which-is-free-to-use-findroom)<br>
-    3.6 [Save the data](#34-save-the-data)<br>
+    3.6 [Save the data](#36-save-the-data)<br>
  4. [FAQ](#4-faq)
  5. [Command Summary](#5-command-summary)
 
