@@ -284,7 +284,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
 * 4a. System realises that the specified room is not empty.
 
    * 4a1. System displays an error message.
@@ -303,7 +302,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
 * 2a. System realises that no optional fields are inputted.
 
    * 2a1. System displays an error message.
@@ -321,7 +319,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
 * 2a. System realises that no such patient is recorded
 
    * 2a1. System displays an error message.
