@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.hotel.Room;
+import seedu.address.model.room.Room;
 
 /**
  * Panel containing the list of rooms.

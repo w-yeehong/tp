@@ -15,7 +15,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.hotel.Room;
+import seedu.address.model.room.Room;
 import seedu.address.model.patient.Patient;
 import seedu.address.storage.Storage;
 

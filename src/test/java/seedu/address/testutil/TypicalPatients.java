@@ -19,7 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.patient.Patient;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Patient} objects to be used in tests.
  */
 public class TypicalPatients {
 
@@ -53,7 +53,7 @@ public class TypicalPatients {
             .withTemperature("37.6").withPeriodOfStay("20200404-20200414")
             .withPhone("8482131").withAge("54").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Patient's details found in {@code CommandTestUtil}
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withTemperature(VALID_TEMP_AMY).withPeriodOfStay(VALID_PERIOD_AMY)
             .withAge(VALID_AGE_AMY).build();
@@ -66,17 +66,17 @@ public class TypicalPatients {
     private TypicalPatients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical patients.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Patient patient : getTypicalPersons()) {
+        for (Patient patient : getTypicalPatients()) {
             ab.addPatient(patient);
         }
         return ab;
     }
 
-    public static List<Patient> getTypicalPersons() {
+    public static List<Patient> getTypicalPatients() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

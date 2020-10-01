@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.hotel.Room;
+import seedu.address.model.room.Room;
 
 /**
  * An UI component that displays information of a {@code Room}.
@@ -56,7 +56,7 @@ public class RoomCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof PatientCard)) {
             return false;
         }
 

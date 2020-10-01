@@ -36,7 +36,7 @@ class RoomTest {
         // different type -> returns false
         assertFalse(room1.equals(5));
 
-        // different person -> returns false
+        // different patient -> returns false
         assertFalse(room1.equals(room2));
 
         // different isOccupied value -> returns false

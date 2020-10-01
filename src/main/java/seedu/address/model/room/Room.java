@@ -11,7 +11,7 @@ import seedu.address.model.tasks.Task;
 public class Room implements Comparable<Room> {
     private int roomNumber;
     private boolean isOccupied;
-    private Patient person;
+    private Patient patient;
     private Task task;
 
     /**
@@ -20,7 +20,7 @@ public class Room implements Comparable<Room> {
     public Room(int roomNumber, boolean isOccupied) {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
-        this.person = null;
+        this.patient = null;
         this.task = null;
     }
 
@@ -30,7 +30,7 @@ public class Room implements Comparable<Room> {
     public Room(int roomNumber) {
         this.roomNumber = roomNumber;
         this.isOccupied = false;
-        this.person = null;
+        this.patient = null;
         this.task = null;
     }
     public int getRoomNumber() {
