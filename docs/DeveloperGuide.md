@@ -282,10 +282,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
 * 4a. System realises that the specified room is not empty.
 
    * 4a1. System displays an error message.
+
+  Use case ends.
+ 
+**Use case: Edit a patient**
+
+**MSS**
+
+1. User requests to edit a patient.
+2. User inputs the new information about the patient.
+3. System edits the patient information to the new information.
+4. System saves the new patient information.
+
+    Use case ends.
+
+**Extensions**
+* 2a. System realises that no optional fields are inputted.
+
+   * 2a1. System displays an error message.
+
+  Use case ends.
+  
+**Use case: Search a patient**
+
+**MSS**
+
+1. User requests to search patients with a criteria.
+2. System search the patients with the inputted criteria.
+3. System shows the search results.
+
+    Use case ends.
+
+**Extensions**
+* 2a. System realises that no such patient is recorded
+
+   * 2a1. System displays an error message.
 
   Use case ends.
 
