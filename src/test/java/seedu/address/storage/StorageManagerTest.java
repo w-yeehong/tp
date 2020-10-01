@@ -16,9 +16,9 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.hotel.Room;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomList;
 
 public class StorageManagerTest {
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.room;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.NO_ARGUMENTS_GIVEN;
@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddRoomsCommand;
+import seedu.address.logic.commands.room.AddRoomsCommand;
 
 class AddRoomsParserTest {
     private AddRoomsParser parser = new AddRoomsParser();

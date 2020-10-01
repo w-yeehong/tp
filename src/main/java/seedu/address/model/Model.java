@@ -6,8 +6,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomList;
 
 /**
  * The API of the Model component.

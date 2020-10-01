@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.room.RoomList;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

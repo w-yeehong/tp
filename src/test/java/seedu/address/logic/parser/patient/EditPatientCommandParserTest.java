@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.patient;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_AMY;
@@ -34,7 +34,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.patient.EditPatientCommand;
-import seedu.address.logic.parser.patient.EditPatientCommandParser;
 import seedu.address.model.patient.Age;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.PeriodOfStay;

@@ -1,4 +1,4 @@
-package seedu.address.model.hotel;
+package seedu.address.model.room;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -12,8 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,14 +24,14 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final RoomList roomList;
+    private final seedu.address.model.room.RoomList roomList;
     private final FilteredList<Patient> filteredPatients;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        RoomList readOnlyRoomOccupancy) {
+                        seedu.address.model.room.RoomList readOnlyRoomOccupancy) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -43,7 +44,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new RoomList());
+        this(new AddressBook(), new UserPrefs(), new seedu.address.model.room.RoomList());
     }
 
     //=========== UserPrefs ==================================================================================

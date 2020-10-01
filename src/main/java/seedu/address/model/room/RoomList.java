@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.room;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -6,7 +6,6 @@ import java.util.PriorityQueue;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.hotel.Room;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**

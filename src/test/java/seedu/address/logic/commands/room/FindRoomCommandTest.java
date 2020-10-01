@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.room;
 
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.hotel.Room;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomList;
 
 class FindRoomCommandTest {
 

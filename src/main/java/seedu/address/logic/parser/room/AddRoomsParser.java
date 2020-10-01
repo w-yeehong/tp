@@ -1,9 +1,10 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.room;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.NO_ARGUMENTS_GIVEN;
 import static seedu.address.commons.core.Messages.NUMBER_OF_ROOMS_GIVEN_IN_DIGITS;
 
-import seedu.address.logic.commands.AddRoomsCommand;
+import seedu.address.logic.commands.room.AddRoomsCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
