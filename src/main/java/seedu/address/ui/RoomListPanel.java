@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -23,10 +26,26 @@ public class RoomListPanel extends UiPart<Region> {
     /**
      * Creates a {@code RoomListPanel} with the given {@code ObservableList}.
      */
-    public RoomListPanel(ObservableList<Room> roomList) {
+    public RoomListPanel(PriorityQueue<Room> roomList) {
         super(FXML);
-        roomListView.setItems(roomList);
+        ObservableList<Room> listToDisplayInUI = convertPriorityQueue(roomList);
+        roomListView.setItems(listToDisplayInUI);
         roomListView.setCellFactory(listView -> new RoomListViewCell());
+    }
+
+    /**
+     * Converts a {@code roomList} queue into an {@code ObservableList}.
+     *
+     * @param roomList PriorityQueue containing all the rooms.
+     * @return A {@code ObservableList<Room>}.
+     */
+    private ObservableList<Room> convertPriorityQueue(PriorityQueue<Room> roomList) {
+        ArrayList<Room> roomArrayList = new ArrayList<>();
+        while (roomList.size() > 0) {
+            roomArrayList.add(roomList.poll());
+        }
+        ObservableList<Room> roomObservableList = FXCollections.observableArrayList(roomArrayList);
+        return roomObservableList;
     }
 
     /**

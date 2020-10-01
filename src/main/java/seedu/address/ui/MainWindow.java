@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -23,7 +21,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.hotel.Room;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -148,17 +145,11 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        //TODO: remove this test once ObservableList<Room> is integrated into Logic.java
-        Room occupied = new Room(4);
-        occupied.setOccupied(true);
-        ObservableList<Room> test = FXCollections.observableArrayList(new Room(1), new Room(5),
-                new Room(2), new Room(3), occupied);
-
-        roomListPanel = new RoomListPanel(test);
+        roomListPanel = new RoomListPanel(logic.getListOfRooms());
         roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
 
-        roomDetailsPanel = new RoomDetailsPanel(test.get(1));
-        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+//        roomDetailsPanel = new RoomDetailsPanel(test.get(1));
+//        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
