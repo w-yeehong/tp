@@ -12,17 +12,18 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindRoomCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.SearchPatientCommand;
 import seedu.address.logic.commands.patient.AddPatientCommand;
 import seedu.address.logic.commands.patient.DeleteCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand;
 import seedu.address.logic.commands.patient.FindCommand;
 import seedu.address.logic.commands.patient.ListCommand;
+import seedu.address.logic.commands.patient.SearchPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.AddPatientCommandParser;
 import seedu.address.logic.parser.patient.DeleteCommandParser;
 import seedu.address.logic.parser.patient.EditPatientCommandParser;
 import seedu.address.logic.parser.patient.FindCommandParser;
+import seedu.address.logic.parser.patient.SearchPatientCommandParser;
 
 /**
  * Parses user input.

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
@@ -31,10 +33,10 @@ public class SearchPatientCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TEMP_RANGE + "36.1-37.9 ";
 
-    public static final String MESSAGE_SEARCH_PERSON_SUCCESS = "Patient(s) found: %1$s";
+    public static final String MESSAGE_SEARCH_PATIENT_SUCCESS = "Patient(s) found: %1$s";
     public static final String MESSAGE_NOT_FOUND = "At least one field to edit must be provided.";
-    public static final String MESSAGE_PERSON_NOT_FOUND = "The patient you entered is not in the list.";
-    public static final String MESSAGE_SEARCH_PERSON_LIST_SUCCESS = "Patient match your criteria found: \n";
+    public static final String MESSAGE_PATIENT_NOT_FOUND = "The patient you entered is not in the list.";
+    public static final String MESSAGE_SEARCH_PATIENT_LIST_SUCCESS = "Patient match your criteria found: \n";
 
     private final SearchPatientDescriptor searchPatientDescriptor;
 
@@ -81,10 +83,10 @@ public class SearchPatientCommand extends Command {
         for (Patient patient : patientList) {
             String patientName = patient.getName().toString().trim().toLowerCase();
             if (patientName.equals(nameToSearch)) {
-                new CommandResult(String.format(MESSAGE_SEARCH_PERSON_SUCCESS, patient));
+                new CommandResult(String.format(MESSAGE_SEARCH_PATIENT_SUCCESS, patient));
             }
         }
-        throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+        throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
     }
 
     /**
@@ -107,9 +109,9 @@ public class SearchPatientCommand extends Command {
         }
 
         if (patientWithinTemperatureRange.isEmpty()) {
-            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+            throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
         } else {
-            return new CommandResult(MESSAGE_SEARCH_PERSON_LIST_SUCCESS
+            return new CommandResult(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS
                     + getListOutput(patientWithinTemperatureRange));
         }
     }

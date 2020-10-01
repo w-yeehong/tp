@@ -49,7 +49,6 @@ public class TemperatureRange {
         return this.endingTemperature;
     }
 
-
     /**
      * Returns true if a given string is a valid temperature.
      */

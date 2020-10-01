@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.SearchPatientCommand.SearchPatientDescriptor;
+import seedu.address.logic.commands.patient.SearchPatientCommand.SearchPatientDescriptor;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.TemperatureRange;
 
@@ -14,7 +14,6 @@ public class SearchPatientDescriptorBuilder {
     public SearchPatientDescriptorBuilder() {
         descriptor = new SearchPatientDescriptor();
     }
-
 
     /**
      * Sets the {@code Name} of the {@code SearchPatientDescriptor} that we are building.
