@@ -42,7 +42,6 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private RoomListPanel roomListPanel;
-    private RoomDetailsPanel roomDetailsPanel;
 
     @FXML
     private ImageView logoIcon;
@@ -73,10 +72,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane roomListPanelPlaceHolder;
-
-    //TODO Handle this logic, not very sure how
-    @FXML
-    private AnchorPane roomDetailsPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -147,9 +142,6 @@ public class MainWindow extends UiPart<Stage> {
 
         roomListPanel = new RoomListPanel(logic.getListOfRooms());
         roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
-
-//        roomDetailsPanel = new RoomDetailsPanel(test.get(1));
-//        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

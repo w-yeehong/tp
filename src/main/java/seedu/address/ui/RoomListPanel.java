@@ -9,6 +9,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.Room;
@@ -20,8 +22,20 @@ public class RoomListPanel extends UiPart<Region> {
     private static final String FXML = "RoomListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RoomListPanel.class);
 
+    private RoomDetailsPanel roomDetailsPanel;
+
     @FXML
     private ListView<Room> roomListView;
+
+    @FXML
+    private AnchorPane roomDetailsPanelPlaceholder;
+
+    @FXML public void handleMouseClick(MouseEvent mouseEvent) {
+        Room roomToDisplay = roomListView.getSelectionModel().getSelectedItem();
+        System.out.println(roomToDisplay);
+        roomDetailsPanel = new RoomDetailsPanel(roomToDisplay);
+        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+    }
 
     /**
      * Creates a {@code RoomListPanel} with the given {@code ObservableList}.
