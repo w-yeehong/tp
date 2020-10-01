@@ -24,7 +24,9 @@
         <HBox fx:id="covigentLogoPlaceholder" styleClass="stack-pane" HBox.hgrow="NEVER">
           <children>
             <ImageView fx:id="logoIcon" fitHeight="53.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
-            </ImageView>
+                     <HBox.margin>
+                        <Insets left="10.0" top="3.0" />
+                     </HBox.margin></ImageView>
           </children>
         </HBox>
 
