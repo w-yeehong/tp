@@ -7,8 +7,8 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.room.RoomList;
 
 /**
  * API of the Storage component
