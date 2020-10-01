@@ -10,8 +10,8 @@ import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.RoomList;
-import seedu.address.model.hotel.Room;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomList;
 
 class RoomOccupancyStorageTest {
     @Test
