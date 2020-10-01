@@ -9,25 +9,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wee Yee Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/w-yeehong.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](https://github.com/w-yeehong)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Project Coordination
+
+### Ge Wai Lok
+
+<img src="images/raymondge.png" width="200px">
+
+[[github](http://github.com/raymondge)]
+
+* Role: Developer
+* Responsibilities: Documentation
 
 ### Noorul Azlina
 
@@ -35,8 +33,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/itssodium)] 
 
-* Role: Code Quality 
-* Responsibilities: Looks after code quality, ensures adherence to coding standards
+* Role: Developer
+* Responsibilities: Code Quality 
 
 ### Chiam Yun Qing
 
@@ -49,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lee Ming De
 
-<img src="images/mingde.png" width="200px">
+<img src="images/leemingde.png" width="200px">
 
 [[Github](http://github.com/LeeMingDe)]
 

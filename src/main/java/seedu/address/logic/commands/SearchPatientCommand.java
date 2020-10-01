@@ -57,17 +57,11 @@ public class SearchPatientCommand extends Command {
 
         if (criteriaToSearch == SearchCriteria.CRITERIA_NOT_FOUND) {
             throw new CommandException(MESSAGE_NOT_FOUND);
-        }
-
-        else if (criteriaToSearch == SearchCriteria.CRITERIA_IS_NAME) {
+        } else if (criteriaToSearch == SearchCriteria.CRITERIA_IS_NAME) {
             return findPatientWithName(searchPatientDescriptor, personList);
-        }
-
-        else if (criteriaToSearch == SearchCriteria.CRITERIA_IS_TEMPERATURE) {
+        } else if (criteriaToSearch == SearchCriteria.CRITERIA_IS_TEMPERATURE) {
             return findPatientWithTemperature(searchPatientDescriptor, personList);
-        }
-
-        else if (criteriaToSearch == SearchCriteria.TOO_MANY_CRITERIA) {
+        } else if (criteriaToSearch == SearchCriteria.TOO_MANY_CRITERIA) {
             return new CommandResult(Messages.MESSAGE_TOO_MANY_COMMANDS);
         }
         throw new CommandException(MESSAGE_NOT_FOUND);
@@ -142,16 +136,13 @@ public class SearchPatientCommand extends Command {
         if (searchPatientDescriptor.getOptionalName().isEmpty()
                 && searchPatientDescriptor.getOptionalTemperatureRange().isEmpty()) {
             return SearchCriteria.CRITERIA_NOT_FOUND;
-        }
-        else if (searchPatientDescriptor.getOptionalName().isPresent()
+        } else if (searchPatientDescriptor.getOptionalName().isPresent()
                 && searchPatientDescriptor.getOptionalTemperatureRange().isEmpty()) {
             return SearchCriteria.CRITERIA_IS_NAME;
-        }
-        else if (searchPatientDescriptor.getOptionalName().isEmpty()
+        } else if (searchPatientDescriptor.getOptionalName().isEmpty()
                 && searchPatientDescriptor.getOptionalTemperatureRange().isPresent()) {
             return SearchCriteria.CRITERIA_IS_TEMPERATURE;
-        }
-        else {
+        } else {
             return SearchCriteria.TOO_MANY_CRITERIA;
         }
 

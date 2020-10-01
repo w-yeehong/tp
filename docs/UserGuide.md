@@ -11,7 +11,9 @@ title: User Guide
     3.1 [Command Format](#31-command-format)<br>
     3.2 [Add a patient: `addpatient`](#32-add-a-patient-addpatient)<br>
     3.3 [Edit a patient: `editpatient`](#33-edit-a-patient-editpatient)<br>
-    3.4 [Save the data](#34-save-the-data)<br>
+    3.4 [Add rooms in hotel: `addRooms`](#34-add-rooms-in-hotel-addrooms)<br>
+    3.5 [Finds the first free room: `findRoom`](#35-finds-the-first-free-room-findroom)<br>
+    3.6 [Save the data](#36-save-the-data)<br>
  4. [FAQ](#4-faq)
  5. [Command Summary](#5-command-summary)
 
@@ -65,6 +67,7 @@ Covigent is a desktop app for managing information of quarantined individuals an
 
 ### 3.2 Add a patient: `addpatient`
 
+
 Adds a quarantined individual to the application.
 
 Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
@@ -77,7 +80,6 @@ Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [
 Examples:
 * `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35`
 * `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
-
 
 ### 3.3 Edit a patient: `editpatient`
 
@@ -96,7 +98,30 @@ Examples:
 *  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` Edits the temperature, age and period of stay of alex to be `36.7`, `21` and `20200303-20200315` respectively.
 
-### 3.4 Save the data
+### 3.4 Add rooms in hotel: `addRooms`
+
+Adds the number of rooms in a hotel
+
+Format: `addRooms NUMBER_OF_ROOMS`
+
+* Adds NUMBER_OF_ROOMS rooms into the hotel system 
+
+Examples:
+* `addRooms 123`
+* `addRooms 400`
+
+### 3.5 Finds the first free room: `findRoom`
+
+Finds the room with the lowest room number that is free for use
+
+Format: `findRoom`
+
+* Finds the room number of least value that can be safely used for accommodation
+
+Examples:
+* `findRoom`
+
+### 3.6 Save the data
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -115,4 +140,6 @@ Action | Format, Examples
 --------|------------------
 **Add Patient** | `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]` <br> e.g.,`addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
 **Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g.,`editpatient James Lee t/36.5`
+**Add Rooms** | `addRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
+**Find Room** | `findRoom` <br> e.g `findRoom`
 
