@@ -30,18 +30,6 @@ public class RoomListPanel extends UiPart<Region> {
     @FXML
     private AnchorPane roomDetailsPanelPlaceholder;
 
-
-    /**
-     * Handles mouse click event on the items
-     *
-     * @param mouseEvent
-     */
-    @FXML public void handleMouseClick(MouseEvent mouseEvent) {
-        Room roomToDisplay = roomListView.getSelectionModel().getSelectedItem();
-        roomDetailsPanel = new RoomDetailsPanel(roomToDisplay);
-        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
-    }
-
     /**
      * Creates a {@code RoomListPanel} with the given {@code ObservableList}.
      */
@@ -54,6 +42,17 @@ public class RoomListPanel extends UiPart<Region> {
         }
         roomListView.setItems(listToDisplayInUI);
         roomListView.setCellFactory(listView -> new RoomListViewCell());
+    }
+
+    /**
+     * Handles mouse click event on the items.
+     *
+     * @param mouseEvent Created by the user.
+     */
+    @FXML public void handleMouseClick(MouseEvent mouseEvent) {
+        Room roomToDisplay = roomListView.getSelectionModel().getSelectedItem();
+        roomDetailsPanel = new RoomDetailsPanel(roomToDisplay);
+        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
     }
 
     /**
