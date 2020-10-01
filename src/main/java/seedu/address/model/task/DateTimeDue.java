@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Optional;
 
 import seedu.address.commons.util.DateTimeUtil;
 
@@ -28,20 +29,45 @@ public class DateTimeDue {
         DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
     };
 
-    public final LocalDateTime value;
+    private static final String NULL_VALUE_TO_STRING = "-";
+
+    public final Optional<LocalDateTime> value;
 
     /**
      * Constructs a {@code DateTimeDue}.
+     * {@code optionalDueAt} must be non-null (but can be empty).
      *
-     * @param dueAt A valid date-time.
+     * If the date-time string is empty, the value defaults to {@code Optional.empty()}.
+     * If the date-time string is present and valid, the value parsed into is a {@code LocalDateTime}
+     * and wrapped in an {@code Optional}.
+     *
+     * @param optionalDueAt A valid optional date-time string.
+     */
+    public DateTimeDue(Optional<String> optionalDueAt) {
+        requireNonNull(optionalDueAt);
+        value = optionalDueAt
+                .map((dueAt) -> {
+                    checkArgument(isValidDateTimeDue(dueAt), MESSAGE_CONSTRAINTS);
+                    return Optional.of(
+                        DateTimeUtil.parseFirstMatching(dueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
+                })
+                .orElse(Optional.empty());
+    }
+
+    /**
+     * Constructs a {@code DateTimeDue}.
+     * {@code dueAt} must be non-null.
+     *
+     * @param dueAt A valid date-time string.
      */
     public DateTimeDue(String dueAt) {
         requireNonNull(dueAt);
         checkArgument(isValidDateTimeDue(dueAt), MESSAGE_CONSTRAINTS);
-        value = DateTimeUtil.parseFirstMatching(dueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS);
+        value = Optional.of(
+                DateTimeUtil.parseFirstMatching(dueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
     }
 
-    public LocalDateTime getValue() {
+    public Optional<LocalDateTime> getValue() {
         return value;
     }
 
@@ -60,7 +86,10 @@ public class DateTimeDue {
 
     @Override
     public String toString() {
-        return value.format(DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME);
+        return value
+                .map((dueAt) ->
+                    dueAt.format(DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_LONG_SPACE_DELIMITED_OPTIONAL_TIME))
+                .orElse(NULL_VALUE_TO_STRING);
     }
 
     @Override
