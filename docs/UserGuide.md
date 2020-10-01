@@ -11,7 +11,10 @@ title: User Guide
     3.1 [Command Format](#31-command-format)<br>
     3.2 [Add a patient: `addpatient`](#32-add-a-patient-addpatient)<br>
     3.3 [Edit a patient: `editpatient`](#33-edit-a-patient-editpatient)<br>
-    3.4 [Save the data](#34-save-the-data)<br>
+    3.4 [Search information: `searchpatient`](#34-search-information-searchpatient)<br>
+    3.5 [Add rooms in hotel: `addRooms`](#35-add-rooms-in-hotel-addrooms)<br>
+    3.6 [Finds the first free room: `findRoom`](#36-finds-the-first-free-room-findroom)<br>
+    3.7 [Save the data](#37-save-the-data)<br>
  4. [FAQ](#4-faq)
  5. [Command Summary](#5-command-summary)
 
@@ -63,19 +66,6 @@ Covigent is a desktop app for managing information of quarantined individuals an
   
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-
-
-### Adding a patient: `addpatient`
-
 ### 3.2 Add a patient: `addpatient`
 
 
@@ -91,36 +81,6 @@ Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [
 Examples:
 * `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35`
 * `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
-
-
-### Add number of rooms in hotel: `addRooms`
-
-Adds the number of room in a hotel
-
-Format: `addRooms NUMBER_OF_ROOMS`
-
-* Adds NUMBER_OF_ROOMS rooms into the hotel system 
-
-Examples:
-* `addRooms 123`
-* `addRooms 400`
-
-### Finds the next room which is free to use: `findRoom`
-
-Finds the room with the lowest room number that is free for use
-
-Format: `findRoom`
-
-* Finds the room number of least value that can be safely used for accommodation
-
-Examples:
-* `findRoom`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
 
 ### 3.3 Edit a patient: `editpatient`
 
@@ -139,56 +99,45 @@ Examples:
 *  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` Edits the temperature, age and period of stay of alex to be `36.7`, `21` and `20200303-20200315` respectively.
 
-### 3.4 Save the data
+### 3.4 Search information: `searchpatient`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Searches the patients that matches the given criteria in the application.
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
- 
+Format: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Only one of the fields can be provided.
+* The temperature range is inclusive of start and end temperatures.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+*  `searchpatient n/john` Searches patients with a name John.
+*  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive. 
 
-### Clearing all entries : `clear`
+### 3.5 Add rooms in hotel: `addRooms`
 
-Clears all entries from the address book.
+Adds the number of rooms in a hotel
 
-Format: `clear`
+Format: `addRooms NUMBER_OF_ROOMS`
 
-### Exiting the program : `exit`
+* Adds NUMBER_OF_ROOMS rooms into the hotel system 
 
-Exits the program.
+Examples:
+* `addRooms 123`
+* `addRooms 400`
 
-Format: `exit`
+### 3.6 Finds the first free room: `findRoom`
 
-### Saving the data
+Finds the room with the lowest room number that is free for use
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Format: `findRoom`
 
-### Archiving data files `[coming in v2.0]`
+* Finds the room number of least value that can be safely used for accommodation
 
-_{explain the feature here}_
+Examples:
+* `findRoom`
+
+### 3.7 Save the data
+
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -204,14 +153,7 @@ Covigent data are saved in the hard disk automatically after any command that ch
 Action | Format, Examples
 --------|------------------
 **Add Patient** | `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]` <br> e.g.,`addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
+**Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g.,`editpatient James Lee t/36.5`
 **Add Rooms** | `addRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g.,`editpatient James Lee t/36.5`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Find Room** | `findRoom` <br> e.g `findRoom`
-**List** | `list`
-**Help** | `help`
-=======
-**Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g.,`editpatient James Lee t/36.5`
 

@@ -252,8 +252,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-
-
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
@@ -284,10 +282,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
 * 4a. System realises that the specified room is not empty.
 
    * 4a1. System displays an error message.
+
+  Use case ends.
+ 
+**Use case: Edit a patient**
+
+**MSS**
+
+1. User requests to edit a patient.
+2. User inputs the new information about the patient.
+3. System edits the patient information to the new information.
+4. System saves the new patient information.
+
+    Use case ends.
+
+**Extensions**
+* 2a. System realises that no optional fields are inputted.
+
+   * 2a1. System displays an error message.
+
+  Use case ends.
+  
+**Use case: Search a patient**
+
+**MSS**
+
+1. User requests to search patients with a criteria.
+2. System search the patients with the inputted criteria.
+3. System shows the search results.
+
+    Use case ends.
+
+**Extensions**
+* 2a. System realises that no such patient is recorded
+
+   * 2a1. System displays an error message.
 
   Use case ends.
 
@@ -297,12 +329,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should work even without internet connection.
+5. Should respond to commands in 3 seconds.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Patient**: An individual residing in the quarantine facility
+* **Task**: Task is to be completed by staff of the quarantine facility
 
 --------------------------------------------------------------------------------------------------------------------
 
