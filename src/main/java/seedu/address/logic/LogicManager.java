@@ -15,7 +15,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
 import seedu.address.storage.Storage;
+
 
 /**
  * The main LogicManager of the app.
@@ -82,5 +84,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Room> getListOfRooms() {
+        return model.getRoomList().getRoomObservableList();
     }
 }
