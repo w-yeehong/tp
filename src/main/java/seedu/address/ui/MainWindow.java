@@ -60,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
     private Tab roomTab;
 
     @FXML
+    private Tab taskTab;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
