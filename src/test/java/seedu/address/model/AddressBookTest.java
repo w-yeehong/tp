@@ -43,7 +43,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicatePatients_throwsDuplicatePatientException() {
-        // Two patient with the same identity fields
+        // Two patients with the same identity fields
         Patient editedAlice = new PatientBuilder(ALICE).build();
         List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPatients);

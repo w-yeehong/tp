@@ -6,7 +6,7 @@
 <HBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox>
-        <ListView fx:id="roomListView" />
+        <ListView fx:id="roomListView" onMouseClicked="#handleMouseClick" />
       </VBox>
       <AnchorPane fx:id="roomDetailsPanelPlaceholder" HBox.hgrow="ALWAYS" />
    </children>
