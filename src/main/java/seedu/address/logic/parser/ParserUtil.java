@@ -11,7 +11,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Age;
 import seedu.address.model.patient.Comment;
-import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.PeriodOfStay;
 import seedu.address.model.patient.Phone;
@@ -132,6 +131,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String comment} into a {@code Comment}
      * Leading and trailing whitespaces will be trimmed
+     *
      * @return an "-" comment if no comment is added
      */
     public static Comment parseComment(String comment) {
@@ -140,22 +140,6 @@ public class ParserUtil {
         } else {
             return new Comment(comment.trim());
         }
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    //TODO to delete
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
     }
 
     /**
