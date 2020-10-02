@@ -51,6 +51,7 @@
             <Tab fx:id="patientTab" text="Patients">
               <content>
                 <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+
               </content>
             </Tab>
             <Tab fx:id="roomTab" text="Rooms">
@@ -60,6 +61,11 @@
                     <StackPane fx:id="roomListPanelPlaceHolder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                  </children>
                 </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="taskTab" text="Tasks">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
           </tabs>
