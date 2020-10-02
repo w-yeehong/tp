@@ -53,10 +53,15 @@
           <tabs>
             <Tab fx:id="patientTab" text="Patients">
               <content>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               </content>
             </Tab>
             <Tab fx:id="roomTab" text="Rooms">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="taskTab" text="Tasks">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
@@ -76,13 +81,6 @@
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-
-        <VBox fx:id="patientList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
