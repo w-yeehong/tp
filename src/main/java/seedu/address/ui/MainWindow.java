@@ -8,9 +8,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -33,13 +34,16 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
+    private Image logoPicture = new Image(this.getClass().getResourceAsStream("/images/covigent_logo.png"));
+
     // Independent Ui parts residing in this Ui container
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private RoomListPanel roomListPanel;
 
     @FXML
-    private HBox covigentLogoPlaceholder;
+    private ImageView logoIcon;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -60,10 +64,16 @@ public class MainWindow extends UiPart<Stage> {
     private Tab roomTab;
 
     @FXML
+    private Tab taskTab;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane roomListPanelPlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -81,6 +91,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+    }
+
+    public void displayAppIcon() {
+        logoIcon.setImage(logoPicture);
     }
 
     public Stage getPrimaryStage() {
@@ -127,6 +141,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+
+        roomListPanel = new RoomListPanel(logic.getListOfRooms());
+        roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

@@ -24,14 +24,14 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final seedu.address.model.room.RoomList roomList;
+    private final RoomList roomList;
     private final FilteredList<Patient> filteredPatients;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        seedu.address.model.room.RoomList readOnlyRoomOccupancy) {
+                        RoomList readOnlyRoomOccupancy) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -44,7 +44,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new seedu.address.model.room.RoomList());
+        this(new AddressBook(), new UserPrefs(), new RoomList());
     }
 
     //=========== UserPrefs ==================================================================================

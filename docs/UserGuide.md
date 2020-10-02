@@ -13,8 +13,9 @@ title: User Guide
     3.3 [Edit a patient: `editpatient`](#33-edit-a-patient-editpatient)<br>
     3.4 [Search information: `searchpatient`](#34-search-information-searchpatient)<br>
     3.5 [Add rooms in hotel: `addRooms`](#35-add-rooms-in-hotel-addrooms)<br>
-    3.6 [Finds the first free room: `findRoom`](#36-finds-the-first-free-room-findroom)<br>
-    3.7 [Save the data](#37-save-the-data)<br>
+    3.6 [Find the first free room: `findRoom`](#36-find-the-first-free-room-findroom)<br>
+    3.7 [View help: `help`](#37-view-help-help)<br>
+    3.8 [Save the data](#38-save-the-data)<br>
  4. [FAQ](#4-faq)
  5. [Command Summary](#5-command-summary)
 
@@ -23,7 +24,7 @@ title: User Guide
 
 ## 1. Introduction
 
-Covigent is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Covigent can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+Covigent is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facility. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Covigent can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
 
 
 ## 2. Quick start
@@ -112,30 +113,33 @@ Examples:
 *  `searchpatient n/john` Searches patients with a name John.
 *  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive. 
 
-### 3.5 Add rooms in hotel: `addRooms`
+### 3.5 Add rooms in quarantine facility: `addRooms`
 
-Adds the number of rooms in a hotel
+Adds the number of rooms in the quarantine facility to the app.
 
 Format: `addRooms NUMBER_OF_ROOMS`
 
-* Adds NUMBER_OF_ROOMS rooms into the hotel system 
+* Adds NUMBER_OF_ROOMS rooms into the hotel system
 
 Examples:
 * `addRooms 123`
 * `addRooms 400`
 
-### 3.6 Finds the first free room: `findRoom`
+### 3.6 Find the first free room: `findRoom`
 
-Finds the room with the lowest room number that is free for use
+Finds the room with the lowest room number that is free for use.
 
 Format: `findRoom`
 
 * Finds the room number of least value that can be safely used for accommodation
 
-Examples:
-* `findRoom`
+### 3.7 View help: `help`
 
-### 3.7 Save the data
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
+### 3.8 Save the data
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -155,5 +159,6 @@ Action | Format, Examples
 **Add Patient** | `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]` <br> e.g.,`addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
 **Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g.,`editpatient James Lee t/36.5`
 **Add Rooms** | `addRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
-**Find Room** | `findRoom` <br> e.g `findRoom`
+**Find Room** | `findRoom` <br> 
+**Help** | `help`<br>
 
