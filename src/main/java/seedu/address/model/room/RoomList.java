@@ -1,10 +1,13 @@
 package seedu.address.model.room;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.storage.JsonAddressBookStorage;
 
@@ -17,7 +20,7 @@ public class RoomList {
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>();
     private Room[] roomsInArray = new Room[0];
-
+    private ObservableList<Room> roomObservableList = FXCollections.observableArrayList();
 
     /** Creates default RoomList() object where all fields are null**/
     public RoomList() {}
@@ -30,6 +33,7 @@ public class RoomList {
         this.rooms = rooms;
         this.roomsInArray = roomsInArray;
         this.numOfRooms = numOfRooms;
+        convertPriorityQueue(rooms);
     }
 
     /**
@@ -46,6 +50,10 @@ public class RoomList {
         return numOfRooms;
     }
 
+    public ObservableList<Room> getRoomObservableList() {
+        return roomObservableList;
+    }
+
     private void addRooms() {
         if (numOfRooms > 0) {
             roomsInArray = new Room[numOfRooms];
@@ -56,6 +64,7 @@ public class RoomList {
                 roomsInArray[i] = room;
             }
         }
+        convertPriorityQueue(rooms);
     }
 
     /**
@@ -67,7 +76,19 @@ public class RoomList {
         this.numOfRooms = numOfRooms;
         addRooms();
     }
-
+    /**
+     * Sets the elements of {@code roomObservableList}.
+     *
+     * @param roomList PriorityQueue containing all the rooms.
+     */
+    private void convertPriorityQueue(PriorityQueue<Room> roomList) {
+        ArrayList<Room> roomArrayList = new ArrayList<>();
+        Object[] arr = roomList.toArray();
+        for (int k = 0; k < arr.length; k++) {
+            roomArrayList.add((Room) arr[k]);
+        }
+        roomObservableList.setAll(roomArrayList);
+    }
     public Room[] getRoomsInArray() {
         return this.roomsInArray;
     }

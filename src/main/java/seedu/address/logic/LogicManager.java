@@ -88,7 +88,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public PriorityQueue<Room> getListOfRooms() {
-        return model.getRooms();
+    public ObservableList<Room> getListOfRooms() {
+        return model.getRoomList().getRoomObservableList();
     }
 }

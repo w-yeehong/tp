@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-import java.util.PriorityQueue;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -35,8 +34,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of patients */
     ObservableList<Patient> getFilteredPatientList();
 
-    /** Returns an priority queue containing the list of rooms. */
-    PriorityQueue<Room> getListOfRooms();
+    /** Returns an {@code ObservableList<Room>} containing the list of rooms. */
+    ObservableList<Room> getListOfRooms();
 
     /**
      * Returns the user prefs' Covigent file path.

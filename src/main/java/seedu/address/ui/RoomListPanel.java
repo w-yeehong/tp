@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.PriorityQueue;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -33,14 +30,13 @@ public class RoomListPanel extends UiPart<Region> {
     /**
      * Creates a {@code RoomListPanel} with the given {@code ObservableList}.
      */
-    public RoomListPanel(PriorityQueue<Room> roomList) {
+    public RoomListPanel(ObservableList<Room> roomList) {
         super(FXML);
-        ObservableList<Room> listToDisplayInUI = convertPriorityQueue(roomList);
-        if (!listToDisplayInUI.isEmpty()) {
-            roomDetailsPanel = new RoomDetailsPanel(listToDisplayInUI.get(0));
+        if (!roomList.isEmpty()) {
+            roomDetailsPanel = new RoomDetailsPanel(roomList.get(0));
             roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
         }
-        roomListView.setItems(listToDisplayInUI);
+        roomListView.setItems(roomList);
         roomListView.setCellFactory(listView -> new RoomListViewCell());
     }
 
@@ -49,25 +45,11 @@ public class RoomListPanel extends UiPart<Region> {
      *
      * @param mouseEvent Created by the user.
      */
-    @FXML public void handleMouseClick(MouseEvent mouseEvent) {
+    @FXML
+    public void handleMouseClick(MouseEvent mouseEvent) {
         Room roomToDisplay = roomListView.getSelectionModel().getSelectedItem();
         roomDetailsPanel = new RoomDetailsPanel(roomToDisplay);
         roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
-    }
-
-    /**
-     * Converts a {@code roomList} queue into an {@code ObservableList}.
-     *
-     * @param roomList PriorityQueue containing all the rooms.
-     * @return A {@code ObservableList<Room>}.
-     */
-    private ObservableList<Room> convertPriorityQueue(PriorityQueue<Room> roomList) {
-        ArrayList<Room> roomArrayList = new ArrayList<>();
-        while (roomList.size() > 0) {
-            roomArrayList.add(roomList.poll());
-        }
-        ObservableList<Room> roomObservableList = FXCollections.observableArrayList(roomArrayList);
-        return roomObservableList;
     }
 
     /**
