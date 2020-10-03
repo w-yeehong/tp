@@ -10,12 +10,13 @@ title: User Guide
 3. [Features](#3-features)<br>
     3.1 [Command Format](#31-command-format)<br>
     3.2 [Add a patient: `addpatient`](#32-add-a-patient-addpatient)<br>
-    3.3 [Edit a patient: `editpatient`](#33-edit-a-patient-editpatient)<br>
-    3.4 [Search information: `searchpatient`](#34-search-information-searchpatient)<br>
-    3.5 [Add rooms in hotel: `addRooms`](#35-add-rooms-in-hotel-addrooms)<br>
-    3.6 [Find the first free room: `findRoom`](#36-find-the-first-free-room-findroom)<br>
-    3.7 [View help: `help`](#37-view-help-help)<br>
-    3.8 [Save the data](#38-save-the-data)<br>
+    3.3 [Delete a patient: `deletepatient`](#33-delete-a-patient-deletepatient)<br>
+    3.4 [Edit a patient: `editpatient`](#34-edit-a-patient-editpatient)<br>
+    3.5 [Search information: `searchpatient`](#35-search-information-searchpatient)<br>
+    3.6 [Add rooms in hotel: `addRooms`](#36-add-rooms-in-hotel-addrooms)<br>
+    3.7 [Find the first free room: `findRoom`](#37-find-the-first-free-room-findroom)<br>
+    3.8 [View help: `help`](#38-view-help-help)<br>
+    3.9 [Save the data](#39-save-the-data)<br>
  4. [FAQ](#4-faq)
  5. [Command Summary](#5-command-summary)
 
@@ -69,7 +70,6 @@ Covigent is a desktop app for managing information of quarantined individuals an
 
 ### 3.2 Add a patient: `addpatient`
 
-
 Adds a quarantined individual to the application.
 
 Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
@@ -83,13 +83,26 @@ Examples:
 * `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35`
 * `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
 
-### 3.3 Edit a patient: `editpatient`
+### 3.3 Delete a patient: `deletepatient`
+
+Deletes an existing patient in the application.
+
+Format: `deletepatient NAME`
+
+* Deletes the patient with the specified `NAME`. The name refers to the name of the patient inputted into the application earlier. The name **must match exactly with the name of the patient**.
+* `NAME` is case-insensitive.
+
+Example:
+* `deletepatient Mary Doe` Deletes the patient record of Mary Doe from the application.
+
+
+### 3.4 Edit a patient: `editpatient`
 
 Edits an existing patient in the application.
 
 Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`
 
-* Edits the patient with the specified `NAME`. The name refers to the name of the patient inputted into the application eariler. The name **must match exactly with the name of the patient**.
+* Edits the patient with the specified `NAME`. The name refers to the name of the patient inputted into the application earlier. The name **must match exactly with the name of the patient**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `NAME` is case-insensitive.
@@ -100,7 +113,7 @@ Examples:
 *  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` Edits the temperature, age and period of stay of alex to be `36.7`, `21` and `20200303-20200315` respectively.
 
-### 3.4 Search information: `searchpatient`
+### 3.5 Search information: `searchpatient`
 
 Searches the patients that matches the given criteria in the application.
 
@@ -113,7 +126,7 @@ Examples:
 *  `searchpatient n/john` Searches patients with a name John.
 *  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive. 
 
-### 3.5 Add rooms in quarantine facility: `addRooms`
+### 3.6 Add rooms in quarantine facility: `addRooms`
 
 Adds the number of rooms in the quarantine facility to the app.
 
@@ -125,7 +138,7 @@ Examples:
 * `addRooms 123`
 * `addRooms 400`
 
-### 3.6 Find the first free room: `findRoom`
+### 3.7 Find the first free room: `findRoom`
 
 Finds the room with the lowest room number that is free for use.
 
@@ -133,13 +146,13 @@ Format: `findRoom`
 
 * Finds the room number of least value that can be safely used for accommodation
 
-### 3.7 View help: `help`
+### 3.8 View help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### 3.8 Save the data
+### 3.9 Save the data
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
