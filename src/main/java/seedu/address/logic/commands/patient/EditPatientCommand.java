@@ -28,7 +28,7 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
 
 /**
- * Edits a patient in address book with the selected name.
+ * Edits a patient in the app with the selected name.
  * Input of name is case insensitive.
  */
 public class EditPatientCommand extends Command {
@@ -88,7 +88,7 @@ public class EditPatientCommand extends Command {
         }
 
         if (index.getZeroBased() == 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased() - 1);
