@@ -28,7 +28,7 @@ public class SearchPatientCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Searches a patient or a list of patients with only one specific criteria. "
             + "\nParameters: "
-            + PREFIX_NAME + "NAME || "
+            + PREFIX_NAME + "NAME or "
             + PREFIX_TEMP_RANGE + "TEMPERATURE RANGE "
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_TEMP_RANGE + "36.1-37.9 ";
