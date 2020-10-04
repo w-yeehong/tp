@@ -150,7 +150,7 @@ public class RoomList {
      * @param target Room to be changed.
      * @param editedRoom Room that has been changed.
      */
-    public void editSingleRoom(Room target, Room editedRoom) {
+    public void setSingleRoom(Room target, Room editedRoom) {
         int index = roomObservableList.indexOf(target);
         if (index == -1) {
             throw new RoomNotFoundException();
@@ -159,6 +159,9 @@ public class RoomList {
         if (!target.isSameRoom(editedRoom) && containsRoom(editedRoom)) {
             throw new DuplicateRoomException();
         }
+        rooms.remove(target); // this and the next LOC is to replace the room in the priority queue
+        rooms.add(editedRoom);
+        roomObservableList.set(index, editedRoom);
     }
     @Override
     public int hashCode() {

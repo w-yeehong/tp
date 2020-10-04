@@ -179,8 +179,8 @@ public class ModelManager implements Model {
         return roomList.containsRoom(room);
     }
 
-    public void editSingleRoom(Room target, Room editedRoom) {
+    public void setSingleRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
-        roomList.editSingleRoom(target, editedRoom);
+        roomList.setSingleRoom(target, editedRoom);
     }
 }

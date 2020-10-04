@@ -114,5 +114,5 @@ public interface Model {
      * The room identity of {@code editedRoom} must not be the same as
      * another existing room in the application.
      */
-    void editSingleRoom(Room target, Room editedRoom);
+    void setSingleRoom(Room target, Room editedRoom);
 }

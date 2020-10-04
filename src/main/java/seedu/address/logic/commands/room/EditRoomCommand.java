@@ -1,31 +1,24 @@
 package seedu.address.logic.commands.room;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.patient.EditPatientCommand;
 import seedu.address.model.Model;
-import seedu.address.model.patient.Age;
-import seedu.address.model.patient.Comment;
-import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.PeriodOfStay;
-import seedu.address.model.patient.Phone;
-import seedu.address.model.patient.Temperature;
 import seedu.address.model.room.Room;
 
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_OCCUPIED;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_PATIENT;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_TASK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
-public class EditRoomCommand {
+public class EditRoomCommand extends Command {
 
     public static final String COMMAND_WORD = "editroom";
 
@@ -50,11 +43,10 @@ public class EditRoomCommand {
     /**
      * Constructs an EditCommand to edit the patient with the name {@code String}.
      *
-     * @param roomToBeEdited name in the filtered patient list to edit
+     * @param roomNumberToEdit name in the filtered patient list to edit
      * @param editRoomDescriptor details to edit the patient with
      */
     public EditRoomCommand(int roomNumberToEdit, EditRoomDescriptor editRoomDescriptor) {
-        requireNonNull(roomNumberToEdit);
         requireNonNull(editRoomDescriptor);
 
         this.roomNumberToEdit = roomNumberToEdit;
@@ -69,19 +61,18 @@ public class EditRoomCommand {
         Index index = checkIfRoomPresent(lastShownList);
 
         if (index.getZeroBased() == 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
         }
 
         Room roomToEdit = lastShownList.get(index.getZeroBased() - 1);
         Room editedRoom = createEditedRoom(roomToEdit, editRoomDescriptor);
 
-        if (!roomToEdit.isSameRoom(editedRoom) && model.(editedPatient)) {
+        if (!roomToEdit.isSameRoom(editedRoom) && model.containsRoom(editedRoom)) {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
 
-        model.setRoom(roomToEdit, editedRoom);
-        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
+        model.setSingleRoom(roomToEdit, editedRoom);
+        return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom));
     }
 
     /**
@@ -116,10 +107,9 @@ public class EditRoomCommand {
 
         Integer updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
         Boolean updatedOccupancy = editRoomDescriptor.isOccupied().orElse(roomToEdit.isOccupied());
+        //TODO update this when the room class is fully integrated with the patient class.
         Patient updatedPatient = editRoomDescriptor.getPatient().orElse(roomToEdit.getPatient());
-        // TODO Update this when task class has been implemented
-//        Task UpdatedTask = editRoomDescriptor.getTask().orElse(roomToEdit.getTask());
-        return new Room(updatedRoomNumber, updatedOccupancy/*, updatedPatient, updatedTask*/);
+        return new Room(updatedRoomNumber, updatedOccupancy/*, updatedPatient*/);
     }
 
     @Override
@@ -145,8 +135,6 @@ public class EditRoomCommand {
         private Integer roomNumber;
         private Boolean isOccupied;
         private Patient patient;
-        // TODO Update this when task class has been implemented
-//        private Task task;
 
         public EditRoomDescriptor() {}
 
@@ -160,8 +148,6 @@ public class EditRoomCommand {
             setRoomNumber(toCopy.roomNumber);
             setOccupied(toCopy.isOccupied);
             setPatient(toCopy.patient);
-            // TODO Update this when task class has been implemented
-//            setTask(toCopy.task);
         }
 
         public boolean isAnyFieldEdited() {
@@ -191,15 +177,6 @@ public class EditRoomCommand {
         public Optional<Patient> getPatient() {
             return Optional.ofNullable(patient);
         }
-
-        // TODO Update this when task class has been implemented
-//        public void setTask(Task task) {
-//            this.task = task;
-//        }
-//
-//        public Optional<Task> getPatient() {
-//            return Optional.ofNullable(task);
-//        }
 
         @Override
         public boolean equals(Object other) {
