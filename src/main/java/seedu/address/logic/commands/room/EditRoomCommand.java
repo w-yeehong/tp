@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_OCCUPIED;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_PATIENT;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,10 +29,10 @@ public class EditRoomCommand extends Command {
             + "Parameters: NUMBER "
             + "[" + PREFIX_ROOM_NUMBER + "ROOM NUMBER] "
             + "[" + PREFIX_ROOM_OCCUPIED + "OCCUPIED] "
-            + "[" + PREFIX_ROOM_PATIENT + "PATIENT NAME]\n"
+            + "[" + PREFIX_PATIENT_NAME + "PATIENT NAME]\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_ROOM_OCCUPIED + "false "
-            + PREFIX_ROOM_PATIENT + "marydoe";
+            + PREFIX_PATIENT_NAME + "marydoe";
 
     public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Room: %1$s";
     public static final String MESSAGE_ROOM_NOT_EDITED = "At least one field to edit must be provided.";

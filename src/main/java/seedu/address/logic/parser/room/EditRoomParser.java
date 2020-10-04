@@ -11,7 +11,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_OCCUPIED;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_PATIENT;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
 
 /**
  * Parses input arguments and creates a new EditRoomCommand object.
@@ -29,7 +29,7 @@ public class EditRoomParser implements Parser<EditRoomCommand> {
     public EditRoomCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ROOM_NUMBER, PREFIX_ROOM_OCCUPIED, PREFIX_ROOM_PATIENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_ROOM_NUMBER, PREFIX_ROOM_OCCUPIED, PREFIX_PATIENT_NAME);
 
         Integer roomToBeEdited;
 
@@ -51,8 +51,8 @@ public class EditRoomParser implements Parser<EditRoomCommand> {
             editRoomDescriptor.setOccupied(
                     ParserUtil.parseOccupancy(argMultimap.getValue(PREFIX_ROOM_OCCUPIED).get()));
         }
-        if (argMultimap.getValue(PREFIX_ROOM_PATIENT).isPresent()) {
-            editRoomDescriptor.setPatient(ParserUtil.parsePatient(argMultimap.getValue(PREFIX_ROOM_PATIENT).get()));
+        if (argMultimap.getValue(PREFIX_PATIENT_NAME).isPresent()) {
+            editRoomDescriptor.setPatient(ParserUtil.parsePatient(argMultimap.getValue(PREFIX_PATIENT_NAME).get()));
         }
 
         if (!editRoomDescriptor.isAnyFieldEdited()) {
