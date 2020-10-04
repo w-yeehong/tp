@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_OCCUPIED;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_PATIENT;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_TASK;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +28,6 @@ public class EditRoomCommand extends Command {
             + "Parameters: NUMBER"
             + "[" + PREFIX_ROOM_OCCUPIED + "OCCUPIED] "
             + "[" + PREFIX_ROOM_PATIENT + "PATIENT NAME] "
-            + "[" + PREFIX_ROOM_TASK + "TASK] "
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_ROOM_OCCUPIED + "false "
             + PREFIX_ROOM_PATIENT + "marydoe";
