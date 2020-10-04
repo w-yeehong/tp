@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.patient.exceptions.DuplicatePatientException;
-import seedu.address.model.patient.exceptions.PatientNotFoundException;
+import seedu.address.model.room.exceptions.DuplicateRoomException;
+import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
@@ -157,7 +157,7 @@ public class RoomList {
         }
 
         if (!target.isSameRoom(editedRoom) && containsRoom(editedRoom)) {
-            throw new DuplicatePatientException();
+            throw new DuplicateRoomException();
         }
     }
     @Override
