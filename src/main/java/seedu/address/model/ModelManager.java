@@ -173,4 +173,14 @@ public class ModelManager implements Model {
     public RoomList getRoomList() {
         return roomList;
     }
+
+    public boolean containsRoom(Room room) {
+        requireAllNonNull(room);
+        return roomList.containsRoom(room);
+    }
+
+    public void editSingleRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+        roomList.editSingleRoom(target, editedRoom);
+    }
 }

@@ -3,7 +3,7 @@ package seedu.address.logic.parser.patient;
 import seedu.address.logic.parser.Prefix;
 
 /**
- * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
+ * Contains Command Line Interface (CLI) syntax definitions common to multiple commands.
  */
 public class PatientCliSyntax {
 

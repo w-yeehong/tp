@@ -67,9 +67,11 @@ public class Patient {
 
         return otherPatient != null
                 && otherPatient.getName().equals(getName())
-                && otherPatient.getPhone().equals(getPhone())
-                && otherPatient.getPeriodOfStay().equals(getPeriodOfStay())
-                && otherPatient.getAge().equals(getAge());
+                && (otherPatient.getPhone().equals(getPhone())
+                || otherPatient.getPeriodOfStay().equals(getPeriodOfStay())
+                || otherPatient.getAge().equals(getAge())
+                || otherPatient.getTemperature().equals(getTemperature())
+                || otherPatient.getComment().equals(getComment()));
     }
 
     /**

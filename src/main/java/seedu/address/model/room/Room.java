@@ -37,6 +37,10 @@ public class Room implements Comparable<Room> {
         return roomNumber;
     }
 
+    public Patient getPatient() {
+        return patient;
+    }
+
     public boolean isOccupied() {
         return isOccupied;
     }
@@ -46,7 +50,23 @@ public class Room implements Comparable<Room> {
     }
 
     /**
+     * Returns true if both rooms of the same number have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two rooms.
+     */
+    public boolean isSameRoom(Room otherRoom) {
+        if (otherRoom == this) {
+            return true;
+        }
+
+        return otherRoom != null
+                && (Integer.valueOf(otherRoom.getRoomNumber()).equals(getRoomNumber()))
+                && ((Boolean.valueOf(otherRoom.isOccupied)).equals(isOccupied)
+                || otherRoom.getPatient().equals(getPatient()));
+    }
+
+    /**
      * Returns true if both rooms have the same identity and data fields.
+     * This defines a stronger notion of equality between two rooms.
      */
     @Override
     public boolean equals(Object o) {

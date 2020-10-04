@@ -1,5 +1,7 @@
 package seedu.address.model.room;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -9,6 +11,8 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.patient.exceptions.DuplicatePatientException;
+import seedu.address.model.patient.exceptions.PatientNotFoundException;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
@@ -130,6 +134,32 @@ public class RoomList {
             return true;
         }
     }
+    /**
+     * Returns true if the list contains an equivalent room as the given argument.
+     */
+    public boolean containsRoom(Room toCheck) {
+        requireNonNull(toCheck);
+        return roomObservableList.stream().anyMatch(toCheck::isSameRoom);
+    }
+
+    /**
+     * Replaces the room {@code target} in the list with {@code editedRoom}.
+     * {@code target} must exist in the list.
+     * The room identity of {@code editedRoom} must not be the same as another existing room in the list.
+     *
+     * @param target Room to be changed.
+     * @param editedRoom Room that has been changed.
+     */
+    public void editSingleRoom(Room target, Room editedRoom) {
+        int index = roomObservableList.indexOf(target);
+        if (index == -1) {
+            throw new RoomNotFoundException();
+        }
+
+        if (!target.isSameRoom(editedRoom) && containsRoom(editedRoom)) {
+            throw new DuplicatePatientException();
+        }
+    }
     @Override
     public int hashCode() {
         int result = Objects.hash(numOfRooms, rooms);
@@ -148,5 +178,4 @@ public class RoomList {
     public void setRoomsInArray(Room[] roomsInArray) {
         this.roomsInArray = roomsInArray;
     }
-
 }
