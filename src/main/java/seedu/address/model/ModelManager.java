@@ -21,12 +21,12 @@ import seedu.address.model.room.RoomList;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static FilteredList<Patient> staticFilteredPatientsList;
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final RoomList roomList;
     private final FilteredList<Patient> filteredPatients;
-    private static FilteredList<Patient> staticFilteredPatientsList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.

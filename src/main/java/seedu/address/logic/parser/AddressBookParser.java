@@ -90,7 +90,7 @@ public class AddressBookParser {
             return new AddRoomsParser().parse(arguments);
 
         case EditRoomCommand.COMMAND_WORD:
-            return  new EditRoomParser().parse(arguments);
+            return new EditRoomParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

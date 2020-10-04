@@ -1,17 +1,17 @@
 package seedu.address.logic.parser.room;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_OCCUPIED;
+
 import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_OCCUPIED;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
 
 /**
  * Parses input arguments and creates a new EditRoomCommand object.
@@ -44,8 +44,8 @@ public class EditRoomParser implements Parser<EditRoomCommand> {
         }
         EditRoomCommand.EditRoomDescriptor editRoomDescriptor = new EditRoomCommand.EditRoomDescriptor();
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
-            editRoomDescriptor.setRoomNumber(ParserUtil.
-                    parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
+            editRoomDescriptor.setRoomNumber(
+                    ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
         }
         if (argMultimap.getValue(PREFIX_ROOM_OCCUPIED).isPresent()) {
             editRoomDescriptor.setOccupied(
