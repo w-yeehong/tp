@@ -9,6 +9,10 @@ import seedu.address.model.tasks.Task;
  * Represents Room in the app
  */
 public class Room implements Comparable<Room> {
+
+    public static final String MESSAGE_OCCUPANCY_CONSTRAINTS =
+            "Occupancy should only be either true or false and not other words";
+
     private int roomNumber;
     private boolean isOccupied;
     private Patient patient;
@@ -101,6 +105,13 @@ public class Room implements Comparable<Room> {
                 return 1;
             }
         }
+    }
+
+    /**
+     * Returns true if a given string is a valid boolean value.
+     */
+    public static boolean isValidOccupancy(String test) {
+        return test.trim().toLowerCase().equals("true") || test.trim().toLowerCase().equals("false");
     }
 
     public String toString() {

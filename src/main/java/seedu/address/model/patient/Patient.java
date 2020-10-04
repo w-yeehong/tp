@@ -10,6 +10,9 @@ import java.util.Objects;
  */
 public class Patient {
 
+    public static final String MESSAGE_PATIENT_CONSTRAINTS =
+            "Patient's name should only be those that has been added into the app";
+
     // Identity fields
     private final Name name;
     private final Temperature temperature;

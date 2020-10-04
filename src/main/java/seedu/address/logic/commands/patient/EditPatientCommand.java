@@ -50,7 +50,7 @@ public class EditPatientCommand extends Command {
             + PREFIX_TEMP + "36.5";
 
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_PATIENT_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
 
     private final String patientToBeEdited;

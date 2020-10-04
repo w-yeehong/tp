@@ -1,5 +1,15 @@
 package seedu.address.logic.commands.room;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_OCCUPIED;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_PATIENT;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_TASK;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
@@ -9,15 +19,6 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_OCCUPIED;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_PATIENT;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_TASK;
-
 public class EditRoomCommand extends Command {
 
     public static final String COMMAND_WORD = "editroom";
@@ -26,11 +27,11 @@ public class EditRoomCommand extends Command {
             + "by the room number. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: NUMBER"
-            + "[" + PREFIX_OCCUPIED + "OCCUPIED] "
+            + "[" + PREFIX_ROOM_OCCUPIED + "OCCUPIED] "
             + "[" + PREFIX_ROOM_PATIENT + "PATIENT NAME] "
             + "[" + PREFIX_ROOM_TASK + "TASK] "
             + "Example: " + COMMAND_WORD + " 2 "
-            + PREFIX_OCCUPIED + "false "
+            + PREFIX_ROOM_OCCUPIED + "false "
             + PREFIX_ROOM_PATIENT + "marydoe";
 
     public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Patient: %1$s";
@@ -46,8 +47,8 @@ public class EditRoomCommand extends Command {
      * @param roomNumberToEdit name in the filtered patient list to edit
      * @param editRoomDescriptor details to edit the patient with
      */
-    public EditRoomCommand(int roomNumberToEdit, EditRoomDescriptor editRoomDescriptor) {
-        requireNonNull(editRoomDescriptor);
+    public EditRoomCommand(Integer roomNumberToEdit, EditRoomDescriptor editRoomDescriptor) {
+        requireAllNonNull(roomNumberToEdit, editRoomDescriptor);
 
         this.roomNumberToEdit = roomNumberToEdit;
         this.editRoomDescriptor = new EditRoomDescriptor(editRoomDescriptor);
@@ -61,7 +62,7 @@ public class EditRoomCommand extends Command {
         Index index = checkIfRoomPresent(lastShownList);
 
         if (index.getZeroBased() == 0) {
-            throw new CommandException(MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
         }
 
         Room roomToEdit = lastShownList.get(index.getZeroBased() - 1);

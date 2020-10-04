@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final RoomList roomList;
     private final FilteredList<Patient> filteredPatients;
+    private static FilteredList<Patient> staticFilteredPatientsList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.roomList = readOnlyRoomOccupancy;
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
+        staticFilteredPatientsList = filteredPatients;
     }
 
     public ModelManager() {
@@ -118,6 +120,32 @@ public class ModelManager implements Model {
         addressBook.setPatient(target, editedPatient);
     }
 
+    /**
+     * Checks if the patient exists in the application.
+     *
+     * @param patient Name of the patient.
+     * @return True if the patient exists in the application.
+     */
+    public static boolean isValidPatient(String patient) {
+        for (Patient value : staticFilteredPatientsList) {
+            String patientName = value.getName().toString().toLowerCase().trim();
+            if (patientName.equals(patient)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Patient getPatientWithName(String patientName) {
+        for (Patient value : staticFilteredPatientsList) {
+            String nameOfPatient = value.getName().toString().toLowerCase().trim();
+            if (patientName.equals(nameOfPatient)) {
+                return value;
+            }
+        }
+        return null;
+    }
+
     //=========== Filtered Patient List Accessors =============================================================
 
     /**
@@ -174,6 +202,12 @@ public class ModelManager implements Model {
         return roomList;
     }
 
+    /**
+     * Checks if the roomList contains {@code room}.
+     *
+     * @param room That is to be searched for.
+     * @return True if roomList contains {@code room}.
+     */
     public boolean containsRoom(Room room) {
         requireAllNonNull(room);
         return roomList.containsRoom(room);
