@@ -173,6 +173,16 @@ public class AddPatientCommandTest {
         public RoomList getRoomList() {
             return null;
         }
+
+        @Override
+        public boolean containsRoom(Room room) {
+            return false;
+        }
+
+        @Override
+        public void setSingleRoom(Room target, Room editedRoom) {
+
+        }
     }
 
     /**

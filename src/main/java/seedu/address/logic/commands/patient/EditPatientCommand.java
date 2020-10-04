@@ -44,13 +44,13 @@ public class EditPatientCommand extends Command {
             + "[" + PREFIX_TEMP + "TEMPERATURE] "
             + "[" + PREFIX_AGE + "AGE] "
             + "[" + PREFIX_PERIOD_OF_STAY + "PERIOD OF STAY] "
-            + "[" + PREFIX_COMMENTS + "COMMENT] "
+            + "[" + PREFIX_COMMENTS + "COMMENT]\n"
             + "Example: " + COMMAND_WORD + " john "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_TEMP + "36.5";
 
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_PATIENT_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
 
     private final String patientToBeEdited;
@@ -74,18 +74,8 @@ public class EditPatientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Index index = Index.fromZeroBased(0);
-
         List<Patient> lastShownList = model.getFilteredPatientList();
-
-        for (int i = 1; i <= lastShownList.size(); i++) {
-            String patientName = lastShownList.get(i - 1).getName().toString();
-            boolean isValidPatient = patientName.trim().toLowerCase().equals(patientToBeEdited);
-            if (isValidPatient) {
-                index = Index.fromZeroBased(i);
-                break;
-            }
-        }
+        Index index = checkIfPatientPresent(lastShownList);
 
         if (index.getZeroBased() == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
@@ -101,6 +91,25 @@ public class EditPatientCommand extends Command {
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
+    }
+
+    /**
+     * Checks if the patient is present in the application.
+     *
+     * @param lastShownList List of all the patient in the application.
+     * @return Index Of patient who is found.
+     */
+    private Index checkIfPatientPresent(List<Patient> lastShownList) {
+        Index index = Index.fromZeroBased(0);
+        for (int i = 1; i <= lastShownList.size(); i++) {
+            String patientName = lastShownList.get(i - 1).getName().toString();
+            boolean isValidPatient = patientName.trim().toLowerCase().equals(patientToBeEdited);
+            if (isValidPatient) {
+                index = Index.fromZeroBased(i);
+                break;
+            }
+        }
+        return index;
     }
 
     /**
