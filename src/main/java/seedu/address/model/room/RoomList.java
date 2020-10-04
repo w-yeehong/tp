@@ -181,4 +181,5 @@ public class RoomList {
     public void setRoomsInArray(Room[] roomsInArray) {
         this.roomsInArray = roomsInArray;
     }
+
 }

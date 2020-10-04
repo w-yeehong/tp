@@ -24,6 +24,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_NUMBER = "Number is not a non-zero unsigned integer";
+    public static final String MESSAGE_INVALID_ROOM_NUMBER = "Room Number already exists!";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -64,7 +65,7 @@ public class ParserUtil {
         if (!Room.isValidOccupancy(trimmedOccupancy)) {
             throw new ParseException(Room.MESSAGE_OCCUPANCY_CONSTRAINTS);
         }
-        return Boolean.valueOf(trimmedOccupancy);
+        return !Boolean.parseBoolean(trimmedOccupancy);
     }
 
     /**

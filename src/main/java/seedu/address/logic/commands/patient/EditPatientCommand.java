@@ -44,7 +44,7 @@ public class EditPatientCommand extends Command {
             + "[" + PREFIX_TEMP + "TEMPERATURE] "
             + "[" + PREFIX_AGE + "AGE] "
             + "[" + PREFIX_PERIOD_OF_STAY + "PERIOD OF STAY] "
-            + "[" + PREFIX_COMMENTS + "COMMENT] "
+            + "[" + PREFIX_COMMENTS + "COMMENT]\n"
             + "Example: " + COMMAND_WORD + " john "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_TEMP + "36.5";

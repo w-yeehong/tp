@@ -65,7 +65,8 @@ public class Room implements Comparable<Room> {
         return otherRoom != null
                 && (Integer.valueOf(otherRoom.getRoomNumber()).equals(getRoomNumber()))
                 && ((Boolean.valueOf(otherRoom.isOccupied)).equals(isOccupied)
-                || otherRoom.getPatient().equals(getPatient()));
+                //TODO Update this once patient is integrated into rooms.
+                /* || otherRoom.getPatient().equals(getPatient())*/);
     }
 
     /**
