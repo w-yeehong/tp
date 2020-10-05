@@ -2,6 +2,9 @@ package seedu.address.logic.parser.patient;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.NewCommandTestUtil.PERIOD_DESC_AMY;
+import static seedu.address.logic.commands.NewCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.NewCommandTestUtil.TEMP_DESC_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP_RANGE;
 
@@ -32,5 +35,20 @@ public class SearchPatientCommandParserTest {
 
         //invalid temperatureRange
         assertParseFailure(parser, invalidTempearature, TemperatureRange.MESSAGE_CONSTRAINTS_TEMPERATURERANGE);
+    }
+
+    @Test
+    public void parse_invalidPrefix_failure() {
+        //invalid temperature Prefix
+        assertParseFailure(parser, TEMP_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
+
+        //invalid period of stay Prefix
+        assertParseFailure(parser, PERIOD_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
+
+        //invalid phone Prefix
+        assertParseFailure(parser, PHONE_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
     }
 }

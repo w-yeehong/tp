@@ -20,8 +20,7 @@ import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.SearchPatientDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
- * and unit tests for SearchPatientCommand.
+ * Contains unit tests for SearchPatientCommand.
  */
 public class SearchPatientCommandTest {
 
@@ -56,6 +55,20 @@ public class SearchPatientCommandTest {
     }
 
     @Test
+    void execute_searchPatientTemperatureRange_throwsCommandException() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
+        Patient patient = new PatientBuilder().withTemperature("36.0").build();
+        SearchPatientCommand.SearchPatientDescriptor descriptor =
+                new SearchPatientDescriptorBuilder().withTemperatureRange("36.9-37.0").build();
+        SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
+        model.setPatient(model.getFilteredPatientList().get(0), patient);
+
+        String expectedMessage = String.format(SearchPatientCommand.MESSAGE_PATIENT_NOT_FOUND);
+
+        assertCommandFailure(searchPatientCommand, model, expectedMessage);
+    }
+
+    @Test
     void execute_searchPatientName_throwsCommandException() {
         Patient patient = new PatientBuilder().withName("Joe").build();
         SearchPatientCommand.SearchPatientDescriptor descriptor =
@@ -67,7 +80,6 @@ public class SearchPatientCommandTest {
 
         assertCommandFailure(searchPatientCommand, model, expectedMessage);
     }
-
 
     @Test
     public void equals() {
