@@ -8,8 +8,8 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 import seedu.address.commons.util.FileUtil;
-import seedu.address.model.RoomList;
-import seedu.address.model.hotel.Room;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomList;
 
 /**
  * Reads data from storage data files and imports them into RoomList

@@ -1,0 +1,93 @@
+package seedu.address.logic.commands.patient;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.RoomList;
+import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.SearchPatientDescriptorBuilder;
+
+/**
+ * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
+ * and unit tests for SearchPatientCommand.
+ */
+public class SearchPatientCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
+
+    @Test
+    public void execute_nameFieldsSpecifiedUnfilteredList_success() {
+        Patient patient = new PatientBuilder().withName("Joe").build();
+        SearchPatientCommand.SearchPatientDescriptor descriptor =
+                new SearchPatientDescriptorBuilder().withName("Joe").build();
+        SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
+        model.setPatient(model.getFilteredPatientList().get(0), patient);
+
+        String expectedMessage = String.format(SearchPatientCommand.MESSAGE_SEARCH_PATIENT_SUCCESS, patient);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new RoomList());
+        expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
+
+        assertCommandSuccess(searchPatientCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void execute_searchPatient_throwsCommandException() {
+        SearchPatientCommand.SearchPatientDescriptor descriptor =
+                new SearchPatientDescriptorBuilder().build();
+        SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
+
+        String expectedMessage = String.format(SearchPatientCommand.MESSAGE_NOT_FOUND);
+
+        assertCommandFailure(searchPatientCommand, model, expectedMessage);
+    }
+
+    @Test
+    void execute_searchPatientName_throwsCommandException() {
+        Patient patient = new PatientBuilder().withName("Joe").build();
+        SearchPatientCommand.SearchPatientDescriptor descriptor =
+                new SearchPatientDescriptorBuilder().withName("koe").build();
+        SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
+        model.setPatient(model.getFilteredPatientList().get(0), patient);
+
+        String expectedMessage = String.format(SearchPatientCommand.MESSAGE_PATIENT_NOT_FOUND);
+
+        assertCommandFailure(searchPatientCommand, model, expectedMessage);
+    }
+
+
+    @Test
+    public void equals() {
+        SearchPatientCommand.SearchPatientDescriptor joeDescriptor =
+                new SearchPatientDescriptorBuilder().withName("Joe").build();
+        final SearchPatientCommand searchCommand = new SearchPatientCommand(joeDescriptor);
+
+        SearchPatientCommand.SearchPatientDescriptor amyDescriptor =
+                new SearchPatientDescriptorBuilder().withName("Amy").build();
+        final SearchPatientCommand newSearchCommand = new SearchPatientCommand(amyDescriptor);
+
+        // Same object -> returns true
+        assertTrue(searchCommand.equals(searchCommand));
+
+        // null -> returns false
+        assertFalse(searchCommand.equals(null));
+
+        // Different types -> returns false
+        assertFalse(searchCommand.equals(new ClearCommand()));
+
+        // Different descriptor -> returns false
+        assertNotEquals(newSearchCommand, searchCommand);
+    }
+
+}

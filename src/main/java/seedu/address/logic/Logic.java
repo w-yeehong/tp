@@ -8,7 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
 
 /**
  * API of the Logic component
@@ -24,17 +25,20 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Covigent.
      *
      * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of patients */
+    ObservableList<Patient> getFilteredPatientList();
+
+    /** Returns an {@code ObservableList<Room>} containing the list of rooms. */
+    ObservableList<Room> getListOfRooms();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Covigent file path.
      */
     Path getAddressBookFilePath();
 
