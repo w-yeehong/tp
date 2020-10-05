@@ -109,7 +109,7 @@ public class EditRoomCommand extends Command {
         Integer updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
 
         //TODO Never know if next time edit room will include clear room
-//        Boolean updatedOccupancy = editRoomDescriptor.isOccupied().orElse(roomToEdit.isOccupied());
+        //Boolean updatedOccupancy = editRoomDescriptor.isOccupied().orElse(roomToEdit.isOccupied());
         Patient updatedPatient = editRoomDescriptor.getPatient().orElse(roomToEdit.getPatient());
         return new Room(updatedRoomNumber, updatedPatient);
     }
