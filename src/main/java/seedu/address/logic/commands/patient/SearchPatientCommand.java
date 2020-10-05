@@ -36,7 +36,7 @@ public class SearchPatientCommand extends Command {
     public static final String MESSAGE_SEARCH_PATIENT_SUCCESS = "Patient(s) found: %1$s";
     public static final String MESSAGE_NOT_FOUND = "At least one field to edit must be provided.";
     public static final String MESSAGE_PATIENT_NOT_FOUND = "The patient you entered is not in the list.";
-    public static final String MESSAGE_SEARCH_PATIENT_LIST_SUCCESS = "Patient match your criteria found: ";
+    public static final String MESSAGE_SEARCH_PATIENT_LIST_SUCCESS = "Patient match your criteria found: \n";
 
     private final SearchPatientDescriptor searchPatientDescriptor;
 

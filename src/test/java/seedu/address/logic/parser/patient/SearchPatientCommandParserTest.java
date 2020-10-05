@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.patient;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NewCommandTestUtil.*;
+import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP_RANGE;
 
@@ -17,18 +17,20 @@ public class SearchPatientCommandParserTest {
 
     @Test
     void parseError_empty_input() {
-        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidValue_failure() {
 
-        String INVALID_TEMPRANGE = " " + PREFIX_TEMP_RANGE + "36.0-37";
+        String invalidTempearature = " " + PREFIX_TEMP_RANGE + "36.0-37";
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
 
         //invalid temperatureRange
-        assertParseFailure(parser, INVALID_TEMPRANGE, TemperatureRange.MESSAGE_CONSTRAINTS_TEMPERATURERANGE);
+        assertParseFailure(parser, invalidTempearature, TemperatureRange.MESSAGE_CONSTRAINTS_TEMPERATURERANGE);
     }
 }
