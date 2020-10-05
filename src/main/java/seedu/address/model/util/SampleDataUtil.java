@@ -8,6 +8,10 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.PeriodOfStay;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
+import seedu.address.model.room.ReadOnlyRoomList;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomList;
+import seedu.address.storage.RoomOccupancyStorage;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -34,5 +38,17 @@ public class SampleDataUtil {
             sampleAb.addPatient(samplePatient);
         }
         return sampleAb;
+    }
+
+    public static Room[] getSampleRoom() {
+        return new Room[] {};
+    }
+
+    public static ReadOnlyRoomList getSampleRoomList() {
+        RoomList roomList = new RoomList();
+        for(Room room : getSampleRoom()) {
+            roomList.addRooms(room);
+        }
+        return roomList;
     }
 }

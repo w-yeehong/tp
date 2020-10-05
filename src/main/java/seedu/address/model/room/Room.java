@@ -2,6 +2,7 @@ package seedu.address.model.room;
 
 import java.util.Objects;
 
+import seedu.address.logic.parser.Parser;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tasks.Task;
 
@@ -33,12 +34,28 @@ public class Room implements Comparable<Room> {
         this.patient = null;
         this.task = null;
     }
+
+    public Room(int roomNumber, boolean isOccupied, Patient patient, Task task) {
+        this.roomNumber = roomNumber;
+        this.isOccupied = isOccupied;
+        this.patient = patient;
+        this.task = task;
+    }
+
     public int getRoomNumber() {
         return roomNumber;
     }
 
     public boolean isOccupied() {
         return isOccupied;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public Task getTask() {
+        return task;
     }
 
     public void setOccupied(boolean isOccupied) {

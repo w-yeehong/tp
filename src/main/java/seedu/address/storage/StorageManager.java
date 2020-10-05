@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.RoomList;
 
 /**
@@ -70,7 +71,6 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        System.out.println(addressBookStorage.getAddressBookFilePath());
         saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
     }
 
@@ -80,15 +80,15 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
-    @Override
-    public RoomList readRoomOccupancyStorage() throws IOException {
-        return roomOccupancyStorage.readOnlyRoomOccupancy();
-    }
 
     @Override
     public void saveRoomList(RoomList roomList) throws IOException {
-        roomOccupancyStorage.saveNumberOfRooms(roomList, roomOccupancyStorage.getFileNumOfRooms());
         roomOccupancyStorage.saveOccupiedRooms(roomList, roomOccupancyStorage.getRoomsOccupied());
+    }
+
+    @Override
+    public Optional<ReadOnlyRoomList> readRoomOccupancyStorage() throws DataConversionException, IOException {
+        return roomOccupancyStorage.readOnlyRoomOccupancy(roomOccupancyStorage.getRoomsOccupied());
     }
 
 }

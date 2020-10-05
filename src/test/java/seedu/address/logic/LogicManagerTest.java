@@ -50,8 +50,7 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("numberOfRooms"),
-                Paths.get("roomsOccupied"));
+        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("roomsOccupied"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
     }
@@ -81,8 +80,7 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("numberOfRooms"),
-                Paths.get("roomsOccupied"));
+        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("roomsOccupied"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
 
