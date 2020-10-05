@@ -37,6 +37,20 @@ public class Room implements Comparable<Room> {
         this.patient = null;
         this.task = null;
     }
+
+    /**
+     * Creates a room object containing a patient that can be found in the application.
+     *
+     * @param roomNumber Room Number of the room.
+     * @param patient Patient to be added to the room.
+     */
+    public Room(int roomNumber, Patient patient) {
+        this.roomNumber = roomNumber;
+        this.isOccupied = false;
+        this.patient = patient;
+        this.task = null;
+    }
+
     public int getRoomNumber() {
         return roomNumber;
     }
@@ -65,8 +79,7 @@ public class Room implements Comparable<Room> {
         return otherRoom != null
                 && (Integer.valueOf(otherRoom.getRoomNumber()).equals(getRoomNumber()))
                 && ((Boolean.valueOf(otherRoom.isOccupied)).equals(isOccupied)
-                //TODO Update this once patient is integrated into rooms.
-                /* || otherRoom.getPatient().equals(getPatient())*/);
+                || otherRoom.getPatient().equals(getPatient()));
     }
 
     /**
