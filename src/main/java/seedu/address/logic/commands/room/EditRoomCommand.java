@@ -107,10 +107,11 @@ public class EditRoomCommand extends Command {
         assert roomToEdit != null;
 
         Integer updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
-        Boolean updatedOccupancy = editRoomDescriptor.isOccupied().orElse(roomToEdit.isOccupied());
-        //TODO update this when the room class is fully integrated with the patient class.
+
+        //TODO Never know if next time edit room will include clear room
+//        Boolean updatedOccupancy = editRoomDescriptor.isOccupied().orElse(roomToEdit.isOccupied());
         Patient updatedPatient = editRoomDescriptor.getPatient().orElse(roomToEdit.getPatient());
-        return new Room(updatedRoomNumber, updatedOccupancy/*, updatedPatient*/);
+        return new Room(updatedRoomNumber, updatedPatient);
     }
 
     @Override
