@@ -140,14 +140,6 @@ public class RoomList implements ReadOnlyRoomList {
         return numOfRooms == roomList.numOfRooms
                 && Arrays.equals(roomsForPQ, rooms1ForPQ)
                 && Arrays.equals(roomsForObservableList, rooms1FOrObservableList);
-        /*if (rooms != null && roomList.rooms != null) {
-            PriorityQueue<Room> copy = new PriorityQueue<>(rooms);
-            PriorityQueue<Room> copy1 = new PriorityQueue<>(roomList.rooms);
-            return numOfRooms == roomList.numOfRooms
-                    && equals(copy, copy1);
-        } else {
-            return numOfRooms == roomList.numOfRooms;
-        }*/
     }
 
     /**
