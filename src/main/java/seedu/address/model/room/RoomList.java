@@ -1,6 +1,7 @@
 package seedu.address.model.room;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.logging.Logger;
@@ -129,15 +130,24 @@ public class RoomList implements ReadOnlyRoomList {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
+
         RoomList roomList = (RoomList) o;
-        if (rooms != null && roomList.rooms != null) {
+        Room[] roomsForPQ = this.rooms.toArray(new Room[0]);
+        Room[] rooms1ForPQ = roomList.rooms.toArray(new Room[0]);
+
+        Room[] roomsForObservableList = roomObservableList.toArray(new Room[0]);
+        Room[] rooms1FOrObservableList = roomList.roomObservableList.toArray(new Room[0]);
+        return numOfRooms == roomList.numOfRooms
+                && Arrays.equals(roomsForPQ, rooms1ForPQ)
+                && Arrays.equals(roomsForObservableList, rooms1FOrObservableList);
+        /*if (rooms != null && roomList.rooms != null) {
             PriorityQueue<Room> copy = new PriorityQueue<>(rooms);
             PriorityQueue<Room> copy1 = new PriorityQueue<>(roomList.rooms);
             return numOfRooms == roomList.numOfRooms
                     && equals(copy, copy1);
         } else {
             return numOfRooms == roomList.numOfRooms;
-        }
+        }*/
     }
 
     /**
