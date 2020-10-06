@@ -1,12 +1,14 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_COMMENTS;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP;
 
 import seedu.address.logic.commands.patient.AddPatientCommand;
+import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -34,21 +36,17 @@ public class PatientUtil {
         return sb.toString();
     }
 
-    /*
-    public static String getEditPatientDescriptorDetails(EditPatient descriptor) {
+
+    public static String getEditPatientDescriptorDetails(EditPatientDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
+        descriptor.getTemperature().ifPresent(temperature -> sb.append(PREFIX_TEMP).append(temperature.value)
+                                    .append(" "));
+        descriptor.getPeriodOfStay().ifPresent(periodOfStay -> sb.append(PREFIX_PERIOD_OF_STAY)
+                                    .append(periodOfStay.toString()).append(" "));
+        descriptor.getAge().ifPresent(age -> sb.append(PREFIX_AGE).append(age.value).append(" "));
+        descriptor.getComment().ifPresent(comment -> sb.append(PREFIX_COMMENTS).append(comment.value).append(" "));
         return sb.toString();
     }
-     */
 }
