@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
 
@@ -31,7 +32,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        RoomList readOnlyRoomOccupancy) {
+                        ReadOnlyRoomList readOnlyRoomOccupancy) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -39,7 +40,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.roomList = readOnlyRoomOccupancy;
+        this.roomList = new RoomList(readOnlyRoomOccupancy);
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
     }
 

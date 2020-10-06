@@ -10,8 +10,8 @@ import seedu.address.model.Model;
 /**
  * Adds the number of hotel rooms in a hotel
  */
-public class AddRoomsCommand extends Command {
-    public static final String COMMAND_WORD = "addrooms";
+public class InitRoomsCommand extends Command {
+    public static final String COMMAND_WORD = "initrooms";
     public static final String MESSAGE_ZERO_CANNOT_BE_AN_INPUT = "please input a positive value";
     public static final String MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT = "please check your value! "
             + "You have input a negative value!";
@@ -21,7 +21,7 @@ public class AddRoomsCommand extends Command {
     /**
      * Creates an AddCommand to add the number of rooms available in a hotel
      */
-    public AddRoomsCommand(int numOfRooms) {
+    public InitRoomsCommand(int numOfRooms) {
         this.numOfRooms = numOfRooms;
     }
     @Override
@@ -43,7 +43,7 @@ public class AddRoomsCommand extends Command {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        AddRoomsCommand that = (AddRoomsCommand) o;
+        InitRoomsCommand that = (InitRoomsCommand) o;
         return numOfRooms == that.numOfRooms;
     }
 

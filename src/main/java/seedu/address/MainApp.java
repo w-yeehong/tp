@@ -21,12 +21,13 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.RoomList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonRoomOccupancyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.RoomOccupancyStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -59,7 +60,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(userPrefs.getNumberOfRoomsFilePath(),
+        JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(
                 userPrefs.getRoomsOccupiedFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
 
@@ -82,27 +83,36 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        RoomList readOnlyRoomOccupancy;
+        Optional<ReadOnlyRoomList> readOnlyRoomOccupancy;
+        ReadOnlyRoomList initialRoomList;
+
         try {
             readOnlyRoomOccupancy = storage.readRoomOccupancyStorage();
-        } catch (IOException ioe) {
-            readOnlyRoomOccupancy = new RoomList();
+            initialRoomList = readOnlyRoomOccupancy.orElseGet(SampleDataUtil::getSampleRoomList);
+        } catch (DataConversionException e) {
+            logger.warning(
+                    "Room Data file not in the correct format. Will be starting with an empty AddressBook");
+            initialRoomList = new RoomList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            initialRoomList = new RoomList();
         }
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning(
+                    "Patient Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
-        return new ModelManager(initialData, userPrefs, readOnlyRoomOccupancy);
+        return new ModelManager(initialData, userPrefs, initialRoomList);
     }
 
     private void initLogging(Config config) {

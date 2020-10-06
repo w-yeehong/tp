@@ -8,14 +8,14 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.room.AddRoomsCommand;
+import seedu.address.logic.commands.room.InitRoomsCommand;
 
 class AddRoomsParserTest {
-    private AddRoomsParser parser = new AddRoomsParser();
+    private InitRoomsParser parser = new InitRoomsParser();
     @Test
     void parse() {
         String input = "123";
-        assertParseSuccess(parser, input, new AddRoomsCommand(123));
+        assertParseSuccess(parser, input, new InitRoomsCommand(123));
     }
 
     @Test
