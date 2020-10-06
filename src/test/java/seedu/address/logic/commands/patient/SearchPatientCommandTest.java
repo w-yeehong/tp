@@ -53,7 +53,8 @@ public class SearchPatientCommandTest {
 
         String specifiOutput = String.format("%d.%s\n", 1, patient);
 
-        String expectedMessage = String.format(SearchPatientCommand.MESSAGE_SEARCH_PATIENT_LIST_SUCCESS + specifiOutput);
+        String expectedMessage =
+                String.format(SearchPatientCommand.MESSAGE_SEARCH_PATIENT_LIST_SUCCESS + specifiOutput);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new RoomList());
