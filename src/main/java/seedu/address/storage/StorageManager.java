@@ -83,12 +83,12 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveRoomList(RoomList roomList) throws IOException {
-        roomOccupancyStorage.saveOccupiedRooms(roomList, roomOccupancyStorage.getRoomsOccupied());
+        roomOccupancyStorage.saveOccupiedRooms(roomList);
     }
 
     @Override
     public Optional<ReadOnlyRoomList> readRoomOccupancyStorage() throws DataConversionException, IOException {
-        return roomOccupancyStorage.readOnlyRoomOccupancy(roomOccupancyStorage.getRoomsOccupied());
+        return roomOccupancyStorage.readOnlyRoomOccupancy();
     }
 
 }
