@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
@@ -16,8 +16,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 
 /**
