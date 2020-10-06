@@ -83,7 +83,7 @@ public class SearchPatientCommand extends Command {
         for (Patient patient : patientList) {
             String patientName = patient.getName().toString().trim().toLowerCase();
             if (patientName.equals(nameToSearch)) {
-                new CommandResult(String.format(MESSAGE_SEARCH_PATIENT_SUCCESS, patient));
+                return new CommandResult(String.format(MESSAGE_SEARCH_PATIENT_SUCCESS, patient));
             }
         }
         throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
