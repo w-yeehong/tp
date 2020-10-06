@@ -103,6 +103,7 @@ public class RoomList implements ReadOnlyRoomList {
      * @param room is added to RoomList
      */
     public void addRooms(Room room) {
+        this.numOfRooms++;
         rooms.add(room);
         roomObservableList.add(room);
     }

@@ -115,7 +115,8 @@ Examples:
 
 ### 3.5 Add rooms in quarantine facility: `initRooms`
 
-Adds the number of rooms in the quarantine facility to the app.
+Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
+be stored.
 
 Format: `initRooms NUMBER_OF_ROOMS`
 

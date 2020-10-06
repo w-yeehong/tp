@@ -33,6 +33,9 @@ public class JsonRoomOccupancyStorage {
         return roomsOccupied;
     }
 
+    public Optional<ReadOnlyRoomList> readOnlyRoomOccupancy() throws IOException, DataConversionException {
+        return readOnlyRoomOccupancy(roomsOccupied);
+    }
     /**
      * Returns RoomList data as a {@link ReadOnlyRoomList}.
      *   Returns {@code Optional.empty()} if storage file is not found.
@@ -52,6 +55,9 @@ public class JsonRoomOccupancyStorage {
         }
     }
 
+    public void saveOccupiedRooms(RoomList roomList) throws IOException {
+        saveOccupiedRooms(roomList, roomsOccupied);
+    }
     /**
      * Function saves the room numbers of occupied rooms
      *
