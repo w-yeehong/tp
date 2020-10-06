@@ -10,6 +10,12 @@ title: User Guide
 3. [Features](#3-features)<br>
     3.1 [Command Format](#31-command-format)<br>
     3.2 [Add a patient: `addpatient`](#32-add-a-patient-addpatient)<br>
+    3.3 [Edit a patient: `editpatient`](#33-edit-a-patient-editpatient)<br>
+    3.4 [Search information: `searchpatient`](#34-search-information-searchpatient)<br>
+    3.5 [Initialize rooms in hotel: `initRooms`](#35-add-rooms-in-hotel-addrooms)<br>
+    3.6 [Find the first free room: `findRoom`](#36-find-the-first-free-room-findroom)<br>
+    3.7 [View help: `help`](#37-view-help-help)<br>
+    3.8 [Save the data](#38-save-the-data)<br>
     3.3 [Delete a patient: `deletepatient`](#33-delete-a-patient-deletepatient)<br>
     3.4 [Edit a patient: `editpatient`](#34-edit-a-patient-editpatient)<br>
     3.5 [Search information: `searchpatient`](#35-search-information-searchpatient)<br>
@@ -126,17 +132,20 @@ Examples:
 *  `searchpatient n/john` Searches patients with a name John.
 *  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive. 
 
+### 3.5 Add rooms in quarantine facility: `initRooms`
+
 ### 3.6 Add rooms in quarantine facility: `addRooms`
 
-Adds the number of rooms in the quarantine facility to the app.
+Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
+be stored.
 
-Format: `addRooms NUMBER_OF_ROOMS`
+Format: `initRooms NUMBER_OF_ROOMS`
 
 * Adds NUMBER_OF_ROOMS rooms into the hotel system
 
 Examples:
-* `addRooms 123`
-* `addRooms 400`
+* `initRooms 123`
+* `initRooms 400`
 
 ### 3.7 Find the first free room: `findRoom`
 
@@ -171,6 +180,7 @@ Action | Format, Examples
 --------|------------------
 **Add Patient** | `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]` <br> e.g.,`addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
 **Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g.,`editpatient James Lee t/36.5`
+**Initialize Rooms** | `initRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
 **Search Patient** | `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]` <br> e.g., `searchpatient tr/36.5-36.7`
 **Add Rooms** | `addRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
 **Find Room** | `findRoom` <br> 
