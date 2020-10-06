@@ -27,7 +27,7 @@ public class SearchPatientCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
 
     @Test
-    public void execute_nameFieldsSpecifiedUnfilteredList_success() {
+    public void execute_searchPatientName_success() {
         Patient patient = new PatientBuilder().withName("Joe").build();
         SearchPatientCommand.SearchPatientDescriptor descriptor =
                 new SearchPatientDescriptorBuilder().withName("Joe").build();
@@ -35,6 +35,25 @@ public class SearchPatientCommandTest {
         model.setPatient(model.getFilteredPatientList().get(0), patient);
 
         String expectedMessage = String.format(SearchPatientCommand.MESSAGE_SEARCH_PATIENT_SUCCESS, patient);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new RoomList());
+        expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
+
+        assertCommandSuccess(searchPatientCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_searchPatientTemperature_success() {
+        Patient patient = new PatientBuilder().withTemperature("40.0").build();
+        SearchPatientCommand.SearchPatientDescriptor descriptor =
+                new SearchPatientDescriptorBuilder().withTemperatureRange("39.9-40.0").build();
+        SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
+        model.setPatient(model.getFilteredPatientList().get(0), patient);
+
+        String specifiOutput = String.format("%d.%s\n", 1, patient);
+
+        String expectedMessage = String.format(SearchPatientCommand.MESSAGE_SEARCH_PATIENT_LIST_SUCCESS + specifiOutput);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new RoomList());
