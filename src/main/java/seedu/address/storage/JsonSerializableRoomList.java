@@ -22,8 +22,8 @@ public class JsonSerializableRoomList {
      * Constructs a {@code JsonSerializableRoomList} with the given rooms.
      */
     @JsonCreator
-    public JsonSerializableRoomList(@JsonProperty("rooms") List<JsonAdaptedRoom> patients) {
-        this.rooms.addAll(patients);
+    public JsonSerializableRoomList(@JsonProperty("rooms") List<JsonAdaptedRoom> rooms) {
+        this.rooms.addAll(rooms);
     }
 
     /**

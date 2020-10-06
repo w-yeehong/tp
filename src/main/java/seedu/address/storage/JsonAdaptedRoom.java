@@ -10,6 +10,7 @@ public class JsonAdaptedRoom {
 
     private int roomNumber;
     private boolean isOccupied;
+    //TODO
     private String patient;
     private String task;
 
@@ -17,8 +18,8 @@ public class JsonAdaptedRoom {
      * Creates JsonAdaptedRoom based on the inputs given by the user of roomNumber and isOccupied
      */
     @JsonCreator
-    public JsonAdaptedRoom(@JsonProperty("room number") int roomNumber,
-                           @JsonProperty("is occupied?") boolean isOccupied) {
+    public JsonAdaptedRoom(@JsonProperty("roomNumber") int roomNumber,
+                           @JsonProperty("isOccupied") boolean isOccupied) {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
     }
@@ -34,4 +35,5 @@ public class JsonAdaptedRoom {
     public Room toModelType() throws IllegalValueException {
         return new Room(roomNumber, isOccupied);
     }
+
 }
