@@ -44,7 +44,7 @@ public class SearchPatientCommandTest {
     }
 
     @Test
-    void execute_searchPatient_throwsCommandException() {
+    void execute_searchPatientInvalidSearchCriteria_throwsCommandException() {
         SearchPatientCommand.SearchPatientDescriptor descriptor =
                 new SearchPatientDescriptorBuilder().build();
         SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
