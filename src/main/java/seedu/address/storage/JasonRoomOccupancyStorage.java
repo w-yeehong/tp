@@ -17,14 +17,15 @@ import seedu.address.model.room.RoomList;
 /**
  * Reads data from storage data files and imports them into RoomList
  */
-public class RoomOccupancyStorage {
+public class JasonRoomOccupancyStorage {
     private Path roomsOccupied;
-    public RoomOccupancyStorage() {}
+
+    public JasonRoomOccupancyStorage() {}
     /**
      * Creates RoomOccupancyStorage object that reads the number of rooms a hotel has and the rooms which are
      * occupied
      */
-    public RoomOccupancyStorage(Path roomsOccupied) {
+    public JasonRoomOccupancyStorage(Path roomsOccupied) {
         this.roomsOccupied = roomsOccupied;
     }
 
@@ -58,17 +59,6 @@ public class RoomOccupancyStorage {
      * @param fileRoomsOccupied Path to where to write the room numbers of occupied rooms
      */
     public void saveOccupiedRooms(RoomList roomList, Path fileRoomsOccupied) throws IOException {
-        /*FileUtil.createIfMissing(fileRoomsOccupied);
-        File file = fileRoomsOccupied.toFile();
-        FileWriter fileWriter = new FileWriter(file);
-        Room[] rooms = roomList.getRoomsInArray();
-        for (int i = 0; i < rooms.length; i++) {
-            Room room = rooms[i];
-            if (room.isOccupied()) {
-                fileWriter.write(Integer.toString(i + 1) + "\n");
-            }
-        }
-        fileWriter.close();*/
         FileUtil.createIfMissing(fileRoomsOccupied);
         List<Room> rooms = new ArrayList<>();
         rooms.addAll(roomList.getRoomObservableList());

@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalPatients.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.room.RoomList;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.RoomOccupancyStorage;
+import seedu.address.storage.JasonRoomOccupancyStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PatientBuilder;
 
@@ -50,7 +49,7 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("roomsOccupied"));
+        JasonRoomOccupancyStorage roomOccupancyStorage = new JasonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
     }
@@ -80,7 +79,7 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("roomsOccupied"));
+        JasonRoomOccupancyStorage roomOccupancyStorage = new JasonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
 

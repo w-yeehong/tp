@@ -31,7 +31,7 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(getTempFilePath("ro"));
+        JasonRoomOccupancyStorage roomOccupancyStorage = new JasonRoomOccupancyStorage(getTempFilePath("ro"));
         //files nr short for numberOfRooms and ro is short form for roomsOccupied.
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
     }
