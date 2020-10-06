@@ -19,28 +19,39 @@ import seedu.address.storage.JsonAddressBookStorage;
 /**
  * Contains information regarding the Room information
  */
-public class RoomList {
+public class RoomList implements ReadOnlyRoomList {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>();
-    private Room[] roomsInArray = new Room[0];
     private ObservableList<Room> roomObservableList = FXCollections.observableArrayList();
 
     /** Creates default RoomList() object where all fields are null**/
     public RoomList() {}
 
     /**
+     * Converts data from readOnlyRoomList to roomList
+     */
+    public RoomList(ReadOnlyRoomList readOnlyRoomList) {
+        this();
+        resetData(readOnlyRoomList);
+    }
+    /**
      * Creates a RoomList object using the information given in files containing information about
      * which rooms are occupied and number of rooms
      */
-    public RoomList(PriorityQueue<Room> rooms, Room[] roomsInArray, int numOfRooms) {
+    public RoomList(PriorityQueue<Room> rooms, int numOfRooms) {
         this.rooms = rooms;
-        this.roomsInArray = roomsInArray;
         this.numOfRooms = numOfRooms;
         convertPriorityQueue(rooms);
     }
 
+    private void resetData(ReadOnlyRoomList readOnlyRoomList) {
+        ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
+        numOfRooms = roomLists.size();
+        rooms.addAll(roomLists);
+        roomObservableList.addAll(roomLists);
+    }
     /**
      * Returns Priority Queue of rooms
      */
@@ -60,16 +71,27 @@ public class RoomList {
     }
 
     private void addRooms() {
-        if (numOfRooms > 0) {
-            roomsInArray = new Room[numOfRooms];
-            rooms = new PriorityQueue<>();
-            for (int i = 0; i < numOfRooms; i++) {
-                Room room = new Room(i + 1);
-                rooms.add(room);
-                roomsInArray[i] = room;
-            }
+        if (numOfRooms < 0) {
+            return;
         }
-        convertPriorityQueue(rooms);
+        if (numOfRooms > roomObservableList.size()) {
+            for (int i = roomObservableList.size(); i < numOfRooms; i++) {
+                Room room = new Room(i + 1);
+                roomObservableList.add(i, room);
+                rooms.add(room);
+            }
+        } else if (numOfRooms < roomObservableList.size()) {
+            for (int i = numOfRooms; i < roomObservableList.size(); i++) {
+                Room room = roomObservableList.get(i);
+                rooms.remove(room);
+            }
+            int size = roomObservableList.size();
+            for (int i = numOfRooms; i < size; i++) {
+                roomObservableList.remove(numOfRooms);
+            }
+        } else {
+
+        }
     }
 
     /**
@@ -80,6 +102,16 @@ public class RoomList {
     public void addRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
         addRooms();
+    }
+
+    /**
+     * Adds this room to the RoomList
+     * @param room is added to RoomList
+     */
+    public void addRooms(Room room) {
+        this.numOfRooms++;
+        rooms.add(room);
+        roomObservableList.add(room);
     }
     /**
      * Sets the elements of {@code roomObservableList}.
@@ -94,9 +126,7 @@ public class RoomList {
         }
         roomObservableList.setAll(roomArrayList);
     }
-    public Room[] getRoomsInArray() {
-        return this.roomsInArray;
-    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -105,17 +135,16 @@ public class RoomList {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
+
         RoomList roomList = (RoomList) o;
-        if (rooms != null && roomList.rooms != null) {
-            PriorityQueue<Room> copy = new PriorityQueue<>(rooms);
-            PriorityQueue<Room> copy1 = new PriorityQueue<>(roomList.rooms);
-            return numOfRooms == roomList.numOfRooms
-                    && equals(copy, copy1)
-                    && Arrays.equals(roomsInArray, roomList.roomsInArray);
-        } else {
-            return numOfRooms == roomList.numOfRooms
-                    && Arrays.equals(roomsInArray, roomList.roomsInArray);
-        }
+        Room[] roomsForPQ = this.rooms.toArray(new Room[0]);
+        Room[] rooms1ForPQ = roomList.rooms.toArray(new Room[0]);
+
+        Room[] roomsForObservableList = roomObservableList.toArray(new Room[0]);
+        Room[] rooms1FOrObservableList = roomList.roomObservableList.toArray(new Room[0]);
+        return numOfRooms == roomList.numOfRooms
+                && Arrays.equals(roomsForPQ, rooms1ForPQ)
+                && Arrays.equals(roomsForObservableList, rooms1FOrObservableList);
     }
 
     /**
@@ -166,8 +195,8 @@ public class RoomList {
     }
     @Override
     public int hashCode() {
-        int result = Objects.hash(numOfRooms, rooms);
-        result = 31 * result + Arrays.hashCode(roomsInArray);
+        int result = Objects.hash(numOfRooms, rooms, roomObservableList);
+        result = 31 * result;
         return result;
     }
 

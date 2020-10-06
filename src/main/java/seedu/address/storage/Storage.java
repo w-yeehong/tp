@@ -8,6 +8,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.RoomList;
 
 /**
@@ -31,7 +32,7 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
     /** Reads the data of number of rooms and occupied rooms into RoomList **/
-    RoomList readRoomOccupancyStorage() throws IOException;
+    Optional<ReadOnlyRoomList> readRoomOccupancyStorage() throws DataConversionException, IOException;
 
     /**
      * Saves the information given by user into a hard disk. Such information includes number of rooms and room number
@@ -40,5 +41,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      * @throws IOException
      */
     void saveRoomList(RoomList roomList) throws IOException;
+
 
 }
