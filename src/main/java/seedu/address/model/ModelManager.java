@@ -26,7 +26,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final RoomList roomList;
+    private final RoomList roomList; // TODO: remove roomList from ModelManager and use the list in AddressBook
     private final FilteredList<Patient> filteredPatients;
 
     /**

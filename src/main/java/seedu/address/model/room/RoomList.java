@@ -114,7 +114,9 @@ public class RoomList implements ReadOnlyRoomList {
     }
 
     /**
-     * Adds a task to a room with the specified room number.
+     * Adds a task to a room.
+     *
+     * The room must exist in the {@code RoomList}.
      *
      * @param task The task to add.
      * @param room The room to which the task should be added.

@@ -1,22 +1,7 @@
 {
   "rooms" : [ {
-    "roomNumber" : 1,
+    "roomNumber" : 10,
     "isOccupied" : false,
-    "patient" : null,
-    "task" : null
-  }, {
-    "roomNumber" : 2,
-    "isOccupied" : true,
-    "patient" : null,
-    "task" : null
-  }, {
-    "roomNumber" : 3,
-    "isOccupied" : false,
-    "patient" : null,
-    "task" : null
-  }, {
-    "roomNumber" : 4,
-    "isOccupied" : true,
     "patient" : null,
     "task" : null
   } ]
