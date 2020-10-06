@@ -84,6 +84,7 @@ public class EditRoomCommand extends Command {
      * Creates and returns a {@code Room} with the details of {@code roomToEdit}
      * edited with {@code editRoomDescriptor}.
      *
+     * @param model Current model
      * @param roomToEdit Room that is to be edited.
      * @param editRoomDescriptor Details to edit the room with.
      * @return Room that has been edited.
