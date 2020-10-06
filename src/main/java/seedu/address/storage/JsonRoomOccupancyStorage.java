@@ -17,15 +17,15 @@ import seedu.address.model.room.RoomList;
 /**
  * Reads data from storage data files and imports them into RoomList
  */
-public class JasonRoomOccupancyStorage {
+public class JsonRoomOccupancyStorage {
     private Path roomsOccupied;
 
-    public JasonRoomOccupancyStorage() {}
+    public JsonRoomOccupancyStorage() {}
     /**
      * Creates RoomOccupancyStorage object that reads the number of rooms a hotel has and the rooms which are
      * occupied
      */
-    public JasonRoomOccupancyStorage(Path roomsOccupied) {
+    public JsonRoomOccupancyStorage(Path roomsOccupied) {
         this.roomsOccupied = roomsOccupied;
     }
 

@@ -30,8 +30,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.RoomList;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonRoomOccupancyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.JasonRoomOccupancyStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PatientBuilder;
 
@@ -49,7 +49,8 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        JasonRoomOccupancyStorage roomOccupancyStorage = new JasonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
+        JsonRoomOccupancyStorage roomOccupancyStorage =
+                new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
     }
@@ -79,7 +80,8 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        JasonRoomOccupancyStorage roomOccupancyStorage = new JasonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
+        JsonRoomOccupancyStorage roomOccupancyStorage =
+                new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
 

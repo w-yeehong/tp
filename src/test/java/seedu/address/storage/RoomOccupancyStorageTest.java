@@ -8,10 +8,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
-
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.RoomList;
 
@@ -27,7 +26,8 @@ class RoomOccupancyStorageTest {
         assertThrows(NullPointerException.class, () -> readRoomList(null));
     }
     private java.util.Optional<ReadOnlyRoomList> readRoomList(String filePath) throws Exception {
-        return new JasonRoomOccupancyStorage(Paths.get(filePath)).readOnlyRoomOccupancy(addToTestDataPathIfNotNull(filePath));
+        return new JsonRoomOccupancyStorage(Paths.get(filePath))
+                .readOnlyRoomOccupancy(addToTestDataPathIfNotNull(filePath));
     }
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
         return prefsFileInTestDataFolder != null
@@ -48,7 +48,8 @@ class RoomOccupancyStorageTest {
     }
     @Test
     public void saveRoomList_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveRoomListRoomsOccupied(null,"roomsOccupied.txt"));
+        assertThrows(NullPointerException.class, () -> saveRoomListRoomsOccupied(null,
+                "roomsOccupied.txt"));
     }
 
     @Test
@@ -61,7 +62,7 @@ class RoomOccupancyStorageTest {
      */
     private void saveRoomListRoomsOccupied(RoomList roomList, String roomsOccupied) {
         try {
-            new JasonRoomOccupancyStorage(Paths.get(roomsOccupied))
+            new JsonRoomOccupancyStorage(Paths.get(roomsOccupied))
                     .saveOccupiedRooms(roomList, Paths.get(roomsOccupied));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
