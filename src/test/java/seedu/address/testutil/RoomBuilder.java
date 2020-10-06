@@ -2,19 +2,20 @@ package seedu.address.testutil;
 
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.tasks.Task;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 public class RoomBuilder {
 
     public static final int DEFAULT_ROOM_NUMBER = 10;
     public static final boolean DEFAULT_IS_OCCUPIED = true;
     public static final Patient DEFAULT_PATIENT = TypicalPatients.ALICE;
-    public static final Task DEFAULT_TASK = null;
+    public static final Task DEFAULT_TASK = TypicalTasks.REMIND_PATIENT;
 
     private int roomNumber;
     private boolean isOccupied;
     private Patient patient;
-    private Task task;
+    private TaskList taskList;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -23,7 +24,8 @@ public class RoomBuilder {
         roomNumber = DEFAULT_ROOM_NUMBER;
         isOccupied = DEFAULT_IS_OCCUPIED;
         patient = DEFAULT_PATIENT;
-        task = DEFAULT_TASK;
+        taskList = new TaskList();
+        taskList.add(DEFAULT_TASK);
     }
 
     /**
@@ -33,7 +35,7 @@ public class RoomBuilder {
         roomNumber = roomToCopy.getRoomNumber();
         isOccupied = roomToCopy.isOccupied();
         patient = roomToCopy.getPatient();
-        task = roomToCopy.getTask();
+        taskList = roomToCopy.getTaskList();
     }
 
     /**
@@ -59,10 +61,10 @@ public class RoomBuilder {
         return this;
     }
     /**
-     * Sets the {@code task} of the {@code Room} that we are building.
+     * Sets the {@code taskList} of the {@code Room} that we are building.
      */
-    public RoomBuilder withTask(Task task) {
-        this.task = task;
+    public RoomBuilder withTaskList(TaskList taskList) {
+        this.taskList = taskList;
         return this;
     }
 

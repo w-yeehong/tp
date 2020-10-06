@@ -3,6 +3,7 @@ package seedu.address.model.room;
 import java.util.Objects;
 
 import seedu.address.model.patient.Patient;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
@@ -65,6 +66,15 @@ public class Room implements Comparable<Room> {
     }
 
     /**
+     * Adds a task to the task list of this room.
+     *
+     * @param task The task to add.
+     */
+    public void addTask(Task task) {
+        taskList.add(task);
+    }
+
+    /**
      * Returns true if both rooms have the same identity and data fields.
      */
     @Override
@@ -77,12 +87,13 @@ public class Room implements Comparable<Room> {
         }
         Room room = (Room) o;
         return roomNumber == room.roomNumber
-                && isOccupied == room.isOccupied;
+                && isOccupied == room.isOccupied
+                && taskList.equals(room.getTaskList());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roomNumber, isOccupied);
+        return Objects.hash(roomNumber, isOccupied, taskList);
     }
 
     @Override
