@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
@@ -125,7 +125,7 @@ public class EditRoomCommand extends Command {
                 return new Room(updatedRoomNumber, updatedPatient);
             }
         }
-        throw new CommandException(MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
     }
 
     @Override

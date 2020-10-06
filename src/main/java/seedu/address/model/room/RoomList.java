@@ -43,7 +43,6 @@ public class RoomList implements ReadOnlyRoomList {
     public RoomList(PriorityQueue<Room> rooms, int numOfRooms) {
         this.rooms = rooms;
         this.numOfRooms = numOfRooms;
-        convertPriorityQueue(rooms);
     }
 
     private void resetData(ReadOnlyRoomList readOnlyRoomList) {
@@ -112,19 +111,6 @@ public class RoomList implements ReadOnlyRoomList {
         this.numOfRooms++;
         rooms.add(room);
         roomObservableList.add(room);
-    }
-    /**
-     * Sets the elements of {@code roomObservableList}.
-     *
-     * @param roomList PriorityQueue containing all the rooms.
-     */
-    private void convertPriorityQueue(PriorityQueue<Room> roomList) {
-        ArrayList<Room> roomArrayList = new ArrayList<>();
-        Object[] arr = roomList.toArray();
-        for (int k = 0; k < arr.length; k++) {
-            roomArrayList.add((Room) arr[k]);
-        }
-        roomObservableList.setAll(roomArrayList);
     }
 
     @Override
@@ -206,10 +192,6 @@ public class RoomList implements ReadOnlyRoomList {
 
     public void setRooms(PriorityQueue<Room> rooms) {
         this.rooms = rooms;
-    }
-
-    public void setRoomsInArray(Room[] roomsInArray) {
-        this.roomsInArray = roomsInArray;
     }
 
     /**
