@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.NewCommandTestUtil.COMMENT_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_AGE_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_AGE_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_AMY;
@@ -56,7 +57,7 @@ public class TypicalPatients {
     // Manually added - Patient's details found in {@code CommandTestUtil}
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withTemperature(VALID_TEMP_AMY).withPeriodOfStay(VALID_PERIOD_AMY)
-            .withAge(VALID_AGE_AMY).build();
+            .withAge(VALID_AGE_AMY).withComment(COMMENT_AMY).build();
     public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withTemperature(VALID_TEMP_BOB).withPeriodOfStay(VALID_PERIOD_BOB)
             .withAge(VALID_AGE_BOB).build();
