@@ -1,17 +1,12 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
-import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
 
 class RoomOccupancyStorageTest {
@@ -35,7 +30,7 @@ class RoomOccupancyStorageTest {
         //assertEquals(roomList, roomList1);
     }*/
 
-   /* @Test
+    /*@Test
     public void readAndSaveRoomList_withOccupiedRooms_success() throws IOException {
         PriorityQueue<Room> rooms = new PriorityQueue<>();
         Room[] roomsInArray = new Room[10];

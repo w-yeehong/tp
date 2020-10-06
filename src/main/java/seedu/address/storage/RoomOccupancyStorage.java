@@ -1,15 +1,11 @@
 package seedu.address.storage;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.PriorityQueue;
-import java.util.Scanner;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
@@ -36,6 +32,12 @@ public class RoomOccupancyStorage {
         return roomsOccupied;
     }
 
+    /**
+     * Returns RoomList data as a {@link ReadOnlyRoomList}.
+     *   Returns {@code Optional.empty()} if storage file is not found.
+     * @throws DataConversionException if the data in storage is not in the expected format.
+     * @throws IOException if there was any problem when reading from the storage.
+     */
     public Optional<ReadOnlyRoomList> readOnlyRoomOccupancy(Path filePath) throws IOException, DataConversionException {
         Optional<JsonSerializableRoomList> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableRoomList.class);
@@ -68,6 +70,8 @@ public class RoomOccupancyStorage {
         }
         fileWriter.close();*/
         FileUtil.createIfMissing(fileRoomsOccupied);
+        List<Room> rooms = new ArrayList<>();
+        rooms.addAll(roomList.getRoomObservableList());
         JsonUtil.saveJsonFile(new JsonSerializableRoomList(roomList), fileRoomsOccupied);
     }
 }

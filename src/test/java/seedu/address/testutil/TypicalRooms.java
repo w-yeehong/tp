@@ -3,8 +3,7 @@ package seedu.address.testutil;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import seedu.address.model.AddressBook;
-import seedu.address.model.patient.Patient;
+
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
 

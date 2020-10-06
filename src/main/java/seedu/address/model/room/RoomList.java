@@ -1,7 +1,6 @@
 package seedu.address.model.room;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.logging.Logger;
@@ -24,6 +23,9 @@ public class RoomList implements ReadOnlyRoomList {
     /** Creates default RoomList() object where all fields are null**/
     public RoomList() {}
 
+    /**
+     * Converts data from readOnlyRoomList to roomList
+     */
     public RoomList(ReadOnlyRoomList readOnlyRoomList) {
         this();
         resetData(readOnlyRoomList);
@@ -38,7 +40,7 @@ public class RoomList implements ReadOnlyRoomList {
         convertPriorityQueue(rooms);
     }
 
-    public void resetData(ReadOnlyRoomList readOnlyRoomList) {
+    private void resetData(ReadOnlyRoomList readOnlyRoomList) {
         ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
         numOfRooms = roomLists.size();
         rooms.addAll(roomLists);
@@ -63,19 +65,22 @@ public class RoomList implements ReadOnlyRoomList {
     }
 
     private void addRooms() {
-        if(numOfRooms > roomObservableList.size()) {
-            for(int i = roomObservableList.size(); i < numOfRooms; i++) {
-                Room room = new Room(i);
+        if (numOfRooms < 0) {
+            return;
+        }
+        if (numOfRooms > roomObservableList.size()) {
+            for (int i = roomObservableList.size(); i < numOfRooms; i++) {
+                Room room = new Room(i + 1);
                 roomObservableList.add(i, room);
                 rooms.add(room);
             }
-        } else if(numOfRooms < roomObservableList.size()) {
-            for(int i = numOfRooms; i < roomObservableList.size(); i++) {
+        } else if (numOfRooms < roomObservableList.size()) {
+            for (int i = numOfRooms; i < roomObservableList.size(); i++) {
                 Room room = roomObservableList.get(i);
                 rooms.remove(room);
             }
             int size = roomObservableList.size();
-            for(int i = numOfRooms; i < size; i++) {
+            for (int i = numOfRooms; i < size; i++) {
                 roomObservableList.remove(numOfRooms);
             }
         } else {
@@ -92,6 +97,11 @@ public class RoomList implements ReadOnlyRoomList {
         this.numOfRooms = numOfRooms;
         addRooms();
     }
+
+    /**
+     * Adds this room to the RoomList
+     * @param room is added to RoomList
+     */
     public void addRooms(Room room) {
         rooms.add(room);
         roomObservableList.add(room);

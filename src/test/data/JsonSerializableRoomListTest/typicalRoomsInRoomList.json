@@ -1,5 +1,5 @@
 {
-  "patients" : [ {
+  "rooms" : [ {
     "roomNumber" : 1,
     "isOccupied" : false,
     "patient" : null,

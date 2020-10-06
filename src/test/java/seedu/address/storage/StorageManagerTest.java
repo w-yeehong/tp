@@ -4,13 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
-import static seedu.address.testutil.TypicalPatients.getTypicalPatients;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
-import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +18,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.room.ReadOnlyRoomList;
-import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
 
 public class StorageManagerTest {

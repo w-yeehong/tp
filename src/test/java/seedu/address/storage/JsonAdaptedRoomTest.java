@@ -1,13 +1,12 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-
-import static seedu.address.testutil.TypicalPatients.BENSON;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalRooms.ROOM_1;
 import static seedu.address.testutil.TypicalRooms.ROOM_2;
 import static seedu.address.testutil.TypicalRooms.ROOM_3;
 import static seedu.address.testutil.TypicalRooms.ROOM_4;
+
+import org.junit.jupiter.api.Test;
 
 class JsonAdaptedRoomTest {
     @Test

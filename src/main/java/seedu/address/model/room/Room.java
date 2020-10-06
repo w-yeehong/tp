@@ -2,7 +2,6 @@ package seedu.address.model.room;
 
 import java.util.Objects;
 
-import seedu.address.logic.parser.Parser;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tasks.Task;
 
@@ -35,6 +34,9 @@ public class Room implements Comparable<Room> {
         this.task = null;
     }
 
+    /**
+     * Creates a Room object where none of the values are pre determined by app
+     */
     public Room(int roomNumber, boolean isOccupied, Patient patient, Task task) {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
