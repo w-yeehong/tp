@@ -3,7 +3,6 @@ package seedu.address.logic.parser.patient;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,12 +21,12 @@ public class DeletePatientCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeletePatientCommand(INDEX_FIRST_PATIENT));
+        assertParseSuccess(parser, "Mary Doe", new DeletePatientCommand("Mary Doe"));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeletePatientCommand.MESSAGE_USAGE));
     }
 }

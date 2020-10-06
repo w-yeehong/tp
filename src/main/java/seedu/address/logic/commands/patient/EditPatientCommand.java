@@ -28,7 +28,7 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
 
 /**
- * Edits a patient in address book with the selected name.
+ * Edits a patient in the app with the selected name.
  * Input of name is case insensitive.
  */
 public class EditPatientCommand extends Command {
@@ -45,13 +45,13 @@ public class EditPatientCommand extends Command {
             + "[" + PREFIX_AGE + "AGE] "
             + "[" + PREFIX_PERIOD_OF_STAY + "PERIOD OF STAY] "
             + "[" + PREFIX_COMMENTS + "COMMENT] "
-            + "Example: " + COMMAND_WORD + " john "
+            + "\nExample: " + COMMAND_WORD + " john "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_TEMP + "36.5";
 
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Covigent.";
 
     private final String patientToBeEdited;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -88,7 +88,7 @@ public class EditPatientCommand extends Command {
         }
 
         if (index.getZeroBased() == 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased() - 1);

@@ -19,24 +19,24 @@ import seedu.address.model.patient.TemperatureRange;
 
 
 /**
- * Search a patient or a list of patient according to a name or a range of temperature.
+ * Searches a patient or a list of patient according to a name or a range of temperature.
  */
 public class SearchPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "searchpatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Search a patient or a list of patients with only one specific criteria in Covigent. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME || "
+            + ": Searches a patient or a list of patients with only one specific criteria. "
+            + "\nParameters: "
+            + PREFIX_NAME + "NAME or "
             + PREFIX_TEMP_RANGE + "TEMPERATURE RANGE "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_TEMP_RANGE + "36.1-37.9 ";
 
     public static final String MESSAGE_SEARCH_PATIENT_SUCCESS = "Patient(s) found: %1$s";
     public static final String MESSAGE_NOT_FOUND = "At least one field to edit must be provided.";
     public static final String MESSAGE_PATIENT_NOT_FOUND = "The patient you entered is not in the list.";
-    public static final String MESSAGE_SEARCH_PATIENT_LIST_SUCCESS = "Patient match your criteria found: \n";
+    public static final String MESSAGE_SEARCH_PATIENT_LIST_SUCCESS = "Patient(s) matching your criteria found: \n";
 
     private final SearchPatientDescriptor searchPatientDescriptor;
 
