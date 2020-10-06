@@ -46,7 +46,7 @@ public class Room implements Comparable<Room> {
      */
     public Room(int roomNumber, Patient patient) {
         this.roomNumber = roomNumber;
-        this.isOccupied = false;
+        this.isOccupied = true;
         this.patient = patient;
         this.task = null;
     }
@@ -77,9 +77,7 @@ public class Room implements Comparable<Room> {
         }
 
         return otherRoom != null
-                && (Integer.valueOf(otherRoom.getRoomNumber()).equals(getRoomNumber()))
-                && ((Boolean.valueOf(otherRoom.isOccupied)).equals(isOccupied)
-                || otherRoom.getPatient().equals(getPatient()));
+                && Integer.valueOf(otherRoom.getRoomNumber()).equals(getRoomNumber());
     }
 
     /**

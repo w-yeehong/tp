@@ -80,6 +80,7 @@ public class ParserUtil {
         String trimmedPatient = patient.trim().toLowerCase();
         //TODO please change this if you guys can think of a way to check if the patient exists in the app.
         // I currently feel this is not the optimal way at all but i cant think of anything else.
+        // I am talking about the isValidPatient() and getPatientWithName method that i created in ModelManager.
         if (!ModelManager.isValidPatient(trimmedPatient)) {
             throw new ParseException(Patient.MESSAGE_PATIENT_CONSTRAINTS);
         }
