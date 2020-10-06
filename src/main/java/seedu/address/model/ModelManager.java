@@ -21,7 +21,6 @@ import seedu.address.model.room.RoomList;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private static FilteredList<Patient> staticFilteredPatientsList;
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
@@ -42,7 +41,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.roomList = readOnlyRoomOccupancy;
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
-        staticFilteredPatientsList = filteredPatients;
     }
 
     public ModelManager() {
@@ -118,32 +116,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPatient);
 
         addressBook.setPatient(target, editedPatient);
-    }
-
-    /**
-     * Checks if the patient exists in the application.
-     *
-     * @param patient Name of the patient.
-     * @return True if the patient exists in the application.
-     */
-    public static boolean isValidPatient(String patient) {
-        for (Patient value : staticFilteredPatientsList) {
-            String patientName = value.getName().toString().toLowerCase().trim();
-            if (patientName.equals(patient)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static Patient getPatientWithName(String patientName) {
-        for (Patient value : staticFilteredPatientsList) {
-            String nameOfPatient = value.getName().toString().toLowerCase().trim();
-            if (patientName.equals(nameOfPatient)) {
-                return value;
-            }
-        }
-        return null;
     }
 
     //=========== Filtered Patient List Accessors =============================================================
