@@ -14,7 +14,11 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.patient.*;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.TemperatureRange;
+import seedu.address.model.patient.TemperatureRangePredicate;
 
 
 /**
