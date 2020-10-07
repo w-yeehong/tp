@@ -9,6 +9,11 @@ public class TemperatureRangePredicate implements Predicate<Patient> {
     private final double startingTemperature;
     private final double endingTemperature;
 
+    /**
+     * Constructs a {@code TemperatureRangePredicate}.
+     * @param startingTemperature The start of temperature range.
+     * @param endingTemperature The end of temperature range.
+     */
     public TemperatureRangePredicate(double startingTemperature, double endingTemperature) {
         this.startingTemperature = startingTemperature;
         this.endingTemperature = endingTemperature;
