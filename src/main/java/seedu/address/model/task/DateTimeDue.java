@@ -20,9 +20,11 @@ public class DateTimeDue {
     public static final String MESSAGE_CONSTRAINTS = "Due dates should adhere to one of the "
             + "following formats:\n"
             + "1. yyyyMMdd (e.g. 20201230)\n"
-            + "2. d/M/yyyy (e.g. 30/12/2020)\n"
-            + "Format 2 allows a single digit for day and month (e.g. 1/1/2020); \n"
-            + "Format 1 does not.";
+            + "2. yyyyMMdd HHmm (e.g. 20201230 2359)\n"
+            + "3. d/M/yyyy (e.g. 30/12/2020)\n"
+            + "4. d/M/yyyy HHmm (e.g. 30/12/2020 2359)\n"
+            + "Format 3 and 4 allow a single digit for day and month (e.g. 1/1/2020); \n"
+            + "Format 1 and 2 do not.";
 
     private static final DateTimeFormatter[] ALLOWED_DATETIME_FORMATS = {
         DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
@@ -41,15 +43,19 @@ public class DateTimeDue {
      * If the date-time string is present and valid, the value parsed into is a {@code LocalDateTime}
      * and wrapped in an {@code Optional}.
      *
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @param optionalDueAt A valid optional date-time string.
      */
     public DateTimeDue(Optional<String> optionalDueAt) {
         requireNonNull(optionalDueAt);
         value = optionalDueAt
                 .map((dueAt) -> {
-                    checkArgument(isValidDateTimeDue(dueAt), MESSAGE_CONSTRAINTS);
-                    return Optional.of(
-                        DateTimeUtil.parseFirstMatching(dueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
+                    String trimmedDueAt = dueAt.trim();
+                    checkArgument(isValidDateTimeDue(trimmedDueAt), MESSAGE_CONSTRAINTS);
+
+                    return Optional.of(DateTimeUtil
+                            .parseFirstMatching(trimmedDueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
                 })
                 .orElse(Optional.empty());
     }
@@ -58,13 +64,18 @@ public class DateTimeDue {
      * Constructs a {@code DateTimeDue}.
      * {@code dueAt} must be non-null.
      *
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @param dueAt A valid date-time string.
      */
     public DateTimeDue(String dueAt) {
         requireNonNull(dueAt);
-        checkArgument(isValidDateTimeDue(dueAt), MESSAGE_CONSTRAINTS);
-        value = Optional.of(
-                DateTimeUtil.parseFirstMatching(dueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
+
+        String trimmedDueAt = dueAt.trim();
+        checkArgument(isValidDateTimeDue(trimmedDueAt), MESSAGE_CONSTRAINTS);
+
+        value = Optional.of(DateTimeUtil
+                .parseFirstMatching(trimmedDueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
     }
 
     public Optional<LocalDateTime> getValue() {
