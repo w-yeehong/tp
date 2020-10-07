@@ -3,7 +3,8 @@ package seedu.address.model.room;
 import java.util.Objects;
 
 import seedu.address.model.patient.Patient;
-import seedu.address.model.tasks.Task;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Represents Room in the app
@@ -12,7 +13,7 @@ public class Room implements Comparable<Room> {
     private int roomNumber;
     private boolean isOccupied;
     private Patient patient;
-    private Task task;
+    private TaskList taskList;
 
     /**
      * Creates room object where roomNumber and isOccupied values are values given by user
@@ -21,7 +22,7 @@ public class Room implements Comparable<Room> {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
         this.patient = null;
-        this.task = null;
+        this.taskList = new TaskList();
     }
 
     /**
@@ -31,17 +32,17 @@ public class Room implements Comparable<Room> {
         this.roomNumber = roomNumber;
         this.isOccupied = false;
         this.patient = null;
-        this.task = null;
+        this.taskList = new TaskList();
     }
 
     /**
      * Creates a Room object where none of the values are pre determined by app
      */
-    public Room(int roomNumber, boolean isOccupied, Patient patient, Task task) {
+    public Room(int roomNumber, boolean isOccupied, Patient patient, TaskList taskList) {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
         this.patient = patient;
-        this.task = task;
+        this.taskList = taskList;
     }
 
     public int getRoomNumber() {
@@ -56,12 +57,21 @@ public class Room implements Comparable<Room> {
         return patient;
     }
 
-    public Task getTask() {
-        return task;
+    public TaskList getTaskList() {
+        return taskList;
     }
 
     public void setOccupied(boolean isOccupied) {
         this.isOccupied = isOccupied;
+    }
+
+    /**
+     * Adds a task to the task list of this room.
+     *
+     * @param task The task to add.
+     */
+    public void addTask(Task task) {
+        taskList.add(task);
     }
 
     /**
@@ -77,12 +87,13 @@ public class Room implements Comparable<Room> {
         }
         Room room = (Room) o;
         return roomNumber == room.roomNumber
-                && isOccupied == room.isOccupied;
+                && isOccupied == room.isOccupied
+                && taskList.equals(room.getTaskList());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roomNumber, isOccupied);
+        return Objects.hash(roomNumber, isOccupied, taskList);
     }
 
     @Override
