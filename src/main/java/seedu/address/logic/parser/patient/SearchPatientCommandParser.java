@@ -38,6 +38,8 @@ public class SearchPatientCommandParser implements Parser<SearchPatientCommand> 
                 new SearchPatientCommand.SearchPatientDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            String[] field = args.trim().split(" ");
+            searchPatientDescriptor.setStringName(field[0].substring(2));
             searchPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
 

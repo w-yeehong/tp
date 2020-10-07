@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP_RANGE;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,9 +14,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.TemperatureRange;
+import seedu.address.model.patient.*;
 
 
 /**
@@ -39,6 +38,8 @@ public class SearchPatientCommand extends Command {
     public static final String MESSAGE_SEARCH_PATIENT_LIST_SUCCESS = "Patient(s) matching your criteria found: \n";
 
     private final SearchPatientDescriptor searchPatientDescriptor;
+    private NameContainsKeywordsPredicate namePredicate;
+    private TemperatureRangePredicate temperaturePredicate;
 
     /**
      * Constructs an SearchPatientCommand to edit the patient with the name {@code String}.
@@ -56,12 +57,17 @@ public class SearchPatientCommand extends Command {
 
         final SearchCriteria criteriaToSearch = this.confirmCriteria(searchPatientDescriptor);
         List<Patient> patientList = model.getFilteredPatientList();
-
         if (criteriaToSearch == SearchCriteria.CRITERIA_NOT_FOUND) {
             throw new CommandException(MESSAGE_NOT_FOUND);
         } else if (criteriaToSearch == SearchCriteria.CRITERIA_IS_NAME) {
+            namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(searchPatientDescriptor.getStringName()));
+            model.updateFilteredPatientList(namePredicate);
             return findPatientWithName(searchPatientDescriptor, patientList);
         } else if (criteriaToSearch == SearchCriteria.CRITERIA_IS_TEMPERATURE) {
+            double startingTemperature = searchPatientDescriptor.getTemperatureRange().getStartingTemperature();
+            double endingTemperature = searchPatientDescriptor.getTemperatureRange().getEndingTemperature();
+            temperaturePredicate = new TemperatureRangePredicate(startingTemperature, endingTemperature);
+            model.updateFilteredPatientList(temperaturePredicate);
             return findPatientWithTemperature(searchPatientDescriptor, patientList);
         } else if (criteriaToSearch == SearchCriteria.TOO_MANY_CRITERIA) {
             return new CommandResult(Messages.MESSAGE_TOO_MANY_COMMANDS);
@@ -79,14 +85,24 @@ public class SearchPatientCommand extends Command {
     public CommandResult findPatientWithName(SearchPatientDescriptor searchPatientDescriptor,
                                              List<Patient> patientList) throws CommandException {
         String nameToSearch = searchPatientDescriptor.getName().toString().trim().toLowerCase();
+        ArrayList<Patient> patientNameList = new ArrayList<>();
 
         for (Patient patient : patientList) {
             String patientName = patient.getName().toString().trim().toLowerCase();
-            if (patientName.equals(nameToSearch)) {
-                return new CommandResult(String.format(MESSAGE_SEARCH_PATIENT_SUCCESS, patient));
+            if (patientName.contains(nameToSearch)) {
+                patientNameList.add(patient);
             }
         }
-        throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
+
+        if (patientNameList.isEmpty()) {
+            throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
+        } else if (patientNameList.size() == 1) {
+            return new CommandResult(String.format(MESSAGE_SEARCH_PATIENT_SUCCESS,
+                    patientNameList.get(0)));
+        } else {
+            return new CommandResult(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS
+                    + getListOutput(patientNameList));
+        }
     }
 
     /**
@@ -164,9 +180,14 @@ public class SearchPatientCommand extends Command {
     public static class SearchPatientDescriptor {
         private Name name;
         private TemperatureRange temperatureRange;
-
+        private String stringName;
         public SearchPatientDescriptor() {
         }
+        public void setStringName(String stringName) {
+            this.stringName = stringName;
+        }
+
+        public String getStringName() {return this.stringName; }
 
         public void setName(Name name) {
             this.name = name;

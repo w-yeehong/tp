@@ -28,9 +28,9 @@ public class SearchPatientCommandTest {
 
     @Test
     public void execute_searchPatientName_success() {
-        Patient patient = new PatientBuilder().withName("Joe").build();
+        Patient patient = new PatientBuilder().withName("Joe Khan").build();
         SearchPatientCommand.SearchPatientDescriptor descriptor =
-                new SearchPatientDescriptorBuilder().withName("Joe").build();
+                new SearchPatientDescriptorBuilder().withName("Joe Khan").build();
         SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
         model.setPatient(model.getFilteredPatientList().get(0), patient);
 
