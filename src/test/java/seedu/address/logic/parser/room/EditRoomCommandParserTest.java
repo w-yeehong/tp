@@ -48,5 +48,4 @@ public class EditRoomCommandParserTest {
         // No index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
-    
 }
