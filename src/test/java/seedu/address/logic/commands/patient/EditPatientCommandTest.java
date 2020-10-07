@@ -11,14 +11,14 @@ import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSucce
 import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.CovigentApp;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -34,7 +34,7 @@ import seedu.address.testutil.TypicalPatients;
  */
 public class EditPatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
+    private Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -44,7 +44,7 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new CovigentApp(model.getCovigentApp()), new UserPrefs(),
                 new RoomList());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
@@ -62,7 +62,7 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new CovigentApp(model.getCovigentApp()), new UserPrefs(),
                 new RoomList());
         expectedModel.setPatient(TypicalPatients.GEORGE, editedPatient);
 
@@ -77,7 +77,7 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new CovigentApp(model.getCovigentApp()), new UserPrefs(),
                 new RoomList());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -94,7 +94,7 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new CovigentApp(model.getCovigentApp()), new UserPrefs(),
                 new RoomList());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
@@ -115,7 +115,7 @@ public class EditPatientCommandTest {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
         // Edit patient in filtered list into a duplicate in address book
-        Patient patientInList = model.getAddressBook().getPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+        Patient patientInList = model.getCovigentApp().getPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
         EditPatientCommand editCommand = new EditPatientCommand("Alice Pauline",
                 new EditPatientDescriptorBuilder(patientInList).build());
 

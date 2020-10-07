@@ -9,13 +9,13 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonCovigentAppStorage;
 
 /**
  * Contains information regarding the Room information
  */
 public class RoomList implements ReadOnlyRoomList {
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonCovigentAppStorage.class);
 
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>();

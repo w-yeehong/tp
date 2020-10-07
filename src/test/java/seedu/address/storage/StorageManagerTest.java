@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
 
 import java.io.IOException;
@@ -14,8 +14,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.CovigentApp;
+import seedu.address.model.ReadOnlyCovigentApp;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.RoomList;
@@ -29,11 +29,11 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonCovigentAppStorage covigentAppStorage = new JsonCovigentAppStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(getTempFilePath("ro"));
         //files nr short for numberOfRooms and ro is short form for roomsOccupied.
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
+        storageManager = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -55,21 +55,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void CovigentAppReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonCovigentAppStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonCovigentAppStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        CovigentApp original = getTypicalCovigentApp();
+        storageManager.saveCovigentApp(original);
+        ReadOnlyCovigentApp retrieved = storageManager.readCovigentApp().get();
+        assertEquals(original, new CovigentApp(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getCovigentAppFilePath() {
+        assertNotNull(storageManager.getCovigentAppFilePath());
     }
 
     @Test

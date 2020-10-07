@@ -29,7 +29,7 @@ import seedu.address.logic.parser.room.InitRoomsParser;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class CovigentAppParser {
 
     /**
      * Used for initial separation of command word and args.

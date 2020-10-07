@@ -1,7 +1,7 @@
 package seedu.address.model.util;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.CovigentApp;
+import seedu.address.model.ReadOnlyCovigentApp;
 import seedu.address.model.patient.Age;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
@@ -13,7 +13,7 @@ import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code CovigentApp} with sample data.
  */
 public class SampleDataUtil {
     public static Patient[] getSamplePatient() {
@@ -31,8 +31,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyCovigentApp getSampleCovigentApp() {
+        CovigentApp sampleAb = new CovigentApp();
         for (Patient samplePatient : getSamplePatient()) {
             sampleAb.addPatient(samplePatient);
         }

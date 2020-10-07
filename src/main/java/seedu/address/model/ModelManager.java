@@ -23,29 +23,29 @@ import seedu.address.model.room.RoomList;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final CovigentApp covigentApp;
     private final UserPrefs userPrefs;
     private final RoomList roomList;
     private final FilteredList<Patient> filteredPatients;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given covigentApp and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+    public ModelManager(ReadOnlyCovigentApp covigentApp, ReadOnlyUserPrefs userPrefs,
                         ReadOnlyRoomList readOnlyRoomOccupancy) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(covigentApp, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + covigentApp + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.covigentApp = new CovigentApp(covigentApp);
         this.userPrefs = new UserPrefs(userPrefs);
         this.roomList = new RoomList(readOnlyRoomOccupancy);
-        filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
+        filteredPatients = new FilteredList<>(this.covigentApp.getPatientList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new RoomList());
+        this(new CovigentApp(), new UserPrefs(), new RoomList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -73,42 +73,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getCovigentAppFilePath() {
+        return userPrefs.getCovigentAppFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setCovigentAppFilePath(Path covigentAppFilePath) {
+        requireNonNull(covigentAppFilePath);
+        userPrefs.setCovigentAppFilePath(covigentAppFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== CovigentApp ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setCovigentApp(ReadOnlyCovigentApp covigentApp) {
+        this.covigentApp.resetData(covigentApp);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyCovigentApp getCovigentApp() {
+        return covigentApp;
     }
 
     @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
-        return addressBook.hasPatient(patient);
+        return covigentApp.hasPatient(patient);
     }
 
     @Override
     public void deletePatient(Patient target) {
-        addressBook.removePatient(target);
+        covigentApp.removePatient(target);
     }
 
     @Override
     public void addPatient(Patient patient) {
-        addressBook.addPatient(patient);
+        covigentApp.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
@@ -116,14 +116,14 @@ public class ModelManager implements Model {
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
 
-        addressBook.setPatient(target, editedPatient);
+        covigentApp.setPatient(target, editedPatient);
     }
 
     //=========== Filtered Patient List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedCovigentApp}
      */
     @Override
     public ObservableList<Patient> getFilteredPatientList() {
@@ -151,7 +151,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
 
-        return addressBook.equals(other.addressBook)
+        return covigentApp.equals(other.covigentApp)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPatients.equals(other.filteredPatients)
                 && roomList.equals(other.roomList);

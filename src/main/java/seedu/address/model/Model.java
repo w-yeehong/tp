@@ -38,22 +38,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' covigent app file path.
      */
-    Path getAddressBookFilePath();
+    Path getCovigentAppFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' covigent app file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setCovigentAppFilePath(Path covigentAppFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code covigentApp}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setCovigentApp(ReadOnlyCovigentApp covigentApp);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the CovigentApp */
+    ReadOnlyCovigentApp getCovigentApp();
 
     /**
      * Returns true if a patient with the same identity as {@code patient} exists in the address book.
