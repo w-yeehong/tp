@@ -92,15 +92,23 @@ public class EditRoomCommand extends Command {
     private static Room createEditedRoom(Model model, Room roomToEdit,
                                          EditRoomDescriptor editRoomDescriptor) throws CommandException {
         assert (roomToEdit != null);
-
         Integer updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
-        Boolean isOccupied = editRoomDescriptor.getIsOccupied().orElse(roomToEdit.isOccupied());
+        Boolean clearRoom = (editRoomDescriptor.getIsOccupied().orElse(null) != null); //non-null just means clear room
         Boolean hasNewPatient = (editRoomDescriptor.getPatientName().orElse(null) != null);
+        Boolean alreadyOccupied = roomToEdit.isOccupied();
 
-        if (!isOccupied && !hasNewPatient) { //clear room
+        if (clearRoom && !hasNewPatient) {
+            //case 1: clear room
+            return new Room(updatedRoomNumber);
+        } else if (!clearRoom && !hasNewPatient && alreadyOccupied) {
+            //case 2: change room number in a room with patient already
+            return new Room(updatedRoomNumber, roomToEdit.getPatient());
+        } else if (!clearRoom && !hasNewPatient && !alreadyOccupied) {
+            //case 3: change room number in an empty room
             return new Room(updatedRoomNumber);
         }
 
+        //case 4: allocate patient to the room
         Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
         List<Patient> patientList = model.getFilteredPatientList();
         Room updatedRoom = isValidPatient(patientList, patientName, updatedRoomNumber);
