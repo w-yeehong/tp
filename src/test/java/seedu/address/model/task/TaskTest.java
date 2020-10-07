@@ -2,10 +2,10 @@ package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DATETIME_DUE_REMIND_PATIENT;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DESCRIPTION_REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +36,7 @@ public class TaskTest {
         assertFalse(REMIND_PATIENT.equals(editedRemindPatient));
 
         // different date-time due -> returns false
-        editedRemindPatient = new TaskBuilder(REMIND_PATIENT).withDateTimeDue("20200101").build();
+        editedRemindPatient = new TaskBuilder(REMIND_PATIENT).withDateTimeDue(Optional.of("20200101")).build();
         assertFalse(REMIND_PATIENT.equals(editedRemindPatient));
     }
 }

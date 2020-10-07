@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DESCRIPTION_
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.model.task.Task;
 
@@ -16,23 +17,23 @@ public class TypicalTasks {
 
     public static final Task REMIND_PATIENT = new TaskBuilder()
             .withDescription("Remind Alice to change bedsheets.")
-            .withDateTimeDue("20201230 2359").build();
+            .withDateTimeDue(Optional.of("20201230 2359")).build();
     public static final Task RESTOCK_SUPPLY = new TaskBuilder()
             .withDescription("Room #1 is running low on masks and needs to be restocked.")
-            .withDateTimeDue("20200925").build();
+            .withDateTimeDue(Optional.of("20200925")).build();
     public static final Task CALL_EMBASSY = new TaskBuilder()
             .withDescription("Call the U.S. embassy for Bob.")
-            .withDateTimeDue("20201014 1800").build();
+            .withDateTimeDue(Optional.of("20201014 1800")).build();
 
     // Manually added
     public static final Task FIX_SHOWER = new TaskBuilder()
             .withDescription("Fix the shower in Room #4.")
-            .withDateTimeDue("20201212 2359").build();
+            .withDateTimeDue(Optional.of("20201212 2359")).build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task ORDER_BEDSHEET = new TaskBuilder()
             .withDescription(VALID_DESCRIPTION_ORDER_BEDSHEET)
-            .withDateTimeDue(VALID_DATETIME_DUE_ORDER_BEDSHEET).build();
+            .withDateTimeDue(Optional.of(VALID_DATETIME_DUE_ORDER_BEDSHEET)).build();
 
     private TypicalTasks() {} // prevents instantiation
 

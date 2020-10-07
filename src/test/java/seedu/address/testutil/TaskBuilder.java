@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
+
 import seedu.address.model.task.DateTimeDue;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -42,8 +44,8 @@ public class TaskBuilder {
     /**
      * Sets the {@code DateTimeDue} of the {@code Task} that we are building.
      */
-    public TaskBuilder withDateTimeDue(String dueAt) {
-        this.dueAt = new DateTimeDue(dueAt);
+    public TaskBuilder withDateTimeDue(Optional<String> optionalDueAt) {
+        this.dueAt = new DateTimeDue(optionalDueAt);
         return this;
     }
 
