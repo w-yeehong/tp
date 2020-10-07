@@ -20,8 +20,7 @@ import seedu.address.model.patient.TemperatureRange;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_NUMBER = "Number is not a non-zero unsigned integer";
-    public static final String MESSAGE_INVALID_ROOM_NUMBER = "Room Number already exists!";
+    public static final String MESSAGE_INVALID_NUMBER = "Please only enter positive numbers";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

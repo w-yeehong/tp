@@ -1,7 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.NAME_DESC_AMY;
@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalPatients.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,8 +30,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.RoomList;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonRoomOccupancyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.RoomOccupancyStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PatientBuilder;
 
@@ -50,8 +49,8 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("numberOfRooms"),
-                Paths.get("roomsOccupied"));
+        JsonRoomOccupancyStorage roomOccupancyStorage =
+                new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
     }
@@ -64,8 +63,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        String deleteCommand = "deletepatient IDoNotExist";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_NAME_INPUT);
     }
 
     @Test
@@ -81,8 +80,8 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        RoomOccupancyStorage roomOccupancyStorage = new RoomOccupancyStorage(Paths.get("numberOfRooms"),
-                Paths.get("roomsOccupied"));
+        JsonRoomOccupancyStorage roomOccupancyStorage =
+                new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
 

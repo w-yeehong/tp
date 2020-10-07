@@ -50,6 +50,15 @@ public class Room implements Comparable<Room> {
         this.patient = patient;
         this.task = null;
     }
+    /**
+     * Creates a Room object where none of the values are pre determined by app
+     */
+    public Room(int roomNumber, boolean isOccupied, Patient patient, Task task) {
+        this.roomNumber = roomNumber;
+        this.isOccupied = isOccupied;
+        this.patient = patient;
+        this.task = task;
+    }
 
     public int getRoomNumber() {
         return roomNumber;
@@ -61,6 +70,10 @@ public class Room implements Comparable<Room> {
 
     public boolean isOccupied() {
         return isOccupied;
+    }
+
+    public Task getTask() {
+        return task;
     }
 
     public void setOccupied(boolean isOccupied) {

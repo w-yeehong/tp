@@ -29,8 +29,7 @@ import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalPatients;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
- * and unit tests for EditPatientCommand.
+ * Contains integration tests and unit tests for EditPatientCommand.
  */
 public class EditPatientCommandTest {
 
@@ -127,7 +126,7 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditPatientCommand editCommand = new EditPatientCommand("Unknown", descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
     }
 
     @Test
