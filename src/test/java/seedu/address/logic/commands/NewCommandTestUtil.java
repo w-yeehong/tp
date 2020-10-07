@@ -8,6 +8,9 @@ import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP;
+import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
+import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -24,6 +27,10 @@ import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 public class NewCommandTestUtil {
+
+    // General
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     // Patients
 
@@ -59,8 +66,6 @@ public class NewCommandTestUtil {
 
     public static final String NO_COMMENT = "-";
     public static final String COMMENT = "History of heart attack";
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditPatientDescriptor DESC_AMY;
     public static final EditPatientDescriptor DESC_BOB;
@@ -80,6 +85,32 @@ public class NewCommandTestUtil {
     public static final String VALID_DESCRIPTION_ORDER_BEDSHEET = "Order new bedsheets for Room #3.";
     public static final String VALID_DATETIME_DUE_REMIND_PATIENT = "20201230 2359";
     public static final String VALID_DATETIME_DUE_ORDER_BEDSHEET = "20201023 1930";
+    public static final String VALID_ROOM_NUMBER_ONE = "1";
+    public static final String VALID_ROOM_NUMBER_TWO = "2";
+    public static final Index VALID_ROOM_INDEX_ONE = Index.fromOneBased(1);
+    public static final Index VALID_ROOM_INDEX_TWO = Index.fromOneBased(2);
+
+    public static final String INVALID_DATETIME_DUE_VALUE = "aaa";
+    public static final String INVALID_DATETIME_DUE_FORMAT = "2020-12-31";
+    public static final String INVALID_ROOM_NUMBER = "-1";
+
+    public static final String DESCRIPTION_DESC_REMIND_PATIENT = " " + PREFIX_DESCRIPTION
+            + VALID_DESCRIPTION_REMIND_PATIENT;
+    public static final String DESCRIPTION_DESC_ORDER_BEDSHEET = " " + PREFIX_DESCRIPTION
+            + VALID_DATETIME_DUE_ORDER_BEDSHEET;
+    public static final String DATETIME_DUE_DESC_REMIND_PATIENT = " " + PREFIX_DUE_DATE
+            + VALID_DATETIME_DUE_REMIND_PATIENT;
+    public static final String DATETIME_DUE_DESC_ORDER_BEDSHEET = " " + PREFIX_DUE_DATE
+            + VALID_DATETIME_DUE_ORDER_BEDSHEET;
+    public static final String ROOM_NUMBER_DESC_ONE = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_ONE;
+    public static final String ROOM_NUMBER_DESC_TWO = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_TWO;
+
+    public static final String INVALID_DATETIME_DUE_VALUE_DESC = " " + PREFIX_DUE_DATE
+            + INVALID_DATETIME_DUE_VALUE;
+    public static final String INVALID_DATETIME_DUE_FORMAT_DESC = " " + PREFIX_DUE_DATE
+            + INVALID_DATETIME_DUE_FORMAT;
+    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
+            + INVALID_ROOM_NUMBER;
 
     /**
      * Executes the given {@code command}, confirms that <br>
