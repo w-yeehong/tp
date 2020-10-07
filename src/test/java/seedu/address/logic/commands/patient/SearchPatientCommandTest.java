@@ -14,10 +14,14 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.TemperatureRangePredicate;
 import seedu.address.model.room.RoomList;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.SearchPatientDescriptorBuilder;
+
+import java.util.Arrays;
 
 /**
  * Contains unit tests for SearchPatientCommand.
@@ -29,28 +33,31 @@ public class SearchPatientCommandTest {
     @Test
     public void execute_searchPatientName_success() {
         Patient patient = new PatientBuilder().withName("Joe Khan").build();
+        NameContainsKeywordsPredicate predicate = preparePredicate("Joe Khan");
         SearchPatientCommand.SearchPatientDescriptor descriptor =
                 new SearchPatientDescriptorBuilder().withName("Joe Khan").build();
         SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
         model.setPatient(model.getFilteredPatientList().get(0), patient);
-
+        model.updateFilteredPatientList(predicate);
         String expectedMessage = String.format(SearchPatientCommand.MESSAGE_SEARCH_PATIENT_SUCCESS, patient);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new RoomList());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
 
+        expectedModel.updateFilteredPatientList(predicate);
         assertCommandSuccess(searchPatientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_searchPatientTemperature_success() {
         Patient patient = new PatientBuilder().withTemperature("40.0").build();
+        TemperatureRangePredicate predicate = new TemperatureRangePredicate(39.9, 40.0);
         SearchPatientCommand.SearchPatientDescriptor descriptor =
                 new SearchPatientDescriptorBuilder().withTemperatureRange("39.9-40.0").build();
         SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
         model.setPatient(model.getFilteredPatientList().get(0), patient);
-
+        model.updateFilteredPatientList(predicate);
         String specifiOutput = String.format("%d.%s\n", 1, patient);
 
         String expectedMessage =
@@ -59,6 +66,7 @@ public class SearchPatientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new RoomList());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
+        expectedModel.updateFilteredPatientList(predicate);
 
         assertCommandSuccess(searchPatientCommand, model, expectedMessage, expectedModel);
     }
@@ -77,11 +85,13 @@ public class SearchPatientCommandTest {
     @Test
     void execute_searchPatientTemperatureRange_throwsCommandException() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
+        TemperatureRangePredicate predicate = new TemperatureRangePredicate(36.9, 37.0);
         Patient patient = new PatientBuilder().withTemperature("36.0").build();
         SearchPatientCommand.SearchPatientDescriptor descriptor =
                 new SearchPatientDescriptorBuilder().withTemperatureRange("36.9-37.0").build();
         SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
         model.setPatient(model.getFilteredPatientList().get(0), patient);
+        model.updateFilteredPatientList(predicate);
 
         String expectedMessage = String.format(SearchPatientCommand.MESSAGE_PATIENT_NOT_FOUND);
 
@@ -91,10 +101,12 @@ public class SearchPatientCommandTest {
     @Test
     void execute_searchPatientName_throwsCommandException() {
         Patient patient = new PatientBuilder().withName("Joe").build();
+        NameContainsKeywordsPredicate predicate = preparePredicate("koe");
         SearchPatientCommand.SearchPatientDescriptor descriptor =
                 new SearchPatientDescriptorBuilder().withName("koe").build();
         SearchPatientCommand searchPatientCommand = new SearchPatientCommand(descriptor);
         model.setPatient(model.getFilteredPatientList().get(0), patient);
+        model.updateFilteredPatientList(predicate);
 
         String expectedMessage = String.format(SearchPatientCommand.MESSAGE_PATIENT_NOT_FOUND);
 
@@ -124,4 +136,10 @@ public class SearchPatientCommandTest {
         assertNotEquals(newSearchCommand, searchCommand);
     }
 
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
 }
