@@ -25,6 +25,7 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalPatients.AMY;
 import static seedu.address.testutil.TypicalPatients.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -72,16 +73,13 @@ public class AddPatientCommandParserTest {
                 + PHONE_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB, new AddPatientCommand(expectedPatient));
     }
 
-    /* for remark TODO
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY ,
-                new AddPatientCommand(expectedPatient));
+        // no comments
+        Patient expectedPatient = new PatientBuilder(AMY).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + TEMP_DESC_AMY + PERIOD_DESC_AMY
+                + PHONE_DESC_AMY + AGE_DESC_AMY, new AddPatientCommand(expectedPatient));
     }
-
-    */
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {

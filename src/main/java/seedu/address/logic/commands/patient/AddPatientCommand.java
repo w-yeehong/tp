@@ -22,13 +22,13 @@ public class AddPatientCommand extends Command {
     public static final String COMMAND_WORD = "addpatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to Covigent. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_TEMP + "TEMPERATURE "
             + PREFIX_PERIOD_OF_STAY + "PERIOD OF STAY "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_AGE + "AGE "
-            + "[" + PREFIX_COMMENTS + "COMMENTS]...\n"
+            + "[" + PREFIX_COMMENTS + "COMMENTS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_TEMP + "37.0 "
@@ -38,7 +38,7 @@ public class AddPatientCommand extends Command {
             + PREFIX_COMMENTS + "Vegan,asthmatic ";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Covigent";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Covigent.";
 
     private final Patient toAdd;
 

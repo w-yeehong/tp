@@ -34,9 +34,9 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB).build();
         Assertions.assertFalse(ALICE.isSamePatient(editedAlice));
 
-        //different period of stay -> returns false
+        //different period of stay but same name, phone and age -> returns true
         editedAlice = new PatientBuilder(ALICE).withPeriodOfStay(VALID_PERIOD_BOB).build();
-        Assertions.assertFalse(ALICE.isSamePatient(editedAlice));
+        Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
 
         // same name, same phone, different attributes -> returns false
         editedAlice = new PatientBuilder(ALICE).withTemperature(VALID_TEMP_BOB)
@@ -50,6 +50,10 @@ public class PatientTest {
         //diff comments but all attributes same -> returns true
         editedAlice = new PatientBuilder(ALICE).withComment(COMMENT).build();
         Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
+
+        //different age but the rest same -> returns false
+        editedAlice = new PatientBuilder(ALICE).withAge(VALID_AGE_BOB).build();
+        Assertions.assertFalse(ALICE.isSamePatient(editedAlice));
     }
 
     @Test

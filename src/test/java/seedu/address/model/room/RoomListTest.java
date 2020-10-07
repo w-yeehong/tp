@@ -13,8 +13,8 @@ class RoomListTest {
     void testEquals() {
         PriorityQueue<Room> rooms = new PriorityQueue<>();
         Room[] arrayOfRooms = new Room[10];
-        RoomList roomList1 = new RoomList(rooms, arrayOfRooms, 10);
-        RoomList roomList2 = new RoomList(rooms, arrayOfRooms, 10);
+        RoomList roomList1 = new RoomList(rooms, 10);
+        RoomList roomList2 = new RoomList(rooms, 10);
         //same object -> returns true
         assertTrue(roomList1.equals(roomList1));
 
@@ -24,21 +24,16 @@ class RoomListTest {
         //null object -> returns false
         assertFalse(roomList1.equals(null));
 
-        roomList2 = new RoomList(rooms, arrayOfRooms, 10);
+        roomList2 = new RoomList(rooms, 10);
         PriorityQueue<Room> rooms1 = new PriorityQueue<>();
         rooms1.add(new Room(1));
         roomList2.setRooms(rooms1);
         //different Priority Queue of rooms -> returns false
         assertFalse(roomList1.equals(roomList2));
 
-        roomList2 = new RoomList(rooms, arrayOfRooms, 10);
+        roomList2 = new RoomList(rooms, 10);
         roomList2.setNumOfRooms(100);
         //different number of rooms -> returns false
-        assertFalse(roomList1.equals(roomList2));
-
-        roomList2 = new RoomList(rooms, arrayOfRooms, 10);
-        roomList2.setRoomsInArray(new Room[100]);
-        //different array of rooms -> returns false
         assertFalse(roomList1.equals(roomList2));
     }
 

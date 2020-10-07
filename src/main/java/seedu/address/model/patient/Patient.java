@@ -10,12 +10,11 @@ import java.util.Objects;
  */
 public class Patient {
 
-    // Identity fields
-    private final Name name;
+    private final Name name; //identifier field
     private final Temperature temperature;
     private final PeriodOfStay periodOfStay;
-    private final Phone phone;
-    private final Age age;
+    private final Phone phone; //identifier field
+    private final Age age; //identifier field
     private final Comment comment; // an optional field, if null is initialised to "-"
 
     /**
@@ -84,7 +83,6 @@ public class Patient {
         return otherPatient != null
                 && otherPatient.getName().equals(getName())
                 && otherPatient.getPhone().equals(getPhone())
-                && otherPatient.getPeriodOfStay().equals(getPeriodOfStay())
                 && otherPatient.getAge().equals(getAge());
     }
 

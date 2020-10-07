@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
@@ -110,16 +110,30 @@ public class EditRoomCommand extends Command {
 
         //case 4: allocate patient to the room
         Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
-        List<Patient> lastShownList = model.getFilteredPatientList();
-        for (int i = 0; i < lastShownList.size(); i++) { //check for validity of patientName
+        List<Patient> patientList = model.getFilteredPatientList();
+        Room updatedRoom = isValidPatient(patientList, patientName, updatedRoomNumber);
+        return updatedRoom;
+    }
+
+    /**
+     * Checks if the patient is valid and exists in the application.
+     *
+     * @param patientList List of the patients in the application.
+     * @param patientName Name of the patient.
+     * @param updatedRoomNumber Room number of room.
+     * @return Room that is updated with the new patient and room number.
+     */
+    private static Room isValidPatient(List<Patient> patientList, Name patientName,
+                                       Integer updatedRoomNumber) throws CommandException {
+        for (Patient patient : patientList) {
             String inputPatientName = patientName.toString().trim().toLowerCase();
-            String recordName = lastShownList.get(i).getName().toString();
+            String recordName = patient.getName().toString();
             if (recordName.trim().toLowerCase().equals(inputPatientName)) {
-                Patient updatedPatient = lastShownList.get(i);
+                Patient updatedPatient = patient;
                 return new Room(updatedRoomNumber, updatedPatient);
             }
         }
-        throw new CommandException(MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
     }
 
     @Override
