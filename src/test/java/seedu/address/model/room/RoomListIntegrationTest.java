@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_TASK_REMIND
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.room.exceptions.RoomNotFoundException;
@@ -18,7 +19,12 @@ import seedu.address.testutil.RoomBuilder;
  */
 public class RoomListIntegrationTest {
 
-    private final RoomList roomList = new RoomList(); // note that this is mutable
+    private RoomList roomList; // note that this is mutable
+
+    @BeforeEach
+    public void setUp() {
+        roomList = new RoomList();
+    }
 
     @Test
     public void addTaskToRoom_nullTaskNullRoom_throwsNullPointerException() {
