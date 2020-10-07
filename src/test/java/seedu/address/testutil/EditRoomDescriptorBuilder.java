@@ -29,7 +29,7 @@ public class EditRoomDescriptorBuilder {
     /**
      * Sets the {@code roomNumber} of the {@code EditRoomDescriptor} that we are building.
      */
-    public EditRoomDescriptorBuilder withName(Integer roomNumber) {
+    public EditRoomDescriptorBuilder withRoomNumber(Integer roomNumber) {
         descriptor.setRoomNumber(roomNumber);
         return this;
     }
