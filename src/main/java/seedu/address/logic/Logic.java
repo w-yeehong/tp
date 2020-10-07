@@ -25,17 +25,17 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the Covigent.
+     * Returns Covigent.
      *
      * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of patients */
+    /** Returns an unmodifiable view of the filtered list of patients. */
     ObservableList<Patient> getFilteredPatientList();
 
-    /** Returns an {@code ObservableList<Room>} containing the list of rooms. */
-    ObservableList<Room> getListOfRooms();
+    /** Returns an unmodifiable view of the list of rooms. */
+    ObservableList<Room> getRoomList();
 
     /**
      * Returns the user prefs' Covigent file path.
