@@ -17,17 +17,7 @@ public class Room implements Comparable<Room> {
     private int roomNumber;
     private boolean isOccupied;
     private Patient patient;
-    private TaskList taskList;
-
-    /**
-     * Creates room object where roomNumber and isOccupied values are values given by user
-     */
-    public Room(int roomNumber, boolean isOccupied) {
-        this.roomNumber = roomNumber;
-        this.isOccupied = isOccupied;
-        this.patient = null;
-        this.taskList = new TaskList();
-    }
+    private TaskList taskList = new TaskList();
 
     /**
      * Creates room object where isOccupied is always false
@@ -36,7 +26,27 @@ public class Room implements Comparable<Room> {
         this.roomNumber = roomNumber;
         this.isOccupied = false;
         this.patient = null;
-        this.taskList = new TaskList();
+    }
+
+    /**
+     * Creates room object where roomNumber and isOccupied values are values given by user
+     */
+    public Room(int roomNumber, boolean isOccupied) {
+        this.roomNumber = roomNumber;
+        this.isOccupied = isOccupied;
+        this.patient = null;
+    }
+
+    /**
+     * Creates a room object containing a patient that can be found in the application.
+     *
+     * @param roomNumber Room Number of the room.
+     * @param patient Patient to be added to the room.
+     */
+    public Room(int roomNumber, Patient patient) {
+        this.roomNumber = roomNumber;
+        this.isOccupied = true;
+        this.patient = patient;
     }
 
     /**
@@ -59,6 +69,8 @@ public class Room implements Comparable<Room> {
 
     public TaskList getTaskList() {
         return taskList;
+    }
+
     public boolean isOccupied() {
         return isOccupied;
     }
@@ -75,8 +87,8 @@ public class Room implements Comparable<Room> {
     public void addTask(Task task) {
         taskList.add(task);
     }
-    
-     /** Returns true if both rooms of the same number have at least one other identity field that is the same.
+    /**
+     * Returns true if both rooms of the same number have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two rooms.
      */
     public boolean isSameRoom(Room otherRoom) {

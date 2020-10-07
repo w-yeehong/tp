@@ -1,7 +1,7 @@
 package seedu.address.model.room;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -11,10 +11,10 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.room.exceptions.RoomNotFoundException;
-import seedu.address.model.task.Task;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
+import seedu.address.model.room.exceptions.RoomNotFoundException;
+import seedu.address.model.task.Task;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
@@ -91,8 +91,6 @@ public class RoomList implements ReadOnlyRoomList {
             for (int i = numOfRooms; i < size; i++) {
                 internalList.remove(numOfRooms);
             }
-        } else {
-
         }
     }
 
@@ -186,7 +184,7 @@ public class RoomList implements ReadOnlyRoomList {
      */
     public boolean containsRoom(Room toCheck) {
         requireNonNull(toCheck);
-        return roomObservableList.stream().anyMatch(toCheck::isSameRoom);
+        return internalList.stream().anyMatch(toCheck::isSameRoom);
     }
 
     /**
@@ -198,7 +196,7 @@ public class RoomList implements ReadOnlyRoomList {
      * @param editedRoom Room that has been changed.
      */
     public void setSingleRoom(Room target, Room editedRoom) {
-        int index = roomObservableList.indexOf(target);
+        int index = internalList.indexOf(target);
         if (index == -1) {
             throw new RoomNotFoundException();
         }
@@ -208,7 +206,7 @@ public class RoomList implements ReadOnlyRoomList {
         }
         rooms.remove(target); // this and the next LOC is to replace the room in the priority queue
         rooms.add(editedRoom);
-        roomObservableList.set(index, editedRoom);
+        internalList.set(index, editedRoom);
     }
     @Override
     public int hashCode() {
@@ -232,8 +230,8 @@ public class RoomList implements ReadOnlyRoomList {
      */
     public Index checkIfRoomPresent(Integer roomNumber) {
         Index index = Index.fromZeroBased(0);
-        for (int i = 1; i <= roomObservableList.size(); i++) {
-            int roomNum = roomObservableList.get(i - 1).getRoomNumber();
+        for (int i = 1; i <= internalList.size(); i++) {
+            int roomNum = internalList.get(i - 1).getRoomNumber();
             boolean isValidRoom = (Integer.valueOf(roomNum)).equals(roomNumber);
             if (isValidRoom) {
                 index = Index.fromZeroBased(i);

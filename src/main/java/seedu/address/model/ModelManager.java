@@ -175,7 +175,7 @@ public class ModelManager implements Model {
         return roomList.asUnmodifiableObservableList();
     }
 
-    // TODO: remove this method and use getRoomList() instead
+    // TODO: remove this method and use getRoomList() instead (I will need this modifableRoomList for editing though)
     @Override
     public RoomList getModifiableRoomList() {
         return roomList;
@@ -193,6 +193,7 @@ public class ModelManager implements Model {
         requireAllNonNull(task, room);
 
         roomList.addTaskToRoom(task, room);
+    }
     /**
      * Checks if the roomList contains {@code room}.
      *

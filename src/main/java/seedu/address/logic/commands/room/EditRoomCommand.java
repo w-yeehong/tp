@@ -62,8 +62,8 @@ public class EditRoomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Room> lastShownList = model.getRoomList().getRoomObservableList();
-        Index index = model.getRoomList().checkIfRoomPresent(roomNumberToEdit);
+        List<Room> lastShownList = model.getModifiableRoomList().getRoomObservableList();
+        Index index = model.getModifiableRoomList().checkIfRoomPresent(roomNumberToEdit);
 
         if (index.getZeroBased() == 0) {
             throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
@@ -92,10 +92,10 @@ public class EditRoomCommand extends Command {
     private static Room createEditedRoom(Model model, Room roomToEdit,
                                          EditRoomDescriptor editRoomDescriptor) throws CommandException {
         assert (roomToEdit != null);
-        Integer updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
-        Boolean clearRoom = (editRoomDescriptor.getIsOccupied().orElse(null) != null); //non-null just means clear room
-        Boolean hasNewPatient = (editRoomDescriptor.getPatientName().orElse(null) != null);
-        Boolean alreadyOccupied = roomToEdit.isOccupied();
+        int updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
+        boolean clearRoom = (editRoomDescriptor.getIsOccupied().orElse(null) != null); //non-null just means clear room
+        boolean hasNewPatient = (editRoomDescriptor.getPatientName().orElse(null) != null);
+        boolean alreadyOccupied = roomToEdit.isOccupied();
 
         if (clearRoom && !hasNewPatient) {
             //case 1: clear room
@@ -103,7 +103,7 @@ public class EditRoomCommand extends Command {
         } else if (!clearRoom && !hasNewPatient && alreadyOccupied) {
             //case 2: change room number in a room with patient already
             return new Room(updatedRoomNumber, roomToEdit.getPatient());
-        } else if (!clearRoom && !hasNewPatient && !alreadyOccupied) {
+        } else if (!clearRoom && !hasNewPatient) {
             //case 3: change room number in an empty room
             return new Room(updatedRoomNumber);
         }
