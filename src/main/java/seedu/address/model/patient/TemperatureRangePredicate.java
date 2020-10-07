@@ -2,6 +2,9 @@ package seedu.address.model.patient;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Patient}'s {@code Temperature} falls within the temperature range.
+ */
 public class TemperatureRangePredicate implements Predicate<Patient> {
     private final double startingTemperature;
     private final double endingTemperature;
