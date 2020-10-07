@@ -48,29 +48,5 @@ public class EditRoomCommandParserTest {
         // No index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
-
-    @Test
-    public void parse_invalidValue_failure() {
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_NAME_DESC,
-            Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_PHONE_DESC,
-            Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_AGE_DESC,
-            Age.MESSAGE_CONSTRAINTS); // invalid age
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_PERIOD_DESC,
-            PeriodOfStay.MESSAGE_CONSTRAINTS); // invalid period
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_TEMP_DESC,
-            Temperature.MESSAGE_CONSTRAINTS); // invalid temperature
-
-        // Invalid phone followed by valid age
-        assertParseFailure(parser, VALID_NAME_AMY + INVALID_PHONE_DESC + AGE_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
-
-        // Valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
-
-        // Multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_AGE_DESC + VALID_PERIOD_AMY + VALID_PHONE_AMY,
-            Name.MESSAGE_CONSTRAINTS);
-    }
+    
 }
