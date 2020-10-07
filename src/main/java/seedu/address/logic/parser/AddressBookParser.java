@@ -19,6 +19,7 @@ import seedu.address.logic.commands.patient.SearchPatientCommand;
 import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.InitRoomsCommand;
+import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.AddPatientCommandParser;
 import seedu.address.logic.parser.patient.DeletePatientCommandParser;
@@ -27,6 +28,7 @@ import seedu.address.logic.parser.patient.FindPatientCommandParser;
 import seedu.address.logic.parser.patient.SearchPatientCommandParser;
 import seedu.address.logic.parser.room.EditRoomCommandParser;
 import seedu.address.logic.parser.room.InitRoomsCommandParser;
+import seedu.address.logic.parser.task.AddTaskCommandParser;
 
 /**
  * Parses user input.
@@ -59,6 +61,9 @@ public class AddressBookParser {
         case AddPatientCommand.COMMAND_WORD:
             return new AddPatientCommandParser().parse(arguments);
 
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
+
         case EditPatientCommand.COMMAND_WORD:
             return new EditPatientCommandParser().parse(arguments);
 
@@ -67,6 +72,15 @@ public class AddressBookParser {
 
         case DeletePatientCommand.COMMAND_WORD:
             return new DeletePatientCommandParser().parse(arguments);
+
+        case FindRoomCommand.COMMAND_WORD:
+            return new FindRoomCommand();
+
+        case InitRoomsCommand.COMMAND_WORD:
+            return new InitRoomsCommandParser().parse(arguments);
+
+        case EditRoomCommand.COMMAND_WORD:
+            return new EditRoomCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -82,15 +96,6 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case FindRoomCommand.COMMAND_WORD:
-            return new FindRoomCommand();
-
-        case InitRoomsCommand.COMMAND_WORD:
-            return new InitRoomsCommandParser().parse(arguments);
-
-        case EditRoomCommand.COMMAND_WORD:
-            return new EditRoomCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
