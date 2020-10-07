@@ -114,4 +114,17 @@ public interface Model {
     PriorityQueue<Room> getRooms();
 
     void addTaskToRoom(Task task, Room room);
+
+    /**
+     * Returns true if a room with the same identity as {@code room} exists in the application.
+     */
+    boolean containsRoom(Room room);
+
+    /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in the application.
+     * The room identity of {@code editedRoom} must not be the same as
+     * another existing room in the application.
+     */
+    void setSingleRoom(Room target, Room editedRoom);
 }

@@ -193,5 +193,19 @@ public class ModelManager implements Model {
         requireAllNonNull(task, room);
 
         roomList.addTaskToRoom(task, room);
+    /**
+     * Checks if the roomList contains {@code room}.
+     *
+     * @param room That is to be searched for.
+     * @return True if roomList contains {@code room}.
+     */
+    public boolean containsRoom(Room room) {
+        requireAllNonNull(room);
+        return roomList.containsRoom(room);
+    }
+
+    public void setSingleRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+        roomList.setSingleRoom(target, editedRoom);
     }
 }

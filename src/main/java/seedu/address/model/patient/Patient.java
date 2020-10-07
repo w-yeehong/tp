@@ -56,7 +56,23 @@ public class Patient {
     }
 
     /**
-     * Returns true if both patients of the same name have same age and phone number.
+     * Formats the {@code patient} information.
+     *
+     * @param patient That is to be formatted.
+     * @return A string containing the patient information.
+     */
+    public static String formatPatientDetails(Patient patient) {
+        String name = patient.getName().toString();
+        String temperature = patient.getTemperature().toString();
+        String periodOfStay = patient.getPeriodOfStay().toString();
+        String phone = patient.getPhone().toString();
+        String age = patient.getAge().toString();
+        String comment = patient.getComment().toString();
+        return String.format(" Name: %s\n Temperature: %s\n Period Of Stay: %s\n Phone: %s\n Age: %s\n Comment: %s\n",
+            name, temperature, periodOfStay, phone, age, comment);
+    }
+    /**
+     * Returns true if both patients of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePatient(Patient otherPatient) {
