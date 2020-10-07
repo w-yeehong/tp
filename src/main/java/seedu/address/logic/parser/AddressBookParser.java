@@ -26,9 +26,9 @@ import seedu.address.logic.parser.patient.DeletePatientCommandParser;
 import seedu.address.logic.parser.patient.EditPatientCommandParser;
 import seedu.address.logic.parser.patient.FindPatientCommandParser;
 import seedu.address.logic.parser.patient.SearchPatientCommandParser;
-import seedu.address.logic.parser.task.AddTaskCommandParser;
 import seedu.address.logic.parser.room.EditRoomCommandParser;
 import seedu.address.logic.parser.room.InitRoomsCommandParser;
+import seedu.address.logic.parser.task.AddTaskCommandParser;
 
 /**
  * Parses user input.
