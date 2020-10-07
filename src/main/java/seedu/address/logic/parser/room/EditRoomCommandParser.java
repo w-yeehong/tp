@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new EditRoomCommand object.
  */
-public class EditRoomParser implements Parser<EditRoomCommand> {
+public class EditRoomCommandParser implements Parser<EditRoomCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditPatientCommand
@@ -35,7 +35,7 @@ public class EditRoomParser implements Parser<EditRoomCommand> {
         try {
             roomToBeEdited = ParserUtil.parseRoomNumber(argMultimap.getPreamble().trim());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRoomCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRoomCommand.MESSAGE_USAGE));
         }
 
         if (args.trim().isEmpty()) {
