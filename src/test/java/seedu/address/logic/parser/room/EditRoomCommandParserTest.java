@@ -14,8 +14,9 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PERIOD_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.room.EditRoomCommand.MESSAGE_ROOM_NOT_EDITED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.model.patient.Age;
 import seedu.address.model.patient.Name;
