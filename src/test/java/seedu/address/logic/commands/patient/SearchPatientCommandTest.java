@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailu
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
@@ -20,8 +22,6 @@ import seedu.address.model.patient.TemperatureRangePredicate;
 import seedu.address.model.room.RoomList;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.SearchPatientDescriptorBuilder;
-
-import java.util.Arrays;
 
 /**
  * Contains unit tests for SearchPatientCommand.
