@@ -192,6 +192,6 @@ public class ModelManager implements Model {
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
 
-        addressBook.addTaskToRoom(task, room);
+        roomList.addTaskToRoom(task, room);
     }
 }

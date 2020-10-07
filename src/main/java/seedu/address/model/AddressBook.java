@@ -7,9 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
-import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
-import seedu.address.model.task.Task;
 
 /**
  * Wraps all data at the address-book level
@@ -18,7 +15,6 @@ import seedu.address.model.task.Task;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePatientList patients;
-    private final RoomList rooms;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +25,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         patients = new UniquePatientList();
-        rooms = new RoomList();
     }
 
     public AddressBook() {}
@@ -97,18 +92,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePatient(Patient key) {
         patients.remove(key);
-    }
-
-    //// task-level operations
-
-    /**
-     * Adds a task to a room in Covigent.
-     *
-     * @param task The task to add.
-     * @param room The room to which the task should be added.
-     */
-    public void addTaskToRoom(Task task, Room room) {
-        rooms.addTaskToRoom(task, room);
     }
 
     //// util methods
