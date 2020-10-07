@@ -14,29 +14,13 @@ public class Task {
     private final Description description;
     private final DateTimeDue dueAt;
 
-    // Metadata (i.e. values generated upon creation).
-    private final DateTimeCreated createdAt;
-
     /**
-     * Every field apart from {@code DateTimeCreated} must be present and not null.
-     *
-     * Creation time of the {@code Task} is set to current system time.
+     * Every field apart must be present and not null.
      */
     public Task(Description description, DateTimeDue dueAt) {
         requireAllNonNull(description, dueAt);
         this.description = description;
         this.dueAt = dueAt;
-        this.createdAt = new DateTimeCreated();
-    }
-
-    /**
-     * Every field apart must be present and not null.
-     */
-    public Task(Description description, DateTimeDue dueAt, DateTimeCreated createdAt) {
-        requireAllNonNull(description, dueAt);
-        this.description = description;
-        this.dueAt = dueAt;
-        this.createdAt = createdAt;
     }
 
     public Description getDescription() {
@@ -45,10 +29,6 @@ public class Task {
 
     public DateTimeDue getDueAt() {
         return dueAt;
-    }
-
-    public DateTimeCreated getCreatedAt() {
-        return createdAt;
     }
 
     /**
@@ -66,14 +46,13 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getDescription().equals(getDescription())
-                && otherTask.getDueAt().equals(getDueAt())
-                && otherTask.getCreatedAt().equals(getCreatedAt());
+                && otherTask.getDueAt().equals(getDueAt());
     }
 
     @Override
     public int hashCode() {
         // Use this method for custom fields hashing instead of implementing your own.
-        return Objects.hash(description, dueAt, createdAt);
+        return Objects.hash(description, dueAt);
     }
 
     @Override
@@ -82,9 +61,7 @@ public class Task {
         builder.append("Description: ")
                 .append(getDescription())
                 .append(" Due Date: ")
-                .append(getDueAt())
-                .append(" Date Created: ")
-                .append(getCreatedAt());
+                .append(getDueAt());
         return builder.toString();
     }
 

@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.task.DateTimeCreated;
 import seedu.address.model.task.DateTimeDue;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -15,7 +14,6 @@ public class TaskBuilder {
 
     private Description description;
     private DateTimeDue dueAt;
-    private DateTimeCreated createdAt;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -23,7 +21,6 @@ public class TaskBuilder {
     public TaskBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
         dueAt = new DateTimeDue(DEFAULT_DATETIME_DUE);
-        createdAt = new DateTimeCreated();
     }
 
     /**
@@ -32,7 +29,6 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         description = taskToCopy.getDescription();
         dueAt = taskToCopy.getDueAt();
-        createdAt = taskToCopy.getCreatedAt();
     }
 
     /**
@@ -52,6 +48,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description, dueAt, createdAt);
+        return new Task(description, dueAt);
     }
 }

@@ -38,11 +38,5 @@ public class TaskTest {
         // different date-time due -> returns false
         editedRemindPatient = new TaskBuilder(REMIND_PATIENT).withDateTimeDue("20200101").build();
         assertFalse(REMIND_PATIENT.equals(editedRemindPatient));
-
-        // different date-time created -> returns false
-        editedRemindPatient = new TaskBuilder()
-                .withDescription(VALID_DESCRIPTION_REMIND_PATIENT)
-                .withDateTimeDue(VALID_DATETIME_DUE_REMIND_PATIENT).build();
-        assertFalse(REMIND_PATIENT.equals(editedRemindPatient));
     }
 }
