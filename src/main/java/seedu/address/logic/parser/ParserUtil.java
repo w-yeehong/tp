@@ -20,8 +20,6 @@ import seedu.address.model.patient.TemperatureRange;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_NUMBER = "Please only enter positive numbers";
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -33,20 +31,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses {@code roomNumber} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified roomNumber is invalid (not non-zero unsigned integer).
-     */
-    public static Integer parseRoomNumber(String roomNumber) throws ParseException {
-        requireNonNull(roomNumber);
-        String trimmedRoomNumber = roomNumber.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedRoomNumber)) {
-            throw new ParseException(MESSAGE_INVALID_NUMBER);
-        }
-        return Integer.parseInt(trimmedRoomNumber);
     }
 
     /**

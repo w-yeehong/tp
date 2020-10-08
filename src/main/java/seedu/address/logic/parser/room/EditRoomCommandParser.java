@@ -10,6 +10,7 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.RoomParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -34,7 +35,7 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
         Integer roomToBeEdited;
 
         try {
-            roomToBeEdited = ParserUtil.parseRoomNumber(argMultimap.getPreamble().trim());
+            roomToBeEdited = RoomParserUtil.parseRoomNumber(argMultimap.getPreamble().trim());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRoomCommand.MESSAGE_USAGE));
         }
@@ -47,7 +48,7 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
 
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
             editRoomDescriptor.setRoomNumber(
-                    ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
+                RoomParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
         }
 
         if (argMultimap.getValue(PREFIX_PATIENT_NAME).isPresent()) {
