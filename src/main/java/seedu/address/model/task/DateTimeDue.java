@@ -26,7 +26,7 @@ public class DateTimeDue implements Comparable<DateTimeDue> {
             + "Format 3 and 4 allow a single digit for day and month (e.g. 1/1/2020); \n"
             + "Format 1 and 2 do not.";
 
-    private static final DateTimeFormatter[] ALLOWED_DATETIME_FORMATS = {
+    public static final DateTimeFormatter[] ALLOWED_DATETIME_FORMATS = {
         DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
         DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
     };

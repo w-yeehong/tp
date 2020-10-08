@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
+import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_TASK_NUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -78,20 +79,17 @@ public class NewCommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withTemperature(VALID_TEMP_BOB).withPeriodOfStay(VALID_PERIOD_BOB)
                 .withAge(VALID_AGE_BOB).withComment(NO_COMMENT).build();
     }
-    // Tasks
 
+    // Tasks
     public static final String VALID_DESCRIPTION_REMIND_PATIENT = "Remind Alice to change bedsheets.";
     public static final String VALID_DESCRIPTION_ORDER_BEDSHEET = "Order new bedsheets for Room #3.";
     public static final String VALID_DATETIME_DUE_REMIND_PATIENT = "20201230 2359";
     public static final String VALID_DATETIME_DUE_ORDER_BEDSHEET = "20201023 1930";
-    public static final String VALID_ROOM_NUMBER_ONE = "1";
-    public static final String VALID_ROOM_NUMBER_TWO = "2";
-    public static final Index VALID_ROOM_INDEX_ONE = Index.fromOneBased(1);
-    public static final Index VALID_ROOM_INDEX_TWO = Index.fromOneBased(2);
+    public static final Index VALID_TASK_INDEX_ONE = Index.fromOneBased(1);
+    public static final Index VALID_TASK_INDEX_TWO = Index.fromOneBased(2);
 
     public static final String INVALID_DATETIME_DUE_VALUE = "aaa";
     public static final String INVALID_DATETIME_DUE_FORMAT = "2020-12-31";
-    public static final String INVALID_ROOM_NUMBER = "-1";
 
     public static final String DESCRIPTION_DESC_REMIND_PATIENT = " " + PREFIX_DESCRIPTION
             + VALID_DESCRIPTION_REMIND_PATIENT;
@@ -101,28 +99,40 @@ public class NewCommandTestUtil {
             + VALID_DATETIME_DUE_REMIND_PATIENT;
     public static final String DATETIME_DUE_DESC_ORDER_BEDSHEETS = " " + PREFIX_DUE_DATE
             + VALID_DATETIME_DUE_ORDER_BEDSHEET;
-    public static final String ROOM_NUMBER_DESC_ONE = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_ONE;
-    public static final String ROOM_NUMBER_DESC_TWO = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_TWO;
+    public static final String TASK_NUMBER_DESC_ONE = " " + PREFIX_TASK_NUMBER + "1";
+    public static final String TASK_NUMBER_DESC_TWO = " " + PREFIX_TASK_NUMBER + "2";
 
     public static final String INVALID_DATETIME_DUE_VALUE_DESC = " " + PREFIX_DUE_DATE
             + INVALID_DATETIME_DUE_VALUE;
     public static final String INVALID_DATETIME_DUE_FORMAT_DESC = " " + PREFIX_DUE_DATE
             + INVALID_DATETIME_DUE_FORMAT;
-    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
-            + INVALID_ROOM_NUMBER;
-    //Rooms
+
+    // Rooms
+    public static final String VALID_ROOM_NUMBER_ONE = "1";
+    public static final String VALID_ROOM_NUMBER_TWO = "2";
+    public static final Index VALID_ROOM_INDEX_ONE = Index.fromOneBased(1);
+    public static final Index VALID_ROOM_INDEX_TWO = Index.fromOneBased(2);
+    public static final String VALID_PATIENT_NAME_JAMES = "james";
+    public static final String VALID_PATIENT_NAME_AMY = "amy";
+
+    public static final String INVALID_ROOM_NUMBER = "-1";
     public static final String INVALID_NON_NUMBER_ROOM_NUMBER = "a";
     public static final String INVALID_NON_INTEGER_ROOM_NUMBER = "1.1";
+    public static final String INVALID_PATIENT_NAME_JAMES = "james$";
+
+    public static final String ROOM_NUMBER_DESC_ONE = " " + PREFIX_ROOM_NUMBER + "1";
+    public static final String ROOM_NUMBER_DESC_TWO = " " + PREFIX_ROOM_NUMBER + "2";
+    public static final String VALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + VALID_PATIENT_NAME_JAMES;
+    public static final String VALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY;
+
+    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
+            + INVALID_ROOM_NUMBER;
     public static final String INVALID_NON_NUMBER_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
         + INVALID_NON_NUMBER_ROOM_NUMBER;
     public static final String INVALID_INTEGER_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
         + INVALID_NON_INTEGER_ROOM_NUMBER;
     //invalid name with symbol
-    public static final String VALID_PATIENT_NAME_JAMES = "james";
-    public static final String INVALID_PATIENT_NAME_JAMES = "james$";
     public static final String INVALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + INVALID_PATIENT_NAME_JAMES;
-    public static final String VALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + VALID_PATIENT_NAME_JAMES;
-    public static final String VALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY;
     public static final String INVALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY + "$";
 
     /**
