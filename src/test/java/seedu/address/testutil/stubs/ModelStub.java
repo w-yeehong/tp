@@ -119,7 +119,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean containsRoom(Room room) {
+    public boolean hasRoom(Room room) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -200,7 +200,7 @@ public class ModelManager implements Model {
      * @param room That is to be searched for.
      * @return True if roomList contains {@code room}.
      */
-    public boolean containsRoom(Room room) {
+    public boolean hasRoom(Room room) {
         requireAllNonNull(room);
         return roomList.containsRoom(room);
     }

@@ -72,7 +72,7 @@ public class EditRoomCommand extends Command {
         Room roomToEdit = lastShownList.get(index.getZeroBased() - 1);
         Room editedRoom = createEditedRoom(model, roomToEdit, editRoomDescriptor);
 
-        if (!roomToEdit.isSameRoom(editedRoom) && model.containsRoom(editedRoom)) {
+        if (!roomToEdit.isSameRoom(editedRoom) && model.hasRoom(editedRoom)) {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
 
