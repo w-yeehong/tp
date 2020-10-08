@@ -16,6 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditRoomCommand object.
  */
 public class EditRoomCommandParser implements Parser<EditRoomCommand> {
+    private static final String INPUT_REMOVE_PATIENT = "-";
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditPatientCommand
@@ -51,7 +52,7 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
 
         if (argMultimap.getValue(PREFIX_PATIENT_NAME).isPresent()) {
             String patientFieldInput = argMultimap.getValue(PREFIX_PATIENT_NAME).get();
-            if (patientFieldInput.equals("-")) {
+            if (patientFieldInput.equals(INPUT_REMOVE_PATIENT)) {
                 editRoomDescriptor.setOccupied(false); //empty the room
             } else {
                 editRoomDescriptor.setPatientName(ParserUtil.parseName(patientFieldInput));

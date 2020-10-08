@@ -111,7 +111,7 @@ public class EditRoomCommand extends Command {
         //case 4: allocate patient to the room
         Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
         List<Patient> patientList = model.getFilteredPatientList();
-        Room updatedRoom = isValidPatient(patientList, patientName, updatedRoomNumber);
+        Room updatedRoom = getValidPatient(patientList, patientName, updatedRoomNumber);
         return updatedRoom;
     }
 
@@ -123,8 +123,8 @@ public class EditRoomCommand extends Command {
      * @param updatedRoomNumber Room number of room.
      * @return Room that is updated with the new patient and room number.
      */
-    private static Room isValidPatient(List<Patient> patientList, Name patientName,
-                                       Integer updatedRoomNumber) throws CommandException {
+    private static Room getValidPatient(List<Patient> patientList, Name patientName,
+                                        Integer updatedRoomNumber) throws CommandException {
         for (Patient patient : patientList) {
             String inputPatientName = patientName.toString().trim().toLowerCase();
             String recordName = patient.getName().toString();
