@@ -14,7 +14,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.room.RoomList;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListPatientCommand.
  */
 public class ListPatientCommandTest {
 
