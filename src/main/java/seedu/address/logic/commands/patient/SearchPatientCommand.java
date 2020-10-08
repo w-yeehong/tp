@@ -64,20 +64,38 @@ public class SearchPatientCommand extends Command {
         if (criteriaToSearch == SearchCriteria.CRITERIA_NOT_FOUND) {
             throw new CommandException(MESSAGE_NOT_FOUND);
         } else if (criteriaToSearch == SearchCriteria.CRITERIA_IS_NAME) {
-            namePredicate = new NameContainsKeywordsPredicate(Arrays
-                    .asList(searchPatientDescriptor.getStringName().split("\\s+")));
-            model.updateFilteredPatientList(namePredicate);
+            updateNamePredicate(model, searchPatientDescriptor);
             return findPatientWithName(searchPatientDescriptor, patientList);
         } else if (criteriaToSearch == SearchCriteria.CRITERIA_IS_TEMPERATURE) {
-            double startingTemperature = searchPatientDescriptor.getTemperatureRange().getStartingTemperature();
-            double endingTemperature = searchPatientDescriptor.getTemperatureRange().getEndingTemperature();
-            temperaturePredicate = new TemperatureRangePredicate(startingTemperature, endingTemperature);
-            model.updateFilteredPatientList(temperaturePredicate);
+            updateTemperaturePredicate(model, searchPatientDescriptor);
             return findPatientWithTemperature(searchPatientDescriptor, patientList);
         } else if (criteriaToSearch == SearchCriteria.TOO_MANY_CRITERIA) {
             return new CommandResult(Messages.MESSAGE_TOO_MANY_COMMANDS);
         }
         throw new CommandException(MESSAGE_NOT_FOUND);
+    }
+
+    /**
+     * Update the predicate for filteredlist.
+     * @param searchPatientDescriptor the patient's name in the descriptor.
+     * @param model the model.
+     */
+    public void updateNamePredicate(Model model, SearchPatientDescriptor searchPatientDescriptor) {
+        namePredicate = new NameContainsKeywordsPredicate(Arrays
+                .asList(searchPatientDescriptor.getStringName().split("\\s+")));
+        model.updateFilteredPatientList(namePredicate);
+    }
+
+    /**
+     * Update the predicate for filteredlist.
+     * @param searchPatientDescriptor the patient's name in the descriptor.
+     * @param model the model.
+     */
+    public void updateTemperaturePredicate(Model model, SearchPatientDescriptor searchPatientDescriptor) {
+        double startingTemperature = searchPatientDescriptor.getTemperatureRange().getStartingTemperature();
+        double endingTemperature = searchPatientDescriptor.getTemperatureRange().getEndingTemperature();
+        temperaturePredicate = new TemperatureRangePredicate(startingTemperature, endingTemperature);
+        model.updateFilteredPatientList(temperaturePredicate);
     }
 
     /**
