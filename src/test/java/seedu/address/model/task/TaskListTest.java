@@ -132,4 +132,21 @@ public class TaskListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> taskList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void toString_emptyTaskList_success() {
+        String expectedString = "";
+        assertEquals(taskList.toString(), expectedString);
+    }
+
+    @Test
+    public void toString_taskListWithTasks_success() {
+        taskList.add(REMIND_PATIENT);
+        taskList.add(RESTOCK_SUPPLY);
+
+        String expectedString = REMIND_PATIENT.toString();
+        expectedString += "\n";
+        expectedString += RESTOCK_SUPPLY.toString();
+        assertEquals(taskList.toString(), expectedString);
+    }
 }

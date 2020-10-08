@@ -107,6 +107,18 @@ public class TaskList implements Iterable<Task> {
     }
 
     @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        for (Task task : internalList) {
+            builder.append(task);
+            builder.append("\n");
+        }
+
+        return builder.toString().trim();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskList // instanceof handles nulls
