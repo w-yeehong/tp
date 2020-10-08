@@ -90,6 +90,7 @@ public class NewCommandTestUtil {
 
     public static final String INVALID_DATETIME_DUE_VALUE = "aaa";
     public static final String INVALID_DATETIME_DUE_FORMAT = "2020-12-31";
+    public static final String INVALID_TASK_NUMBER = "-1";
 
     public static final String DESCRIPTION_DESC_REMIND_PATIENT = " " + PREFIX_DESCRIPTION
             + VALID_DESCRIPTION_REMIND_PATIENT;
@@ -106,6 +107,8 @@ public class NewCommandTestUtil {
             + INVALID_DATETIME_DUE_VALUE;
     public static final String INVALID_DATETIME_DUE_FORMAT_DESC = " " + PREFIX_DUE_DATE
             + INVALID_DATETIME_DUE_FORMAT;
+    public static final String INVALID_TASK_NUMBER_DESC = " " + PREFIX_TASK_NUMBER
+            + INVALID_TASK_NUMBER;
 
     // Rooms
     public static final String VALID_ROOM_NUMBER_ONE = "1";
