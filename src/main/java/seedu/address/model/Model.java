@@ -118,7 +118,7 @@ public interface Model {
     /**
      * Returns true if a room with the same identity as {@code room} exists in the application.
      */
-    boolean containsRoom(Room room);
+    boolean hasRoom(Room room);
 
     /**
      * Replaces the given room {@code target} with {@code editedRoom}.
