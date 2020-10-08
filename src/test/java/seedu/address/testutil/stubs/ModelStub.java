@@ -121,17 +121,22 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addTaskToRoom(Task task, Room room) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public boolean hasRoom(Room room) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setSingleRoom(Room target, Room editedRoom) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addTaskToRoom(Task task, Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteTaskFromRoom(Task task, Room room) {
         throw new AssertionError("This method should not be called.");
     }
 

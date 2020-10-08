@@ -110,25 +110,6 @@ public interface Model {
     void addRooms(int num);
 
     /**
-     * Checks if the roomList contains {@code room}.
-     *
-     * @param room That is to be searched for.
-     * @return True if roomList contains {@code room}.
-     */
-    boolean hasRoom(Room room);
-
-    /**
-     * Replaces the given room {@code target} with {@code editedRoom}.
-     * {@code target} must exist in the application.
-     * The room identity of {@code editedRoom} must not be the same as
-     * another existing room in the application.
-     *
-     * @param target Of the room to be changed.
-     * @param editedRoom Is the newly edited room.
-     */
-    void setSingleRoom(Room target, Room editedRoom);
-
-    /**
      * Checks if the given room number is present in the application.
      *
      * @param roomNumber to check if it is in the application.
@@ -155,5 +136,41 @@ public interface Model {
      */
     PriorityQueue<Room> getRooms();
 
+    /**
+     * Returns true if a room with the same identity as {@code room} exists in Covigent.
+     *
+     * @param room The room .
+     * @return true if {@code room} is in Covigent; false otherwise.
+     */
+    boolean hasRoom(Room room);
+
+    /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in the application.
+     * The room identity of {@code editedRoom} must not be the same as
+     * another existing room in the application.
+     *
+     * @param target Of the room to be changed.
+     * @param editedRoom Is the newly edited room.
+     */
+    void setSingleRoom(Room target, Room editedRoom);
+
+    /**
+     * Adds {@code task} to {@code room}.
+     * The room must exist in {@code CovigentApp}.
+     *
+     * @param task The task to add.
+     * @param room The room to which the task should be added.
+     */
     void addTaskToRoom(Task task, Room room);
+
+    /**
+     * Deletes {@code task} from {@code room}.
+     * The room must exist in Covigent.
+     * The task must exist in room.
+     *
+     * @param task The task to delete.
+     * @param room The room from which the task should be delete.
+     */
+    void deleteTaskFromRoom(Task task, Room room);
 }

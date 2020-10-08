@@ -258,4 +258,11 @@ public class ModelManager implements Model {
         requireAllNonNull(task, room);
         roomList.addTaskToRoom(task, room);
     }
+
+    @Override
+    public void deleteTaskFromRoom(Task task, Room room) {
+        requireAllNonNull(task, room);
+
+        roomList.deleteTaskFromRoom(task, room);
+    }
 }
