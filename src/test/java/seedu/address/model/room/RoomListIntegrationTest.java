@@ -29,11 +29,6 @@ public class RoomListIntegrationTest {
     }
 
     @Test
-    public void addTaskToRoom_nullTaskNullRoom_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> roomList.addTaskToRoom(null, null));
-    }
-
-    @Test
     public void addTaskToRoom_validTaskNullRoom_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> roomList.addTaskToRoom(REMIND_PATIENT, null));
     }
@@ -61,11 +56,6 @@ public class RoomListIntegrationTest {
         expectedRoomList.addRooms(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT);
 
         assertEquals(expectedRoomList, roomList);
-    }
-
-    @Test
-    public void deleteTaskFromRoom_nullTaskNullRoom_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> roomList.deleteTaskFromRoom(null, null));
     }
 
     @Test
