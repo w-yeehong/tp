@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-
 class RoomTest {
 
     @Test
-    void isOccupied() {
+    public void isOccupied() {
         Room room1 = new Room(1);
         //default value of room1 is false -> returns false
         assertFalse(room1.isOccupied());

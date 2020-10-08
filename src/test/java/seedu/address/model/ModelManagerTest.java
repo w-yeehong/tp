@@ -95,6 +95,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getRoomList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getRoomList().remove(0));
+    }
+
+    @Test
     public void equals() {
         CovigentApp covigentApp = new CovigentAppBuilder().withPatient(ALICE).withPatient(BENSON).build();
         CovigentApp differentCovigentApp = new CovigentApp();

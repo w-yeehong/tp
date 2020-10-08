@@ -29,8 +29,7 @@ import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalPatients;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
- * and unit tests for EditPatientCommand.
+ * Contains integration tests and unit tests for EditPatientCommand.
  */
 public class EditPatientCommandTest {
 

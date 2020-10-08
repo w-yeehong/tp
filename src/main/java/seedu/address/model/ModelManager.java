@@ -16,6 +16,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,7 +26,7 @@ public class ModelManager implements Model {
 
     private final CovigentApp covigentApp;
     private final UserPrefs userPrefs;
-    private final RoomList roomList;
+    private final RoomList roomList; // TODO: remove roomList from ModelManager and use the list in AddressBook
     private final FilteredList<Patient> filteredPatients;
 
     /**
@@ -95,6 +96,8 @@ public class ModelManager implements Model {
         return covigentApp;
     }
 
+    //=========== Patients ====================================================================================
+
     @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
@@ -121,10 +124,6 @@ public class ModelManager implements Model {
 
     //=========== Filtered Patient List Accessors =============================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
-     * {@code versionedCovigentApp}
-     */
     @Override
     public ObservableList<Patient> getFilteredPatientList() {
         return filteredPatients;
@@ -157,21 +156,57 @@ public class ModelManager implements Model {
                 && roomList.equals(other.roomList);
     }
 
-    //=========== RoomList =============================================================
+    //=========== Rooms ========================================================================================
 
-    public PriorityQueue<Room> getRooms() {
-        return this.roomList.getRooms();
-    }
-
+    @Override
     public int getNumOfRooms() {
         return this.roomList.getNumOfRooms();
     }
 
+    @Override
     public void addRooms(int num) {
         roomList.addRooms(num);
     }
 
-    public RoomList getRoomList() {
+    //=========== RoomList Accessors ==========================================================================
+
+    @Override
+    public ObservableList<Room> getRoomList() {
+        return roomList.asUnmodifiableObservableList();
+    }
+
+    // TODO: remove this method and use getRoomList() instead (I will need this modifableRoomList for editing though)
+    @Override
+    public RoomList getModifiableRoomList() {
         return roomList;
+    }
+
+    @Override
+    public PriorityQueue<Room> getRooms() {
+        return this.roomList.getRooms();
+    }
+
+    //=========== Tasks ========================================================================================
+
+    @Override
+    public void addTaskToRoom(Task task, Room room) {
+        requireAllNonNull(task, room);
+
+        roomList.addTaskToRoom(task, room);
+    }
+    /**
+     * Checks if the roomList contains {@code room}.
+     *
+     * @param room That is to be searched for.
+     * @return True if roomList contains {@code room}.
+     */
+    public boolean hasRoom(Room room) {
+        requireAllNonNull(room);
+        return roomList.containsRoom(room);
+    }
+
+    public void setSingleRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+        roomList.setSingleRoom(target, editedRoom);
     }
 }

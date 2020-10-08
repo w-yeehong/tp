@@ -1,20 +1,22 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
+
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.tasks.Task;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 public class RoomBuilder {
 
     public static final int DEFAULT_ROOM_NUMBER = 10;
     public static final boolean DEFAULT_IS_OCCUPIED = true;
     public static final Patient DEFAULT_PATIENT = TypicalPatients.ALICE;
-    public static final Task DEFAULT_TASK = null;
 
     private int roomNumber;
     private boolean isOccupied;
     private Patient patient;
-    private Task task;
+    private TaskList taskList;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -23,17 +25,21 @@ public class RoomBuilder {
         roomNumber = DEFAULT_ROOM_NUMBER;
         isOccupied = DEFAULT_IS_OCCUPIED;
         patient = DEFAULT_PATIENT;
-        task = DEFAULT_TASK;
+        taskList = new TaskList();
     }
 
     /**
      * Initializes the RoomBuilder with the data of {@code roomToCopy}.
+     *
+     * The {@code TaskList} is a shallow copy of the original (i.e. the {@code Task} within
+     * the list are not copied).
      */
     public RoomBuilder(Room roomToCopy) {
         roomNumber = roomToCopy.getRoomNumber();
         isOccupied = roomToCopy.isOccupied();
         patient = roomToCopy.getPatient();
-        task = roomToCopy.getTask();
+        taskList = new TaskList();
+        taskList.setTasks(roomToCopy.getTaskList().asUnmodifiableObservableList()); // shallow copy
     }
 
     /**
@@ -58,16 +64,29 @@ public class RoomBuilder {
         this.patient = patient;
         return this;
     }
+
     /**
-     * Sets the {@code task} of the {@code Room} that we are building.
+     * Sets the {@code taskList} of the {@code Room} that we are building
+     * with the provided tasks.
      */
-    public RoomBuilder withTask(Task task) {
-        this.task = task;
+    public RoomBuilder withTasks(Task... tasks) {
+        TaskList taskList = new TaskList();
+        taskList.setTasks(Arrays.asList(tasks));
+
+        this.taskList = taskList;
+        return this;
+    }
+
+    /**
+     * Sets the {@code taskList} of the {@code Room} that we are building.
+     */
+    public RoomBuilder withTasks(TaskList taskList) {
+        this.taskList = taskList;
         return this;
     }
 
     public Room build() {
-        return new Room(roomNumber, isOccupied);
+        return new Room(roomNumber, isOccupied, patient, taskList);
     }
 }
 

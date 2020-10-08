@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveRoomList(model.getRoomList());
+            storage.saveRoomList(model.getModifiableRoomList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE);
         }
@@ -72,6 +72,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Room> getRoomList() {
+        return model.getModifiableRoomList().getRoomObservableList();
+    }
+
+    @Override
     public Path getCovigentAppFilePath() {
         return model.getCovigentAppFilePath();
     }
@@ -84,10 +89,5 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public ObservableList<Room> getListOfRooms() {
-        return model.getRoomList().getRoomObservableList();
     }
 }

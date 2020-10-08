@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -80,7 +81,10 @@ public interface Model {
      */
     void setPatient(Patient target, Patient editedPatient);
 
-    /** Returns an unmodifiable view of the filtered patient list */
+    /**
+     * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
+     * {@code UniquePatientList}.
+     */
     ObservableList<Patient> getFilteredPatientList();
 
     /**
@@ -90,16 +94,37 @@ public interface Model {
     void updateFilteredPatientList(Predicate<Patient> predicate);
 
     /**
-     * Returns Priority Queue of rooms
-     */
-    PriorityQueue<Room> getRooms();
-
-    /**
-     * Returns total number of rooms in a hotel
+     * Returns total number of rooms in the application's {@code RoomList}.
      */
     int getNumOfRooms();
 
     void addRooms(int num);
 
-    RoomList getRoomList();
+    /**
+     * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
+     * {@code RoomList}.
+     */
+    ObservableList<Room> getRoomList();
+
+    RoomList getModifiableRoomList();
+
+    /**
+     * Returns Priority Queue of rooms
+     */
+    PriorityQueue<Room> getRooms();
+
+    void addTaskToRoom(Task task, Room room);
+
+    /**
+     * Returns true if a room with the same identity as {@code room} exists in the application.
+     */
+    boolean hasRoom(Room room);
+
+    /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in the application.
+     * The room identity of {@code editedRoom} must not be the same as
+     * another existing room in the application.
+     */
+    void setSingleRoom(Room target, Room editedRoom);
 }
