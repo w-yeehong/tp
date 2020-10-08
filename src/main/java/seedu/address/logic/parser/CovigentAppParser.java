@@ -33,7 +33,7 @@ import seedu.address.logic.parser.task.AddTaskCommandParser;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class CovigentAppParser {
 
     /**
      * Used for initial separation of command word and args.

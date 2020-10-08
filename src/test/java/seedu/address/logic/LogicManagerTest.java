@@ -25,11 +25,11 @@ import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCovigentApp;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.RoomList;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonCovigentAppStorage;
 import seedu.address.storage.JsonRoomOccupancyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -46,12 +46,12 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonCovigentAppStorage covigentAppStorage =
+                new JsonCovigentAppStorage(temporaryFolder.resolve("covigentApp.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonRoomOccupancyStorage roomOccupancyStorage =
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
+        StorageManager storage = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -75,14 +75,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonCovigentAppIoExceptionThrowingStub
+        JsonCovigentAppStorage covigentAppStorage =
+                new JsonCovigentAppIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCovigentApp.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonRoomOccupancyStorage roomOccupancyStorage =
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, roomOccupancyStorage);
+        StorageManager storage = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -138,7 +138,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomList());
+        Model expectedModel = new ModelManager(model.getCovigentApp(), new UserPrefs(), new RoomList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -158,13 +158,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonCovigentAppIoExceptionThrowingStub extends JsonCovigentAppStorage {
+        private JsonCovigentAppIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveCovigentApp(ReadOnlyCovigentApp covigentApp, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

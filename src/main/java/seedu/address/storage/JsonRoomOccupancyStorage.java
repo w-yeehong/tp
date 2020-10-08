@@ -43,13 +43,13 @@ public class JsonRoomOccupancyStorage {
      * @throws IOException if there was any problem when reading from the storage.
      */
     public Optional<ReadOnlyRoomList> readOnlyRoomOccupancy(Path filePath) throws IOException, DataConversionException {
-        Optional<JsonSerializableRoomList> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableRoomList> jsonCovigentApp = JsonUtil.readJsonFile(
                 filePath, JsonSerializableRoomList.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonCovigentApp.isPresent()) {
             return Optional.empty();
         }
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonCovigentApp.get().toModelType());
         } catch (IllegalValueException ive) {
             throw new DataConversionException(ive);
         }

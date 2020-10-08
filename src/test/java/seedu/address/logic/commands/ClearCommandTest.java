@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.CovigentApp;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -14,7 +14,7 @@ import seedu.address.model.room.RoomList;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyCovigentApp_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -22,10 +22,10 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
-        expectedModel.setAddressBook(new AddressBook());
+    public void execute_nonEmptyCovigentApp_success() {
+        Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+        Model expectedModel = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+        expectedModel.setCovigentApp(new CovigentApp());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.model.AddressBook;
+import seedu.address.model.CovigentApp;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,7 +28,7 @@ import seedu.address.testutil.SearchPatientDescriptorBuilder;
  */
 public class SearchPatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
+    private Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
 
     @Test
     public void execute_searchPatientName_success() {
@@ -41,7 +41,7 @@ public class SearchPatientCommandTest {
         model.updateFilteredPatientList(predicate);
         String expectedMessage = String.format(SearchPatientCommand.MESSAGE_SEARCH_PATIENT_SUCCESS, patient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new CovigentApp(model.getCovigentApp()), new UserPrefs(),
                 new RoomList());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
 
@@ -63,7 +63,7 @@ public class SearchPatientCommandTest {
         String expectedMessage =
                 String.format(SearchPatientCommand.MESSAGE_SEARCH_PATIENT_LIST_SUCCESS + specifiOutput);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new CovigentApp(model.getCovigentApp()), new UserPrefs(),
                 new RoomList());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
         expectedModel.updateFilteredPatientList(predicate);
@@ -84,7 +84,7 @@ public class SearchPatientCommandTest {
 
     @Test
     void execute_searchPatientTemperatureRange_throwsCommandException() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
+        Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
         TemperatureRangePredicate predicate = new TemperatureRangePredicate(36.9, 37.0);
         Patient patient = new PatientBuilder().withTemperature("36.0").build();
         SearchPatientCommand.SearchPatientDescriptor descriptor =

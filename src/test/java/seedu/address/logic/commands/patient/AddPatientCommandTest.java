@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.CovigentApp;
+import seedu.address.model.ReadOnlyCovigentApp;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.stubs.ModelStub;
@@ -109,8 +109,8 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyCovigentApp getCovigentApp() {
+            return new CovigentApp();
         }
 
     }

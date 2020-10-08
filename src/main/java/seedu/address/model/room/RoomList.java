@@ -15,13 +15,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.model.task.Task;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonCovigentAppStorage;
 
 /**
  * Contains information regarding the Room information
  */
 public class RoomList implements ReadOnlyRoomList {
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonCovigentAppStorage.class);
 
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>();

@@ -6,7 +6,7 @@ import seedu.address.model.patient.Patient;
 /**
  * Unmodifiable view of address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyCovigentApp {
 
     /**
      * Returns an unmodifiable view of the patients list.
