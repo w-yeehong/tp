@@ -27,7 +27,7 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_BOB;
-import static seedu.address.logic.commands.patient.EditPatientCommand.MESSAGE_NOT_EDITED;
+import static seedu.address.logic.commands.patient.EditPatientCommand.MESSAGE_PATIENT_NOT_EDITED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -51,7 +51,7 @@ public class EditPatientCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // No field specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_PATIENT_NOT_EDITED);
 
         // No index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);

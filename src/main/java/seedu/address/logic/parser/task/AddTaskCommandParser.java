@@ -36,7 +36,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         Description description = TaskParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        // TODO: TaskParserUtil can extend from ParserUtil (patient-related methods can be moved to PatientParserUtil)
+        // TODO: TaskParserUtil can extend from ParserUtil (patient-related methods can be moved to ParserUtil)
         Index roomNumber = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
         DateTimeDue dueAt = TaskParserUtil.parseDateTimeDue(argMultimap.getValue(PREFIX_DUE_DATE)); // optional
 

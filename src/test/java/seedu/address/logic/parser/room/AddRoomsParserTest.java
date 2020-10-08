@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.room.InitRoomsCommand;
 
 class AddRoomsParserTest {
-    private InitRoomsParser parser = new InitRoomsParser();
+    private InitRoomsCommandParser parser = new InitRoomsCommandParser();
     @Test
     void parse() {
         String input = "123";

@@ -10,20 +10,14 @@ import seedu.address.model.task.TaskList;
  * Represents Room in the app
  */
 public class Room implements Comparable<Room> {
+
+    public static final String MESSAGE_OCCUPANCY_CONSTRAINTS =
+            "Occupancy should only be either true or false and not other words";
+
     private int roomNumber;
     private boolean isOccupied;
     private Patient patient;
-    private TaskList taskList;
-
-    /**
-     * Creates room object where roomNumber and isOccupied values are values given by user
-     */
-    public Room(int roomNumber, boolean isOccupied) {
-        this.roomNumber = roomNumber;
-        this.isOccupied = isOccupied;
-        this.patient = null;
-        this.taskList = new TaskList();
-    }
+    private TaskList taskList = new TaskList();
 
     /**
      * Creates room object where isOccupied is always false
@@ -32,7 +26,27 @@ public class Room implements Comparable<Room> {
         this.roomNumber = roomNumber;
         this.isOccupied = false;
         this.patient = null;
-        this.taskList = new TaskList();
+    }
+
+    /**
+     * Creates room object where roomNumber and isOccupied values are values given by user
+     */
+    public Room(int roomNumber, boolean isOccupied) {
+        this.roomNumber = roomNumber;
+        this.isOccupied = isOccupied;
+        this.patient = null;
+    }
+
+    /**
+     * Creates a room object containing a patient that can be found in the application.
+     *
+     * @param roomNumber Room Number of the room.
+     * @param patient Patient to be added to the room.
+     */
+    public Room(int roomNumber, Patient patient) {
+        this.roomNumber = roomNumber;
+        this.isOccupied = true;
+        this.patient = patient;
     }
 
     /**
@@ -49,16 +63,16 @@ public class Room implements Comparable<Room> {
         return roomNumber;
     }
 
-    public boolean isOccupied() {
-        return isOccupied;
-    }
-
     public Patient getPatient() {
         return patient;
     }
 
     public TaskList getTaskList() {
         return taskList;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
     }
 
     public void setOccupied(boolean isOccupied) {
@@ -73,9 +87,22 @@ public class Room implements Comparable<Room> {
     public void addTask(Task task) {
         taskList.add(task);
     }
+    /**
+     * Returns true if both rooms of the same number have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two rooms.
+     */
+    public boolean isSameRoom(Room otherRoom) {
+        if (otherRoom == this) {
+            return true;
+        }
+
+        return otherRoom != null
+                && Integer.valueOf(otherRoom.getRoomNumber()).equals(getRoomNumber());
+    }
 
     /**
      * Returns true if both rooms have the same identity and data fields.
+     * This defines a stronger notion of equality between two rooms.
      */
     @Override
     public boolean equals(Object o) {
@@ -111,6 +138,13 @@ public class Room implements Comparable<Room> {
                 return 1;
             }
         }
+    }
+
+    /**
+     * Returns true if a given string is a valid boolean value.
+     */
+    public static boolean isValidOccupancy(String test) {
+        return test.trim().toLowerCase().equals("true") || test.trim().toLowerCase().equals("false");
     }
 
     public String toString() {

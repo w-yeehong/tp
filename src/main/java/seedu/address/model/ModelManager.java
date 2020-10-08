@@ -175,7 +175,7 @@ public class ModelManager implements Model {
         return roomList.asUnmodifiableObservableList();
     }
 
-    // TODO: remove this method and use getRoomList() instead
+    // TODO: remove this method and use getRoomList() instead (I will need this modifableRoomList for editing though)
     @Override
     public RoomList getModifiableRoomList() {
         return roomList;
@@ -193,5 +193,20 @@ public class ModelManager implements Model {
         requireAllNonNull(task, room);
 
         roomList.addTaskToRoom(task, room);
+    }
+    /**
+     * Checks if the roomList contains {@code room}.
+     *
+     * @param room That is to be searched for.
+     * @return True if roomList contains {@code room}.
+     */
+    public boolean hasRoom(Room room) {
+        requireAllNonNull(room);
+        return roomList.containsRoom(room);
+    }
+
+    public void setSingleRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+        roomList.setSingleRoom(target, editedRoom);
     }
 }
