@@ -35,7 +35,7 @@ public class EditRoomCommand extends Command {
             + "Parameters: ROOM NUMBER"
             + "[" + PREFIX_ROOM_NUMBER + "ROOM NUMBER] "
             + "[" + PREFIX_PATIENT_NAME + "PATIENT NAME]\n"
-            + "Example: " + COMMAND_WORD + "23 "
+            + "Example: " + COMMAND_WORD + " 23 "
             + PREFIX_ROOM_NUMBER + "123 "
             + PREFIX_PATIENT_NAME + "Mary Doe";
 

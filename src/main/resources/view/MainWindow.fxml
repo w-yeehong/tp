@@ -51,7 +51,6 @@
             <Tab fx:id="patientTab" text="Patients">
               <content>
                 <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-
               </content>
             </Tab>
             <Tab fx:id="roomTab" text="Rooms">

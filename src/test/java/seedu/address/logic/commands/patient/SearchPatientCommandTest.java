@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-
 import static seedu.address.logic.commands.patient.SearchPatientCommand.MESSAGE_NOT_FOUND;
 import static seedu.address.logic.commands.patient.SearchPatientCommand.MESSAGE_PATIENT_NOT_FOUND;
 import static seedu.address.logic.commands.patient.SearchPatientCommand.MESSAGE_SEARCH_PATIENT_LIST_SUCCESS;
