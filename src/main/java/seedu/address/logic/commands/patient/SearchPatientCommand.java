@@ -191,7 +191,9 @@ public class SearchPatientCommand extends Command {
             this.stringName = stringName;
         }
 
-        public String getStringName() { return stringName; }
+        public String getStringName() {
+            return stringName;
+        }
 
         public void setName(Name name) {
             this.name = name;

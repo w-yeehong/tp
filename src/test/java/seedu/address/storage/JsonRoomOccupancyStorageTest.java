@@ -25,7 +25,7 @@ class JsonRoomOccupancyStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
+    public void readCovigentApp_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readRoomList(null));
     }
     private java.util.Optional<ReadOnlyRoomList> readRoomList(String filePath) throws Exception {
@@ -42,15 +42,15 @@ class JsonRoomOccupancyStorageTest {
         assertFalse(readRoomList("NonExistentFile.json").isPresent());
     }
     @Test
-    public void readAddressBook_invalidPatientAddressBook_throwDataConversionException() {
+    public void readCovigentApp_invalidRoomCovigentApp_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readRoomList("invalidRoomInRoomList.json"));
     }
     @Test
-    public void readAddressBook_invalidAndValidPatientAddressBook_throwDataConversionException() {
+    public void readCovigentApp_invalidAndValidRoomCovigentApp_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readRoomList("invalidAndValidRoomInRoomList.json"));
     }
     @Test
-    public void saveRoomList_nullAddressBook_throwsNullPointerException() {
+    public void saveRoomList_nullCovigentApp_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveRoomListRoomsOccupied(null,
                 "roomsOccupied.jason"));
     }
@@ -61,7 +61,7 @@ class JsonRoomOccupancyStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code covigentApp} at the specified {@code filePath}.
      */
     private void saveRoomListRoomsOccupied(RoomList roomList, String roomsOccupied) {
         try {
@@ -73,8 +73,8 @@ class JsonRoomOccupancyStorageTest {
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveCovigentApp_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempCovigentApp.json");
         RoomList original = getTypicalRoomList();
         JsonRoomOccupancyStorage jsonRoomOccupancyStorage = new JsonRoomOccupancyStorage(filePath);
 
@@ -99,7 +99,7 @@ class JsonRoomOccupancyStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveCovigentApp_nullCovigentApp_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveRoomListRoomsOccupied(null, "SomeFile.json"));
     }
 

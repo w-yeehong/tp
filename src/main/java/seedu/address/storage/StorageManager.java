@@ -7,28 +7,28 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCovigentApp;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.RoomList;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of CovigentApp data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private CovigentAppStorage covigentAppStorage;
     private UserPrefsStorage userPrefsStorage;
     private JsonRoomOccupancyStorage roomOccupancyStorage;
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code CovigentAppStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+    public StorageManager(CovigentAppStorage covigentAppStorage, UserPrefsStorage userPrefsStorage,
                           JsonRoomOccupancyStorage roomOccupancyStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.covigentAppStorage = covigentAppStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.roomOccupancyStorage = roomOccupancyStorage;
     }
@@ -51,33 +51,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ CovigentApp methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getCovigentAppFilePath() {
+        return covigentAppStorage.getCovigentAppFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyCovigentApp> readCovigentApp() throws DataConversionException, IOException {
+        return readCovigentApp(covigentAppStorage.getCovigentAppFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyCovigentApp> readCovigentApp(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return covigentAppStorage.readCovigentApp(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveCovigentApp(ReadOnlyCovigentApp covigentApp) throws IOException {
+        saveCovigentApp(covigentApp, covigentAppStorage.getCovigentAppFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveCovigentApp(ReadOnlyCovigentApp covigentApp, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        covigentAppStorage.saveCovigentApp(covigentApp, filePath);
     }
 
 

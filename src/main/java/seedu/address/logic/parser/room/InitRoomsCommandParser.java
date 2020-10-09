@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input and creates new AddRoomsCommand object
  */
-public class InitRoomsParser implements Parser<InitRoomsCommand> {
+public class InitRoomsCommandParser implements Parser<InitRoomsCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddPatientCommand

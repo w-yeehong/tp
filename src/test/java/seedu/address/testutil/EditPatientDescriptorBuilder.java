@@ -25,7 +25,7 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPatientDescriptor} with fields containing {@code Patient}'s details
+     * Returns an {@code EditPatientDescriptor} with fields containing {@code patient}'s details
      */
     public EditPatientDescriptorBuilder(Patient patient) {
         descriptor = new EditPatientDescriptor();
@@ -38,7 +38,7 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code name} of the {@code EditPatientDescriptor} that we are building.
      */
     public EditPatientDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -46,7 +46,7 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code phone} of the {@code EditPatientDescriptor} that we are building.
      */
     public EditPatientDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -54,7 +54,7 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Age} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code age} of the {@code EditPatientDescriptor} that we are building.
      */
     public EditPatientDescriptorBuilder withAge(String age) {
         descriptor.setAge(new Age(age));
@@ -62,7 +62,7 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code PeriodOfStay} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code periodOfStay} of the {@code EditPatientDescriptor} that we are building.
      */
     public EditPatientDescriptorBuilder withPeriodOfStay(String periodOfStay) {
         descriptor.setPeriodOfStay(new PeriodOfStay(periodOfStay));
@@ -70,7 +70,7 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Comment} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code comment} of the {@code EditPatientDescriptor} that we are building.
      */
     public EditPatientDescriptorBuilder withComment(String comment) {
         descriptor.setComment(new Comment(comment));
@@ -78,7 +78,7 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Temperature} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code temperature} of the {@code EditPatientDescriptor} that we are building.
      */
     public EditPatientDescriptorBuilder withTemperature(String temperature) {
         descriptor.setTemperature(new Temperature(temperature));
