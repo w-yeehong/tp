@@ -3,7 +3,7 @@ package seedu.address.logic.commands.patient;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,8 @@ public class ListPatientCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomList());
+        model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+        expectedModel = new ModelManager(model.getCovigentApp(), new UserPrefs(), new RoomList());
     }
 
     @Test

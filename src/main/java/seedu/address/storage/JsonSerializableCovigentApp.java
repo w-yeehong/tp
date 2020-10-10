@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.CovigentApp;
+import seedu.address.model.ReadOnlyCovigentApp;
 import seedu.address.model.patient.Patient;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable CovigentApp that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "covigentapp")
+class JsonSerializableCovigentApp {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given patients.
+     * Constructs a {@code JsonSerializableCovigentApp} with the given patients.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("patients") List<JsonAdaptedPatient> patients) {
+    public JsonSerializableCovigentApp(@JsonProperty("patients") List<JsonAdaptedPatient> patients) {
         this.patients.addAll(patients);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyCovigentApp} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableCovigentApp}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableCovigentApp(ReadOnlyCovigentApp source) {
         patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code CovigentApp} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public CovigentApp toModelType() throws IllegalValueException {
+        CovigentApp covigentApp = new CovigentApp();
         for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
             Patient patient = jsonAdaptedPatient.toModelType();
-            if (addressBook.hasPatient(patient)) {
+            if (covigentApp.hasPatient(patient)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
             }
-            addressBook.addPatient(patient);
+            covigentApp.addPatient(patient);
         }
-        return addressBook;
+        return covigentApp;
     }
 
 }

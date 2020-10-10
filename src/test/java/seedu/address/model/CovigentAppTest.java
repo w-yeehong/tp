@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.ALICE;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,25 +20,25 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.testutil.PatientBuilder;
 
-public class AddressBookTest {
+public class CovigentAppTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final CovigentApp covigentApp = new CovigentApp();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPatientList());
+        assertEquals(Collections.emptyList(), covigentApp.getPatientList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> covigentApp.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyCovigentApp_replacesData() {
+        CovigentApp newData = getTypicalCovigentApp();
+        covigentApp.resetData(newData);
+        assertEquals(newData, covigentApp);
     }
 
     @Test
@@ -46,46 +46,46 @@ public class AddressBookTest {
         // Two patients with the same identity fields
         Patient editedAlice = new PatientBuilder(ALICE).build();
         List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPatients);
+        CovigentAppStub newData = new CovigentAppStub(newPatients);
 
-        assertThrows(DuplicatePatientException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePatientException.class, () -> covigentApp.resetData(newData));
     }
 
     @Test
     public void hasPatient_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPatient(null));
+        assertThrows(NullPointerException.class, () -> covigentApp.hasPatient(null));
     }
 
     @Test
-    public void hasPatient_patientNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPatient(ALICE));
+    public void hasPatient_patientNotInCovigentApp_returnsFalse() {
+        assertFalse(covigentApp.hasPatient(ALICE));
     }
 
     @Test
-    public void hasPatient_patientInAddressBook_returnsTrue() {
-        addressBook.addPatient(ALICE);
-        assertTrue(addressBook.hasPatient(ALICE));
+    public void hasPatient_patientInCovigentApp_returnsTrue() {
+        covigentApp.addPatient(ALICE);
+        assertTrue(covigentApp.hasPatient(ALICE));
     }
 
     @Test
-    public void hasPatient_patientWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPatient(ALICE);
+    public void hasPatient_patientWithSameIdentityFieldsInCovigentApp_returnsTrue() {
+        covigentApp.addPatient(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).build();
-        assertTrue(addressBook.hasPatient(editedAlice));
+        assertTrue(covigentApp.hasPatient(editedAlice));
     }
 
     @Test
     public void getPatientList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPatientList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> covigentApp.getPatientList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose patients list can violate interface constraints.
+     * A stub ReadOnlyCovigentApp whose patients list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class CovigentAppStub implements ReadOnlyCovigentApp {
         private final ObservableList<Patient> patients = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Patient> patients) {
+        CovigentAppStub(Collection<Patient> patients) {
             this.patients.setAll(patients);
         }
 

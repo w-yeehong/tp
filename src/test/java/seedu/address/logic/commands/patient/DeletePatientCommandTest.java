@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ import seedu.address.model.room.RoomList;
  */
 public class DeletePatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new RoomList());
+    private Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
 
     @Test
     public void execute_validNameUnfilteredList_success() {
@@ -32,7 +32,7 @@ public class DeletePatientCommandTest {
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new RoomList());
+        ModelManager expectedModel = new ModelManager(model.getCovigentApp(), new UserPrefs(), new RoomList());
         expectedModel.deletePatient(patientToDelete);
 
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);

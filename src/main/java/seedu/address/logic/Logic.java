@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCovigentApp;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 
@@ -25,22 +25,22 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the Covigent.
+     * Returns Covigent.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getCovigentApp()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyCovigentApp getCovigentApp();
 
-    /** Returns an unmodifiable view of the filtered list of patients */
+    /** Returns an unmodifiable view of the filtered list of patients. */
     ObservableList<Patient> getFilteredPatientList();
 
-    /** Returns an {@code ObservableList<Room>} containing the list of rooms. */
-    ObservableList<Room> getListOfRooms();
+    /** Returns an unmodifiable view of the list of rooms. */
+    ObservableList<Room> getRoomList();
 
     /**
      * Returns the user prefs' Covigent file path.
      */
-    Path getAddressBookFilePath();
+    Path getCovigentAppFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

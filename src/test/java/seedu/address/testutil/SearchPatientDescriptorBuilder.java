@@ -20,6 +20,7 @@ public class SearchPatientDescriptorBuilder {
      */
     public SearchPatientDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
+        descriptor.setStringName(name);
         return this;
     }
 

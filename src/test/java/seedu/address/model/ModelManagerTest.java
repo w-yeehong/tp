@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.room.RoomList;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.CovigentAppBuilder;
 
 public class ModelManagerTest {
 
@@ -27,7 +27,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new CovigentApp(), new CovigentApp(modelManager.getCovigentApp()));
     }
 
     @Test
@@ -38,14 +38,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setCovigentAppFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setCovigentAppFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -62,15 +62,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setCovigentAppFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setCovigentAppFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setCovigentAppFilePath_validPath_setsCovigentAppFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setCovigentAppFilePath(path);
+        assertEquals(path, modelManager.getCovigentAppFilePath());
     }
 
     @Test
@@ -79,12 +79,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInCovigentApp_returnsFalse() {
         assertFalse(modelManager.hasPatient(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInCovigentApp_returnsTrue() {
         modelManager.addPatient(ALICE);
         assertTrue(modelManager.hasPatient(ALICE));
     }
@@ -95,14 +95,19 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getRoomList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getRoomList().remove(0));
+    }
+
+    @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPatient(ALICE).withPatient(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        CovigentApp covigentApp = new CovigentAppBuilder().withPatient(ALICE).withPatient(BENSON).build();
+        CovigentApp differentCovigentApp = new CovigentApp();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, new RoomList());
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, new RoomList());
+        modelManager = new ModelManager(covigentApp, userPrefs, new RoomList());
+        ModelManager modelManagerCopy = new ModelManager(covigentApp, userPrefs, new RoomList());
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,20 +119,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, new RoomList())));
+        // different covigentApp -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentCovigentApp, userPrefs, new RoomList())));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, new RoomList())));
+        assertFalse(modelManager.equals(new ModelManager(covigentApp, userPrefs, new RoomList())));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, new RoomList())));
+        differentUserPrefs.setCovigentAppFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(covigentApp, differentUserPrefs, new RoomList())));
     }
 }

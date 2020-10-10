@@ -21,9 +21,9 @@ class JsonSerializableRoomListTest {
     public void toModelType_typicalRoomFile_success() throws Exception {
         JsonSerializableRoomList dataFromFile = JsonUtil.readJsonFile(TYPICAL_ROOM_LIST,
                 JsonSerializableRoomList.class).get();
-        RoomList addressBookFromFile = dataFromFile.toModelType();
+        RoomList covigentAppFromFile = dataFromFile.toModelType();
         RoomList typicalRoomList = TypicalRooms.getTypicalRoomList();
-        assertEquals(addressBookFromFile, typicalRoomList);
+        assertEquals(covigentAppFromFile, typicalRoomList);
     }
 
 }

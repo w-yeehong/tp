@@ -61,7 +61,7 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
         }
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditPatientCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditPatientCommand.MESSAGE_PATIENT_NOT_EDITED);
         }
 
         return new EditPatientCommand(patientTobeEdited, editPatientDescriptor);

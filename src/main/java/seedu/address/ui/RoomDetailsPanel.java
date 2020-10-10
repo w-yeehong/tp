@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 
 /**
@@ -34,8 +35,13 @@ public class RoomDetailsPanel extends UiPart<Region> {
 
     //TODO change placeholder field once room class contains a patient.
     private void setRoomDetails(Room room) {
+        if (room.getPatient() != null) {
+            patientDetails.setText(Patient.formatPatientDetails(room.getPatient()));
+        } else {
+            patientDetails.setText("No Patient Present");
+        }
         roomNumber.setText("Room #" + room.getRoomNumber());
-        patientDetails.setText("room.getPatient.toString()");
+        //TODO update this when task in room has finished implementing
         taskDetails.setText("room.getTasks.toString()");
     }
 }

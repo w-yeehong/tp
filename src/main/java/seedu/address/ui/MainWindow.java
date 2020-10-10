@@ -142,13 +142,13 @@ public class MainWindow extends UiPart<Stage> {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
-        roomListPanel = new RoomListPanel(logic.getListOfRooms());
+        roomListPanel = new RoomListPanel(logic.getRoomList());
         roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCovigentAppFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -217,7 +217,6 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
