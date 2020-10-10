@@ -1,11 +1,14 @@
 package seedu.address.logic.commands.task;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.model.task.DateTimeDue;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class SearchTaskCommandTest {
     @Test
