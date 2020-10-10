@@ -62,8 +62,8 @@ public class SearchTaskCommand extends Command {
             throw new CommandException(MESSAGE_TASK_NOT_FOUND);
         }
 
-        return new CommandResult(String.format(MESSAGE_Search_TASK_SUCCESS +
-                getListOutput(taskListWithDesirableResult)));
+        return new CommandResult(String.format(MESSAGE_Search_TASK_SUCCESS
+                + getListOutput(taskListWithDesirableResult)));
     }
 
     /**
