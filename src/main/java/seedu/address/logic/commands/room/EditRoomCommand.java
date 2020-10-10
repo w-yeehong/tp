@@ -3,6 +3,7 @@ package seedu.address.logic.commands.room;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_ALREADY_ASSIGNED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
@@ -105,8 +106,12 @@ public class EditRoomCommand extends Command {
             //case 2: change room number in an empty room
             return new Room(updatedRoomNumber);
         }
-        //case 3: allocate patient to the room
+        //case 3: patient is already allocated to a room.
         Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
+        if (isPatientAssignedRoom(model.getRoomList(), patientName)) {
+            throw new CommandException(MESSAGE_PATIENT_ALREADY_ASSIGNED);
+        }
+        //case 4: allocate patient to the room
         List<Patient> patientList = model.getFilteredPatientList();
         Room updatedRoom = getValidPatient(patientList, patientName, updatedRoomNumber);
         return updatedRoom;
@@ -133,6 +138,25 @@ public class EditRoomCommand extends Command {
         throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
     }
 
+    /**
+     * Checks if patient is already assigned to a room.
+     *
+     * @param roomList Containing all the rooms.
+     * @param name Of the patient.
+     * @return Boolean value of whether patient is already assigned.
+     */
+    private static boolean isPatientAssignedRoom(List<Room> roomList, Name name) {
+        for (Room room : roomList) {
+            if (room.getPatient() != null) {
+                String patientNameInRoom = room.getPatient().getName().toString().trim().toLowerCase();
+                String patientNameToBeEdit = name.toString().trim().toLowerCase();
+                if (patientNameInRoom.equals(patientNameToBeEdit)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) { //short circuit if same object
@@ -213,5 +237,22 @@ public class EditRoomCommand extends Command {
                     && getIsOccupied().equals(e.getIsOccupied())
                     && getPatientName().equals(e.getPatientName());
         }
+
+        @Override
+        public String toString() {
+            return "EditRoomDescriptor{"
+                + "roomNumber=" + roomNumber
+                + ", isOccupied=" + isOccupied
+                + ", patientName=" + patientName
+                + '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "EditRoomCommand{"
+            + "roomNumberToEdit=" + roomNumberToEdit
+            + ", editRoomDescriptor=" + editRoomDescriptor
+            + '}';
     }
 }

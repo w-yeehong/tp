@@ -1,9 +1,9 @@
 package seedu.address.logic.parser.task;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NewCommandTestUtil.DATETIME_DUE_DESC_ORDER_BEDSHEET;
+import static seedu.address.logic.commands.NewCommandTestUtil.DATETIME_DUE_DESC_ORDER_BEDSHEETS;
 import static seedu.address.logic.commands.NewCommandTestUtil.DATETIME_DUE_DESC_REMIND_PATIENT;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESCRIPTION_DESC_ORDER_BEDSHEET;
+import static seedu.address.logic.commands.NewCommandTestUtil.DESCRIPTION_DESC_ORDER_BEDSHEETS;
 import static seedu.address.logic.commands.NewCommandTestUtil.DESCRIPTION_DESC_REMIND_PATIENT;
 import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_DATETIME_DUE_FORMAT_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_DATETIME_DUE_VALUE_DESC;
@@ -40,7 +40,7 @@ public class AddTaskCommandParserTest {
                 + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask, VALID_ROOM_INDEX_ONE));
 
         // multiple description - last description accepted
-        assertParseSuccess(parser, DESCRIPTION_DESC_ORDER_BEDSHEET + DESCRIPTION_DESC_REMIND_PATIENT
+        assertParseSuccess(parser, DESCRIPTION_DESC_ORDER_BEDSHEETS + DESCRIPTION_DESC_REMIND_PATIENT
                 + ROOM_NUMBER_DESC_ONE + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask,
                 VALID_ROOM_INDEX_ONE));
 
@@ -51,7 +51,7 @@ public class AddTaskCommandParserTest {
 
         // multiple due date - last due date accepted
         assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_DESC_ONE
-                + DATETIME_DUE_DESC_ORDER_BEDSHEET + DATETIME_DUE_DESC_REMIND_PATIENT,
+                + DATETIME_DUE_DESC_ORDER_BEDSHEETS + DATETIME_DUE_DESC_REMIND_PATIENT,
                 new AddTaskCommand(expectedTask, VALID_ROOM_INDEX_ONE));
     }
 
