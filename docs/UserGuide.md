@@ -22,8 +22,9 @@ title: User Guide
     3.6 [Add rooms in hotel: `addRooms`](#36-add-rooms-in-hotel-addrooms)<br>
     3.7 [Find the first free room: `findRoom`](#37-find-the-first-free-room-findroom)<br>
     3.8 [Add a task to a room: `addtask`](#38-add-a-task-to-a-room-addtask)<br>
-    3.9 [View help: `help`](#39-view-help-help)<br>
-    4.0 [Save the data](#40-save-the-data)<br>
+    3.9 [Search task swith a deadline: `searchtask`](#39-search-tasks-with-a-deadline-searchtask)<br>
+    4.0 [View help: `help`](#40-view-help-help)<br>
+    4.1 [Save the data](#41-save-the-data)<br>
  4. [FAQ](#4-faq)
  5. [Command Summary](#5-command-summary)
 
@@ -175,13 +176,28 @@ Examples:
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
 * `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 at 12am" to Room #1.
 
-### 3.9 View help: `help`
+### 3.9 Search tasks with a deadline: `searchtask`
+
+Search all tasks before a date.
+
+Format: `searchtask dd/DUE_DATE`
+
+* Due date can be in the any of the following formats:
+  * `YYYYMMDD` (e.g. 20210131).
+  * `YYYYMMDD HHmm` (e.g. 20210131 2359).
+  * `D-M-YYYY` (e.g. 31-1-2021 or 31-01-2021).
+  * `D-M-YYYY HHmm` (e.g. 31-1-2021 2359 or 31-01-2021 2359).
+
+Examples:
+* `searchtask dd/12-1-2021` Search all tasks before 12-1-2021.
+
+### 4.0 View help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### 4.0 Save the data
+### 4.1 Save the data
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -205,5 +221,6 @@ Action | Format, Examples
 **Add Rooms** | `addRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
 **Find Room** | `findRoom` <br>
 **Add Task to Room** | `addTask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br>
+**Search Task** | `searchtask dd/DUE_DATE` <br>
 **Help** | `help`<br>
 
