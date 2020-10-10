@@ -15,7 +15,7 @@ import seedu.address.commons.util.DateTimeUtil;
  * Guarantees: immutable; is an optional attribute of task;
  * is valid as declared in {@link #isValidDateTimeDue(String)}
  */
-public class DateTimeDue {
+public class DateTimeDue implements Comparable<DateTimeDue> {
 
     public static final String MESSAGE_CONSTRAINTS = "Due dates should adhere to one of the "
             + "following formats:\n"
@@ -115,4 +115,8 @@ public class DateTimeDue {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(DateTimeDue other) {
+        return value.get().isBefore(other.getValue().get()) ? 1 : 0;
+    }
 }
