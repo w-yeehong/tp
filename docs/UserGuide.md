@@ -175,6 +175,12 @@ Examples:
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
 * `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 at 12am" to Room #1.
 
+### 3.9 Lists the current rooms: `listRoom`
+
+Lists all the current available rooms.
+
+Format: `listRoom`
+
 ### 3.9 View help: `help`
 
 Shows a message explaining how to access the help page.
@@ -205,5 +211,6 @@ Action | Format, Examples
 **Add Rooms** | `addRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
 **Find Room** | `findRoom` <br>
 **Add Task to Room** | `addTask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br>
+**List Room** | `listRoom` <br> 
 **Help** | `help`<br>
 

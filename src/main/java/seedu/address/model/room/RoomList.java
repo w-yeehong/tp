@@ -28,7 +28,7 @@ public class RoomList implements ReadOnlyRoomList {
     private ObservableList<Room> internalList = FXCollections.observableArrayList();
     private final ObservableList<Room> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
+    private ObservableList<Room> roomDisplayList = FXCollections.observableArrayList();
     /** Creates default RoomList() object where all fields are null**/
     public RoomList() {}
 
@@ -239,5 +239,24 @@ public class RoomList implements ReadOnlyRoomList {
             }
         }
         return index;
+    }
+    /**
+     * Adds the room to a roomDisplayList where @param room is the room to be displayed when
+     * findRoom is called
+     */
+    public void displayFindRoomUpdate(Room room) {
+        roomDisplayList.clear();
+        roomDisplayList.add(room);
+    }
+
+    /**
+     * Adds the list of rooms to roomDisplayList when listRoom is called for app to display.
+     */
+    public void displayAllRooms() {
+        roomDisplayList.clear();
+        roomDisplayList.addAll(internalList);
+    }
+    public ObservableList<Room> getRoomDisplayList() {
+        return roomDisplayList;
     }
 }
