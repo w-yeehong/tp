@@ -225,13 +225,14 @@ public class RoomList implements ReadOnlyRoomList {
 
     /**
      * Checks if the given room number is present in the application.
+     *
      * @param roomNumber to check if it is in the application.
      * @return Index Of room that is found.
      */
-    public Index checkIfRoomPresent(Integer roomNumber) {
+    public static Index checkIfRoomPresent(Integer roomNumber, ObservableList<Room> roomList) {
         Index index = Index.fromZeroBased(0);
-        for (int i = 1; i <= internalList.size(); i++) {
-            int roomNum = internalList.get(i - 1).getRoomNumber();
+        for (int i = 1; i <= roomList.size(); i++) {
+            int roomNum = roomList.get(i - 1).getRoomNumber();
             boolean isValidRoom = (Integer.valueOf(roomNum)).equals(roomNumber);
             if (isValidRoom) {
                 index = Index.fromZeroBased(i);

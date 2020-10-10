@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
@@ -19,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomList;
 
 /**
  * Edits the details of a room identified by the room number in the app.
@@ -62,14 +64,14 @@ public class EditRoomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Room> lastShownList = model.getModifiableRoomList().getRoomObservableList();
-        Index index = model.getModifiableRoomList().checkIfRoomPresent(roomNumberToEdit);
+        ObservableList<Room> roomList = model.getRoomList();
+        Index index = RoomList.checkIfRoomPresent(roomNumberToEdit, roomList);
 
         if (index.getZeroBased() == 0) {
             throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
         }
 
-        Room roomToEdit = lastShownList.get(index.getZeroBased() - 1);
+        Room roomToEdit = roomList.get(index.getZeroBased() - 1);
         Room editedRoom = createEditedRoom(model, roomToEdit, editRoomDescriptor);
 
         if (!roomToEdit.isSameRoom(editedRoom) && model.hasRoom(editedRoom)) {

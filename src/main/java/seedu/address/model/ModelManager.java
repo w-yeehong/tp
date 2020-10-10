@@ -175,7 +175,7 @@ public class ModelManager implements Model {
         return roomList.asUnmodifiableObservableList();
     }
 
-    // TODO: remove this method and use getRoomList() instead (I will need this modifableRoomList for editing though)
+    // TODO: remove this method and use getRoomList() instead
     @Override
     public RoomList getModifiableRoomList() {
         return roomList;
