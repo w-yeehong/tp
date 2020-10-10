@@ -15,19 +15,19 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.CovigentApp;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.room.ReadOnlyRoomList;
-import seedu.address.model.room.RoomList;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.CovigentAppStorage;
-import seedu.address.storage.JsonCovigentAppStorage;
+import seedu.address.storage.JsonPatientRecordsStorage;
 import seedu.address.storage.JsonRoomOccupancyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PatientRecordsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -59,10 +59,10 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        CovigentAppStorage covigentAppStorage = new JsonCovigentAppStorage(userPrefs.getCovigentAppFilePath());
+        PatientRecordsStorage patientRecordsStorage = new JsonPatientRecordsStorage(userPrefs.getCovigentAppFilePath());
         JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(
                 userPrefs.getRoomsOccupiedFilePath());
-        storage = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage);
+        storage = new StorageManager(patientRecordsStorage, userPrefsStorage, roomOccupancyStorage);
 
         initLogging(config);
 
@@ -81,11 +81,10 @@ public class MainApp extends Application {
      * address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyCovigentApp> covigentAppOptional;
-        ReadOnlyCovigentApp initialData;
+        Optional<ReadOnlyPatientRecords> patientRecordsOptional;
+        ReadOnlyPatientRecords initialData;
         Optional<ReadOnlyRoomList> readOnlyRoomOccupancy;
         ReadOnlyRoomList initialRoomList;
-
         try {
             readOnlyRoomOccupancy = storage.readRoomOccupancyStorage();
             initialRoomList = readOnlyRoomOccupancy.orElseGet(SampleDataUtil::getSampleRoomList);
@@ -99,18 +98,18 @@ public class MainApp extends Application {
         }
 
         try {
-            covigentAppOptional = storage.readCovigentApp();
-            if (!covigentAppOptional.isPresent()) {
+            patientRecordsOptional = storage.readPatientRecords();
+            if (!patientRecordsOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample CovigentApp");
             }
-            initialData = covigentAppOptional.orElseGet(SampleDataUtil::getSampleCovigentApp);
+            initialData = patientRecordsOptional.orElseGet(SampleDataUtil::getSampleCovigentApp);
         } catch (DataConversionException e) {
             logger.warning(
                     "Patient Data file not in the correct format. Will be starting with an empty CovigentApp");
-            initialData = new CovigentApp();
+            initialData = new PatientRecords();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty CovigentApp");
-            initialData = new CovigentApp();
+            initialData = new PatientRecords();
         }
         return new ModelManager(initialData, userPrefs, initialRoomList);
     }

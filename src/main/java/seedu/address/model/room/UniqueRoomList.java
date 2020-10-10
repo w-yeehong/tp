@@ -1,77 +1,53 @@
 package seedu.address.model.room;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import java.util.PriorityQueue;
-import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.model.task.Task;
-import seedu.address.storage.JsonCovigentAppStorage;
 
 /**
- * Contains information regarding the Room information
+ * A list of rooms that enforces uniqueness between its elements and does not allow nulls.
+ *
+ * Supports a minimal set of list operations.
  */
-public class RoomList implements ReadOnlyRoomList {
-    private static final Logger logger = LogsCenter.getLogger(JsonCovigentAppStorage.class);
-
+public class UniqueRoomList implements Iterable<Room> {
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>();
+
     private ObservableList<Room> internalList = FXCollections.observableArrayList();
     private final ObservableList<Room> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    /** Creates default RoomList() object where all fields are null**/
-    public RoomList() {}
-
-    /**
-     * Converts data from readOnlyRoomList to roomList
-     */
-    public RoomList(ReadOnlyRoomList readOnlyRoomList) {
-        this();
-        resetData(readOnlyRoomList);
-    }
-    /**
-     * Creates a RoomList object using the information given in files containing information about
-     * which rooms are occupied and number of rooms
-     */
-    public RoomList(PriorityQueue<Room> rooms, int numOfRooms) {
-        this.rooms = rooms;
+    public void setNumOfRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
     }
 
-    private void resetData(ReadOnlyRoomList readOnlyRoomList) {
-        ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
-        numOfRooms = roomLists.size();
-        rooms.addAll(roomLists);
-        internalList.addAll(roomLists);
-    }
-    /**
-     * Returns Priority Queue of rooms
-     */
-    public PriorityQueue<Room> getRooms() {
-        return this.rooms;
+    public void setRooms(PriorityQueue<Room> rooms) {
+        this.rooms = rooms;
     }
 
     /**
-     * Returns number of rooms in hotel
+     * Replaces the contents of this list with {@code rooms}.
      */
-    public int getNumOfRooms() {
-        return numOfRooms;
+    public void setRooms(List<Room> rooms) {
+        requireAllNonNull(rooms);
+        internalList.setAll(rooms);
+        this.rooms = new PriorityQueue<>();
+        this.rooms.addAll(rooms);
+        this.numOfRooms = rooms.size();
     }
 
-    public ObservableList<Room> getRoomObservableList() {
-        return internalList;
-    }
-
+    //============================== Add Room operations =============================
     private void addRooms() {
         if (numOfRooms < 0) {
             return;
@@ -114,6 +90,29 @@ public class RoomList implements ReadOnlyRoomList {
         internalList.add(room);
     }
 
+    //============================== Edit Room operation =============================
+    /**
+     * Replaces the room {@code target} in the list with {@code editedRoom}.
+     * {@code target} must exist in the list.
+     * The room identity of {@code editedRoom} must not be the same as another existing room in the list.
+     *
+     * @param target Room to be changed.
+     * @param editedRoom Room that has been changed.
+     */
+    public void setSingleRoom(Room target, Room editedRoom) {
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new RoomNotFoundException();
+        }
+
+        if (!target.isSameRoom(editedRoom) && containsRoom(editedRoom)) {
+            throw new DuplicateRoomException();
+        }
+        rooms.remove(target); // this and the next LOC is to replace the room in the priority queue
+        rooms.add(editedRoom);
+        internalList.set(index, editedRoom);
+    }
+
     /**
      * Adds a task to a room.
      *
@@ -123,6 +122,7 @@ public class RoomList implements ReadOnlyRoomList {
      * @param room The room to which the task should be added.
      * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
      */
+    //TODO Can this be done with setSingleRoom func?
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
 
@@ -133,6 +133,26 @@ public class RoomList implements ReadOnlyRoomList {
 
         room.addTask(task);
         internalList.set(index, room);
+    }
+
+
+    /**
+     * Returns Priority Queue of rooms
+     */
+    public PriorityQueue<Room> getRooms() {
+        return this.rooms;
+    }
+
+    /**
+     * Returns number of rooms in hotel
+     */
+    public int getNumOfRooms() {
+        return numOfRooms;
+    }
+
+
+    public ObservableList<Room> getRoomList() {
+        return internalList;
     }
 
     /**
@@ -151,7 +171,7 @@ public class RoomList implements ReadOnlyRoomList {
             return false;
         }
 
-        RoomList roomList = (RoomList) o;
+        UniqueRoomList roomList = (UniqueRoomList) o;
         Room[] roomsForPQ = this.rooms.toArray(new Room[0]);
         Room[] rooms1ForPQ = roomList.rooms.toArray(new Room[0]);
 
@@ -179,48 +199,17 @@ public class RoomList implements ReadOnlyRoomList {
             return true;
         }
     }
-    /**
-     * Returns true if the list contains an equivalent room as the given argument.
-     */
+
     public boolean containsRoom(Room toCheck) {
-        requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameRoom);
     }
 
-    /**
-     * Replaces the room {@code target} in the list with {@code editedRoom}.
-     * {@code target} must exist in the list.
-     * The room identity of {@code editedRoom} must not be the same as another existing room in the list.
-     *
-     * @param target Room to be changed.
-     * @param editedRoom Room that has been changed.
-     */
-    public void setSingleRoom(Room target, Room editedRoom) {
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
 
-        if (!target.isSameRoom(editedRoom) && containsRoom(editedRoom)) {
-            throw new DuplicateRoomException();
-        }
-        rooms.remove(target); // this and the next LOC is to replace the room in the priority queue
-        rooms.add(editedRoom);
-        internalList.set(index, editedRoom);
-    }
     @Override
     public int hashCode() {
         int result = Objects.hash(numOfRooms, rooms, internalList);
         result = 31 * result;
         return result;
-    }
-
-    public void setNumOfRooms(int numOfRooms) {
-        this.numOfRooms = numOfRooms;
-    }
-
-    public void setRooms(PriorityQueue<Room> rooms) {
-        this.rooms = rooms;
     }
 
     /**
@@ -240,4 +229,10 @@ public class RoomList implements ReadOnlyRoomList {
         }
         return index;
     }
+
+    @Override
+    public Iterator<Room> iterator() {
+        return internalList.iterator();
+    }
 }
+

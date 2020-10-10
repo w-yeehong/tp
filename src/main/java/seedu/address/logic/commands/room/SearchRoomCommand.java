@@ -3,6 +3,8 @@ package seedu.address.logic.commands.room;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -10,7 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.room.Room;
 
-import java.util.List;
 
 /**
  * Searches a room according to the given room number.
@@ -41,7 +42,7 @@ public class SearchRoomCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Index index = model.getModifiableRoomList().checkIfRoomPresent(roomNumber);
-        List<Room> lastShownList = model.getModifiableRoomList().getRoomObservableList();
+        List<Room> lastShownList = model.getModifiableRoomList().getRoomList();
 
         if (index.getZeroBased() == 0) {
             throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
@@ -51,6 +52,7 @@ public class SearchRoomCommand extends Command {
         return null;
     }
 
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SearchRoomCommand // instanceof handles nulls

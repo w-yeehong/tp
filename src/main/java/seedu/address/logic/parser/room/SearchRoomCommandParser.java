@@ -1,11 +1,12 @@
 package seedu.address.logic.parser.room;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.room.SearchRoomCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.RoomParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new SearchRoomCommand object
@@ -22,7 +23,7 @@ public class SearchRoomCommandParser implements Parser<SearchRoomCommand> {
         try {
             Integer roomNumber = RoomParserUtil.parseRoomNumber(userInput.trim());
             return new SearchRoomCommand(roomNumber);
-        } catch (ParseException pe){
+        } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SearchRoomCommand.MESSAGE_USAGE));
         }

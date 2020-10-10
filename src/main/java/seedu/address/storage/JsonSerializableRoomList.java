@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.RoomList;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 
 @JsonRootName(value = "roomList")
 public class JsonSerializableRoomList {
@@ -32,7 +32,7 @@ public class JsonSerializableRoomList {
      * @param source future changes to this will not affect the created {@code JsonSerializableRoomList}.
      */
     public JsonSerializableRoomList(RoomList source) {
-        rooms.addAll(source.getRoomObservableList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
+        rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
     }
 
     /**

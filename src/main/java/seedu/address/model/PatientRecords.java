@@ -9,10 +9,10 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the app level
  * Duplicate patients are not allowed (by .isSamePatient comparison)
  */
-public class CovigentApp implements ReadOnlyCovigentApp {
+public class PatientRecords implements ReadOnlyPatientRecords {
 
     private final UniquePatientList patients;
 
@@ -27,12 +27,12 @@ public class CovigentApp implements ReadOnlyCovigentApp {
         patients = new UniquePatientList();
     }
 
-    public CovigentApp() {}
+    public PatientRecords() {}
 
     /**
      * Creates an CovigentApp using the Patients in the {@code toBeCopied}
      */
-    public CovigentApp(ReadOnlyCovigentApp toBeCopied) {
+    public PatientRecords(ReadOnlyPatientRecords toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class CovigentApp implements ReadOnlyCovigentApp {
     /**
      * Resets the existing data of this {@code CovigentApp} with {@code newData}.
      */
-    public void resetData(ReadOnlyCovigentApp newData) {
+    public void resetData(ReadOnlyPatientRecords newData) {
         requireNonNull(newData);
 
         setPatients(newData.getPatientList());
@@ -110,8 +110,8 @@ public class CovigentApp implements ReadOnlyCovigentApp {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CovigentApp // instanceof handles nulls
-                && patients.equals(((CovigentApp) other).patients));
+                || (other instanceof PatientRecords // instanceof handles nulls
+                && patients.equals(((PatientRecords) other).patients));
     }
 
     @Override

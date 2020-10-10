@@ -114,7 +114,7 @@ public class UniquePatientList implements Iterable<Patient> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePatientList // instanceof handles nulls
-                        && internalList.equals(((UniquePatientList) other).internalList));
+                && internalList.equals(((UniquePatientList) other).internalList));
     }
 
     @Override

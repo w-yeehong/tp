@@ -62,7 +62,7 @@ public class EditRoomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Room> lastShownList = model.getModifiableRoomList().getRoomObservableList();
+        List<Room> lastShownList = model.getModifiableRoomList().getRoomList();
         Index index = model.getModifiableRoomList().checkIfRoomPresent(roomNumberToEdit);
 
         if (index.getZeroBased() == 0) {

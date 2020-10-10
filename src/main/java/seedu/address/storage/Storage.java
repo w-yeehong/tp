@@ -5,16 +5,16 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.room.ReadOnlyRoomList;
-import seedu.address.model.room.RoomList;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends CovigentAppStorage, UserPrefsStorage {
+public interface Storage extends PatientRecordsStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -23,13 +23,13 @@ public interface Storage extends CovigentAppStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getCovigentAppFilePath();
+    Path getPatientRecordsFilePath();
 
     @Override
-    Optional<ReadOnlyCovigentApp> readCovigentApp() throws DataConversionException, IOException;
+    Optional<ReadOnlyPatientRecords> readPatientRecords() throws DataConversionException, IOException;
 
     @Override
-    void saveCovigentApp(ReadOnlyCovigentApp covigentApp) throws IOException;
+    void savePatientRecords(ReadOnlyPatientRecords covigentApp) throws IOException;
 
     /** Reads the data of number of rooms and occupied rooms into RoomList **/
     Optional<ReadOnlyRoomList> readRoomOccupancyStorage() throws DataConversionException, IOException;
@@ -41,6 +41,5 @@ public interface Storage extends CovigentAppStorage, UserPrefsStorage {
      * @throws IOException
      */
     void saveRoomList(RoomList roomList) throws IOException;
-
 
 }

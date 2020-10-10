@@ -16,14 +16,14 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.model.CovigentApp;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.TemperatureRangePredicate;
-import seedu.address.model.room.RoomList;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.SearchPatientDescriptorBuilder;
 
@@ -45,7 +45,7 @@ public class SearchPatientCommandTest {
         model.updateFilteredPatientList(predicate);
         String expectedMessage = String.format(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS, patient);
 
-        Model expectedModel = new ModelManager(new CovigentApp(model.getCovigentApp()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()), new UserPrefs(),
                 new RoomList());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
 
@@ -66,7 +66,7 @@ public class SearchPatientCommandTest {
         String expectedMessage =
                 String.format(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS);
 
-        Model expectedModel = new ModelManager(new CovigentApp(model.getCovigentApp()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()), new UserPrefs(),
                 new RoomList());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
         expectedModel.updateFilteredPatientList(predicate);

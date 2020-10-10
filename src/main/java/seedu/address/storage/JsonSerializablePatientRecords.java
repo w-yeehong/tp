@@ -9,34 +9,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.CovigentApp;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.ReadOnlyPatientRecords;
 import seedu.address.model.patient.Patient;
 
 /**
  * An Immutable CovigentApp that is serializable to JSON format.
  */
 @JsonRootName(value = "covigentapp")
-class JsonSerializableCovigentApp {
+class JsonSerializablePatientRecords {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableCovigentApp} with the given patients.
+     * Constructs a {@code JsonSerializablePatientRecords} with the given patients.
      */
     @JsonCreator
-    public JsonSerializableCovigentApp(@JsonProperty("patients") List<JsonAdaptedPatient> patients) {
+    public JsonSerializablePatientRecords(@JsonProperty("patients") List<JsonAdaptedPatient> patients) {
         this.patients.addAll(patients);
     }
 
     /**
      * Converts a given {@code ReadOnlyCovigentApp} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableCovigentApp}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePatientRecords}.
      */
-    public JsonSerializableCovigentApp(ReadOnlyCovigentApp source) {
+    public JsonSerializablePatientRecords(ReadOnlyPatientRecords source) {
         patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
     }
 
@@ -45,8 +45,8 @@ class JsonSerializableCovigentApp {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public CovigentApp toModelType() throws IllegalValueException {
-        CovigentApp covigentApp = new CovigentApp();
+    public PatientRecords toModelType() throws IllegalValueException {
+        PatientRecords covigentApp = new PatientRecords();
         for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
             Patient patient = jsonAdaptedPatient.toModelType();
             if (covigentApp.hasPatient(patient)) {

@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 import seedu.address.model.task.Task;
 
 /**
@@ -51,10 +50,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code covigentApp}.
      */
-    void setCovigentApp(ReadOnlyCovigentApp covigentApp);
+    void setPatientRecords(ReadOnlyPatientRecords covigentApp);
 
     /** Returns the CovigentApp */
-    ReadOnlyCovigentApp getCovigentApp();
+    ReadOnlyPatientRecords getPatientRecords();
 
     /**
      * Returns true if a patient with the same identity as {@code patient} exists in the address book.
@@ -127,4 +126,5 @@ public interface Model {
      * another existing room in the application.
      */
     void setSingleRoom(Room target, Room editedRoom);
+
 }

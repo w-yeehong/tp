@@ -25,11 +25,11 @@ import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.room.RoomList;
-import seedu.address.storage.JsonCovigentAppStorage;
+import seedu.address.storage.JsonPatientRecordsStorage;
 import seedu.address.storage.JsonRoomOccupancyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -46,8 +46,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonCovigentAppStorage covigentAppStorage =
-                new JsonCovigentAppStorage(temporaryFolder.resolve("covigentApp.json"));
+        JsonPatientRecordsStorage covigentAppStorage =
+                new JsonPatientRecordsStorage(temporaryFolder.resolve("covigentApp.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonRoomOccupancyStorage roomOccupancyStorage =
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
@@ -75,9 +75,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonCovigentAppIoExceptionThrowingStub
-        JsonCovigentAppStorage covigentAppStorage =
-                new JsonCovigentAppIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCovigentApp.json"));
+        // Setup LogicManager with JsonPatientRecordsIoExceptionThrowingStub
+        JsonPatientRecordsStorage covigentAppStorage =
+                new JsonPatientRecordsIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCovigentApp.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonRoomOccupancyStorage roomOccupancyStorage =
@@ -138,7 +138,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getCovigentApp(), new UserPrefs(), new RoomList());
+        Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -158,13 +158,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonCovigentAppIoExceptionThrowingStub extends JsonCovigentAppStorage {
-        private JsonCovigentAppIoExceptionThrowingStub(Path filePath) {
+    private static class JsonPatientRecordsIoExceptionThrowingStub extends JsonPatientRecordsStorage {
+        private JsonPatientRecordsIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveCovigentApp(ReadOnlyCovigentApp covigentApp, Path filePath) throws IOException {
+        public void savePatientRecords(ReadOnlyPatientRecords covigentApp, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

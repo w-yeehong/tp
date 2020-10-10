@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.room.ReadOnlyRoomList;
-import seedu.address.model.room.RoomList;
 
 /**
  * Manages storage of CovigentApp data in local storage.
@@ -19,16 +19,16 @@ import seedu.address.model.room.RoomList;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private CovigentAppStorage covigentAppStorage;
+    private PatientRecordsStorage patientRecordsStorage;
     private UserPrefsStorage userPrefsStorage;
     private JsonRoomOccupancyStorage roomOccupancyStorage;
     /**
-     * Creates a {@code StorageManager} with the given {@code CovigentAppStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code PatientRecordsStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(CovigentAppStorage covigentAppStorage, UserPrefsStorage userPrefsStorage,
+    public StorageManager(PatientRecordsStorage patientRecordsStorage, UserPrefsStorage userPrefsStorage,
                           JsonRoomOccupancyStorage roomOccupancyStorage) {
         super();
-        this.covigentAppStorage = covigentAppStorage;
+        this.patientRecordsStorage = patientRecordsStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.roomOccupancyStorage = roomOccupancyStorage;
     }
@@ -51,33 +51,34 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ CovigentApp methods ==============================
+    // ================ Patient Records methods ==============================
 
     @Override
-    public Path getCovigentAppFilePath() {
-        return covigentAppStorage.getCovigentAppFilePath();
+    public Path getPatientRecordsFilePath() {
+        return patientRecordsStorage.getPatientRecordsFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyCovigentApp> readCovigentApp() throws DataConversionException, IOException {
-        return readCovigentApp(covigentAppStorage.getCovigentAppFilePath());
+    public Optional<ReadOnlyPatientRecords> readPatientRecords() throws DataConversionException, IOException {
+        return readPatientRecords(patientRecordsStorage.getPatientRecordsFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyCovigentApp> readCovigentApp(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyPatientRecords> readPatientRecords(Path filePath) throws DataConversionException,
+            IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return covigentAppStorage.readCovigentApp(filePath);
+        return patientRecordsStorage.readPatientRecords(filePath);
     }
 
     @Override
-    public void saveCovigentApp(ReadOnlyCovigentApp covigentApp) throws IOException {
-        saveCovigentApp(covigentApp, covigentAppStorage.getCovigentAppFilePath());
+    public void savePatientRecords(ReadOnlyPatientRecords covigentApp) throws IOException {
+        savePatientRecords(covigentApp, patientRecordsStorage.getPatientRecordsFilePath());
     }
 
     @Override
-    public void saveCovigentApp(ReadOnlyCovigentApp covigentApp, Path filePath) throws IOException {
+    public void savePatientRecords(ReadOnlyPatientRecords covigentApp, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        covigentAppStorage.saveCovigentApp(covigentApp, filePath);
+        patientRecordsStorage.savePatientRecords(covigentApp, filePath);
     }
 
 

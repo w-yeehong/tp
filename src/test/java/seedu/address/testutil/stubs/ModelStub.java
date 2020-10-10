@@ -7,11 +7,11 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.ReadOnlyPatientRecords;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RoomList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 import seedu.address.model.task.Task;
 
 /**
@@ -54,12 +54,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setCovigentApp(ReadOnlyCovigentApp newData) {
+    public void setPatientRecords(ReadOnlyPatientRecords newData) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ReadOnlyCovigentApp getCovigentApp() {
+    public ReadOnlyPatientRecords getPatientRecords() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -127,4 +127,5 @@ public class ModelStub implements Model {
     public void setSingleRoom(Room target, Room editedRoom) {
         throw new AssertionError("This method should not be called.");
     }
+
 }

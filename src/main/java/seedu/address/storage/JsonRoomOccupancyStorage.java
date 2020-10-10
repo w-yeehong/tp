@@ -10,9 +10,9 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.room.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.RoomList;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 
 /**
  * Reads data from storage data files and imports them into RoomList
@@ -67,7 +67,7 @@ public class JsonRoomOccupancyStorage {
     public void saveOccupiedRooms(RoomList roomList, Path fileRoomsOccupied) throws IOException {
         FileUtil.createIfMissing(fileRoomsOccupied);
         List<Room> rooms = new ArrayList<>();
-        rooms.addAll(roomList.getRoomObservableList());
+        rooms.addAll(roomList.getRoomList());
         JsonUtil.saveJsonFile(new JsonSerializableRoomList(roomList), fileRoomsOccupied);
     }
 }
