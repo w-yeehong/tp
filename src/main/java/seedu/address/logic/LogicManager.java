@@ -73,7 +73,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Room> getRoomList() {
-        return model.getModifiableRoomList().getRoomList();
+        return model.getModifiableRoomList().getRoomObservableList();
     }
 
     @Override

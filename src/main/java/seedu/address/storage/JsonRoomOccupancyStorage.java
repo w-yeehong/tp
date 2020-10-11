@@ -67,7 +67,7 @@ public class JsonRoomOccupancyStorage {
     public void saveOccupiedRooms(RoomList roomList, Path fileRoomsOccupied) throws IOException {
         FileUtil.createIfMissing(fileRoomsOccupied);
         List<Room> rooms = new ArrayList<>();
-        rooms.addAll(roomList.getRoomList());
+        rooms.addAll(roomList.getRoomObservableList());
         JsonUtil.saveJsonFile(new JsonSerializableRoomList(roomList), fileRoomsOccupied);
     }
 }

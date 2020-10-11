@@ -42,7 +42,7 @@ public class SearchRoomCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Index index = model.getModifiableRoomList().checkIfRoomPresent(roomNumber);
-        List<Room> lastShownList = model.getModifiableRoomList().getRoomList();
+        List<Room> lastShownList = model.getModifiableRoomList().getRoomObservableList();
 
         if (index.getZeroBased() == 0) {
             throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);

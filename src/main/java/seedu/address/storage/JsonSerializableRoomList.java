@@ -32,7 +32,7 @@ public class JsonSerializableRoomList {
      * @param source future changes to this will not affect the created {@code JsonSerializableRoomList}.
      */
     public JsonSerializableRoomList(RoomList source) {
-        rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
+        rooms.addAll(source.getRoomObservableList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
     }
 
     /**

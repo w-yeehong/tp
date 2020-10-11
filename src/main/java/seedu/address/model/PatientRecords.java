@@ -48,7 +48,7 @@ public class PatientRecords implements ReadOnlyPatientRecords {
     }
 
     /**
-     * Resets the existing data of this {@code CovigentApp} with {@code newData}.
+     * Resets the existing data of this {@code PatientRecords} with {@code newData}.
      */
     public void resetData(ReadOnlyPatientRecords newData) {
         requireNonNull(newData);
@@ -87,7 +87,7 @@ public class PatientRecords implements ReadOnlyPatientRecords {
     }
 
     /**
-     * Removes {@code key} from this {@code CovigentApp}.
+     * Removes {@code key} from this {@code PatientRecords}.
      * {@code key} must exist in the address book.
      */
     public void removePatient(Patient key) {

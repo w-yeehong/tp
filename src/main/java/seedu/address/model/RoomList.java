@@ -49,6 +49,9 @@ public class RoomList implements ReadOnlyRoomList {
         this.numOfRooms = numOfRooms;
     }
 
+    /**
+     * Resets the existing data of this {@code RoomList} with {@code newData}.
+     */
     public void resetData(ReadOnlyRoomList readOnlyRoomList) {
         ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
         numOfRooms = roomLists.size();
