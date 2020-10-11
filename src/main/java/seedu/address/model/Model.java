@@ -127,4 +127,10 @@ public interface Model {
      * another existing room in the application.
      */
     void setSingleRoom(Room target, Room editedRoom);
+
+    void displayFindRoom(Room room);
+
+    void displayAllRoom ();
+
+    ObservableList<Room> getRoomDisplayRoom();
 }

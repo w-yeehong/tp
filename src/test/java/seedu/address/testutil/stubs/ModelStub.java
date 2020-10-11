@@ -127,4 +127,15 @@ public class ModelStub implements Model {
     public void setSingleRoom(Room target, Room editedRoom) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void displayFindRoom(Room room) {}
+
+    @Override
+    public void displayAllRoom() {}
+
+    @Override
+    public ObservableList<Room> getRoomDisplayRoom() {
+        return null;
+    }
 }
