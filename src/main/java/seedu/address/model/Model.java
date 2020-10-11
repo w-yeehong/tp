@@ -48,11 +48,11 @@ public interface Model {
     void setCovigentAppFilePath(Path covigentAppFilePath);
 
     /**
-     * Replaces address book data with the data in {@code covigentApp}.
+     * Replaces patient records with the data in {@code covigentApp}.
      */
-    void setPatientRecords(ReadOnlyPatientRecords covigentApp);
+    void setPatientRecords(ReadOnlyPatientRecords patientRecords);
 
-    /** Returns the CovigentApp */
+    /** Returns the patient records */
     ReadOnlyPatientRecords getPatientRecords();
 
     /**

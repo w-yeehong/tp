@@ -71,14 +71,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void savePatientRecords(ReadOnlyPatientRecords covigentApp) throws IOException {
-        savePatientRecords(covigentApp, patientRecordsStorage.getPatientRecordsFilePath());
+    public void savePatientRecords(ReadOnlyPatientRecords patientRecords) throws IOException {
+        savePatientRecords(patientRecords, patientRecordsStorage.getPatientRecordsFilePath());
     }
 
     @Override
-    public void savePatientRecords(ReadOnlyPatientRecords covigentApp, Path filePath) throws IOException {
+    public void savePatientRecords(ReadOnlyPatientRecords patientRecords, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        patientRecordsStorage.savePatientRecords(covigentApp, filePath);
+        patientRecordsStorage.savePatientRecords(patientRecords, filePath);
     }
 
 

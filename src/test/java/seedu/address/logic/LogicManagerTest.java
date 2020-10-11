@@ -164,7 +164,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void savePatientRecords(ReadOnlyPatientRecords covigentApp, Path filePath) throws IOException {
+        public void savePatientRecords(ReadOnlyPatientRecords patientRecords, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

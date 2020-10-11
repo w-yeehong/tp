@@ -14,7 +14,7 @@ import seedu.address.model.ReadOnlyPatientRecords;
 import seedu.address.model.patient.Patient;
 
 /**
- * An Immutable CovigentApp that is serializable to JSON format.
+ * An Immutable Patient Records that is serializable to JSON format.
  */
 @JsonRootName(value = "covigentapp")
 class JsonSerializablePatientRecords {
@@ -32,7 +32,7 @@ class JsonSerializablePatientRecords {
     }
 
     /**
-     * Converts a given {@code ReadOnlyCovigentApp} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyPatientRecords} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializablePatientRecords}.
      */
@@ -41,20 +41,20 @@ class JsonSerializablePatientRecords {
     }
 
     /**
-     * Converts this address book into the model's {@code CovigentApp} object.
+     * Converts this address book into the model's {@code PatientRecords} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public PatientRecords toModelType() throws IllegalValueException {
-        PatientRecords covigentApp = new PatientRecords();
+        PatientRecords patientRecords = new PatientRecords();
         for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
             Patient patient = jsonAdaptedPatient.toModelType();
-            if (covigentApp.hasPatient(patient)) {
+            if (patientRecords.hasPatient(patient)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
             }
-            covigentApp.addPatient(patient);
+            patientRecords.addPatient(patient);
         }
-        return covigentApp;
+        return patientRecords;
     }
 
 }

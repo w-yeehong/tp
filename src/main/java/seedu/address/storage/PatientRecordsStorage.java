@@ -33,14 +33,14 @@ public interface PatientRecordsStorage {
 
     /**
      * Saves the given {@link ReadOnlyPatientRecords} to the storage.
-     * @param covigentApp cannot be null.
+     * @param patientRecords cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void savePatientRecords(ReadOnlyPatientRecords covigentApp) throws IOException;
+    void savePatientRecords(ReadOnlyPatientRecords patientRecords) throws IOException;
 
     /**
      * @see #savePatientRecords(ReadOnlyPatientRecords)
      */
-    void savePatientRecords(ReadOnlyPatientRecords covigentApp, Path filePath) throws IOException;
+    void savePatientRecords(ReadOnlyPatientRecords patientRecords, Path filePath) throws IOException;
 
 }

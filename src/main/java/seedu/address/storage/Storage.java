@@ -29,7 +29,7 @@ public interface Storage extends PatientRecordsStorage, UserPrefsStorage {
     Optional<ReadOnlyPatientRecords> readPatientRecords() throws DataConversionException, IOException;
 
     @Override
-    void savePatientRecords(ReadOnlyPatientRecords covigentApp) throws IOException;
+    void savePatientRecords(ReadOnlyPatientRecords patientRecords) throws IOException;
 
     /** Reads the data of number of rooms and occupied rooms into RoomList **/
     Optional<ReadOnlyRoomList> readRoomOccupancyStorage() throws DataConversionException, IOException;

@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyPatientRecords;
 
 /**
- * A class to access CovigentApp data stored as a json file on the hard disk.
+ * A class to access patient records data stored as a json file on the hard disk.
  */
 public class JsonPatientRecordsStorage implements PatientRecordsStorage {
 
@@ -46,14 +46,14 @@ public class JsonPatientRecordsStorage implements PatientRecordsStorage {
     public Optional<ReadOnlyPatientRecords> readPatientRecords(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializablePatientRecords> jsonCovigentApp = JsonUtil.readJsonFile(
+        Optional<JsonSerializablePatientRecords> jsonPatientRecords = JsonUtil.readJsonFile(
                 filePath, JsonSerializablePatientRecords.class);
-        if (!jsonCovigentApp.isPresent()) {
+        if (!jsonPatientRecords.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonCovigentApp.get().toModelType());
+            return Optional.of(jsonPatientRecords.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -61,8 +61,8 @@ public class JsonPatientRecordsStorage implements PatientRecordsStorage {
     }
 
     @Override
-    public void savePatientRecords(ReadOnlyPatientRecords covigentApp) throws IOException {
-        savePatientRecords(covigentApp, filePath);
+    public void savePatientRecords(ReadOnlyPatientRecords patientRecords) throws IOException {
+        savePatientRecords(patientRecords, filePath);
     }
 
     /**
@@ -70,12 +70,12 @@ public class JsonPatientRecordsStorage implements PatientRecordsStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void savePatientRecords(ReadOnlyPatientRecords covigentApp, Path filePath) throws IOException {
-        requireNonNull(covigentApp);
+    public void savePatientRecords(ReadOnlyPatientRecords patientRecords, Path filePath) throws IOException {
+        requireNonNull(patientRecords);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializablePatientRecords(covigentApp), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePatientRecords(patientRecords), filePath);
     }
 
 }

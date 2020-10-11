@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     private final FilteredList<Room> filteredRooms;
 
     /**
-     * Initializes a ModelManager with the given covigentApp and userPrefs.
+     * Initializes a ModelManager with the given patient records, room records and userPrefs.
      */
     public ModelManager(ReadOnlyPatientRecords patientRecords, ReadOnlyUserPrefs userPrefs,
                         ReadOnlyRoomList rooms) {
@@ -84,11 +84,11 @@ public class ModelManager implements Model {
         userPrefs.setCovigentAppFilePath(covigentAppFilePath);
     }
 
-    //=========== CovigentApp ================================================================================
+    //=========== Patient Records ================================================================================
 
     @Override
-    public void setPatientRecords(ReadOnlyPatientRecords covigentApp) {
-        this.patientRecords.resetData(covigentApp);
+    public void setPatientRecords(ReadOnlyPatientRecords patientRecords) {
+        this.patientRecords.resetData(patientRecords);
     }
 
     @Override
@@ -163,7 +163,7 @@ public class ModelManager implements Model {
                 && filteredRooms.equals(other.filteredRooms);
     }
 
-    //=========== Rooms ========================================================================================
+    //=========== Room List ========================================================================================
 
     @Override
     public int getNumOfRooms() {
