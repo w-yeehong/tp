@@ -177,7 +177,7 @@ Examples:
 
 ### 3.9 Lists the current rooms: `listRoom`
 
-Lists all the current available rooms.
+Lists all the rooms in the hotel.
 
 Format: `listRoom`
 
