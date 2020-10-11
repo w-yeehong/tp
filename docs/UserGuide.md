@@ -22,7 +22,7 @@ title: User Guide
     3.6 [Add rooms in hotel: `addRooms`](#36-add-rooms-in-hotel-addrooms)<br>
     3.7 [Find the first free room: `findRoom`](#37-find-the-first-free-room-findroom)<br>
     3.8 [Add a task to a room: `addtask`](#38-add-a-task-to-a-room-addtask)<br>
-    3.9 [Search task swith a deadline: `searchtask`](#39-search-tasks-with-a-deadline-searchtask)<br>
+    3.9 [Searches all tasks before the given date: `searchtask`](#39-search-tasks-before-a-date-searchtask)<br>
     4.0 [View help: `help`](#40-view-help-help)<br>
     4.1 [Save the data](#41-save-the-data)<br>
  4. [FAQ](#4-faq)
@@ -176,7 +176,7 @@ Examples:
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
 * `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 at 12am" to Room #1.
 
-### 3.9 Search tasks with a deadline: `searchtask`
+### 3.9 Search tasks before a date: `searchtask`
 
 Search all tasks before a date.
 

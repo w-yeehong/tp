@@ -23,13 +23,13 @@ public class SearchTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "searchtask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches a task in Covigent. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches tasks in Covigent. "
             + "Parameters: "
             + "[" + PREFIX_DUE_DATE + "DUE DATE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DUE_DATE + "20200928 2359";
 
-    public static final String MESSAGE_Search_TASK_SUCCESS = "Tasks before the due date found: \n";
+    public static final String MESSAGE_SEARCH_TASK_SUCCESS = "Tasks before the due date found: \n";
     public static final String MESSAGE_TASK_NOT_FOUND = "There is no task that matches your criteria.";
 
 
@@ -62,7 +62,7 @@ public class SearchTaskCommand extends Command {
             throw new CommandException(MESSAGE_TASK_NOT_FOUND);
         }
 
-        return new CommandResult(String.format(MESSAGE_Search_TASK_SUCCESS
+        return new CommandResult(String.format(MESSAGE_SEARCH_TASK_SUCCESS
                 + getListOutput(taskListWithDesirableResult)));
     }
 
