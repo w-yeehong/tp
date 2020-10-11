@@ -42,7 +42,7 @@ public class ModelManager implements Model {
         this.rooms = new RoomList(rooms);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.patientRecords.getPatientList());
-        filteredRooms = new FilteredList<>(this.rooms.getRoomList());
+        filteredRooms = new FilteredList<>(this.rooms.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
@@ -179,7 +179,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Room> getRoomList() {
-        return rooms.getRoomList();
+        return rooms.asUnmodifiableObservableList();
     }
 
     // TODO: remove this method and use getRoomList() instead (I will need this modifableRoomList for editing though)

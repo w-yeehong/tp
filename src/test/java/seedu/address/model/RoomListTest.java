@@ -1,9 +1,15 @@
 package seedu.address.model;
 
-//TODO
-public class RoomListTest {
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    /*
+import java.util.PriorityQueue;
+import seedu.address.model.room.Room;
+import org.junit.jupiter.api.Test;
+
+class RoomListTest {
+
+    @Test
     void testEquals() {
         PriorityQueue<Room> rooms = new PriorityQueue<>();
         Room[] arrayOfRooms = new Room[10];
@@ -76,6 +82,4 @@ public class RoomListTest {
         assertFalse(roomList.equals(rooms1, rooms2));
 
     }
-
-     */
 }
