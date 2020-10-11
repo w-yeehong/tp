@@ -52,5 +52,5 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    ObservableList<Room> getRoom();
+    ObservableList<Room> getRoomDisplayRoom();
 }

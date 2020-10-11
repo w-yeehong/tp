@@ -53,6 +53,7 @@ public class RoomList implements ReadOnlyRoomList {
         numOfRooms = roomLists.size();
         rooms.addAll(roomLists);
         internalList.addAll(roomLists);
+        displayAllRooms();
     }
     /**
      * Returns Priority Queue of rooms
@@ -102,6 +103,7 @@ public class RoomList implements ReadOnlyRoomList {
     public void addRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
         addRooms();
+        displayAllRooms();
     }
 
     /**
@@ -256,6 +258,7 @@ public class RoomList implements ReadOnlyRoomList {
         roomDisplayList.clear();
         roomDisplayList.addAll(internalList);
     }
+
     public ObservableList<Room> getRoomDisplayList() {
         return roomDisplayList;
     }
