@@ -21,6 +21,8 @@ public class TypicalRooms {
             .withIsOccupied(true).withPatient(ALICE).build();
     public static final Room ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT = new RoomBuilder()
             .withIsOccupied(true).withPatient(ALICE).withTasks(REMIND_PATIENT).build();
+    public static final Room ROOM_INVALID_PATIENT_PRESENT_OCCUPIED_FALSE = new RoomBuilder()
+            .withIsOccupied(false).withPatient(ALICE).build();
 
     private TypicalRooms() {
     } // prevents instantiation
