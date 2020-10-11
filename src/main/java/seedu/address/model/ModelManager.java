@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final PatientRecords patientRecords;
-    private final RoomList rooms;
+    private final RoomList roomList;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Room> filteredRooms;
@@ -32,17 +32,17 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given patient records, room records and userPrefs.
      */
     public ModelManager(ReadOnlyPatientRecords patientRecords, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyRoomList rooms) {
+                        ReadOnlyRoomList roomList) {
         super();
         requireAllNonNull(patientRecords, userPrefs);
 
         logger.fine("Initializing with Covigent App: " + patientRecords + " and user prefs " + userPrefs);
 
         this.patientRecords = new PatientRecords(patientRecords);
-        this.rooms = new RoomList(rooms);
+        this.roomList = new RoomList(roomList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.patientRecords.getPatientList());
-        filteredRooms = new FilteredList<>(this.rooms.asUnmodifiableObservableList());
+        filteredRooms = new FilteredList<>(this.roomList.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
@@ -98,7 +98,7 @@ public class ModelManager implements Model {
 
     //=========== RoomList ================================================================================
     public void setRoomList(ReadOnlyRoomList rooms) {
-        this.rooms.resetData(rooms);
+        this.roomList.resetData(rooms);
     }
 
 
@@ -157,7 +157,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
 
         return patientRecords.equals(other.patientRecords)
-                && rooms.equals(other.rooms)
+                && roomList.equals(other.roomList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPatients.equals(other.filteredPatients)
                 && filteredRooms.equals(other.filteredRooms);
@@ -167,25 +167,25 @@ public class ModelManager implements Model {
 
     @Override
     public int getNumOfRooms() {
-        return rooms.getNumOfRooms();
+        return roomList.getNumOfRooms();
     }
 
     @Override
     public void addRooms(int num) {
-        rooms.addRooms(num);
+        roomList.addRooms(num);
     }
 
     //=========== RoomList Accessors ==========================================================================
 
     @Override
     public ObservableList<Room> getRoomList() {
-        return rooms.asUnmodifiableObservableList();
+        return roomList.asUnmodifiableObservableList();
     }
 
     // TODO: remove this method and use getRoomList() instead (I will need this modifableRoomList for editing though)
     @Override
     public RoomList getModifiableRoomList() {
-        return rooms;
+        return roomList;
     }
 
     @Override
@@ -196,13 +196,13 @@ public class ModelManager implements Model {
     @Override
     public boolean hasRoom(Room room) {
         requireAllNonNull(room);
-        return rooms.containsRoom(room);
+        return roomList.containsRoom(room);
     }
 
     @Override
     public void setSingleRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
-        rooms.setSingleRoom(target, editedRoom);
+        roomList.setSingleRoom(target, editedRoom);
     }
 
     //=========== Tasks ========================================================================================
@@ -210,7 +210,7 @@ public class ModelManager implements Model {
     @Override
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-        rooms.addTaskToRoom(task, room);
+        roomList.addTaskToRoom(task, room);
     }
 
 }

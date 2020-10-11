@@ -3,15 +3,20 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.testutil.PatientRecordsBuilder;
 
 public class ModelManagerTest {
 
@@ -93,16 +98,15 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getRoomList().remove(0));
     }
 
-    //TODO
-    /*
+    @Test
     public void equals() {
-        CovigentApp covigentApp = new PatientRecordsBuilder().withPatient(ALICE).withPatient(BENSON).build();
-        CovigentApp differentCovigentApp = new CovigentApp();
+        PatientRecords patientRecords = new PatientRecordsBuilder().withPatient(ALICE).withPatient(BENSON).build();
+        PatientRecords differentPatientRecords = new PatientRecords();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(covigentApp, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(covigentApp, userPrefs);
+        modelManager = new ModelManager(patientRecords, userPrefs, new RoomList());
+        ModelManager modelManagerCopy = new ModelManager(patientRecords, userPrefs, new RoomList());
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -115,12 +119,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different covigentApp -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentCovigentApp, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentPatientRecords, userPrefs, new RoomList())));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(covigentApp, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(patientRecords, userPrefs, new RoomList())));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -128,8 +132,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setCovigentAppFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(covigentApp, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(patientRecords, differentUserPrefs, new RoomList())));
     }
-
-     */
 }
