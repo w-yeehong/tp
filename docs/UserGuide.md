@@ -191,13 +191,19 @@ Format: `searchtask dd/DUE_DATE`
 Examples:
 * `searchtask dd/12-1-2021` Search all tasks before 12-1-2021.
 
-### 4.0 View help: `help`
+### 3.10 Lists the current rooms: `listRoom`
+
+Lists all the rooms in the hotel.
+
+Format: `listRoom`
+
+### 3.11 View help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### 4.1 Save the data
+### 3.12 Save the data
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -222,5 +228,6 @@ Action | Format, Examples
 **Find Room** | `findRoom` <br>
 **Add Task to Room** | `addTask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br>
 **Search Task** | `searchtask dd/DUE_DATE` <br>
+**List Room** | `listRoom` <br> 
 **Help** | `help`<br>
 
