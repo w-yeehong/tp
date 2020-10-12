@@ -17,7 +17,6 @@ import seedu.address.model.task.DateTimeDue;
  * Parses input arguments and creates a new SearchTaskCommand object
  */
 public class SearchTaskCommandParser implements Parser<SearchTaskCommand> {
-    
     /**
      * Parses the given {@code String} of arguments in the context of the SearchTaskCommand
      * and returns an SearchTaskCommand object for execution.
