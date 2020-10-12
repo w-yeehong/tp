@@ -15,6 +15,8 @@ title: User Guide
     3.5 [Search information: `searchpatient`](#35-search-information-searchpatient)<br>
     3.6 [Initialize rooms in hotel: `initRooms`](#36-initialize-rooms-in-hotel-initrooms)<br>
     3.7 [Find the first free room: `findRoom`](#37-find-the-first-free-room-findroom)<br>
+    3.8 [Add a task to a room: `addtask`](#38-add-a-task-to-a-room-addtask)<br>
+    3.9 [Searches all tasks before the given date: `searchtask`](#39-search-tasks-before-a-date-searchtask)<br>
     3.8 [Allocate patient to room or edit room: `editroom`](#38-allocate-patient-to-room-or-edit-room-editroom)<br>
     3.9 [Add a task to a room: `addtask`](#39-add-a-task-to-a-room-addtask)<br>
     3.10 [Lists the current rooms: `listRoom`](#310-lists-the-current-rooms-listroom)<br>
@@ -188,6 +190,21 @@ Examples:
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
 * `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 at 12am" to Room #1.
 
+### 3.9 Search tasks before a date: `searchtask`
+
+Search all tasks before a date.
+
+Format: `searchtask dd/DUE_DATE`
+
+* Due date can be in the any of the following formats:
+  * `YYYYMMDD` (e.g. 20210131).
+  * `YYYYMMDD HHmm` (e.g. 20210131 2359).
+  * `D-M-YYYY` (e.g. 31-1-2021 or 31-01-2021).
+  * `D-M-YYYY HHmm` (e.g. 31-1-2021 2359 or 31-01-2021 2359).
+
+Examples:
+* `searchtask dd/12-1-2021` Search all tasks before 12-1-2021.
+
 ### 3.10 Lists the current rooms: `listRoom`
 
 Lists all the rooms in the hotel.
@@ -225,6 +242,7 @@ Action | Format, Examples
 **Find Room** | `findRoom` <br>
 **Edit Room** | `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]` <br> e.g., `editroom 1 r/2 p/alex`
 **Add Task to Room** | `addTask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br>
+**Search Task** | `searchtask dd/DUE_DATE` <br>
 **List Room** | `listRoom` <br> 
 **Help** | `help`<br>
 
