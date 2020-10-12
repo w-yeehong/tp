@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -27,7 +28,7 @@ public class DeletePatientCommandTest {
     @Test
     public void execute_validNameUnfilteredList_success() {
         Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
-        String patientToDeleteName = patientToDelete.getName().toString();
+        Name patientToDeleteName = patientToDelete.getName();
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(patientToDeleteName);
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
@@ -40,21 +41,25 @@ public class DeletePatientCommandTest {
 
     @Test
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
-        String invalidPatientName = "Obviously invalid name";
+        Name invalidPatientName = new Name("Obviously invalid name");
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(invalidPatientName);
         assertCommandFailure(deletePatientCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
     }
 
     @Test
     public void equals() {
-        DeletePatientCommand deleteFirstCommand = new DeletePatientCommand("Jane Doe");
-        DeletePatientCommand deleteSecondCommand = new DeletePatientCommand("John Doe");
+        Name jane1 = new Name("Jane Doe");
+        Name jane2 = new Name("jane doe");
+        Name john = new Name("John Doe");
+
+        DeletePatientCommand deleteFirstCommand = new DeletePatientCommand(jane1);
+        DeletePatientCommand deleteSecondCommand = new DeletePatientCommand(john);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same names of patient -> returns true
-        DeletePatientCommand deleteFirstCommandCopy = new DeletePatientCommand("jane doe");
+        DeletePatientCommand deleteFirstCommandCopy = new DeletePatientCommand(jane2);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -65,14 +70,5 @@ public class DeletePatientCommandTest {
 
         // different patient -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoPatient(Model model) {
-        model.updateFilteredPatientList(p -> false);
-
-        assertTrue(model.getFilteredPatientList().isEmpty());
     }
 }

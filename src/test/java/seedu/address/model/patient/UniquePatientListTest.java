@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPatients.BOB;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +43,21 @@ public class UniquePatientListTest {
         uniquePatientList.add(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).build();
         assertTrue(uniquePatientList.contains(editedAlice));
+    }
+
+    @Test
+    public void getPatientWithName_patientInList_success() {
+        uniquePatientList.add(ALICE);
+        Optional<Patient> expectedPatient = uniquePatientList.getPatientWithName(ALICE.getName());
+        assertTrue(expectedPatient.isPresent());
+        assertEquals(ALICE, expectedPatient.get());
+    }
+
+    @Test
+    public void getPatientWithName_patientNotInList_returnsNull() {
+        uniquePatientList.add(ALICE);
+        Optional<Patient> expectedPatient = uniquePatientList.getPatientWithName(BOB.getName());
+        assertTrue(expectedPatient.isEmpty());
     }
 
     @Test

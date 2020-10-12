@@ -22,6 +22,7 @@ import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescri
 import seedu.address.logic.commands.patient.FindPatientCommand;
 import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -49,7 +50,7 @@ public class CovigentAppParserTest {
     public void parseCommand_deletePatient() throws Exception {
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
                 DeletePatientCommand.COMMAND_WORD + " " + "Alice Pauline");
-        assertEquals(new DeletePatientCommand("Alice Pauline"), command);
+        assertEquals(new DeletePatientCommand(new Name("Alice Pauline")), command);
     }
 
     @Test

@@ -28,7 +28,7 @@ public class AddPatientCommandIntegrationTest {
 
     @Test
     public void execute_newPatient_success() {
-        Patient validPatient = new PatientBuilder().build();
+        Patient validPatient = new PatientBuilder().withName("John Doe").build();
 
         Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
         expectedModel.addPatient(validPatient);

@@ -1,6 +1,7 @@
 package seedu.address.testutil.stubs;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.function.Predicate;
 
@@ -9,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RoomList;
 import seedu.address.model.patient.Name;
@@ -71,6 +73,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Optional<Patient> getPatientWithName(Name nameOfPatient) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deletePatient(Patient target) {
         throw new AssertionError("This method should not be called.");
     }
@@ -92,6 +99,11 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setRoomList(ReadOnlyRoomList rooms) {
         throw new AssertionError("This method should not be called.");
     }
 

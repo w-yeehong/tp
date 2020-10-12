@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +36,22 @@ public class UniquePatientList implements Iterable<Patient> {
     public boolean contains(Patient toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePatient);
+    }
+
+
+    /**
+     * Returns the patient with the input name.
+     * @param name of patient to find.
+     * @return the patient with the name if it exists.
+     */
+    public Optional<Patient> getPatientWithName(Name name) {
+        requireNonNull(name);
+        for (Patient patient : internalList) {
+            if (patient.getName().equals(name)) {
+                return Optional.of(patient);
+            }
+        }
+        return Optional.empty();
     }
 
     /**
