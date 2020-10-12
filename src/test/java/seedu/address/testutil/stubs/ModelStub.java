@@ -145,13 +145,13 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    public void displayFindRoom(Room room) {}
+    @Override
+    public void displayFindRoom(Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
 
     @Override
-    public void displayAllRoom() {}
-
-    @Override
-    public ObservableList<Room> getRoomDisplayRoom() {
-        return null;
+    public void displayAllRoom() {
+        throw new AssertionError("This method should not be called.");
     }
 }

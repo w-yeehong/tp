@@ -119,9 +119,7 @@ public interface Model {
 
     void displayFindRoom(Room room);
 
-    void displayAllRoom ();
-
-    ObservableList<Room> getRoomDisplayRoom();
+    void displayAllRoom();
 
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of

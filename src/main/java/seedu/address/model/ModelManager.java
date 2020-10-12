@@ -228,11 +228,6 @@ public class ModelManager implements Model {
         roomList.displayAllRooms();
     }
 
-    @Override
-    public ObservableList<Room> getRoomDisplayRoom() {
-        return roomList.getRoomDisplayList();
-    }
-
     //=========== RoomList Accessors ==========================================================================
 
     @Override

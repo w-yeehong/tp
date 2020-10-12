@@ -73,7 +73,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Room> getRoomList() {
-        return model.getModifiableRoomList().getRoomObservableList();
+        return model.getRoomList();
     }
 
     @Override
@@ -89,10 +89,5 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public ObservableList<Room> getRoomDisplayRoom() {
-        return model.getRoomDisplayRoom();
     }
 }
