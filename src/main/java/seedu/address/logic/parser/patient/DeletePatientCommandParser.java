@@ -17,6 +17,7 @@ public class DeletePatientCommandParser implements Parser<DeletePatientCommand> 
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeletePatientCommand parse(String args) throws ParseException {
+
         String lowercasePatientName = args.trim().toLowerCase();
         if (lowercasePatientName.length() == 0) {
             //case when the user calls deletePatient command without arguments for patient name

@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 
 public class ListRoomCommand extends Command {
     public static final String COMMAND_WORD = "listroom";
-    public static final String MESSAGE_SUCCESS = "Listed all rooms.";
+    public static final String MESSAGE_SUCCESS = "All rooms are listed.";
     public static final String NUMBER_OF_ROOMS_UNDEFINED =
             "there are no room in the app yet, please define no of rooms using initRooms command";
     @Override

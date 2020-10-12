@@ -15,9 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 import seedu.address.model.task.Task;
 
 /**
@@ -26,29 +24,31 @@ import seedu.address.model.task.Task;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final CovigentApp covigentApp;
+    private final PatientRecords patientRecords;
+    private final RoomList roomList;
     private final UserPrefs userPrefs;
-    private final RoomList roomList; // TODO: remove roomList from ModelManager and use the list in AddressBook
     private final FilteredList<Patient> filteredPatients;
-    private Room findRoom;
+    private final FilteredList<Room> filteredRooms;
+
     /**
-     * Initializes a ModelManager with the given covigentApp and userPrefs.
+     * Initializes a ModelManager with the given patient records, room records and userPrefs.
      */
-    public ModelManager(ReadOnlyCovigentApp covigentApp, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyRoomList readOnlyRoomOccupancy) {
+    public ModelManager(ReadOnlyPatientRecords patientRecords, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyRoomList roomList) {
         super();
-        requireAllNonNull(covigentApp, userPrefs);
+        requireAllNonNull(patientRecords, userPrefs);
 
-        logger.fine("Initializing with address book: " + covigentApp + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Covigent App: " + patientRecords + " and user prefs " + userPrefs);
 
-        this.covigentApp = new CovigentApp(covigentApp);
+        this.patientRecords = new PatientRecords(patientRecords);
+        this.roomList = new RoomList(roomList);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.roomList = new RoomList(readOnlyRoomOccupancy);
-        filteredPatients = new FilteredList<>(this.covigentApp.getPatientList());
+        filteredPatients = new FilteredList<>(this.patientRecords.getPatientList());
+        filteredRooms = new FilteredList<>(this.roomList.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
-        this(new CovigentApp(), new UserPrefs(), new RoomList());
+        this(new PatientRecords(), new UserPrefs(), new RoomList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -86,34 +86,40 @@ public class ModelManager implements Model {
         userPrefs.setCovigentAppFilePath(covigentAppFilePath);
     }
 
-    //=========== CovigentApp ================================================================================
+    //=========== Patient Records ================================================================================
 
     @Override
-    public void setCovigentApp(ReadOnlyCovigentApp covigentApp) {
-        this.covigentApp.resetData(covigentApp);
+    public void setPatientRecords(ReadOnlyPatientRecords patientRecords) {
+        this.patientRecords.resetData(patientRecords);
     }
 
     @Override
-    public ReadOnlyCovigentApp getCovigentApp() {
-        return covigentApp;
+    public ReadOnlyPatientRecords getPatientRecords() {
+        return patientRecords;
     }
+
+    //=========== RoomList ================================================================================
+    public void setRoomList(ReadOnlyRoomList rooms) {
+        this.roomList.resetData(rooms);
+    }
+
 
     //=========== Patients ====================================================================================
 
     @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
-        return covigentApp.hasPatient(patient);
+        return patientRecords.hasPatient(patient);
     }
 
     @Override
     public void deletePatient(Patient target) {
-        covigentApp.removePatient(target);
+        patientRecords.removePatient(target);
     }
 
     @Override
     public void addPatient(Patient patient) {
-        covigentApp.addPatient(patient);
+        patientRecords.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
@@ -121,7 +127,7 @@ public class ModelManager implements Model {
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
 
-        covigentApp.setPatient(target, editedPatient);
+        patientRecords.setPatient(target, editedPatient);
     }
 
     @Override
@@ -166,17 +172,18 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
 
-        return covigentApp.equals(other.covigentApp)
+        return patientRecords.equals(other.patientRecords)
+                && roomList.equals(other.roomList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPatients.equals(other.filteredPatients)
-                && roomList.equals(other.roomList);
+                && filteredRooms.equals(other.filteredRooms);
     }
 
-    //=========== Rooms ========================================================================================
+    //=========== Room List ========================================================================================
 
     @Override
     public int getNumOfRooms() {
-        return this.roomList.getNumOfRooms();
+        return roomList.getNumOfRooms();
     }
 
     @Override
@@ -241,7 +248,7 @@ public class ModelManager implements Model {
 
     @Override
     public PriorityQueue<Room> getRooms() {
-        return this.roomList.getRooms();
+        return this.getModifiableRoomList().getRooms();
     }
 
     //=========== Tasks ========================================================================================
@@ -249,8 +256,6 @@ public class ModelManager implements Model {
     @Override
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-
         roomList.addTaskToRoom(task, room);
     }
-
 }

@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.RoomList;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.testutil.RoomBuilder;
 
