@@ -21,7 +21,7 @@
       "isOccupied" : true,
       "patient" : {
         "name": "Alice Pauline",
-        "temperature": "36.7",
+        "temperature": "36.8",
         "periodOfStay": "20200911-20200918",
         "phone": "94351253",
         "age": "31",
@@ -35,7 +35,7 @@
       "isOccupied": true,
       "patient": {
         "name": "Alice Pauline",
-        "temperature": "36.7",
+        "temperature": "36.8",
         "periodOfStay": "20200911-20200918",
         "phone": "94351253",
         "age": "31",

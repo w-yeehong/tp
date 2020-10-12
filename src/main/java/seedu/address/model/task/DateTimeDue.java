@@ -53,16 +53,11 @@ public class DateTimeDue {
                 .map((dueAt) -> {
                     String trimmedDueAt = dueAt.trim();
                     checkArgument(isValidDateTimeDue(trimmedDueAt), MESSAGE_CONSTRAINTS);
-
+                    val = trimmedDueAt;
                     return Optional.of(DateTimeUtil
                             .parseFirstMatching(trimmedDueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
                 })
                 .orElse(Optional.empty());
-        if (optionalDueAt.isEmpty()) {
-            val = "";
-            return;
-        }
-        val = optionalDueAt.get();
     }
 
     /**
@@ -81,7 +76,7 @@ public class DateTimeDue {
 
         value = Optional.of(DateTimeUtil
                 .parseFirstMatching(trimmedDueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
-        val = dueAt;
+        val = trimmedDueAt;
     }
 
     public Optional<LocalDateTime> getValue() {

@@ -115,14 +115,18 @@ public class Room implements Comparable<Room> {
 
         Room room = (Room) o;
         if (taskList == null && patient == null) {
-            return roomNumber == room.roomNumber
+            return room.taskList == null
+                    && room.patient == null
+                    && roomNumber == room.roomNumber
                     && isOccupied == room.isOccupied;
         } else if (taskList == null) {
             return roomNumber == room.roomNumber
+                    && room.taskList == null
                     && isOccupied == room.isOccupied
                     && patient.equals(room.getPatient());
         } else if (patient == null) {
             return roomNumber == room.roomNumber
+                    && room.patient == null
                     && isOccupied == room.isOccupied
                     && taskList.equals(room.getTaskList());
         } else {

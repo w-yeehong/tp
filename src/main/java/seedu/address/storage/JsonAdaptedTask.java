@@ -12,6 +12,8 @@ import seedu.address.model.task.Task;
  * Jackson-friendly version of {@link Task}.
  */
 public class JsonAdaptedTask {
+    public static final String DATE_WRONG_FORMAT = "The date is given in the wrong format.";
+
     private String description;
     private String dueAt;
 
@@ -39,7 +41,11 @@ public class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Task.
      */
     public Task toModelType() throws IllegalValueException {
-        System.out.println(dueAt);
+        try {
+            DateTimeDue dateTimeDue = new DateTimeDue(dueAt);
+        } catch (IllegalArgumentException i) {
+            throw new IllegalValueException(DATE_WRONG_FORMAT);
+        }
         return new Task(new Description(description), new DateTimeDue(dueAt));
     }
 }

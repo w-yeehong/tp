@@ -21,8 +21,6 @@ public class TypicalRooms {
             .withIsOccupied(true).withPatient(ALICE).build();
     public static final Room ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT = new RoomBuilder()
             .withIsOccupied(true).withPatient(ALICE).withTasks(REMIND_PATIENT).build();
-    public static final Room ROOM_INVALID_PATIENT_PRESENT_OCCUPIED_FALSE = new RoomBuilder()
-            .withIsOccupied(false).withPatient(ALICE).build();
 
     private TypicalRooms() {
     } // prevents instantiation
@@ -36,7 +34,6 @@ public class TypicalRooms {
     }
 
     public static List<Room> getTypicalRooms() {
-        System.out.println(ROOM_PATIENT_ALICE_NO_TASK.getTaskList());
         return new ArrayList<>(Arrays.asList(ROOM_NO_PATIENT_NO_TASK, ROOM_NO_PATIENT_TASK_RESTOCK_SUPPLY,
                 ROOM_PATIENT_ALICE_NO_TASK, ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT));
     }

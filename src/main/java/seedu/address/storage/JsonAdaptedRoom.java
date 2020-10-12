@@ -9,11 +9,12 @@ import seedu.address.model.room.Room;
 public class JsonAdaptedRoom {
 
     public static final String PATIENT_PRESENT_IS_OCCUPIED_FALSE = "When patient is present isOccupied cannot be false";
+    public static final String PATIENT_ABSENT_IS_OCCUPIED_TRUE = "When patient is absent isOccupied cannot be true";
+    public static final String DATE_WRONG_FORMAT_IN_TASKS = "The date is given in the wrong format in tasks.";
+    public static final String PATIENT_WRONG_FORMAT = "The patient is given in the wrong format";
 
     private int roomNumber;
     private boolean isOccupied;
-    //TODO
-    //private String patient;
     private JsonAdaptedPatient patient;
     private JsonSerializableTaskList tasks;
 
@@ -56,6 +57,21 @@ public class JsonAdaptedRoom {
     public Room toModelType() throws IllegalValueException {
         if (this.patient != null && !isOccupied) {
             throw new IllegalValueException(PATIENT_PRESENT_IS_OCCUPIED_FALSE);
+        }
+        if (this.patient == null && isOccupied) {
+            throw new IllegalValueException(PATIENT_ABSENT_IS_OCCUPIED_TRUE);
+        }
+        if (patient != null) {
+            try {
+                patient.toModelType();
+            } catch (IllegalValueException i) {
+                throw new IllegalValueException(PATIENT_WRONG_FORMAT);
+            }
+        }
+        try {
+            tasks.toModelType();
+        } catch (IllegalValueException i) {
+            throw new IllegalValueException(DATE_WRONG_FORMAT_IN_TASKS);
         }
         if (this.patient == null) {
             return new Room(roomNumber, isOccupied, null, tasks.toModelType());
