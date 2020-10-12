@@ -19,6 +19,7 @@ import seedu.address.logic.commands.patient.SearchPatientCommand;
 import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.InitRoomsCommand;
+import seedu.address.logic.commands.room.ListRoomCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.AddPatientCommandParser;
@@ -96,7 +97,8 @@ public class CovigentAppParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
+        case ListRoomCommand.COMMAND_WORD:
+            return new ListRoomCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

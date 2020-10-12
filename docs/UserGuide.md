@@ -17,8 +17,9 @@ title: User Guide
     3.7 [Find the first free room: `findRoom`](#37-find-the-first-free-room-findroom)<br>
     3.8 [Allocate patient to room or edit room: `editroom`](#38-allocate-patient-to-room-or-edit-room-editroom)<br>
     3.9 [Add a task to a room: `addtask`](#39-add-a-task-to-a-room-addtask)<br>
-    3.10 [View help: `help`](#310-view-help-help)<br>
-    3.11 [Save the data](#311-save-the-data)<br>
+    3.10 [Lists the current rooms: `listRoom`](#310-lists-the-current-rooms-listroom)<br>
+    3.11 [View help: `help`](#311-view-help-help)<br>
+    3.12 [Save the data](#312-save-the-data)<br>
  4. [FAQ](#4-faq)
  5. [Command Summary](#5-command-summary)
 
@@ -186,13 +187,19 @@ Examples:
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
 * `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 at 12am" to Room #1.
 
-### 3.10 View help: `help`
+### 3.10 Lists the current rooms: `listRoom`
+
+Lists all the rooms in the hotel.
+
+Format: `listRoom`
+
+### 3.11 View help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### 3.11 Save the data
+### 3.12 Save the data
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -217,5 +224,6 @@ Action | Format, Examples
 **Find Room** | `findRoom` <br>
 **Edit Room** | `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]` <br> e.g., `editroom 1 r/2 p/alex`
 **Add Task to Room** | `addTask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br>
+**List Room** | `listRoom` <br> 
 **Help** | `help`<br>
 

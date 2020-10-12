@@ -30,7 +30,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final RoomList roomList; // TODO: remove roomList from ModelManager and use the list in AddressBook
     private final FilteredList<Patient> filteredPatients;
-
+    private Room findRoom;
     /**
      * Initializes a ModelManager with the given covigentApp and userPrefs.
      */
@@ -211,6 +211,21 @@ public class ModelManager implements Model {
         return index;
     }
 
+    @Override
+    public void displayFindRoom(Room room) {
+        roomList.displayFindRoomUpdate(room);
+    }
+
+    @Override
+    public void displayAllRoom () {
+        roomList.displayAllRooms();
+    }
+
+    @Override
+    public ObservableList<Room> getRoomDisplayRoom() {
+        return roomList.getRoomDisplayList();
+    }
+
     //=========== RoomList Accessors ==========================================================================
 
     @Override
@@ -237,4 +252,5 @@ public class ModelManager implements Model {
 
         roomList.addTaskToRoom(task, room);
     }
+
 }

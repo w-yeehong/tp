@@ -137,6 +137,12 @@ public interface Model {
      */
     Index checkIfRoomPresent(Integer roomNumber);
 
+    void displayFindRoom(Room room);
+
+    void displayAllRoom ();
+
+    ObservableList<Room> getRoomDisplayRoom();
+
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code RoomList}.
