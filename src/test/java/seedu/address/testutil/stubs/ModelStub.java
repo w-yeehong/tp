@@ -6,9 +6,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCovigentApp;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
@@ -79,6 +81,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean isPatientAssignedToRoom(Name name) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Patient> getFilteredPatientList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -129,6 +136,10 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Index checkIfRoomPresent(Integer roomNumber) {
+        throw new AssertionError("This method should not be called.");
+    }
+
     public void displayFindRoom(Room room) {}
 
     @Override

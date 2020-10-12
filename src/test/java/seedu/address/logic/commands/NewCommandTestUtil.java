@@ -8,9 +8,10 @@ import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
-import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -33,7 +34,6 @@ public class NewCommandTestUtil {
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     // Patients
-
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_TEMP_AMY = "36.7";
@@ -78,7 +78,6 @@ public class NewCommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withTemperature(VALID_TEMP_BOB).withPeriodOfStay(VALID_PERIOD_BOB)
                 .withAge(VALID_AGE_BOB).withComment(NO_COMMENT).build();
     }
-
     // Tasks
 
     public static final String VALID_DESCRIPTION_REMIND_PATIENT = "Remind Alice to change bedsheets.";
@@ -96,11 +95,11 @@ public class NewCommandTestUtil {
 
     public static final String DESCRIPTION_DESC_REMIND_PATIENT = " " + PREFIX_DESCRIPTION
             + VALID_DESCRIPTION_REMIND_PATIENT;
-    public static final String DESCRIPTION_DESC_ORDER_BEDSHEET = " " + PREFIX_DESCRIPTION
+    public static final String DESCRIPTION_DESC_ORDER_BEDSHEETS = " " + PREFIX_DESCRIPTION
             + VALID_DATETIME_DUE_ORDER_BEDSHEET;
     public static final String DATETIME_DUE_DESC_REMIND_PATIENT = " " + PREFIX_DUE_DATE
             + VALID_DATETIME_DUE_REMIND_PATIENT;
-    public static final String DATETIME_DUE_DESC_ORDER_BEDSHEET = " " + PREFIX_DUE_DATE
+    public static final String DATETIME_DUE_DESC_ORDER_BEDSHEETS = " " + PREFIX_DUE_DATE
             + VALID_DATETIME_DUE_ORDER_BEDSHEET;
     public static final String ROOM_NUMBER_DESC_ONE = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_ONE;
     public static final String ROOM_NUMBER_DESC_TWO = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_TWO;
@@ -111,6 +110,20 @@ public class NewCommandTestUtil {
             + INVALID_DATETIME_DUE_FORMAT;
     public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
             + INVALID_ROOM_NUMBER;
+    //Rooms
+    public static final String INVALID_NON_NUMBER_ROOM_NUMBER = "a";
+    public static final String INVALID_NON_INTEGER_ROOM_NUMBER = "1.1";
+    public static final String INVALID_NON_NUMBER_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
+        + INVALID_NON_NUMBER_ROOM_NUMBER;
+    public static final String INVALID_INTEGER_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
+        + INVALID_NON_INTEGER_ROOM_NUMBER;
+    //invalid name with symbol
+    public static final String VALID_PATIENT_NAME_JAMES = "james";
+    public static final String INVALID_PATIENT_NAME_JAMES = "james$";
+    public static final String INVALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + INVALID_PATIENT_NAME_JAMES;
+    public static final String VALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + VALID_PATIENT_NAME_JAMES;
+    public static final String VALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY;
+    public static final String INVALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY + "$";
 
     /**
      * Executes the given {@code command}, confirms that <br>
