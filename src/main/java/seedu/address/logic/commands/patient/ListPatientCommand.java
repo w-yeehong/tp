@@ -14,7 +14,7 @@ public class ListPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "listpatient";
 
-    public static final String MESSAGE_SUCCESS = "Listed all patients.";
+    public static final String MESSAGE_SUCCESS = "All patients are listed.";
 
     @Override
     public CommandResult execute(Model model) {

@@ -18,6 +18,7 @@ public class SearchRoomCommandParser implements Parser<SearchRoomCommand> {
      * and returns a SearchRoomCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
+
     @Override
     public SearchRoomCommand parse(String userInput) throws ParseException {
         try {

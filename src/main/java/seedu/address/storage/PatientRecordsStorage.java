@@ -20,7 +20,8 @@ public interface PatientRecordsStorage {
 
     /**
      * Returns CovigentApp data as a {@link ReadOnlyPatientRecords}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -34,6 +35,7 @@ public interface PatientRecordsStorage {
     /**
      * Saves the given {@link ReadOnlyPatientRecords} to the storage.
      * @param patientRecords cannot be null.
+     *
      * @throws IOException if there was any problem writing to the file.
      */
     void savePatientRecords(ReadOnlyPatientRecords patientRecords) throws IOException;
