@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
@@ -82,6 +84,14 @@ public interface Model {
     void setPatient(Patient target, Patient editedPatient);
 
     /**
+     * Checks if patient is already assigned to a room.
+     *
+     * @param name Of the patient.
+     * @return Boolean value of whether patient is already assigned.
+     */
+    boolean isPatientAssignedRoom(Name name);
+
+    /**
      * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
      * {@code UniquePatientList}.
      */
@@ -101,6 +111,33 @@ public interface Model {
     void addRooms(int num);
 
     /**
+     * Checks if the roomList contains {@code room}.
+     *
+     * @param room That is to be searched for.
+     * @return True if roomList contains {@code room}.
+     */
+    boolean hasRoom(Room room);
+
+    /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in the application.
+     * The room identity of {@code editedRoom} must not be the same as
+     * another existing room in the application.
+     *
+     * @param target Of the room to be changed.
+     * @param editedRoom Is the newly edited room.
+     */
+    void setSingleRoom(Room target, Room editedRoom);
+
+    /**
+     * Checks if the given room number is present in the application.
+     *
+     * @param roomNumber to check if it is in the application.
+     * @return Index Of room that is found.
+     */
+    Index checkIfRoomPresent(Integer roomNumber);
+
+    /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code RoomList}.
      */
@@ -114,17 +151,4 @@ public interface Model {
     PriorityQueue<Room> getRooms();
 
     void addTaskToRoom(Task task, Room room);
-
-    /**
-     * Returns true if a room with the same identity as {@code room} exists in the application.
-     */
-    boolean hasRoom(Room room);
-
-    /**
-     * Replaces the given room {@code target} with {@code editedRoom}.
-     * {@code target} must exist in the application.
-     * The room identity of {@code editedRoom} must not be the same as
-     * another existing room in the application.
-     */
-    void setSingleRoom(Room target, Room editedRoom);
 }

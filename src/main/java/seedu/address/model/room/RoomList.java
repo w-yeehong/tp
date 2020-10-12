@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.model.task.Task;
@@ -221,24 +220,5 @@ public class RoomList implements ReadOnlyRoomList {
 
     public void setRooms(PriorityQueue<Room> rooms) {
         this.rooms = rooms;
-    }
-
-    /**
-     * Checks if the given room number is present in the application.
-     *
-     * @param roomNumber to check if it is in the application.
-     * @return Index Of room that is found.
-     */
-    public static Index checkIfRoomPresent(Integer roomNumber, ObservableList<Room> roomList) {
-        Index index = Index.fromZeroBased(0);
-        for (int i = 1; i <= roomList.size(); i++) {
-            int roomNum = roomList.get(i - 1).getRoomNumber();
-            boolean isValidRoom = (Integer.valueOf(roomNum)).equals(roomNumber);
-            if (isValidRoom) {
-                index = Index.fromZeroBased(i);
-                break;
-            }
-        }
-        return index;
     }
 }

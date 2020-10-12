@@ -21,7 +21,6 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 
 /**
  * Edits the details of a room identified by the room number in the app.
@@ -66,7 +65,7 @@ public class EditRoomCommand extends Command {
         requireNonNull(model);
 
         ObservableList<Room> roomList = model.getRoomList();
-        Index index = RoomList.checkIfRoomPresent(roomNumberToEdit, roomList);
+        Index index = model.checkIfRoomPresent(roomNumberToEdit);
 
         if (index.getZeroBased() == 0) {
             throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
@@ -108,7 +107,7 @@ public class EditRoomCommand extends Command {
         }
         //case 3: patient is already allocated to a room.
         Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
-        if (isPatientAssignedRoom(model.getRoomList(), patientName)) {
+        if (model.isPatientAssignedRoom(patientName)) {
             throw new CommandException(MESSAGE_PATIENT_ALREADY_ASSIGNED);
         }
         //case 4: allocate patient to the room
@@ -138,25 +137,6 @@ public class EditRoomCommand extends Command {
         throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
     }
 
-    /**
-     * Checks if patient is already assigned to a room.
-     *
-     * @param roomList Containing all the rooms.
-     * @param name Of the patient.
-     * @return Boolean value of whether patient is already assigned.
-     */
-    private static boolean isPatientAssignedRoom(List<Room> roomList, Name name) {
-        for (Room room : roomList) {
-            if (room.getPatient() != null) {
-                String patientNameInRoom = room.getPatient().getName().toString().trim().toLowerCase();
-                String patientNameToBeEdit = name.toString().trim().toLowerCase();
-                if (patientNameInRoom.equals(patientNameToBeEdit)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
     @Override
     public boolean equals(Object other) {
         if (other == this) { //short circuit if same object

@@ -151,7 +151,7 @@ Format: `findRoom`
 
 ### 3.8 Allocate patient to room or edit room: `editroom`
 
-Allocate a patient to a room or edit an exisiting room in the application.
+Allocates a patient to a room or edits an existing room in the application.
 
 Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
 
@@ -164,8 +164,8 @@ Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
 Examples:
 * `editroom 1 r/2 p/alex`. Edits the room number of the room from #1 to #2 and allocates alex to Room #2.
 * `editroom 1 p/alex`. Allocates alex to Room #1.
-* `editroom 1 p/-`. Remove the patient from the Room #1. 
-* `editroom 1 r/3 p/-`. Remove the patient from Room #1 and change room number of room from #1 to #3.
+* `editroom 1 p/-`. Removes the patient from the Room #1. 
+* `editroom 1 r/3 p/-`. Removes the patient from Room #1 and change room number of room from #1 to #3.
 
 ### 3.9 Add a task to a room: `addtask`
 
