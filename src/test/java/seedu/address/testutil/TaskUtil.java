@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
-import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.model.task.DateTimeDue.ALLOWED_DATETIME_FORMATS;
 
 import seedu.address.commons.core.index.Index;
