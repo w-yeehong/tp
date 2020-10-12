@@ -26,7 +26,6 @@ public class RoomIntegrationTest {
     public void addTask_validTask_success() {
         Room room = new RoomBuilder(ROOM_PATIENT_ALICE_NO_TASK).build();
         room.addTask(REMIND_PATIENT);
-
         assertEquals(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT, room);
     }
 
