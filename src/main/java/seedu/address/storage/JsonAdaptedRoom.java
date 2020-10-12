@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.task.TaskList;
 
 public class JsonAdaptedRoom {
 
@@ -16,8 +14,8 @@ public class JsonAdaptedRoom {
     private boolean isOccupied;
     //TODO
     //private String patient;
-    private Patient patient;
-    private TaskList tasks;
+    private JsonAdaptedPatient patient;
+    private JsonSerializableTaskList tasks;
 
     /**
      * Creates JsonAdaptedRoom based on the inputs given by the user of roomNumber and isOccupied
@@ -30,10 +28,10 @@ public class JsonAdaptedRoom {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
         if (patient != null) {
-            this.patient = patient.toModelType();
+            this.patient = patient;
         }
         if (tasks != null) {
-            this.tasks = tasks.toModelType();
+            this.tasks = tasks;
         }
 
     }
@@ -44,8 +42,10 @@ public class JsonAdaptedRoom {
     public JsonAdaptedRoom(Room source) {
         this.roomNumber = source.getRoomNumber();
         this.isOccupied = source.isOccupied();
-        this.patient = source.getPatient();
-        this.tasks = source.getTaskList();
+        if (source.getPatient() != null) {
+            this.patient = new JsonAdaptedPatient(source.getPatient());
+        }
+        this.tasks = new JsonSerializableTaskList(source.getTaskList());
     }
 
     /**
@@ -57,7 +57,10 @@ public class JsonAdaptedRoom {
         if (this.patient != null && !isOccupied) {
             throw new IllegalValueException(PATIENT_PRESENT_IS_OCCUPIED_FALSE);
         }
-        return new Room(roomNumber, isOccupied, patient, tasks);
+        if (this.patient == null) {
+            return new Room(roomNumber, isOccupied, null, tasks.toModelType());
+        }
+        return new Room(roomNumber, isOccupied, patient.toModelType(), tasks.toModelType());
     }
 
 }

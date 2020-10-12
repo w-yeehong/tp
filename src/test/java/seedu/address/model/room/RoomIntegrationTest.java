@@ -2,12 +2,12 @@ package seedu.address.model.room;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRooms.*;
+import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_NO_TASK;
+import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.task.Task;
 import seedu.address.testutil.RoomBuilder;
 
 /**

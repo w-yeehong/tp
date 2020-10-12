@@ -5,21 +5,19 @@
       "isOccupied": false,
       "patient": null,
       "tasks" : {
-        "internalList" : [ ],
-        "internalUnmodifiableList" : [ ]
+        "tasks" : [ ]
       }
     },
     {
-      "roomNumber": 9,
+      "roomNumber": 10,
       "isOccupied": false,
       "patient": null,
       "tasks": {
-        "internalList": [{"description": "Room #1 is running low on masks and needs to be restocked.",
-          "dueAt": "20200925"}],
-        "internalUnmodifiableList": []
+        "tasks": [{"description": "Room #1 is running low on masks and needs to be restocked.",
+          "dueAt": "20200925"}]
       }
     }, {
-      "roomNumber" : 8,
+      "roomNumber" : 10,
       "isOccupied" : true,
       "patient" : {
         "name": "Alice Pauline",
@@ -29,12 +27,11 @@
         "age": "31",
         "comment" : "Vegan"},
       "tasks" : {
-        "internalList" : [ ],
-        "internalUnmodifiableList" : [ ]
+        "tasks" : [ ]
       }
     },
     {
-      "roomNumber": 7,
+      "roomNumber": 10,
       "isOccupied": true,
       "patient": {
         "name": "Alice Pauline",
@@ -45,7 +42,7 @@
         "comment": "Vegan"
       },
       "tasks": {
-        "internalList": [
+        "tasks": [
           {
             "description": "Remind Alice to change bedsheets.",
             "dueAt": "20201230 2359"

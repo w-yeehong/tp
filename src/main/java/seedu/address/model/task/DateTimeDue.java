@@ -34,7 +34,7 @@ public class DateTimeDue {
     private static final String NULL_VALUE_TO_STRING = "-";
 
     public final Optional<LocalDateTime> value;
-
+    private String val;
     /**
      * Constructs a {@code DateTimeDue}.
      * {@code optionalDueAt} must be non-null (but can be empty).
@@ -58,6 +58,11 @@ public class DateTimeDue {
                             .parseFirstMatching(trimmedDueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
                 })
                 .orElse(Optional.empty());
+        if (optionalDueAt.isEmpty()) {
+            val = "";
+            return;
+        }
+        val = optionalDueAt.get();
     }
 
     /**
@@ -76,12 +81,15 @@ public class DateTimeDue {
 
         value = Optional.of(DateTimeUtil
                 .parseFirstMatching(trimmedDueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
+        val = dueAt;
     }
 
     public Optional<LocalDateTime> getValue() {
         return value;
     }
-
+    public String getVal() {
+        return val;
+    }
     /**
      * Returns if a given string is a valid date-time.
      */

@@ -1,5 +1,5 @@
 {
-  "internalList" : [ {
+  "tasks" : [ {
     "description" : "Remind Alice to change bedsheets.",
     "dueAt" : "20201230 2359"
   }, {

@@ -114,7 +114,7 @@ public class Room implements Comparable<Room> {
         }
 
         Room room = (Room) o;
-        if(taskList == null && patient == null) {
+        if (taskList == null && patient == null) {
             return roomNumber == room.roomNumber
                     && isOccupied == room.isOccupied;
         } else if (taskList == null) {

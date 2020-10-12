@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
