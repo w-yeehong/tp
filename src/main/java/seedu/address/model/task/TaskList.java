@@ -110,7 +110,11 @@ public class TaskList implements Iterable<Task> {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
+        int taskIndex = 1;
         for (Task task : internalList) {
+            // Results in "1. <task>\n2. <task>..."
+            builder.append(taskIndex++);
+            builder.append(". ");
             builder.append(task);
             builder.append("\n");
         }

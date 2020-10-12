@@ -144,9 +144,9 @@ public class TaskListTest {
         taskList.add(REMIND_PATIENT);
         taskList.add(RESTOCK_SUPPLY);
 
-        String expectedString = REMIND_PATIENT.toString();
+        String expectedString = "1. " + REMIND_PATIENT.toString();
         expectedString += "\n";
-        expectedString += RESTOCK_SUPPLY.toString();
+        expectedString += "2. " + RESTOCK_SUPPLY.toString();
         assertEquals(taskList.toString(), expectedString);
     }
 }

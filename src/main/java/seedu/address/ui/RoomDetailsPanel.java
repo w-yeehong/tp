@@ -45,6 +45,6 @@ public class RoomDetailsPanel extends UiPart<Region> {
             patientDetails.setText("No Patient Present.");
         }
         roomNumber.setText("Room #" + room.getRoomNumber());
-        taskDetails.setText(room.getTaskList().iterateTaskDetails());
+        taskDetails.setText(room.getTaskList().toString());
     }
 }
