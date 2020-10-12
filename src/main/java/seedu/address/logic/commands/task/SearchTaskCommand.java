@@ -17,7 +17,7 @@ import seedu.address.model.task.DateTimeDue;
 import seedu.address.model.task.Task;
 
 /**
- * Search a {@code Task} before a {@code DateTimeDue}.
+ * Searches a {@code Task} before a {@code DateTimeDue}.
  */
 public class SearchTaskCommand extends Command {
 
@@ -67,7 +67,7 @@ public class SearchTaskCommand extends Command {
     }
 
     /**
-     * Return the list of tasks' details
+     * Returns the list of tasks' details
      * @param list a list that stores the tasks.
      * @return a String output of the tasks' details.
      */
