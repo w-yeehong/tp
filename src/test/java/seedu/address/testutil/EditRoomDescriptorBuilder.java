@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.room.EditRoomCommand.EditRoomDescriptor;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.Room;
+import seedu.address.model.task.TaskList;
 
 public class EditRoomDescriptorBuilder {
 
@@ -24,6 +25,7 @@ public class EditRoomDescriptorBuilder {
         descriptor.setRoomNumber(room.getRoomNumber());
         descriptor.setOccupied(room.isOccupied());
         descriptor.setPatientName(room.getPatient().getName());
+        descriptor.setTaskList(room.getTaskList());
     }
 
     /**
@@ -47,6 +49,14 @@ public class EditRoomDescriptorBuilder {
      */
     public EditRoomDescriptorBuilder withPatient(Name name) {
         descriptor.setPatientName(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code patient} of the {@code EditRoomDescriptor} that we are building.
+     */
+    public EditRoomDescriptorBuilder withTaskList(TaskList taskList) {
+        descriptor.setTaskList(taskList);
         return this;
     }
 
