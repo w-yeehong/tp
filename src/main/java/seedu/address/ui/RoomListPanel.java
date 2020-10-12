@@ -32,6 +32,7 @@ public class RoomListPanel extends UiPart<Region> {
      */
     public RoomListPanel(ObservableList<Room> roomList) {
         super(FXML);
+
         if (!roomList.isEmpty()) {
             roomDetailsPanel = new RoomDetailsPanel(roomList.get(0));
             roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());

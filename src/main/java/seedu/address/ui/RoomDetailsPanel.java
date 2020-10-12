@@ -33,15 +33,18 @@ public class RoomDetailsPanel extends UiPart<Region> {
         setRoomDetails(room);
     }
 
-    //TODO change placeholder field once room class contains a patient.
+    /**
+     * Sets the room patient and task details.
+     *
+     * @param room To set the details for.
+     */
     private void setRoomDetails(Room room) {
         if (room.getPatient() != null) {
             patientDetails.setText(Patient.formatPatientDetails(room.getPatient()));
         } else {
-            patientDetails.setText("No Patient Present");
+            patientDetails.setText("No Patient Present.");
         }
         roomNumber.setText("Room #" + room.getRoomNumber());
-        //TODO update this when task in room has finished implementing
-        taskDetails.setText("room.getTasks.toString()");
+        taskDetails.setText(room.getTaskList().iterateTaskDetails());
     }
 }

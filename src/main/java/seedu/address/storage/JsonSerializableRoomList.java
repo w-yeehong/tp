@@ -42,6 +42,7 @@ public class JsonSerializableRoomList {
      */
     public RoomList toModelType() throws IllegalValueException {
         RoomList roomList = new RoomList();
+        roomList.getRoomDisplayList().clear();
         for (JsonAdaptedRoom jsonAdaptedRoom : rooms) {
             Room room = jsonAdaptedRoom.toModelType();
             roomList.addRooms(room);

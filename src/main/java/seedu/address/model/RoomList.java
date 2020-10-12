@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
@@ -29,7 +28,7 @@ public class RoomList implements ReadOnlyRoomList {
     private ObservableList<Room> internalList = FXCollections.observableArrayList();
     private final ObservableList<Room> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
+    private ObservableList<Room> roomDisplayList = FXCollections.observableArrayList();
     /** Creates default RoomList() object where all fields are null**/
     public RoomList() {}
 
@@ -57,6 +56,7 @@ public class RoomList implements ReadOnlyRoomList {
         numOfRooms = roomLists.size();
         rooms.addAll(roomLists);
         internalList.addAll(roomLists);
+        displayAllRooms();
     }
     /**
      * Returns Priority Queue of rooms
@@ -106,6 +106,7 @@ public class RoomList implements ReadOnlyRoomList {
     public void addRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
         addRooms();
+        displayAllRooms();
     }
 
     /**
@@ -228,20 +229,23 @@ public class RoomList implements ReadOnlyRoomList {
     }
 
     /**
-     * Checks if the given room number is present in the application.
-     * @param roomNumber to check if it is in the application.
-     * @return Index Of room that is found.
+     * Adds the room to a roomDisplayList where @param room is the room to be displayed when
+     * findRoom is called
      */
-    public Index checkIfRoomPresent(Integer roomNumber) {
-        Index index = Index.fromZeroBased(0);
-        for (int i = 1; i <= internalList.size(); i++) {
-            int roomNum = internalList.get(i - 1).getRoomNumber();
-            boolean isValidRoom = (Integer.valueOf(roomNum)).equals(roomNumber);
-            if (isValidRoom) {
-                index = Index.fromZeroBased(i);
-                break;
-            }
-        }
-        return index;
+    public void displayFindRoomUpdate(Room room) {
+        roomDisplayList.clear();
+        roomDisplayList.add(room);
+    }
+
+    /**
+     * Adds the list of rooms to roomDisplayList when listRoom is called for app to display.
+     */
+    public void displayAllRooms() {
+        roomDisplayList.clear();
+        roomDisplayList.addAll(internalList);
+    }
+
+    public ObservableList<Room> getRoomDisplayList() {
+        return roomDisplayList;
     }
 }

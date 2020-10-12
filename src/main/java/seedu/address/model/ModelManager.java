@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
@@ -128,6 +130,20 @@ public class ModelManager implements Model {
         patientRecords.setPatient(target, editedPatient);
     }
 
+    @Override
+    public boolean isPatientAssignedToRoom(Name name) {
+        for (Room room : roomList.getRoomObservableList()) {
+            if (room.getPatient() != null) {
+                String patientNameInRoom = room.getPatient().getName().toString().trim().toLowerCase();
+                String patientNameToBeEdit = name.toString().trim().toLowerCase();
+                if (patientNameInRoom.equals(patientNameToBeEdit)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     //=========== Filtered Patient List Accessors =============================================================
 
     @Override
@@ -175,24 +191,6 @@ public class ModelManager implements Model {
         roomList.addRooms(num);
     }
 
-    //=========== RoomList Accessors ==========================================================================
-
-    @Override
-    public ObservableList<Room> getRoomList() {
-        return roomList.asUnmodifiableObservableList();
-    }
-
-    // TODO: remove this method and use getRoomList() instead (I will need this modifableRoomList for editing though)
-    @Override
-    public RoomList getModifiableRoomList() {
-        return roomList;
-    }
-
-    @Override
-    public PriorityQueue<Room> getRooms() {
-        return this.getModifiableRoomList().getRooms();
-    }
-
     @Override
     public boolean hasRoom(Room room) {
         requireAllNonNull(room);
@@ -205,6 +203,54 @@ public class ModelManager implements Model {
         roomList.setSingleRoom(target, editedRoom);
     }
 
+    @Override
+    public Index checkIfRoomPresent(Integer roomNumber) {
+        ObservableList<Room> roomObservableList = this.getRoomList();
+        Index index = Index.fromZeroBased(0);
+        for (int i = 1; i <= roomObservableList.size(); i++) {
+            int roomNum = roomObservableList.get(i - 1).getRoomNumber();
+            boolean isValidRoom = (Integer.valueOf(roomNum)).equals(roomNumber);
+            if (isValidRoom) {
+                index = Index.fromZeroBased(i);
+                break;
+            }
+        }
+        return index;
+    }
+
+    @Override
+    public void displayFindRoom(Room room) {
+        roomList.displayFindRoomUpdate(room);
+    }
+
+    @Override
+    public void displayAllRoom () {
+        roomList.displayAllRooms();
+    }
+
+    @Override
+    public ObservableList<Room> getRoomDisplayRoom() {
+        return roomList.getRoomDisplayList();
+    }
+
+    //=========== RoomList Accessors ==========================================================================
+
+    @Override
+    public ObservableList<Room> getRoomList() {
+        return roomList.asUnmodifiableObservableList();
+    }
+
+    // TODO: remove this method and use getRoomList() instead
+    @Override
+    public RoomList getModifiableRoomList() {
+        return roomList;
+    }
+
+    @Override
+    public PriorityQueue<Room> getRooms() {
+        return this.getModifiableRoomList().getRooms();
+    }
+
     //=========== Tasks ========================================================================================
 
     @Override
@@ -212,5 +258,4 @@ public class ModelManager implements Model {
         requireAllNonNull(task, room);
         roomList.addTaskToRoom(task, room);
     }
-
 }

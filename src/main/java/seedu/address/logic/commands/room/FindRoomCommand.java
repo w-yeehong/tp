@@ -29,6 +29,7 @@ public class FindRoomCommand extends Command {
         if (room.isOccupied()) {
             throw new CommandException(MESSAGE_NO_EMPTY_ROOM);
         }
+        model.displayFindRoom(room);
         return new CommandResult(String.format(MESSAGE_SUCCESS, room));
     }
 }
