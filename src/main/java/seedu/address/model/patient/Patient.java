@@ -102,7 +102,6 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getName().equals(getName())
-                && otherPatient.getTemperature().equals(getTemperature())
                 && otherPatient.getPeriodOfStay().equals(getPeriodOfStay())
                 && otherPatient.getPhone().equals(getPhone())
                 && otherPatient.getAge().equals(getAge());
@@ -130,5 +129,4 @@ public class Patient {
                 .append(getComment());
         return builder.toString();
     }
-
 }

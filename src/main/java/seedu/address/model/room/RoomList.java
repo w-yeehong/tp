@@ -156,7 +156,15 @@ public class RoomList implements ReadOnlyRoomList {
         RoomList roomList = (RoomList) o;
         Room[] roomsForPQ = this.rooms.toArray(new Room[0]);
         Room[] rooms1ForPQ = roomList.rooms.toArray(new Room[0]);
-
+        for (int i = 0; i < rooms1ForPQ.length; i++) {
+            Room r = roomsForPQ[i];
+            Room r1 = rooms1ForPQ[i];
+            System.out.println(r1.getRoomNumber());
+            System.out.println(r.getPatient());
+            System.out.println(r1.getPatient());
+            System.out.println(r.getTaskList().equals(r1.getTaskList()));
+            //System.out.println(r1.getTaskList());
+        }
         Room[] roomsForObservableList = internalList.toArray(new Room[0]);
         Room[] rooms1FOrObservableList = roomList.internalList.toArray(new Room[0]);
         return numOfRooms == roomList.numOfRooms

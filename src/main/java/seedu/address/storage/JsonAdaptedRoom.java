@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.task.TaskList;
 
 public class JsonAdaptedRoom {
 
@@ -16,7 +17,7 @@ public class JsonAdaptedRoom {
     //TODO
     //private String patient;
     private Patient patient;
-    private String task;
+    private TaskList tasks;
 
     /**
      * Creates JsonAdaptedRoom based on the inputs given by the user of roomNumber and isOccupied
@@ -24,13 +25,17 @@ public class JsonAdaptedRoom {
     @JsonCreator
     public JsonAdaptedRoom(@JsonProperty("roomNumber") int roomNumber,
                            @JsonProperty("isOccupied") boolean isOccupied,
-                           @JsonProperty("patient") JsonAdaptedPatient patient) throws IllegalValueException {
+                           @JsonProperty("patient") JsonAdaptedPatient patient,
+                           @JsonProperty("tasks") JsonSerializableTaskList tasks) throws IllegalValueException {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
-        if (patient == null) {
-            return;
+        if (patient != null) {
+            this.patient = patient.toModelType();
         }
-        this.patient = patient.toModelType();
+        if (tasks != null) {
+            this.tasks = tasks.toModelType();
+        }
+
     }
 
     /**
@@ -40,6 +45,7 @@ public class JsonAdaptedRoom {
         this.roomNumber = source.getRoomNumber();
         this.isOccupied = source.isOccupied();
         this.patient = source.getPatient();
+        this.tasks = source.getTaskList();
     }
 
     /**
@@ -50,10 +56,8 @@ public class JsonAdaptedRoom {
     public Room toModelType() throws IllegalValueException {
         if (this.patient != null && !isOccupied) {
             throw new IllegalValueException(PATIENT_PRESENT_IS_OCCUPIED_FALSE);
-        } else if (this.patient != null) {
-            return new Room(roomNumber, patient);
         }
-        return new Room(roomNumber, isOccupied);
+        return new Room(roomNumber, isOccupied, patient, tasks);
     }
 
 }
