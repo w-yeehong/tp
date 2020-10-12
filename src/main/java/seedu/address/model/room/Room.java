@@ -5,6 +5,7 @@ import java.util.Objects;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Represents Room in the app
@@ -97,6 +98,20 @@ public class Room implements Comparable<Room> {
 
         return otherRoom != null
                 && Integer.valueOf(otherRoom.getRoomNumber()).equals(getRoomNumber());
+    }
+
+    /**
+     * Deletes a task from the task list of this room.
+     *
+     * @param task The task to delete.
+     * @throws TaskNotFoundException if task is not found in the task list of this room.
+     */
+    public void deleteTask(Task task) {
+        try {
+            taskList.remove(task);
+        } catch (TaskNotFoundException e) {
+            throw e;
+        }
     }
 
     /**

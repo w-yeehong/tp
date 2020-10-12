@@ -26,4 +26,8 @@ public class Messages {
             + " Example: addRooms 200";
     public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient has already been assigned a room.\nPlease"
         + " clear patient from the room first.";
+
+    // tasks
+
+    public static final String MESSAGE_INVALID_TASK_INDEX = "The task number provided is invalid";
 }

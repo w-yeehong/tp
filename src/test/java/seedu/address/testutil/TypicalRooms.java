@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.RoomList;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 
 public class TypicalRooms {
 

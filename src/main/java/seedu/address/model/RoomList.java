@@ -1,4 +1,4 @@
-package seedu.address.model.room;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -11,16 +11,18 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.room.Room;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.model.task.Task;
-import seedu.address.storage.JsonCovigentAppStorage;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.storage.JsonPatientRecordsStorage;
 
 /**
  * Contains information regarding the Room information
  */
 public class RoomList implements ReadOnlyRoomList {
-    private static final Logger logger = LogsCenter.getLogger(JsonCovigentAppStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonPatientRecordsStorage.class);
 
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>();
@@ -47,7 +49,10 @@ public class RoomList implements ReadOnlyRoomList {
         this.numOfRooms = numOfRooms;
     }
 
-    private void resetData(ReadOnlyRoomList readOnlyRoomList) {
+    /**
+     * Resets the existing data of this {@code RoomList} with {@code newData}.
+     */
+    public void resetData(ReadOnlyRoomList readOnlyRoomList) {
         ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
         numOfRooms = roomLists.size();
         rooms.addAll(roomLists);
@@ -117,7 +122,6 @@ public class RoomList implements ReadOnlyRoomList {
 
     /**
      * Adds a task to a room.
-     *
      * The room must exist in the {@code RoomList}.
      *
      * @param task The task to add.
@@ -133,6 +137,28 @@ public class RoomList implements ReadOnlyRoomList {
         }
 
         room.addTask(task);
+        internalList.set(index, room);
+    }
+
+    /**
+     * Deletes a task from a room.
+     * The room must exist in the {@code RoomList}.
+     * The task must exist in the {@code TaskList} of the room.
+     *
+     * @param task The task to delete.
+     * @param room The room to which the task should be deleted.
+     * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
+     * @throws TaskNotFoundException if {@code task} is not in {@code room}.
+     */
+    public void deleteTaskFromRoom(Task task, Room room) {
+        requireAllNonNull(task, room);
+
+        int index = internalList.indexOf(room);
+        if (index == -1) {
+            throw new RoomNotFoundException();
+        }
+
+        room.deleteTask(task);
         internalList.set(index, room);
     }
 
