@@ -24,6 +24,6 @@ public class Messages {
     public static final String NO_ARGUMENTS_GIVEN = "no arguments are given";
     public static final String NUMBER_OF_ROOMS_GIVEN_IN_DIGITS = "Please give the number of digits in numbers\n"
             + " Example: addRooms 200";
-    public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient has already been assigned a room. Please"
+    public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient has already been assigned a room.\nPlease"
         + " clear patient from the room first.";
 }

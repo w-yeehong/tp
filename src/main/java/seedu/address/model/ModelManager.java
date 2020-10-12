@@ -125,7 +125,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isPatientAssignedRoom(Name name) {
+    public boolean isPatientAssignedToRoom(Name name) {
         for (Room room : roomList.getRoomObservableList()) {
             if (room.getPatient() != null) {
                 String patientNameInRoom = room.getPatient().getName().toString().trim().toLowerCase();

@@ -89,7 +89,7 @@ public interface Model {
      * @param name Of the patient.
      * @return Boolean value of whether patient is already assigned.
      */
-    boolean isPatientAssignedRoom(Name name);
+    boolean isPatientAssignedToRoom(Name name);
 
     /**
      * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of

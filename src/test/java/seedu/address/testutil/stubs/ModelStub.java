@@ -81,7 +81,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean isPatientAssignedRoom(Name name) {
+    public boolean isPatientAssignedToRoom(Name name) {
         throw new AssertionError("This method should not be called.");
     }
 

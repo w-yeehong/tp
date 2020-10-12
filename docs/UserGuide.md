@@ -161,12 +161,13 @@ Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
 * `PATIENT_NAME` is case-insensitive.
 * Remove patient from room by inputting a `-` for `PATIENT_NAME`.
 * At least one of the optional fields must be provided.
+* A room with the `ROOM_NUMBER` must be present.
 
 Examples:
-* `editroom 1 r/2 p/alex`. Edits the room number of the room from #1 to #2 and allocates alex to Room #2.
+* `editroom 1 r/2 p/alex`. Changes the room number from #1 to #2. Afterwards, allocates alex to Room #2.
 * `editroom 1 p/alex`. Allocates alex to Room #1.
 * `editroom 1 p/-`. Removes the patient from the Room #1. 
-* `editroom 1 r/3 p/-`. Removes the patient from Room #1 and change room number of room from #1 to #3.
+* `editroom 1 r/3 p/-`. Changes the room number from #1 to #3. Afterwards, removes the patient from Room #3.
 
 ### 3.9 Add a task to a room: `addtask`
 

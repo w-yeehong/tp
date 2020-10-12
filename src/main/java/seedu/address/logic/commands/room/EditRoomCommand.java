@@ -107,7 +107,7 @@ public class EditRoomCommand extends Command {
         }
         //case 3: patient is already allocated to a room.
         Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
-        if (model.isPatientAssignedRoom(patientName)) {
+        if (model.isPatientAssignedToRoom(patientName)) {
             throw new CommandException(MESSAGE_PATIENT_ALREADY_ASSIGNED);
         }
         //case 4: allocate patient to the room
