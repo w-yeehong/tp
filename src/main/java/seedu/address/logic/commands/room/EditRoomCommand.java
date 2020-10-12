@@ -21,7 +21,6 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
