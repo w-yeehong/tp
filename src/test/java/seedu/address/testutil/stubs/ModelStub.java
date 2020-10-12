@@ -121,11 +121,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addTaskToRoom(Task task, Room room) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public boolean hasRoom(Room room) {
         throw new AssertionError("This method should not be called.");
     }
@@ -136,17 +131,27 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void addTaskToRoom(Task task, Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteTaskFromRoom(Task task, Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
         throw new AssertionError("This method should not be called.");
     }
 
-    public void displayFindRoom(Room room) {}
+    @Override
+    public void displayFindRoom(Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
 
     @Override
-    public void displayAllRoom() {}
-
-    @Override
-    public ObservableList<Room> getRoomDisplayRoom() {
-        return null;
+    public void displayAllRoom() {
+        throw new AssertionError("This method should not be called.");
     }
 }

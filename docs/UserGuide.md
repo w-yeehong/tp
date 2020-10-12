@@ -8,20 +8,20 @@ title: User Guide
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)<br>
-    3.1 [Command Format](#31-command-format)<br>
-    3.2 [Add a patient: `addpatient`](#32-add-a-patient-addpatient)<br>
-    3.3 [Delete a patient: `deletepatient`](#33-delete-a-patient-deletepatient)<br>
-    3.4 [Edit a patient: `editpatient`](#34-edit-a-patient-editpatient)<br>
-    3.5 [Search information: `searchpatient`](#35-search-information-searchpatient)<br>
-    3.6 [Initialize rooms in hotel: `initRooms`](#36-initialize-rooms-in-hotel-initrooms)<br>
-    3.7 [Find the first free room: `findRoom`](#37-find-the-first-free-room-findroom)<br>
-    3.8 [Add a task to a room: `addtask`](#38-add-a-task-to-a-room-addtask)<br>
-    3.9 [Searches all tasks before the given date: `searchtask`](#39-search-tasks-before-a-date-searchtask)<br>
-    3.8 [Allocate patient to room or edit room: `editroom`](#38-allocate-patient-to-room-or-edit-room-editroom)<br>
-    3.9 [Add a task to a room: `addtask`](#39-add-a-task-to-a-room-addtask)<br>
-    3.10 [Lists the current rooms: `listRoom`](#310-lists-the-current-rooms-listroom)<br>
-    3.11 [View help: `help`](#311-view-help-help)<br>
-    3.12 [Save the data](#312-save-the-data)<br>
+    3.1  [Command Format](#31-command-format)<br>
+    3.2  [Add a patient: `addpatient`](#32-add-a-patient-addpatient)<br>
+    3.3  [Delete a patient: `deletepatient`](#33-delete-a-patient-deletepatient)<br>
+    3.4  [Edit a patient: `editpatient`](#34-edit-a-patient-editpatient)<br>
+    3.5  [Search information: `searchpatient`](#35-search-information-searchpatient)<br>
+    3.6  [Initialize rooms in hotel: `initRooms`](#36-initialize-rooms-in-hotel-initrooms)<br>
+    3.7  [Lists the current rooms: `listRoom`](#37-lists-the-current-rooms-listroom)<br>
+    3.8  [Find the first free room: `findRoom`](#38-find-the-first-free-room-findroom)<br>
+    3.9  [Allocate patient to room or edit room: `editroom`](#39-allocate-patient-to-room-or-edit-room-editroom)<br>
+    3.10 [Add a task to a room: `addtask`](#310-add-a-task-to-a-room-addtask)<br>
+    3.11 [Delete a task from a room: `deletetask`](#311-delete-a-task-from-a-room-deletetask)<br>
+    3.12 [Searches all tasks before the given date: `searchtask`](#312-search-tasks-before-a-date-searchtask)<br>
+    3.13 [View help: `help`](#313-view-help-help)<br>
+    3.14 [Save the data](#314-save-the-data)<br>
  4. [FAQ](#4-faq)
  5. [Command Summary](#5-command-summary)
 
@@ -51,7 +51,7 @@ Covigent is a desktop app for managing information of quarantined individuals an
 
    * **`editpatient`** `Mary t/36.7 p/91234567` : Updates the temperature and phone number of an individual named `Mary` to 36.7 and 91234567 respectively.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -112,7 +112,7 @@ Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_N
 * Existing values will be updated to the input values.
 * `NAME` is case-insensitive.
 * `TEMPERATURE` must be to 1 decimal place (e.g. 37.0 instead of 37).
-* `PERIOD_OF_STAY` is in the format YYYYMMDD-YYYYMMDD.
+* `PERIOD_OF_STAY` is in the format `YYYYMMDD-YYYYMMDD`.
 
 Examples:
 *  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
@@ -144,7 +144,13 @@ Examples:
 * `initRooms 123`
 * `initRooms 400`
 
-### 3.7 Find the first free room: `findRoom`
+### 3.7 Lists the current rooms: `listRoom`
+
+Lists all the rooms in the hotel.
+
+Format: `listRoom`
+
+### 3.8 Find the first free room: `findRoom`
 
 Finds the room with the lowest room number that is free for use.
 
@@ -152,7 +158,7 @@ Format: `findRoom`
 
 * Finds the room number of least value that can be safely used for accommodation
 
-### 3.8 Allocate patient to room or edit room: `editroom`
+### 3.9 Allocate patient to room or edit room: `editroom`
 
 Allocates a patient to a room or edits an existing room in the application.
 
@@ -171,7 +177,7 @@ Examples:
 * `editroom 1 p/-`. Removes the patient from the Room #1. 
 * `editroom 1 r/3 p/-`. Changes the room number from #1 to #3. Afterwards, removes the patient from Room #3.
 
-### 3.9 Add a task to a room: `addtask`
+### 3.10 Add a task to a room: `addtask`
 
 Adds a task to a room.
 
@@ -190,7 +196,18 @@ Examples:
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
 * `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 at 12am" to Room #1.
 
-### 3.9 Search tasks before a date: `searchtask`
+### 3.11 Delete a task from a room: `deletetask`
+
+Deletes a task from a room.
+
+Format: `deletetask r/ROOM_NUMBER t/TASK_NUMBER`
+
+* Deletes the task with the `TASK_NUMBER` from the room with the `ROOM_NUMBER`.
+
+Examples:
+* `deletetask r/1 t/3` Deletes the third task of Room #1.
+
+### 3.12 Search tasks before a date: `searchtask`
 
 Search all tasks before a date.
 
@@ -205,19 +222,13 @@ Format: `searchtask dd/DUE_DATE`
 Examples:
 * `searchtask dd/12-1-2021` Search all tasks before 12-1-2021.
 
-### 3.10 Lists the current rooms: `listRoom`
-
-Lists all the rooms in the hotel.
-
-Format: `listRoom`
-
-### 3.11 View help: `help`
+### 3.13 View help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### 3.12 Save the data
+### 3.14 Save the data
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -239,10 +250,10 @@ Action | Format, Examples
 **Initialize Rooms** | `initRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
 **Search Patient** | `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]` <br> e.g., `searchpatient tr/36.5-36.7`
 **Add Rooms** | `addRooms NUMBER_OF_ROOMS` <br> e.g., `addRooms 123`
+**List Room** | `listRoom` <br>
 **Find Room** | `findRoom` <br>
 **Edit Room** | `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]` <br> e.g., `editroom 1 r/2 p/alex`
-**Add Task to Room** | `addTask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br>
+**Add Task to Room** | `addtask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br>
+**Delete Task from Room** | `deletetask r/ROOM_NUMBER t/TASK_NUMBER` <br>
 **Search Task** | `searchtask dd/DUE_DATE` <br>
-**List Room** | `listRoom` <br> 
-**Help** | `help`<br>
-
+**Help** | `help`
