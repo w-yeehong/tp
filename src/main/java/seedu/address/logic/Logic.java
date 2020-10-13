@@ -38,7 +38,6 @@ public interface Logic {
     ObservableList<Room> getRoomList();
 
     /**Returns all the rooms to be displayed on the UI **/
-
     ObservableList<Room> getDisplayRoomList();
     /**
      * Returns the user prefs' Covigent file path.

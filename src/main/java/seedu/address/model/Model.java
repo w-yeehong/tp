@@ -135,6 +135,11 @@ public interface Model {
     PriorityQueue<Room> getRooms();
 
     /**
+     * Returns the current Rooms to be displayed.
+     */
+    ObservableList<Room> getRoomDisplayList();
+
+    /**
      * Returns true if a room with the same identity as {@code room} exists in Covigent.
      *
      * @param room The room .
@@ -172,8 +177,5 @@ public interface Model {
      */
     void deleteTaskFromRoom(Task task, Room room);
 
-    /**
-     * Gets the current Rooms to be displayed.
-     */
-    ObservableList<Room> getRoomDisplayList();
+
 }
