@@ -171,4 +171,9 @@ public interface Model {
      * @param room The room from which the task should be delete.
      */
     void deleteTaskFromRoom(Task task, Room room);
+
+    /**
+     * Gets the current Rooms to be displayed.
+     */
+    ObservableList<Room> getRoomDisplayList();
 }
