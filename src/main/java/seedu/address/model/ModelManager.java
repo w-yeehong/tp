@@ -246,6 +246,10 @@ public class ModelManager implements Model {
         return this.getModifiableRoomList().getRooms();
     }
 
+    @Override
+    public ObservableList<Room> getRoomDisplayList() {
+        return roomList.getRoomDisplayList();
+    }
     //=========== Tasks ========================================================================================
 
     @Override
