@@ -121,10 +121,35 @@ public interface Model {
     void addRooms(int num);
 
     /**
-     * Checks if the roomList contains {@code room}.
+     * Checks if the given room number is present in the application.
      *
-     * @param room That is to be searched for.
-     * @return True if roomList contains {@code room}.
+     * @param roomNumber to check if it is in the application.
+     * @return Index Of room that is found.
+     */
+    Index checkIfRoomPresent(Integer roomNumber);
+
+    void displayFindRoom(Room room);
+
+    void displayAllRoom();
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
+     * {@code RoomList}.
+     */
+    ObservableList<Room> getRoomList();
+
+    RoomList getModifiableRoomList();
+
+    /**
+     * Returns Priority Queue of rooms
+     */
+    PriorityQueue<Room> getRooms();
+
+    /**
+     * Returns true if a room with the same identity as {@code room} exists in Covigent.
+     *
+     * @param room The room .
+     * @return true if {@code room} is in Covigent; false otherwise.
      */
     boolean hasRoom(Room room);
 
@@ -140,31 +165,21 @@ public interface Model {
     void setSingleRoom(Room target, Room editedRoom);
 
     /**
-     * Checks if the given room number is present in the application.
+     * Adds {@code task} to {@code room}.
+     * The room must exist in {@code CovigentApp}.
      *
-     * @param roomNumber to check if it is in the application.
-     * @return Index Of room that is found.
+     * @param task The task to add.
+     * @param room The room to which the task should be added.
      */
-    Index checkIfRoomPresent(Integer roomNumber);
-
-    void displayFindRoom(Room room);
-
-    void displayAllRoom ();
-
-    ObservableList<Room> getRoomDisplayRoom();
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
-     * {@code RoomList}.
-     */
-    ObservableList<Room> getRoomList();
-
-    RoomList getModifiableRoomList();
-
-    /**
-     * Returns Priority Queue of rooms
-     */
-    PriorityQueue<Room> getRooms();
-
     void addTaskToRoom(Task task, Room room);
+
+    /**
+     * Deletes {@code task} from {@code room}.
+     * The room must exist in Covigent.
+     * The task must exist in room.
+     *
+     * @param task The task to delete.
+     * @param room The room from which the task should be delete.
+     */
+    void deleteTaskFromRoom(Task task, Room room);
 }

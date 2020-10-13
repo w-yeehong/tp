@@ -15,6 +15,7 @@ import seedu.address.model.room.Room;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.storage.JsonPatientRecordsStorage;
 
 /**
@@ -121,7 +122,6 @@ public class RoomList implements ReadOnlyRoomList {
 
     /**
      * Adds a task to a room.
-     *
      * The room must exist in the {@code RoomList}.
      *
      * @param task The task to add.
@@ -137,6 +137,28 @@ public class RoomList implements ReadOnlyRoomList {
         }
 
         room.addTask(task);
+        internalList.set(index, room);
+    }
+
+    /**
+     * Deletes a task from a room.
+     * The room must exist in the {@code RoomList}.
+     * The task must exist in the {@code TaskList} of the room.
+     *
+     * @param task The task to delete.
+     * @param room The room to which the task should be deleted.
+     * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
+     * @throws TaskNotFoundException if {@code task} is not in {@code room}.
+     */
+    public void deleteTaskFromRoom(Task task, Room room) {
+        requireAllNonNull(task, room);
+
+        int index = internalList.indexOf(room);
+        if (index == -1) {
+            throw new RoomNotFoundException();
+        }
+
+        room.deleteTask(task);
         internalList.set(index, room);
     }
 

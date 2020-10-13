@@ -10,7 +10,9 @@
       "age": "31",
       "comment" : "Vegan"
     },
-    "task" : null
+    "tasks" : {
+      "tasks" : [ ]
+    }
   },
     {
       "roomNumber" : 8,
@@ -23,13 +25,26 @@
         "age": "67",
         "comment" : "-"
       },
-      "task" : null
+      "tasks" : {
+        "tasks" : [ ]
+      }
     } ,
     {
-      "roomNumber" : 10,
-      "isOccupied" : false,
-      "patient" : null,
-      "task" : null
+      "roomNumber": 10,
+      "isOccupied": false,
+      "patient": null,
+      "tasks" : {
+        "tasks" : [ ]
+      }
+    },
+    {
+      "roomNumber": 11,
+      "isOccupied": false,
+      "patient": null,
+      "tasks": {
+        "tasks": [{"description": "Room #1 is running low on masks and needs to be restocked.",
+          "dueAt": "20200925"}]
+      }
     }
   ]
 }

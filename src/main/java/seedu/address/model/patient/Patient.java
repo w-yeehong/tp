@@ -128,5 +128,4 @@ public class Patient {
                 .append(getComment());
         return builder.toString();
     }
-
 }

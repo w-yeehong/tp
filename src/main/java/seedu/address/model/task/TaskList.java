@@ -75,7 +75,9 @@ public class TaskList implements Iterable<Task> {
         requireAllNonNull(tasks);
         internalList.setAll(tasks);
     }
-
+    public ObservableList<Task> getInternalList() {
+        return this.internalList;
+    }
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -104,6 +106,22 @@ public class TaskList implements Iterable<Task> {
     @Override
     public Iterator<Task> iterator() {
         return internalList.iterator();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        int taskIndex = 1;
+        for (Task task : internalList) {
+            // Results in "1. <task>\n2. <task>..."
+            builder.append(taskIndex++);
+            builder.append(". ");
+            builder.append(task);
+            builder.append("\n");
+        }
+
+        return builder.toString().trim();
     }
 
     @Override

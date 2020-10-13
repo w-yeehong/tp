@@ -236,11 +236,6 @@ public class ModelManager implements Model {
         roomList.displayAllRooms();
     }
 
-    @Override
-    public ObservableList<Room> getRoomDisplayRoom() {
-        return roomList.getRoomDisplayList();
-    }
-
     //=========== RoomList Accessors ==========================================================================
 
     @Override
@@ -265,5 +260,12 @@ public class ModelManager implements Model {
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
         roomList.addTaskToRoom(task, room);
+    }
+
+    @Override
+    public void deleteTaskFromRoom(Task task, Room room) {
+        requireAllNonNull(task, room);
+
+        roomList.deleteTaskFromRoom(task, room);
     }
 }

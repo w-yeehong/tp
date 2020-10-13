@@ -17,7 +17,7 @@ public class TypicalRooms {
     public static final Room ROOM_NO_PATIENT_NO_TASK = new RoomBuilder()
             .withIsOccupied(false).withPatient(null).build();
     public static final Room ROOM_NO_PATIENT_TASK_RESTOCK_SUPPLY = new RoomBuilder()
-            .withIsOccupied(false).withPatient(null).withTasks(RESTOCK_SUPPLY).build();
+            .withIsOccupied(false).withPatient(null).withRoomNumber(11).withTasks(RESTOCK_SUPPLY).build();
     public static final Room ROOM_PATIENT_ALICE_NO_TASK = new RoomBuilder()
             .withIsOccupied(true).withPatient(ALICE).build();
     public static final Room ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT = new RoomBuilder()
@@ -40,6 +40,6 @@ public class TypicalRooms {
 
     public static List<Room> getTypicalRooms() {
         return new ArrayList<>(Arrays.asList(ROOM7_PATIENT_ALICE_NO_TASK, ROOM8_PATIENT_BENSON_NO_TASK,
-                                ROOM_NO_PATIENT_NO_TASK));
+                ROOM_NO_PATIENT_NO_TASK, ROOM_NO_PATIENT_TASK_RESTOCK_SUPPLY));
     }
 }
