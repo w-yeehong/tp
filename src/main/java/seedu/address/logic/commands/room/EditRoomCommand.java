@@ -127,9 +127,8 @@ public class EditRoomCommand extends Command {
     private static Room getValidPatient(List<Patient> patientList, Name patientName,
                                         Integer updatedRoomNumber) throws CommandException {
         for (Patient patient : patientList) {
-            String inputPatientName = patientName.toString().trim().toLowerCase();
-            String recordName = patient.getName().toString();
-            if (recordName.trim().toLowerCase().equals(inputPatientName)) {
+            Name recordName = patient.getName();
+            if (patientName.equals(recordName)) {
                 Patient updatedPatient = patient;
                 return new Room(updatedRoomNumber, updatedPatient);
             }

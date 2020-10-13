@@ -46,6 +46,11 @@ public class UniquePatientListTest {
     }
 
     @Test
+    public void getPatientWithName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePatientList.getPatientWithName(null));
+    }
+
+    @Test
     public void getPatientWithName_patientInList_success() {
         uniquePatientList.add(ALICE);
         Optional<Patient> expectedPatient = uniquePatientList.getPatientWithName(ALICE.getName());

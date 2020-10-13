@@ -1,8 +1,35 @@
 {
   "rooms" : [ {
-    "roomNumber" : 10,
-    "isOccupied" : false,
-    "patient" : null,
+    "roomNumber" : 7,
+    "isOccupied" : true,
+    "patient" : {
+      "name" : "Alice Pauline",
+      "temperature": "36.8",
+      "periodOfStay": "20200911-20200918",
+      "phone" : "94351253",
+      "age": "31",
+      "comment" : "Vegan"
+    },
     "task" : null
-  } ]
+  },
+    {
+      "roomNumber" : 8,
+      "isOccupied" : true,
+      "patient" : {
+        "name" : "Benson Meier",
+        "temperature": "38.0",
+        "periodOfStay": "20200810-20200824",
+        "phone" : "98765432",
+        "age": "67",
+        "comment" : "-"
+      },
+      "task" : null
+    } ,
+    {
+      "roomNumber" : 10,
+      "isOccupied" : false,
+      "patient" : null,
+      "task" : null
+    }
+  ]
 }
