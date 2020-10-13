@@ -15,7 +15,7 @@ import seedu.address.commons.util.DateTimeUtil;
  * Guarantees: immutable; is an optional attribute of task;
  * is valid as declared in {@link #isValidDateTimeDue(String)}
  */
-public class DateTimeDue {
+public class DateTimeDue implements Comparable<DateTimeDue> {
 
     public static final String MESSAGE_CONSTRAINTS = "Due dates should adhere to one of the "
             + "following formats:\n"
@@ -26,7 +26,7 @@ public class DateTimeDue {
             + "Format 3 and 4 allow a single digit for day and month (e.g. 1/1/2020); \n"
             + "Format 1 and 2 do not.";
 
-    private static final DateTimeFormatter[] ALLOWED_DATETIME_FORMATS = {
+    public static final DateTimeFormatter[] ALLOWED_DATETIME_FORMATS = {
         DateTimeUtil.DATETIME_FORMAT_YEAR_MONTH_DAY_OPTIONAL_TIME,
         DateTimeUtil.DATETIME_FORMAT_DAY_MONTH_YEAR_SLASH_DELIMITED_OPTIONAL_TIME
     };
@@ -118,4 +118,8 @@ public class DateTimeDue {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(DateTimeDue other) {
+        return value.get().isBefore(other.getValue().get()) ? 1 : 0;
+    }
 }
