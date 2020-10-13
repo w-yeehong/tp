@@ -32,6 +32,7 @@ public class DeletePatientCommand extends Command {
      * @param nameOfPatientToDelete name in the filtered patient list to be deleted
      */
     public DeletePatientCommand(String nameOfPatientToDelete) {
+        requireNonNull(nameOfPatientToDelete);
         this.nameOfPatientToDelete = nameOfPatientToDelete.trim().toLowerCase();
     }
 

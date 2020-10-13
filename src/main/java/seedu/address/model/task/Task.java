@@ -58,9 +58,9 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Description: ")
-                .append(getDescription())
-                .append(" Due Date: ")
+        builder.append(getDescription())
+                .append("\n")
+                .append("Due Date: ")
                 .append(getDueAt());
         return builder.toString();
     }

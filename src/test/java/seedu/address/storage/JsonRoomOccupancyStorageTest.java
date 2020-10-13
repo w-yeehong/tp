@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.room.ReadOnlyRoomList;
-import seedu.address.model.room.RoomList;
+import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.RoomList;
 
 class JsonRoomOccupancyStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
@@ -25,7 +25,7 @@ class JsonRoomOccupancyStorageTest {
     public Path testFolder;
 
     @Test
-    public void readCovigentApp_nullFilePath_throwsNullPointerException() {
+    public void readRoomList_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readRoomList(null));
     }
     private java.util.Optional<ReadOnlyRoomList> readRoomList(String filePath) throws Exception {
@@ -82,7 +82,7 @@ class JsonRoomOccupancyStorageTest {
         jsonRoomOccupancyStorage.saveOccupiedRooms(original, filePath);
         ReadOnlyRoomList readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy(filePath).get();
         RoomList roomList = new RoomList(readBack);
-        assertEquals(original, new RoomList(readBack));
+        assertEquals(original, roomList);
 
         // Modify data, overwrite exiting file, and read back
         original.addRooms(ROOM_NO_PATIENT_NO_TASK);

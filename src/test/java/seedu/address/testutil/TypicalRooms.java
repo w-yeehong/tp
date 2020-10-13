@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.RoomList;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 
 public class TypicalRooms {
 
@@ -34,6 +34,7 @@ public class TypicalRooms {
     }
 
     public static List<Room> getTypicalRooms() {
-        return new ArrayList<>(Arrays.asList(ROOM_NO_PATIENT_NO_TASK));
+        return new ArrayList<>(Arrays.asList(ROOM_NO_PATIENT_NO_TASK, ROOM_NO_PATIENT_TASK_RESTOCK_SUPPLY,
+                ROOM_PATIENT_ALICE_NO_TASK, ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT));
     }
 }

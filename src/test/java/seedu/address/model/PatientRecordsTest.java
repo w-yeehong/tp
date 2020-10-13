@@ -20,25 +20,25 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.testutil.PatientBuilder;
 
-public class CovigentAppTest {
+public class PatientRecordsTest {
 
-    private final CovigentApp covigentApp = new CovigentApp();
+    private final PatientRecords patientRecords = new PatientRecords();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), covigentApp.getPatientList());
+        assertEquals(Collections.emptyList(), patientRecords.getPatientList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> covigentApp.resetData(null));
+        assertThrows(NullPointerException.class, () -> patientRecords.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyCovigentApp_replacesData() {
-        CovigentApp newData = getTypicalCovigentApp();
-        covigentApp.resetData(newData);
-        assertEquals(newData, covigentApp);
+        PatientRecords newData = getTypicalCovigentApp();
+        patientRecords.resetData(newData);
+        assertEquals(newData, patientRecords);
     }
 
     @Test
@@ -46,46 +46,46 @@ public class CovigentAppTest {
         // Two patients with the same identity fields
         Patient editedAlice = new PatientBuilder(ALICE).build();
         List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
-        CovigentAppStub newData = new CovigentAppStub(newPatients);
+        PatientRecordsStub newData = new PatientRecordsStub(newPatients);
 
-        assertThrows(DuplicatePatientException.class, () -> covigentApp.resetData(newData));
+        assertThrows(DuplicatePatientException.class, () -> patientRecords.resetData(newData));
     }
 
     @Test
     public void hasPatient_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> covigentApp.hasPatient(null));
+        assertThrows(NullPointerException.class, () -> patientRecords.hasPatient(null));
     }
 
     @Test
     public void hasPatient_patientNotInCovigentApp_returnsFalse() {
-        assertFalse(covigentApp.hasPatient(ALICE));
+        assertFalse(patientRecords.hasPatient(ALICE));
     }
 
     @Test
     public void hasPatient_patientInCovigentApp_returnsTrue() {
-        covigentApp.addPatient(ALICE);
-        assertTrue(covigentApp.hasPatient(ALICE));
+        patientRecords.addPatient(ALICE);
+        assertTrue(patientRecords.hasPatient(ALICE));
     }
 
     @Test
     public void hasPatient_patientWithSameIdentityFieldsInCovigentApp_returnsTrue() {
-        covigentApp.addPatient(ALICE);
+        patientRecords.addPatient(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).build();
-        assertTrue(covigentApp.hasPatient(editedAlice));
+        assertTrue(patientRecords.hasPatient(editedAlice));
     }
 
     @Test
     public void getPatientList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> covigentApp.getPatientList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> patientRecords.getPatientList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyCovigentApp whose patients list can violate interface constraints.
+     * A stub ReadOnlyPatientRecords whose patients list can violate interface constraints.
      */
-    private static class CovigentAppStub implements ReadOnlyCovigentApp {
+    private static class PatientRecordsStub implements ReadOnlyPatientRecords {
         private final ObservableList<Patient> patients = FXCollections.observableArrayList();
 
-        CovigentAppStub(Collection<Patient> patients) {
+        PatientRecordsStub(Collection<Patient> patients) {
             this.patients.setAll(patients);
         }
 
@@ -94,5 +94,4 @@ public class CovigentAppTest {
             return patients;
         }
     }
-
 }

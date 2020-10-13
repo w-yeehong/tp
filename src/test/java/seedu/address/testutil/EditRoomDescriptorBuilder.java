@@ -53,4 +53,11 @@ public class EditRoomDescriptorBuilder {
     public EditRoomDescriptor build() {
         return descriptor;
     }
+
+    @Override
+    public String toString() {
+        return "EditRoomDescriptorBuilder{"
+            + "descriptor=" + descriptor
+            + '}';
+    }
 }

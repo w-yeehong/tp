@@ -1,16 +1,16 @@
 package seedu.address.model.util;
 
-import seedu.address.model.CovigentApp;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.RoomList;
 import seedu.address.model.patient.Age;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.PeriodOfStay;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
-import seedu.address.model.room.ReadOnlyRoomList;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 
 /**
  * Contains utility methods for populating {@code CovigentApp} with sample data.
@@ -31,8 +31,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyCovigentApp getSampleCovigentApp() {
-        CovigentApp sampleAb = new CovigentApp();
+    public static ReadOnlyPatientRecords getSampleCovigentApp() {
+        PatientRecords sampleAb = new PatientRecords();
         for (Patient samplePatient : getSamplePatient()) {
             sampleAb.addPatient(samplePatient);
         }

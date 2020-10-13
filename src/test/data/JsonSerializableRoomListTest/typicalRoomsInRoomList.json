@@ -1,8 +1,54 @@
 {
-  "rooms" : [ {
-    "roomNumber" : 10,
-    "isOccupied" : false,
-    "patient" : null,
-    "task" : null
-  } ]
+  "rooms": [
+    {
+      "roomNumber": 10,
+      "isOccupied": false,
+      "patient": null,
+      "tasks" : {
+        "tasks" : [ ]
+      }
+    },
+    {
+      "roomNumber": 10,
+      "isOccupied": false,
+      "patient": null,
+      "tasks": {
+        "tasks": [{"description": "Room #1 is running low on masks and needs to be restocked.",
+          "dueAt": "20200925"}]
+      }
+    }, {
+      "roomNumber" : 10,
+      "isOccupied" : true,
+      "patient" : {
+        "name": "Alice Pauline",
+        "temperature": "36.8",
+        "periodOfStay": "20200911-20200918",
+        "phone": "94351253",
+        "age": "31",
+        "comment" : "Vegan"},
+      "tasks" : {
+        "tasks" : [ ]
+      }
+    },
+    {
+      "roomNumber": 10,
+      "isOccupied": true,
+      "patient": {
+        "name": "Alice Pauline",
+        "temperature": "36.8",
+        "periodOfStay": "20200911-20200918",
+        "phone": "94351253",
+        "age": "31",
+        "comment": "Vegan"
+      },
+      "tasks": {
+        "tasks": [
+          {
+            "description": "Remind Alice to change bedsheets.",
+            "dueAt": "20201230 2359"
+          }
+        ]
+      }
+    }
+  ]
 }
