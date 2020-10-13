@@ -34,7 +34,7 @@ public class DateTimeDue implements Comparable<DateTimeDue> {
     private static final String NULL_VALUE_TO_STRING = "-";
 
     public final Optional<LocalDateTime> value;
-
+    private String val;
     /**
      * Constructs a {@code DateTimeDue}.
      * {@code optionalDueAt} must be non-null (but can be empty).
@@ -53,7 +53,7 @@ public class DateTimeDue implements Comparable<DateTimeDue> {
                 .map((dueAt) -> {
                     String trimmedDueAt = dueAt.trim();
                     checkArgument(isValidDateTimeDue(trimmedDueAt), MESSAGE_CONSTRAINTS);
-
+                    val = trimmedDueAt;
                     return Optional.of(DateTimeUtil
                             .parseFirstMatching(trimmedDueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
                 })
@@ -76,12 +76,15 @@ public class DateTimeDue implements Comparable<DateTimeDue> {
 
         value = Optional.of(DateTimeUtil
                 .parseFirstMatching(trimmedDueAt, LocalDateTime::from, ALLOWED_DATETIME_FORMATS));
+        val = trimmedDueAt;
     }
 
     public Optional<LocalDateTime> getValue() {
         return value;
     }
-
+    public String getVal() {
+        return val;
+    }
     /**
      * Returns if a given string is a valid date-time.
      */
