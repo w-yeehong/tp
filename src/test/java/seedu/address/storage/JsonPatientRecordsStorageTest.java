@@ -16,11 +16,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.CovigentApp;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.ReadOnlyPatientRecords;
 
-public class JsonCovigentAppStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonCovigentAppStorageTest");
+public class JsonPatientRecordsStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPatientRecordsStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -30,8 +30,9 @@ public class JsonCovigentAppStorageTest {
         assertThrows(NullPointerException.class, () -> readCovigentApp(null));
     }
 
-    private java.util.Optional<ReadOnlyCovigentApp> readCovigentApp(String filePath) throws Exception {
-        return new JsonCovigentAppStorage(Paths.get(filePath)).readCovigentApp(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyPatientRecords> readCovigentApp(String filePath) throws Exception {
+        return new JsonPatientRecordsStorage(Paths.get(filePath))
+                .readPatientRecords(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -47,42 +48,42 @@ public class JsonCovigentAppStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readCovigentApp("notJsonFormatCovigentApp.json"));
+        assertThrows(DataConversionException.class, () -> readCovigentApp("notJsonFormatPatientRecords.json"));
     }
 
     @Test
     public void readCovigentApp_invalidPatientCovigentApp_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readCovigentApp("invalidPatientCovigentApp.json"));
+        assertThrows(DataConversionException.class, () -> readCovigentApp("invalidPatientPatientRecords.json"));
     }
 
     @Test
     public void readCovigentApp_invalidAndValidPatientCovigentApp_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readCovigentApp("invalidAndValidPatientCovigentApp.json"));
+        assertThrows(DataConversionException.class, () -> readCovigentApp("invalidAndValidPatientPatientRecords.json"));
     }
 
     @Test
     public void readAndSaveCovigentApp_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempCovigentApp.json");
-        CovigentApp original = getTypicalCovigentApp();
-        JsonCovigentAppStorage jsonCovigentAppStorage = new JsonCovigentAppStorage(filePath);
+        PatientRecords original = getTypicalCovigentApp();
+        JsonPatientRecordsStorage jsonPatientRecordsStorage = new JsonPatientRecordsStorage(filePath);
 
         // Save in new file and read back
-        jsonCovigentAppStorage.saveCovigentApp(original, filePath);
-        ReadOnlyCovigentApp readBack = jsonCovigentAppStorage.readCovigentApp(filePath).get();
-        assertEquals(original, new CovigentApp(readBack));
+        jsonPatientRecordsStorage.savePatientRecords(original, filePath);
+        ReadOnlyPatientRecords readBack = jsonPatientRecordsStorage.readPatientRecords(filePath).get();
+        assertEquals(original, new PatientRecords(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPatient(HOON);
         original.removePatient(ALICE);
-        jsonCovigentAppStorage.saveCovigentApp(original, filePath);
-        readBack = jsonCovigentAppStorage.readCovigentApp(filePath).get();
-        assertEquals(original, new CovigentApp(readBack));
+        jsonPatientRecordsStorage.savePatientRecords(original, filePath);
+        readBack = jsonPatientRecordsStorage.readPatientRecords(filePath).get();
+        assertEquals(original, new PatientRecords(readBack));
 
         // Save and read without specifying file path
         original.addPatient(IDA);
-        jsonCovigentAppStorage.saveCovigentApp(original); // file path not specified
-        readBack = jsonCovigentAppStorage.readCovigentApp().get(); // file path not specified
-        assertEquals(original, new CovigentApp(readBack));
+        jsonPatientRecordsStorage.savePatientRecords(original); // file path not specified
+        readBack = jsonPatientRecordsStorage.readPatientRecords().get(); // file path not specified
+        assertEquals(original, new PatientRecords(readBack));
 
     }
 
@@ -94,10 +95,10 @@ public class JsonCovigentAppStorageTest {
     /**
      * Saves {@code covigentApp} at the specified {@code filePath}.
      */
-    private void saveCovigentApp(ReadOnlyCovigentApp covigentApp, String filePath) {
+    private void saveCovigentApp(ReadOnlyPatientRecords covigentApp, String filePath) {
         try {
-            new JsonCovigentAppStorage(Paths.get(filePath))
-                    .saveCovigentApp(covigentApp, addToTestDataPathIfNotNull(filePath));
+            new JsonPatientRecordsStorage(Paths.get(filePath))
+                    .savePatientRecords(covigentApp, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -105,6 +106,6 @@ public class JsonCovigentAppStorageTest {
 
     @Test
     public void saveCovigentApp_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveCovigentApp(new CovigentApp(), null));
+        assertThrows(NullPointerException.class, () -> saveCovigentApp(new PatientRecords(), null));
     }
 }

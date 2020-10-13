@@ -75,7 +75,9 @@ public class TaskList implements Iterable<Task> {
         requireAllNonNull(tasks);
         internalList.setAll(tasks);
     }
-
+    public ObservableList<Task> getInternalList() {
+        return this.internalList;
+    }
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -83,9 +85,43 @@ public class TaskList implements Iterable<Task> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Iterates through the list of tasks and returns task details.
+     *
+     * @return A string containing all the task details.
+     */
+    public String iterateTaskDetails() {
+        if (internalList.isEmpty()) {
+            return "No tasks found.";
+        }
+        String details = "";
+        for (Task task : internalList) {
+            String taskDescription = "Description: " + task.getDescription().toString();
+            String taskDueDate = "Due Date: " + task.getDueAt().toString();
+            details = taskDescription + " | " + taskDueDate + "\n";
+        }
+        return details;
+    }
+
     @Override
     public Iterator<Task> iterator() {
         return internalList.iterator();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        int taskIndex = 1;
+        for (Task task : internalList) {
+            // Results in "1. <task>\n2. <task>..."
+            builder.append(taskIndex++);
+            builder.append(". ");
+            builder.append(task);
+            builder.append("\n");
+        }
+
+        return builder.toString().trim();
     }
 
     @Override

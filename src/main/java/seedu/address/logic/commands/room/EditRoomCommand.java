@@ -3,6 +3,7 @@ package seedu.address.logic.commands.room;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_ALREADY_ASSIGNED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
@@ -10,6 +11,7 @@ import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
@@ -35,7 +37,7 @@ public class EditRoomCommand extends Command {
             + "Parameters: ROOM NUMBER"
             + "[" + PREFIX_ROOM_NUMBER + "ROOM NUMBER] "
             + "[" + PREFIX_PATIENT_NAME + "PATIENT NAME]\n"
-            + "Example: " + COMMAND_WORD + "23 "
+            + "Example: " + COMMAND_WORD + " 23 "
             + PREFIX_ROOM_NUMBER + "123 "
             + PREFIX_PATIENT_NAME + "Mary Doe";
 
@@ -62,14 +64,14 @@ public class EditRoomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Room> lastShownList = model.getModifiableRoomList().getRoomObservableList();
-        Index index = model.getModifiableRoomList().checkIfRoomPresent(roomNumberToEdit);
+        ObservableList<Room> roomList = model.getRoomList();
+        Index index = model.checkIfRoomPresent(roomNumberToEdit);
 
         if (index.getZeroBased() == 0) {
             throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
         }
 
-        Room roomToEdit = lastShownList.get(index.getZeroBased() - 1);
+        Room roomToEdit = roomList.get(index.getZeroBased() - 1);
         Room editedRoom = createEditedRoom(model, roomToEdit, editRoomDescriptor);
 
         if (!roomToEdit.isSameRoom(editedRoom) && model.hasRoom(editedRoom)) {
@@ -103,8 +105,12 @@ public class EditRoomCommand extends Command {
             //case 2: change room number in an empty room
             return new Room(updatedRoomNumber);
         }
-        //case 3: allocate patient to the room
+        //case 3: patient is already allocated to a room.
         Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
+        if (model.isPatientAssignedToRoom(patientName)) {
+            throw new CommandException(MESSAGE_PATIENT_ALREADY_ASSIGNED);
+        }
+        //case 4: allocate patient to the room
         List<Patient> patientList = model.getFilteredPatientList();
         Room updatedRoom = getValidPatient(patientList, patientName, updatedRoomNumber);
         return updatedRoom;
@@ -211,5 +217,22 @@ public class EditRoomCommand extends Command {
                     && getIsOccupied().equals(e.getIsOccupied())
                     && getPatientName().equals(e.getPatientName());
         }
+
+        @Override
+        public String toString() {
+            return "EditRoomDescriptor{"
+                + "roomNumber=" + roomNumber
+                + ", isOccupied=" + isOccupied
+                + ", patientName=" + patientName
+                + '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "EditRoomCommand{"
+            + "roomNumberToEdit=" + roomNumberToEdit
+            + ", editRoomDescriptor=" + editRoomDescriptor
+            + '}';
     }
 }

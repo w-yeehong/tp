@@ -36,10 +36,9 @@ public class SearchPatientCommand extends Command {
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_TEMP_RANGE + "36.1-37.9 ";
 
-    public static final String MESSAGE_SEARCH_PATIENT_SUCCESS = "Patient(s) found: %1$s";
     public static final String MESSAGE_NOT_FOUND = "At least one field to edit must be provided.";
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "The patient you entered is not in the list.";
-    public static final String MESSAGE_SEARCH_PATIENT_LIST_SUCCESS = "Patient(s) matching your criteria found: \n";
+    public static final String MESSAGE_PATIENT_NOT_FOUND = "No patient matching the criteria has been found.";
+    public static final String MESSAGE_SEARCH_PATIENT_LIST_SUCCESS = "Listed patient(s) matching the criteria.";
 
     private final SearchPatientDescriptor searchPatientDescriptor;
     private NameContainsKeywordsPredicate namePredicate;
@@ -119,12 +118,8 @@ public class SearchPatientCommand extends Command {
 
         if (patientNameList.isEmpty()) {
             throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
-        } else if (patientNameList.size() == 1) {
-            return new CommandResult(String.format(MESSAGE_SEARCH_PATIENT_SUCCESS,
-                    patientNameList.get(0)));
         } else {
-            return new CommandResult(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS
-                    + getListOutput(patientNameList));
+            return new CommandResult(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS);
         }
     }
 
@@ -150,22 +145,8 @@ public class SearchPatientCommand extends Command {
         if (patientWithinTemperatureRange.isEmpty()) {
             throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
         } else {
-            return new CommandResult(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS
-                    + getListOutput(patientWithinTemperatureRange));
+            return new CommandResult(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS);
         }
-    }
-
-    /**
-     * Return the list of patients' details
-     * @param list a list that stores the filtered patients.
-     * @return a String output of the patients' details.
-     */
-    public String getListOutput(ArrayList<Patient> list) {
-        StringBuilder outputString = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            outputString.append(String.format("%d.%s\n", i + 1, list.get(i)));
-        }
-        return outputString.toString();
     }
 
     /**

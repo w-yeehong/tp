@@ -8,9 +8,11 @@ import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
-import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_TASK_NUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -20,8 +22,8 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
-import seedu.address.model.CovigentApp;
 import seedu.address.model.Model;
+import seedu.address.model.PatientRecords;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -33,7 +35,6 @@ public class NewCommandTestUtil {
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     // Patients
-
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_TEMP_AMY = "36.7";
@@ -80,37 +81,62 @@ public class NewCommandTestUtil {
     }
 
     // Tasks
-
     public static final String VALID_DESCRIPTION_REMIND_PATIENT = "Remind Alice to change bedsheets.";
     public static final String VALID_DESCRIPTION_ORDER_BEDSHEET = "Order new bedsheets for Room #3.";
     public static final String VALID_DATETIME_DUE_REMIND_PATIENT = "20201230 2359";
     public static final String VALID_DATETIME_DUE_ORDER_BEDSHEET = "20201023 1930";
-    public static final String VALID_ROOM_NUMBER_ONE = "1";
-    public static final String VALID_ROOM_NUMBER_TWO = "2";
-    public static final Index VALID_ROOM_INDEX_ONE = Index.fromOneBased(1);
-    public static final Index VALID_ROOM_INDEX_TWO = Index.fromOneBased(2);
+    public static final Index VALID_TASK_INDEX_ONE = Index.fromOneBased(1);
+    public static final Index VALID_TASK_INDEX_TWO = Index.fromOneBased(2);
 
     public static final String INVALID_DATETIME_DUE_VALUE = "aaa";
     public static final String INVALID_DATETIME_DUE_FORMAT = "2020-12-31";
-    public static final String INVALID_ROOM_NUMBER = "-1";
+    public static final String INVALID_TASK_NUMBER = "-1";
 
     public static final String DESCRIPTION_DESC_REMIND_PATIENT = " " + PREFIX_DESCRIPTION
             + VALID_DESCRIPTION_REMIND_PATIENT;
-    public static final String DESCRIPTION_DESC_ORDER_BEDSHEET = " " + PREFIX_DESCRIPTION
+    public static final String DESCRIPTION_DESC_ORDER_BEDSHEETS = " " + PREFIX_DESCRIPTION
             + VALID_DATETIME_DUE_ORDER_BEDSHEET;
     public static final String DATETIME_DUE_DESC_REMIND_PATIENT = " " + PREFIX_DUE_DATE
             + VALID_DATETIME_DUE_REMIND_PATIENT;
-    public static final String DATETIME_DUE_DESC_ORDER_BEDSHEET = " " + PREFIX_DUE_DATE
+    public static final String DATETIME_DUE_DESC_ORDER_BEDSHEETS = " " + PREFIX_DUE_DATE
             + VALID_DATETIME_DUE_ORDER_BEDSHEET;
-    public static final String ROOM_NUMBER_DESC_ONE = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_ONE;
-    public static final String ROOM_NUMBER_DESC_TWO = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_TWO;
+    public static final String TASK_NUMBER_DESC_ONE = " " + PREFIX_TASK_NUMBER + "1";
+    public static final String TASK_NUMBER_DESC_TWO = " " + PREFIX_TASK_NUMBER + "2";
 
     public static final String INVALID_DATETIME_DUE_VALUE_DESC = " " + PREFIX_DUE_DATE
             + INVALID_DATETIME_DUE_VALUE;
     public static final String INVALID_DATETIME_DUE_FORMAT_DESC = " " + PREFIX_DUE_DATE
             + INVALID_DATETIME_DUE_FORMAT;
+    public static final String INVALID_TASK_NUMBER_DESC = " " + PREFIX_TASK_NUMBER
+            + INVALID_TASK_NUMBER;
+
+    // Rooms
+    public static final String VALID_ROOM_NUMBER_ONE = "1";
+    public static final String VALID_ROOM_NUMBER_TWO = "2";
+    public static final Index VALID_ROOM_INDEX_ONE = Index.fromOneBased(1);
+    public static final Index VALID_ROOM_INDEX_TWO = Index.fromOneBased(2);
+    public static final String VALID_PATIENT_NAME_JAMES = "james";
+    public static final String VALID_PATIENT_NAME_AMY = "amy";
+
+    public static final String INVALID_ROOM_NUMBER = "-1";
+    public static final String INVALID_NON_NUMBER_ROOM_NUMBER = "a";
+    public static final String INVALID_NON_INTEGER_ROOM_NUMBER = "1.1";
+    public static final String INVALID_PATIENT_NAME_JAMES = "james$";
+
+    public static final String ROOM_NUMBER_DESC_ONE = " " + PREFIX_ROOM_NUMBER + "1";
+    public static final String ROOM_NUMBER_DESC_TWO = " " + PREFIX_ROOM_NUMBER + "2";
+    public static final String VALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + VALID_PATIENT_NAME_JAMES;
+    public static final String VALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY;
+
     public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
             + INVALID_ROOM_NUMBER;
+    public static final String INVALID_NON_NUMBER_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
+        + INVALID_NON_NUMBER_ROOM_NUMBER;
+    public static final String INVALID_INTEGER_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
+        + INVALID_NON_INTEGER_ROOM_NUMBER;
+    //invalid name with symbol
+    public static final String INVALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + INVALID_PATIENT_NAME_JAMES;
+    public static final String INVALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY + "$";
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -147,11 +173,11 @@ public class NewCommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        CovigentApp expectedCovigentApp = new CovigentApp(actualModel.getCovigentApp());
+        PatientRecords expectedCovigentApp = new PatientRecords(actualModel.getPatientRecords());
         List<Patient> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPatientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedCovigentApp, actualModel.getCovigentApp());
+        assertEquals(expectedCovigentApp, actualModel.getPatientRecords());
         assertEquals(expectedFilteredList, actualModel.getFilteredPatientList());
     }
     /**

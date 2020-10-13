@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CovigentAppParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.ReadOnlyPatientRecords;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.storage.Storage;
@@ -53,7 +53,7 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE);
         }
         try {
-            storage.saveCovigentApp(model.getCovigentApp());
+            storage.savePatientRecords(model.getPatientRecords());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -62,8 +62,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyCovigentApp getCovigentApp() {
-        return model.getCovigentApp();
+    public ReadOnlyPatientRecords getCovigentApp() {
+        return model.getPatientRecords();
     }
 
     @Override
@@ -73,7 +73,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Room> getRoomList() {
-        return model.getModifiableRoomList().getRoomObservableList();
+        return model.getRoomList();
     }
 
     @Override

@@ -29,14 +29,33 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+
 .tab-pane {
     -fx-padding: 0 0 0 1;
+    -fx-background-color:  #AED6F1;
 }
 
 .tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
+    -fx-background-color:  #AED6F1;
+    -fx-padding: 1 1 1 1;
     -fx-min-height: 0;
     -fx-max-height: 0;
+}
+
+.tab {
+    -fx-pref-width: 100;
+    -fx-pref-height: 45;
+}
+
+.tab .tab-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-font-family: "American Typewriter";
+}
+
+.tab-pane .tab:selected {
+    -fx-alignment: CENTER;
+    -fx-background-color: #FAD7A0;
 }
 
 .table-view {
@@ -350,3 +369,4 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+

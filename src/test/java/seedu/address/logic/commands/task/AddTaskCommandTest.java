@@ -22,11 +22,6 @@ public class AddTaskCommandTest {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(REMIND_PATIENT, null));
     }
 
-    @Test
-    public void constructor_nullTaskNullRoomIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, null));
-    }
-
     // TODO: set up RoomList and Model stubs for testing
 
     @Test

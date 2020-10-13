@@ -1,4 +1,4 @@
-package seedu.address.model.room;
+package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.room.Room;
 
 class RoomListTest {
 

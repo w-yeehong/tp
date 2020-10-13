@@ -1,4 +1,4 @@
-package seedu.address.model.room;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -11,24 +11,25 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
+import seedu.address.model.room.Room;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.model.task.Task;
-import seedu.address.storage.JsonCovigentAppStorage;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.storage.JsonPatientRecordsStorage;
 
 /**
  * Contains information regarding the Room information
  */
 public class RoomList implements ReadOnlyRoomList {
-    private static final Logger logger = LogsCenter.getLogger(JsonCovigentAppStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonPatientRecordsStorage.class);
 
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>();
     private ObservableList<Room> internalList = FXCollections.observableArrayList();
     private final ObservableList<Room> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
+    private ObservableList<Room> roomDisplayList = FXCollections.observableArrayList();
     /** Creates default RoomList() object where all fields are null**/
     public RoomList() {}
 
@@ -48,11 +49,15 @@ public class RoomList implements ReadOnlyRoomList {
         this.numOfRooms = numOfRooms;
     }
 
-    private void resetData(ReadOnlyRoomList readOnlyRoomList) {
+    /**
+     * Resets the existing data of this {@code RoomList} with {@code newData}.
+     */
+    public void resetData(ReadOnlyRoomList readOnlyRoomList) {
         ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
         numOfRooms = roomLists.size();
         rooms.addAll(roomLists);
         internalList.addAll(roomLists);
+        displayAllRooms();
     }
     /**
      * Returns Priority Queue of rooms
@@ -102,6 +107,7 @@ public class RoomList implements ReadOnlyRoomList {
     public void addRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
         addRooms();
+        displayAllRooms();
     }
 
     /**
@@ -116,7 +122,6 @@ public class RoomList implements ReadOnlyRoomList {
 
     /**
      * Adds a task to a room.
-     *
      * The room must exist in the {@code RoomList}.
      *
      * @param task The task to add.
@@ -132,6 +137,28 @@ public class RoomList implements ReadOnlyRoomList {
         }
 
         room.addTask(task);
+        internalList.set(index, room);
+    }
+
+    /**
+     * Deletes a task from a room.
+     * The room must exist in the {@code RoomList}.
+     * The task must exist in the {@code TaskList} of the room.
+     *
+     * @param task The task to delete.
+     * @param room The room to which the task should be deleted.
+     * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
+     * @throws TaskNotFoundException if {@code task} is not in {@code room}.
+     */
+    public void deleteTaskFromRoom(Task task, Room room) {
+        requireAllNonNull(task, room);
+
+        int index = internalList.indexOf(room);
+        if (index == -1) {
+            throw new RoomNotFoundException();
+        }
+
+        room.deleteTask(task);
         internalList.set(index, room);
     }
 
@@ -224,20 +251,23 @@ public class RoomList implements ReadOnlyRoomList {
     }
 
     /**
-     * Checks if the given room number is present in the application.
-     * @param roomNumber to check if it is in the application.
-     * @return Index Of room that is found.
+     * Adds the room to a roomDisplayList where @param room is the room to be displayed when
+     * findRoom is called
      */
-    public Index checkIfRoomPresent(Integer roomNumber) {
-        Index index = Index.fromZeroBased(0);
-        for (int i = 1; i <= internalList.size(); i++) {
-            int roomNum = internalList.get(i - 1).getRoomNumber();
-            boolean isValidRoom = (Integer.valueOf(roomNum)).equals(roomNumber);
-            if (isValidRoom) {
-                index = Index.fromZeroBased(i);
-                break;
-            }
-        }
-        return index;
+    public void displayFindRoomUpdate(Room room) {
+        roomDisplayList.clear();
+        roomDisplayList.add(room);
+    }
+
+    /**
+     * Adds the list of rooms to roomDisplayList when listRoom is called for app to display.
+     */
+    public void displayAllRooms() {
+        roomDisplayList.clear();
+        roomDisplayList.addAll(internalList);
+    }
+
+    public ObservableList<Room> getRoomDisplayList() {
+        return roomDisplayList;
     }
 }

@@ -8,20 +8,33 @@ import seedu.address.model.room.Room;
 
 public class JsonAdaptedRoom {
 
+    public static final String PATIENT_PRESENT_IS_OCCUPIED_FALSE = "When patient is present isOccupied cannot be false";
+    public static final String PATIENT_ABSENT_IS_OCCUPIED_TRUE = "When patient is absent isOccupied cannot be true";
+    public static final String DATE_WRONG_FORMAT_IN_TASKS = "The date is given in the wrong format in tasks.";
+    public static final String PATIENT_WRONG_FORMAT = "The patient is given in the wrong format";
+
     private int roomNumber;
     private boolean isOccupied;
-    //TODO
-    private String patient;
-    private String task;
+    private JsonAdaptedPatient patient;
+    private JsonSerializableTaskList tasks;
 
     /**
      * Creates JsonAdaptedRoom based on the inputs given by the user of roomNumber and isOccupied
      */
     @JsonCreator
     public JsonAdaptedRoom(@JsonProperty("roomNumber") int roomNumber,
-                           @JsonProperty("isOccupied") boolean isOccupied) {
+                           @JsonProperty("isOccupied") boolean isOccupied,
+                           @JsonProperty("patient") JsonAdaptedPatient patient,
+                           @JsonProperty("tasks") JsonSerializableTaskList tasks) throws IllegalValueException {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
+        if (patient != null) {
+            this.patient = patient;
+        }
+        if (tasks != null) {
+            this.tasks = tasks;
+        }
+
     }
 
     /**
@@ -30,10 +43,40 @@ public class JsonAdaptedRoom {
     public JsonAdaptedRoom(Room source) {
         this.roomNumber = source.getRoomNumber();
         this.isOccupied = source.isOccupied();
+        if (source.getPatient() != null) {
+            this.patient = new JsonAdaptedPatient(source.getPatient());
+        }
+        this.tasks = new JsonSerializableTaskList(source.getTaskList());
     }
 
+    /**
+     * Converts this Jackson-friendly adapted Room object into the model's {@code Room} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted room.
+     */
     public Room toModelType() throws IllegalValueException {
-        return new Room(roomNumber, isOccupied);
+        if (this.patient != null && !isOccupied) {
+            throw new IllegalValueException(PATIENT_PRESENT_IS_OCCUPIED_FALSE);
+        }
+        if (this.patient == null && isOccupied) {
+            throw new IllegalValueException(PATIENT_ABSENT_IS_OCCUPIED_TRUE);
+        }
+        if (patient != null) {
+            try {
+                patient.toModelType();
+            } catch (IllegalValueException i) {
+                throw new IllegalValueException(PATIENT_WRONG_FORMAT);
+            }
+        }
+        try {
+            tasks.toModelType();
+        } catch (IllegalValueException i) {
+            throw new IllegalValueException(DATE_WRONG_FORMAT_IN_TASKS);
+        }
+        if (this.patient == null) {
+            return new Room(roomNumber, isOccupied, null, tasks.toModelType());
+        }
+        return new Room(roomNumber, isOccupied, patient.toModelType(), tasks.toModelType());
     }
 
 }
