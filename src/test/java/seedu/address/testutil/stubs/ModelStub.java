@@ -153,6 +153,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<Room> getRoomDisplayList() {
+        return null;
+    }
+
+    @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
         throw new AssertionError("This method should not be called.");
     }

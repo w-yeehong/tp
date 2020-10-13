@@ -142,9 +142,8 @@ public class ModelManager implements Model {
     public boolean isPatientAssignedToRoom(Name name) {
         for (Room room : roomList.getRoomObservableList()) {
             if (room.getPatient() != null) {
-                String patientNameInRoom = room.getPatient().getName().toString().trim().toLowerCase();
-                String patientNameToBeEdit = name.toString().trim().toLowerCase();
-                if (patientNameInRoom.equals(patientNameToBeEdit)) {
+                Name patientNameInRoom = room.getPatient().getName();
+                if (patientNameInRoom.equals(name)) {
                     return true;
                 }
             }
@@ -254,6 +253,10 @@ public class ModelManager implements Model {
         return this.getModifiableRoomList().getRooms();
     }
 
+    @Override
+    public ObservableList<Room> getRoomDisplayList() {
+        return roomList.getRoomDisplayList();
+    }
     //=========== Tasks ========================================================================================
 
     @Override

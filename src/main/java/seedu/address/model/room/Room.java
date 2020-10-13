@@ -40,11 +40,13 @@ public class Room implements Comparable<Room> {
      *
      * @param roomNumber Room Number of the room.
      * @param patient Patient to be added to the room.
+     * @param taskList TaskList of tasks for the room.
      */
-    public Room(int roomNumber, Patient patient) {
+    public Room(int roomNumber, Patient patient, TaskList taskList) {
         this.roomNumber = roomNumber;
         this.isOccupied = true;
         this.patient = patient;
+        this.taskList = taskList;
     }
 
     /**

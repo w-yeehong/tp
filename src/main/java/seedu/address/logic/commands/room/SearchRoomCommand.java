@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -35,6 +37,15 @@ public class SearchRoomCommand extends Command {
     //TODO
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        Index index = model.checkIfRoomPresent(roomNumber);
+
+        if (index.getZeroBased() == 0) {
+            throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
+        }
+
+        //model.displayFindRoom();
         /*Index index = model.getModifiableRoomList().checkIfRoomPresent(roomNumber);
         List<Room> lastShownList = model.getModifiableRoomList().getRoomObservableList();
 
