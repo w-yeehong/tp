@@ -96,16 +96,16 @@ public class EditRoomCommand extends Command {
                                          EditRoomDescriptor editRoomDescriptor) throws CommandException {
         assert (roomToEdit != null);
         int updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
-        TaskList updatedTaskList = editRoomDescriptor.getTaskList().orElse(roomToEdit.getTaskList());
+        TaskList roomTaskList = roomToEdit.getTaskList();
         boolean isClearRoom = editRoomDescriptor.getIsOccupied().isPresent();
         boolean hasNewPatient = editRoomDescriptor.getPatientName().isPresent();
         boolean isCurrentlyOccupied = roomToEdit.isOccupied();
         if (!isClearRoom && !hasNewPatient && isCurrentlyOccupied) {
             //case 1: change room number in a room with patient already
-            return new Room(updatedRoomNumber, roomToEdit.getPatient(), updatedTaskList);
+            return new Room(updatedRoomNumber, roomToEdit.getPatient(), roomTaskList);
         } else if (!hasNewPatient) {
             //case 2: change room number in an empty room
-            return new Room(updatedRoomNumber, null, updatedTaskList);
+            return new Room(updatedRoomNumber, null, roomTaskList);
         }
         //case 3: patient is already allocated to a room.
         Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
@@ -115,7 +115,7 @@ public class EditRoomCommand extends Command {
         //case 4: allocate patient to the room
         List<Patient> patientList = model.getFilteredPatientList();
         Patient updatedPatient = getValidPatient(patientList, patientName);
-        Room updatedRoom = new Room(updatedRoomNumber, updatedPatient, updatedTaskList);
+        Room updatedRoom = new Room(updatedRoomNumber, updatedPatient, roomTaskList);
         return updatedRoom;
     }
 
@@ -160,7 +160,6 @@ public class EditRoomCommand extends Command {
         private Integer roomNumber;
         private Boolean isOccupied;
         private Name patientName;
-        private TaskList taskList;
 
         public EditRoomDescriptor() {}
 
@@ -173,7 +172,6 @@ public class EditRoomCommand extends Command {
             setRoomNumber(toCopy.roomNumber);
             setOccupied(toCopy.isOccupied);
             setPatientName(toCopy.patientName);
-            setTaskList(toCopy.taskList);
         }
 
         public boolean isAnyFieldEdited() {
@@ -204,14 +202,6 @@ public class EditRoomCommand extends Command {
             return Optional.ofNullable(patientName);
         }
 
-        public void setTaskList(TaskList taskList) {
-            this.taskList = taskList;
-        }
-
-        public Optional<TaskList> getTaskList() {
-            return Optional.ofNullable(taskList);
-        }
-
         @Override
         public boolean equals(Object other) {
             if (other == this) { // short circuit if same object
@@ -225,8 +215,7 @@ public class EditRoomCommand extends Command {
             EditRoomDescriptor e = (EditRoomDescriptor) other; // state check
             return getRoomNumber().equals(e.getRoomNumber())
                     && getIsOccupied().equals(e.getIsOccupied())
-                    && getPatientName().equals(e.getPatientName())
-                    && getTaskList().equals(e.getTaskList());
+                    && getPatientName().equals(e.getPatientName());
         }
 
         @Override
@@ -235,7 +224,6 @@ public class EditRoomCommand extends Command {
                     + "roomNumber=" + roomNumber
                     + ", isOccupied=" + isOccupied
                     + ", patientName=" + patientName
-                    + ", taskList=" + taskList
                     + '}';
         }
     }
