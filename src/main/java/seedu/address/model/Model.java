@@ -19,6 +19,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
 
+    Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -178,4 +179,7 @@ public interface Model {
     void deleteTaskFromRoom(Task task, Room room);
 
 
+    ObservableList<Room> getFilteredRoomList();
+
+    void updateFilteredRoomList(Predicate<Room> predicate);
 }

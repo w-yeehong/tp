@@ -235,7 +235,7 @@ public class ModelManager implements Model {
         return roomList.asUnmodifiableObservableList();
     }
 
-    // TODO: remove this method and use getRoomList() instead
+
     @Override
     public RoomList getModifiableRoomList() {
         return roomList;
@@ -249,6 +249,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Room> getRoomDisplayList() {
         return roomList.getRoomDisplayList();
+    }
+
+    public ObservableList<Room> getFilteredRoomList() {
+        return filteredRooms;
+    }
+
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        requireNonNull(predicate);
+        filteredRooms.setPredicate(predicate);
+
     }
     //=========== Tasks ========================================================================================
 

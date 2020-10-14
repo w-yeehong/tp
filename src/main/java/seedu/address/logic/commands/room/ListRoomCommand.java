@@ -15,7 +15,7 @@ public class ListRoomCommand extends Command {
         if (model.getRooms().size() == 0) {
             throw new CommandException(NUMBER_OF_ROOMS_UNDEFINED);
         }
-        model.displayAllRoom();
+        model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
