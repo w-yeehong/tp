@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ import seedu.address.model.patient.Patient;
  */
 public class DeletePatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
 
     @Test
     public void execute_validNameUnfilteredList_success() {

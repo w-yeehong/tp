@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.HOON;
 import static seedu.address.testutil.TypicalPatients.IDA;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -64,7 +64,7 @@ public class JsonPatientRecordsStorageTest {
     @Test
     public void readAndSaveCovigentApp_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempCovigentApp.json");
-        PatientRecords original = getTypicalCovigentApp();
+        PatientRecords original = getTypicalPatientRecords();
         JsonPatientRecordsStorage jsonPatientRecordsStorage = new JsonPatientRecordsStorage(filePath);
 
         // Save in new file and read back

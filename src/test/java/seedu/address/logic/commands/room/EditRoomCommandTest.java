@@ -22,7 +22,7 @@ import static seedu.address.logic.commands.room.EditRoomCommand.MESSAGE_EDIT_ROO
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.BOB;
 import static seedu.address.testutil.TypicalPatients.CARL;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
 
 /**
@@ -32,7 +32,7 @@ class EditRoomCommandTest {
 
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
     //room list -> [room 7, Alice; room 8, Benson; room 10, null]
-    private Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), getTypicalRoomList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList());
 
 
     @Test
@@ -58,7 +58,7 @@ class EditRoomCommandTest {
         EditRoomCommand editRoomCommand = new EditRoomCommand(roomNumberToEdit, descriptor);
 
         String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
-        Model expectedModel = new ModelManager(getTypicalCovigentApp(), new UserPrefs(),
+        Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
                 new RoomList(model.getModifiableRoomList()));
         expectedModel.setSingleRoom(roomToEdit, editedRoom);
 
@@ -76,7 +76,7 @@ class EditRoomCommandTest {
         EditRoomCommand editRoomCommand = new EditRoomCommand(roomNumberToEdit, descriptor);
 
         String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
-        Model expectedModel = new ModelManager(getTypicalCovigentApp(), new UserPrefs(),
+        Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
                 new RoomList(model.getModifiableRoomList()));
         expectedModel.setSingleRoom(roomToEdit, editedRoom);
 
@@ -96,7 +96,7 @@ class EditRoomCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
 
-        Model expectedModel = new ModelManager(getTypicalCovigentApp(), new UserPrefs(),
+        Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
                 new RoomList(model.getModifiableRoomList()));
         expectedModel.setSingleRoom(roomToEdit, editedRoom);
 

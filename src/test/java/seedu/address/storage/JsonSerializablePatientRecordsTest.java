@@ -25,7 +25,7 @@ public class JsonSerializablePatientRecordsTest {
         JsonSerializablePatientRecords dataFromFile = JsonUtil.readJsonFile(TYPICAL_PATIENTS_FILE,
                 JsonSerializablePatientRecords.class).get();
         PatientRecords covigentAppFromFile = dataFromFile.toModelType();
-        PatientRecords typicalPatientsCovigentApp = TypicalPatients.getTypicalCovigentApp();
+        PatientRecords typicalPatientsCovigentApp = TypicalPatients.getTypicalPatientRecords();
         assertEquals(covigentAppFromFile, typicalPatientsCovigentApp);
     }
 

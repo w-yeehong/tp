@@ -12,6 +12,11 @@ import java.util.List;
 import seedu.address.model.RoomList;
 import seedu.address.model.room.Room;
 
+/**
+ * A utility class containing a list of {@code Room} objects to be used in tests.
+ * The patients present in getTypicalRooms() of TypicalRooms class must be present
+ * in getTypicalPatientRecords() of TypicalPatients class.
+ */
 public class TypicalRooms {
 
     public static final Room ROOM_NO_PATIENT_NO_TASK = new RoomBuilder()

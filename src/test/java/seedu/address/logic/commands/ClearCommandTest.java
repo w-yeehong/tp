@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +23,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyCovigentApp_success() {
-        Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
-        Model expectedModel = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+        Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
+        Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
         expectedModel.setPatientRecords(new PatientRecords());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
