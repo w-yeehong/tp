@@ -118,10 +118,6 @@ public interface Model {
      */
     Index checkIfRoomPresent(Integer roomNumber);
 
-    void displayFindRoom(Room room);
-
-    void displayAllRoom();
-
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code RoomList}.
@@ -134,11 +130,6 @@ public interface Model {
      * Returns Priority Queue of rooms
      */
     PriorityQueue<Room> getRooms();
-
-    /**
-     * Returns the current Rooms to be displayed.
-     */
-    ObservableList<Room> getRoomDisplayList();
 
     /**
      * Returns true if a room with the same identity as {@code room} exists in Covigent.

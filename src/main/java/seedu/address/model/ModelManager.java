@@ -218,16 +218,6 @@ public class ModelManager implements Model {
         return index;
     }
 
-    @Override
-    public void displayFindRoom(Room room) {
-        roomList.displayFindRoomUpdate(room);
-    }
-
-    @Override
-    public void displayAllRoom () {
-        roomList.displayAllRooms();
-    }
-
     //=========== RoomList Accessors ==========================================================================
 
     @Override
@@ -244,11 +234,6 @@ public class ModelManager implements Model {
     @Override
     public PriorityQueue<Room> getRooms() {
         return this.getModifiableRoomList().getRooms();
-    }
-
-    @Override
-    public ObservableList<Room> getRoomDisplayList() {
-        return roomList.getRoomDisplayList();
     }
 
     public ObservableList<Room> getFilteredRoomList() {
