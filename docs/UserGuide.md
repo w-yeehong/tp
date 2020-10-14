@@ -19,9 +19,10 @@ title: User Guide
     3.9  [Allocate patient to room or edit room: `editroom`](#39-allocate-patient-to-room-or-edit-room-editroom)<br>
     3.10 [Add a task to a room: `addtask`](#310-add-a-task-to-a-room-addtask)<br>
     3.11 [Delete a task from a room: `deletetask`](#311-delete-a-task-from-a-room-deletetask)<br>
-    3.12 [Searches all tasks before the given date: `searchtask`](#312-search-tasks-before-a-date-searchtask)<br>
-    3.13 [View help: `help`](#313-view-help-help)<br>
-    3.14 [Save the data](#314-save-the-data)<br>
+    3.12 [Edit a task in a room: `edittask`](#312-edit-a-task-in-a-room-edittask)<br>
+    3.13 [Searches all tasks before the given date: `searchtask`](#313-search-tasks-before-a-date-searchtask)<br>
+    3.14 [View help: `help`](#314-view-help-help)<br>
+    3.15 [Save the data](#315-save-the-data)<br>
  4. [FAQ](#4-faq)
  5. [Command Summary](#5-command-summary)
 
@@ -194,7 +195,7 @@ Format: `addtask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]`
 
 Examples:
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
-* `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 at 12am" to Room #1.
+* `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200" to Room #1.
 
 ### 3.11 Delete a task from a room: `deletetask`
 
@@ -203,11 +204,37 @@ Deletes a task from a room.
 Format: `deletetask r/ROOM_NUMBER t/TASK_NUMBER`
 
 * Deletes the task with the `TASK_NUMBER` from the room with the `ROOM_NUMBER`.
+* A room with the `ROOM_NUMBER` must be present.
+* A task with the `TASK_NUMBER` must be present in the room.
 
 Examples:
 * `deletetask r/1 t/3` Deletes the third task of Room #1.
 
-### 3.12 Search tasks before a date: `searchtask`
+### 3.12 Edit a task in a room: `edittask`
+
+Edits a task in a room.
+
+Format: `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]`
+
+* Edits the task with the `TASK_NUMBER` in the room with the `ROOM_NUMBER`.
+
+* Remove patient from room by inputting a `-` for `PATIENT_NAME`.
+* At least one of the optional fields must be provided.
+* A room with the `ROOM_NUMBER` must be present.
+* A task with the `TASK_NUMBER` must be present in the room.
+* If "-" is provided for due date, the original due date value will be cleared.
+* Due date can be in the any of the following formats:
+  * `YYYYMMDD` (e.g. 20210131).
+  * `YYYYMMDD HHmm` (e.g. 20210131 2359).
+  * `D-M-YYYY` (e.g. 31-1-2021 or 31-01-2021).
+  * `D-M-YYYY HHmm` (e.g. 31-1-2021 2359 or 31-01-2021 2359).
+* If the time is not given for a due date, it defaults to 0000 (12am).
+
+Examples:
+* `edittask r/5 t/1 dd/-` Removes the due date from the first task in Room #5.
+* `edittask r/1 t/3 d/Running low on masks and needs to be restocked. dd/12-1-2021` Modifies the third task in Room #1 to have the description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200".
+
+### 3.13 Search tasks before a date: `searchtask`
 
 Search all tasks before a date.
 
@@ -222,13 +249,13 @@ Format: `searchtask dd/DUE_DATE`
 Examples:
 * `searchtask dd/12-1-2021` Search all tasks before 12-1-2021.
 
-### 3.13 View help: `help`
+### 3.14 View help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### 3.14 Save the data
+### 3.15 Save the data
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -255,5 +282,6 @@ Action | Format, Examples
 **Edit Room** | `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]` <br> e.g., `editroom 1 r/2 p/alex`
 **Add Task to Room** | `addtask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br>
 **Delete Task from Room** | `deletetask r/ROOM_NUMBER t/TASK_NUMBER` <br>
+**Edit Task in Room** | `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]` <br>
 **Search Task** | `searchtask dd/DUE_DATE` <br>
 **Help** | `help`
