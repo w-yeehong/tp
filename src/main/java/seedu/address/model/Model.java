@@ -13,8 +13,6 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * The API of the Model component.
  */

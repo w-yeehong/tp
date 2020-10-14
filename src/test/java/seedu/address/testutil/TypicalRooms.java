@@ -27,10 +27,10 @@ public class TypicalRooms {
             .withIsOccupied(true).withPatient(ALICE).build();
     public static final Room ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT = new RoomBuilder()
             .withIsOccupied(true).withPatient(ALICE).withTasks(REMIND_PATIENT).build();
-    public static final Room ROOM7_PATIENT_ALICE_NO_TASK = new RoomBuilder().
-            withIsOccupied(true).withPatient(ALICE).withRoomNumber(7).build();
-    public static final Room ROOM8_PATIENT_BENSON_NO_TASK = new RoomBuilder().
-            withIsOccupied(true).withPatient(BENSON).withRoomNumber(8).build();
+    public static final Room ROOM7_PATIENT_ALICE_NO_TASK = new RoomBuilder()
+            .withIsOccupied(true).withPatient(ALICE).withRoomNumber(7).build();
+    public static final Room ROOM8_PATIENT_BENSON_NO_TASK = new RoomBuilder()
+            .withIsOccupied(true).withPatient(BENSON).withRoomNumber(8).build();
 
     private TypicalRooms() {
     } // prevents instantiation

@@ -1,16 +1,5 @@
 package seedu.address.logic.commands.room;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.RoomList;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.room.Room;
-import seedu.address.testutil.EditRoomDescriptorBuilder;
-import seedu.address.testutil.RoomBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
@@ -24,6 +13,18 @@ import static seedu.address.testutil.TypicalPatients.BOB;
 import static seedu.address.testutil.TypicalPatients.CARL;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.RoomList;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
+import seedu.address.testutil.EditRoomDescriptorBuilder;
+import seedu.address.testutil.RoomBuilder;
 
 /**
  * Contains integration tests and unit tests for EditRoomCommand.
@@ -118,7 +119,7 @@ class EditRoomCommandTest {
 
     @Test
     public void execute_invalidPatientAllocated_failure() {
-        Room roomToEdit =  model.getRoomList().get(0);
+        Room roomToEdit = model.getRoomList().get(0);
         Integer roomNumberToEdit = roomToEdit.getRoomNumber();
 
         EditRoomCommand.EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
