@@ -96,27 +96,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public PriorityQueue<Room> getRooms() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public int getNumOfRooms() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void addRooms(int num) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Room> getRoomList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public RoomList getModifiableRoomList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -131,6 +116,35 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Index checkIfRoomPresent(Integer roomNumber) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Room> getRoomList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public RoomList getModifiableRoomList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public PriorityQueue<Room> getRooms() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
     public void addTaskToRoom(Task task, Room room) {
         throw new AssertionError("This method should not be called.");
     }
@@ -141,17 +155,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Room> getFilteredRoomList() {
-        return null;
-    }
-
-    @Override
-    public void updateFilteredRoomList(Predicate<Room> predicate) {
-
-    }
-
-    @Override
-    public Index checkIfRoomPresent(Integer roomNumber) {
+    public void setTaskToRoom(Task target, Task taskToEdit, Room room) {
         throw new AssertionError("This method should not be called.");
     }
 

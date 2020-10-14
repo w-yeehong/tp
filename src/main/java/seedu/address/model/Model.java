@@ -111,6 +111,25 @@ public interface Model {
     void addRooms(int num);
 
     /**
+     * Returns true if a room with the same identity as {@code room} exists in Covigent.
+     *
+     * @param room The room .
+     * @return true if {@code room} is in Covigent; false otherwise.
+     */
+    boolean hasRoom(Room room);
+
+    /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in the application.
+     * The room identity of {@code editedRoom} must not be the same as
+     * another existing room in the application.
+     *
+     * @param target Of the room to be changed.
+     * @param editedRoom Is the newly edited room.
+     */
+    void setSingleRoom(Room target, Room editedRoom);
+
+    /**
      * Checks if the given room number is present in the application.
      *
      * @param roomNumber to check if it is in the application.
@@ -131,24 +150,9 @@ public interface Model {
      */
     PriorityQueue<Room> getRooms();
 
-    /**
-     * Returns true if a room with the same identity as {@code room} exists in Covigent.
-     *
-     * @param room The room .
-     * @return true if {@code room} is in Covigent; false otherwise.
-     */
-    boolean hasRoom(Room room);
+    ObservableList<Room> getFilteredRoomList();
 
-    /**
-     * Replaces the given room {@code target} with {@code editedRoom}.
-     * {@code target} must exist in the application.
-     * The room identity of {@code editedRoom} must not be the same as
-     * another existing room in the application.
-     *
-     * @param target Of the room to be changed.
-     * @param editedRoom Is the newly edited room.
-     */
-    void setSingleRoom(Room target, Room editedRoom);
+    void updateFilteredRoomList(Predicate<Room> predicate);
 
     /**
      * Adds {@code task} to {@code room}.
@@ -169,8 +173,14 @@ public interface Model {
      */
     void deleteTaskFromRoom(Task task, Room room);
 
-
-    ObservableList<Room> getFilteredRoomList();
-
-    void updateFilteredRoomList(Predicate<Room> predicate);
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * The room must exist in Covigent.
+     * The task must exist in room.
+     *
+     * @param target The task to replace.
+     * @param editedTask The modified task to replace the original.
+     * @param room The room from which the task should be replaced.
+     */
+    void setTaskToRoom(Task target, Task editedTask, Room room);
 }
