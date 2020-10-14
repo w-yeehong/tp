@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.room;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ROOMS;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -15,7 +17,7 @@ public class ListRoomCommand extends Command {
         if (model.getRooms().size() == 0) {
             throw new CommandException(NUMBER_OF_ROOMS_UNDEFINED);
         }
-        model.displayAllRoom();
+        model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

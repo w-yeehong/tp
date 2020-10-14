@@ -95,4 +95,9 @@ public class LogicManager implements Logic {
     public ObservableList<Room> getDisplayRoomList() {
         return model.getRoomDisplayList();
     }
+
+    @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        return model.getFilteredRoomList();
+    }
 }

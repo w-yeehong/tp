@@ -13,13 +13,15 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
-
+    Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -141,6 +143,19 @@ public interface Model {
     RoomList getModifiableRoomList();
 
     /**
+     * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
+     * {@code RoomList}.
+     */
+    ObservableList<Room> getFilteredRoomList();
+
+    /**
+     * Updates the filter of the filtered rooms to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRoomList(Predicate<Room> predicate);
+
+
+    /**
      * Returns Priority Queue of rooms
      */
     PriorityQueue<Room> getRooms();
@@ -187,6 +202,4 @@ public interface Model {
      * @param room The room from which the task should be delete.
      */
     void deleteTaskFromRoom(Task task, Room room);
-
-
 }

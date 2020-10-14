@@ -164,6 +164,7 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -234,6 +235,20 @@ public class ModelManager implements Model {
     public void displayAllRoom () {
         roomList.displayAllRooms();
     }
+
+    //==========Filtered RoomList Accessors=======================================================
+
+   // @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        return filteredRooms;
+    }
+
+    //@Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        requireNonNull(predicate);
+        filteredRooms.setPredicate(predicate);
+    }
+
 
     //=========== RoomList Accessors ==========================================================================
 
