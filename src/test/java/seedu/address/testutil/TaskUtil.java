@@ -3,10 +3,12 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
+import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_TASK_NUMBER;
 import static seedu.address.model.task.DateTimeDue.ALLOWED_DATETIME_FORMATS;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.task.AddTaskCommand;
+import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.model.task.Task;
 
 /**
@@ -22,14 +24,19 @@ public class TaskUtil {
     }
 
     /**
+     * Returns an edit command string for editing the {@code Task}.
+     */
+    public static String getEditTaskCommand(Task task, Index roomIndex, Index taskIndex) {
+        return EditTaskCommand.COMMAND_WORD + " " + getTaskDetails(task, roomIndex, taskIndex);
+    }
+
+    /**
      * Returns the part of command string for the given {@code Task}'s details.
      */
-    public static String getTaskDetails(Task task, Index roomIndex) {
+    public static String getTaskDetails(Task task) {
         final StringBuilder builder = new StringBuilder();
 
         builder.append(PREFIX_DESCRIPTION + task.getDescription().toString() + " ");
-        // Use any valid room number as room number not stored in task
-        builder.append(PREFIX_ROOM_NUMBER + String.valueOf(roomIndex.getOneBased()) + " ");
 
         task.getDueAt().getValue().ifPresent((dueAt) -> {
             // DateTimeDue.toString() may return a different string that does not correspond to
@@ -39,6 +46,35 @@ public class TaskUtil {
             String formattedDueAt = dueAt.format(ALLOWED_DATETIME_FORMATS[0]);
             builder.append(PREFIX_DUE_DATE + formattedDueAt);
         });
+
+        return builder.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code Task}'s details.
+     * Includes a valid room number given by {@code roomIndex} in the command string.
+     */
+    public static String getTaskDetails(Task task, Index roomIndex) {
+        final StringBuilder builder = new StringBuilder();
+
+        builder.append(getTaskDetails(task));
+        // Use any valid room number as room number not stored in task
+        builder.append(" " + PREFIX_ROOM_NUMBER + String.valueOf(roomIndex.getOneBased()));
+
+        return builder.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code Task}'s details.
+     * Includes a valid room number given by {@code roomIndex} and a valid task number
+     * given by {@code taskIndex} in the command string.
+     */
+    public static String getTaskDetails(Task task, Index roomIndex, Index taskIndex) {
+        final StringBuilder builder = new StringBuilder();
+
+        builder.append(getTaskDetails(task, roomIndex));
+        // Use any valid task number as task number not stored in task
+        builder.append(" " + PREFIX_TASK_NUMBER + String.valueOf(roomIndex.getOneBased()));
 
         return builder.toString();
     }
