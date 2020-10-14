@@ -91,14 +91,15 @@ class EditRoomCommandTest {
 
         EditRoomCommand.EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
                 .withOccupancy(false).build();
+
         EditRoomCommand editRoomCommand = new EditRoomCommand(roomNumberToEdit, descriptor);
 
         String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
 
         Model expectedModel = new ModelManager(getTypicalCovigentApp(), new UserPrefs(),
                 new RoomList(model.getModifiableRoomList()));
-
         expectedModel.setSingleRoom(roomToEdit, editedRoom);
+
         assertCommandSuccess(editRoomCommand, model, expectedMessage, expectedModel);
     }
 

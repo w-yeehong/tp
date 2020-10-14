@@ -142,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
-        roomListPanel = new RoomListPanel(logic.getDisplayRoomList());
+        roomListPanel = new RoomListPanel(logic.getRoomList()); //TODO: I changed cos can't see output w getDisplayRoomList()
         roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
