@@ -3,6 +3,8 @@ package seedu.address.logic.commands.room;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -25,9 +27,16 @@ class FindRoomCommandTest {
     void execute_numberOfRooms_success() {
         Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList());
         Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
+        Predicate<Room> predicate = preparePredicate(new Room(1));
+        expectedModel.updateFilteredRoomList(predicate);
         model.addRooms(100);
         expectedModel.addRooms(100);
         String expectedMessage = String.format(FindRoomCommand.MESSAGE_SUCCESS, new Room(1));
         assertCommandSuccess(new FindRoomCommand(), model, expectedMessage, expectedModel);
+    }
+
+    private Predicate<Room> preparePredicate(Room room) {
+        Predicate<Room> predicate = room1 -> room1.getRoomNumber() == room.getRoomNumber();
+        return predicate;
     }
 }

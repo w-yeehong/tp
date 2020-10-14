@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.room;
 
 import java.util.PriorityQueue;
-
 import java.util.function.Predicate;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;

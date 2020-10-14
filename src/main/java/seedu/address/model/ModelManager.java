@@ -236,10 +236,12 @@ public class ModelManager implements Model {
         return this.getModifiableRoomList().getRooms();
     }
 
+    @Override
     public ObservableList<Room> getFilteredRoomList() {
         return filteredRooms;
     }
 
+    @Override
     public void updateFilteredRoomList(Predicate<Room> predicate) {
         requireNonNull(predicate);
         filteredRooms.setPredicate(predicate);
