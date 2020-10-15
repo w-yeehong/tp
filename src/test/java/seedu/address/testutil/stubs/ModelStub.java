@@ -141,8 +141,13 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomDisplayList() {
+    public ObservableList<Room> getFilteredRoomList() {
         return null;
+    }
+
+    @Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+
     }
 
     @Override
@@ -150,13 +155,4 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    @Override
-    public void displayFindRoom(Room room) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void displayAllRoom() {
-        throw new AssertionError("This method should not be called.");
-    }
 }

@@ -37,8 +37,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the list of rooms. */
     ObservableList<Room> getRoomList();
 
-    /**Returns all the rooms to be displayed on the UI **/
-    ObservableList<Room> getDisplayRoomList();
     /**
      * Returns the user prefs' Covigent file path.
      */
@@ -53,4 +51,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ObservableList<Room> getFilteredRoomList();
 }

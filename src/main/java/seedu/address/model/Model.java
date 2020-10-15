@@ -19,6 +19,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
 
+    Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -117,10 +118,6 @@ public interface Model {
      */
     Index checkIfRoomPresent(Integer roomNumber);
 
-    void displayFindRoom(Room room);
-
-    void displayAllRoom();
-
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code RoomList}.
@@ -133,11 +130,6 @@ public interface Model {
      * Returns Priority Queue of rooms
      */
     PriorityQueue<Room> getRooms();
-
-    /**
-     * Returns the current Rooms to be displayed.
-     */
-    ObservableList<Room> getRoomDisplayList();
 
     /**
      * Returns true if a room with the same identity as {@code room} exists in Covigent.
@@ -178,4 +170,7 @@ public interface Model {
     void deleteTaskFromRoom(Task task, Room room);
 
 
+    ObservableList<Room> getFilteredRoomList();
+
+    void updateFilteredRoomList(Predicate<Room> predicate);
 }
