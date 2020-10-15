@@ -2,7 +2,7 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_TASK_NUMBER;
 
 import java.util.List;
@@ -18,6 +18,10 @@ import seedu.address.model.task.Task;
 
 /**
  * Deletes a {@code Task} from a {@code Room}.
+ * The {@code Room} is identified by its index in the {@code RoomList}
+ * of {@code Model}.
+ * The {@code Task} is identified by its index in the {@code TaskList}
+ * of {@code Room}.
  */
 public class DeleteTaskCommand extends Command {
 
@@ -31,7 +35,7 @@ public class DeleteTaskCommand extends Command {
             + PREFIX_ROOM_NUMBER + "1 "
             + PREFIX_TASK_NUMBER + "3";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Task deleted from Room %1$d: %2$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Task %1$d deleted from Room %2$d: %3$s";
 
     private final Index roomIndex;
     private final Index taskIndex;
@@ -68,7 +72,7 @@ public class DeleteTaskCommand extends Command {
 
         model.deleteTaskFromRoom(taskToDelete, targetRoom);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
-                roomIndex.getOneBased(), taskToDelete));
+                taskIndex.getOneBased(), roomIndex.getOneBased(), taskToDelete));
     }
 
     @Override

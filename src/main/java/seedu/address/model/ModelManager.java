@@ -226,38 +226,14 @@ public class ModelManager implements Model {
         return index;
     }
 
-    @Override
-    public void displayFindRoom(Room room) {
-        roomList.displayFindRoomUpdate(room);
-    }
-
-    @Override
-    public void displayAllRoom () {
-        roomList.displayAllRooms();
-    }
-
-    //==========Filtered RoomList Accessors=======================================================
-
-    @Override
-    public ObservableList<Room> getFilteredRoomList() {
-        return filteredRooms;
-    }
-
-    @Override
-    public void updateFilteredRoomList(Predicate<Room> predicate) {
-        requireNonNull(predicate);
-        filteredRooms.setPredicate(predicate);
-    }
-
-
-    //=========== RoomList Accessors ==========================================================================
+    //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override
     public ObservableList<Room> getRoomList() {
         return roomList.asUnmodifiableObservableList();
     }
 
-    // TODO: remove this method and use getRoomList() instead
+
     @Override
     public RoomList getModifiableRoomList() {
         return roomList;
@@ -269,8 +245,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomDisplayList() {
-        return roomList.getRoomDisplayList();
+    public ObservableList<Room> getFilteredRoomList() {
+        return filteredRooms;
+    }
+
+    @Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        requireNonNull(predicate);
+        filteredRooms.setPredicate(predicate);
+
     }
     //=========== Tasks ========================================================================================
 
@@ -283,7 +266,12 @@ public class ModelManager implements Model {
     @Override
     public void deleteTaskFromRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-
         roomList.deleteTaskFromRoom(task, room);
+    }
+
+    @Override
+    public void setTaskToRoom(Task target, Task editedTask, Room room) {
+        requireAllNonNull(target, editedTask, room);
+        roomList.setTaskToRoom(target, editedTask, room);
     }
 }

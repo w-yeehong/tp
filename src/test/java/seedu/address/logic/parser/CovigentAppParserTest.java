@@ -27,6 +27,8 @@ import seedu.address.logic.commands.patient.FindPatientCommand;
 import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
+import seedu.address.logic.commands.task.EditTaskCommand;
+import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
@@ -67,6 +69,19 @@ public class CovigentAppParserTest {
     }
 
     @Test
+    public void parseCommand_editTask() throws Exception {
+        Task task = new TaskBuilder().build();
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptor();
+        descriptor.setDescription(task.getDescription());
+        descriptor.setDateTimeDue(task.getDueAt());
+
+        EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
+                TaskUtil.getEditTaskCommand(task, VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE));
+        assertEquals(new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE, descriptor), command);
+    }
+
+    @Test
     public void parseCommand_deletePatient() throws Exception {
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
                 DeletePatientCommand.COMMAND_WORD + " " + "Alice Pauline");
@@ -75,7 +90,6 @@ public class CovigentAppParserTest {
 
     @Test
     public void parseCommand_deleteTask() throws Exception {
-        Task task = new TaskBuilder().build();
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
                 DeleteTaskCommand.COMMAND_WORD + ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE);
         assertEquals(new DeleteTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE), command);

@@ -37,8 +37,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the list of rooms. */
     ObservableList<Room> getRoomList();
 
-    /**Returns all the rooms to be displayed on the UI **/
-    ObservableList<Room> getDisplayRoomList();
 
     /** Returns an unmodifiable view of the filtered list of rooms. */
     ObservableList<Room> getFilteredRoomList();
