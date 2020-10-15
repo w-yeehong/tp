@@ -5,7 +5,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_NO_TASK;
 import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
+import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.exceptions.TaskNotFoundException;
@@ -16,9 +18,15 @@ import seedu.address.testutil.RoomBuilder;
  */
 public class RoomIntegrationTest {
 
+    private Room room;
+
+    @BeforeEach
+    public void setUp() {
+        room = new RoomBuilder().build();
+    }
+
     @Test
     public void addTask_nullTask_throwsNullPointerException() {
-        Room room = new RoomBuilder().build();
         assertThrows(NullPointerException.class, () -> room.addTask(null));
     }
 
@@ -31,13 +39,11 @@ public class RoomIntegrationTest {
 
     @Test
     public void deleteTask_nullTask_throwsNullPointerException() {
-        Room room = new RoomBuilder().build();
         assertThrows(NullPointerException.class, () -> room.deleteTask(null));
     }
 
     @Test
     public void deleteTask_taskNotInTaskList_throwsTaskNotFoundException() {
-        Room room = new RoomBuilder().build();
         assertThrows(TaskNotFoundException.class, () -> room.deleteTask(REMIND_PATIENT));
     }
 
@@ -47,6 +53,31 @@ public class RoomIntegrationTest {
         room.deleteTask(REMIND_PATIENT);
 
         assertEquals(ROOM_PATIENT_ALICE_NO_TASK, room);
+    }
+
+    @Test
+    public void setTask_nullEditedTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> room.setTask(REMIND_PATIENT, null));
+    }
+
+    @Test
+    public void setTask_nullTarget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> room.setTask(null, REMIND_PATIENT));
+    }
+
+    @Test
+    public void setTask_taskNotInTaskList_throwsTaskNotFoundException() {
+        assertThrows(TaskNotFoundException.class, () -> room.setTask(REMIND_PATIENT, RESTOCK_SUPPLY));
+    }
+
+    @Test
+    public void setTask_taskInTaskList_success() {
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        room.setTask(REMIND_PATIENT, RESTOCK_SUPPLY);
+
+        Room expectedRoom = new RoomBuilder(ROOM_PATIENT_ALICE_NO_TASK).withTasks(RESTOCK_SUPPLY).build();
+
+        assertEquals(expectedRoom, room);
     }
 
 }

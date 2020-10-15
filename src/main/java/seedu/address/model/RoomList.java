@@ -160,6 +160,18 @@ public class RoomList implements ReadOnlyRoomList {
         internalList.set(index, room);
     }
 
+    public void setTaskToRoom(Task target, Task editedTask, Room room) {
+        requireAllNonNull(target, editedTask, room);
+
+        int index = internalList.indexOf(room);
+        if (index == -1) {
+            throw new RoomNotFoundException();
+        }
+
+        room.setTask(target, editedTask);
+        internalList.set(index, room);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

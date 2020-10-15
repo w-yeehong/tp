@@ -85,24 +85,6 @@ public class TaskList implements Iterable<Task> {
         return internalUnmodifiableList;
     }
 
-    /**
-     * Iterates through the list of tasks and returns task details.
-     *
-     * @return A string containing all the task details.
-     */
-    public String iterateTaskDetails() {
-        if (internalList.isEmpty()) {
-            return "No tasks found.";
-        }
-        String details = "";
-        for (Task task : internalList) {
-            String taskDescription = "Description: " + task.getDescription().toString();
-            String taskDueDate = "Due Date: " + task.getDueAt().toString();
-            details = taskDescription + " | " + taskDueDate + "\n";
-        }
-        return details;
-    }
-
     @Override
     public Iterator<Task> iterator() {
         return internalList.iterator();
@@ -112,6 +94,7 @@ public class TaskList implements Iterable<Task> {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
+        // TODO: add method to get task details with numbering and indentation; remove numbering from toString()
         int taskIndex = 1;
         for (Task task : internalList) {
             // Results in "1. <task>\n2. <task>..."
