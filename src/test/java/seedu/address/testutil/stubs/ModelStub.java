@@ -103,6 +103,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setRoomList(ReadOnlyRoomList rooms) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public int getNumOfRooms() {
         throw new AssertionError("This method should not be called.");
     }
