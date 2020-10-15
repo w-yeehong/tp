@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.patient.SearchPatientCommand.MESSAGE_
 import static seedu.address.logic.commands.patient.SearchPatientCommand.MESSAGE_PATIENT_NOT_FOUND;
 import static seedu.address.logic.commands.patient.SearchPatientCommand.MESSAGE_SEARCH_PATIENT_LIST_SUCCESS;
 import static seedu.address.logic.commands.patient.SearchPatientCommand.SearchPatientDescriptor;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 
 import java.util.Arrays;
 
@@ -32,7 +32,7 @@ import seedu.address.testutil.SearchPatientDescriptorBuilder;
  */
 public class SearchPatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
 
     @Test
     public void execute_searchPatientName_success() {
@@ -87,7 +87,7 @@ public class SearchPatientCommandTest {
 
     @Test
     void execute_searchPatientTemperatureRange_throwsCommandException() {
-        Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+        Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
         TemperatureRangePredicate predicate = new TemperatureRangePredicate(36.9, 37.0);
         Patient patient = new PatientBuilder().withTemperature("36.0").build();
         SearchPatientDescriptor descriptor =

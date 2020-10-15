@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.room;
 
 import java.util.PriorityQueue;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -29,7 +30,13 @@ public class FindRoomCommand extends Command {
         if (room.isOccupied()) {
             throw new CommandException(MESSAGE_NO_EMPTY_ROOM);
         }
-        model.displayFindRoom(room);
+        Predicate<Room> predicate = givePredicate(room);
+        model.updateFilteredRoomList(predicate);
         return new CommandResult(String.format(MESSAGE_SUCCESS, room));
+    }
+
+    private Predicate<Room> givePredicate(Room room) {
+        Predicate<Room> roomPredicate = room1 -> room1.getRoomNumber() == room.getRoomNumber();
+        return roomPredicate;
     }
 }

@@ -2,13 +2,14 @@ package seedu.address.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -25,31 +26,29 @@ public class DeletePatientCommand extends Command {
 
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
 
-    private final String nameOfPatientToDelete;
+    private final Name nameOfPatientToDelete;
 
     /**
      * Creates a DeleteCommand to delete the patient with the name {@code String}.
      * @param nameOfPatientToDelete name in the filtered patient list to be deleted
      */
-    public DeletePatientCommand(String nameOfPatientToDelete) {
+    public DeletePatientCommand(Name nameOfPatientToDelete) {
         requireNonNull(nameOfPatientToDelete);
-        this.nameOfPatientToDelete = nameOfPatientToDelete.trim().toLowerCase();
+        this.nameOfPatientToDelete = nameOfPatientToDelete;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPatientList();
+        Optional<Patient> patientToDelete = model.getPatientWithName(nameOfPatientToDelete);
 
-        for (int i = 0; i < lastShownList.size(); i++) {
-            String patientName = lastShownList.get(i).getName().toString();
-            if (patientName.trim().toLowerCase().equals(nameOfPatientToDelete)) {
-                Patient patientToDelete = lastShownList.get(i);
-                model.deletePatient(patientToDelete);
-                return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
-            }
+        if (patientToDelete.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
         }
-        throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
+
+        Patient deletedPatient = patientToDelete.get();
+        model.deletePatient(deletedPatient);
+        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, deletedPatient));
     }
 
     @Override

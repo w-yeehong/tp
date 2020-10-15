@@ -1,11 +1,14 @@
 package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+
 
 /**
  * Searches a room according to the given room number.
@@ -32,20 +35,17 @@ public class SearchRoomCommand extends Command {
         this.roomNumber = roomNumber;
     }
 
-    //TODO
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        /*Index index = model.getModifiableRoomList().checkIfRoomPresent(roomNumber);
-        List<Room> lastShownList = model.getModifiableRoomList().getRoomObservableList();
+        requireNonNull(model);
 
+        Index index = model.checkIfRoomPresent(roomNumber);
         if (index.getZeroBased() == 0) {
             throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
         }
 
-        Room roomToEdit = lastShownList.get(index.getZeroBased() - 1);
-
-         */
-        return null;
+        model.updateFilteredRoomList(room -> room.getRoomNumber() == roomNumber);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, roomNumber.toString()));
     }
 
     @Override

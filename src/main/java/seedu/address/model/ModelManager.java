@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -99,6 +100,7 @@ public class ModelManager implements Model {
     }
 
     //=========== RoomList ================================================================================
+    @Override
     public void setRoomList(ReadOnlyRoomList rooms) {
         this.roomList.resetData(rooms);
     }
@@ -110,6 +112,12 @@ public class ModelManager implements Model {
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return patientRecords.hasPatient(patient);
+    }
+
+    @Override
+    public Optional<Patient> getPatientWithName(Name nameOfPatient) {
+        requireNonNull(nameOfPatient);
+        return patientRecords.getPatientWithName(nameOfPatient);
     }
 
     @Override
@@ -134,9 +142,8 @@ public class ModelManager implements Model {
     public boolean isPatientAssignedToRoom(Name name) {
         for (Room room : roomList.getRoomObservableList()) {
             if (room.getPatient() != null) {
-                String patientNameInRoom = room.getPatient().getName().toString().trim().toLowerCase();
-                String patientNameToBeEdit = name.toString().trim().toLowerCase();
-                if (patientNameInRoom.equals(patientNameToBeEdit)) {
+                Name patientNameInRoom = room.getPatient().getName();
+                if (patientNameInRoom.equals(name)) {
                     return true;
                 }
             }
@@ -156,6 +163,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -218,24 +226,14 @@ public class ModelManager implements Model {
         return index;
     }
 
-    @Override
-    public void displayFindRoom(Room room) {
-        roomList.displayFindRoomUpdate(room);
-    }
-
-    @Override
-    public void displayAllRoom () {
-        roomList.displayAllRooms();
-    }
-
-    //=========== RoomList Accessors ==========================================================================
+    //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override
     public ObservableList<Room> getRoomList() {
         return roomList.asUnmodifiableObservableList();
     }
 
-    // TODO: remove this method and use getRoomList() instead
+
     @Override
     public RoomList getModifiableRoomList() {
         return roomList;
@@ -247,8 +245,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomDisplayList() {
-        return roomList.getRoomDisplayList();
+    public ObservableList<Room> getFilteredRoomList() {
+        return filteredRooms;
+    }
+
+    @Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        requireNonNull(predicate);
+        filteredRooms.setPredicate(predicate);
+
     }
     //=========== Tasks ========================================================================================
 
@@ -261,7 +266,12 @@ public class ModelManager implements Model {
     @Override
     public void deleteTaskFromRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-
         roomList.deleteTaskFromRoom(task, room);
+    }
+
+    @Override
+    public void setTaskToRoom(Task target, Task editedTask, Room room) {
+        requireAllNonNull(target, editedTask, room);
+        roomList.setTaskToRoom(target, editedTask, room);
     }
 }

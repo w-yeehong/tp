@@ -3,8 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 
@@ -59,11 +61,21 @@ public class PatientRecords implements ReadOnlyPatientRecords {
     //// patient-level operations
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the patient records.
      */
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return patients.contains(patient);
+    }
+
+    /**
+     * Returns the patient with the input name.
+     * @param name of patient to find.
+     * @return the patient with the name if it exists.
+     */
+    public Optional<Patient> getPatientWithName(Name name) {
+        requireNonNull(name);
+        return patients.getPatientWithName(name);
     }
 
     /**

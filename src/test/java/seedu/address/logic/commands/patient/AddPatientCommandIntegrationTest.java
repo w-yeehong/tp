@@ -2,7 +2,7 @@ package seedu.address.logic.commands.patient;
 
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,12 +23,12 @@ public class AddPatientCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+        model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
     }
 
     @Test
     public void execute_newPatient_success() {
-        Patient validPatient = new PatientBuilder().build();
+        Patient validPatient = new PatientBuilder().withName("John Doe").build();
 
         Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
         expectedModel.addPatient(validPatient);

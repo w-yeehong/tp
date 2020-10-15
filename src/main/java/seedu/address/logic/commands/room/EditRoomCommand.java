@@ -8,7 +8,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 
-import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
@@ -21,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.task.TaskList;
 
 /**
  * Edits the details of a room identified by the room number in the app.
@@ -91,19 +91,21 @@ public class EditRoomCommand extends Command {
      * @param editRoomDescriptor Details to edit the room with.
      * @return Room that has been edited.
      */
-    private static Room createEditedRoom(Model model, Room roomToEdit,
-                                         EditRoomDescriptor editRoomDescriptor) throws CommandException {
+    private Room createEditedRoom(Model model, Room roomToEdit,
+                                  EditRoomDescriptor editRoomDescriptor) throws CommandException {
         assert (roomToEdit != null);
+
         int updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
+        TaskList roomTaskList = roomToEdit.getTaskList();
         boolean isClearRoom = editRoomDescriptor.getIsOccupied().isPresent();
         boolean hasNewPatient = editRoomDescriptor.getPatientName().isPresent();
         boolean isCurrentlyOccupied = roomToEdit.isOccupied();
         if (!isClearRoom && !hasNewPatient && isCurrentlyOccupied) {
             //case 1: change room number in a room with patient already
-            return new Room(updatedRoomNumber, roomToEdit.getPatient());
+            return new Room(updatedRoomNumber, roomToEdit.getPatient(), roomTaskList);
         } else if (!hasNewPatient) {
             //case 2: change room number in an empty room
-            return new Room(updatedRoomNumber);
+            return new Room(updatedRoomNumber, false, null, roomTaskList);
         }
         //case 3: patient is already allocated to a room.
         Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
@@ -111,30 +113,13 @@ public class EditRoomCommand extends Command {
             throw new CommandException(MESSAGE_PATIENT_ALREADY_ASSIGNED);
         }
         //case 4: allocate patient to the room
-        List<Patient> patientList = model.getFilteredPatientList();
-        Room updatedRoom = getValidPatient(patientList, patientName, updatedRoomNumber);
-        return updatedRoom;
-    }
-
-    /**
-     * Checks if the patient is valid and exists in the application.
-     *
-     * @param patientList List of the patients in the application.
-     * @param patientName Name of the patient.
-     * @param updatedRoomNumber Room number of room.
-     * @return Room that is updated with the new patient and room number.
-     */
-    private static Room getValidPatient(List<Patient> patientList, Name patientName,
-                                        Integer updatedRoomNumber) throws CommandException {
-        for (Patient patient : patientList) {
-            String inputPatientName = patientName.toString().trim().toLowerCase();
-            String recordName = patient.getName().toString();
-            if (recordName.trim().toLowerCase().equals(inputPatientName)) {
-                Patient updatedPatient = patient;
-                return new Room(updatedRoomNumber, updatedPatient);
-            }
+        Optional<Patient> updatedPatient = model.getPatientWithName(patientName);
+        if (updatedPatient.isEmpty()) {
+            throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        } else {
+            Room updatedRoom = new Room(updatedRoomNumber, updatedPatient.get(), roomTaskList);
+            return updatedRoom;
         }
-        throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
     }
 
     @Override
@@ -221,18 +206,18 @@ public class EditRoomCommand extends Command {
         @Override
         public String toString() {
             return "EditRoomDescriptor{"
-                + "roomNumber=" + roomNumber
-                + ", isOccupied=" + isOccupied
-                + ", patientName=" + patientName
-                + '}';
+                    + "roomNumber=" + roomNumber
+                    + ", isOccupied=" + isOccupied
+                    + ", patientName=" + patientName
+                    + '}';
         }
     }
 
     @Override
     public String toString() {
         return "EditRoomCommand{"
-            + "roomNumberToEdit=" + roomNumberToEdit
-            + ", editRoomDescriptor=" + editRoomDescriptor
-            + '}';
+                + "roomNumberToEdit=" + roomNumberToEdit
+                + ", editRoomDescriptor=" + editRoomDescriptor
+                + '}';
     }
 }

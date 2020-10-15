@@ -13,12 +13,12 @@ import org.junit.jupiter.api.Test;
 public class DeleteTaskCommandTest {
 
     @Test
-    public void constructor_nullRoomIndexValidTaskIndex_throwsNullPointerException() {
+    public void constructor_nullRoomIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new DeleteTaskCommand(null, VALID_TASK_INDEX_ONE));
     }
 
     @Test
-    public void constructor_validRoomIndexNullTaskIndex_throwsNullPointerException() {
+    public void constructor_nullTaskIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new DeleteTaskCommand(VALID_ROOM_INDEX_ONE, null));
     }
 
@@ -26,10 +26,6 @@ public class DeleteTaskCommandTest {
     public void equals() {
         DeleteTaskCommand deleteTaskOneFromRoomOne = new DeleteTaskCommand(
                 VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE);
-        DeleteTaskCommand deleteTaskOneFromRoomTwo = new DeleteTaskCommand(
-                VALID_ROOM_INDEX_TWO, VALID_TASK_INDEX_ONE);
-        DeleteTaskCommand deleteTaskTwoFromRoomOne = new DeleteTaskCommand(
-                VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_TWO);
 
         // same object -> returns true
         assertTrue(deleteTaskOneFromRoomOne.equals(deleteTaskOneFromRoomOne));
@@ -40,15 +36,19 @@ public class DeleteTaskCommandTest {
         assertTrue(deleteTaskOneFromRoomOne.equals(deleteTaskOneFromRoomOneCopy));
 
         // different types -> returns false
-        assertFalse(deleteTaskOneFromRoomOneCopy.equals(1));
+        assertFalse(deleteTaskOneFromRoomOne.equals(1));
 
         // null -> returns false
-        assertFalse(deleteTaskOneFromRoomOneCopy.equals(null));
+        assertFalse(deleteTaskOneFromRoomOne.equals(null));
 
         // different room index -> returns false
+        DeleteTaskCommand deleteTaskOneFromRoomTwo = new DeleteTaskCommand(
+                VALID_ROOM_INDEX_TWO, VALID_TASK_INDEX_ONE);
         assertFalse(deleteTaskOneFromRoomOne.equals(deleteTaskOneFromRoomTwo));
 
         // different task index -> returns false
+        DeleteTaskCommand deleteTaskTwoFromRoomOne = new DeleteTaskCommand(
+                VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_TWO);
         assertFalse(deleteTaskOneFromRoomOne.equals(deleteTaskTwoFromRoomOne));
     }
 }

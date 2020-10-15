@@ -1,6 +1,7 @@
 package seedu.address.testutil.stubs;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.function.Predicate;
 
@@ -9,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RoomList;
 import seedu.address.model.patient.Name;
@@ -71,6 +73,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Optional<Patient> getPatientWithName(Name nameOfPatient) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deletePatient(Patient target) {
         throw new AssertionError("This method should not be called.");
     }
@@ -96,7 +103,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public PriorityQueue<Room> getRooms() {
+    public void setRoomList(ReadOnlyRoomList rooms) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -111,16 +118,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public RoomList getModifiableRoomList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public boolean hasRoom(Room room) {
         throw new AssertionError("This method should not be called.");
     }
@@ -131,6 +128,35 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Index checkIfRoomPresent(Integer roomNumber) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Room> getRoomList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public RoomList getModifiableRoomList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public PriorityQueue<Room> getRooms() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
     public void addTaskToRoom(Task task, Room room) {
         throw new AssertionError("This method should not be called.");
     }
@@ -141,22 +167,8 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomDisplayList() {
-        return null;
-    }
-
-    @Override
-    public Index checkIfRoomPresent(Integer roomNumber) {
+    public void setTaskToRoom(Task target, Task taskToEdit, Room room) {
         throw new AssertionError("This method should not be called.");
     }
 
-    @Override
-    public void displayFindRoom(Room room) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void displayAllRoom() {
-        throw new AssertionError("This method should not be called.");
-    }
 }

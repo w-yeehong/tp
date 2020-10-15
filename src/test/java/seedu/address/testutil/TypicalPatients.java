@@ -67,9 +67,9 @@ public class TypicalPatients {
     private TypicalPatients() {} // prevents instantiation
 
     /**
-     * Returns an {@code CovigentApp} with all the typical patients.
+     * Returns an {@code PatientRecords} with all the typical patients.
      */
-    public static PatientRecords getTypicalCovigentApp() {
+    public static PatientRecords getTypicalPatientRecords() {
         PatientRecords ab = new PatientRecords();
         for (Patient patient : getTypicalPatients()) {
             ab.addPatient(patient);
