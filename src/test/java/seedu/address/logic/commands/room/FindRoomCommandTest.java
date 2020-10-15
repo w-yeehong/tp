@@ -27,7 +27,7 @@ class FindRoomCommandTest {
     void execute_numberOfRooms_success() {
         Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList());
         Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
-        Predicate<Room> predicate = preparePredicate(new Room(1));
+        Predicate<Room> predicate = getFilterByRoomNumberPredicate(new Room(1));
         expectedModel.updateFilteredRoomList(predicate);
         model.addRooms(100);
         expectedModel.addRooms(100);
@@ -35,8 +35,8 @@ class FindRoomCommandTest {
         assertCommandSuccess(new FindRoomCommand(), model, expectedMessage, expectedModel);
     }
 
-    private Predicate<Room> preparePredicate(Room room) {
-        Predicate<Room> predicate = room1 -> room1.getRoomNumber() == room.getRoomNumber();
-        return predicate;
+    private Predicate<Room> getFilterByRoomNumberPredicate(Room room) {
+        Predicate<Room> filterByRoomNumber = room1 -> room1.getRoomNumber() == room.getRoomNumber();
+        return filterByRoomNumber;
     }
 }
