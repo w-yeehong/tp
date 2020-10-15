@@ -91,6 +91,7 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
+    @Override
     public ObservableList<Room> getFilteredRoomList() {
         return model.getFilteredRoomList();
     }

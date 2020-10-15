@@ -30,6 +30,7 @@ import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.Task;
@@ -84,7 +85,7 @@ public class CovigentAppParserTest {
     public void parseCommand_deletePatient() throws Exception {
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
                 DeletePatientCommand.COMMAND_WORD + " " + "Alice Pauline");
-        assertEquals(new DeletePatientCommand("Alice Pauline"), command);
+        assertEquals(new DeletePatientCommand(new Name("Alice Pauline")), command);
     }
 
     @Test

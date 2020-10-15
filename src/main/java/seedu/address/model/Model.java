@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.function.Predicate;
 
@@ -59,27 +60,32 @@ public interface Model {
     ReadOnlyPatientRecords getPatientRecords();
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the patient records.
      */
     boolean hasPatient(Patient patient);
 
     /**
+     * Returns the patient with the {@code nameOfPatient} if it exists.
+     */
+    Optional<Patient> getPatientWithName(Name nameOfPatient);
+
+    /**
      * Deletes the given patient.
-     * The patient must exist in the address book.
+     * The patient must exist in the patient records.
      */
     void deletePatient(Patient target);
 
     /**
      * Adds the given patient.
-     * {@code patient} must not already exist in the address book.
+     * {@code patient} must not already exist in the patient records.
      */
     void addPatient(Patient patient);
 
     /**
      * Replaces the given patient {@code target} with {@code editedPatient}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the patient records.
      * The patient identity of {@code editedPatient} must not be the same as
-     * another existing patient in the address book.
+     * another existing patient in the patient records.
      */
     void setPatient(Patient target, Patient editedPatient);
 
@@ -102,6 +108,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Replaces room list with the data in {@code covigentApp}.
+     */
+    void setRoomList(ReadOnlyRoomList rooms);
 
     /**
      * Returns total number of rooms in the application's {@code RoomList}.
@@ -146,13 +157,22 @@ public interface Model {
     RoomList getModifiableRoomList();
 
     /**
+     * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
+     * {@code RoomList}.
+     */
+    ObservableList<Room> getFilteredRoomList();
+
+    /**
+     * Updates the filter of the filtered rooms to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRoomList(Predicate<Room> predicate);
+
+
+    /**
      * Returns Priority Queue of rooms
      */
     PriorityQueue<Room> getRooms();
-
-    ObservableList<Room> getFilteredRoomList();
-
-    void updateFilteredRoomList(Predicate<Room> predicate);
 
     /**
      * Adds {@code task} to {@code room}.

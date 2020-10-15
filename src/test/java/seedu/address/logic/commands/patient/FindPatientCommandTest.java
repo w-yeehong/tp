@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSucce
 import static seedu.address.testutil.TypicalPatients.CARL;
 import static seedu.address.testutil.TypicalPatients.ELLE;
 import static seedu.address.testutil.TypicalPatients.FIONA;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,8 +25,8 @@ import seedu.address.model.patient.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindPatientCommandTest {
-    private Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
-    private Model expectedModel = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
+    private Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
 
     @Test
     public void equals() {

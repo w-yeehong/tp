@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -99,6 +100,7 @@ public class ModelManager implements Model {
     }
 
     //=========== RoomList ================================================================================
+    @Override
     public void setRoomList(ReadOnlyRoomList rooms) {
         this.roomList.resetData(rooms);
     }
@@ -110,6 +112,12 @@ public class ModelManager implements Model {
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return patientRecords.hasPatient(patient);
+    }
+
+    @Override
+    public Optional<Patient> getPatientWithName(Name nameOfPatient) {
+        requireNonNull(nameOfPatient);
+        return patientRecords.getPatientWithName(nameOfPatient);
     }
 
     @Override
@@ -134,9 +142,8 @@ public class ModelManager implements Model {
     public boolean isPatientAssignedToRoom(Name name) {
         for (Room room : roomList.getRoomObservableList()) {
             if (room.getPatient() != null) {
-                String patientNameInRoom = room.getPatient().getName().toString().trim().toLowerCase();
-                String patientNameToBeEdit = name.toString().trim().toLowerCase();
-                if (patientNameInRoom.equals(patientNameToBeEdit)) {
+                Name patientNameInRoom = room.getPatient().getName();
+                if (patientNameInRoom.equals(name)) {
                     return true;
                 }
             }
@@ -156,6 +163,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -218,7 +226,7 @@ public class ModelManager implements Model {
         return index;
     }
 
-    //=========== RoomList Accessors ==========================================================================
+    //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override
     public ObservableList<Room> getRoomList() {

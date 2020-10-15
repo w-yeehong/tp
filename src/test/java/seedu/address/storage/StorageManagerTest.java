@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
 
 import java.io.IOException;
@@ -61,7 +61,7 @@ public class StorageManagerTest {
          * {@link JsonPatientRecordsStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonPatientRecordsStorageTest} class.
          */
-        PatientRecords original = getTypicalCovigentApp();
+        PatientRecords original = getTypicalPatientRecords();
         storageManager.savePatientRecords(original);
         ReadOnlyPatientRecords retrieved = storageManager.readPatientRecords().get();
         assertEquals(original, new PatientRecords(retrieved));
