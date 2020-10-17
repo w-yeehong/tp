@@ -35,7 +35,7 @@ public class EditPatientCommand extends Command {
     public static final String COMMAND_WORD = "editpatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
-            + "by the patient's name used in the displayed patient list. "
+            + "by the patient's name used in the displayed patient list. \n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: NAME (must match exactly with the name of the patient to be edited in the patient list) "
             + "[" + PREFIX_NAME + "NAME] "

@@ -2,9 +2,9 @@ package seedu.address.logic.commands.room;
 
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.room.InitRoomsCommand.MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT;
-import static seedu.address.logic.commands.room.InitRoomsCommand.MESSAGE_SUCCESS;
-import static seedu.address.logic.commands.room.InitRoomsCommand.MESSAGE_ZERO_CANNOT_BE_AN_INPUT;
+import static seedu.address.logic.commands.room.InitRoomCommand.MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT;
+import static seedu.address.logic.commands.room.InitRoomCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.room.InitRoomCommand.MESSAGE_ZERO_CANNOT_BE_AN_INPUT;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,15 +22,15 @@ class AddRoomsCommandTest {
         Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
         expectedModel.addRooms(100);
         String expectedResult = String.format(MESSAGE_SUCCESS, 100);
-        assertCommandSuccess(new InitRoomsCommand(100), model, expectedResult, expectedModel);
+        assertCommandSuccess(new InitRoomCommand(100), model, expectedResult, expectedModel);
     }
 
     @Test
     void execute_addRooms_throwsCommandException() {
         Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList());
         model.addRooms(0);
-        assertCommandFailure(new InitRoomsCommand(0), model, MESSAGE_ZERO_CANNOT_BE_AN_INPUT);
+        assertCommandFailure(new InitRoomCommand(0), model, MESSAGE_ZERO_CANNOT_BE_AN_INPUT);
         model.addRooms(-100);
-        assertCommandFailure(new InitRoomsCommand(-100), model, MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
+        assertCommandFailure(new InitRoomCommand(-100), model, MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
     }
 }

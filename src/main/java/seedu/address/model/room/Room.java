@@ -191,7 +191,16 @@ public class Room implements Comparable<Room> {
         }
     }
 
+    @Override
     public String toString() {
-        return "Room number " + this.roomNumber;
+        String patientDetails = getPatient() == null ? "-" : getPatient().toString();
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Room Number: ")
+            .append(getRoomNumber() + "\n")
+            .append("Patient: ")
+            .append(patientDetails + "\n")
+            .append("TaskList: ")
+            .append(taskList.toString() + "\n");
+        return builder.toString();
     }
 }

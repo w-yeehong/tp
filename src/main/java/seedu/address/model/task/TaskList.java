@@ -93,7 +93,10 @@ public class TaskList implements Iterable<Task> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-
+        if (internalUnmodifiableList.isEmpty()) {
+            builder.append("-");
+            return builder.toString().trim();
+        }
         // TODO: add method to get task details with numbering and indentation; remove numbering from toString()
         int taskIndex = 1;
         for (Task task : internalList) {

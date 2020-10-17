@@ -10,18 +10,23 @@ import seedu.address.model.Model;
 /**
  * Adds the number of hotel rooms in a hotel
  */
-public class InitRoomsCommand extends Command {
-    public static final String COMMAND_WORD = "initrooms";
-    public static final String MESSAGE_ZERO_CANNOT_BE_AN_INPUT = "please input a positive value";
-    public static final String MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT = "please check your value! "
+public class InitRoomCommand extends Command {
+    public static final String COMMAND_WORD = "initroom";
+    public static final String MESSAGE_ZERO_CANNOT_BE_AN_INPUT = "Please input a positive value";
+    public static final String MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT = "Please check your value! "
             + "You have input a negative value!";
-    public static final String MESSAGE_SUCCESS = "%d rooms are added in your hotel";
+    public static final String MESSAGE_SUCCESS = "Initialize the number of rooms to %d rooms in the application";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Initializes the number of rooms in the "
+        + "quarantine facility to the app, if there was data given previously, they would be stored.\n"
+        + "Parameters: NUMBER_OF_ROOMS\n"
+        + "Example: " + COMMAND_WORD + " 123";
+
     private int numOfRooms;
 
     /**
      * Creates an AddCommand to add the number of rooms available in a hotel
      */
-    public InitRoomsCommand(int numOfRooms) {
+    public InitRoomCommand(int numOfRooms) {
         this.numOfRooms = numOfRooms;
     }
     @Override
@@ -43,7 +48,7 @@ public class InitRoomsCommand extends Command {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        InitRoomsCommand that = (InitRoomsCommand) o;
+        InitRoomCommand that = (InitRoomCommand) o;
         return numOfRooms == that.numOfRooms;
     }
 

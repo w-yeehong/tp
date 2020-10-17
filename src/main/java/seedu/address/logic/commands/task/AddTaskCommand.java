@@ -25,7 +25,7 @@ public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addtask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Covigent. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_ROOM_NUMBER + "ROOM NUMBER "
             + "[" + PREFIX_DUE_DATE + "DUE DATE]\n"
@@ -34,7 +34,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_ROOM_NUMBER + "3 "
             + PREFIX_DUE_DATE + "20200928 2359";
 
-    public static final String MESSAGE_ADD_TASK_SUCCESS = "New Task added to Room %1$d: %2$s";
+    public static final String MESSAGE_ADD_TASK_SUCCESS = "New Task added to Room %1$d. \nDescription: %2$s";
 
     private final Task taskToAdd;
     private final Index roomIndex;
