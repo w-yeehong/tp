@@ -17,6 +17,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.task.DateTimeDue;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
@@ -47,6 +49,7 @@ public class ModelManager implements Model {
         this.patientRecords = new PatientRecords(patientRecords);
         this.roomList = new RoomList(roomList);
         this.taskList = new TaskList(taskList);
+        this.taskList.add(new Task(new Description("yes"), new DateTimeDue("20200918")));
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.patientRecords.getPatientList());
         filteredRooms = new FilteredList<>(this.roomList.asUnmodifiableObservableList());

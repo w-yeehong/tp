@@ -41,7 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private RoomListPanel roomListPanel;
-    private TaskListPanel taskListPanel;
+    protected TaskListPanel taskListPanel;
 
     @FXML
     private ImageView logoIcon;
@@ -65,6 +65,9 @@ public class MainWindow extends UiPart<Stage> {
     private Tab roomTab;
 
     @FXML
+    private Tab niceTab;
+
+    @FXML
     private Tab taskTab;
 
     @FXML
@@ -77,7 +80,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane roomListPanelPlaceHolder;
 
     @FXML
-    private StackPane taskListPanelPlaceHolder;
+    private StackPane taskListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -144,19 +147,20 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
+        //System.out.print(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
         roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
-
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceHolder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCovigentAppFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
