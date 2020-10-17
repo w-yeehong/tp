@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.CovigentApp;
+import seedu.address.model.PatientRecords;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -67,10 +67,10 @@ public class TypicalPatients {
     private TypicalPatients() {} // prevents instantiation
 
     /**
-     * Returns an {@code CovigentApp} with all the typical patients.
+     * Returns an {@code PatientRecords} with all the typical patients.
      */
-    public static CovigentApp getTypicalCovigentApp() {
-        CovigentApp ab = new CovigentApp();
+    public static PatientRecords getTypicalPatientRecords() {
+        PatientRecords ab = new PatientRecords();
         for (Patient patient : getTypicalPatients()) {
             ab.addPatient(patient);
         }

@@ -16,8 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
-import seedu.address.model.room.RoomList;
-import seedu.address.testutil.CovigentAppBuilder;
+import seedu.address.testutil.PatientRecordsBuilder;
 
 public class ModelManagerTest {
 
@@ -27,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new CovigentApp(), new CovigentApp(modelManager.getCovigentApp()));
+        assertEquals(new PatientRecords(), new PatientRecords(modelManager.getPatientRecords()));
     }
 
     @Test
@@ -101,13 +100,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        CovigentApp covigentApp = new CovigentAppBuilder().withPatient(ALICE).withPatient(BENSON).build();
-        CovigentApp differentCovigentApp = new CovigentApp();
+        PatientRecords patientRecords = new PatientRecordsBuilder().withPatient(ALICE).withPatient(BENSON).build();
+        PatientRecords differentPatientRecords = new PatientRecords();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(covigentApp, userPrefs, new RoomList());
-        ModelManager modelManagerCopy = new ModelManager(covigentApp, userPrefs, new RoomList());
+        modelManager = new ModelManager(patientRecords, userPrefs, new RoomList());
+        ModelManager modelManagerCopy = new ModelManager(patientRecords, userPrefs, new RoomList());
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -120,12 +119,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different covigentApp -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentCovigentApp, userPrefs, new RoomList())));
+        assertFalse(modelManager.equals(new ModelManager(differentPatientRecords, userPrefs, new RoomList())));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(covigentApp, userPrefs, new RoomList())));
+        assertFalse(modelManager.equals(new ModelManager(patientRecords, userPrefs, new RoomList())));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -133,6 +132,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setCovigentAppFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(covigentApp, differentUserPrefs, new RoomList())));
+        assertFalse(modelManager.equals(new ModelManager(patientRecords, differentUserPrefs, new RoomList())));
     }
 }

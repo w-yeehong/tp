@@ -10,7 +10,9 @@ import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.RoomList;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.testutil.RoomBuilder;
 
 /**
@@ -27,23 +29,18 @@ public class RoomListIntegrationTest {
     }
 
     @Test
-    public void addTaskToRoom_nullTaskNullRoom_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> roomList.addTaskToRoom(null, null));
-    }
-
-    @Test
-    public void addTaskToRoom_validTaskNullRoom_throwsNullPointerException() {
+    public void addTaskToRoom_nullRoom_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> roomList.addTaskToRoom(REMIND_PATIENT, null));
     }
 
     @Test
-    public void addTaskToRoom_nullTaskValidRoom_throwsNullPointerException() {
+    public void addTaskToRoom_nullTask_throwsNullPointerException() {
         Room room = new RoomBuilder().build();
         assertThrows(NullPointerException.class, () -> roomList.addTaskToRoom(null, room));
     }
 
     @Test
-    public void addTaskToRoom_validTaskRoomNotInRoomList_throwsRoomNotFoundException() {
+    public void addTaskToRoom_roomNotInRoomList_throwsRoomNotFoundException() {
         Room room = new RoomBuilder().build();
         assertThrows(RoomNotFoundException.class, () ->
                 roomList.addTaskToRoom(RESTOCK_SUPPLY, room));
@@ -57,6 +54,89 @@ public class RoomListIntegrationTest {
 
         RoomList expectedRoomList = new RoomList();
         expectedRoomList.addRooms(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT);
+
+        assertEquals(expectedRoomList, roomList);
+    }
+
+    @Test
+    public void deleteTaskFromRoom_nullRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> roomList.deleteTaskFromRoom(REMIND_PATIENT, null));
+    }
+
+    @Test
+    public void deleteTaskFromRoom_nullTask_throwsNullPointerException() {
+        Room room = new RoomBuilder().build();
+        assertThrows(NullPointerException.class, () -> roomList.deleteTaskFromRoom(null, room));
+    }
+
+    @Test
+    public void deleteTaskFromRoom_roomNotInRoomList_throwsRoomNotFoundException() {
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        assertThrows(RoomNotFoundException.class, () ->
+                roomList.deleteTaskFromRoom(REMIND_PATIENT, room));
+    }
+
+    @Test
+    public void deleteTaskFromRoom_taskNotInTaskList_throwsTaskNotFoundException() {
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_NO_TASK).build();
+        roomList.addRooms(room);
+        assertThrows(TaskNotFoundException.class, () ->
+                roomList.deleteTaskFromRoom(REMIND_PATIENT, room));
+    }
+
+    @Test
+    public void deleteTaskFromRoom_validTaskValidRoom_success() {
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        roomList.addRooms(room);
+        roomList.deleteTaskFromRoom(REMIND_PATIENT, room);
+
+        RoomList expectedRoomList = new RoomList();
+        expectedRoomList.addRooms(ROOM_PATIENT_ALICE_NO_TASK);
+
+        assertEquals(expectedRoomList, roomList);
+    }
+
+    @Test
+    public void setTaskToRoom_nullRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> roomList.setTaskToRoom(REMIND_PATIENT, RESTOCK_SUPPLY, null));
+    }
+
+    @Test
+    public void setTaskToRoom_nullEditedTask_throwsNullPointerException() {
+        Room room = new RoomBuilder().build();
+        assertThrows(NullPointerException.class, () -> roomList.setTaskToRoom(REMIND_PATIENT, null, room));
+    }
+
+    @Test
+    public void setTaskToRoom_nullTarget_throwsNullPointerException() {
+        Room room = new RoomBuilder().build();
+        assertThrows(NullPointerException.class, () -> roomList.setTaskToRoom(null, RESTOCK_SUPPLY, room));
+    }
+
+    @Test
+    public void setTaskToRoom_roomNotInRoomList_throwsRoomNotFoundException() {
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        assertThrows(RoomNotFoundException.class, () ->
+                roomList.setTaskToRoom(REMIND_PATIENT, RESTOCK_SUPPLY, room));
+    }
+
+    @Test
+    public void setTaskToRoom_taskNotInTaskList_throwsTaskNotFoundException() {
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_NO_TASK).build();
+        roomList.addRooms(room);
+        assertThrows(TaskNotFoundException.class, () ->
+                roomList.setTaskToRoom(REMIND_PATIENT, RESTOCK_SUPPLY, room));
+    }
+
+    @Test
+    public void setTaskToRoom_validTaskValidEditedTaskValidRoom_success() {
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        roomList.addRooms(room);
+        roomList.setTaskToRoom(REMIND_PATIENT, RESTOCK_SUPPLY, room);
+
+        RoomList expectedRoomList = new RoomList();
+        Room expectedRoom = new RoomBuilder(ROOM_PATIENT_ALICE_NO_TASK).withTasks(RESTOCK_SUPPLY).build();
+        expectedRoomList.addRooms(expectedRoom);
 
         assertEquals(expectedRoomList, roomList);
     }

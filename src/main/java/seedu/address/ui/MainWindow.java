@@ -41,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private RoomListPanel roomListPanel;
+    private TaskListPanel taskListPanel;
 
     @FXML
     private ImageView logoIcon;
@@ -74,6 +75,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane roomListPanelPlaceHolder;
+
+    @FXML
+    private StackPane taskListPanelPlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -142,8 +146,11 @@ public class MainWindow extends UiPart<Stage> {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
-        roomListPanel = new RoomListPanel(logic.getRoomDisplayRoom());
+        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
         roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
+
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceHolder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

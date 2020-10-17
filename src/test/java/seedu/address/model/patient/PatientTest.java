@@ -18,17 +18,17 @@ public class PatientTest {
 
 
     @Test
-    public void isSamePatient() {
+    public void isSamePatient() { //patient is same as long as they have same name
         // same object -> returns true
         Assertions.assertTrue(ALICE.isSamePatient(ALICE));
 
         // null -> returns false
         Assertions.assertFalse(ALICE.isSamePatient(null));
 
-        // different phone and temp -> returns false
+        // same name, different phone and temp -> returns true
         Patient editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .withTemperature(VALID_TEMP_BOB).build();
-        Assertions.assertFalse(ALICE.isSamePatient(editedAlice));
+        Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
 
         // different name -> returns false
         editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB).build();
@@ -38,10 +38,10 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withPeriodOfStay(VALID_PERIOD_BOB).build();
         Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
 
-        // same name, same phone, different attributes -> returns false
+        // same name, same phone, different attributes -> returns true
         editedAlice = new PatientBuilder(ALICE).withTemperature(VALID_TEMP_BOB)
                 .withAge(VALID_AGE_BOB).withPeriodOfStay(VALID_PERIOD_BOB).build();
-        Assertions.assertFalse(ALICE.isSamePatient(editedAlice));
+        Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
 
         //same name, same phone, same age, same period of stay, diff temp -> returns true
         editedAlice = new PatientBuilder(ALICE).withTemperature(VALID_TEMP_BOB).build();
@@ -51,9 +51,6 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withComment(COMMENT).build();
         Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
 
-        //different age but the rest same -> returns false
-        editedAlice = new PatientBuilder(ALICE).withAge(VALID_AGE_BOB).build();
-        Assertions.assertFalse(ALICE.isSamePatient(editedAlice));
     }
 
     @Test

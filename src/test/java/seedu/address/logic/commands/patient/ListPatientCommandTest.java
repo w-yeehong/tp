@@ -3,18 +3,18 @@ package seedu.address.logic.commands.patient;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.room.RoomList;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListPatientCommand.
  */
 public class ListPatientCommandTest {
 
@@ -23,8 +23,8 @@ public class ListPatientCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
-        expectedModel = new ModelManager(model.getCovigentApp(), new UserPrefs(), new RoomList());
+        model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
+        expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
     }
 
     @Test

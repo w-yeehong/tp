@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.RoomList;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 
 @JsonRootName(value = "roomList")
 public class JsonSerializableRoomList {
@@ -36,13 +36,12 @@ public class JsonSerializableRoomList {
     }
 
     /**
-     * Converts this address book into the model's {@code RoomList} object.
+     * Converts this task list into the model's {@code RoomList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public RoomList toModelType() throws IllegalValueException {
         RoomList roomList = new RoomList();
-        roomList.getRoomDisplayList().clear();
         for (JsonAdaptedRoom jsonAdaptedRoom : rooms) {
             Room room = jsonAdaptedRoom.toModelType();
             roomList.addRooms(room);

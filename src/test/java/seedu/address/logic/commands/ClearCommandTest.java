@@ -1,15 +1,15 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.CovigentApp;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.room.RoomList;
 
 public class ClearCommandTest {
 
@@ -23,9 +23,9 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyCovigentApp_success() {
-        Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
-        Model expectedModel = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
-        expectedModel.setCovigentApp(new CovigentApp());
+        Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
+        Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
+        expectedModel.setPatientRecords(new PatientRecords());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

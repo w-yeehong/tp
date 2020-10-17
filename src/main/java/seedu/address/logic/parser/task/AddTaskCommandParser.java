@@ -1,9 +1,9 @@
 package seedu.address.logic.parser.task;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
-import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_ROOM_NUMBER;
 
 import java.util.stream.Stream;
 
@@ -19,6 +19,9 @@ import seedu.address.model.task.DateTimeDue;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
+/**
+ * Parses input arguments and creates a new AddTaskCommand object.
+ */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand

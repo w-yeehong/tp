@@ -8,6 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.room.Room;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -15,11 +18,24 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
  *
  * Supports a minimal set of list operations.
  */
-public class TaskList implements Iterable<Task> {
+public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    public TaskList(){}
+
+    public TaskList(ReadOnlyTaskList readOnlyTaskList) {
+        this();
+        resetData(readOnlyTaskList);
+    }
+
+    public void resetData(ReadOnlyTaskList readOnlyTaskList) {
+        requireNonNull(readOnlyTaskList);
+        ObservableList<Task> taskLists = readOnlyTaskList.getTaskObservableList();
+        internalList.addAll(taskLists);
+    }
 
     /**
      * Returns true if the list contains an equivalent task as the given argument.
@@ -75,7 +91,9 @@ public class TaskList implements Iterable<Task> {
         requireAllNonNull(tasks);
         internalList.setAll(tasks);
     }
-
+    public ObservableList<Task> getInternalList() {
+        return this.internalList;
+    }
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -89,6 +107,23 @@ public class TaskList implements Iterable<Task> {
     }
 
     @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        // TODO: add method to get task details with numbering and indentation; remove numbering from toString()
+        int taskIndex = 1;
+        for (Task task : internalList) {
+            // Results in "1. <task>\n2. <task>..."
+            builder.append(taskIndex++);
+            builder.append(". ");
+            builder.append(task);
+            builder.append("\n");
+        }
+
+        return builder.toString().trim();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskList // instanceof handles nulls
@@ -98,5 +133,10 @@ public class TaskList implements Iterable<Task> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    @Override
+    public ObservableList<Task> getTaskObservableList() {
+        return this.internalList;
     }
 }

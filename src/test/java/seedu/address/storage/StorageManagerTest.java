@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
 
 import java.io.IOException;
@@ -14,11 +14,11 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.CovigentApp;
-import seedu.address.model.ReadOnlyCovigentApp;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.room.ReadOnlyRoomList;
-import seedu.address.model.room.RoomList;
 
 public class StorageManagerTest {
 
@@ -29,7 +29,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonCovigentAppStorage covigentAppStorage = new JsonCovigentAppStorage(getTempFilePath("ab"));
+        JsonPatientRecordsStorage covigentAppStorage = new JsonPatientRecordsStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(getTempFilePath("ro"));
         //files nr short for numberOfRooms and ro is short form for roomsOccupied.
@@ -58,18 +58,18 @@ public class StorageManagerTest {
     public void covigentAppReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonCovigentAppStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonCovigentAppStorageTest} class.
+         * {@link JsonPatientRecordsStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonPatientRecordsStorageTest} class.
          */
-        CovigentApp original = getTypicalCovigentApp();
-        storageManager.saveCovigentApp(original);
-        ReadOnlyCovigentApp retrieved = storageManager.readCovigentApp().get();
-        assertEquals(original, new CovigentApp(retrieved));
+        PatientRecords original = getTypicalPatientRecords();
+        storageManager.savePatientRecords(original);
+        ReadOnlyPatientRecords retrieved = storageManager.readPatientRecords().get();
+        assertEquals(original, new PatientRecords(retrieved));
     }
 
     @Test
     public void getCovigentAppFilePath() {
-        assertNotNull(storageManager.getCovigentAppFilePath());
+        assertNotNull(storageManager.getPatientRecordsFilePath());
     }
 
     @Test

@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSucce
 import static seedu.address.testutil.TypicalPatients.CARL;
 import static seedu.address.testutil.TypicalPatients.ELLE;
 import static seedu.address.testutil.TypicalPatients.FIONA;
-import static seedu.address.testutil.TypicalPatients.getTypicalCovigentApp;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,16 +17,16 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
-import seedu.address.model.room.RoomList;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindPatientCommandTest {
-    private Model model = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
-    private Model expectedModel = new ModelManager(getTypicalCovigentApp(), new UserPrefs(), new RoomList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
+    private Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
 
     @Test
     public void equals() {

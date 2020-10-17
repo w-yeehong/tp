@@ -72,7 +72,7 @@ public class Patient {
             name, temperature, periodOfStay, phone, age, comment);
     }
     /**
-     * Returns true if both patients of the same name have at least one other identity field that is the same.
+     * Returns true if both patients have the same name.
      * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePatient(Patient otherPatient) {
@@ -81,9 +81,7 @@ public class Patient {
         }
 
         return otherPatient != null
-                && otherPatient.getName().equals(getName())
-                && otherPatient.getPhone().equals(getPhone())
-                && otherPatient.getAge().equals(getAge());
+                && otherPatient.getName().equals(getName());
     }
 
     /**
@@ -130,5 +128,4 @@ public class Patient {
                 .append(getComment());
         return builder.toString();
     }
-
 }

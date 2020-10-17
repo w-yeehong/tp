@@ -13,18 +13,13 @@ import org.junit.jupiter.api.Test;
 public class AddTaskCommandTest {
 
     @Test
-    public void constructor_nullTaskValidRoomIndex_throwsNullPointerException() {
+    public void constructor_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, VALID_ROOM_INDEX_ONE));
     }
 
     @Test
-    public void constructor_validTaskNullRoomIndex_throwsNullPointerException() {
+    public void constructor_nullRoomIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(REMIND_PATIENT, null));
-    }
-
-    @Test
-    public void constructor_nullTaskNullRoomIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, null));
     }
 
     // TODO: set up RoomList and Model stubs for testing
@@ -32,8 +27,6 @@ public class AddTaskCommandTest {
     @Test
     public void equals() {
         AddTaskCommand addRemindPatientTaskRoomOne = new AddTaskCommand(REMIND_PATIENT, VALID_ROOM_INDEX_ONE);
-        AddTaskCommand addRemindPatientTaskRoomTwo = new AddTaskCommand(REMIND_PATIENT, VALID_ROOM_INDEX_TWO);
-        AddTaskCommand addRestockSupplyTaskRoomOne = new AddTaskCommand(RESTOCK_SUPPLY, VALID_ROOM_INDEX_ONE);
 
         // same object -> returns true
         assertTrue(addRemindPatientTaskRoomOne.equals(addRemindPatientTaskRoomOne));
@@ -49,9 +42,11 @@ public class AddTaskCommandTest {
         assertFalse(addRemindPatientTaskRoomOne.equals(null));
 
         // different task -> returns false
+        AddTaskCommand addRestockSupplyTaskRoomOne = new AddTaskCommand(RESTOCK_SUPPLY, VALID_ROOM_INDEX_ONE);
         assertFalse(addRemindPatientTaskRoomOne.equals(addRestockSupplyTaskRoomOne));
 
         // different room index -> returns false
+        AddTaskCommand addRemindPatientTaskRoomTwo = new AddTaskCommand(REMIND_PATIENT, VALID_ROOM_INDEX_TWO);
         assertFalse(addRemindPatientTaskRoomOne.equals(addRemindPatientTaskRoomTwo));
     }
 }

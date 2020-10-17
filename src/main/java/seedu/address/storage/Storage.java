@@ -5,16 +5,13 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyCovigentApp;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.room.ReadOnlyRoomList;
-import seedu.address.model.room.RoomList;
+import seedu.address.model.*;
+import seedu.address.model.task.TaskList;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends CovigentAppStorage, UserPrefsStorage {
+public interface Storage extends PatientRecordsStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -23,17 +20,18 @@ public interface Storage extends CovigentAppStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getCovigentAppFilePath();
+    Path getPatientRecordsFilePath();
 
     @Override
-    Optional<ReadOnlyCovigentApp> readCovigentApp() throws DataConversionException, IOException;
+    Optional<ReadOnlyPatientRecords> readPatientRecords() throws DataConversionException, IOException;
 
     @Override
-    void saveCovigentApp(ReadOnlyCovigentApp covigentApp) throws IOException;
+    void savePatientRecords(ReadOnlyPatientRecords patientRecords) throws IOException;
 
     /** Reads the data of number of rooms and occupied rooms into RoomList **/
     Optional<ReadOnlyRoomList> readRoomOccupancyStorage() throws DataConversionException, IOException;
 
+    Optional<ReadOnlyTaskList> readTaskOccupancyStorage() throws DataConversionException, IOException;
     /**
      * Saves the information given by user into a hard disk. Such information includes number of rooms and room number
      * of occupied rooms
@@ -42,5 +40,6 @@ public interface Storage extends CovigentAppStorage, UserPrefsStorage {
      */
     void saveRoomList(RoomList roomList) throws IOException;
 
+    void saveTaskList(TaskList taskList) throws IOException;
 
 }

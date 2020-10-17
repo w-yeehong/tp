@@ -5,14 +5,12 @@ import java.util.Objects;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Represents Room in the app
  */
 public class Room implements Comparable<Room> {
-
-    public static final String MESSAGE_OCCUPANCY_CONSTRAINTS =
-            "Occupancy should only be either true or false and not other words";
 
     private int roomNumber;
     private boolean isOccupied;
@@ -42,11 +40,13 @@ public class Room implements Comparable<Room> {
      *
      * @param roomNumber Room Number of the room.
      * @param patient Patient to be added to the room.
+     * @param taskList TaskList of tasks for the room.
      */
-    public Room(int roomNumber, Patient patient) {
+    public Room(int roomNumber, Patient patient, TaskList taskList) {
         this.roomNumber = roomNumber;
         this.isOccupied = true;
         this.patient = patient;
+        this.taskList = taskList;
     }
 
     /**
@@ -87,6 +87,38 @@ public class Room implements Comparable<Room> {
     public void addTask(Task task) {
         taskList.add(task);
     }
+
+    /**
+     * Deletes a task from the task list of this room.
+     * The task must be in this room.
+     *
+     * @param task The task to delete.
+     * @throws TaskNotFoundException if task is not found in the task list of this room.
+     */
+    public void deleteTask(Task task) {
+        try {
+            taskList.remove(task);
+        } catch (TaskNotFoundException e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Replaces a task from the task list of this room with {@code editedTask}.
+     * The task must be in this room.
+     *
+     * @param target The task to replace.
+     * @param editedTask The modified task to replace the original.
+     * @throws TaskNotFoundException if task is not found in the task list of this room.
+     */
+    public void setTask(Task target, Task editedTask) {
+        try {
+            taskList.setTask(target, editedTask);
+        } catch (TaskNotFoundException e) {
+            throw e;
+        }
+    }
+
     /**
      * Returns true if both rooms of the same number have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two rooms.
@@ -112,10 +144,29 @@ public class Room implements Comparable<Room> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
+
         Room room = (Room) o;
-        return roomNumber == room.roomNumber
-                && isOccupied == room.isOccupied
-                && taskList.equals(room.getTaskList());
+        if (taskList == null && patient == null) {
+            return room.taskList == null
+                    && room.patient == null
+                    && roomNumber == room.roomNumber
+                    && isOccupied == room.isOccupied;
+        } else if (taskList == null) {
+            return roomNumber == room.roomNumber
+                    && room.taskList == null
+                    && isOccupied == room.isOccupied
+                    && patient.equals(room.getPatient());
+        } else if (patient == null) {
+            return roomNumber == room.roomNumber
+                    && room.patient == null
+                    && isOccupied == room.isOccupied
+                    && taskList.equals(room.getTaskList());
+        } else {
+            return roomNumber == room.roomNumber
+                    && isOccupied == room.isOccupied
+                    && patient.equals(room.getPatient())
+                    && taskList.equals(room.getTaskList());
+        }
     }
 
     @Override
@@ -138,13 +189,6 @@ public class Room implements Comparable<Room> {
                 return 1;
             }
         }
-    }
-
-    /**
-     * Returns true if a given string is a valid boolean value.
-     */
-    public static boolean isValidOccupancy(String test) {
-        return test.trim().toLowerCase().equals("true") || test.trim().toLowerCase().equals("false");
     }
 
     public String toString() {

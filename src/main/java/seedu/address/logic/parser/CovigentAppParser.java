@@ -20,7 +20,10 @@ import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.InitRoomsCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
+import seedu.address.logic.commands.room.SearchRoomCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
+import seedu.address.logic.commands.task.DeleteTaskCommand;
+import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.logic.commands.task.SearchTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.AddPatientCommandParser;
@@ -30,7 +33,10 @@ import seedu.address.logic.parser.patient.FindPatientCommandParser;
 import seedu.address.logic.parser.patient.SearchPatientCommandParser;
 import seedu.address.logic.parser.room.EditRoomCommandParser;
 import seedu.address.logic.parser.room.InitRoomsCommandParser;
+import seedu.address.logic.parser.room.SearchRoomCommandParser;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
+import seedu.address.logic.parser.task.DeleteTaskCommandParser;
+import seedu.address.logic.parser.task.EditTaskCommandParser;
 import seedu.address.logic.parser.task.SearchTaskCommandParser;
 
 /**
@@ -61,49 +67,70 @@ public class CovigentAppParser {
 
         switch (commandWord) {
 
+        // create
+
         case AddPatientCommand.COMMAND_WORD:
             return new AddPatientCommandParser().parse(arguments);
-
-        case AddTaskCommand.COMMAND_WORD:
-            return new AddTaskCommandParser().parse(arguments);
-
-        case SearchTaskCommand.COMMAND_WORD:
-            return new SearchTaskCommandParser().parse(arguments);
-
-        case EditPatientCommand.COMMAND_WORD:
-            return new EditPatientCommandParser().parse(arguments);
-
-        case SearchPatientCommand.COMMAND_WORD:
-            return new SearchPatientCommandParser().parse(arguments);
-
-        case DeletePatientCommand.COMMAND_WORD:
-            return new DeletePatientCommandParser().parse(arguments);
-
-        case FindRoomCommand.COMMAND_WORD:
-            return new FindRoomCommand();
 
         case InitRoomsCommand.COMMAND_WORD:
             return new InitRoomsCommandParser().parse(arguments);
 
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
+
+        // update
+
+        case EditPatientCommand.COMMAND_WORD:
+            return new EditPatientCommandParser().parse(arguments);
+
         case EditRoomCommand.COMMAND_WORD:
             return new EditRoomCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskCommandParser().parse(arguments);
+
+        // read
+
+        case ListPatientCommand.COMMAND_WORD:
+            return new ListPatientCommand();
+
+        // delete
+
+        case DeletePatientCommand.COMMAND_WORD:
+            return new DeletePatientCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
+
+        // others
+
+        case SearchPatientCommand.COMMAND_WORD:
+            return new SearchPatientCommandParser().parse(arguments);
+
+        case SearchRoomCommand.COMMAND_WORD:
+            return new SearchRoomCommandParser().parse(arguments);
+
+        case SearchTaskCommand.COMMAND_WORD:
+            return new SearchTaskCommandParser().parse(arguments);
 
         case FindPatientCommand.COMMAND_WORD:
             return new FindPatientCommandParser().parse(arguments);
 
-        case ListPatientCommand.COMMAND_WORD:
-            return new ListPatientCommand();
+        case FindRoomCommand.COMMAND_WORD:
+            return new FindRoomCommand();
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
         case ListRoomCommand.COMMAND_WORD:
             return new ListRoomCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
