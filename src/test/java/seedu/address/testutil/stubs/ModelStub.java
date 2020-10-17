@@ -103,6 +103,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Index getPatientIndex(Name patientName) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Patient getPatientFromIndex(Index index) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void setRoomList(ReadOnlyRoomList rooms) {
         throw new AssertionError("This method should not be called.");
     }

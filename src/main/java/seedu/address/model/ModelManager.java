@@ -164,6 +164,26 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
+    @Override
+    public Index getPatientIndex(Name patientName) {
+        Index index = Index.fromZeroBased(0);
+        for (int i = 1; i <= filteredPatients.size(); i++) {
+            String patientToCheck = filteredPatients.get(i - 1).getName().toString();
+            boolean isValidPatient = patientToCheck.trim().toLowerCase().equals(
+                patientName.toString().trim().toLowerCase());
+            if (isValidPatient) {
+                index = Index.fromZeroBased(i);
+                break;
+            }
+        }
+        return index;
+    }
+
+    @Override
+    public Patient getPatientFromIndex(Index index) {
+        Patient patient = filteredPatients.get(index.getZeroBased());
+        return patient;
+    }
 
     @Override
     public boolean equals(Object obj) {

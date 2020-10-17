@@ -65,7 +65,7 @@ public class CovigentAppParserTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
                 + patient.getName() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
-        assertEquals(new EditPatientCommand(patient.getName().toString(), descriptor), command);
+        assertEquals(new EditPatientCommand(patient.getName(), descriptor), command);
     }
 
     @Test

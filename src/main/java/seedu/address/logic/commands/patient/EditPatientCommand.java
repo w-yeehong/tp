@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
@@ -53,7 +52,7 @@ public class EditPatientCommand extends Command {
     public static final String MESSAGE_PATIENT_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Covigent.";
 
-    private final String patientToBeEdited;
+    private final Name patientToBeEdited;
     private final EditPatientDescriptor editPatientDescriptor;
 
     /**
@@ -62,11 +61,11 @@ public class EditPatientCommand extends Command {
      * @param patientToBeEdited name in the filtered patient list to edit
      * @param editPatientDescriptor details to edit the patient with
      */
-    public EditPatientCommand(String patientToBeEdited, EditPatientDescriptor editPatientDescriptor) {
+    public EditPatientCommand(Name patientToBeEdited, EditPatientDescriptor editPatientDescriptor) {
         requireNonNull(patientToBeEdited);
         requireNonNull(editPatientDescriptor);
 
-        this.patientToBeEdited = patientToBeEdited.trim().toLowerCase();
+        this.patientToBeEdited = patientToBeEdited;
         this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
     }
 
@@ -74,14 +73,13 @@ public class EditPatientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Patient> lastShownList = model.getFilteredPatientList();
-        Index index = checkIfPatientPresent(lastShownList);
+        Index index = model.getPatientIndex(patientToBeEdited);
 
         if (index.getZeroBased() == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
         }
 
-        Patient patientToEdit = lastShownList.get(index.getZeroBased() - 1);
+        Patient patientToEdit = model.getPatientFromIndex(Index.fromZeroBased(index.getZeroBased() - 1));
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
@@ -91,25 +89,6 @@ public class EditPatientCommand extends Command {
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
-    }
-
-    /**
-     * Checks if the patient is present in the application.
-     *
-     * @param lastShownList List of all the patient in the application.
-     * @return Index Of patient who is found.
-     */
-    private Index checkIfPatientPresent(List<Patient> lastShownList) {
-        Index index = Index.fromZeroBased(0);
-        for (int i = 1; i <= lastShownList.size(); i++) {
-            String patientName = lastShownList.get(i - 1).getName().toString();
-            boolean isValidPatient = patientName.trim().toLowerCase().equals(patientToBeEdited);
-            if (isValidPatient) {
-                index = Index.fromZeroBased(i);
-                break;
-            }
-        }
-        return index;
     }
 
     /**
