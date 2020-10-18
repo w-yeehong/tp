@@ -14,8 +14,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
+import seedu.address.model.room.Room;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Searches a room according to the given room number.
@@ -35,7 +37,6 @@ public class SearchRoomCommand extends Command {
             + PREFIX_NAME + "John Doe";
 
     public static final String MESSAGE_SUCCESS = "Room has been found and listed.";
-
     private final SearchRoomDescriptor descriptor;
 
     /**

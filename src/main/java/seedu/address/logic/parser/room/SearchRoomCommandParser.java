@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.room;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.room.SearchRoomCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
@@ -30,10 +31,13 @@ public class SearchRoomCommandParser implements Parser<SearchRoomCommand> {
      */
     @Override
     public SearchRoomCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ROOM_NUMBER);
 
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME) &&
                 !arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER))
+                || (arePrefixesPresent(argMultimap, PREFIX_NAME) &&
+                arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER))
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
@@ -45,6 +49,7 @@ public class SearchRoomCommandParser implements Parser<SearchRoomCommand> {
             descriptor.setPatientName(patientName);
             return new SearchRoomCommand(descriptor);
         } else {
+            //definitely have prefix room number if no prefix name
             Integer roomNumber = RoomParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
             descriptor.setRoomNumber(roomNumber);
             return new SearchRoomCommand(descriptor);
