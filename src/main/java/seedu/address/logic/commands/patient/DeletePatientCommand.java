@@ -17,6 +17,8 @@ import seedu.address.model.patient.Patient;
  */
 public class DeletePatientCommand extends Command {
 
+    //TODO - need to unallocate patient from room (if any)
+
     public static final String COMMAND_WORD = "deletepatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
