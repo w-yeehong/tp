@@ -1,6 +1,10 @@
 package seedu.address.model.util;
 
-import seedu.address.model.*;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.RoomList;
 import seedu.address.model.patient.Age;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
@@ -43,7 +47,9 @@ public class SampleDataUtil {
         return new Room[] {};
     }
 
-    public static Task[] getSampleTask() {return new Task[] {}; }
+    public static Task[] getSampleTask() {
+        return new Task[] {};
+    }
 
     public static ReadOnlyRoomList getSampleRoomList() {
         RoomList roomList = new RoomList();

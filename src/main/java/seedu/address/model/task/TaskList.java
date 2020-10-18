@@ -8,9 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.ReadOnlyTaskList;
-import seedu.address.model.room.Room;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -24,8 +22,15 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Create a TaskList Object.
+     */
     public TaskList(){}
 
+    /**
+     * Create a TaskList Object.
+     * @param readOnlyTaskList
+     */
     public TaskList(ReadOnlyTaskList readOnlyTaskList) {
         this();
         resetData(readOnlyTaskList);

@@ -12,20 +12,23 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.ReadOnlyTaskList;
-import seedu.address.model.RoomList;
-import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
- * Reads data from storage data files and imports them into RoomList
+ * Reads data from storage data files and imports them into TaskList
  */
 public class JsonTaskOccupancyStorage {
     private Path task;
 
-    public JsonTaskOccupancyStorage() {}
     /**
-     * Creates RoomOccupancyStorage object that reads the number of rooms a hotel has and the rooms which are
+     * Creates the TaskOccupancy object
+     * occupied
+     */
+    public JsonTaskOccupancyStorage() {}
+
+    /**
+     * Creates the TaskOccupancy object
      * occupied
      */
     public JsonTaskOccupancyStorage(Path task) {
@@ -40,7 +43,7 @@ public class JsonTaskOccupancyStorage {
         return readOnlyTaskOccupancy(task);
     }
     /**
-     * Returns RoomList data as a {@link ReadOnlyRoomList}.
+     * Returns TaskList data as a {@link ReadOnlyTaskList}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.

@@ -15,10 +15,25 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RoomList;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.task.TaskList;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.*;
+import seedu.address.storage.JsonPatientRecordsStorage;
+import seedu.address.storage.JsonRoomOccupancyStorage;
+import seedu.address.storage.JsonTaskOccupancyStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PatientRecordsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -47,12 +62,14 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        PatientRecordsStorage patientRecordsStorage = new JsonPatientRecordsStorage(userPrefs.getCovigentAppFilePath());
+        PatientRecordsStorage patientRecordsStorage =
+                new JsonPatientRecordsStorage(userPrefs.getCovigentAppFilePath());
         JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(
                 userPrefs.getRoomsOccupiedFilePath());
         JsonTaskOccupancyStorage taskOccupancyStorage = new JsonTaskOccupancyStorage(
                 userPrefs.getTaskOccupiedFilePath());
-        storage = new StorageManager(patientRecordsStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
+        storage = new StorageManager(patientRecordsStorage,
+                userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
 
         initLogging(config);
 

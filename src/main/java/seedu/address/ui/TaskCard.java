@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
 
 /**
- * An UI component that displays information of a {@code Patient}.
+ * An UI component that displays information of a {@code Task}.
  */
 public class TaskCard extends UiPart<Region> {
 
@@ -32,7 +32,11 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label duedate;
 
-
+    /**
+     * Create a Task Card Object.
+     * @param task
+     * @param displayedIndex
+     */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
