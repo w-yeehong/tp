@@ -305,7 +305,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 2a1. System displays an error message.
 
   Use case ends.
- 
+
 **Use case: Search a patient**
 
 **MSS**

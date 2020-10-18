@@ -40,7 +40,7 @@ Covigent is a desktop app for managing information of quarantined individuals an
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. (*Coming soon*) Download the latest `covigent.jar` from [here](https://github.com).  
+1. (*Coming soon*) Download the latest `covigent.jar` from [here](https://github.com).
 
 1. Copy the file to the folder you want to use as the _home folder_ for the application.
 
@@ -73,7 +73,7 @@ Covigent is a desktop app for managing information of quarantined individuals an
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  
+
 </div>
 
 ### 3.2 Add a patient: `addpatient`
