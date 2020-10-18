@@ -7,6 +7,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_NO_ROOM;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
@@ -14,10 +16,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
-import seedu.address.model.room.Room;
-
-import java.util.Optional;
-import java.util.function.Predicate;
 
 /**
  * Searches a room according to the given room number.
@@ -70,8 +68,8 @@ public class SearchRoomCommand extends Command {
             } else if (!model.isPatientAssignedToRoom(patientName)) {
                 throw new CommandException(MESSAGE_PATIENT_NO_ROOM);
             }
-            model.updateFilteredRoomList(room -> room.isOccupied() &&
-                    room.getPatient().getName().equals(patientName));
+            model.updateFilteredRoomList(room -> room.isOccupied()
+                    && room.getPatient().getName().equals(patientName));
             return new CommandResult(MESSAGE_SUCCESS);
         }
     }

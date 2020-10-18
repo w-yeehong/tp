@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.room.SearchRoomCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.room.SearchRoomCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -15,9 +17,6 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.RoomParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Name;
-
-import java.util.stream.Stream;
-
 
 /**
  * Parses input arguments and creates a new SearchRoomCommand object
@@ -34,10 +33,10 @@ public class SearchRoomCommandParser implements Parser<SearchRoomCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ROOM_NUMBER);
 
-        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME) &&
-                !arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER))
-                || (arePrefixesPresent(argMultimap, PREFIX_NAME) &&
-                arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER))
+        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                && !arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER))
+                || (arePrefixesPresent(argMultimap, PREFIX_NAME)
+                && arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER))
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.room;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_NO_ROOM;
@@ -17,6 +19,8 @@ import static seedu.address.testutil.TypicalRooms.ROOM8_PATIENT_BENSON_NO_TASK;
 import static seedu.address.testutil.TypicalRooms.ROOM_NUMBER_7;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -24,7 +28,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.SearchRoomDescriptorBuilder;
 
-import java.util.Arrays;
 
 /**
  * Contains unit tests for SearchRoomCommand.
@@ -78,9 +81,36 @@ public class SearchRoomCommandTest {
         SearchRoomDescriptorBuilder descriptorPatientName = new SearchRoomDescriptorBuilder();
         descriptorPatientName.setPatientName(BENSON.getName().toString());
         SearchRoomCommand searchRoomCommand = new SearchRoomCommand(descriptorPatientName.build());
-        expectedModel.updateFilteredRoomList(room -> room.isOccupied() &&
-                room.getPatient().getName().equals(BENSON.getName()));
+        expectedModel.updateFilteredRoomList(room -> room.isOccupied()
+                && room.getPatient().getName().equals(BENSON.getName()));
         assertCommandSuccess(searchRoomCommand, model, MESSAGE_SUCCESS, expectedModel);
         assertEquals(Arrays.asList(ROOM8_PATIENT_BENSON_NO_TASK), model.getFilteredRoomList());
+    }
+
+    @Test
+    public void equals() {
+        SearchRoomDescriptorBuilder descriptor1 = new SearchRoomDescriptorBuilder();
+        descriptor1.setPatientName(VALID_NAME_BOB);
+
+        SearchRoomCommand searchRoomCommand = new SearchRoomCommand(descriptor1.build());
+
+        SearchRoomDescriptorBuilder descriptor2 = new SearchRoomDescriptorBuilder();
+        descriptor2.setRoomNumber(3);
+
+        // same object -> returns true
+        assertTrue(searchRoomCommand.equals(searchRoomCommand));
+
+        // same values -> returns true
+        SearchRoomCommand searchRoomCommandCopy = new SearchRoomCommand(descriptor1.build());
+        assertTrue(searchRoomCommand.equals(searchRoomCommandCopy));
+
+        // different types -> returns false
+        assertFalse(searchRoomCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(searchRoomCommand.equals(null));
+
+        // different attributes to edit
+        assertFalse(searchRoomCommand.equals(new SearchRoomCommand(descriptor2.build())));
     }
 }
