@@ -190,6 +190,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearRoom(Name patientName) {
+        assert(isPatientAssignedToRoom(patientName));
+        roomList.clearRoom(patientName);
+    }
+
+    @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
         ObservableList<Room> roomObservableList = this.getRoomList();
         Index index = Index.fromZeroBased(0);
