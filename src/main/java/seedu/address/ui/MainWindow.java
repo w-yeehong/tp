@@ -41,7 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private RoomListPanel roomListPanel;
-    protected TaskListPanel taskListPanel;
+    private TaskListPanel taskListPanel;
 
     @FXML
     private ImageView logoIcon;
@@ -144,7 +144,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
-        //System.out.print(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         roomListPanel = new RoomListPanel(logic.getFilteredRoomList());

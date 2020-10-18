@@ -10,7 +10,6 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
@@ -23,13 +22,11 @@ public class JsonTaskOccupancyStorage {
 
     /**
      * Creates the TaskOccupancy object
-     * occupied
      */
     public JsonTaskOccupancyStorage() {}
 
     /**
      * Creates the TaskOccupancy object
-     * occupied
      */
     public JsonTaskOccupancyStorage(Path task) {
         this.task = task;
@@ -61,10 +58,21 @@ public class JsonTaskOccupancyStorage {
         }
     }
 
+    /**
+     * Save the task to the tasklist.
+     * @param taskList
+     * @throws IOException
+     */
     public void saveTask(TaskList taskList) throws IOException {
         saveTasks(taskList, task);
     }
 
+    /**
+     * Save the task to the tasklist with the path.
+     * @param taskList
+     * @param fileTask
+     * @throws IOException
+     */
     public void saveTasks(TaskList taskList, Path fileTask) throws IOException {
         FileUtil.createIfMissing(fileTask);
         List<Task> tasks = new ArrayList<>();

@@ -36,6 +36,10 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
         resetData(readOnlyTaskList);
     }
 
+    /**
+     * Reset the data.
+     * @param readOnlyTaskList
+     */
     public void resetData(ReadOnlyTaskList readOnlyTaskList) {
         requireNonNull(readOnlyTaskList);
         ObservableList<Task> taskLists = readOnlyTaskList.getTaskObservableList();
