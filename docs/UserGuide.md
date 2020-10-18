@@ -132,7 +132,7 @@ Format: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
 Examples:
 *  `searchpatient n/john` Searches patients with a name John.
-*  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive. 
+*  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive.
 
 
 ### 3.6 List all patients: `listpatient`
@@ -143,7 +143,7 @@ Format: `listpatient`
 
 ### 3.7 Initialize rooms in hotel: `initRooms`
 
-Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
+Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would
 be stored.
 
 Format: `initRooms NUMBER_OF_ROOMS`
@@ -193,7 +193,7 @@ Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
 Examples:
 * `editroom 1 r/2 p/alex`. Changes the room number from #1 to #2. Afterwards, allocates alex to Room #2.
 * `editroom 1 p/alex`. Allocates alex to Room #1.
-* `editroom 1 p/-`. Removes the patient from the Room #1. 
+* `editroom 1 p/-`. Removes the patient from the Room #1.
 * `editroom 1 r/3 p/-`. Changes the room number from #1 to #3. Afterwards, removes the patient from Room #3.
 
 ### 3.12 Add a task to a room: `addtask`
