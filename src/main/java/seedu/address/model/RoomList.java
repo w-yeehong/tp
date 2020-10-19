@@ -95,7 +95,7 @@ public class RoomList implements ReadOnlyRoomList {
                 internalList.remove(numOfRooms);
             }
         }
-        internalList.setAll(rooms);
+        internalList.setAll(rooms); // to let the UI update
     }
 
     /**

@@ -73,13 +73,12 @@ public class EditPatientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Index index = model.getPatientIndex(patientToBeEdited);
-
-        if (index.getZeroBased() == 0) {
+        Optional<Patient> optionalPatient = model.getPatientWithName(patientToBeEdited);
+        if (optionalPatient.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
         }
 
-        Patient patientToEdit = model.getPatientFromIndex(Index.fromZeroBased(index.getZeroBased() - 1));
+        Patient patientToEdit = optionalPatient.get();
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {

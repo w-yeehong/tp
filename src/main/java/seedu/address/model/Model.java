@@ -110,22 +110,6 @@ public interface Model {
     void updateFilteredPatientList(Predicate<Patient> predicate);
 
     /**
-     * Returns the index of patient if he/she is present in application.
-     *
-     * @param patientName Name of the patient.
-     * @return Index Of patient who is found.
-     */
-    Index getPatientIndex(Name patientName);
-
-    /**
-     * Returns a patient with the given index.
-     *
-     * @param index Index of the patient.
-     * @return Patient with the given index.
-     */
-    Patient getPatientFromIndex(Index index);
-
-    /**
      * Replaces room list with the data in {@code covigentApp}.
      */
     void setRoomList(ReadOnlyRoomList rooms);

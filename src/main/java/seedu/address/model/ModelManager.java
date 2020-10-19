@@ -165,27 +165,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Index getPatientIndex(Name patientName) {
-        Index index = Index.fromZeroBased(0);
-        for (int i = 1; i <= filteredPatients.size(); i++) {
-            String patientToCheck = filteredPatients.get(i - 1).getName().toString();
-            boolean isValidPatient = patientToCheck.trim().toLowerCase().equals(
-                patientName.toString().trim().toLowerCase());
-            if (isValidPatient) {
-                index = Index.fromZeroBased(i);
-                break;
-            }
-        }
-        return index;
-    }
-
-    @Override
-    public Patient getPatientFromIndex(Index index) {
-        Patient patient = filteredPatients.get(index.getZeroBased());
-        return patient;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -248,9 +227,10 @@ public class ModelManager implements Model {
 
     @Override
     public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
-        ObservableList<Room> roomObservableList = this.getModifiableRoomList().getRoomObservableList();
+        ObservableList<Room> roomObservableList = this.roomList.getRoomObservableList();
         for (int i = 0; i < roomObservableList.size(); i++) {
-            if (roomObservableList.get(i).getPatient().isSamePatient(patientToEdit)) {
+            if (isPatientAssignedToRoom(patientToEdit.getName())
+                && roomObservableList.get(i).getPatient().isSamePatient(patientToEdit)) {
                 Room updatedRoom = roomObservableList.get(i);
                 if (editedPatient == null) {
                     updatedRoom.setOccupied(false);
