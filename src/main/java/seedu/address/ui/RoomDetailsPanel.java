@@ -15,8 +15,8 @@ import seedu.address.model.room.Room;
  */
 public class RoomDetailsPanel extends UiPart<Region> {
     private static final String FXML = "RoomDetailsPanel.fxml";
-    private Image image_patient = new Image(getClass().getResourceAsStream("/images/patient_icon.png"));
-    private Image image_task = new Image(getClass().getResourceAsStream("/images/task_icon.png"));
+    private Image imagePatient = new Image(getClass().getResourceAsStream("/images/patient_icon.png"));
+    private Image imageTask = new Image(getClass().getResourceAsStream("/images/task_icon.png"));
     private final Logger logger = LogsCenter.getLogger(RoomDetailsPanel.class);
 
     @FXML
