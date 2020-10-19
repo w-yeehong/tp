@@ -128,6 +128,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void clearRoom(Name patientName) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
         throw new AssertionError("This method should not be called.");
     }

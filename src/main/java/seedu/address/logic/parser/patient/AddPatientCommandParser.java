@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.patient;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.patient.AddPatientCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_COMMENTS;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
@@ -43,7 +44,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TEMP, PREFIX_PERIOD_OF_STAY,
                 PREFIX_PHONE, PREFIX_AGE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

@@ -141,6 +141,14 @@ public interface Model {
     void setSingleRoom(Room target, Room editedRoom);
 
     /**
+     * Clears the room with the given patient name {@code patientName}.
+     *
+     * @param patientName must be in a room.
+     */
+    void clearRoom(Name patientName);
+
+
+    /**
      * Checks if the given room number is present in the application.
      *
      * @param roomNumber to check if it is in the application.
