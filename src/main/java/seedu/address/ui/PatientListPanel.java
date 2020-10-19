@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -32,8 +33,34 @@ public class PatientListPanel extends UiPart<Region> {
      */
     public PatientListPanel(ObservableList<Patient> patientList) {
         super(FXML);
+        updateDetailsIfChanged(patientList);
         patientListView.setItems(patientList);
         patientListView.setCellFactory(listView -> new PatientListViewCell());
+    }
+
+    /**
+     * Attach listener to {@code patientList} and update details panel.
+     * Fixes issue of editPatient changes not immediately reflected.
+     *
+     * @param patientList to listen for changes.
+     */
+    private void updateDetailsIfChanged(ObservableList<Patient> patientList) {
+        patientList.addListener(new ListChangeListener<Patient>() {
+            @Override
+            public void onChanged(Change<? extends Patient> change) {
+                while (change.next()) {
+                    if (change.wasAdded()) {
+                        int indexToChange = change.getFrom();
+                        Patient patientToDisplay = change.getList().get(indexToChange);
+                        patientListView.scrollTo(indexToChange);
+                        patientListView.getSelectionModel().select(indexToChange);
+                        patientListView.getFocusModel().focus(indexToChange);
+                        patientDetailsPanel = new PatientDetailsPanel(patientToDisplay);
+                        patientDetailsPanelPlaceholder.getChildren().add(patientDetailsPanel.getRoot());
+                    }
+                }
+            }
+        });
     }
 
     /**
