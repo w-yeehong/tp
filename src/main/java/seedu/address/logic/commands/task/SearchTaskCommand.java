@@ -71,7 +71,7 @@ public class SearchTaskCommand extends Command {
      * @param list a list that stores the tasks.
      * @return a String output of the tasks' details.
      */
-    public String getListOutput(ArrayList<Task> list) {
+    private String getListOutput(ArrayList<Task> list) {
         StringBuilder outputString = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
             outputString.append(String.format("%d. Description: %s\n", i + 1, list.get(i)));
