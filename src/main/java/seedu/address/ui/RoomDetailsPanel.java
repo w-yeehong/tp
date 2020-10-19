@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.room.Room;
@@ -13,8 +15,15 @@ import seedu.address.model.room.Room;
  */
 public class RoomDetailsPanel extends UiPart<Region> {
     private static final String FXML = "RoomDetailsPanel.fxml";
+    private Image image_patient = new Image(getClass().getResourceAsStream("/images/patient_icon.png"));
+    private Image image_task = new Image(getClass().getResourceAsStream("/images/task_icon.png"));
     private final Logger logger = LogsCenter.getLogger(RoomDetailsPanel.class);
 
+    @FXML
+    private Label patientHeader;
+
+    @FXML
+    private Label taskHeader;
 
     @FXML
     private Label roomNumber;
@@ -30,6 +39,18 @@ public class RoomDetailsPanel extends UiPart<Region> {
      */
     public RoomDetailsPanel() {
         super(FXML);
+        setIcons();
+    }
+
+    private void setIcons() {
+        ImageView imageView = new ImageView(image_patient);
+        imageView.setFitHeight(20);
+        imageView.setFitWidth(20);
+        patientHeader.setGraphic(imageView);
+        imageView = new ImageView(image_task);
+        imageView.setFitHeight(20);
+        imageView.setFitWidth(20);
+        taskHeader.setGraphic(imageView);
     }
 
     /**
