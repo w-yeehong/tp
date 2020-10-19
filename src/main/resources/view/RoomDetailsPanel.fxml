@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" stylesheets="@RoomDetailsPanelStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane styleClass="room-details-panel" stylesheets="@../css/RoomDetailsPanel.css" fitToWidth="true"
+            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@RoomDetailsPanelStyle.css">
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="background">
          <children>
-            <Label id="room-number" fx:id="roomNumber" stylesheets="@RoomDetailsPanelStyle.css" text="Room Number">
+            <Label id="room-number" fx:id="roomNumber" text="Room Number">
                <VBox.margin>
                   <Insets left="10.0" />
                </VBox.margin>
@@ -18,7 +21,7 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="patientHeader" graphicTextGap="7.0" styleClass="label-header" stylesheets="@RoomDetailsPanelStyle.css" text="Patient Details:">
+            <Label fx:id="patientHeader" graphicTextGap="7.0" styleClass="label-header" text="Patient Details:">
                <VBox.margin>
                   <Insets left="10.0" top="15.0" />
                </VBox.margin>
@@ -34,7 +37,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="taskHeader" graphicTextGap="7.0" styleClass="label-header" stylesheets="@RoomDetailsPanelStyle.css" text="Tasks:">
+            <Label fx:id="taskHeader" graphicTextGap="7.0" styleClass="label-header" text="Tasks:">
                <VBox.margin>
                   <Insets left="10.0" top="20.0" />
                </VBox.margin>
