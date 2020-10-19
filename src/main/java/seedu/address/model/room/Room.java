@@ -79,6 +79,10 @@ public class Room implements Comparable<Room> {
         this.isOccupied = isOccupied;
     }
 
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
     /**
      * Adds a task to the task list of this room.
      *

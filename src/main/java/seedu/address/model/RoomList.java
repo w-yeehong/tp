@@ -83,7 +83,6 @@ public class RoomList implements ReadOnlyRoomList {
         if (numOfRooms > internalList.size()) {
             for (int i = internalList.size(); i < numOfRooms; i++) {
                 Room room = new Room(i + 1);
-                internalList.add(i, room);
                 rooms.add(room);
             }
         } else if (numOfRooms < internalList.size()) {
@@ -96,6 +95,7 @@ public class RoomList implements ReadOnlyRoomList {
                 internalList.remove(numOfRooms);
             }
         }
+        internalList.setAll(rooms);
     }
 
     /**

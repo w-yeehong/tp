@@ -246,6 +246,19 @@ public class ModelManager implements Model {
         return index;
     }
 
+    @Override
+    public void updateRoomListWithEditedPatient(Patient patientToEdit, Patient editedPatient) {
+        ObservableList<Room> roomObservableList = this.getModifiableRoomList().getRoomObservableList();
+        for (int i = 0; i < roomObservableList.size(); i++) {
+            if (roomObservableList.get(i).getPatient().isSamePatient(patientToEdit)) {
+                Room updatedRoom = roomObservableList.get(i);
+                updatedRoom.setPatient(editedPatient);
+                roomObservableList.set(i, updatedRoom);
+                break;
+            }
+        }
+    }
+
     //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override

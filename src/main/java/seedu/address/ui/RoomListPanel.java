@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
@@ -36,9 +35,11 @@ public class RoomListPanel extends UiPart<Region> {
         super(FXML);
 
         if (!roomList.isEmpty()) {
-            roomDetailsPanel.setRoomDetails(roomList.get(0));;
-            roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+            roomDetailsPanel.setRoomDetails(roomList.get(0));
+        } else {
+            roomDetailsPanel.setEmptyRoomDetails();
         }
+        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
         updateDetailsIfChanged(roomList);
         roomListView.setItems(roomList);
         roomListView.setCellFactory(listView -> new RoomListViewCell());

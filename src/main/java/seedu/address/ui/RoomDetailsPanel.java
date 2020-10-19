@@ -46,4 +46,13 @@ public class RoomDetailsPanel extends UiPart<Region> {
         roomNumber.setText("Room #" + room.getRoomNumber());
         taskDetails.setText(room.getTaskList().toString());
     }
+
+    /**
+     * Sets the details for an empty room.
+     */
+    public void setEmptyRoomDetails() {
+        roomNumber.setText("NO ROOM PRESENT");
+        patientDetails.setText("-");
+        taskDetails.setText("-");
+    }
 }

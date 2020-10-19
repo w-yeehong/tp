@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<ScrollPane fx:id="scrollbar" fitToWidth="true" stylesheets="@RoomDetailsPanelStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToWidth="true" stylesheets="@RoomDetailsPanelStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@RoomDetailsPanelStyle.css">
          <children>
-            <Label id="room-number" fx:id="roomNumber" stylesheets="@RoomDetailsPanelStyle.css" text="Label">
+            <Label id="room-number" fx:id="roomNumber" stylesheets="@RoomDetailsPanelStyle.css" text="Room Number">
                <VBox.margin>
                   <Insets left="10.0" />
                </VBox.margin>

@@ -10,10 +10,6 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_INDEX_O
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TASK_INDEX_ONE;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
@@ -30,7 +26,6 @@ import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Name;
-import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
