@@ -247,7 +247,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateRoomListWithEditedPatient(Patient patientToEdit, Patient editedPatient) {
+    public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
         ObservableList<Room> roomObservableList = this.getModifiableRoomList().getRoomObservableList();
         for (int i = 0; i < roomObservableList.size(); i++) {
             if (roomObservableList.get(i).getPatient().isSamePatient(patientToEdit)) {

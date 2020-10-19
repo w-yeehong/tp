@@ -170,7 +170,7 @@ public interface Model {
      * @param patientToEdit Patient that is to be edited.
      * @param editedPatient Patient that is edited.
      */
-    void updateRoomListWithEditedPatient(Patient patientToEdit, Patient editedPatient);
+    void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient);
 
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of

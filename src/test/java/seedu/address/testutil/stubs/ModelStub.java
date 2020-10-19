@@ -143,6 +143,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Room> getRoomList() {
         throw new AssertionError("This method should not be called.");
     }
