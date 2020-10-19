@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
@@ -20,7 +21,7 @@ public class RoomListPanel extends UiPart<Region> {
     private static final String FXML = "RoomListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RoomListPanel.class);
 
-    private RoomDetailsPanel roomDetailsPanel;
+    private RoomDetailsPanel roomDetailsPanel = new RoomDetailsPanel();
 
     @FXML
     private ListView<Room> roomListView;
@@ -35,7 +36,7 @@ public class RoomListPanel extends UiPart<Region> {
         super(FXML);
 
         if (!roomList.isEmpty()) {
-            roomDetailsPanel = new RoomDetailsPanel(roomList.get(0));
+            roomDetailsPanel.setRoomDetails(roomList.get(0));;
             roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
         }
         updateDetailsIfChanged(roomList);
@@ -51,8 +52,7 @@ public class RoomListPanel extends UiPart<Region> {
     @FXML
     public void handleMouseClick(MouseEvent mouseEvent) {
         Room roomToDisplay = roomListView.getSelectionModel().getSelectedItem();
-        roomDetailsPanel = new RoomDetailsPanel(roomToDisplay);
-        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+        roomDetailsPanel.setRoomDetails(roomToDisplay);;
     }
 
     /**
@@ -69,8 +69,9 @@ public class RoomListPanel extends UiPart<Region> {
                         int indexToChange = change.getFrom();
                         Room roomToDisplay = change.getList().get(indexToChange);
                         roomListView.scrollTo(indexToChange);
-                        roomDetailsPanel = new RoomDetailsPanel(roomToDisplay);
-                        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+                        roomListView.getSelectionModel().select(indexToChange);
+                        roomListView.getFocusModel().focus(indexToChange);
+                        roomDetailsPanel.setRoomDetails(roomToDisplay);
                     }
                 }
             }

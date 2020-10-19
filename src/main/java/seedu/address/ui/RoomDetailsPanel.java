@@ -15,6 +15,7 @@ public class RoomDetailsPanel extends UiPart<Region> {
     private static final String FXML = "RoomDetailsPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RoomDetailsPanel.class);
 
+
     @FXML
     private Label roomNumber;
 
@@ -27,9 +28,8 @@ public class RoomDetailsPanel extends UiPart<Region> {
     /**
      * Creates a {@code RoomDetailsPanel} with the given {@code Room}.
      */
-    public RoomDetailsPanel(Room room) {
+    public RoomDetailsPanel() {
         super(FXML);
-        setRoomDetails(room);
     }
 
     /**
@@ -37,7 +37,7 @@ public class RoomDetailsPanel extends UiPart<Region> {
      *
      * @param room To set the details for.
      */
-    private void setRoomDetails(Room room) {
+    public void setRoomDetails(Room room) {
         if (room.getPatient() != null) {
             patientDetails.setText(room.getPatient().toString());
         } else {

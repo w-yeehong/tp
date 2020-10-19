@@ -104,7 +104,7 @@ public class TaskList implements Iterable<Task> {
             builder.append(taskIndex++);
             builder.append(". ");
             builder.append(task);
-            builder.append("\n");
+            builder.append("\n\n");
         }
 
         return builder.toString().trim();
