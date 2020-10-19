@@ -19,7 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Name;
 
 /**
- * Parses input arguments and creates a new SearchRoomCommand object
+ * Parses input arguments and creates a new SearchRoomCommand object.
  */
 public class SearchRoomCommandParser implements Parser<SearchRoomCommand> {
 
@@ -47,12 +47,12 @@ public class SearchRoomCommandParser implements Parser<SearchRoomCommand> {
             Name patientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             descriptor.setPatientName(patientName);
             return new SearchRoomCommand(descriptor);
-        } else {
-            //definitely have prefix room number if no prefix name
-            Integer roomNumber = RoomParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
-            descriptor.setRoomNumber(roomNumber);
-            return new SearchRoomCommand(descriptor);
         }
+        //definitely have prefix room number if no prefix name
+        Integer roomNumber = RoomParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
+        descriptor.setRoomNumber(roomNumber);
+        return new SearchRoomCommand(descriptor);
+
     }
 
     /**

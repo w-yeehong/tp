@@ -61,17 +61,17 @@ public class SearchRoomCommand extends Command {
             model.updateFilteredRoomList(room -> room.getRoomNumber() == roomNumber);
             return new CommandResult(MESSAGE_SUCCESS);
 
-        } else {
-            Name patientName = descriptor.patientName;
-            if (model.getPatientWithName(patientName).isEmpty()) {
-                throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
-            } else if (!model.isPatientAssignedToRoom(patientName)) {
-                throw new CommandException(MESSAGE_PATIENT_NO_ROOM);
-            }
-            model.updateFilteredRoomList(room -> room.isOccupied()
-                    && room.getPatient().getName().equals(patientName));
-            return new CommandResult(MESSAGE_SUCCESS);
         }
+
+        Name patientName = descriptor.patientName;
+        if (model.getPatientWithName(patientName).isEmpty()) {
+            throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        } else if (!model.isPatientAssignedToRoom(patientName)) {
+            throw new CommandException(MESSAGE_PATIENT_NO_ROOM);
+        }
+        model.updateFilteredRoomList(room -> room.isOccupied()
+                && room.getPatient().getName().equals(patientName));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class SearchRoomCommand extends Command {
     }
 
     /**
-     * Stores the details to search the room
+     * Stores the details to search the room.
      * Each non-empty field value will replace the corresponding field value of the room.
      */
     public static class SearchRoomDescriptor {
