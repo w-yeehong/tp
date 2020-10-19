@@ -16,7 +16,8 @@ public class FindRoomCommand extends Command {
     public static final String COMMAND_WORD = "findroom";
     public static final String MESSAGE_NO_EMPTY_ROOM = "There are unfortunately no more empty rooms!";
     public static final String NUMBER_OF_ROOMS_UNDEFINED = "Please define number of rooms";
-    public static final String MESSAGE_SUCCESS = "%s is empty";
+    public static final String MESSAGE_SUCCESS = "Room Number %s is empty";
+
     public FindRoomCommand() {}
 
     @Override
@@ -32,7 +33,7 @@ public class FindRoomCommand extends Command {
         }
         Predicate<Room> predicate = givePredicate(room);
         model.updateFilteredRoomList(predicate);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, room));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, room.getRoomNumber()));
     }
 
     private Predicate<Room> givePredicate(Room room) {

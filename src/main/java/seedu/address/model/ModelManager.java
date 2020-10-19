@@ -164,7 +164,6 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
-
     //=========== Room List ========================================================================================
 
     @Override
@@ -208,6 +207,23 @@ public class ModelManager implements Model {
             }
         }
         return index;
+    }
+
+    @Override
+    public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
+        ObservableList<Room> roomObservableList = this.roomList.getRoomObservableList();
+        for (int i = 0; i < roomObservableList.size(); i++) {
+            if (isPatientAssignedToRoom(patientToEdit.getName())
+                && roomObservableList.get(i).getPatient().isSamePatient(patientToEdit)) {
+                Room updatedRoom = roomObservableList.get(i);
+                if (editedPatient == null) {
+                    updatedRoom.setOccupied(false);
+                }
+                updatedRoom.setPatient(editedPatient);
+                roomObservableList.set(i, updatedRoom);
+                break;
+            }
+        }
     }
 
     //=========== Filtered RoomList Accessors ==========================================================================

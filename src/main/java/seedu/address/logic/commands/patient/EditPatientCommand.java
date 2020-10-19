@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_COMMENTS;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
@@ -9,11 +10,9 @@ import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -36,7 +35,7 @@ public class EditPatientCommand extends Command {
     public static final String COMMAND_WORD = "editpatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
-            + "by the patient's name used in the displayed patient list. "
+            + "by the patient's name used in the displayed patient list. \n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: NAME (must match exactly with the name of the patient to be edited in the patient list) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -53,7 +52,7 @@ public class EditPatientCommand extends Command {
     public static final String MESSAGE_PATIENT_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Covigent.";
 
-    private final String patientToBeEdited;
+    private final Name patientToBeEdited;
     private final EditPatientDescriptor editPatientDescriptor;
 
     /**
@@ -62,11 +61,10 @@ public class EditPatientCommand extends Command {
      * @param patientToBeEdited name in the filtered patient list to edit
      * @param editPatientDescriptor details to edit the patient with
      */
-    public EditPatientCommand(String patientToBeEdited, EditPatientDescriptor editPatientDescriptor) {
-        requireNonNull(patientToBeEdited);
-        requireNonNull(editPatientDescriptor);
+    public EditPatientCommand(Name patientToBeEdited, EditPatientDescriptor editPatientDescriptor) {
+        requireAllNonNull(patientToBeEdited, editPatientDescriptor);
 
-        this.patientToBeEdited = patientToBeEdited.trim().toLowerCase();
+        this.patientToBeEdited = patientToBeEdited;
         this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
     }
 
@@ -74,14 +72,12 @@ public class EditPatientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Patient> lastShownList = model.getFilteredPatientList();
-        Index index = checkIfPatientPresent(lastShownList);
-
-        if (index.getZeroBased() == 0) {
+        Optional<Patient> optionalPatient = model.getPatientWithName(patientToBeEdited);
+        if (optionalPatient.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
         }
 
-        Patient patientToEdit = lastShownList.get(index.getZeroBased() - 1);
+        Patient patientToEdit = optionalPatient.get();
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
@@ -90,26 +86,8 @@ public class EditPatientCommand extends Command {
 
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        model.updateRoomListWhenPatientsChanges(patientToEdit, editedPatient);
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
-    }
-
-    /**
-     * Checks if the patient is present in the application.
-     *
-     * @param lastShownList List of all the patient in the application.
-     * @return Index Of patient who is found.
-     */
-    private Index checkIfPatientPresent(List<Patient> lastShownList) {
-        Index index = Index.fromZeroBased(0);
-        for (int i = 1; i <= lastShownList.size(); i++) {
-            String patientName = lastShownList.get(i - 1).getName().toString();
-            boolean isValidPatient = patientName.trim().toLowerCase().equals(patientToBeEdited);
-            if (isValidPatient) {
-                index = Index.fromZeroBased(i);
-                break;
-            }
-        }
-        return index;
     }
 
     /**
@@ -122,6 +100,7 @@ public class EditPatientCommand extends Command {
      */
     private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
+        assert editPatientDescriptor != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());

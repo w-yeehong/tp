@@ -157,6 +157,14 @@ public interface Model {
     Index checkIfRoomPresent(Integer roomNumber);
 
     /**
+     * Updates the room with the new edited patient.
+     *
+     * @param patientToEdit Patient that is to be edited.
+     * @param editedPatient Patient that is edited.
+     */
+    void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient);
+
+    /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code RoomList}.
      */

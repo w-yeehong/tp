@@ -1,0 +1,57 @@
+.background {
+    -fx-background-color: rgb(255, 241, 241);
+    -fx-background-radius: 5.0;
+}
+
+.scroll-pane {
+    -fx-padding: 20 40 30 40;
+    -fx-border-insets: 20 40 30 40;
+    -fx-background-insets: 20 40 30 40;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: black;
+    -fx-padding: 3 6 3 0
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: white;
+    -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 0;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 0;
+}
+
+.scrollbar .corner {
+    -fx-background-color: black;
+}
+
+#room-number {
+    -fx-font-size: 2.2em;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(31, 31, 31);
+    -fx-font-family: "sans-serif";
+    -fx-opacity: 1;
+}
+
+.label-header {
+    -fx-font-size: 1.5em;
+    -fx-font-weight: bold;
+    -fx-text-fill:  rgb(31, 31, 31);
+    -fx-font-family: "sans-serif";
+    -fx-opacity: 1;
+}
