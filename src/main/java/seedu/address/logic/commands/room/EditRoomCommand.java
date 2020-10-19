@@ -94,6 +94,7 @@ public class EditRoomCommand extends Command {
     private Room createEditedRoom(Model model, Room roomToEdit,
                                   EditRoomDescriptor editRoomDescriptor) throws CommandException {
         assert (roomToEdit != null);
+        assert (editRoomDescriptor != null);
 
         int updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
         TaskList roomTaskList = roomToEdit.getTaskList();

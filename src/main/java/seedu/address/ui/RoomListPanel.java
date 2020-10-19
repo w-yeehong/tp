@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -37,6 +38,7 @@ public class RoomListPanel extends UiPart<Region> {
             roomDetailsPanel = new RoomDetailsPanel(roomList.get(0));
             roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
         }
+        updateDetailsIfChanged(roomList);
         roomListView.setItems(roomList);
         roomListView.setCellFactory(listView -> new RoomListViewCell());
     }
@@ -51,6 +53,28 @@ public class RoomListPanel extends UiPart<Region> {
         Room roomToDisplay = roomListView.getSelectionModel().getSelectedItem();
         roomDetailsPanel = new RoomDetailsPanel(roomToDisplay);
         roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+    }
+
+    /**
+     * Attach listener to {@code roomList} and update details panel.
+     *
+     * @param roomList RoomList to attach listener to.
+     */
+    private void updateDetailsIfChanged(ObservableList<Room> roomList) {
+        roomList.addListener(new ListChangeListener<Room>() {
+            @Override
+            public void onChanged(Change<? extends Room> change) {
+                while (change.next()) {
+                    if (change.wasAdded()) {
+                        int indexToChange = change.getFrom();
+                        Room roomToDisplay = change.getList().get(indexToChange);
+                        roomListView.scrollTo(indexToChange);
+                        roomDetailsPanel = new RoomDetailsPanel(roomToDisplay);
+                        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+                    }
+                }
+            }
+        });
     }
 
     /**
