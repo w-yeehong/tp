@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: rgb(255, 241, 241);
-    -fx-background-radius: 5.0; 
+    -fx-background-radius: 5.0;
 }
 
 .scroll-pane {
