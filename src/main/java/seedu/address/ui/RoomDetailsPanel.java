@@ -43,11 +43,11 @@ public class RoomDetailsPanel extends UiPart<Region> {
     }
 
     private void setIcons() {
-        ImageView imageView = new ImageView(image_patient);
+        ImageView imageView = new ImageView(imagePatient);
         imageView.setFitHeight(20);
         imageView.setFitWidth(20);
         patientHeader.setGraphic(imageView);
-        imageView = new ImageView(image_task);
+        imageView = new ImageView(imageTask);
         imageView.setFitHeight(20);
         imageView.setFitWidth(20);
         taskHeader.setGraphic(imageView);
