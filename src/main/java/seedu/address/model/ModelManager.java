@@ -165,28 +165,6 @@ public class ModelManager implements Model {
     }
 
 
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-
-        return patientRecords.equals(other.patientRecords)
-                && roomList.equals(other.roomList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPatients.equals(other.filteredPatients)
-                && filteredRooms.equals(other.filteredRooms);
-    }
-
     //=========== Room List ========================================================================================
 
     @Override
@@ -209,6 +187,12 @@ public class ModelManager implements Model {
     public void setSingleRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
         roomList.setSingleRoom(target, editedRoom);
+    }
+
+    @Override
+    public void clearRoom(Name patientName) {
+        assert(isPatientAssignedToRoom(patientName));
+        roomList.clearRoom(patientName);
     }
 
     @Override
@@ -274,4 +258,29 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask, room);
         roomList.setTaskToRoom(target, editedTask, room);
     }
+
+    //=========== Miscellaneous ========================================================================================
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+
+        return patientRecords.equals(other.patientRecords)
+                && roomList.equals(other.roomList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredRooms.equals(other.filteredRooms);
+    }
 }
+
