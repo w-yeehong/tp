@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_COMMENTS;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
@@ -62,8 +63,7 @@ public class EditPatientCommand extends Command {
      * @param editPatientDescriptor details to edit the patient with
      */
     public EditPatientCommand(Name patientToBeEdited, EditPatientDescriptor editPatientDescriptor) {
-        requireNonNull(patientToBeEdited);
-        requireNonNull(editPatientDescriptor);
+        requireAllNonNull(patientToBeEdited, editPatientDescriptor);
 
         this.patientToBeEdited = patientToBeEdited;
         this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
