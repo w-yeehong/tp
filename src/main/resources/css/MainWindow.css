@@ -118,7 +118,7 @@
 
 .main-tab-pane .tab {
     -fx-pref-width: 100px;
-    -fx-pref-height: 45px;
+    -fx-pref-height: 100px;
     -fx-background-color: #fff1f1;
 }
 

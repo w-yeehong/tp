@@ -43,7 +43,7 @@
 
         </MenuBar>
 
-        <TabPane fx:id="covigentTabs" styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="covigentTabs" styleClass="main-tab-pane" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE">
           <tabs>
             <Tab fx:id="patientTab" styleClass="main-tab" text="Patients">
               <content>

@@ -34,10 +34,10 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    private Image logoPicture = new Image(this.getClass().getResourceAsStream("/images/covigent_logo.png"));
-    private Image patientPicture = new Image(this.getClass().getResourceAsStream("/images/patient.png"));
-    private Image roomPicture = new Image(this.getClass().getResourceAsStream("/images/room.png"));
-    private Image taskPicture = new Image(this.getClass().getResourceAsStream("/images/tasks.png"));
+    private Image logoImage = new Image(this.getClass().getResourceAsStream("/images/covigent_logo.png"));
+    private Image patientImage = new Image(this.getClass().getResourceAsStream("/images/patient.png"));
+    private Image roomImage = new Image(this.getClass().getResourceAsStream("/images/room.png"));
+    private Image taskImage = new Image(this.getClass().getResourceAsStream("/images/tasks.png"));
     // Independent Ui parts residing in this Ui container
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
@@ -83,14 +83,29 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        //set images to the three different tabs
+        this.setTabImage(patientTab, patientImage);
+        this.setTabImage(roomTab, roomImage);
+        this.setTabImage(taskTab, taskImage);
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
     }
 
-    public void displayAppIcon() {
-        logoIcon.setImage(logoPicture);
+    private void setTabImage(Tab tab, Image image) {
+        ImageView imageView = new ImageView();
+        imageView.setFitHeight(90);
+        imageView.setFitWidth(90);
+        imageView.setImage(image);
+        tab.setGraphic(imageView);
+
     }
+
+    public void displayAppIcon() {
+        logoIcon.setImage(logoImage);
+    }
+
 
     public Stage getPrimaryStage() {
         return primaryStage;
