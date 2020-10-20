@@ -6,27 +6,36 @@ title: User Guide
 # Covigent - User Guide
 
 1. [Introduction](#1-introduction)
-2. [Quick Start](#2-quick-start)
-3. [Features](#3-features)<br>
-    3.1  [Command Format](#31-command-format)<br>
-    3.2  [Add a patient: `addpatient`](#32-add-a-patient-addpatient)<br>
-    3.3  [Delete a patient: `deletepatient`](#33-delete-a-patient-deletepatient)<br>
-    3.4  [Edit a patient: `editpatient`](#34-edit-a-patient-editpatient)<br>
-    3.5  [Search information: `searchpatient`](#35-search-information-searchpatient)<br>
-    3.6  [List all patients: `listpatient`] (#36-list-all-patients-listpatient)<br>
-    3.7  [Initialize rooms in hotel: `initRooms`](#37-initialize-rooms-in-hotel-initrooms)<br>
-    3.8  [Lists the current rooms: `listRoom`](#38-lists-the-current-rooms-listroom)<br>
-    3.9  [Find the first free room: `findRoom`](#39-find-the-first-free-room-findroom)<br>
-    3.10 [Search room: `searchroom`] (#310-search-room-searchroom)<br>
-    3.11 [Allocate patient to room or edit room: `editroom`](#311-allocate-patient-to-room-or-edit-room-editroom)<br>
-    3.12 [Add a task to a room: `addtask`](#312-add-a-task-to-a-room-addtask)<br>
-    3.13 [Delete a task from a room: `deletetask`](#313-delete-a-task-from-a-room-deletetask)<br>
-    3.14 [Edit a task in a room: `edittask`](#314-edit-a-task-in-a-room-edittask)<br>
-    3.15 [Searches all tasks before the given date: `searchtask`](#315-search-tasks-before-a-date-searchtask)<br>
-    3.16 [View help: `help`](#316-view-help-help)<br>
-    3.17 [Save the data](#317-save-the-data)<br>
- 4. [FAQ](#4-faq)
- 5. [Command Summary](#5-command-summary)
+2. [About this Document](#2-about-this-document)
+3. [Getting Started](#3-getting-started)
+4. [Glossary](#4-glossary)
+5. [Features](#5-features)<br>
+    5.1. [Command Format](#51-command-format)<br>
+    5.2. [Patients](#52-patients)<br>
+        5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br>
+        5.2.2  [Delete a patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
+        5.2.3  [Edit Patient Details: `editpatient`](#523-edit-a-patient-editpatient)<br>
+        5.2.4  [Search information: `searchpatient`](#524-search-information-searchpatient)<br>
+        5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
+        5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
+    5.3. [Room](#53-room)<br>
+        5.3.1  [Initialize rooms in hotel: `initRooms`](#531-initialize-rooms-in-hotel-initrooms)<br>
+        5.3.2  [Edit Room: `editroom`](#532-edit-room-editroom)<br>
+        5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br>
+        5.3.4  [Search for Patients in a Room: `searchroom`](#534-search-for-patients-in-a-room-searchroom)<br>
+        5.3.5  [Lists the current rooms: `listRoom`](#535-lists-the-current-rooms-listroom)<br>
+        5.3.6  [Find the first free room: `findRoom`](#536-find-the-first-free-room-findroom)<br>
+    5.4 [Task](#54-task)<br>
+        5.4.1  [Add a task to a room: `addtask`](#541-add-a-task-to-a-room-addtask)<br>
+        5.4.2  [Delete a task from a room: `deletetask`](#542-delete-a-task-from-a-room-deletetask)<br>
+        5.4.3  [Edit a task in a room: `edittask`](#543-edit-a-task-in-a-room-edittask)<br>
+        5.4.4  [Searches all tasks before the given date: `searchtask`](#544-search-tasks-before-a-date-searchtask)<br>
+    5.5  [View help: `help`](#55-view-help-help)<br>
+    5.6  [Exit the application: `exit`](#56-exit-the-application-exit)<br>
+    5.7  [Autosave](#57-autosave)<br>
+ 6. [Command Summary](#6-command-summary)
+ 7. [FAQ](#7-faq)
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -35,8 +44,13 @@ title: User Guide
 
 Covigent is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facility. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Covigent can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
 
+--------------------------------------------------------------------------------------------------------------------
 
-## 2. Quick start
+## 2. About this Document
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 3. Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -58,11 +72,15 @@ Covigent is a desktop app for managing information of quarantined individuals an
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Features
+## 4. Glossary
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Features
 
 <div markdown="block" class="alert alert-info">
 
-### 3.1 Command Format
+### 5.1 Command Format
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -76,7 +94,9 @@ Covigent is a desktop app for managing information of quarantined individuals an
   
 </div>
 
-### 3.2 Add a patient: `addpatient`
+### 5.2 Patients
+
+#### 5.2.1 Add a patient: `addpatient`
 
 Adds a quarantined individual to the application.
 
@@ -91,7 +111,7 @@ Examples:
 * `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35`
 * `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
 
-### 3.3 Delete a patient: `deletepatient`
+#### 5.2.2 Delete a patient: `deletepatient`
 
 Deletes an existing patient in the application.
 
@@ -104,7 +124,7 @@ Example:
 * `deletepatient Mary Doe` Deletes the patient record of Mary Doe from the application.
 
 
-### 3.4 Edit a patient: `editpatient`
+#### 5.2.3 Edit a patient: `editpatient`
 
 Edits an existing patient in the application.
 
@@ -121,7 +141,7 @@ Examples:
 *  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` Edits the temperature, age and period of stay of alex to be `36.7`, `21` and `20200303-20200315` respectively.
 
-### 3.5 Search information: `searchpatient`
+#### 5.2.4 Search information: `searchpatient`
 
 Searches the patients that matches the given criteria in the application.
 
@@ -135,13 +155,17 @@ Examples:
 *  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive. 
 
 
-### 3.6 List all patients: `listpatient`
+#### 5.2.5 List all patients: `listpatient`
 
 Shows a list of all patients in the patient tab.
 
 Format: `listpatient`
 
-### 3.7 Initialize rooms in hotel: `initRooms`
+#### 5.2.6 Allocate a Patient to a Room: `editroom`
+
+### 5.3 Room
+
+#### 5.3.1 Initialize rooms in hotel: `initRooms`
 
 Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
 be stored.
@@ -154,30 +178,7 @@ Examples:
 * `initRooms 123`
 * `initRooms 400`
 
-### 3.8 Lists the current rooms: `listRoom`
-
-Lists all the rooms in the hotel.
-
-Format: `listRoom`
-
-### 3.9 Find the first free room: `findRoom`
-
-Finds the room with the lowest room number that is free for use.
-
-Format: `findRoom`
-
-* Finds the room number of least value that can be safely used for accommodation
-
-### 3.10 Search room: `searchroom`
-
-Searches for the room with the specified room number.
-
-Format `searchRoom ROOM_NUMBER`
-
-Examples:
-* `searchRoom 15`
-
-### 3.11 Allocate patient to room or edit room: `editroom`
+#### 5.3.2 Edit room: `editroom`
 
 Allocates a patient to a room or edits an existing room in the application.
 
@@ -196,7 +197,41 @@ Examples:
 * `editroom 1 p/-`. Removes the patient from the Room #1. 
 * `editroom 1 r/3 p/-`. Changes the room number from #1 to #3. Afterwards, removes the patient from Room #3.
 
-### 3.12 Add a task to a room: `addtask`
+#### 5.3.3 Search by Room Number: `searchroom`
+
+Searches for the room with the specified room number.
+
+Format `searchRoom ROOM_NUMBER`
+
+Examples:
+* `searchRoom 15`
+
+#### 5.3.4 Search for Patients in a Room: `searchroom`
+
+Searches for the room with the specified room number.
+
+Format `searchRoom ROOM_NUMBER`
+
+Examples:
+* `searchRoom 15`
+
+#### 5.3.5 Lists the current rooms: `listRoom`
+
+Lists all the rooms in the hotel.
+
+Format: `listRoom`
+
+#### 5.3.6 Find the first free room: `findRoom`
+
+Finds the room with the lowest room number that is free for use.
+
+Format: `findRoom`
+
+* Finds the room number of least value that can be safely used for accommodation
+
+### 5.4 Task
+
+#### 5.4.1 Add a task to a room: `addtask`
 
 Adds a task to a room.
 
@@ -215,7 +250,7 @@ Examples:
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
 * `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200" to Room #1.
 
-### 3.13 Delete a task from a room: `deletetask`
+#### 5.4.2 Delete a task from a room: `deletetask`
 
 Deletes a task from a room.
 
@@ -228,7 +263,7 @@ Format: `deletetask r/ROOM_NUMBER t/TASK_NUMBER`
 Examples:
 * `deletetask r/1 t/3` Deletes the third task of Room #1.
 
-### 3.14 Edit a task in a room: `edittask`
+#### 5.4.3 Edit a task in a room: `edittask`
 
 Edits a task in a room.
 
@@ -252,7 +287,7 @@ Examples:
 * `edittask r/5 t/1 dd/-` Removes the due date from the first task in Room #5.
 * `edittask r/1 t/3 d/Running low on masks and needs to be restocked. dd/12-1-2021` Modifies the third task in Room #1 to have the description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200".
 
-### 3.15 Search tasks before a date: `searchtask`
+#### 5.4.4 Search tasks before a date: `searchtask`
 
 Search all tasks before a date.
 
@@ -267,26 +302,21 @@ Format: `searchtask dd/DUE_DATE`
 Examples:
 * `searchtask dd/12-1-2021` Search all tasks before 12-1-2021.
 
-### 3.16 View help: `help`
+### 5.5 View help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### 3.17 Save the data
+### 5.6 Exit the application: `exit`
+
+### 5.7 Autosave
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Covigent home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## 5. Command summary
+## 6. Command Summary
 
 Action | Format, Examples
 --------|------------------
@@ -305,3 +335,9 @@ Action | Format, Examples
 **Edit Task in Room** | `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]` <br>
 **Search Task** | `searchtask dd/DUE_DATE` <br>
 **Help** | `help`
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Covigent home folder.
