@@ -55,7 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane patientListPanelPlaceholder;
 
     @FXML
-    private TabPane patientRoomTabs;
+    private TabPane covigentTabs;
 
     @FXML
     private Tab patientTab;
@@ -70,7 +70,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
 
     @FXML
     private StackPane roomListPanelPlaceHolder;
@@ -149,7 +149,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCovigentAppFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

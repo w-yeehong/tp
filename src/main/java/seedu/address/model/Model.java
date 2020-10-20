@@ -141,12 +141,28 @@ public interface Model {
     void setSingleRoom(Room target, Room editedRoom);
 
     /**
+     * Clears the room with the given patient name {@code patientName}.
+     *
+     * @param patientName must be in a room.
+     */
+    void clearRoom(Name patientName);
+
+
+    /**
      * Checks if the given room number is present in the application.
      *
      * @param roomNumber to check if it is in the application.
      * @return Index Of room that is found.
      */
     Index checkIfRoomPresent(Integer roomNumber);
+
+    /**
+     * Updates the room with the new edited patient.
+     *
+     * @param patientToEdit Patient that is to be edited.
+     * @param editedPatient Patient that is edited.
+     */
+    void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient);
 
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of

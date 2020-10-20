@@ -164,29 +164,6 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-
-        return patientRecords.equals(other.patientRecords)
-                && roomList.equals(other.roomList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPatients.equals(other.filteredPatients)
-                && filteredRooms.equals(other.filteredRooms);
-    }
-
     //=========== Room List ========================================================================================
 
     @Override
@@ -212,6 +189,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearRoom(Name patientName) {
+        assert(isPatientAssignedToRoom(patientName));
+        roomList.clearRoom(patientName);
+    }
+
+    @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
         ObservableList<Room> roomObservableList = this.getRoomList();
         Index index = Index.fromZeroBased(0);
@@ -224,6 +207,23 @@ public class ModelManager implements Model {
             }
         }
         return index;
+    }
+
+    @Override
+    public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
+        ObservableList<Room> roomObservableList = this.roomList.getRoomObservableList();
+        for (int i = 0; i < roomObservableList.size(); i++) {
+            if (isPatientAssignedToRoom(patientToEdit.getName())
+                && roomObservableList.get(i).getPatient().isSamePatient(patientToEdit)) {
+                Room updatedRoom = roomObservableList.get(i);
+                if (editedPatient == null) {
+                    updatedRoom.setOccupied(false);
+                }
+                updatedRoom.setPatient(editedPatient);
+                roomObservableList.set(i, updatedRoom);
+                break;
+            }
+        }
     }
 
     //=========== Filtered RoomList Accessors ==========================================================================
@@ -274,4 +274,29 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask, room);
         roomList.setTaskToRoom(target, editedTask, room);
     }
+
+    //=========== Miscellaneous ========================================================================================
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+
+        return patientRecords.equals(other.patientRecords)
+                && roomList.equals(other.roomList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredRooms.equals(other.filteredRooms);
+    }
 }
+

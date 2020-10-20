@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -19,7 +20,7 @@ public class RoomListPanel extends UiPart<Region> {
     private static final String FXML = "RoomListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RoomListPanel.class);
 
-    private RoomDetailsPanel roomDetailsPanel;
+    private RoomDetailsPanel roomDetailsPanel = new RoomDetailsPanel();
 
     @FXML
     private ListView<Room> roomListView;
@@ -34,9 +35,12 @@ public class RoomListPanel extends UiPart<Region> {
         super(FXML);
 
         if (!roomList.isEmpty()) {
-            roomDetailsPanel = new RoomDetailsPanel(roomList.get(0));
-            roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+            roomDetailsPanel.setRoomDetails(roomList.get(0));
+        } else {
+            roomDetailsPanel.setEmptyRoomDetails();
         }
+        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+        updateDetailsIfChanged(roomList);
         roomListView.setItems(roomList);
         roomListView.setCellFactory(listView -> new RoomListViewCell());
     }
@@ -49,8 +53,30 @@ public class RoomListPanel extends UiPart<Region> {
     @FXML
     public void handleMouseClick(MouseEvent mouseEvent) {
         Room roomToDisplay = roomListView.getSelectionModel().getSelectedItem();
-        roomDetailsPanel = new RoomDetailsPanel(roomToDisplay);
-        roomDetailsPanelPlaceholder.getChildren().add(roomDetailsPanel.getRoot());
+        roomDetailsPanel.setRoomDetails(roomToDisplay);;
+    }
+
+    /**
+     * Attach listener to {@code roomList} and update details panel.
+     *
+     * @param roomList RoomList to attach listener to.
+     */
+    private void updateDetailsIfChanged(ObservableList<Room> roomList) {
+        roomList.addListener(new ListChangeListener<Room>() {
+            @Override
+            public void onChanged(Change<? extends Room> change) {
+                while (change.next()) {
+                    if (change.wasAdded()) {
+                        int indexToChange = change.getFrom();
+                        Room roomToDisplay = change.getList().get(indexToChange);
+                        roomListView.scrollTo(indexToChange);
+                        roomListView.getSelectionModel().select(indexToChange);
+                        roomListView.getFocusModel().focus(indexToChange);
+                        roomDetailsPanel.setRoomDetails(roomToDisplay);
+                    }
+                }
+            }
+        });
     }
 
     /**

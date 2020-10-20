@@ -33,7 +33,7 @@ public class EditTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "edittask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a task in Covigent "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a task in Covigent.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + PREFIX_ROOM_NUMBER + "ROOM NUMBER "
@@ -45,7 +45,7 @@ public class EditTaskCommand extends Command {
             + PREFIX_TASK_NUMBER + "3 "
             + PREFIX_DUE_DATE + "20200930 1700";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Task %1$d edited from Room %2$d: %3$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Task %1$d edited from Room %2$d. \nDescription: %3$s";
 
     private final Index roomIndex;
     private final Index taskIndex;

@@ -31,7 +31,7 @@ class FindRoomCommandTest {
         expectedModel.updateFilteredRoomList(predicate);
         model.addRooms(100);
         expectedModel.addRooms(100);
-        String expectedMessage = String.format(FindRoomCommand.MESSAGE_SUCCESS, new Room(1));
+        String expectedMessage = String.format(FindRoomCommand.MESSAGE_SUCCESS, 1);
         assertCommandSuccess(new FindRoomCommand(), model, expectedMessage, expectedModel);
     }
 

@@ -15,6 +15,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Name;
 
 /**
  * Parses input arguments and creates a new EditPatientCommand object.
@@ -35,7 +36,12 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
                         PREFIX_COMMENTS, PREFIX_TEMP, PREFIX_AGE, PREFIX_PERIOD_OF_STAY);
 
-        String patientTobeEdited = argMultimap.getPreamble().trim().toLowerCase();
+        Name patientTobeEdited;
+        try {
+            patientTobeEdited = ParserUtil.parseName(argMultimap.getPreamble().trim().toLowerCase());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPatientCommand.MESSAGE_USAGE));
+        }
         if (args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPatientCommand.MESSAGE_USAGE));
         }
