@@ -16,7 +16,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="500.0" onCloseRequest="#handleExit" title="Covigent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="500.0" title="Covigent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -37,10 +37,6 @@
             </ImageView>
           </children>
         </HBox>
-
-        <MenuBar fx:id="menuBar" style="-fx-background-color: #2b5c7b;" styleClass="main-menu" VBox.vgrow="NEVER">
-
-        </MenuBar>
 
         <TabPane fx:id="covigentTabs" styleClass="main-tab-pane" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE">
           <tabs>

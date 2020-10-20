@@ -82,29 +82,6 @@
      -fx-background-color: #aec6cf;
 }
 
-.main-menu {
-    -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-.main-menu .label {
-    -fx-font-size: 19px;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.main-menu .menu .left-container {
-    -fx-background-color: #000000;
-}
-
-.main-menu .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
-}
-
-.main-menu .context-menu .label {
-    -fx-text-fill: #ffffff;
-}
-
 .main-tab-pane .tab-header-area {
     -fx-padding: 1px;
     -fx-min-height: 0;
