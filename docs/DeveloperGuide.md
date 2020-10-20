@@ -392,3 +392,17 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### 3.5 Storage component
+
+The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components. 
+
+The Storage component,
+•	Can save Room and Patient Objects in json format
+•	Reads Room and Patient Objects in json format
+
+The concrete class StorageManager implements Storage and manages the storage for Room and Patient.
+
+Below is a class diagram of StorageManager.
+
+<img src="images/storage.png" width = "200px">
