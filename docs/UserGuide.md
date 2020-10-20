@@ -14,7 +14,7 @@ title: User Guide
     5.2. [Patients](#52-patients)<br>
         5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br>
         5.2.2  [Delete a patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
-        5.2.3  [Edit Patient Details: `editpatient`](#523-edit-a-patient-editpatient)<br>
+        5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
         5.2.4  [Search information: `searchpatient`](#524-search-information-searchpatient)<br>
         5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
         5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
@@ -42,7 +42,10 @@ title: User Guide
 
 ## 1. Introduction
 
-Covigent is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facility. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Covigent can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+Covigent (CG) is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI). If you can type quickly, CG can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+
+![Ui](images/Ui.png)
+*Figure 1. The graphical User Interface for Covigent*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -124,9 +127,9 @@ Example:
 * `deletepatient Mary Doe` Deletes the patient record of Mary Doe from the application.
 
 
-#### 5.2.3 Edit a patient: `editpatient`
+#### 5.2.3 Edit Patient Details: `editpatient`
 
-Edits an existing patient in the application.
+Edits an existing patient's details in the application.
 
 Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`
 
@@ -136,6 +139,8 @@ Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_N
 * `NAME` is case-insensitive.
 * `TEMPERATURE` must be to 1 decimal place (e.g. 37.0 instead of 37).
 * `PERIOD_OF_STAY` is in the format `YYYYMMDD-YYYYMMDD`.
+* `PHONE_NUMBER` consists of only 8 digits (e.g. 84321234).
+* `AGE` should be a positive integer between 0 to 119.
 
 Examples:
 *  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
