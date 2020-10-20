@@ -16,7 +16,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="500.0" onCloseRequest="#handleExit" title="Covigent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="500.0" title="Covigent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -27,28 +27,18 @@
         <URL value="@../css/MainWindow.css" />
         <URL value="@../css/Extensions.css" />
       </stylesheets>
-
       <VBox>
         <HBox fx:id="covigentLogoPlaceholder" styleClass="main-logo-stack-pane" HBox.hgrow="NEVER">
           <children>
-            <ImageView fx:id="logoIcon" fitHeight="53.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logoIcon" fitHeight="100.0" fitWidth="200" pickOnBounds="true" preserveRatio="true">
               <HBox.margin>
-                <Insets left="10.0" top="3.0" />
+                <Insets left="-10" top="3.0" />
               </HBox.margin>
             </ImageView>
           </children>
         </HBox>
 
-        <MenuBar fx:id="menuBar" style="-fx-background-color: #2b5c7b;" styleClass="main-menu" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-
-        <TabPane fx:id="covigentTabs" styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="covigentTabs" styleClass="main-tab-pane" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE">
           <tabs>
             <Tab fx:id="patientTab" styleClass="main-tab" text="Patients">
               <content>
@@ -76,10 +66,9 @@
         </StackPane>
 
         <StackPane fx:id="resultDisplayPlaceholder" styleClass="main-pane-with-border" VBox.vgrow="NEVER"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+                   minHeight="100" prefHeight="200" maxHeight="300">
         </StackPane>
-
-        <StackPane fx:id="statusBarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusBarPlaceholder" alignment="BOTTOM_LEFT" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>
