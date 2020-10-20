@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import seedu.address.model.room.Room;
 
 /**
@@ -33,17 +36,25 @@ public class RoomCard extends UiPart<Region> {
     private Label roomNumber;
     @FXML
     private ImageView showOccupancy;
-
+    @FXML
+    private Label occupancy;
     /**
      * Creates a {@code RoomCode} with the given {@code Room} and index to display.
      */
     public RoomCard(Room room) {
         super(FXML);
         this.room = room;
+        occupancy.setTranslateX(-90);
+        occupancy.setTranslateY(-20);
+        roomNumber.setTranslateX(10);
         roomNumber.setText(String.format("Room #%d", room.getRoomNumber()));
         if (room.isOccupied()) {
+            occupancy.setText("OCCUPIED");
+            occupancy.setTextFill(Color.RED);
             showOccupancy.setImage(occupied);
         } else {
+            occupancy.setText("UNOCCUPIED");
+            occupancy.setTextFill(Color.GREEN);
             showOccupancy.setImage(unoccupied);
         }
     }

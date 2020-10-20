@@ -6,8 +6,8 @@
     -fx-font-size: 15px;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
+    -fx-padding: 0px;
+    -fx-min-height: 10px;
 }
 
 .status-bar-with-border {

@@ -2,16 +2,12 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
+import javafx.geometry.Pos;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -34,10 +30,10 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    private Image logoImage = new Image(this.getClass().getResourceAsStream("/images/Logo.png"));
+    private Image logoImage = new Image(this.getClass().getResourceAsStream("/images/logo.png"));
     private Image patientImage = new Image(this.getClass().getResourceAsStream("/images/patient.png"));
     private Image roomImage = new Image(this.getClass().getResourceAsStream("/images/room.png"));
-    private Image taskImage = new Image(this.getClass().getResourceAsStream("/images/tasks.png"));
+    private Image taskImage = new Image(this.getClass().getResourceAsStream("/images/task.png"));
     // Independent Ui parts residing in this Ui container
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
@@ -79,18 +75,18 @@ public class MainWindow extends UiPart<Stage> {
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
+        statusBarPlaceholder.setTranslateY(105);
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
 
-        //set images to the three different tabs
+        //set images
         this.setTabImage(patientTab, patientImage);
         this.setTabImage(roomTab, roomImage);
         this.setTabImage(taskTab, taskImage);
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
     }
 
     private void setTabImage(Tab tab, Image image) {
