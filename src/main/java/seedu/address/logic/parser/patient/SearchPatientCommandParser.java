@@ -25,8 +25,7 @@ public class SearchPatientCommandParser implements Parser<SearchPatientCommand> 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TEMP_RANGE);
 
-        if ((!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME)
-                && !ParserUtil.arePrefixesPresent(argMultimap, PREFIX_TEMP_RANGE))
+        if (!ParserUtil.isExactlyOnePrefixPresent(argMultimap, PREFIX_NAME, PREFIX_TEMP_RANGE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchPatientCommand.MESSAGE_USAGE));
         }

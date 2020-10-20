@@ -7,7 +7,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
-import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 
@@ -65,30 +64,49 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void arePrefixesPresent_prefixMissing_returnsFalse() {
-        Prefix PREFIX_ONE = mock(Prefix.class);
-        Prefix PREFIX_TWO = mock(Prefix.class);
+    public void arePrefixesPresent() {
+        Prefix prefixOnePresent = mock(Prefix.class);
+        Prefix prefixTwoPresent = mock(Prefix.class);
+        Prefix prefixThreeMissing = mock(Prefix.class);
 
         ArgumentMultimap argMultimap = mock(ArgumentMultimap.class);
-
-        // No prefixes
-        assertFalse(arePrefixesPresent(argMultimap, PREFIX_ONE, PREFIX_TWO));
+        when(argMultimap.getValue(prefixOnePresent)).thenReturn(Optional.of("one"));
+        when(argMultimap.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
+        when(argMultimap.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
 
         // One missing prefix
-        when(argMultimap.getValue(PREFIX_ONE)).thenReturn(Optional.of("one"));
-        when(argMultimap.getValue(PREFIX_TWO)).thenReturn(Optional.empty());
-        assertFalse(arePrefixesPresent(argMultimap, PREFIX_ONE, PREFIX_TWO));
+        assertFalse(ParserUtil.arePrefixesPresent(argMultimap, prefixThreeMissing));
+        // One present and one missing prefixes
+        assertFalse(ParserUtil.arePrefixesPresent(argMultimap, prefixOnePresent, prefixThreeMissing));
+
+        // No prefixes
+        assertTrue(ParserUtil.arePrefixesPresent(argMultimap));
+        // Two present prefixes
+        assertTrue(ParserUtil.arePrefixesPresent(argMultimap, prefixOnePresent, prefixTwoPresent));
     }
 
     @Test
-    public void arePrefixesPresent_allPrefixesPresent_returnsTrue() {
-        Prefix PREFIX_ONE = mock(Prefix.class);
-        Prefix PREFIX_TWO = mock(Prefix.class);
+    public void isExactlyOnePrefixPresent() {
+        Prefix prefixOnePresent = mock(Prefix.class);
+        Prefix prefixTwoPresent = mock(Prefix.class);
+        Prefix prefixThreeMissing = mock(Prefix.class);
 
         ArgumentMultimap argMultimap = mock(ArgumentMultimap.class);
-        when(argMultimap.getValue(PREFIX_ONE)).thenReturn(Optional.of("one"));
-        when(argMultimap.getValue(PREFIX_TWO)).thenReturn(Optional.of("two"));
+        when(argMultimap.getValue(prefixOnePresent)).thenReturn(Optional.of("one"));
+        when(argMultimap.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
+        when(argMultimap.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
 
-        assertTrue(arePrefixesPresent(argMultimap, PREFIX_ONE, PREFIX_TWO));
+        // No prefixes
+        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap));
+        // Two present prefixes
+        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent, prefixTwoPresent));
+        // Two present and one missing prefixes
+        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap,
+                prefixOnePresent, prefixTwoPresent, prefixThreeMissing));
+
+        // One present prefix
+        assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent));
+        // One present and one missing prefixes
+        assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent, prefixThreeMissing));
     }
 }

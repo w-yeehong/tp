@@ -25,7 +25,7 @@ public class SearchTaskCommandParser implements Parser<SearchTaskCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DUE_DATE);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DUE_DATE)
+        if (!ParserUtil.isExactlyOnePrefixPresent(argMultimap, PREFIX_DUE_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchTaskCommand.MESSAGE_USAGE));
         }

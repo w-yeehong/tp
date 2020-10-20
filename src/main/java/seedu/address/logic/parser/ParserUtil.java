@@ -47,4 +47,14 @@ public class ParserUtil {
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    /**
+     * Returns true if exactly one prefix contains a non-empty {@code Optional} value in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean isExactlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes)
+                .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
+                .count() == 1;
+    }
 }

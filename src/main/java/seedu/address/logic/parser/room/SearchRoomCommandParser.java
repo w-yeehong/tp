@@ -30,10 +30,7 @@ public class SearchRoomCommandParser implements Parser<SearchRoomCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ROOM_NUMBER);
 
-        if ((!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME)
-                && !ParserUtil.arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER))
-                || (ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME)
-                && ParserUtil.arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER))
+        if (!ParserUtil.isExactlyOnePrefixPresent(argMultimap, PREFIX_NAME, PREFIX_ROOM_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }

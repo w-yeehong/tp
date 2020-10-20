@@ -180,6 +180,7 @@ public class NewCommandTestUtil {
         assertEquals(expectedCovigentApp, actualModel.getPatientRecords());
         assertEquals(expectedFilteredList, actualModel.getFilteredPatientList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
      * {@code model}'s address book.
