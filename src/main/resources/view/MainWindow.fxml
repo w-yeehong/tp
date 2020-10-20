@@ -40,12 +40,7 @@
         </HBox>
 
         <MenuBar fx:id="menuBar" style="-fx-background-color: #2b5c7b;" styleClass="main-menu" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
+
         </MenuBar>
 
         <TabPane fx:id="covigentTabs" styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE">
