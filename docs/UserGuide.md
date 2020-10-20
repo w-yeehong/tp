@@ -169,6 +169,20 @@ Format: `listpatient`
 
 #### 5.2.6 Allocate a Patient to a Room: `editroom`
 
+Allocates a patient to a room.
+
+Format: `editroom ROOM_NUMBER p/PATIENT_NAME`
+
+* Allocates a person to the room with the specified `ROOM_NUMBER`.
+* `PATIENT_NAME` must match exactly with the patient name that was inputted into the application.
+* `PATIENT_NAME` is case-insensitive.
+* `PATIENT_NAME` is compulsory and must be provided.
+* A room with the `ROOM_NUMBER` must be present.
+* This is only one of features of the editroom command. Refer to the full command [here](#532-edit-room-editroom).
+
+Examples:
+* `editroom 1 p/alex`. Allocates alex to Room #1.
+
 ### 5.3 Room
 
 #### 5.3.1 Initialize rooms in hotel: `initRooms`
@@ -186,7 +200,7 @@ Examples:
 
 #### 5.3.2 Edit room: `editroom`
 
-Allocates a patient to a room or edits an existing room in the application.
+Edits an existing room in the application.
 
 Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
 
@@ -196,10 +210,10 @@ Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
 * Remove patient from room by inputting a `-` for `PATIENT_NAME`.
 * At least one of the optional fields must be provided.
 * A room with the `ROOM_NUMBER` must be present.
+* Refer [here](#526-allocate-a-patient-to-a-room-editroom) for the instructions on allocating a patient to a room.
 
 Examples:
-* `editroom 1 r/2 p/alex`. Changes the room number from #1 to #2. Afterwards, allocates alex to Room #2.
-* `editroom 1 p/alex`. Allocates alex to Room #1.
+* `editroom 1 r/2 p/alex`. Changes the room number from #1 to #2. Afterwards, remove the previous patient in the room and change it to alex.
 * `editroom 1 p/-`. Removes the patient from the Room #1. 
 * `editroom 1 r/3 p/-`. Changes the room number from #1 to #3. Afterwards, removes the patient from Room #3.
 
