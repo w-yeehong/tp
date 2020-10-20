@@ -75,7 +75,6 @@ public class MainWindow extends UiPart<Stage> {
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
-        statusBarPlaceholder.setTranslateY(105);
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;

@@ -9,6 +9,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import seedu.address.model.patient.Temperature;
 import seedu.address.model.room.Room;
 
 /**
@@ -44,21 +45,29 @@ public class RoomCard extends UiPart<Region> {
     public RoomCard(Room room) {
         super(FXML);
         this.room = room;
-        occupancy.setTranslateX(-90);
+
+        //position the
+        occupancy.setTranslateX(-70);
         occupancy.setTranslateY(-20);
         roomNumber.setTranslateX(10);
         roomNumber.setText(String.format("Room #%d", room.getRoomNumber()));
+
+        setRoomCard(room);
+    }
+
+    private void setRoomCard(Room room) {
         if (room.isOccupied()) {
-            occupancy.setText("OCCUPIED");
-            occupancy.setTextFill(Color.RED);
+            Text text = new Text("OCCUPIED");
+            text.setFill(Color.RED);
+            occupancy.setGraphic(text);
             showOccupancy.setImage(occupied);
         } else {
-            occupancy.setText("UNOCCUPIED");
-            occupancy.setTextFill(Color.GREEN);
+            Text text = new Text("UNOCCUPIED");
+            text.setFill(Color.GREEN);
+            occupancy.setGraphic(text);
             showOccupancy.setImage(unoccupied);
         }
     }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
