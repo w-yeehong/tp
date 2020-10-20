@@ -35,7 +35,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     private Image logoPicture = new Image(this.getClass().getResourceAsStream("/images/covigent_logo.png"));
-
+    private Image patientPicture = new Image(this.getClass().getResourceAsStream("/images/patient.png"));
+    private Image roomPicture = new Image(this.getClass().getResourceAsStream("/images/room.png"));
+    private Image taskPicture = new Image(this.getClass().getResourceAsStream("/images/tasks.png"));
     // Independent Ui parts residing in this Ui container
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
