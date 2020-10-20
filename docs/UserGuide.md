@@ -43,6 +43,7 @@ title: User Guide
 ## 1. Introduction
 
 Covigent (CG) is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI). If you can type quickly, CG can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+Interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get started.
 
 ![Ui](images/Ui.png)
 *Figure 1. The graphical User Interface for Covigent*
