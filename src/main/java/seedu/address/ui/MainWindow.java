@@ -34,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    private Image logoImage = new Image(this.getClass().getResourceAsStream("/images/covigent_logo.png"));
+    private Image logoImage = new Image(this.getClass().getResourceAsStream("/images/Logo.png"));
     private Image patientImage = new Image(this.getClass().getResourceAsStream("/images/patient.png"));
     private Image roomImage = new Image(this.getClass().getResourceAsStream("/images/room.png"));
     private Image taskImage = new Image(this.getClass().getResourceAsStream("/images/tasks.png"));

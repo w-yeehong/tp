@@ -1,10 +1,10 @@
 .background {
-    -fx-background-color: #2b5c7b;
-    background-color: #2b5c7b; /* Used in the default.html file */
+    -fx-background-color: #aec6cf;
+    background-color: #aec6cf; /* Used in the default.html file */
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#2b5c7b, -10%);
+    -fx-background-color: derive(#aec6cf, -10%);
 }
 
 .scroll-bar .thumb {
@@ -79,7 +79,7 @@
 }
 
 .main-logo-stack-pane {
-     -fx-background-color: #2b5c7b;
+     -fx-background-color: #aec6cf;
 }
 
 .main-menu {
@@ -113,7 +113,7 @@
 }
 
 .main-tab-pane .tab-header-area .tab-header-background {
-    -fx-background-color: #2b5c7b;
+    -fx-background-color: #aec6cf;
 }
 
 .main-tab-pane .tab {
@@ -135,11 +135,11 @@
 
 .main-pane-with-border {
     -fx-padding: 5px 10px;
-    -fx-background-color: #2b5c7b;
-    -fx-border-color: derive(#2b5c7b, 5%);
+    -fx-background-color: #aec6cf;
+    -fx-border-color: derive(#aec6cf, 5%);
     -fx-border-top-width: 1px;
 }
 
 .main-status-bar {
-    -fx-background-color: #2b5c7b;
+    -fx-background-color: #aec6cf;
 }
