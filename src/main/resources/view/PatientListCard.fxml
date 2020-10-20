@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="cardPane" styleClass="card-pane" stylesheets="@../css/ListCard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -19,20 +19,20 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" styleClass="label-big">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$first" styleClass="label-big" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="temperature" styleClass="cell_small_label" text="\$temperature" />
-      <Label fx:id="periodOfStay" styleClass="cell_small_label" text="\$periodOfStay" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="age" styleClass="cell_small_label" text="\$age" />
-      <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" />
+      <Label fx:id="temperature" styleClass="label-small" text="\$temperature" />
+      <Label fx:id="periodOfStay" styleClass="label-small" text="\$periodOfStay" />
+      <Label fx:id="phone" styleClass="label-small" text="\$phone" />
+      <Label fx:id="age" styleClass="label-small" text="\$age" />
+      <Label fx:id="comment" styleClass="label-small" text="\$comment" />
     </VBox>
   </GridPane>
 </HBox>

@@ -23,6 +23,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.PatientRecords;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
@@ -39,7 +40,7 @@ public class EditPatientCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Patient editedPatient = new PatientBuilder().build();
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
-        EditPatientCommand editPatientCommand = new EditPatientCommand("Alice Pauline", descriptor);
+        EditPatientCommand editPatientCommand = new EditPatientCommand(new Name("Alice Pauline"), descriptor);
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
@@ -57,7 +58,7 @@ public class EditPatientCommandTest {
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
-        EditPatientCommand editCommand = new EditPatientCommand("George Best", descriptor);
+        EditPatientCommand editCommand = new EditPatientCommand(new Name("George Best"), descriptor);
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
@@ -71,7 +72,7 @@ public class EditPatientCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditPatientCommand editCommand = new EditPatientCommand("Alice Pauline", new EditPatientDescriptor());
+        EditPatientCommand editCommand = new EditPatientCommand(new Name("Alice Pauline"), new EditPatientDescriptor());
         Patient editedPatient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
@@ -88,7 +89,7 @@ public class EditPatientCommandTest {
 
         Patient patientInFilteredList = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         Patient editedPatient = new PatientBuilder(patientInFilteredList).withName(VALID_NAME_BOB).build();
-        EditPatientCommand editCommand = new EditPatientCommand("Alice Pauline",
+        EditPatientCommand editCommand = new EditPatientCommand(new Name("Alice Pauline"),
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
@@ -104,7 +105,7 @@ public class EditPatientCommandTest {
     public void execute_duplicatePatientUnfilteredList_failure() {
         Patient firstPatient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(firstPatient).build();
-        EditPatientCommand editCommand = new EditPatientCommand("Benson Meier", descriptor);
+        EditPatientCommand editCommand = new EditPatientCommand(new Name("Benson Meier"), descriptor);
 
         assertCommandFailure(editCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PATIENT);
     }
@@ -115,7 +116,7 @@ public class EditPatientCommandTest {
 
         // Edit patient in filtered list into a duplicate in address book
         Patient patientInList = model.getPatientRecords().getPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
-        EditPatientCommand editCommand = new EditPatientCommand("Alice Pauline",
+        EditPatientCommand editCommand = new EditPatientCommand(new Name("Alice Pauline"),
                 new EditPatientDescriptorBuilder(patientInList).build());
 
         assertCommandFailure(editCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PATIENT);
@@ -124,18 +125,18 @@ public class EditPatientCommandTest {
     @Test
     public void execute_invalidPatientNameUnfilteredList_failure() {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditPatientCommand editCommand = new EditPatientCommand("Unknown", descriptor);
+        EditPatientCommand editCommand = new EditPatientCommand(new Name("Unknown"), descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
     }
 
     @Test
     public void equals() {
-        final EditPatientCommand standardCommand = new EditPatientCommand("Amy Bee", DESC_AMY);
+        final EditPatientCommand standardCommand = new EditPatientCommand(new Name("Amy Bee"), DESC_AMY);
 
         // Same values -> returns true
         EditPatientDescriptor copyDescriptor = new EditPatientDescriptor(DESC_AMY);
-        EditPatientCommand commandWithSameValues = new EditPatientCommand("Amy Bee", copyDescriptor);
+        EditPatientCommand commandWithSameValues = new EditPatientCommand(new Name("Amy Bee"), copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // Same object -> returns true
@@ -148,10 +149,10 @@ public class EditPatientCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // Different index -> returns false
-        assertFalse(standardCommand.equals(new EditPatientCommand("Bob Choo", DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditPatientCommand(new Name("Bob Choo"), DESC_AMY)));
 
         // Different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditPatientCommand("Amy Bee", DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditPatientCommand(new Name("Amy Bee"), DESC_BOB)));
     }
 
 }

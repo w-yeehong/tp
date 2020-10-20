@@ -2,7 +2,6 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -14,30 +13,33 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Covigent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="500.0" onCloseRequest="#handleExit" title="Covigent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
+
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@../css/MainWindow.css" />
+        <URL value="@../css/Extensions.css" />
       </stylesheets>
 
       <VBox>
-
-        <HBox fx:id="covigentLogoPlaceholder" styleClass="stack-pane" HBox.hgrow="NEVER">
+        <HBox fx:id="covigentLogoPlaceholder" styleClass="main-logo-stack-pane" HBox.hgrow="NEVER">
           <children>
             <ImageView fx:id="logoIcon" fitHeight="53.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="10.0" top="3.0" />
-                     </HBox.margin></ImageView>
+              <HBox.margin>
+                <Insets left="10.0" top="3.0" />
+              </HBox.margin>
+            </ImageView>
           </children>
         </HBox>
 
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" style="-fx-background-color: #2b5c7b;" styleClass="main-menu" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -46,14 +48,14 @@
           </Menu>
         </MenuBar>
 
-        <TabPane fx:id="patientRoomTabs" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="covigentTabs" styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE">
           <tabs>
-            <Tab fx:id="patientTab" text="Patients">
+            <Tab fx:id="patientTab" styleClass="main-tab" text="Patients">
               <content>
                 <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </content>
             </Tab>
-            <Tab fx:id="roomTab" text="Rooms">
+            <Tab fx:id="roomTab" styleClass="main-tab" text="Rooms">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                  <children>
@@ -62,7 +64,7 @@
                 </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="taskTab" text="Tasks">
+            <Tab fx:id="taskTab" styleClass="main-tab" text="Tasks">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
@@ -70,20 +72,14 @@
           </tabs>
         </TabPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="main-pane-with-border" VBox.vgrow="NEVER">
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+        <StackPane fx:id="resultDisplayPlaceholder" styleClass="main-pane-with-border" VBox.vgrow="NEVER"
                    minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
         </StackPane>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusBarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

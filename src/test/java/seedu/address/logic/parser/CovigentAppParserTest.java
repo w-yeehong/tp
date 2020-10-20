@@ -10,10 +10,6 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_INDEX_O
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TASK_INDEX_ONE;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
@@ -23,7 +19,6 @@ import seedu.address.logic.commands.patient.AddPatientCommand;
 import seedu.address.logic.commands.patient.DeletePatientCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
-import seedu.address.logic.commands.patient.FindPatientCommand;
 import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
@@ -31,7 +26,6 @@ import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Name;
-import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -65,7 +59,7 @@ public class CovigentAppParserTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
                 + patient.getName() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
-        assertEquals(new EditPatientCommand(patient.getName().toString(), descriptor), command);
+        assertEquals(new EditPatientCommand(patient.getName(), descriptor), command);
     }
 
     @Test
@@ -99,14 +93,6 @@ public class CovigentAppParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
-    }
-
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindPatientCommand command = (FindPatientCommand) parser.parseCommand(
-                FindPatientCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindPatientCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

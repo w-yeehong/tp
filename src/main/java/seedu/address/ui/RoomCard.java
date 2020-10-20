@@ -56,7 +56,7 @@ public class RoomCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PatientCard)) {
+        if (!(other instanceof RoomCard)) {
             return false;
         }
 

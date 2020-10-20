@@ -135,7 +135,7 @@ public class TaskListTest {
 
     @Test
     public void toString_emptyTaskList_success() {
-        String expectedString = "";
+        String expectedString = "-";
         assertEquals(taskList.toString(), expectedString);
     }
 
@@ -145,7 +145,7 @@ public class TaskListTest {
         taskList.add(RESTOCK_SUPPLY);
 
         String expectedString = "1. " + REMIND_PATIENT.toString();
-        expectedString += "\n";
+        expectedString += "\n\n";
         expectedString += "2. " + RESTOCK_SUPPLY.toString();
         assertEquals(taskList.toString(), expectedString);
     }
