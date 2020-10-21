@@ -13,4 +13,3 @@
     <AnchorPane fx:id="patientDetailsPanelPlaceholder" HBox.hgrow="ALWAYS" />
   </children>
 </HBox>
-

@@ -56,22 +56,6 @@ public class Patient {
     }
 
     /**
-     * Formats the {@code patient} information.
-     *
-     * @param patient That is to be formatted.
-     * @return A string containing the patient information.
-     */
-    public static String formatPatientDetails(Patient patient) {
-        String name = patient.getName().toString();
-        String temperature = patient.getTemperature().toString();
-        String periodOfStay = patient.getPeriodOfStay().toString();
-        String phone = patient.getPhone().toString();
-        String age = patient.getAge().toString();
-        String comment = patient.getComment().toString();
-        return String.format(" Name: %s\n Temperature: %s\n Period Of Stay: %s\n Phone: %s\n Age: %s\n Comment: %s\n",
-            name, temperature, periodOfStay, phone, age, comment);
-    }
-    /**
      * Returns true if both patients have the same name.
      * This defines a weaker notion of equality between two patients.
      */
@@ -115,17 +99,17 @@ public class Patient {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Temperature: ")
-                .append(getTemperature())
-                .append(" Period of stay: ")
-                .append(getPeriodOfStay())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Age: ")
-                .append(getAge())
-                .append(" Comment: ")
-                .append(getComment());
+        builder.append(getName() + "\n")
+                .append("Temperature: ")
+                .append(getTemperature() + "\n")
+                .append("Period of stay: ")
+                .append(getPeriodOfStay() + "\n")
+                .append("Phone: ")
+                .append(getPhone() + "\n")
+                .append("Age: ")
+                .append(getAge() + "\n")
+                .append("Comment: ")
+                .append(getComment() + "\n");
         return builder.toString();
     }
 }

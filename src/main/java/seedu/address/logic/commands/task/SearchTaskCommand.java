@@ -24,7 +24,7 @@ public class SearchTaskCommand extends Command {
     public static final String COMMAND_WORD = "searchtask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches tasks in Covigent. "
-            + "Parameters: "
+            + "\nParameters: "
             + "[" + PREFIX_DUE_DATE + "DUE DATE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DUE_DATE + "20200928 2359";
@@ -74,7 +74,7 @@ public class SearchTaskCommand extends Command {
     public String getListOutput(ArrayList<Task> list) {
         StringBuilder outputString = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
-            outputString.append(String.format("%d.%s\n", i + 1, list.get(i)));
+            outputString.append(String.format("%d. Description: %s\n", i + 1, list.get(i)));
         }
         return outputString.toString();
     }

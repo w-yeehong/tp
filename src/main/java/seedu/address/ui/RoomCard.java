@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import seedu.address.model.room.Room;
 
 /**
@@ -33,21 +35,37 @@ public class RoomCard extends UiPart<Region> {
     private Label roomNumber;
     @FXML
     private ImageView showOccupancy;
-
+    @FXML
+    private Label occupancy;
     /**
      * Creates a {@code RoomCode} with the given {@code Room} and index to display.
      */
     public RoomCard(Room room) {
         super(FXML);
         this.room = room;
+
+        //position the
+        occupancy.setTranslateX(-70);
+        occupancy.setTranslateY(-20);
+        roomNumber.setTranslateX(10);
         roomNumber.setText(String.format("Room #%d", room.getRoomNumber()));
+
+        setRoomCard(room);
+    }
+
+    private void setRoomCard(Room room) {
         if (room.isOccupied()) {
+            Text text = new Text("OCCUPIED");
+            text.setFill(Color.RED);
+            occupancy.setGraphic(text);
             showOccupancy.setImage(occupied);
         } else {
+            Text text = new Text("UNOCCUPIED");
+            text.setFill(Color.GREEN);
+            occupancy.setGraphic(text);
             showOccupancy.setImage(unoccupied);
         }
     }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -56,7 +74,7 @@ public class RoomCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PatientCard)) {
+        if (!(other instanceof RoomCard)) {
             return false;
         }
 

@@ -32,9 +32,9 @@ public class EditRoomCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the room identified "
             + "by the room number.\n"
-            + "Existing values will be overwritten by the input values. "
+            + "Existing values will be overwritten by the input values. \n"
             + "To make an occupied room empty, the parameter for patient name should be set to '-'.\n"
-            + "Parameters: ROOM NUMBER"
+            + "Parameters: ROOM NUMBER "
             + "[" + PREFIX_ROOM_NUMBER + "ROOM NUMBER] "
             + "[" + PREFIX_PATIENT_NAME + "PATIENT NAME]\n"
             + "Example: " + COMMAND_WORD + " 23 "
@@ -94,6 +94,7 @@ public class EditRoomCommand extends Command {
     private Room createEditedRoom(Model model, Room roomToEdit,
                                   EditRoomDescriptor editRoomDescriptor) throws CommandException {
         assert (roomToEdit != null);
+        assert (editRoomDescriptor != null);
 
         int updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
         TaskList roomTaskList = roomToEdit.getTaskList();

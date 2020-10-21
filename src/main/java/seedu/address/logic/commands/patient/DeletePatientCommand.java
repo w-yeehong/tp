@@ -47,7 +47,12 @@ public class DeletePatientCommand extends Command {
         }
 
         Patient deletedPatient = patientToDelete.get();
+
+        if (model.isPatientAssignedToRoom(nameOfPatientToDelete)) {
+            model.clearRoom(nameOfPatientToDelete);
+        }
         model.deletePatient(deletedPatient);
+        model.updateRoomListWhenPatientsChanges(deletedPatient, null);
         return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, deletedPatient));
     }
 

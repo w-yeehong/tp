@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.patient.Name;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
@@ -83,7 +84,6 @@ public class RoomList implements ReadOnlyRoomList {
         if (numOfRooms > internalList.size()) {
             for (int i = internalList.size(); i < numOfRooms; i++) {
                 Room room = new Room(i + 1);
-                internalList.add(i, room);
                 rooms.add(room);
             }
         } else if (numOfRooms < internalList.size()) {
@@ -96,6 +96,7 @@ public class RoomList implements ReadOnlyRoomList {
                 internalList.remove(numOfRooms);
             }
         }
+        internalList.setAll(rooms); // to let the UI update
     }
 
     /**
@@ -222,6 +223,25 @@ public class RoomList implements ReadOnlyRoomList {
     public boolean containsRoom(Room toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameRoom);
+    }
+
+    /**
+     * Clears the room which contains the patient with the given name.
+     * @param patientName to clear the room from.
+     */
+    public void clearRoom(Name patientName) {
+        requireNonNull(patientName);
+        for (int i = 1; i <= internalList.size(); i++) {
+            if (!internalList.get(i - 1).isOccupied()) {
+                continue;
+            }
+            Name patientNameInRoom = internalList.get(i - 1).getPatient().getName();
+            if (patientName.equals(patientNameInRoom)) {
+                Room roomToClear = internalList.get(i - 1);
+                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber()));
+                break;
+            }
+        }
     }
 
     /**
