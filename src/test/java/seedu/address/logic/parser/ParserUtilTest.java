@@ -74,14 +74,16 @@ public class ParserUtilTest {
         when(argMultimap.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
         when(argMultimap.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
 
-        // One missing prefix
+        // One missing prefix - returns false
         assertFalse(ParserUtil.arePrefixesPresent(argMultimap, prefixThreeMissing));
-        // One present and one missing prefixes
+
+        // One present and one missing prefixes - returns false
         assertFalse(ParserUtil.arePrefixesPresent(argMultimap, prefixOnePresent, prefixThreeMissing));
 
-        // No prefixes
+        // No prefixes - returns true
         assertTrue(ParserUtil.arePrefixesPresent(argMultimap));
-        // Two present prefixes
+
+        // Two present prefixes - returns true
         assertTrue(ParserUtil.arePrefixesPresent(argMultimap, prefixOnePresent, prefixTwoPresent));
     }
 
@@ -96,17 +98,20 @@ public class ParserUtilTest {
         when(argMultimap.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
         when(argMultimap.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
 
-        // No prefixes
+        // No prefixes - returns false
         assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap));
-        // Two present prefixes
+
+        // Two present prefixes - returns false
         assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent, prefixTwoPresent));
-        // Two present and one missing prefixes
+
+        // Two present and one missing prefixes - returns false
         assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap,
                 prefixOnePresent, prefixTwoPresent, prefixThreeMissing));
 
-        // One present prefix
+        // One present prefix - returns true
         assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent));
-        // One present and one missing prefixes
+
+        // One present and one missing prefixes - returns true
         assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent, prefixThreeMissing));
     }
 }
