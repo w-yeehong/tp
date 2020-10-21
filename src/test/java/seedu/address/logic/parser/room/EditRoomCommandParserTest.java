@@ -18,7 +18,7 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_
 import static seedu.address.logic.commands.room.EditRoomCommand.MESSAGE_ROOM_NOT_EDITED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.RoomParserUtil.MESSAGE_INVALID_NUMBER;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
 import static seedu.address.model.patient.Name.MESSAGE_CONSTRAINTS;
 
 import org.junit.jupiter.api.Test;
