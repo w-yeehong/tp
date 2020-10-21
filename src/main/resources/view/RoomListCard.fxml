@@ -25,6 +25,7 @@
           </HBox.margin>
         </ImageView>
         <Label fx:id="roomNumber" alignment="CENTER" contentDisplay="CENTER" styleClass="label-big" text="\$first" />
+        <Label fx:id="occupancy" alignment="TOP_LEFT" />
       </HBox>
     </VBox>
     <rowConstraints>
