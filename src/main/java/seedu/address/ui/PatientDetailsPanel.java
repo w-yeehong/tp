@@ -13,9 +13,8 @@ import seedu.address.model.patient.Patient;
 public class PatientDetailsPanel extends UiPart<Region> {
 
     private static final String FXML = "PatientDetailsPanel.fxml";
-    private Image imagePatient = new Image(getClass().getResourceAsStream("/images/patient_icon.png"));
-
     public final Patient patient;
+    private Image imagePatient = new Image(getClass().getResourceAsStream("/images/patient_icon.png"));
 
     @FXML
     private Label name;
