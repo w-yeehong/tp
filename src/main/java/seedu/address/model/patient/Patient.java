@@ -13,8 +13,8 @@ public class Patient {
     private final Name name; //identifier field
     private final Temperature temperature;
     private final PeriodOfStay periodOfStay;
-    private final Phone phone; //identifier field
-    private final Age age; //identifier field
+    private final Phone phone;
+    private final Age age;
     private final Comment comment; // an optional field, if null is initialised to "-"
 
     /**
@@ -103,7 +103,7 @@ public class Patient {
                 .append("Temperature: ")
                 .append(getTemperature() + "\n")
                 .append("Period of stay: ")
-                .append(getPeriodOfStay() + "\n")
+                .append(getPeriodOfStay().readerFriendlyString() + "\n")
                 .append("Phone: ")
                 .append(getPhone() + "\n")
                 .append("Age: ")
