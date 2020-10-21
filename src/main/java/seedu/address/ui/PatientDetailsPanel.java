@@ -1,10 +1,12 @@
 package seedu.address.ui;
 
+import java.util.logging.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -15,6 +17,7 @@ public class PatientDetailsPanel extends UiPart<Region> {
     private static final String FXML = "PatientDetailsPanel.fxml";
     public final Patient patient;
     private Image imagePatient = new Image(getClass().getResourceAsStream("/images/patient_icon.png"));
+    private final Logger logger = LogsCenter.getLogger(PatientDetailsPanel.class);
 
     @FXML
     private Label name;
@@ -38,6 +41,7 @@ public class PatientDetailsPanel extends UiPart<Region> {
         super(FXML);
         this.patient = patient;
         setPatientDetails();
+        logger.log(Level.INFO, "Displayed patient details successfully.");
     }
 
     /**
