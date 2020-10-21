@@ -2,20 +2,64 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+# Covigent - Developer Guide
+1. [Preface](#1-preface)
+2. [Setting Up](#2-setting-up)
+3. [Design](#3-design)<br>
+    3.1  [Architecture: High Level View](#31-architecture-high-level-view)<br>
+    3.2  [UI Component](#32-ui-component)<br>
+    3.3  [Logic Component](#33-logic-component)<br>
+    3.4  [Model Component](#34-model-component)<br>
+    3.5  [Storage Component](#35-storage-component)<br>
+    3.6  [Commons Component](#36-commons-component)<br>
+ 4. [Implementation](#4-implementation)
+    4.1  [Patient Feature](#41-patient-feature)<br>
+          4.1.1 [Add Patient](#411-add-patient)<br>
+          4.1.2 [List Patient](#412-list-patient)<br>
+          4.1.3 [Edit Patient](#413-edit-patient)<br>
+          4.1.4 [Delete Patient](#414-delete-patient)<br>
+          4.1.5 [Search Patient](#415-search-patient)<br>
+    4.2  [Room Feature](#42-room-feature)<br>
+         4.2.1 [Initialise Room](#421-initialise-room)<br>
+         4.2.2 [List Room](#422-list-room)<br>
+         4.2.3 [Edit Room](#423-edit-room)<br>
+         4.2.4 [Search Room](#424-search-room)<br>
+         4.2.5 [Find Empty Room](#425-find-empty-room)<br>
+    4.3  [Task Feature](#43-task-feature)<br>
+         4.3.1 [Add Task](#431-add-task)<br>
+         4.3.2 [List Task](#432-list-task)<br>
+         4.3.3 [Delete Task](#433-delete-task)<br>
+         4.3.4 [Edit Task](#434-edit-task)<br>
+         4.3.5 [Search Task](#435-search-task)<br>
+    4.4  [Storage Feature](KIV)
+    4.5  [Logging Feature](KIV)
+
+ 5. [Documentation](#5-documentation)
+ 6. [Testing] (KIV)
+ 7. [Appendix](#7-appendix)<br>
+    A1. [Product Scope](#a1-product-scope)<br>
+    A2. [User Stories](#a2-user-stories)<br>
+    A3. [Use Cases](#a3-use-cases)<br>
+    A4. [Non-Functional Requirements](#a4-non-functional-requirements)<br>
+    A5. [Glossary](#a5-glossary)<br>
+    
+--------------------------------------------------------------------------------------------------------------------
+## 1. Preface
+
+The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 2. Setting Up
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. Design
 
-### Architecture
+### 3.1 Architecture: High Level View
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -57,7 +101,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +117,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3 Logic Component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +137,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4 Model Component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -113,7 +157,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 3.5 Storage Component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -123,15 +167,71 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### Common classes
+### 3.6 Commons Component
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+
+## 4.1 Patient Feature
+
+### 4.1.1 Add Patient 
+
+
+
+### 4.1.2 List Patient
+
+
+
+### 4.1.3 Edit Patient 
+
+
+
+### 4.1.4 Delete Patient 
+
+
+### 4.1.5 Search Patient
+
+
+## 4.2 Room Feature
+
+### 4.2.1 Initialise Room 
+
+
+### 4.2.2 List Room 
+
+
+
+### 4.2.3 Edit Room 
+
+
+### 4.2.4 Search Room 
+
+
+
+### 4.2.5 Find Empty Room 
+
+
+## 4.3 Task Feature
+
+### 4.3.1 Add Task 
+
+
+### 4.3.2 List Task 
+
+### 4.3.3 Delete Task 
+
+### 4.3.4 Edit Task 
+
+### 4.3.5 Search Task
+
+
+##BELOW UNDO AND REDO TO BE DELETED, CAN REFERENCE FOR NOW FIRST
 
 ### \[Proposed\] Undo/redo feature
 
@@ -220,7 +320,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. Documentation
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -230,9 +330,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6. Testing
 
-### Product scope
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. Appendix
+
+### A1. Product scope
 
 **Target user profile**:
 * Needs to manage a significant number of patients and their tasks
@@ -250,7 +356,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Covigent stores and retrieves information faster than a typical mouse/GUI driven app.
 
 
-### User stories
+### A2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -266,7 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### A3. Use cases
 
 (For all use cases below, the **System** is`Covigent` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -324,7 +430,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-### Non-Functional Requirements
+### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -334,7 +440,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
+### A5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Patient**: An individual residing in the quarantine facility
