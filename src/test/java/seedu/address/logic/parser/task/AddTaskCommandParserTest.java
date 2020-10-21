@@ -11,9 +11,9 @@ import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_ROOM_NUMBE
 import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_DESC_ONE;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_EIGHT_DESC;
+import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_EIGHT_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_SEVEN_DESC;
+import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
@@ -37,21 +37,21 @@ public class AddTaskCommandParserTest {
         Task expectedTask = new TaskBuilder(REMIND_PATIENT).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + DESCRIPTION_DESC_REMIND_PATIENT + VALID_ROOM_NUMBER_SEVEN_DESC
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_SEVEN_DESC
                 + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask, VALID_ROOM_NUMBER_SEVEN));
 
         // multiple description - last description accepted
         assertParseSuccess(parser, DESCRIPTION_DESC_ORDER_BEDSHEETS + DESCRIPTION_DESC_REMIND_PATIENT
-                + VALID_ROOM_NUMBER_SEVEN_DESC + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask,
+                + ROOM_NUMBER_SEVEN_DESC + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask,
                 VALID_ROOM_NUMBER_SEVEN));
 
         // multiple room number - last room number accepted
-        assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + VALID_ROOM_NUMBER_EIGHT_DESC
-                + VALID_ROOM_NUMBER_SEVEN_DESC + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask,
+        assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_EIGHT_DESC
+                + ROOM_NUMBER_SEVEN_DESC + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask,
                 VALID_ROOM_NUMBER_SEVEN));
 
         // multiple due date - last due date accepted
-        assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + VALID_ROOM_NUMBER_SEVEN_DESC
+        assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_SEVEN_DESC
                 + DATETIME_DUE_DESC_ORDER_BEDSHEETS + DATETIME_DUE_DESC_REMIND_PATIENT,
                 new AddTaskCommand(expectedTask, VALID_ROOM_NUMBER_SEVEN));
     }
@@ -60,7 +60,7 @@ public class AddTaskCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // no due date
         Task expectedTask = new TaskBuilder(REMIND_PATIENT).withDateTimeDue(Optional.empty()).build();
-        assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + VALID_ROOM_NUMBER_SEVEN_DESC,
+        assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_SEVEN_DESC,
                 new AddTaskCommand(expectedTask, VALID_ROOM_NUMBER_SEVEN));
     }
 
@@ -69,7 +69,7 @@ public class AddTaskCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
 
         // missing description prefix
-        assertParseFailure(parser, DATETIME_DUE_DESC_REMIND_PATIENT + VALID_ROOM_NUMBER_SEVEN_DESC, expectedMessage);
+        assertParseFailure(parser, DATETIME_DUE_DESC_REMIND_PATIENT + ROOM_NUMBER_SEVEN_DESC, expectedMessage);
 
         // missing room number prefix
         assertParseFailure(parser, DESCRIPTION_DESC_REMIND_PATIENT

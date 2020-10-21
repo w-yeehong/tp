@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_DESC_ONE;
+import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.TASK_NUMBER_DESC_ONE;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_INDEX_ONE;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
@@ -86,8 +86,8 @@ public class CovigentAppParserTest {
     @Test
     public void parseCommand_deleteTask() throws Exception {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
-                DeleteTaskCommand.COMMAND_WORD + ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE);
-        assertEquals(new DeleteTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE), command);
+                DeleteTaskCommand.COMMAND_WORD + ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE);
+        assertEquals(new DeleteTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE), command);
     }
 
     @Test
