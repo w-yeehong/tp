@@ -178,8 +178,14 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasRoom(Room room) {
-        requireAllNonNull(room);
+        requireNonNull(room);
         return roomList.containsRoom(room);
+    }
+
+    @Override
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        assert (roomNumber > 0) : "Room number should be greater than 0.";
+        return roomList.getRoomWithRoomNumber(roomNumber);
     }
 
     @Override

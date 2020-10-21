@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.logging.Logger;
 
@@ -120,6 +121,22 @@ public class RoomList implements ReadOnlyRoomList {
     }
 
     /**
+     * Returns the room with the provided {@code roomNumber}.
+     * An empty optional is returned if such a room is not found in the {@code RoomList}.
+     *
+     * @param roomNumber The room number of the room.
+     * @return the optional-wrapped room if found, otherwise an empty optional
+     */
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        for (Room room : internalList) {
+            if (roomNumber == room.getRoomNumber()) {
+                return Optional.of(room);
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
      * Adds a task to a room.
      * The room must exist in the {@code RoomList}.
      *
@@ -217,6 +234,7 @@ public class RoomList implements ReadOnlyRoomList {
             return true;
         }
     }
+
     /**
      * Returns true if the list contains an equivalent room as the given argument.
      */
@@ -265,6 +283,7 @@ public class RoomList implements ReadOnlyRoomList {
         rooms.add(editedRoom);
         internalList.set(index, editedRoom);
     }
+
     @Override
     public int hashCode() {
         int result = Objects.hash(numOfRooms, rooms, internalList);

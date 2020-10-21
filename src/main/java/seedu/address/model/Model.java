@@ -65,7 +65,8 @@ public interface Model {
     boolean hasPatient(Patient patient);
 
     /**
-     * Returns the patient with the {@code nameOfPatient} if it exists.
+     * Returns the patient with the {@code nameOfPatient} if it exists. Otherwise, an empty optional
+     * is returned.
      */
     Optional<Patient> getPatientWithName(Name nameOfPatient);
 
@@ -130,6 +131,12 @@ public interface Model {
     boolean hasRoom(Room room);
 
     /**
+     * Returns the room with the {@code roomNumber} if it exists. Otherwise, an empty optional
+     * is returned.
+     */
+    Optional<Room> getRoomWithRoomNumber(int roomNumber);
+
+    /**
      * Replaces the given room {@code target} with {@code editedRoom}.
      * {@code target} must exist in the application.
      * The room identity of {@code editedRoom} must not be the same as
@@ -146,7 +153,6 @@ public interface Model {
      * @param patientName must be in a room.
      */
     void clearRoom(Name patientName);
-
 
     /**
      * Checks if the given room number is present in the application.
