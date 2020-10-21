@@ -5,9 +5,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<HBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<HBox stylesheets="@../css/ListPanel.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <VBox>
+    <VBox maxWidth="350.0" minWidth="200.0" HBox.hgrow="ALWAYS">
       <ListView fx:id="patientListView" onMouseClicked="#handleMouseClick" />
     </VBox>
     <AnchorPane fx:id="patientDetailsPanelPlaceholder" HBox.hgrow="ALWAYS" />
