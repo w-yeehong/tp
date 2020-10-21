@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
