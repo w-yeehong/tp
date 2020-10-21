@@ -13,7 +13,7 @@ title: User Guide
     5.1. [Command Format](#51-command-format)<br>
     5.2. [Patients](#52-patients)<br>
         5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br>
-        5.2.2  [Delete a patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
+        5.2.2  [Delete a Patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
         5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
         5.2.4  [Search information: `searchpatient`](#524-search-information-searchpatient)<br>
         5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
@@ -78,6 +78,10 @@ Interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get st
 
 ## 4. Glossary
 
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Patient**: An individual who resides in the quarantine facility. 
+* **Task**: A task to be completed by staff of the quarantine facility.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Features
@@ -102,18 +106,23 @@ Interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get st
 
 #### 5.2.1 Add a patient: `addpatient`
 
-Adds a quarantined individual to the application.
+You can use this command to add the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
 
 Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
 
-* Adds a quarantined individual with the specified name, temperature, period of stay, phone number and age.
-* Temperature must be to 1 decimal place (e.g. 37.0 instead of 37).
-* Period of stay is in the format YYYYMMDD-YYYYMMDD.
-* It is optional to include the comment field for the quarantined individual.
+Additional Information:
+* Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
+* `PERIOD_OF_STAY` is in the format `YYYYMMDD-YYYYMMDD`.
+* `TEMPERATURE` should be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
+* `COMMENT`for the patient is optional. 
 
 Examples:
-* `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35`
-* `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic`
+* `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35` Adds a patient named John Doe with phone number 98765432, temperature 37.4, period of stay from 10 September 2020 to 24 September 2020 and age 35 to Covigent.
+* `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` Adds a patient named Betsy Crowe with temperature 36.5, period of stay from 1 October 2020 to 14 October 2020, phone number 91234567, age 19 and comment to Covigent.
+
+Expected Outcome:
+The result display shows a success message "New patient added: John Doe" and the new details of the patient. The new patient can now be found in the patient panel in Covigent.
+
 
 #### 5.2.2 Delete a patient: `deletepatient`
 
