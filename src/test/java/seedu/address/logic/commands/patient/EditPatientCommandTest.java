@@ -127,7 +127,7 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditPatientCommand editCommand = new EditPatientCommand(new Name("Unknown"), descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME);
     }
 
     @Test

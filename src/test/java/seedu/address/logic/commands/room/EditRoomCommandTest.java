@@ -2,7 +2,7 @@ package seedu.address.logic.commands.room;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_ALREADY_ASSIGNED;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
@@ -45,7 +45,7 @@ class EditRoomCommandTest {
     public void execute_invalidRoomNumber_failure() {
         EditRoomCommand.EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder().build();
         EditRoomCommand editRoomCommand = new EditRoomCommand(-100, descriptor);
-        assertCommandFailure(editRoomCommand, model, MESSAGE_INVALID_ROOM_NOT_FOUND);
+        assertCommandFailure(editRoomCommand, model, MESSAGE_INVALID_ROOM_NUMBER);
     }
 
     @Test
@@ -126,7 +126,7 @@ class EditRoomCommandTest {
                 .withPatient(BOB.getName()).build();
         EditRoomCommand editRoomCommand = new EditRoomCommand(roomNumberToEdit, descriptor);
 
-        assertCommandFailure(editRoomCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        assertCommandFailure(editRoomCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME);
     }
 
     @Test

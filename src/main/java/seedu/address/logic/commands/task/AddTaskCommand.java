@@ -55,7 +55,7 @@ public class AddTaskCommand extends Command {
         List<Room> rooms = model.getRoomList();
 
         if (roomIndex.getZeroBased() >= rooms.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER);
         }
 
         Room targetRoom = rooms.get(roomIndex.getZeroBased());

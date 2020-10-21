@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_ALREADY_ASSIGNED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
@@ -68,7 +68,7 @@ public class EditRoomCommand extends Command {
         Index index = model.checkIfRoomPresent(roomNumberToEdit);
 
         if (index.getZeroBased() == 0) {
-            throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
+            throw new CommandException(MESSAGE_INVALID_ROOM_NUMBER);
         }
 
         Room roomToEdit = roomList.get(index.getZeroBased() - 1);
@@ -116,7 +116,7 @@ public class EditRoomCommand extends Command {
         //case 4: allocate patient to the room
         Optional<Patient> updatedPatient = model.getPatientWithName(patientName);
         if (updatedPatient.isEmpty()) {
-            throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
+            throw new CommandException(MESSAGE_INVALID_PATIENT_NAME);
         } else {
             Room updatedRoom = new Room(updatedRoomNumber, updatedPatient.get(), roomTaskList);
             return updatedRoom;
