@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_DESC_ONE;
 import static seedu.address.logic.commands.NewCommandTestUtil.TASK_NUMBER_DESC_ONE;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_INDEX_ONE;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TASK_INDEX_ONE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -49,8 +50,8 @@ public class CovigentAppParserTest {
     public void parseCommand_addTask() throws Exception {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(
-                TaskUtil.getAddTaskCommand(task, VALID_ROOM_INDEX_ONE));
-        assertEquals(new AddTaskCommand(task, VALID_ROOM_INDEX_ONE), command);
+                TaskUtil.getAddTaskCommand(task, VALID_ROOM_NUMBER_SEVEN));
+        assertEquals(new AddTaskCommand(task, VALID_ROOM_NUMBER_SEVEN), command);
     }
 
     @Test
@@ -71,7 +72,7 @@ public class CovigentAppParserTest {
         descriptor.setDateTimeDue(task.getDueAt());
 
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
-                TaskUtil.getEditTaskCommand(task, VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE));
+                TaskUtil.getEditTaskCommand(task, 1, VALID_TASK_INDEX_ONE));
         assertEquals(new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE, descriptor), command);
     }
 

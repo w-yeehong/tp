@@ -113,6 +113,8 @@ public class NewCommandTestUtil {
     // Rooms
     public static final String VALID_ROOM_NUMBER_ONE = "1";
     public static final String VALID_ROOM_NUMBER_TWO = "2";
+    public static final int VALID_ROOM_NUMBER_SEVEN = 7;
+    public static final int VALID_ROOM_NUMBER_EIGHT = 8;
     public static final Index VALID_ROOM_INDEX_ONE = Index.fromOneBased(1);
     public static final Index VALID_ROOM_INDEX_TWO = Index.fromOneBased(2);
     public static final String VALID_PATIENT_NAME_JAMES = "james";
@@ -125,6 +127,8 @@ public class NewCommandTestUtil {
 
     public static final String ROOM_NUMBER_DESC_ONE = " " + PREFIX_ROOM_NUMBER + "1";
     public static final String ROOM_NUMBER_DESC_TWO = " " + PREFIX_ROOM_NUMBER + "2";
+    public static final String VALID_ROOM_NUMBER_SEVEN_DESC = " " + PREFIX_ROOM_NUMBER + "7";
+    public static final String VALID_ROOM_NUMBER_EIGHT_DESC = " " + PREFIX_ROOM_NUMBER + "8";
     public static final String VALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + VALID_PATIENT_NAME_JAMES;
     public static final String VALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY;
 
