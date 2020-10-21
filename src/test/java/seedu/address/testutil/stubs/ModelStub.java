@@ -172,6 +172,12 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void addTaskToRoom(Task task, Room room) {
         throw new AssertionError("This method should not be called.");
     }

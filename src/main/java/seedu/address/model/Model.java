@@ -190,11 +190,16 @@ public interface Model {
      */
     void updateFilteredRoomList(Predicate<Room> predicate);
 
-
     /**
      * Returns Priority Queue of rooms
      */
     PriorityQueue<Room> getRooms();
+
+    /**
+     * Returns the task with the {@code taskIndex} in {code room} if it exists.
+     * Otherwise, an empty optional is returned.
+     */
+    Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room);
 
     /**
      * Adds {@code task} to {@code room}.

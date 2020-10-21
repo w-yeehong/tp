@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.PriorityQueue;
@@ -12,6 +13,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
@@ -136,6 +138,23 @@ public class RoomList implements ReadOnlyRoomList {
         return Optional.empty();
     }
 
+    // TODO: Move task-related methods into another class
+
+    /**
+     * Returns the task with the provided {@code taskIndex} from {@code room}.
+     * An empty optional is returned if such a task is not found in the room.
+     *
+     * @param taskIndex The index of the task in the room.
+     * @return the optional-wrapped task if found, otherwise an empty optional
+     */
+    public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
+        List<Task> tasks = room.getTaskList().asUnmodifiableObservableList();
+        if (taskIndex.getZeroBased() >= tasks.size()) {
+            return Optional.empty();
+        }
+        return Optional.of(tasks.get(taskIndex.getZeroBased()));
+    }
+
     /**
      * Adds a task to a room.
      * The room must exist in the {@code RoomList}.
@@ -178,6 +197,17 @@ public class RoomList implements ReadOnlyRoomList {
         internalList.set(index, room);
     }
 
+    /**
+     * Replaces a task {code target} in a room with {@code editedTask}.
+     * The room must exist in the {@code RoomList}.
+     * The {@code target} must exist in the {@code TaskList} of the room.
+     *
+     * @param target The task to be replaced.
+     * @param editedTask The edited task to replace the target.
+     * @param room The room in which the task should be replaced.
+     * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
+     * @throws TaskNotFoundException if {@code target} is not in {@code room}.
+     */
     public void setTaskToRoom(Task target, Task editedTask, Room room) {
         requireAllNonNull(target, editedTask, room);
 
