@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_ROOM_NUMBE
 import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_TASK_NUMBER_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_DESC_ONE;
 import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_EIGHT_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.TASK_NUMBER_DESC_ONE;

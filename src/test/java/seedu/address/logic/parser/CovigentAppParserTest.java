@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
 import static seedu.address.logic.commands.NewCommandTestUtil.TASK_NUMBER_DESC_ONE;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_INDEX_ONE;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TASK_INDEX_ONE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -72,8 +71,8 @@ public class CovigentAppParserTest {
         descriptor.setDateTimeDue(task.getDueAt());
 
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
-                TaskUtil.getEditTaskCommand(task, 1, VALID_TASK_INDEX_ONE));
-        assertEquals(new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE, descriptor), command);
+                TaskUtil.getEditTaskCommand(task, VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE));
+        assertEquals(new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor), command);
     }
 
     @Test

@@ -74,7 +74,7 @@ public class TaskUtil {
 
         builder.append(getTaskDetails(task, roomNumber));
         // Use any valid task number as task number not stored in task
-        builder.append(" " + PREFIX_TASK_NUMBER + roomNumber);
+        builder.append(" " + PREFIX_TASK_NUMBER + String.valueOf(taskIndex.getOneBased()));
 
         return builder.toString();
     }

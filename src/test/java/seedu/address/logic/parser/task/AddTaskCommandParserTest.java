@@ -12,8 +12,8 @@ import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_NON_EMPTY
 import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_DESC_ONE;
 import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_EIGHT_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
 import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
+import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
@@ -40,17 +40,17 @@ public class AddTaskCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_SEVEN_DESC
                 + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask, VALID_ROOM_NUMBER_SEVEN));
 
-        // multiple description - last description accepted
+        // multiple descriptions - last description accepted
         assertParseSuccess(parser, DESCRIPTION_DESC_ORDER_BEDSHEETS + DESCRIPTION_DESC_REMIND_PATIENT
                 + ROOM_NUMBER_SEVEN_DESC + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask,
                 VALID_ROOM_NUMBER_SEVEN));
 
-        // multiple room number - last room number accepted
+        // multiple room numbers - last room number accepted
         assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_EIGHT_DESC
                 + ROOM_NUMBER_SEVEN_DESC + DATETIME_DUE_DESC_REMIND_PATIENT, new AddTaskCommand(expectedTask,
                 VALID_ROOM_NUMBER_SEVEN));
 
-        // multiple due date - last due date accepted
+        // multiple due dates - last due date accepted
         assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_SEVEN_DESC
                 + DATETIME_DUE_DESC_ORDER_BEDSHEETS + DATETIME_DUE_DESC_REMIND_PATIENT,
                 new AddTaskCommand(expectedTask, VALID_ROOM_NUMBER_SEVEN));
