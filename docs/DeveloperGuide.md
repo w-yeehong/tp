@@ -13,7 +13,7 @@ title: Developer Guide
     3.4  [Model Component](#34-model-component)<br>
     3.5  [Storage Component](#35-storage-component)<br>
     3.6  [Commons Component](#36-commons-component)<br>
- 4. [Implementation](#4-implementation)
+ 4. [Implementation](#4-implementation)<br>
     4.1  [Patient Feature](#41-patient-feature)<br>
           4.1.1 [Add Patient](#411-add-patient)<br>
           4.1.2 [List Patient](#412-list-patient)<br>
@@ -32,11 +32,10 @@ title: Developer Guide
          4.3.3 [Delete Task](#433-delete-task)<br>
          4.3.4 [Edit Task](#434-edit-task)<br>
          4.3.5 [Search Task](#435-search-task)<br>
-    4.4  [Storage Feature](KIV)
-    4.5  [Logging Feature](KIV)
-
- 5. [Documentation](#5-documentation)
- 6. [Testing] (KIV)
+    4.4  [Storage Feature(KIV)]<br>
+    4.5  [Logging Feature(KIV)]<br>
+ 5. [Documentation](#5-documentation)<br>
+ 6. [Testing(KIV)]<br>
  7. [Appendix](#7-appendix)<br>
     A1. [Product Scope](#a1-product-scope)<br>
     A2. [User Stories](#a2-user-stories)<br>
