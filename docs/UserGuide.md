@@ -56,7 +56,7 @@ This is what **Covigent** looks like:
 
 _Written by: MingDe_
 
-## 2. About this Document (WaiLok)
+## 2. About this Document
 Welcome to the **Covigent User Guide**! 
 Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
 
@@ -77,6 +77,8 @@ Note the following formatting used in this document:
 * ![icon](images/commandhighlight.PNG) 
 A grey highlight (called a mark-up) indicates that this is a parameter or command
 that can be typed into the command line and executed by the **Covigent**.
+
+_Written by: Wai Lok_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -202,7 +204,7 @@ Expected Outcome: <br>
 
 _Written by: MingDe_
 
-#### 5.2.4 Search patients by information: `searchpatient` (Wai Lok)
+#### 5.2.4 Search patients by information: `searchpatient` 
 
 
 Searches the patients that match the given criteria(name or a range of temperature) in Covigent.
@@ -224,7 +226,9 @@ Expected Outcome: <br>
 * Using the second example, the result box displays the message, "Listed patient(s) matching the criteria.".
 * Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in **Covigent**.
 
-#### 5.2.5 List all patients: `listpatient` (Wai Lok)
+_Written by: Wai Lok_
+
+#### 5.2.5 List all patients: `listpatient`
 
 Shows a list of all patients in the patient tab.
 
@@ -232,11 +236,13 @@ Format: `listpatient`
 
 Example(s):
 
-*  `listpatient` List all patients that present in **Covigent**.
+*  `listpatient` List all patients that present in Covigent.
 
 Expected Outcome: <br>
 
 * The result box displays the message, "All patients are listed.".
+
+_Written by: Wai Lok_
 
 #### 5.2.6 Allocate a Patient to a Room: `editroom`
 
@@ -427,9 +433,9 @@ Example(s):
 * `edittask r/1 t/3 d/Running low on masks and needs to be restocked. dd/12-1-2021` Modifies the third task in Room #1 to have the description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200".
 
 
-#### 5.4.4 Search tasks before a date: `searchtask` (Wai Lok)
+#### 5.4.4 Search tasks before a date: `searchtask` 
 
-Search all tasks before a date in **Covigent**.
+Search all tasks before a date in Covigent.
 
 Format: `searchtask dd/DUE_DATE`
 
@@ -449,7 +455,9 @@ Example(s):
 
 Expected Outcome:<br>
 * The result box displays the message, "Tasks before the due date found.".
-* Tasks before and including 12 January 2021 can now be found in the list of tasks in **Covigent**
+* Tasks before and including 12 January 2021 can now be found in the list of tasks in Covigent
+
+_Written by: Wai Lok_
 
 ### 5.5 View help: `help`
 
