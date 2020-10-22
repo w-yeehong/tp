@@ -105,11 +105,11 @@ No matter whether you are using Windows, Mac OS X, or other operating systems, y
 
 1. Install _Java 11_ or a later version. The latest version of _Java_ can be found [here](https://java.com/en/download/).
 
-1. Download the latest version of Covigent from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). Look for the file `covigent.jar`.
+1. Download the latest version of **Covigent** from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). Look for the file `covigent.jar`.
 
-1. Copy the file to the folder you want to use as the home folder of Covigent.
+1. Copy the file to the folder you want to use as the home folder of **Covigent**.
 
-1. Double-click on _covigent.jar_ to start Covigent.
+1. Double-click on _covigent.jar_ to start **Covigent**.
 
 ### 3.2 Using Covigent
 
