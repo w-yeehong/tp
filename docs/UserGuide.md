@@ -97,11 +97,11 @@ _Written by: Wai Lok_
 ## 3. Getting Started
 
 If you are tired of lengthy and problematic installation processes, **Covigent** is perfect for you.
-The setup is minimal as the app works out of the box. Follow the steps below to try it out!
+The setup is minimal and can be completed in 4 simple steps. Follow the instructions below to try it out!
 
 ### 3.1 Setting Up
 
-No matter whether you are using Windows, Mac OS X, or other operating systems, you can set up **Covigent** in 4 simple steps.
+The following steps to set up **Covigent** are applicable to Windows, Mac OS X, and Linux.
 
 1. Install _Java 11_ or a later version. The latest version of _Java_ can be found [here](https://java.com/en/download/).
 
@@ -113,7 +113,8 @@ No matter whether you are using Windows, Mac OS X, or other operating systems, y
 
 ### 3.2 Using Covigent
 
-Every feature in **Covigent** has a corresponding command. Using a feature is as simple as typing a command in the command box (see Figure 2) and pressing Enter to execute it.
+**Covigent** has numerous features, including adding quarantined individuals, creating rooms, assigning tasks to rooms, and more.
+Every feature has a corresponding command. Using a feature is as simple as typing a command in the command box (see Figure 2) and pressing Enter to execute it.
 
 <p align="center">
     <img src="images/CommandBox.png" width="800" height="100">
@@ -121,7 +122,7 @@ Every feature in **Covigent** has a corresponding command. Using a feature is as
     <i>Figure 2. Command Box of Covigent</i>
 </p>
 
-With commands, you can add quarantined individuals, create rooms, assign tasks to rooms, and more. Some example commands you may try:
+Some example commands you may try:
 
    * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named _John Doe_ with age _35_, phone number _98765432_, period of stay _20200910-20200924_, and temperature _37.4_.
    * **`initroom`** `5` : Creates 5 rooms in the quarantine facility.
