@@ -31,10 +31,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/itssodium.png" width="200px">
 
-[[github](http://github.com/itssodium)] 
+[[github](http://github.com/itssodium)]
 
 * Role: Developer
-* Responsibilities: Code Quality 
+* Responsibilities: Code Quality
 
 ### Chiam Yun Qing
 

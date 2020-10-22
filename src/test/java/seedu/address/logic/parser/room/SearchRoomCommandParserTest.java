@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_AMY_DES
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_ONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.RoomParserUtil.MESSAGE_INVALID_NUMBER;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
 
 import org.junit.jupiter.api.Test;
 
