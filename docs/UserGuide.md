@@ -18,7 +18,7 @@ title: User Guide
         5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br>
         5.2.2  [Delete a Patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
         5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
-        5.2.4  [Search information: `searchpatient`](#524-search-patient-by-information-searchpatient)<br>
+        5.2.4  [Search information: `searchpatient`](#524-search-patients-by-information-searchpatient)<br>
         5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
         5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
     5.3. [Room](#53-room)<br>
@@ -56,7 +56,7 @@ This is what **Covigent** looks like:
 
 
 ## 2. About this Document
-Welcome to the `Covigent User Guide`! Choose a link in the `feature` section, get a step-by-step instruction, and understand how to use `Covigent`. 
+Welcome to the **Covigent User Guide**! Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
 
 ### 2.1 What is in Covigent 
 Covigent contains the following features:
@@ -66,7 +66,7 @@ Covigent contains the following features:
 * Miscellaneous Features: `help`, `exit`, `autosave`.
 
 ### 2.2 About the guide
-This tutorial gives you an overview of the features in the `Covigent` and shows you how to get started using the `Covigent` 
+This tutorial gives you an overview of the features in the **Covigent** and shows you how to get started using the **Covigent** 
 
 ### 2.3 Formats in the guide
 Note the following formatting used in this document:
@@ -80,9 +80,9 @@ application.
 
 ## 3. Getting Started
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java **11** or above installed in your Computer.
 
-1. (*Coming soon*) Download the latest `covigent.jar` from [here](https://github.com).
+1. (*Coming soon*) Download the latest **covigent.jar** from [here](https://github.com).
 
 1. Copy the file to the folder you want to use as the _home folder_ for the application.
 
@@ -190,29 +190,38 @@ Example(s):
 
 #### 5.2.4 Search patients by information: `searchpatient`
 
-Expected Outcome: <br>
-* The result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
-* Details panel will show the details of the edited patient.
-
-Searches the patients that match the given criteria in the application.
+Searches the patients that match the given criteria(name or a range of temperature) in Covigent.
 
 Format: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
-* Only one of the fields can be provided.
-* The temperature range is inclusive of start and end temperatures.
+Additional Infomation:
+
+* Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.
+* The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
 
 Example(s):
+
 *  `searchpatient n/john` Searches patients with a name John.
 *  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive.
 
+Expected Outcome: <br>
 
+* Using the second example, the result box displays the message, "Listed patient(s) matching the criteria.".
+* Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in **Covigent**.
 
 #### 5.2.5 List all patients: `listpatient`
-
 
 Shows a list of all patients in the patient tab.
 
 Format: `listpatient`
+
+Example(s):
+
+*  `listpatient` List all patients that present in **Covigent**.
+
+Expected Outcome: <br>
+
+* The result box displays the message, "All patients are listed.".
 
 #### 5.2.6 Allocate a Patient to a Room: `editroom`
 
@@ -394,19 +403,27 @@ Example(s):
 
 #### 5.4.4 Search tasks before a date: `searchtask`
 
-
-Search all tasks before a date.
+Search all tasks before a date in **Covigent**.
 
 Format: `searchtask dd/DUE_DATE`
+
+Additional Information:
 
 * Due date can be in the any of the following formats:
   * `YYYYMMDD` (e.g. 20210131).
   * `YYYYMMDD HHmm` (e.g. 20210131 2359).
   * `D/M/YYYY` (e.g. 31/1/2021 or 31/01/2021).
   * `D/M/YYYY HHmm` (e.g. 31/1/2021 2359 or 31/01/2021 2359).
+  
+* If the time is not given for a due date, it defaults to 0000 (12am).
 
 Example(s):
-* `searchtask dd/12/1/2021` Search all tasks before 12/1/2021.
+
+* `searchtask dd/12/1/2021` Search all tasks before and including 12 January 2021.
+
+Expected Outcome:
+* The result box displays the message, "Tasks before the due date found.".
+* Tasks before and including 12 January 2021 can now be found in the list of tasks in **Covigent**
 
 ### 5.5 View help: `help`
 
