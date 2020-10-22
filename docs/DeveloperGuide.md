@@ -1,8 +1,3 @@
----
-layout: page
-title: Developer Guide
----
-
 # Covigent - Developer Guide
 1. [Preface](#1-preface)
 2. [Setting Up](#2-setting-up)
