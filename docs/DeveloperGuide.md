@@ -120,23 +120,34 @@ The `UI` component,
 
 ### 3.3 Logic Component
 
+The `Logic` component is the "brains" of Covigent. While the `Ui` defines the GUI and `Model` defines in-memory data,
+the `Logic` component does most of the heavy-lifting in terms of deciding what to change within the `Model` and what to 
+return to the `Ui`.<br>
+The diagram below shows the structure of the `Logic` component.
+
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+*Figure 4. Structure of the Logic Component*
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. Once a user input is obtained from the GUI, `Logic` uses the `CovigentAppParser` class to parse the users' commands
+and return a `Command` object.
+1. The `Command` is executed by `LogicManager`.
+1. Depending on the command input by the user, it may mutate the `Model`, such as adding a new patient, room or task.
+1. The result of the command execution is encapsulated as a `CommandResult` that is returned to the `Ui`.
+1. These `CommandResults` can instruct the `Ui` to perform certain actions, such as displaying help or error messages to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("delete alex`.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+*Figure 5. Interactions inside the `Logic` Component for the `delete alex` Command*
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+<br>
+_Written by: Ming De_ 
 
 ### 3.4 Model Component
 
