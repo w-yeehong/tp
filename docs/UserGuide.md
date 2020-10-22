@@ -148,7 +148,7 @@ Example(s):
 
 Expected Outcome: <br>
 * Using the first example, the result box displays the message, "New patient added: John Doe Temperature: 37.4 Period of stay: 10 Sep 2020 to 24 Sep 2020 Phone: 98765432 Age: 35 Comment: -".
-* The new patient can now be found in the list of patients in Covigent.
+* The newly added patient can now be found in the list of patients in Covigent.
 
 
 #### 5.2.2 Delete a patient: `deletepatient` (Yun Qing)
