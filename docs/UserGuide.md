@@ -153,7 +153,7 @@ Expected Outcome: <br>
 
 #### 5.2.2 Delete a patient: `deletepatient` (Yun Qing)
 
-Delete the details of the existing patient identified by his/her name from Covigent. 
+Deletes the details of the existing patient identified by his/her name from Covigent. 
 
 Format: `deletepatient NAME`
 
@@ -294,9 +294,9 @@ Expected Outcome: <br>
 * Using the first example, the result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -". 
 * Details panel will show the details of the newly edited room.
 
-#### 5.3.3 Search by Room Number: `searchroom`
+#### 5.3.3 Search by Room Number: `searchroom` (Yun Qing)
 
-You can use this command to search for the room details with the specified room number.
+Searches for the room details with the specified room number.
 
 Format: `searchroom r/ROOM_NUMBER`
 
@@ -304,12 +304,13 @@ Example(s):
 * `searchroom r/6` The room details of room number 6 will be searched.
 
 Expected Outcome:<br>
-The result display shows a success message "Room has been found and listed." and the specified room is shown in the room panel.
+* The result box displays a message "Room has been found and listed." 
+* The room with the specified room number is shown in the room details panel.
 
 
-#### 5.3.4 Search for Room with Patient: `searchroom`
+#### 5.3.4 Search for Room with Patient: `searchroom` (Yun Qing)
 
-You can use this command to search for the room that the specified patient is residing in. 
+Searches for the room that the specified patient is residing in. 
 
 Format `searchroom n/NAME`
 
@@ -320,7 +321,8 @@ Example(s):
 * `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
 
 Expected Outcome: <br>
-The result display shows a success message "Room has been found and listed." and the specified room that the patient resides in is shown in the room panel.
+* The result box displays a message "Room has been found and listed." 
+* The room that the specified patient resides in is shown in the room details panel.
 
 #### 5.3.5 Lists the current rooms: `listRoom`
 
@@ -442,7 +444,7 @@ Covigent data are saved in the hard disk automatically after any command that ch
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command Summary
+## 6. Command Summary (Yun Qing)
 
 Action | Format, Examples
 --------|------------------
