@@ -101,11 +101,13 @@ application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Glossary (Yun Qing)
+## 4. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Patient**: An individual who resides in the quarantine facility. 
 * **Task**: A task to be completed by staff of the quarantine facility.
+
+_Written by: Yun Qing_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -131,7 +133,7 @@ application.
 
 This section contains all the commands related to patients. Scroll down to find out which feature you need!
 
-#### 5.2.1 Add a patient: `addpatient` (Yun Qing)
+#### 5.2.1 Add a patient: `addpatient` 
 
 Adds the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
 
@@ -151,8 +153,9 @@ Expected Outcome: <br>
 * Using the first example, the result box displays the message, "New patient added: John Doe Temperature: 37.4 Period of stay: 10 Sep 2020 to 24 Sep 2020 Phone: 98765432 Age: 35 Comment: -".
 * The newly added patient can now be found in the list of patients in Covigent.
 
+_Written by: Yun Qing_
 
-#### 5.2.2 Delete a patient: `deletepatient` (Yun Qing)
+#### 5.2.2 Delete a patient: `deletepatient` 
 
 Deletes the details of the existing patient identified by his/her name from Covigent. 
 
@@ -168,6 +171,8 @@ Example(s):
 Expected Outcome: <br>
 * Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". 
 * The deleted patient can no longer be found in the list of patients in Covigent.
+
+_Written by: Yun Qing_
 
 #### 5.2.3 Edit Patient Details: `editpatient`
 
@@ -303,7 +308,7 @@ Expected Outcome: <br>
 
 _Written by: MingDe_
 
-#### 5.3.3 Search by Room Number: `searchroom` (Yun Qing)
+#### 5.3.3 Search by Room Number: `searchroom` 
 
 Searches for the room details with the specified room number.
 
@@ -316,8 +321,9 @@ Expected Outcome:<br>
 * The result box displays a message "Room has been found and listed." 
 * The room with the specified room number is shown in the room details panel.
 
+_Written by: Yun Qing_
 
-#### 5.3.4 Search for Room with Patient: `searchroom` (Yun Qing)
+#### 5.3.4 Search for Room with Patient: `searchroom` 
 
 Searches for the room that the specified patient is residing in. 
 
@@ -332,6 +338,8 @@ Example(s):
 Expected Outcome: <br>
 * The result box displays a message "Room has been found and listed." 
 * The room that the specified patient resides in is shown in the room details panel.
+
+_Written by: Yun Qing_
 
 #### 5.3.5 Lists the current rooms: `listRoom`
 
@@ -453,7 +461,7 @@ Covigent data are saved in the hard disk automatically after any command that ch
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command Summary (Yun Qing)
+## 6. Command Summary 
 
 Action | Format, Examples
 --------|------------------
@@ -475,6 +483,8 @@ Action | Format, Examples
 **Search Task** | `searchtask dd/DUE_DATE` <br> e.g., searchtask dd/12-1-2021
 **Help** | `help`
 **Exit** | `exit`
+
+_Written by: Yun Qing_
 
 --------------------------------------------------------------------------------------------------------------------
 
