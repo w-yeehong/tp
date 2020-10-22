@@ -13,20 +13,22 @@ import seedu.address.model.PatientRecords;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.room.Room;
+import seedu.address.model.task.TaskList;
 
 class FindRoomCommandTest {
 
     @Test
     void execute_numberOfRooms_notDefined() {
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList());
+        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
 
         assertCommandFailure(new FindRoomCommand(), model, FindRoomCommand.NUMBER_OF_ROOMS_UNDEFINED);
     }
 
     @Test
     void execute_numberOfRooms_success() {
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList());
-        Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
+        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model expectedModel =
+                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
         Predicate<Room> predicate = getFilterByRoomNumberPredicate(new Room(1));
         expectedModel.updateFilteredRoomList(predicate);
         model.addRooms(100);

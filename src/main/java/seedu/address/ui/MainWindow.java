@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private RoomListPanel roomListPanel;
+    private TaskListPanel taskListPanel;
 
     @FXML
     private ImageView logoIcon;
@@ -67,6 +68,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane roomListPanelPlaceHolder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -120,6 +124,9 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCovigentAppFilePath());
         statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
