@@ -42,11 +42,15 @@ title: User Guide
 
 ## 1. Introduction
 
-Covigent (CG) is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI). If you can type quickly, CG can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+Covigent (CG) is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. 
+It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI).
+This means that you operate the application mainly by typing commands into a Command Box.
+If you can type quickly, CG can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
 Interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get started.
 
-![Ui](images/Ui.png)
-*Figure 1. The graphical User Interface for Covigent*
+This is what **Covigent** looks like:
+![Ui](images/Ui_UG.png)
+*Figure 1. The graphical User Interface for **Covigent***
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -146,6 +150,7 @@ Edits an existing patient's details in the application.
 
 Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`
 
+Additional Information:
 * Edits the patient with the specified `NAME`. The name refers to the name of the patient inputted into the application earlier. The name **must match exactly with the name of the patient**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -158,6 +163,10 @@ Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_N
 Example(s):
 *  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` Edits the temperature, age and period of stay of alex to be `36.7`, `21` and `20200303-20200315` respectively.
+
+Expected Outcome: <br>
+The result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
+Details panel will show the details of the edited patient.
 
 #### 5.2.4 Search information: `searchpatient`
 
@@ -195,6 +204,10 @@ Format: `editroom ROOM_NUMBER p/PATIENT_NAME`
 Example(s):
 * `editroom 1 p/alex`. Allocates alex to Room #1.
 
+Expected Outcome: <br>
+The result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
+Phone: 12345678 Age: 23 Comment: - TaskList: -". Details panel will show the details of the room with the allocated patient.
+
 ### 5.3 Room
 
 #### 5.3.1 Initialize rooms in hotel: `initRooms`
@@ -228,6 +241,10 @@ Example(s):
 * `editroom 1 r/2 p/alex`. Changes the room number from #1 to #2. Afterwards, remove the previous patient in the room and change it to alex.
 * `editroom 1 p/-`. Removes the patient from the Room #1. 
 * `editroom 1 r/3 p/-`. Changes the room number from #1 to #3. Afterwards, removes the patient from Room #3.
+
+Expected Outcome: <br>
+The result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
+Phone: 12345678 Age: 23 Comment: - TaskList: -".
 
 #### 5.3.3 Search by Room Number: `searchroom`
 
