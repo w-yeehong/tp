@@ -165,8 +165,8 @@ Example(s):
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` Edits the temperature, age and period of stay of alex to be `36.7`, `21` and `20200303-20200315` respectively.
 
 Expected Outcome: <br>
-The result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
-Details panel will show the details of the edited patient.
+* The result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
+* Details panel will show the details of the edited patient.
 
 #### 5.2.4 Search information: `searchpatient`
 
@@ -205,8 +205,9 @@ Example(s):
 * `editroom 1 p/alex`. Allocates alex to Room #1.
 
 Expected Outcome: <br>
-The result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
-Phone: 12345678 Age: 23 Comment: - TaskList: -". Details panel will show the details of the room with the allocated patient.
+* The result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
+Phone: 12345678 Age: 23 Comment: - TaskList: -". 
+* Details panel will show the details of the room with the allocated patient.
 
 ### 5.3 Room
 
@@ -246,8 +247,8 @@ Example(s):
 * `editroom 1 r/3 p/-`. Changes the room number from #1 to #3. Afterwards, removes the patient from Room #3.
 
 Expected Outcome: <br>
-The result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
-Phone: 12345678 Age: 23 Comment: - TaskList: -".
+* The result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -". 
+* Details panel will show the details of the newly edited room.
 
 #### 5.3.3 Search by Room Number: `searchroom`
 
