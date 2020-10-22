@@ -104,6 +104,8 @@ Interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get st
 
 ### 5.2 Patients
 
+This section contains all the commands related to patients. Scroll down to find out which feature you need!
+
 #### 5.2.1 Add a patient: `addpatient`
 
 You can use this command to add the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
@@ -197,6 +199,8 @@ Example(s):
 
 ### 5.3 Room
 
+This section contains all the commands related to rooms. Scroll down to find out which feature you need!
+
 #### 5.3.1 Initialize rooms in hotel: `initRooms`
 
 Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
@@ -272,6 +276,8 @@ Format: `findRoom`
 * Finds the room number of least value that can be safely used for accommodation
 
 ### 5.4 Task
+
+This section contains all the commands related to tasks. Scroll down to find out which feature you need!
 
 #### 5.4.1 Add a task to a room: `addtask`
 
