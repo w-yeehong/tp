@@ -170,7 +170,7 @@ The class diagrams for the data in `ModelManager`, being `UserPrefs`, `PatientRe
  _Written by: Yun Qing_ 
 
 
-### 3.5 Storage Component _Written by: Noorul Azlina>_
+### 3.5 Storage Component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -181,6 +181,11 @@ The Storage API is responsible for reading and writing data in Json format. This
 The Storage component,
  * Can save Room and Patient Objects in json format
  * Reads Room and Patient Objects in json format
+ 
+ ![Structure of the JsonSerializableRoomList](images/JsonSerializableRoomList.png)
+ ![Structure of the JsonSerializablePatientList](images/JsonSerialzablePatient.png)
+ ![Structure of the JsonSerializableTaskList](images/JsonSerializableTaskList.png)
+  _Written by: Noorul Azlina>_
 
 ### 3.6 Commons Component
 
