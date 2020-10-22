@@ -24,7 +24,8 @@ public class ListPatientCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        model = new ModelManager(getTypicalPatientRecords(),
+                new UserPrefs(), new RoomList(), new TaskList());
         expectedModel =
                 new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
     }
