@@ -17,7 +17,7 @@
           5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
           5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
     5.3. [Room](#53-room)<br>
-          5.3.1  [Initialize rooms in hotel: `initroom`](#531-initialize-rooms-in-hotel-initrooms)<br>
+          5.3.1  [Initialise rooms in hotel: `initroom`](#531-initialise-rooms-in-hotel-initrooms)<br>
           5.3.2  [Edit Room: `editroom`](#532-edit-room-editroom)<br>
           5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br>
           5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br>
@@ -40,17 +40,17 @@
 
 ## 1. Introduction
 
-Covigent (CG) is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. 
+**Covigent** is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. 
 It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI).
 This means that you operate Covigent mainly by typing commands into a Command Box.
-If you can type quickly, CG can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+If you can type quickly, **Covigent** can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
 
 Interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get started.
 
 This is what **Covigent** looks like:
 
 <p align="center">
-    <img src="images/Ui_UG.png" width="600" height="450">
+    <img src="images/Ui_UG.png">
     <br />
     <i>Figure 1. The Graphical User Interface for Covigent</i>
 </p>
@@ -75,7 +75,7 @@ Covigent contains the following features:
 
 ### 2.2 About the Guide
 
-This tutorial gives you an overview of the features in the **Covigent** and shows you how to get started using the **Covigent** 
+This tutorial gives you an overview of the features in **Covigent** and shows you how to get started using **Covigent** 
 
 
 ### 2.3 Formats in the Guide
@@ -88,8 +88,6 @@ A grey highlight (called a mark-up) indicates that this is a parameter or comman
 that can be typed into the command line and executed by the **Covigent**.
 
 _Written by: Wai Lok_
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,9 +114,9 @@ Type a command in the command box (see Figure 2) and press Enter to execute it.
 
 Some example commands you may try:
 
-   * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named `John Doe` with age `35`, phone number `98765432`, period of stay `20200910-20200924`, and temperature `37.4`.
+   * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named _John Doe_ with age _35_, phone number _98765432_, period of stay _20200910-20200924_, and temperature _37.4_.
    * **`initroom`** `5` : Sets up 5 rooms in the quarantine facility.
-   * **`addtask`** `r/3 d/Restock supplies dd/20201230 2359` : Adds a task to room 3 with description `Restock supplies` and due date `20201230 2359`.
+   * **`addtask`** `r/3 d/Restock supplies dd/20201230 2359` : Adds a task to room 3 with description _Restock supplies_ and due date _20201230 2359_.
 
 For more details of each command, please refer to the section on [Section 5, Features](#5-features).
 
@@ -177,8 +175,8 @@ Additional Information:
 * `COMMENT`for the patient is optional. 
 
 Example(s):
-* `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35` A patient named John Doe with phone number 98765432, temperature 37.4, period of stay from 10 September 2020 to 24 September 2020 and age 35 is added to Covigent.
-* `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named Betsy Crowe with temperature 36.5, period of stay from 1 October 2020 to 14 October 2020, phone number 91234567, age 19 and comment is added to Covigent.
+* `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35` A patient named John Doe with phone number _98765432_, temperature _37.4_, period of stay from _10 September 2020 to 24 September 2020_ and age _35_ is added to Covigent.
+* `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named Betsy Crowe with temperature _36.5_, period of stay from _1 October 2020 to 14 October 2020_, phone number _91234567_, age _19_ and comment _Is asthmatic_ is added to Covigent.
 
 Expected Outcome: <br>
 * Using the first example, the result box displays the message, "New patient added: John Doe Temperature: 37.4 Period of stay: 10 Sep 2020 to 24 Sep 2020 Phone: 98765432 Age: 35 Comment: -".
@@ -305,21 +303,21 @@ _Written by: Ming De_
 
 This section contains all the commands related to rooms. Scroll down to find out which feature you need!
 
-#### 5.3.1 Initialize Rooms in Hotel: `initRoom`
+#### 5.3.1 Initialise Rooms in Hotel: `initroom`
 
-Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
+Initialises the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
 be stored.
 
-Format: `initRoom NUMBER_OF_ROOMS`
+Format: `initroom NUMBER_OF_ROOMS`
 
 * Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there
 
 Example(s):
-* `initRoom 123`. 123 rooms are initialised in **Covigent**.
-* `initRoom 400`. 400 rooms are initialised in **Covigent**.
+* `initroom 123`. 123 rooms are initialised in **Covigent**.
+* `initroom 400`. 400 rooms are initialised in **Covigent**.
 
 Expected Outcome: <br>
-The result display shows a success message "Initialize the number of rooms to 400 rooms in the application.".
+The result display shows a success message "Initialise the number of rooms to 400 rooms in the application.".
 
 _Written by: Noorul Azlina_
 
@@ -387,11 +385,11 @@ Expected Outcome: <br>
 _Written by: Yun Qing_
 
 
-#### 5.3.5 List the current Rooms: `listRoom`
+#### 5.3.5 List the current Rooms: `listroom`
 
 Lists all the rooms in the hotel together with informtion of whether the room is occupied or not.
 
-Format: `listRoom` All the rooms in **Covigent**.
+Format: `listroom` All the rooms in **Covigent**.
 
 Expected Outcome: <br>
 The result display shows a success message "All rooms are listed.".
@@ -399,11 +397,11 @@ The result display shows a success message "All rooms are listed.".
 _Written by: Noorul Azlina_
 
 
-#### 5.3.6 Find the first free room: `findRoom`
+#### 5.3.6 Find the first free room: `findroom`
 
 Finds the room with the lowest room number that is free for use.
 
-Format: `findRoom` The unoccupied room in **Covigent** with the lowest room number will be displayed on UI.
+Format: `findroom` The unoccupied room in **Covigent** with the lowest room number will be displayed on UI.
 
 * Finds the room number of least value that can be safely used for accommodation
 
@@ -539,7 +537,7 @@ _Written by: Yee Hong_
 
 #### 5.4.5 Search Tasks before a Given Date: `searchtask`
 
-Search all tasks before a date in Covigent.
+Searches all tasks before a date in Covigent.
 
 Format: `searchtask dd/DUE_DATE`
 
@@ -570,6 +568,9 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+Expected Outcome: <br>
+* A new help window appears.
+
 
 ### 5.6 Exit Covigent: `exit`
 
@@ -584,7 +585,6 @@ Expected Outcome:<br>
 ### 5.7 Autosave
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -614,7 +614,6 @@ Action | Format, Examples
 **Exit** | `exit`
 
 _Written by: Yun Qing_
-
 
 
 --------------------------------------------------------------------------------------------------------------------
