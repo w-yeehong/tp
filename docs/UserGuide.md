@@ -2,10 +2,12 @@
 
 1. [Introduction](#1-introduction)
 1. [About this Document](#2-about-this-document)<br>
-   2.1 [What's in Covigent](#21-what-is-in-covigent)<br>
-   2.2 [About the Guide](#22-about-the-guide)<br>
-   2.3 [Formats in the Guide](#23-formats-in-the-guide)<br>
+   2.1. [What's in Covigent](#21-what-is-in-covigent)<br>
+   2.2. [About the Guide](#22-about-the-guide)<br>
+   2.3. [Formats in the Guide](#23-formats-in-the-guide)<br>
 1. [Getting Started](#3-getting-started)
+   3.1. [Setting Up](#31-setting-up)<br>
+   3.2. [Using Covigent](#32-using-covigent)<br>
 1. [Glossary](#4-glossary)
 1. [Features](#5-features)<br>
     5.1. [Command Format](#51-command-format)<br>
@@ -17,18 +19,18 @@
           5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
           5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
     5.3. [Room](#53-room)<br>
-          5.3.1  [Initialise rooms in hotel: `initroom`](#531-initialise-rooms-in-hotel-initrooms)<br>
+          5.3.1  [Initialise Rooms in Hotel: `initroom`](#531-initialise-rooms-in-hotel-initroom)<br>
           5.3.2  [Edit Room: `editroom`](#532-edit-room-editroom)<br>
           5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br>
           5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br>
-          5.3.5  [Lists the Current Rooms: `listroom`](#535-lists-the-current-rooms-listroom)<br>
-          5.3.6  [Find the first free room: `findroom`](#536-find-the-first-free-room-findroom)<br>
+          5.3.5  [List the Current Rooms: `listroom`](#535-list-the-current-rooms-listroom)<br>
+          5.3.6  [Find the first free room: `findroom`](#536-find-the-first-free-room-findemptyroom)<br>
     5.4 [Task](#54-task)<br>
           5.4.1  [Add a Task to a Room: `addtask`](#541-add-a-task-to-a-room-addtask)<br>
           5.4.2  [Delete a Task from a Room: `deletetask`](#542-delete-a-task-from-a-room-deletetask)<br>
           5.4.3  [Edit Task Description or Due Date: `edittask`](#543-edit-task-description-or-due-date-edittask)<br>
           5.4.4  [Remove Due Date from a Task: `edittask`](#544-remove-due-date-from-a-task-edittask)<br>
-          5.4.5  [Search all Tasks before the Given Date: `searchtask`](#545-search-tasks-before-a-date-searchtask)<br>
+          5.4.5  [Search all Tasks before the Given Date: `searchtask`](#545-search-tasks-before-a-given-date-searchtask)<br>
     5.5  [View Help: `help`](#55-view-help-help)<br>
     5.6  [Exit Covigent: `exit`](#56-exit-covigent-exit)<br>
     5.7  [Autosave](#57-autosave)<br>
@@ -64,7 +66,8 @@ _Written by: Ming De_
 
 Welcome to the **Covigent User Guide**! Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
 
-### 2.1 What is in Covigent 
+### 2.1 What is in Covigent
+
 Covigent contains the following features:
 * Patient Features: `addpatient`, `deletepatient`, `editpatient`, `searchpatient`, `listpatient`.
 * Room Features: `initroom`, `editroom`, `searchroom`, `listroom`, `findemptyroom`.
@@ -83,17 +86,22 @@ Note the following formatting used in this document:
 * ![icon](images/infoicon.PNG) This symbol indicates important information.
 
 * ![icon](images/commandhighlight.PNG) 
-A grey highlight (called a mark-up) indicates that this is a parameter or command
-that can be typed into the command line and executed by the **Covigent**.
+A grey highlight (called a mark-up) indicates that this is a field or command
+that can be typed into the command line and executed by **Covigent**.
 
 _Written by: Wai Lok_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Getting Started
 
-If you are tired of lengthy and problematic installation processes, Covigent is perfect for you.
-No matter whether you are using Windows, Mac OS X, or other operating systems, you can set up Covigent in 4 simple steps.
+If you are tired of lengthy and problematic installation processes, **Covigent** is perfect for you.
+The setup is minimal as the app works out of the box. Follow the steps below to try it out!
+
+### 3.1 Setting Up
+
+No matter whether you are using Windows, Mac OS X, or other operating systems, you can set up **Covigent** in 4 simple steps.
 
 1. Install _Java 11_ or a later version. The latest version of _Java_ can be found [here](https://java.com/en/download/).
 
@@ -103,7 +111,9 @@ No matter whether you are using Windows, Mac OS X, or other operating systems, y
 
 1. Double-click on _covigent.jar_ to start Covigent.
 
-Type a command in the command box (see Figure 2) and press Enter to execute it.
+### 3.2 Using Covigent
+
+Every feature in **Covigent** has a corresponding command. Using a feature is as simple as typing a command in the command box (see Figure 2) and pressing Enter to execute it.
 
 <p align="center">
     <img src="images/CommandBox.png" width="800" height="100">
@@ -111,16 +121,15 @@ Type a command in the command box (see Figure 2) and press Enter to execute it.
     <i>Figure 2. Command Box of Covigent</i>
 </p>
 
-Some example commands you may try:
+With commands, you can add quarantined individuals, create rooms, assign tasks to rooms, and more. Some example commands you may try:
 
    * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named _John Doe_ with age _35_, phone number _98765432_, period of stay _20200910-20200924_, and temperature _37.4_.
-   * **`initroom`** `5` : Sets up 5 rooms in the quarantine facility.
+   * **`initroom`** `5` : Creates 5 rooms in the quarantine facility.
    * **`addtask`** `r/3 d/Restock supplies dd/20201230 2359` : Adds a task to room 3 with description _Restock supplies_ and due date _20201230 2359_.
 
 For more details of each command, please refer to the section on [Section 5, Features](#5-features).
 
 _Written by: Yee Hong_
-
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -133,6 +142,7 @@ _Written by: Yee Hong_
 * **Task**: A task to be completed by staff of the quarantine facility.
 
 _Written by: Yun Qing_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -384,7 +394,7 @@ Expected Outcome: <br>
 _Written by: Yun Qing_
 
 
-#### 5.3.5 List the current Rooms: `listroom`
+#### 5.3.5 List the Current Rooms: `listroom`
 
 Lists all the rooms in the hotel together with informtion of whether the room is occupied or not.
 
@@ -396,7 +406,7 @@ Expected Outcome: <br>
 _Written by: Noorul Azlina_
 
 
-#### 5.3.6 Find the first free room: `findemptyroom`
+#### 5.3.6 Find the First Free Room: `findemptyroom`
 
 Finds the room with the lowest room number that is free for use.
 
