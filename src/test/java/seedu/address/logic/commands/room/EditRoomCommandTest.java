@@ -23,6 +23,7 @@ import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.task.TaskList;
 import seedu.address.testutil.EditRoomDescriptorBuilder;
 import seedu.address.testutil.RoomBuilder;
 
@@ -33,7 +34,7 @@ class EditRoomCommandTest {
 
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
     //room list -> [room 7, Alice; room 8, Benson; room 10, null]
-    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
 
 
     @Test
@@ -60,7 +61,7 @@ class EditRoomCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
         Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
-                new RoomList(model.getModifiableRoomList()));
+                new RoomList(model.getModifiableRoomList()), new TaskList());
         expectedModel.setSingleRoom(roomToEdit, editedRoom);
 
         assertCommandSuccess(editRoomCommand, model, expectedMessage, expectedModel);
@@ -78,7 +79,7 @@ class EditRoomCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
         Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
-                new RoomList(model.getModifiableRoomList()));
+                new RoomList(model.getModifiableRoomList()), new TaskList());
         expectedModel.setSingleRoom(roomToEdit, editedRoom);
 
         assertCommandSuccess(editRoomCommand, model, expectedMessage, expectedModel);
@@ -98,7 +99,7 @@ class EditRoomCommandTest {
         String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
 
         Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
-                new RoomList(model.getModifiableRoomList()));
+                new RoomList(model.getModifiableRoomList()), new TaskList());
         expectedModel.setSingleRoom(roomToEdit, editedRoom);
 
         assertCommandSuccess(editRoomCommand, model, expectedMessage, expectedModel);

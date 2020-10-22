@@ -29,10 +29,8 @@ import seedu.address.model.ReadOnlyPatientRecords;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
-import seedu.address.storage.JsonPatientRecordsStorage;
-import seedu.address.storage.JsonRoomOccupancyStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageManager;
+import seedu.address.model.task.TaskList;
+import seedu.address.storage.*;
 import seedu.address.testutil.PatientBuilder;
 
 public class LogicManagerTest {
@@ -51,7 +49,9 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonRoomOccupancyStorage roomOccupancyStorage =
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
-        StorageManager storage = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage);
+        JsonTaskOccupancyStorage taskOccupancyStorage =
+                new JsonTaskOccupancyStorage((temporaryFolder.resolve("task")));
+        StorageManager storage = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -82,7 +82,9 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonRoomOccupancyStorage roomOccupancyStorage =
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
-        StorageManager storage = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage);
+        JsonTaskOccupancyStorage taskOccupancyStorage =
+                new JsonTaskOccupancyStorage(temporaryFolder.resolve("task"));
+        StorageManager storage = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage,taskOccupancyStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -138,7 +140,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
+        Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

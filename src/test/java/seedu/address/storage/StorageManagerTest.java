@@ -32,8 +32,9 @@ public class StorageManagerTest {
         JsonPatientRecordsStorage covigentAppStorage = new JsonPatientRecordsStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(getTempFilePath("ro"));
+        JsonTaskOccupancyStorage taskOccupancyStorage = new JsonTaskOccupancyStorage(getTempFilePath("tk"));
         //files nr short for numberOfRooms and ro is short form for roomsOccupied.
-        storageManager = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage);
+        storageManager = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
     }
 
     private Path getTempFilePath(String fileName) {

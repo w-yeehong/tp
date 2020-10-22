@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.task.TaskList;
 import seedu.address.testutil.PatientRecordsBuilder;
 
 public class ModelManagerTest {
@@ -105,8 +106,8 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(patientRecords, userPrefs, new RoomList());
-        ModelManager modelManagerCopy = new ModelManager(patientRecords, userPrefs, new RoomList());
+        modelManager = new ModelManager(patientRecords, userPrefs, new RoomList(), new TaskList());
+        ModelManager modelManagerCopy = new ModelManager(patientRecords, userPrefs, new RoomList(), new TaskList());
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -119,12 +120,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different covigentApp -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentPatientRecords, userPrefs, new RoomList())));
+        assertFalse(modelManager.equals(new ModelManager(differentPatientRecords, userPrefs, new RoomList(), new TaskList())));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(patientRecords, userPrefs, new RoomList())));
+        assertFalse(modelManager.equals(new ModelManager(patientRecords, userPrefs, new RoomList(), new TaskList())));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -132,6 +133,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setCovigentAppFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(patientRecords, differentUserPrefs, new RoomList())));
+        assertFalse(modelManager.equals(new ModelManager(patientRecords, differentUserPrefs, new RoomList(), new TaskList())));
     }
 }
