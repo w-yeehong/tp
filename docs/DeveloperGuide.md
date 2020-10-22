@@ -1,3 +1,8 @@
+---
+layout: page
+title: Developer Guide
+---
+
 # Covigent - Developer Guide
 1. [Preface](#1-preface)
 2. [Setting Up](#2-setting-up)
@@ -41,9 +46,7 @@
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
 
-The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication. The link to the GitHub repository can be found [here](https://github.com/AY2021S1-CS2103T-W12-1/tp).
-
-_Written by: Yun Qing_ 
+The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -115,62 +118,45 @@ The `UI` component,
 
 ### 3.3 Logic Component
 
-The `Logic` component is the "brains" of Covigent. While the `Ui` defines the GUI and `Model` defines in-memory data,
-the `Logic` component does most of the heavy-lifting in terms of deciding what to change within the `Model` and what to 
-return to the `Ui`.<br>
-The diagram below shows the structure of the `Logic` component.
-
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
-*Figure 4. Structure of the Logic Component*
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. Once a user input is obtained from the GUI, `Logic` uses the `CovigentAppParser` class to parse the users' commands
-and return a `Command` object.
-1. The `Command` is executed by `LogicManager`.
-1. Depending on the command input by the user, it may mutate the `Model`, such as adding a new patient, room or task.
-1. The result of the command execution is encapsulated as a `CommandResult` that is returned to the `Ui`.
-1. These `CommandResults` can instruct the `Ui` to perform certain actions, such as displaying help or error messages to the user.
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. This results in a `Command` object which is executed by the `LogicManager`.
+1. The command execution can affect the `Model` (e.g. adding a person).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("delete alex`.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-*Figure 5. Interactions inside the `Logic` Component for the `delete alex` Command*
-
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-<br>
-_Written by: Ming De_ 
 
 ### 3.4 Model Component
-
-The `Model` API acts as a facade that handles interaction between different kinds of data in Covigent. These data include user's preferences, patient records, room list and task list. 
-
-The `Model` component,
- * stores a `UserPref` object that represents the user’s preferences.
- * stores a `PatientRecords` object that stores the data of all the patients. 
- * stores a `RoomList` object that stores the data of all the rooms.
- * stores a `TaskList` object that stores the data of all the tasks.
- * exposes unmodifiable `ObservableList<Patient>`, `ObservableList<Room>` and `ObservableList<Task>` which can be observed. This means that the UI can be bound to the lists so that the UI automatically updates when data in the lists changes.
- * does not depend on any of the three components.
- 
- The concrete class `ModelManager` implements `Model` and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`. These classes manage the data related to their specific features. 
- 
- Below is a class diagram for `Model Manager`.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The class diagrams for the data in `ModelManager`, being `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`, can be found below.
+The `Model`,
 
-//to insert class diagrams for userpref, room list, task list and patient records.
+* stores a `UserPref` object that represents the user’s preferences.
+* stores the address book data.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components.
 
-_Written by: Yun Qing_ 
 
-### 3.5 Storage Component
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+</div>
+
+
+### 3.5 Storage Component _Written by: Noorul Azlina>_
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -178,9 +164,9 @@ _Written by: Yun Qing_
 
 The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components. 
 
-* The Storage component,
-•	Can save Room and Patient Objects in json format
-•	Reads Room and Patient Objects in json format
+The Storage component,
+ * Can save Room and Patient Objects in json format
+ * Reads Room and Patient Objects in json format
 
 ### 3.6 Commons Component
 
@@ -215,21 +201,26 @@ This section describes some noteworthy details on how certain features are imple
 
 ## 4.2 Room Feature
 
-### 4.2.1 Initialise Room 
+### Proposed Implementation
 
+The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoomList` which reads the Room information Json file, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+* `RoomList#addRooms(int num)` — adds the number of which are said to add together and retains infromation previously stored in each room
+* `RoomList#containsRoom(Room toCehck)` - checks whether the given room exists
+* `RoomList#addTaskToRoom(Task task, Room room)` — adds task to the room given.
+* `RoomList#deletesTaskFromRoom(Task task, Room romm)` — deletes task from room given
+* `RoomList#setTaskToRoom(target, editedTask, room)` - sets task to room given
+* `RoomList#clearRoom(Name patientName)` - removes patient from the room
+* `RoomList#setSingleRoom(Room target, Room editedRoom)` - sets the editedRoom to the target room
 
-### 4.2.2 List Room 
+These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#addTaskToRoom(Task task, Room room)`, `Model#deleteTaskFromRoom(Task task, Room room)`, `Model#setTaskToRoom(Task target, Task editedTask, Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley. 
 
+## Feature details
 
-
-### 4.2.3 Edit Room 
-
-
-### 4.2.4 Search Room 
-
-
-
-### 4.2.5 Find Empty Room 
+* Initialise Room - Initializes the number of rooms in **Covigent** app.
+* List Room - Lists all the rooms in **Covigent** app.
+* Edit Room - Allocates a patient to a room or edits an existing room in the application.
+* Search Room - Searches for the room with the specified room number.
+* Find Empty Room - Finds an empty room with the lowest room number.
 
 
 ## 4.3 Task Feature
