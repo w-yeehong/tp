@@ -100,7 +100,7 @@ application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Glossary
+## 4. Glossary (Yun Qing)
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Patient**: An individual who resides in the quarantine facility. 
@@ -130,7 +130,7 @@ application.
 
 This section contains all the commands related to patients. Scroll down to find out which feature you need!
 
-#### 5.2.1 Add a patient: `addpatient`
+#### 5.2.1 Add a patient: `addpatient` (Yun Qing)
 
 Adds the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
 
@@ -151,21 +151,22 @@ Expected Outcome: <br>
 * The new patient can now be found in the list of patients in Covigent.
 
 
-#### 5.2.2 Delete a patient: `deletepatient`
+#### 5.2.2 Delete a patient: `deletepatient` (Yun Qing)
 
-You can use this command to delete the details of the existing patient identified by his/her name from Covigent. 
+Delete the details of the existing patient identified by his/her name from Covigent. 
 
 Format: `deletepatient NAME`
 
 Additional Information:
 * `NAME` **must match exactly with the name of the patient that was input into Covigent previously** and is case-insensitive.
+* If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent.
 
 Example(s):
 * `deletepatient Mary Doe` The patient details of Mary Doe will be deleted from Covigent.
 
 Expected Outcome: <br>
-The result display shows a success message "Deleted Patient: Mary Doe" and the details of Mary Doe. If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent.
-
+* Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". 
+* The deleted patient can no longer be found in the list of patients in Covigent.
 
 #### 5.2.3 Edit Patient Details: `editpatient`
 
