@@ -27,7 +27,8 @@ class FindRoomCommandTest {
     @Test
     void execute_numberOfRooms_success() {
         Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
-        Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model expectedModel =
+                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
         Predicate<Room> predicate = getFilterByRoomNumberPredicate(new Room(1));
         expectedModel.updateFilteredRoomList(predicate);
         model.addRooms(100);

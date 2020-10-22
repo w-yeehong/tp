@@ -30,11 +30,12 @@ public class DeletePatientCommandTest {
     public void execute_validNameUnfilteredList_success() {
         Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         Name patientToDeleteName = patientToDelete.getName();
-        DeletePatientCommand deletePatientCommand = new DeletePatientCommand(patientToDeleteName);
+        DeletePatientCommand deletePatientCommand =new DeletePatientCommand(patientToDeleteName);
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        ModelManager expectedModel =
+                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
         expectedModel.deletePatient(patientToDelete);
 
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);

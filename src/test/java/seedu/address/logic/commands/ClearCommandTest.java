@@ -25,7 +25,8 @@ public class ClearCommandTest {
     @Test
     public void execute_nonEmptyCovigentApp_success() {
         Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
-        Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model expectedModel =
+                new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
         expectedModel.setPatientRecords(new PatientRecords());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

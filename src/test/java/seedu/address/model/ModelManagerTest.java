@@ -120,7 +120,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different covigentApp -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentPatientRecords, userPrefs, new RoomList(), new TaskList())));
+        assertFalse(modelManager
+                .equals(new ModelManager(differentPatientRecords, userPrefs, new RoomList(), new TaskList())));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
@@ -133,6 +134,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setCovigentAppFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(patientRecords, differentUserPrefs, new RoomList(), new TaskList())));
+        assertFalse(modelManager
+                .equals(new ModelManager(patientRecords, differentUserPrefs, new RoomList(), new TaskList())));
     }
 }

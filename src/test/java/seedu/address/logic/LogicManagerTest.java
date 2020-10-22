@@ -30,7 +30,11 @@ import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.TaskList;
-import seedu.address.storage.*;
+import seedu.address.storage.JsonPatientRecordsStorage;
+import seedu.address.storage.JsonRoomOccupancyStorage;
+import seedu.address.storage.JsonTaskOccupancyStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PatientBuilder;
 
 public class LogicManagerTest {
@@ -51,7 +55,8 @@ public class LogicManagerTest {
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
         JsonTaskOccupancyStorage taskOccupancyStorage =
                 new JsonTaskOccupancyStorage((temporaryFolder.resolve("task")));
-        StorageManager storage = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
+        StorageManager storage =
+                new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -84,7 +89,8 @@ public class LogicManagerTest {
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
         JsonTaskOccupancyStorage taskOccupancyStorage =
                 new JsonTaskOccupancyStorage(temporaryFolder.resolve("task"));
-        StorageManager storage = new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage,taskOccupancyStorage);
+        StorageManager storage =
+                new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -140,7 +146,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model expectedModel =
+                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

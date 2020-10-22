@@ -30,7 +30,8 @@ public class DeletePatientCommandIntegrationTest {
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(aliceName);
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS, alice);
 
-        ModelManager expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
+        ModelManager expectedModel =
+                new ModelManager(model.getPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
         expectedModel.clearRoom(aliceName);
         expectedModel.deletePatient(alice);
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);
