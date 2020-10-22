@@ -275,12 +275,13 @@ Format: `initRoom NUMBER_OF_ROOMS`
 * Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there
 
 Example(s):
-* `initRoom 123`. 123 rooms are initialised in the hotel facility.
-* `initRoom 400`. 400 rooms are initialised in the hotel facility.
+* `initRoom 123`. 123 rooms are initialised in **Covigent**.
+* `initRoom 400`. 400 rooms are initialised in **Covigent**.
 
 Expected Outcome:<br>
 The result display shows a success message "Initialize the number of rooms to 400 rooms in the application.".
 
+_Written by: Noorul Azlina_
 #### 5.3.2 Edit room: `editroom`
 
 Edits an existing room in the application.
@@ -345,22 +346,24 @@ _Written by: Yun Qing_
 
 Lists all the rooms in the hotel together with informtion of whether the room is occupied or not.
 
-Format: `listRoom` 
+Format: `listRoom` All the rooms in **Covigent**.
 
 Expected Outcome:<br>
 The result display shows a success message "All rooms are listed.".
 
+_Written by: Noorul Azlina_
 #### 5.3.6 Find the first free room: `findRoom`
 
 Finds the room with the lowest room number that is free for use.
 
-Format: `findRoom`
+Format: `findRoom` The unoccupied room in **Covigent** with the lowest room number will be displayed on UI.
 
 * Finds the room number of least value that can be safely used for accommodation
 
 Expected Outcome:<br>
 The result display shows a success message "Room Number 1 is empty.".
 
+_Written by: Noorul Azlina_
 ### 5.4 Task
 
 This section contains all the commands related to tasks. Scroll down to find out which feature you need!
@@ -499,3 +502,9 @@ _Written by: Yun Qing_
 
 **Q**: Will data be stored in the system after closing the app<br>
 **A**: The data is stored in the hard disk and therefore would not be deleted even if you close the app
+
+**Q**: How do I look at all the rooms and patient when only one is being displayed after commands such as findRoom?
+**A**: Use the command ListRoom for rooms and ListPatient for patients.
+
+_Written by: Noorul Azlina_
+_Written by: Noorul Azlina_
