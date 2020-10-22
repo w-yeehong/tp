@@ -23,8 +23,8 @@ public class ListRoomCommandTest {
     public void setUp() {
         //note: can't have empty patient records since the room list contains the patients
         model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
-        expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), model.getModifiableRoomList(), new TaskList());
+        expectedModel = new ModelManager(model.getPatientRecords(),
+                new UserPrefs(), model.getModifiableRoomList(), new TaskList());
     }
 
     @Test
