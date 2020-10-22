@@ -10,8 +10,8 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.RoomParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.patient.PatientParserUtil;
 
 /**
  * Parses input arguments and creates a new EditRoomCommand object.
@@ -35,7 +35,7 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
         Integer roomToBeEdited;
 
         try {
-            roomToBeEdited = RoomParserUtil.parseRoomNumber(argMultimap.getPreamble().trim());
+            roomToBeEdited = ParserUtil.parsePositiveInteger(argMultimap.getPreamble().trim());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRoomCommand.MESSAGE_USAGE));
         }
@@ -48,7 +48,7 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
 
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
             editRoomDescriptor.setRoomNumber(
-                RoomParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
+                    ParserUtil.parsePositiveInteger(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
         }
 
         if (argMultimap.getValue(PREFIX_PATIENT_NAME).isPresent()) {
@@ -56,7 +56,7 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
             if (patientFieldInput.equals(INPUT_REMOVE_PATIENT)) {
                 editRoomDescriptor.setOccupied(false); //empty the room
             } else {
-                editRoomDescriptor.setPatientName(ParserUtil.parseName(patientFieldInput));
+                editRoomDescriptor.setPatientName(PatientParserUtil.parseName(patientFieldInput));
             }
         }
 

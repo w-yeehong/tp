@@ -1,38 +1,22 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.patient.Age;
-import seedu.address.model.patient.Comment;
-import seedu.address.model.patient.Name;
-import seedu.address.model.patient.PeriodOfStay;
-import seedu.address.model.patient.Phone;
-import seedu.address.model.patient.Temperature;
-import seedu.address.model.patient.TemperatureRange;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_AGE = "twenty-two";
-    private static final String INVALID_TEMPERATURE = "37.h";
-    private static final String INVALID_PERIOD_OF_STAY = "20201919-20191817";
-    private static final String INVALID_TEMP_RANGE = "37.x-3";
-
-    private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_AGE = "22";
-    private static final String VALID_TEMPERATURE = "36.7";
-    private static final String VALID_PERIOD_OF_STAY = "20201001-20201014";
-    private static final String VALID_TEMP_RANGE = "36.7-37.0";
-    private static final String COMMENT = "Is asthmatic";
-
-    private static final String WHITESPACE = " \t\r\n";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -41,8 +25,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
+                ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -55,154 +39,79 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+    public void parsePositiveInteger_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePositiveInteger("10 a"));
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+    public void parsePositiveInteger_negativeInteger_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_NUMBER, () ->
+                ParserUtil.parsePositiveInteger("-1"));
     }
 
     @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+    public void parsePositiveInteger_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_NUMBER, () ->
+                ParserUtil.parsePositiveInteger(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    public void parsePositiveInteger_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(1, ParserUtil.parsePositiveInteger("1"));
+        // Leading and trailing whitespaces
+        assertEquals(1, ParserUtil.parsePositiveInteger("  1  "));
     }
 
     @Test
-    public void parseAge_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAge((String) null));
+    public void arePrefixesPresent() {
+        Prefix prefixOnePresent = mock(Prefix.class);
+        Prefix prefixTwoPresent = mock(Prefix.class);
+        Prefix prefixThreeMissing = mock(Prefix.class);
+
+        ArgumentMultimap argMultimap = mock(ArgumentMultimap.class);
+        when(argMultimap.getValue(prefixOnePresent)).thenReturn(Optional.of("one"));
+        when(argMultimap.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
+        when(argMultimap.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
+
+        // One missing prefix - returns false
+        assertFalse(ParserUtil.arePrefixesPresent(argMultimap, prefixThreeMissing));
+
+        // One present and one missing prefixes - returns false
+        assertFalse(ParserUtil.arePrefixesPresent(argMultimap, prefixOnePresent, prefixThreeMissing));
+
+        // No prefixes - returns true
+        assertTrue(ParserUtil.arePrefixesPresent(argMultimap));
+
+        // Two present prefixes - returns true
+        assertTrue(ParserUtil.arePrefixesPresent(argMultimap, prefixOnePresent, prefixTwoPresent));
     }
 
     @Test
-    public void parseAge_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAge(INVALID_AGE));
+    public void isExactlyOnePrefixPresent() {
+        Prefix prefixOnePresent = mock(Prefix.class);
+        Prefix prefixTwoPresent = mock(Prefix.class);
+        Prefix prefixThreeMissing = mock(Prefix.class);
+
+        ArgumentMultimap argMultimap = mock(ArgumentMultimap.class);
+        when(argMultimap.getValue(prefixOnePresent)).thenReturn(Optional.of("one"));
+        when(argMultimap.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
+        when(argMultimap.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
+
+        // No prefixes - returns false
+        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap));
+
+        // Two present prefixes - returns false
+        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent, prefixTwoPresent));
+
+        // Two present and one missing prefixes - returns false
+        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap,
+                prefixOnePresent, prefixTwoPresent, prefixThreeMissing));
+
+        // One present prefix - returns true
+        assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent));
+
+        // One present and one missing prefixes - returns true
+        assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent, prefixThreeMissing));
     }
-
-    @Test
-    public void parseAge_validValueWithoutWhitespace_returnsAge() throws Exception {
-        Age expectedAge = new Age(VALID_AGE);
-        assertEquals(expectedAge, ParserUtil.parseAge(VALID_AGE));
-    }
-
-    @Test
-    public void parseAge_validValueWithWhitespace_returnsTrimmedAge() throws Exception {
-        String ageWithWhitespace = WHITESPACE + VALID_AGE + WHITESPACE;
-        Age expectedAge = new Age(VALID_AGE);
-        assertEquals(expectedAge, ParserUtil.parseAge(ageWithWhitespace));
-    }
-
-    @Test
-    public void parseTempRange_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTemperatureRange((String) null));
-    }
-
-    @Test
-    public void parseTempRange_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTemperatureRange(INVALID_TEMP_RANGE));
-    }
-
-    @Test
-    public void parseTempRange_validValueWithoutWhitespace_returnsTempRange() throws Exception {
-        TemperatureRange expectedTempRange = new TemperatureRange(VALID_TEMP_RANGE);
-        assertEquals(expectedTempRange, ParserUtil.parseTemperatureRange(VALID_TEMP_RANGE));
-    }
-
-    @Test
-    public void parseTempRange_validValueWithWhitespace_returnsTrimmedTempRange() throws Exception {
-        String tempRangeWithWhitespace = WHITESPACE + VALID_TEMP_RANGE + WHITESPACE;
-        TemperatureRange expectedTempRange = new TemperatureRange(VALID_TEMP_RANGE);
-        assertEquals(expectedTempRange, ParserUtil.parseTemperatureRange(tempRangeWithWhitespace));
-    }
-
-    @Test
-    public void parseTemperature_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTemperature(INVALID_TEMPERATURE));
-    }
-
-    @Test
-    public void parseTemperature_validValueWithoutWhitespace_returnsTemperature() throws Exception {
-        Temperature expectedTemperature = new Temperature(VALID_TEMPERATURE);
-        assertEquals(expectedTemperature, ParserUtil.parseTemperature(VALID_TEMPERATURE));
-    }
-
-    @Test
-    public void parseTemperature_validValueWithWhitespace_returnsTrimmedTemperature() throws Exception {
-        String tempWithWhitespace = WHITESPACE + VALID_TEMPERATURE + WHITESPACE;
-        Temperature expectedTemperature = new Temperature(VALID_TEMPERATURE);
-        assertEquals(expectedTemperature, ParserUtil.parseTemperature(tempWithWhitespace));
-    }
-
-    @Test
-    public void parseTemperature_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTemperature((String) null));
-    }
-
-    @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-    }
-
-    @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
-    }
-
-    @Test
-    public void parsePeriodOfStay_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePeriodOfStay((String) null));
-    }
-
-    @Test
-    public void parsePeriodOfStay_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePeriodOfStay(INVALID_PERIOD_OF_STAY));
-    }
-
-    @Test
-    public void parsePeriodOfStay_validValueWithoutWhitespace_returnsPeriodOfStay() throws Exception {
-        PeriodOfStay expectedPeriodOfStay = new PeriodOfStay(VALID_PERIOD_OF_STAY);
-        assertEquals(expectedPeriodOfStay, ParserUtil.parsePeriodOfStay(VALID_PERIOD_OF_STAY));
-    }
-
-    @Test
-    public void parsePeriodOfStay_validValueWithWhitespace_returnsTrimmedPeriodOfStay() throws Exception {
-        String periodOfStayWithWhitespace = WHITESPACE + VALID_PERIOD_OF_STAY + WHITESPACE;
-        PeriodOfStay expectedPeriodOfStay = new PeriodOfStay(VALID_PERIOD_OF_STAY);
-        assertEquals(expectedPeriodOfStay, ParserUtil.parsePeriodOfStay(periodOfStayWithWhitespace));
-    }
-
-    @Test
-    public void parseComment_null_returnsEmptyComment() {
-        Comment emptyComment = new Comment("-");
-        assertEquals(emptyComment, ParserUtil.parseComment(null));
-    }
-
-    @Test
-    public void parseComment_validComment_returnsComment() {
-        Comment expectedComment = new Comment(COMMENT);
-        assertEquals(expectedComment, ParserUtil.parseComment(COMMENT));
-    }
-
-
 }

@@ -13,7 +13,6 @@ import seedu.address.logic.commands.patient.EditPatientCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Name;
 
@@ -38,7 +37,7 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
 
         Name patientTobeEdited;
         try {
-            patientTobeEdited = ParserUtil.parseName(argMultimap.getPreamble().trim().toLowerCase());
+            patientTobeEdited = PatientParserUtil.parseName(argMultimap.getPreamble().trim().toLowerCase());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPatientCommand.MESSAGE_USAGE));
         }
@@ -47,23 +46,25 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
         }
         EditPatientCommand.EditPatientDescriptor editPatientDescriptor = new EditPatientCommand.EditPatientDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editPatientDescriptor.setName(PatientParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPatientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editPatientDescriptor.setPhone(PatientParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_TEMP).isPresent()) {
-            editPatientDescriptor.setTemperature(ParserUtil.parseTemperature(argMultimap.getValue(PREFIX_TEMP).get()));
+            editPatientDescriptor.setTemperature(
+                    PatientParserUtil.parseTemperature(argMultimap.getValue(PREFIX_TEMP).get()));
         }
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
-            editPatientDescriptor.setAge(ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
+            editPatientDescriptor.setAge(PatientParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
         }
         if (argMultimap.getValue(PREFIX_PERIOD_OF_STAY).isPresent()) {
-            editPatientDescriptor.setPeriodOfStay(ParserUtil
-                    .parsePeriodOfStay(argMultimap.getValue(PREFIX_PERIOD_OF_STAY).get()));
+            editPatientDescriptor.setPeriodOfStay(
+                    PatientParserUtil.parsePeriodOfStay(argMultimap.getValue(PREFIX_PERIOD_OF_STAY).get()));
         }
         if (argMultimap.getValue(PREFIX_COMMENTS).isPresent()) {
-            editPatientDescriptor.setComment(ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENTS).get()));
+            editPatientDescriptor.setComment(
+                    PatientParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENTS).get()));
         }
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {

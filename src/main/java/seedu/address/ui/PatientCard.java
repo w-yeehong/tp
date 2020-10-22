@@ -30,15 +30,7 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label temperature;
-    @FXML
-    private Label periodOfStay;
-    @FXML
-    private Label age;
-    @FXML
-    private Label comment;
 
     /**
      * Creates a {@code PatientCard} with the given {@code Patient} and index to display.
@@ -49,10 +41,6 @@ public class PatientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         temperature.setText("Temperature: " + patient.getTemperature().toString());
-        periodOfStay.setText("Period of stay: " + patient.getPeriodOfStay().toString());
-        phone.setText("Phone number: " + patient.getPhone().value);
-        age.setText("Age: " + patient.getAge().toString());
-        comment.setText("Comment: " + patient.getComment().toString());
     }
 
     @Override

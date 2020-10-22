@@ -3,13 +3,11 @@ package seedu.address.logic.parser.task;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
 
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.task.SearchTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.DateTimeDue;
 
@@ -27,7 +25,7 @@ public class SearchTaskCommandParser implements Parser<SearchTaskCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DUE_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DUE_DATE)
+        if (!ParserUtil.isExactlyOnePrefixPresent(argMultimap, PREFIX_DUE_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchTaskCommand.MESSAGE_USAGE));
         }
@@ -36,13 +34,5 @@ public class SearchTaskCommandParser implements Parser<SearchTaskCommand> {
 
 
         return new SearchTaskCommand(dueAt);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,6 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.DateTimeDue;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
+
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -41,11 +44,16 @@ public class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Task.
      */
     public Task toModelType() throws IllegalValueException {
+        DateTimeDue dateTimeDue;
         try {
-            DateTimeDue dateTimeDue = new DateTimeDue(dueAt);
+            if (dueAt == null) {
+                dateTimeDue = new DateTimeDue(Optional.empty());
+            } else {
+                dateTimeDue = new DateTimeDue(dueAt);
+            }
         } catch (IllegalArgumentException i) {
             throw new IllegalValueException(DATE_WRONG_FORMAT);
         }
-        return new Task(new Description(description), new DateTimeDue(dueAt));
+        return new Task(new Description(description), dateTimeDue);
     }
 }
