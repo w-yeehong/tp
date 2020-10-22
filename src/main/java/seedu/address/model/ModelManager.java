@@ -220,7 +220,7 @@ public class ModelManager implements Model {
         for (int i = 0; i < roomObservableList.size(); i++) {
             Patient patient = roomObservableList.get(i).getPatient();
             if (isPatientAssignedToRoom(patientToEdit.getName()) && patient != null
-                    && patient.isSamePatient(patientToEdit)) {
+                && patient.isSamePatient(patientToEdit)) {
                 Room updatedRoom = roomObservableList.get(i);
                 if (editedPatient == null) {
                     updatedRoom.setOccupied(false);

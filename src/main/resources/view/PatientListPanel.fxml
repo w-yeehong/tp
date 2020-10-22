@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<VBox stylesheets="@../css/ListPanel.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="patientListView" VBox.vgrow="ALWAYS" />
-</VBox>
+<HBox stylesheets="@../css/ListPanel.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <VBox maxWidth="350.0" minWidth="200.0" HBox.hgrow="ALWAYS">
+      <ListView fx:id="patientListView" onMouseClicked="#handleMouseClick" />
+    </VBox>
+    <AnchorPane fx:id="patientDetailsPanelPlaceholder" HBox.hgrow="ALWAYS" />
+  </children>
+</HBox>
