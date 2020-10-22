@@ -154,7 +154,8 @@ Edits an existing patient's details in the application.
 Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`
 
 Additional Information:
-* Edits the patient with the specified `NAME`. The name refers to the name of the patient inputted into the application earlier. The name **must match exactly with the name of the patient**.
+* Edits the patient with the specified `NAME`. 
+* `NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `NAME` is case-insensitive.
@@ -164,11 +165,11 @@ Additional Information:
 * `AGE` should be a positive integer between 0 to 119.
 
 Example(s):
-*  `editpatient john doe p/91234567` Edits the phone number of john doe to be `91234567`.
-*  `editpatient alex t/36.7 a/21 d/20200303-20200315` Edits the temperature, age and period of stay of alex to be `36.7`, `21` and `20200303-20200315` respectively.
+*  `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to `91234567`.
+*  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to `36.7`, `21` and `20200303-20200315` respectively.
 
 Expected Outcome: <br>
-* The result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
+* Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
 * Details panel will show the details of the edited patient.
 
 #### 5.2.4 Search information: `searchpatient`
@@ -206,10 +207,10 @@ Additional Information:
 * This is only one of features of the editroom command. Refer to the full command [here](#532-edit-room-editroom).
 
 Example(s):
-* `editroom 1 p/alex`. Allocates alex to Room #1.
+* `editroom 1 p/alex`. The patient named Alex will be allocated to Room #1.
 
 Expected Outcome: <br>
-* The result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
+* Using the first example, the result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
 Phone: 12345678 Age: 23 Comment: - TaskList: -". 
 * Details panel will show the details of the room with the allocated patient.
 
@@ -249,12 +250,12 @@ Additional Information:
 * Refer [here](#526-allocate-a-patient-to-a-room-editroom) for the instructions on allocating a patient to a room.
 
 Example(s):
-* `editroom 1 r/2 p/alex`. Changes the room number from #1 to #2. Afterwards, remove the previous patient in the room and change it to alex.
-* `editroom 1 p/-`. Removes the patient from the Room #1. 
-* `editroom 1 r/3 p/-`. Changes the room number from #1 to #3. Afterwards, removes the patient from Room #3.
+* `editroom 1 r/2 p/alex`. The room with room number #1 will be changed to #2. Afterwards, the previous patient in room #2 will be replaced with the patient named Alex.
+* `editroom 1 p/-`. The patient in the room with room number #1 will be removed. 
+* `editroom 1 r/3 p/-`. The room with room number #1 will be changed to #3. Afterwards, the previous patient in room #3 will be removed.
 
 Expected Outcome: <br>
-* The result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -". 
+* Using the first example, the result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -". 
 * Details panel will show the details of the newly edited room.
 
 #### 5.3.3 Search by Room Number: `searchroom`
