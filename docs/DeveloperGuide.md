@@ -44,9 +44,9 @@ title: Developer Guide
     A5. [Glossary](#a5-glossary)<br>
     
 --------------------------------------------------------------------------------------------------------------------
-## 1. Preface (Yun Qing)
+## 1. Preface
 
-The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication. The link to the GitHub repository can be found [here](https://github.com/AY2021S1-CS2103T-W12-1/tp).
+The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -136,39 +136,37 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### 3.4 Model Component (Yun Qing)
-
-The `Model` API acts as a facade that handles interaction between different kinds of data in Covigent. These data include user's preferences, patient records, room list and task list. 
-
-The `Model` component,
-* stores a `UserPref` object that represents the user’s preferences.
-* stores a `PatientRecords` object that stores the data of all the patients. 
-* stores a `RoomList` object that stores the data of all the rooms.
-* stores a `TaskList` object that stores the data of all the tasks.
-* exposes unmodifiable `ObservableList<Patient>`, `ObservableList<Room>` and `ObservableList<Task>` which can be observed. This means that the UI can be bound to the lists so that the UI automatically updates when data in the lists changes.
-* does not depend on any of the three components.
-
-The concrete class `ModelManager` implements `Model` and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`. These classes manage the data related to their specific features.
-
-Below is a class diagram for `Model Manager`.
+### 3.4 Model Component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The class diagrams for the data in `ModelManager`, being `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`, can be found below.
+The `Model`,
 
-//to insert class diagrams for userpref, room list, task list and patient records.
+* stores a `UserPref` object that represents the user’s preferences.
+* stores the address book data.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components.
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+</div>
+
 
 ### 3.5 Storage Component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components. 
+
+* The Storage component,
+•	Can save Room and Patient Objects in json format
+•	Reads Room and Patient Objects in json format
 
 ### 3.6 Commons Component
 
@@ -506,9 +504,7 @@ testers are expected to do more *exploratory* testing.
 
 The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components. 
 
-The Storage component,
-•	Can save Room and Patient Objects in json format
-•	Reads Room and Patient Objects in json format
+
 
 The concrete class StorageManager implements Storage and manages the storage for Room and Patient.
 
