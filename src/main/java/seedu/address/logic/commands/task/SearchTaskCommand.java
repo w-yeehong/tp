@@ -14,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.DateTimeDue;
+import seedu.address.model.task.DueDatePredicate;
 import seedu.address.model.task.Task;
 
 /**
@@ -24,7 +25,7 @@ public class SearchTaskCommand extends Command {
     public static final String COMMAND_WORD = "searchtask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches tasks in Covigent. "
-            + "Parameters: "
+            + "\nParameters: "
             + "[" + PREFIX_DUE_DATE + "DUE DATE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DUE_DATE + "20200928 2359";
@@ -35,6 +36,7 @@ public class SearchTaskCommand extends Command {
 
     private final DateTimeDue duedate;
     private ObservableList<Task> tasks;
+    private DueDatePredicate datePredicate;
 
     /**
      * Creates an SearchTaskCommand to Search the specified {@code Task} with {@code DateTimeDue}
@@ -62,6 +64,8 @@ public class SearchTaskCommand extends Command {
             throw new CommandException(MESSAGE_TASK_NOT_FOUND);
         }
 
+        datePredicate = new DueDatePredicate(duedate);
+        model.updateFilteredTaskList(datePredicate);
         return new CommandResult(String.format(MESSAGE_SEARCH_TASK_SUCCESS
                 + getListOutput(taskListWithDesirableResult)));
     }
@@ -74,7 +78,7 @@ public class SearchTaskCommand extends Command {
     public String getListOutput(ArrayList<Task> list) {
         StringBuilder outputString = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
-            outputString.append(String.format("%d.%s\n", i + 1, list.get(i)));
+            outputString.append(String.format("%d. Description: %s\n", i + 1, list.get(i)));
         }
         return outputString.toString();
     }

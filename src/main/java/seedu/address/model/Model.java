@@ -21,6 +21,8 @@ public interface Model {
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
 
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
+
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -141,12 +143,28 @@ public interface Model {
     void setSingleRoom(Room target, Room editedRoom);
 
     /**
+     * Clears the room with the given patient name {@code patientName}.
+     *
+     * @param patientName must be in a room.
+     */
+    void clearRoom(Name patientName);
+
+
+    /**
      * Checks if the given room number is present in the application.
      *
      * @param roomNumber to check if it is in the application.
      * @return Index Of room that is found.
      */
     Index checkIfRoomPresent(Integer roomNumber);
+
+    /**
+     * Updates the room with the new edited patient.
+     *
+     * @param patientToEdit Patient that is to be edited.
+     * @param editedPatient Patient that is edited.
+     */
+    void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient);
 
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
@@ -186,6 +204,14 @@ public interface Model {
     void addTaskToRoom(Task task, Room room);
 
     /**
+     * Adds {@code task}.
+     * The room must exist in {@code CovigentApp}.
+     *
+     * @param task The task to add.
+     */
+    void addTask(Task task);
+
+    /**
      * Deletes {@code task} from {@code room}.
      * The room must exist in Covigent.
      * The task must exist in room.
@@ -205,4 +231,21 @@ public interface Model {
      * @param room The room from which the task should be replaced.
      */
     void setTaskToRoom(Task target, Task editedTask, Room room);
+
+    /**
+     * Deletes {@code task}.
+     * The room must exist in Covigent.
+     *
+     * @param taskToDelete The task to delete.
+     */
+    void deleteTask(Task taskToDelete);
+
+    /**
+     * Sets {@code task}.
+     * The room must exist in Covigent.
+     *
+     * @param taskToEdit The task to edit.
+     * @param editedTask the edited task.
+     */
+    void setTask(Task taskToEdit, Task editedTask);
 }

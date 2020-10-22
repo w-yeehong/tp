@@ -118,7 +118,10 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-
+        if (internalUnmodifiableList.isEmpty()) {
+            builder.append("-");
+            return builder.toString().trim();
+        }
         // TODO: add method to get task details with numbering and indentation; remove numbering from toString()
         int taskIndex = 1;
         for (Task task : internalList) {
@@ -126,7 +129,7 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
             builder.append(taskIndex++);
             builder.append(". ");
             builder.append(task);
-            builder.append("\n");
+            builder.append("\n\n");
         }
 
         return builder.toString().trim();

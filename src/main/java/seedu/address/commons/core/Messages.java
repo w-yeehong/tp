@@ -19,13 +19,13 @@ public class Messages {
 
     // rooms
 
-    public static final String MESSAGE_INVALID_ROOM_NOT_FOUND = "The room number provided is not found";
+    public static final String MESSAGE_INVALID_ROOM_NOT_FOUND = "The room number provided is not found.";
     public static final String MESSAGE_INVALID_ROOM_INDEX = "The room number provided is invalid";
-    public static final String NO_ARGUMENTS_GIVEN = "no arguments are given";
     public static final String NUMBER_OF_ROOMS_GIVEN_IN_DIGITS = "Please give the number of digits in numbers\n"
-            + " Example: addRooms 200";
+            + "Example: addRooms 200";
     public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient has already been assigned a room.\nPlease"
             + " clear patient from the room first.";
+    public static final String MESSAGE_PATIENT_NO_ROOM = "Patient is not assigned to any room yet.";
 
     // tasks
 

@@ -17,8 +17,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.task.DateTimeDue;
-import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
@@ -34,7 +32,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Room> filteredRooms;
-    private final FilteredList<Task> filteredTask;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given patient records, room records and userPrefs.
@@ -42,18 +40,17 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyPatientRecords patientRecords, ReadOnlyUserPrefs userPrefs,
                         ReadOnlyRoomList roomList, ReadOnlyTaskList taskList) {
         super();
-        requireAllNonNull(patientRecords, userPrefs, taskList);
+        requireAllNonNull(patientRecords, userPrefs);
 
         logger.fine("Initializing with Covigent App: " + patientRecords + " and user prefs " + userPrefs);
 
         this.patientRecords = new PatientRecords(patientRecords);
         this.roomList = new RoomList(roomList);
-        this.taskList = new TaskList(taskList);
-        this.taskList.add(new Task(new Description("yes"), new DateTimeDue("20200918")));
         this.userPrefs = new UserPrefs(userPrefs);
+        this.taskList = new TaskList(taskList);
         filteredPatients = new FilteredList<>(this.patientRecords.getPatientList());
         filteredRooms = new FilteredList<>(this.roomList.asUnmodifiableObservableList());
-        filteredTask = new FilteredList<>(this.taskList.getTaskObservableList());
+        filteredTasks = new FilteredList<>(this.taskList.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
@@ -172,30 +169,6 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-
-        return patientRecords.equals(other.patientRecords)
-                && roomList.equals(other.roomList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPatients.equals(other.filteredPatients)
-                && filteredRooms.equals(other.filteredRooms)
-                && filteredTask.equals(other.filteredTask);
-    }
-
     //=========== Room List ========================================================================================
 
     @Override
@@ -221,6 +194,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearRoom(Name patientName) {
+        assert(isPatientAssignedToRoom(patientName));
+        roomList.clearRoom(patientName);
+    }
+
+    @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
         ObservableList<Room> roomObservableList = this.getRoomList();
         Index index = Index.fromZeroBased(0);
@@ -233,6 +212,24 @@ public class ModelManager implements Model {
             }
         }
         return index;
+    }
+
+    @Override
+    public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
+        ObservableList<Room> roomObservableList = this.roomList.getRoomObservableList();
+        for (int i = 0; i < roomObservableList.size(); i++) {
+            Patient patient = roomObservableList.get(i).getPatient();
+            if (isPatientAssignedToRoom(patientToEdit.getName()) && patient != null
+                    && patient.isSamePatient(patientToEdit)) {
+                Room updatedRoom = roomObservableList.get(i);
+                if (editedPatient == null) {
+                    updatedRoom.setOccupied(false);
+                }
+                updatedRoom.setPatient(editedPatient);
+                roomObservableList.set(i, updatedRoom);
+                break;
+            }
+        }
     }
 
     //=========== Filtered RoomList Accessors ==========================================================================
@@ -259,23 +256,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return filteredTask;
-    }
-
-    @Override
     public void updateFilteredRoomList(Predicate<Room> predicate) {
         requireNonNull(predicate);
         filteredRooms.setPredicate(predicate);
 
     }
 
-    @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTask.setPredicate(predicate);
-
-    }
 
     //=========== Tasks ========================================================================================
 
@@ -283,6 +269,13 @@ public class ModelManager implements Model {
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
         roomList.addTaskToRoom(task, room);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        requireAllNonNull(task);
+        taskList.add(task);
+        filteredTasks.setPredicate(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override
@@ -295,5 +288,51 @@ public class ModelManager implements Model {
     public void setTaskToRoom(Task target, Task editedTask, Room room) {
         requireAllNonNull(target, editedTask, room);
         roomList.setTaskToRoom(target, editedTask, room);
+    }
+
+    @Override
+    public void deleteTask(Task taskToDelete) {
+        requireAllNonNull(taskToDelete);
+        taskList.remove(taskToDelete);
+    }
+
+    @Override
+    public void setTask(Task taskToEdit, Task editedTask) {
+        requireAllNonNull(taskToEdit, editedTask);
+        taskList.setTask(taskToEdit, editedTask);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+    //=========== Miscellaneous ========================================================================================
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+
+        return patientRecords.equals(other.patientRecords)
+                && roomList.equals(other.roomList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredRooms.equals(other.filteredRooms);
     }
 }

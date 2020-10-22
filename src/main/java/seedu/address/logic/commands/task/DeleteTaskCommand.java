@@ -28,14 +28,14 @@ public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "deletetask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task from Covigent. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_ROOM_NUMBER + "ROOM NUMBER "
             + PREFIX_TASK_NUMBER + "TASK NUMBER "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_ROOM_NUMBER + "1 "
             + PREFIX_TASK_NUMBER + "3";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Task %1$d deleted from Room %2$d: %3$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Task %1$d deleted from Room %2$d. \nDescription: %3$s";
 
     private final Index roomIndex;
     private final Index taskIndex;
@@ -69,7 +69,7 @@ public class DeleteTaskCommand extends Command {
         }
         Task taskToDelete = tasks.get(taskIndex.getZeroBased());
         assert taskToDelete != null : "The task to delete should never be null.";
-
+        model.deleteTask(taskToDelete);
         model.deleteTaskFromRoom(taskToDelete, targetRoom);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
                 taskIndex.getOneBased(), roomIndex.getOneBased(), taskToDelete));
