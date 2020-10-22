@@ -313,11 +313,11 @@ Format: `initroom NUMBER_OF_ROOMS`
 * Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there
 
 Example(s):
-* `initroom 123`. 123 rooms are initialised in **Covigent**.
-* `initroom 400`. 400 rooms are initialised in **Covigent**.
+* `initroom 123`. 123 rooms are initialised in Covigent.
+* `initroom 400`. 400 rooms are initialised in Covigent.
 
 Expected Outcome: <br>
-The result display shows a success message "Initialise the number of rooms to 400 rooms in the application.".
+* The result display shows a success message "Initialise the number of rooms to 400 rooms in the application.".
 
 _Written by: Noorul Azlina_
 
@@ -389,24 +389,22 @@ _Written by: Yun Qing_
 
 Lists all the rooms in the hotel together with informtion of whether the room is occupied or not.
 
-Format: `listroom` All the rooms in **Covigent**.
+Format: `listroom` All the rooms in Covigent.
 
 Expected Outcome: <br>
-The result display shows a success message "All rooms are listed.".
+* The result display shows a success message "All rooms are listed.".
 
 _Written by: Noorul Azlina_
 
 
-#### 5.3.6 Find the first free room: `findroom`
+#### 5.3.6 Find the first free room: `findemptyroom`
 
 Finds the room with the lowest room number that is free for use.
 
-Format: `findroom` The unoccupied room in **Covigent** with the lowest room number will be displayed on UI.
-
-* Finds the room number of least value that can be safely used for accommodation
+Format: `findemptyroom` The unoccupied room in Covigent with the lowest room number will be displayed on UI.
 
 Expected Outcome: <br>
-The result display shows a success message "Room Number 1 is empty.".
+* The result display shows a success message "Room Number 1 is empty.".
 
 _Written by: Noorul Azlina_
 
@@ -620,17 +618,18 @@ _Written by: Yun Qing_
 
 ## 7. FAQ
 
-**Q**: Why does the output sometimes appear red and sometimes balck?<br>
-**A**: If the command input is given in the wrong format, then the output is given in red. Also the correct format for the particular command is given. 
+**Q**: Why does the output sometimes appear red and sometimes black?<br>
+**A**: If the command input is given in the wrong format, then the output is given in red. Also the correct format for the particular command is given.<br> 
+        
         Example:<br>
         Invalid command format! 
         Please give the number of digits in numbers
         Example: addRooms 200
 
-**Q**: Will data be stored in the system after closing the app<br>
+**Q**: Will data be stored in the system after closing the app?<br>
 **A**: The data is stored in the hard disk and therefore would not be deleted even if you close the app
 
-**Q**: How do I look at all the rooms and patient when only one is being displayed after commands such as findRoom?
-**A**: Use the command ListRoom for rooms and ListPatient for patients.
+**Q**: How do I look at all the rooms and patient when only one is being displayed after commands such as `findroom`?<br>
+**A**: Use the command `listroom` for rooms and `listpatient` for patients.
 
-_Written by: Noorul Azlina_
+_Written by: Noorul Azlina_<br>
