@@ -210,18 +210,21 @@ Phone: 12345678 Age: 23 Comment: - TaskList: -". Details panel will show the det
 
 ### 5.3 Room
 
-#### 5.3.1 Initialize rooms in hotel: `initRooms`
+#### 5.3.1 Initialize rooms in hotel: `initRoom`
 
 Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
 be stored.
 
-Format: `initRooms NUMBER_OF_ROOMS`
+Format: `initRoom NUMBER_OF_ROOMS`
 
-* Adds NUMBER_OF_ROOMS rooms into the hotel system
+* Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there
 
 Example(s):
-* `initRooms 123`
-* `initRooms 400`
+* `initRoom 123`. 123 rooms are initialised in the hotel facility.
+* `initRoom 400`. 400 rooms are initialised in the hotel facility.
+
+Expected Outcome:<br>
+The result display shows a success message "Initialize the number of rooms to 400 rooms in the application.".
 
 #### 5.3.2 Edit room: `editroom`
 
@@ -276,9 +279,12 @@ The result display shows a success message "Room has been found and listed." and
 
 #### 5.3.5 Lists the current rooms: `listRoom`
 
-Lists all the rooms in the hotel.
+Lists all the rooms in the hotel together with informtion of whether the room is occupied or not.
 
-Format: `listRoom`
+Format: `listRoom` 
+
+Expected Outcome:<br>
+The result display shows a success message "All rooms are listed.".
 
 #### 5.3.6 Find the first free room: `findRoom`
 
@@ -287,6 +293,9 @@ Finds the room with the lowest room number that is free for use.
 Format: `findRoom`
 
 * Finds the room number of least value that can be safely used for accommodation
+
+Expected Outcome:<br>
+The result display shows a success message "Room Number 1 is empty.".
 
 ### 5.4 Task
 
@@ -402,5 +411,12 @@ Action | Format, Examples
 
 ## 7. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Covigent home folder.
+**Q**: Why does the output sometimes appear red and sometimes balck?<br>
+**A**: If the command input is given in the wrong format, then the output is given in red. Also the correct format for the particular command is given. 
+        Example:<br>
+        Invalid command format! 
+        Please give the number of digits in numbers
+        Example: addRooms 200
+
+**Q**: Will data be stored in the system after closing the app<br>
+**A**: The data is stored in the hard disk and therefore would not be deleted even if you close the app
