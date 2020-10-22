@@ -169,7 +169,7 @@ The concrete class `ModelManager` implements `Model` and manages the data for Co
 
 Below is a class diagram for `Model Manager`.
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
