@@ -54,6 +54,7 @@ This is what **Covigent** looks like:
 ![Ui](images/Ui_UG.png)
 *Figure 1. The graphical User Interface for **Covigent***
 
+_Written by: MingDe_
 
 ## 2. About this Document
 Welcome to the **Covigent User Guide**! Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
@@ -189,6 +190,11 @@ Example(s):
 *  `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to `91234567`.
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to `36.7`, `21` and `20200303-20200315` respectively.
 
+Expected Outcome: <br>
+* Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
+* Details panel will show the details of the edited patient.
+
+_Written by: MingDe_
 
 #### 5.2.4 Search patients by information: `searchpatient`
 
@@ -230,7 +236,6 @@ Expected Outcome: <br>
 
 Allocates a patient to a room.
 
-
 Format: `editroom ROOM_NUMBER p/PATIENT_NAME`
 
 Additional Information:
@@ -248,6 +253,8 @@ Expected Outcome: <br>
 * Using the first example, the result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
 Phone: 12345678 Age: 23 Comment: - TaskList: -". 
 * Details panel will show the details of the room with the allocated patient.
+
+_Written by: MingDe_
 
 ### 5.3 Room
 
@@ -293,6 +300,8 @@ Example(s):
 Expected Outcome: <br>
 * Using the first example, the result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -". 
 * Details panel will show the details of the newly edited room.
+
+_Written by: MingDe_
 
 #### 5.3.3 Search by Room Number: `searchroom` (Yun Qing)
 
