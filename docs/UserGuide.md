@@ -196,6 +196,7 @@ Allocates a patient to a room.
 
 Format: `editroom ROOM_NUMBER p/PATIENT_NAME`
 
+Additional Information:
 * Allocates a person to the room with the specified `ROOM_NUMBER`.
 * `PATIENT_NAME` must match exactly with the patient name that was inputted into the application.
 * `PATIENT_NAME` is case-insensitive.
@@ -237,6 +238,7 @@ Edits an existing room in the application.
 
 Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
 
+Additional Information:
 * Edits the room with the specified `ROOM_NUMBER`.
 * `PATIENT_NAME` must match exactly with the patient name that was inputted into the application.
 * `PATIENT_NAME` is case-insensitive.
