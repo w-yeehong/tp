@@ -182,7 +182,7 @@ The class diagrams for the data in `ModelManager`, being `UserPrefs`, `PatientRe
 
 ### 3.5 Storage Component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/UML_Storage.png)
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -193,9 +193,12 @@ The Storage component,
  * Reads Room and Patient Objects in json format
  
  ![Structure of the JsonSerializableRoomList](images/JsonSerializableRoomList.png)
- ![Structure of the JsonSerializablePatientList](images/JsonSerialzablePatient.png)
+ Fig of `JsonSerializableRoomList`
+ ![Structure of the JsonSerializablePatientList](images/JsonSerializableRoomList.png)
+ Fig of `JsonSerializablePatientList`
  ![Structure of the JsonSerializableTaskList](images/JsonSerializableTaskList.png)
-  _Written by: Noorul Azlina>_
+ Fig of `JsonSerializableTaskList`
+  _Written by: Noorul Azlina_
 
 ### 3.6 Commons Component
 
@@ -245,13 +248,22 @@ These operations are exposed in the `Model` interface as `Model#addRooms(int num
 
 ## Feature details
 
-* Initialise Room - Initializes the number of rooms in **Covigent** app.
-* List Room - Lists all the rooms in **Covigent** app.
-* Edit Room - Allocates a patient to a room or edits an existing room in the application.
-* Search Room - Searches for the room with the specified room number.
-* Find Empty Room - Finds an empty room with the lowest room number.
+* `initRoomCommand` - Initializes the number of rooms in **Covigent** app.
+* `listRoomCommand` - Lists all the rooms in **Covigent** app.
+* `editRoomCommand` - Allocates a patient to a room or edits an existing room in the application.
+* `searchRoomCommand` - Searches for the room with the specified room number.
+* `findEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
+We will illustrate the progress of one of the above commands for simplicity.
 
+The activity diagram below illustrates the `findEmptyRoom`.
+
+![ActivityDiagramForRoomFeature](images/ActivityDiagramForRoomFeature.png)
+ 
+ The Sequence Diagram for `initRooms` is shown below.
+ ![SequenceDiagramForSequenceDiagram](images/Room_SequenceDiagram.png)
+ 
+ _Written By: Noorul Azlina_
 ## 4.3 Task Feature
 
 ### 4.3.1 Add Task 
