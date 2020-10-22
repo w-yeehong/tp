@@ -74,7 +74,7 @@ Covigent contains the following features:
 
 ### 2.2 About the Guide
 
-This tutorial gives you an overview of the features in **Covigent** and shows you how to get started using **Covigent** 
+This tutorial gives you an overview of the features in **Covigent** and shows you how to get started using **Covigent**.
 
 
 ### 2.3 Formats in the Guide
