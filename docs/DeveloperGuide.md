@@ -169,11 +169,12 @@ The concrete class `ModelManager` implements `Model` and manages the data for Co
 
 Below is a class diagram for `Model Manager`.
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelManagerClassDiagram.png) <br>
+_Figure XX. Class Diagram for Model Component_
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The class diagrams for the data in `ModelManager`, being `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`, can be found below.
+The class diagrams for the data in `ModelManager` which include `PatientRecords`, `RoomList` and `TaskList`, can be found below.
 
 //to insert class diagrams for userpref, room list, task list and patient records.
 
@@ -211,29 +212,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 
-## 4.1 Patient Feature
+### 4.1 Patient Feature
 
-### 4.1.1 Add Patient 
-
-
-
-### 4.1.2 List Patient
+#### 4.1.1 Add Patient 
 
 
 
-### 4.1.3 Edit Patient 
+#### 4.1.2 List Patient
 
 
 
-### 4.1.4 Delete Patient 
+#### 4.1.3 Edit Patient 
+
+**Implementation**
+The following is a detailed explanation of the operations `EditPatientCommand` performs.
+
+**Step 1.** The `EditPatientCommand#execute(Model model)` method is executed and it checks if the `Name` defined when instantiating
+`EditPatientCommand(Name patientToBeEdited, EditPatientDescriptor editPatientDescriptor)` is valid. The `EditPatientDescriptor` holds
+the edited information of the `Patient`.
+
+**Step 2.** A new `Patient` with the updated values will be created and the patient is then searched through `UniquePatientList#internalList`
+using the `Model#hasPatient(Patient patient)` method to check if the patient already exists. If the patient already exists,
+`CommandException` will be thrown with an error message.
+
+**Step 3.** The newly created `Patient` will replace the existing patient object through the `Model#setPatient(Patient target, Patient editedPatient)`
+method.
+
+**Step 4.** A success message with the edited patient will be appended with the `PatientEditCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
+new `CommandResult` will be returned with the message.
+
+#### 4.1.4 Delete Patient 
 
 
-### 4.1.5 Search Patient
+#### 4.1.5 Search Patient
 
 
-## 4.2 Room Feature
+### 4.2 Room Feature
 
-### Proposed Implementation
+#### Proposed Implementation
 
 The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoomList` which reads the Room information Json file, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 * `RoomList#addRooms(int num)` — adds the number of which are said to add together and retains infromation previously stored in each room
@@ -246,7 +262,7 @@ The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoom
 
 These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#addTaskToRoom(Task task, Room room)`, `Model#deleteTaskFromRoom(Task task, Room room)`, `Model#setTaskToRoom(Task target, Task editedTask, Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley. 
 
-## Feature details
+### Feature details
 
 * `initRoomCommand` - Initializes the number of rooms in **Covigent** app.
 * `listRoomCommand` - Lists all the rooms in **Covigent** app.
@@ -255,6 +271,7 @@ These operations are exposed in the `Model` interface as `Model#addRooms(int num
 * `findEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
 We will illustrate the progress of one of the above commands for simplicity.
+
 
 The activity diagram below illustrates the `findEmptyRoom`.
 
@@ -266,16 +283,19 @@ The activity diagram below illustrates the `findEmptyRoom`.
  _Written By: Noorul Azlina_
 ## 4.3 Task Feature
 
-### 4.3.1 Add Task 
+### 4.3 Task Feature
 
 
-### 4.3.2 List Task 
+#### 4.3.1 Add Task 
 
-### 4.3.3 Delete Task 
 
-### 4.3.4 Edit Task 
+#### 4.3.2 List Task 
 
-### 4.3.5 Search Task
+#### 4.3.3 Delete Task 
+
+#### 4.3.4 Edit Task 
+
+#### 4.3.5 Search Task
 
 
 ##BELOW UNDO AND REDO TO BE DELETED, CAN REFERENCE FOR NOW FIRST
