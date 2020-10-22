@@ -169,11 +169,12 @@ The concrete class `ModelManager` implements `Model` and manages the data for Co
 
 Below is a class diagram for `Model Manager`.
 
-
+![Structure of the Model Component](images/ModelManagerClassDiagram.png) <br>
+_Figure XX. Class Diagram for Model Component_
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The class diagrams for the data in `ModelManager`, being `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`, can be found below.
+The class diagrams for the data in `ModelManager` which include `PatientRecords`, `RoomList` and `TaskList`, can be found below.
 
 //to insert class diagrams for userpref, room list, task list and patient records.
 
