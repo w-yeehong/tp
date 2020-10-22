@@ -34,7 +34,7 @@ title: User Guide
         5.4.3  [Edit a task in a room: `edittask`](#543-edit-a-task-in-a-room-edittask)<br>
         5.4.4  [Searches all tasks before the given date: `searchtask`](#544-search-tasks-before-a-date-searchtask)<br>
     5.5  [View help: `help`](#55-view-help-help)<br>
-    5.6  [Exit the application: `exit`](#56-exit-the-application-exit)<br>
+    5.6  [Exit Covgient: `exit`](#56-exit-covigent-exit)<br>
     5.7  [Autosave](#57-autosave)<br>
  6. [Command Summary](#6-command-summary)
  7. [FAQ](#7-faq)
@@ -46,7 +46,7 @@ title: User Guide
 
 Covigent (CG) is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. 
 It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI).
-This means that you operate the application mainly by typing commands into a Command Box.
+This means that you operate Covigent mainly by typing commands into a Command Box.
 If you can type quickly, CG can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
 Interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get started.
 
@@ -85,7 +85,7 @@ application.
 
 1. (*Coming soon*) Download the latest **covigent.jar** from [here](https://github.com).
 
-1. Copy the file to the folder you want to use as the _home folder_ for the application.
+1. Copy the file to the folder you want to use as the _home folder_ for Covigent.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
@@ -93,7 +93,7 @@ application.
 1. Type the command in the command box and press Enter to execute it. <br>
    Some example commands you can try:
 
-   * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named `John Doe` to the application.
+   * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named `John Doe` to Covigent.
 
    * **`editpatient`** `Mary t/36.7 p/91234567` : Updates the temperature and phone number of an individual named `Mary` to 36.7 and 91234567 respectively.
 
@@ -176,7 +176,7 @@ _Written by: Yun Qing_
 
 #### 5.2.3 Edit Patient Details: `editpatient`
 
-Edits an existing patient's details in the application.
+Edits an existing patient's details in Covigent.
 
 Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`
 
@@ -192,8 +192,8 @@ Additional Information:
 * `AGE` should be a positive integer between 0 to 119.
 
 Example(s):
-*  `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to `91234567`.
-*  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to `36.7`, `21` and `20200303-20200315` respectively.
+*  `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to _91234567_.
+*  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
 
 Expected Outcome: <br>
 * Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
@@ -245,7 +245,7 @@ Format: `editroom ROOM_NUMBER p/PATIENT_NAME`
 
 Additional Information:
 * Allocates a person to the room with the specified `ROOM_NUMBER`.
-* `PATIENT_NAME` must match exactly with the patient name that was inputted into the application.
+* `PATIENT_NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
 * `PATIENT_NAME` is case-insensitive.
 * `PATIENT_NAME` is compulsory and must be provided.
 * A room with the `ROOM_NUMBER` must be present.
@@ -284,13 +284,13 @@ The result display shows a success message "Initialize the number of rooms to 40
 _Written by: Noorul Azlina_
 #### 5.3.2 Edit room: `editroom`
 
-Edits an existing room in the application.
+Edits an existing room in Covigent.
 
 Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
 
 Additional Information:
 * Edits the room with the specified `ROOM_NUMBER`.
-* `PATIENT_NAME` must match exactly with the patient name that was inputted into the application.
+* `PATIENT_NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
 * `PATIENT_NAME` is case-insensitive.
 * Remove patient from room by inputting a `-` for `PATIENT_NAME`.
 * At least one of the optional fields must be provided.
@@ -299,7 +299,7 @@ Additional Information:
 
 
 Example(s):
-* `editroom 1 r/2 p/alex`. The room with room number #1 will be changed to #2. Afterwards, the previous patient in room #2 will be replaced with the patient named Alex.
+* `editroom 1 r/2 p/alex`. The room with room number #1 will be changed to #2. Afterwards, the previous patient in room #2 will be replaced with the patient named _Alex_.
 * `editroom 1 p/-`. The patient in the room with room number #1 will be removed. 
 * `editroom 1 r/3 p/-`. The room with room number #1 will be changed to #3. Afterwards, the previous patient in room #3 will be removed.
 
@@ -446,7 +446,7 @@ Example(s):
 
 * `searchtask dd/12/1/2021` Search all tasks before and including 12 January 2021.
 
-Expected Outcome:
+Expected Outcome:<br>
 * The result box displays the message, "Tasks before the due date found.".
 * Tasks before and including 12 January 2021 can now be found in the list of tasks in **Covigent**
 
@@ -456,7 +456,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### 5.6 Exit the application: `exit`
+### 5.6 Exit Covigent: `exit`
+
+Exits Covigent and closes it.
+
+Format: `exit`
+
+Expected Outcome:<br>
+* Covigent closes.
 
 ### 5.7 Autosave
 
