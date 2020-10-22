@@ -55,8 +55,9 @@ This is what **Covigent** looks like:
 *Figure 1. The graphical User Interface for **Covigent***
 
 
-## 2. About this Document
-Welcome to the **Covigent User Guide**! Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
+## 2. About this Document (WaiLok)
+Welcome to the **Covigent User Guide**! 
+Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
 
 ### 2.1 What is in Covigent 
 Covigent contains the following features:
@@ -70,11 +71,11 @@ This tutorial gives you an overview of the features in the **Covigent** and show
 
 ### 2.3 Formats in the guide
 Note the following formatting used in this document:
-1. ![icon](images/infoicon.PNG) This symbol indicates important information.
-2. ![icon](images/commandhighlight.PNG) 
-A grey highlight (called a mark-up) indicates that this is a command
-that can be typed into the command line and executed by the
-application.
+* ![icon](images/infoicon.PNG) This symbol indicates important information.
+
+* ![icon](images/commandhighlight.PNG) 
+A grey highlight (called a mark-up) indicates that this is a parameter or command
+that can be typed into the command line and executed by the **Covigent**.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -190,7 +191,7 @@ Example(s):
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to `36.7`, `21` and `20200303-20200315` respectively.
 
 
-#### 5.2.4 Search patients by information: `searchpatient`
+#### 5.2.4 Search patients by information: `searchpatient` (Wai Lok)
 
 
 Searches the patients that match the given criteria(name or a range of temperature) in Covigent.
@@ -212,7 +213,7 @@ Expected Outcome: <br>
 * Using the second example, the result box displays the message, "Listed patient(s) matching the criteria.".
 * Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in **Covigent**.
 
-#### 5.2.5 List all patients: `listpatient`
+#### 5.2.5 List all patients: `listpatient` (Wai Lok)
 
 Shows a list of all patients in the patient tab.
 
@@ -406,7 +407,7 @@ Example(s):
 * `edittask r/1 t/3 d/Running low on masks and needs to be restocked. dd/12-1-2021` Modifies the third task in Room #1 to have the description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200".
 
 
-#### 5.4.4 Search tasks before a date: `searchtask`
+#### 5.4.4 Search tasks before a date: `searchtask` (Wai Lok)
 
 Search all tasks before a date in **Covigent**.
 
