@@ -5,7 +5,7 @@
    2.1. [What's in Covigent](#21-what-is-in-covigent)<br>
    2.2. [About the Guide](#22-about-the-guide)<br>
    2.3. [Formats in the Guide](#23-formats-in-the-guide)<br>
-1. [Getting Started](#3-getting-started)
+1. [Getting Started](#3-getting-started)<br>
    3.1. [Setting Up](#31-setting-up)<br>
    3.2. [Using Covigent](#32-using-covigent)<br>
 1. [Glossary](#4-glossary)
