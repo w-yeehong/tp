@@ -577,8 +577,9 @@ Exits Covigent and closes it.
 Format: `exit`
 
 Expected Outcome:<br>
-* Covigent closes.
+* Covigent exits and closes.
 
+_Written by: MingDe_
 
 ### 5.7 Autosave
 
