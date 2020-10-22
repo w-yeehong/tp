@@ -5,15 +5,12 @@ import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
 
-import java.util.stream.Stream;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.DateTimeDue;
 import seedu.address.model.task.Description;
@@ -33,26 +30,17 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_ROOM_NUMBER, PREFIX_DUE_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_ROOM_NUMBER)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_ROOM_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
         Description description = TaskParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        // TODO: TaskParserUtil can extend from ParserUtil (patient-related methods can be moved to ParserUtil)
         Index roomNumber = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
         DateTimeDue dueAt = TaskParserUtil.parseDateTimeDue(argMultimap.getValue(PREFIX_DUE_DATE)); // optional
 
         Task task = new Task(description, dueAt);
 
         return new AddTaskCommand(task, roomNumber);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

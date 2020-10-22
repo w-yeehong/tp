@@ -245,7 +245,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Can type fast
 * Is reasonably comfortable using Command Line Interface (CLI) apps
 
-**Value proposition**: 
+**Value proposition**:
 * Covigent is a handy tool for quarantine facility managers to manage the rooms and patients in the quarantine facility with increased productivity.
 * Covigent stores and retrieves information faster than a typical mouse/GUI driven app.
 
@@ -287,7 +287,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 4a1. System displays an error message.
 
   Use case ends.
- 
+
 **Use case: Edit a patient**
 
 **MSS**
@@ -305,7 +305,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 2a1. System displays an error message.
 
   Use case ends.
-  
+
 **Use case: Search a patient**
 
 **MSS**

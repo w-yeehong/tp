@@ -60,6 +60,7 @@ public class AddTaskCommand extends Command {
 
         Room targetRoom = rooms.get(roomIndex.getZeroBased());
         model.addTaskToRoom(taskToAdd, targetRoom);
+        model.addTask(taskToAdd);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
                 roomIndex.getOneBased(), taskToAdd));
     }

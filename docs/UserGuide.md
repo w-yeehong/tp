@@ -40,7 +40,7 @@ Covigent is a desktop app for managing information of quarantined individuals an
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. (*Coming soon*) Download the latest `covigent.jar` from [here](https://github.com).  
+1. (*Coming soon*) Download the latest `covigent.jar` from [here](https://github.com).
 
 1. Copy the file to the folder you want to use as the _home folder_ for the application.
 
@@ -73,7 +73,7 @@ Covigent is a desktop app for managing information of quarantined individuals an
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  
+
 </div>
 
 ### 3.2 Add a patient: `addpatient`
@@ -132,7 +132,7 @@ Format: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
 Examples:
 *  `searchpatient n/john` Searches patients with a name John.
-*  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive. 
+*  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive.
 
 
 ### 3.6 List all patients: `listpatient`
@@ -143,7 +143,7 @@ Format: `listpatient`
 
 ### 3.7 Initialize rooms in hotel: `initRooms`
 
-Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
+Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would
 be stored.
 
 Format: `initRooms NUMBER_OF_ROOMS`
@@ -193,7 +193,7 @@ Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
 Examples:
 * `editroom 1 r/2 p/alex`. Changes the room number from #1 to #2. Afterwards, allocates alex to Room #2.
 * `editroom 1 p/alex`. Allocates alex to Room #1.
-* `editroom 1 p/-`. Removes the patient from the Room #1. 
+* `editroom 1 p/-`. Removes the patient from the Room #1.
 * `editroom 1 r/3 p/-`. Changes the room number from #1 to #3. Afterwards, removes the patient from Room #3.
 
 ### 3.12 Add a task to a room: `addtask`
@@ -214,6 +214,7 @@ Format: `addtask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]`
 Examples:
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
 * `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200" to Room #1.
+
 
 ### 3.13 Delete a task from a room: `deletetask`
 
