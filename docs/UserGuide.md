@@ -1,43 +1,39 @@
----
-layout: page
-title: User Guide
----
-
 # Covigent - User Guide
 
 1. [Introduction](#1-introduction)
-2. [About this Document](#2-about-this-document)<br>
+1. [About this Document](#2-about-this-document)<br>
    2.1 [What's in Covigent](#21-what-is-in-covigent)<br>
-   2.2 [About the guide](#22-about-the-guide)<br>
-   2.3 [Formats in the guide](#23-formats-in-the-guide)<br>
-3. [Getting Started](#3-getting-started)
-4. [Glossary](#4-glossary)
-5. [Features](#5-features)<br>
+   2.2 [About the Guide](#22-about-the-guide)<br>
+   2.3 [Formats in the Guide](#23-formats-in-the-guide)<br>
+1. [Getting Started](#3-getting-started)
+1. [Glossary](#4-glossary)
+1. [Features](#5-features)<br>
     5.1. [Command Format](#51-command-format)<br>
     5.2. [Patients](#52-patients)<br>
-        5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br>
-        5.2.2  [Delete a Patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
-        5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
-        5.2.4  [Search information: `searchpatient`](#524-search-patients-by-information-searchpatient)<br>
-        5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
-        5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
+          5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br>
+          5.2.2  [Delete a Patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
+          5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
+          5.2.4  [Search Patients by Information: `searchpatient`](#524-search-patients-by-information-searchpatient)<br>
+          5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
+          5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
     5.3. [Room](#53-room)<br>
-        5.3.1  [Initialize rooms in hotel: `initRooms`](#531-initialize-rooms-in-hotel-initrooms)<br>
-        5.3.2  [Edit Room: `editroom`](#532-edit-room-editroom)<br>
-        5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br>
-        5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br>
-        5.3.5  [Lists the current rooms: `listRoom`](#535-lists-the-current-rooms-listroom)<br>
-        5.3.6  [Find the first free room: `findRoom`](#536-find-the-first-free-room-findroom)<br>
+          5.3.1  [Initialize rooms in hotel: `initroom`](#531-initialize-rooms-in-hotel-initrooms)<br>
+          5.3.2  [Edit Room: `editroom`](#532-edit-room-editroom)<br>
+          5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br>
+          5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br>
+          5.3.5  [Lists the Current Rooms: `listroom`](#535-lists-the-current-rooms-listroom)<br>
+          5.3.6  [Find the first free room: `findroom`](#536-find-the-first-free-room-findroom)<br>
     5.4 [Task](#54-task)<br>
-        5.4.1  [Add a task to a room: `addtask`](#541-add-a-task-to-a-room-addtask)<br>
-        5.4.2  [Delete a task from a room: `deletetask`](#542-delete-a-task-from-a-room-deletetask)<br>
-        5.4.3  [Edit a task in a room: `edittask`](#543-edit-a-task-in-a-room-edittask)<br>
-        5.4.4  [Searches all tasks before the given date: `searchtask`](#544-search-tasks-before-a-date-searchtask)<br>
-    5.5  [View help: `help`](#55-view-help-help)<br>
-    5.6  [Exit Covgient: `exit`](#56-exit-covigent-exit)<br>
+          5.4.1  [Add a Task to a Room: `addtask`](#541-add-a-task-to-a-room-addtask)<br>
+          5.4.2  [Delete a Task from a Room: `deletetask`](#542-delete-a-task-from-a-room-deletetask)<br>
+          5.4.3  [Edit Task Description or Due Date: `edittask`](#543-edit-task-description-or-due-date-edittask)<br>
+          5.4.4  [Remove Due Date from a Task: `edittask`](#544-remove-due-date-from-a-task-edittask)<br>
+          5.4.5  [Search all Tasks before the Given Date: `searchtask`](#545-search-tasks-before-a-date-searchtask)<br>
+    5.5  [View Help: `help`](#55-view-help-help)<br>
+    5.6  [Exit Covigent: `exit`](#56-exit-covigent-exit)<br>
     5.7  [Autosave](#57-autosave)<br>
- 6. [Command Summary](#6-command-summary)
- 7. [FAQ](#7-faq)
+1. [Command Summary](#6-command-summary)
+1. [FAQ](#7-faq)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -48,17 +44,26 @@ Covigent (CG) is a desktop app for managing information of quarantined individua
 It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI).
 This means that you operate Covigent mainly by typing commands into a Command Box.
 If you can type quickly, CG can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+
 Interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get started.
 
 This is what **Covigent** looks like:
-![Ui](images/Ui_UG.png)
-*Figure 1. The graphical User Interface for **Covigent***
 
-_Written by: MingDe_
+<p align="center">
+    <img src="images/Ui_UG.png" width="600" height="450">
+    <br />
+    <i>Figure 1. The Graphical User Interface for Covigent</i>
+</p>
+
+_Written by: Ming De_
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 2. About this Document
-Welcome to the **Covigent User Guide**! 
-Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
+
+Welcome to the **Covigent User Guide**! Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
 
 ### 2.1 What is in Covigent 
 Covigent contains the following features:
@@ -67,10 +72,14 @@ Covigent contains the following features:
 * Task Features: `addtask`, `deletetask`, `edittask`, `searchtask`.
 * Miscellaneous Features: `help`, `exit`, `autosave`.
 
-### 2.2 About the guide
+
+### 2.2 About the Guide
+
 This tutorial gives you an overview of the features in the **Covigent** and shows you how to get started using the **Covigent** 
 
-### 2.3 Formats in the guide
+
+### 2.3 Formats in the Guide
+
 Note the following formatting used in this document:
 * ![icon](images/infoicon.PNG) This symbol indicates important information.
 
@@ -80,27 +89,42 @@ that can be typed into the command line and executed by the **Covigent**.
 
 _Written by: Wai Lok_
 
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Getting Started
 
-1. Ensure you have Java **11** or above installed in your Computer.
+_Written by: Yee Hong_
 
-1. (*Coming soon*) Download the latest **covigent.jar** from [here](https://github.com).
+If you are tired of lengthy and problematic installation processes, Covigent is perfect for you.
+No matter whether you are using Windows, Mac OS X, or other operating systems, you can set up Covigent in 4 simple steps.
 
-1. Copy the file to the folder you want to use as the _home folder_ for Covigent.
+1. Install _Java 11_ or a later version. The latest version of _Java_ can be found [here](https://java.com/en/download/).
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.<br>
-   ![Ui](images/Ui.png)
+1. Download the latest version of Covigent from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). Look for the file `covigent.jar`.
 
-1. Type the command in the command box and press Enter to execute it. <br>
-   Some example commands you can try:
+1. Copy the file to the folder you want to use as the home folder of Covigent.
 
-   * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named `John Doe` to Covigent.
+1. Double-click on _covigent.jar_ to start Covigent.
 
-   * **`editpatient`** `Mary t/36.7 p/91234567` : Updates the temperature and phone number of an individual named `Mary` to 36.7 and 91234567 respectively.
+Type a command in the command box (see Figure 2) and press Enter to execute it.
 
-1. Refer to the [Features](#3-features) below for details of each command.
+<p align="center">
+    <img src="images/CommandBox.png" width="800" height="100">
+    <br />
+    <i>Figure 2. Command Box of Covigent</i>
+</p>
+
+Some example commands you may try:
+
+   * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named `John Doe` with age `35`, phone number `98765432`, period of stay `20200910-20200924`, and temperature `37.4`.
+   * **`initroom`** `5` : Sets up 5 rooms in the quarantine facility.
+   * **`addtask`** `r/3 d/Restock supplies dd/20201230 2359` : Adds a task to room 3 with description `Restock supplies` and due date `20201230 2359`.
+
+For more details of each command, please refer to the section on [Section 5, Features](#5-features).
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -112,25 +136,29 @@ _Written by: Wai Lok_
 
 _Written by: Yun Qing_
 
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Features
 
 <div markdown="block" class="alert alert-info">
 
+
 ### 5.1 Command Format
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addpatient n/NAME`, `NAME` is a parameter which can be used as `addpatient n/John Doe`.
+* Words in `UPPER_CASE` are the fields to be supplied by the user.<br>
+  e.g. in `addpatient n/NAME`, `NAME` is a field which can be used as `addpatient n/John Doe`.
 
-* Items in square brackets are optional.<br>
+* Fields in square brackets are optional.<br>
   e.g `n/NAME [c/COMMENT]` can be used as `n/John Doe c/Is vegan` or as `n/John Doe`.
 
-* Parameters can be in any order.<br>
+* Fields can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 </div>
+
 
 ### 5.2 Patients
 
@@ -158,6 +186,7 @@ Expected Outcome: <br>
 
 _Written by: Yun Qing_
 
+
 #### 5.2.2 Delete a patient: `deletepatient` 
 
 Deletes the details of the existing patient identified by his/her name from Covigent. 
@@ -176,6 +205,7 @@ Expected Outcome: <br>
 * The deleted patient can no longer be found in the list of patients in Covigent.
 
 _Written by: Yun Qing_
+
 
 #### 5.2.3 Edit Patient Details: `editpatient`
 
@@ -204,14 +234,14 @@ Expected Outcome: <br>
 
 _Written by: MingDe_
 
-#### 5.2.4 Search patients by information: `searchpatient` 
 
+#### 5.2.4 Search Patients by Information: `searchpatient`
 
 Searches the patients that match the given criteria(name or a range of temperature) in Covigent.
 
 Format: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
-Additional Infomation:
+Additional Information:
 
 * Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.
 * The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
@@ -228,6 +258,7 @@ Expected Outcome: <br>
 
 _Written by: Wai Lok_
 
+
 #### 5.2.5 List all patients: `listpatient`
 
 Shows a list of all patients in the patient tab.
@@ -243,6 +274,7 @@ Expected Outcome: <br>
 * The result box displays the message, "All patients are listed.".
 
 _Written by: Wai Lok_
+
 
 #### 5.2.6 Allocate a Patient to a Room: `editroom`
 
@@ -268,11 +300,12 @@ Phone: 12345678 Age: 23 Comment: - TaskList: -".
 
 _Written by: MingDe_
 
+
 ### 5.3 Room
 
 This section contains all the commands related to rooms. Scroll down to find out which feature you need!
 
-#### 5.3.1 Initialize rooms in hotel: `initRoom`
+#### 5.3.1 Initialize Rooms in Hotel: `initRoom`
 
 Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
 be stored.
@@ -285,10 +318,12 @@ Example(s):
 * `initRoom 123`. 123 rooms are initialised in **Covigent**.
 * `initRoom 400`. 400 rooms are initialised in **Covigent**.
 
-Expected Outcome:<br>
+Expected Outcome: <br>
 The result display shows a success message "Initialize the number of rooms to 400 rooms in the application.".
 
 _Written by: Noorul Azlina_
+
+
 #### 5.3.2 Edit room: `editroom`
 
 Edits an existing room in Covigent.
@@ -316,6 +351,7 @@ Expected Outcome: <br>
 
 _Written by: MingDe_
 
+
 #### 5.3.3 Search by Room Number: `searchroom` 
 
 Searches for the room details with the specified room number.
@@ -330,6 +366,7 @@ Expected Outcome:<br>
 * The room with the specified room number is shown in the room details panel.
 
 _Written by: Yun Qing_
+
 
 #### 5.3.4 Search for Room with Patient: `searchroom` 
 
@@ -349,16 +386,19 @@ Expected Outcome: <br>
 
 _Written by: Yun Qing_
 
-#### 5.3.5 Lists the current rooms: `listRoom`
+
+#### 5.3.5 List the current Rooms: `listRoom`
 
 Lists all the rooms in the hotel together with informtion of whether the room is occupied or not.
 
 Format: `listRoom` All the rooms in **Covigent**.
 
-Expected Outcome:<br>
+Expected Outcome: <br>
 The result display shows a success message "All rooms are listed.".
 
 _Written by: Noorul Azlina_
+
+
 #### 5.3.6 Find the first free room: `findRoom`
 
 Finds the room with the lowest room number that is free for use.
@@ -367,10 +407,12 @@ Format: `findRoom` The unoccupied room in **Covigent** with the lowest room numb
 
 * Finds the room number of least value that can be safely used for accommodation
 
-Expected Outcome:<br>
+Expected Outcome: <br>
 The result display shows a success message "Room Number 1 is empty.".
 
 _Written by: Noorul Azlina_
+
+
 ### 5.4 Task
 
 This section contains all the commands related to tasks. Scroll down to find out which feature you need!
@@ -381,59 +423,121 @@ Adds a task to a room.
 
 Format: `addtask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]`
 
-* Adds a task with the specified description to the room with the specified room number.
-* Due date is optional and defaults to "-" if not provided.
-* Due date can be in the any of the following formats:
+Additional Information:
+* Adds a task to a room with the specified `ROOM_NUMBER`.
+* `ROOM_NUMBER` refers to the number displayed beside each room under the list of rooms.
+E.g. For Room #5, the `ROOM_NUMBER` is 5.
+* A room with the `ROOM_NUMBER` must be present in Covigent.
+* `DUE_DATE` is optional and defaults to `-` if not provided.
+* `DUE_DATE` can be in the any of the following formats:
   * `YYYYMMDD` (e.g. 20210131).
   * `YYYYMMDD HHmm` (e.g. 20210131 2359).
-  * `D-M-YYYY` (e.g. 31-1-2021 or 31-01-2021).
-  * `D-M-YYYY HHmm` (e.g. 31-1-2021 2359 or 31-01-2021 2359).
-* If the time is not given for a due date, it defaults to 0000 (12am).
+  * `D/M/YYYY` (e.g. 31/1/2021 or 31/01/2021).
+  * `D/M/YYYY HHmm` (e.g. 31/1/2021 2359 or 31/01/2021 2359).
+* If you do not provide the time for a `DUE_DATE`, it defaults to `0000` (12am).
 
 Example(s):
-* `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
-* `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200" to Room #1.
+* `addtask r/5 d/Remind Alice to change bedsheets.` A task with description _Remind Alice to change bedsheets._ is added to Room #5.
+* `addtask r/1 d/Running low on masks and needs to be restocked. dd/12/1/2021` A task with description _Running low on masks and needs to be restocked._ and due date _12 Jan 2021 0000_ is added to Room #1.
+
+Expected Outcome: <br>
+* Using the first example, the result box displays the message _New Task added to Room 5. Description: Remind Alice to change bedsheets. Due Date: -_.
+* The new task can now be found in the Room #5.
+* The new task can now be found in the list of tasks in Covigent.
+
+_Written by: Yee Hong_
 
 
 #### 5.4.2 Delete a task from a room: `deletetask`
 
-Deletes a task from a room.
+Deletes an existing task from a room.
 
 Format: `deletetask r/ROOM_NUMBER t/TASK_NUMBER`
 
-* Deletes the task with the `TASK_NUMBER` from the room with the `ROOM_NUMBER`.
-* A room with the `ROOM_NUMBER` must be present.
+Additional Information:
+* Deletes a task with the `TASK_NUMBER` from the room with the `ROOM_NUMBER`.
+* `ROOM_NUMBER` refers to the number displayed beside each room under the list of rooms.
+E.g. For "Room #5", the `ROOM_NUMBER` is 5.
+* A room with the `ROOM_NUMBER` must be present in Covigent.
+* `TASK_NUMBER` refers to the number displayed beside each task in the details panel for rooms.
+E.g. For "3. Remind Alice to change bedsheets.", the `TASK_NUMBER` is 3.
 * A task with the `TASK_NUMBER` must be present in the room.
 
 Example(s):
-* `deletetask r/1 t/3` Deletes the third task of Room #1.
+* `deletetask r/1 t/3` The third task (Task 3) of Room 1 is deleted.
 
-#### 5.4.3 Edit a task in a room: `edittask`
+Expected Outcome: <br>
+* The result box displays the message _Task 3 deleted from Room 1._, followed by the description and due date of Task 3.
+* Task 3 is no longer in Room #1.
+* For tasks that come after Task 3, the `TASK_NUMBER` is decreased by 1.
+E.g. The previous Task 4 will become Task 3.
+* Task 3 is no longer in the list of tasks in Covigent.
 
-Edits a task in a room.
+_Written by: Yee Hong_
+
+
+#### 5.4.3 Edit Task Description or Due Date: `edittask`
+
+Edits the description or due date of an existing task in a room.
 
 Format: `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]`
 
+Additional Information:
 * Edits the task with the `TASK_NUMBER` in the room with the `ROOM_NUMBER`.
-
-* Remove patient from room by inputting a `-` for `PATIENT_NAME`.
 * At least one of the optional fields must be provided.
-* A room with the `ROOM_NUMBER` must be present.
+* Existing values will be updated to the input values.
+* `ROOM_NUMBER` refers to the number displayed beside each room under the list of rooms.
+E.g. For "Room #5", the `ROOM_NUMBER` is 5.
+* A room with the `ROOM_NUMBER` must be present in Covigent.
+* `TASK_NUMBER` refers to the number displayed beside each task in the details panel for rooms.
+E.g. For "3. Remind Alice to change bedsheets.", the `TASK_NUMBER` is 3.
 * A task with the `TASK_NUMBER` must be present in the room.
-* If "-" is provided for due date, the original due date value will be cleared.
-* Due date can be in the any of the following formats:
+* `DUE_DATE` can be in the any of the following formats:
   * `YYYYMMDD` (e.g. 20210131).
   * `YYYYMMDD HHmm` (e.g. 20210131 2359).
-  * `D-M-YYYY` (e.g. 31-1-2021 or 31-01-2021).
-  * `D-M-YYYY HHmm` (e.g. 31-1-2021 2359 or 31-01-2021 2359).
-* If the time is not given for a due date, it defaults to 0000 (12am).
+  * `D/M/YYYY` (e.g. 31/1/2021 or 31/01/2021).
+  * `D/M/YYYY HHmm` (e.g. 31/1/2021 2359 or 31/01/2021 2359).
+* If you do not provide the time for a `DUE_DATE`, it defaults to `0000` (12am).
 
 Example(s):
-* `edittask r/5 t/1 dd/-` Removes the due date from the first task in Room #5.
-* `edittask r/1 t/3 d/Running low on masks and needs to be restocked. dd/12-1-2021` Modifies the third task in Room #1 to have the description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200".
+* `edittask r/3 t/1 d/Return a call to the patient. dd/12/1/2021 1500` The description and due date of the first task (Task 1) in Room #3 are updated to _Return a call to the patient._ and _12 Jan 2021 1500_ respectively.
+* `edittask r/2 t/2 dd/12-1-2021` The due date for the second task (Task 2) of Room #2 is updated to _12 Jan 2021 0000_.
+
+Expected Outcome: <br>
+* Using the first example, the result box displays the message _Task 1 edited from Room 3. Description: Return a call to the patient. Due Date: 12 Jan 2021 1500_.
+* The details panel for Room #3 shows the updated description and due date of Task 1.
+* The list of tasks in Covigent shows the updated description and due date of Task 1.
+
+_Written by: Yee Hong_
 
 
-#### 5.4.4 Search tasks before a date: `searchtask` 
+#### 5.4.4 Remove Due Date from a Task: `edittask`
+
+Removes a due date from a task in a room.
+
+Format: `edittask r/ROOM_NUMBER t/TASK_NUMBER dd/-`
+
+Additional Information:
+* Removes the due date from the task with the `TASK_NUMBER` in the room with the `ROOM_NUMBER`.
+* Existing due date will be set to `-`.
+* `ROOM_NUMBER` refers to the number displayed beside each room under the list of rooms.
+E.g. For "Room #5", the `ROOM_NUMBER` is 5.
+* A room with the `ROOM_NUMBER` must be present in Covigent.
+* `TASK_NUMBER` refers to the number displayed beside each task in the details panel for rooms.
+* This is only one feature of the `edittask` command. Refer to the full command [here](#543-edit-task-description-or-due-date-edittask).
+
+Example(s):
+* `edittask r/3 t/1 dd/-` The due date of the first task (Task 1) in Room #3 is removed, i.e. set to `-`.
+
+Expected Outcome: <br>
+* The result box displays the message _Task 1 edited from Room 3._ followed by the current description of Task 1 and _Due Date: -_.
+* The details panel for Room #3 shows the updated description and due date of Task 1.
+* The list of tasks in Covigent shows the updated description and due date of Task 1.
+
+_Written by: Yee Hong_
+
+
+#### 5.4.5 Search Tasks before a Given Date: `searchtask`
 
 Search all tasks before a date in Covigent.
 
@@ -459,11 +563,13 @@ Expected Outcome:<br>
 
 _Written by: Wai Lok_
 
+
 ### 5.5 View help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
+
 
 ### 5.6 Exit Covigent: `exit`
 
@@ -474,9 +580,12 @@ Format: `exit`
 Expected Outcome:<br>
 * Covigent closes.
 
+
 ### 5.7 Autosave
 
 Covigent data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -498,12 +607,15 @@ Action | Format, Examples
 **Find Empty Room** | `findemptyroom` <br>
 **Add Task to Room** | `addtask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br> e.g., addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021 
 **Delete Task from Room** | `deletetask r/ROOM_NUMBER t/TASK_NUMBER` <br> e.g., deletetask r/1 t/3
-**Edit Task in Room** | `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]` <br> e.g., edittask r/5 t/1 dd/-
+**Edit Task Description or Due Date** | `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]` <br> e.g., edittask r/1 t/3 dd/12-1-2021 1500
+**Remove Due Date from a Task** | `edittask r/ROOM_NUMBER t/TASK_NUMBER dd/-` <br> e.g., edittask r/1 t/3 dd/-
 **Search Task** | `searchtask dd/DUE_DATE` <br> e.g., searchtask dd/12-1-2021
 **Help** | `help`
 **Exit** | `exit`
 
 _Written by: Yun Qing_
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -522,5 +634,4 @@ _Written by: Yun Qing_
 **Q**: How do I look at all the rooms and patient when only one is being displayed after commands such as findRoom?
 **A**: Use the command ListRoom for rooms and ListPatient for patients.
 
-_Written by: Noorul Azlina_
 _Written by: Noorul Azlina_
