@@ -6,7 +6,10 @@ title: User Guide
 # Covigent - User Guide
 
 1. [Introduction](#1-introduction)
-2. [About this Document](#2-about-this-document)
+2. [About this Document](#2-about-this-document)<br>
+   2.1 [What's in Covigent](#21-what-is-in-covigent)<br>
+   2.2 [About the guide](#22-about-the-guide)<br>
+   2.3 [Formats in the guide](#23-formats-in-the-guide)<br>
 3. [Getting Started](#3-getting-started)
 4. [Glossary](#4-glossary)
 5. [Features](#5-features)<br>
@@ -15,7 +18,7 @@ title: User Guide
         5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br>
         5.2.2  [Delete a Patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
         5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
-        5.2.4  [Search information: `searchpatient`](#524-search-information-searchpatient)<br>
+        5.2.4  [Search information: `searchpatient`](#524-search-patient-by-information-searchpatient)<br>
         5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
         5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
     5.3. [Room](#53-room)<br>
@@ -37,7 +40,6 @@ title: User Guide
  7. [FAQ](#7-faq)
 
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
@@ -52,9 +54,27 @@ This is what **Covigent** looks like:
 ![Ui](images/Ui_UG.png)
 *Figure 1. The graphical User Interface for **Covigent***
 
---------------------------------------------------------------------------------------------------------------------
 
 ## 2. About this Document
+Welcome to the `Covigent User Guide`! Choose a link in the `feature` section, get a step-by-step instruction, and understand how to use `Covigent`. 
+
+### 2.1 What is in Covigent 
+Covigent contains the following features:
+* Patient Features: `addpatient`, `deletepatient`, `editpatient`, `searchpatient`, `listpatient`.
+* Room Features: `initroom`, `editroom`, `searchroom`, `listroom`, `findemptyroom`.
+* Task Features: `addtask`, `deletetask`, `edittask`, `searchtask`.
+* Miscellaneous Features: `help`, `exit`, `autosave`.
+
+### 2.2 About the guide
+This tutorial gives you an overview of the features in the `Covigent` and shows you how to get started using the `Covigent` 
+
+### 2.3 Formats in the guide
+Note the following formatting used in this document:
+1. ![icon](images/infoicon.PNG) This symbol indicates important information.
+2. ![icon](images/commandhighlight.PNG) 
+A grey highlight (called a mark-up) indicates that this is a command
+that can be typed into the command line and executed by the
+application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -62,7 +82,7 @@ This is what **Covigent** looks like:
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. (*Coming soon*) Download the latest `covigent.jar` from [here](https://github.com).  
+1. (*Coming soon*) Download the latest `covigent.jar` from [here](https://github.com).
 
 1. Copy the file to the folder you want to use as the _home folder_ for the application.
 
@@ -103,7 +123,7 @@ This is what **Covigent** looks like:
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  
+
 </div>
 
 ### 5.2 Patients
@@ -168,13 +188,14 @@ Example(s):
 *  `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to `91234567`.
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to `36.7`, `21` and `20200303-20200315` respectively.
 
+
+#### 5.2.4 Search patients by information: `searchpatient`
+
 Expected Outcome: <br>
 * Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
 * Details panel will show the details of the edited patient.
 
-#### 5.2.4 Search information: `searchpatient`
-
-Searches the patients that matches the given criteria in the application.
+Searches the patients that match the given criteria in the application.
 
 Format: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
@@ -183,10 +204,12 @@ Format: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
 Example(s):
 *  `searchpatient n/john` Searches patients with a name John.
-*  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive. 
+*  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive.
+
 
 
 #### 5.2.5 List all patients: `listpatient`
+
 
 Shows a list of all patients in the patient tab.
 
@@ -195,6 +218,7 @@ Format: `listpatient`
 #### 5.2.6 Allocate a Patient to a Room: `editroom`
 
 Allocates a patient to a room.
+
 
 Format: `editroom ROOM_NUMBER p/PATIENT_NAME`
 
@@ -248,6 +272,7 @@ Additional Information:
 * At least one of the optional fields must be provided.
 * A room with the `ROOM_NUMBER` must be present.
 * Refer [here](#526-allocate-a-patient-to-a-room-editroom) for the instructions on allocating a patient to a room.
+
 
 Example(s):
 * `editroom 1 r/2 p/alex`. The room with room number #1 will be changed to #2. Afterwards, the previous patient in room #2 will be replaced with the patient named Alex.
@@ -329,6 +354,7 @@ Example(s):
 * `addtask d/Remind Alice to change bedsheets. r/5` Adds a task with description "Remind Alice to change bedsheets." to Room #5.
 * `addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021` Adds a task with description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200" to Room #1.
 
+
 #### 5.4.2 Delete a task from a room: `deletetask`
 
 Deletes a task from a room.
@@ -366,7 +392,9 @@ Example(s):
 * `edittask r/5 t/1 dd/-` Removes the due date from the first task in Room #5.
 * `edittask r/1 t/3 d/Running low on masks and needs to be restocked. dd/12-1-2021` Modifies the third task in Room #1 to have the description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200".
 
+
 #### 5.4.4 Search tasks before a date: `searchtask`
+
 
 Search all tasks before a date.
 
@@ -375,11 +403,11 @@ Format: `searchtask dd/DUE_DATE`
 * Due date can be in the any of the following formats:
   * `YYYYMMDD` (e.g. 20210131).
   * `YYYYMMDD HHmm` (e.g. 20210131 2359).
-  * `D-M-YYYY` (e.g. 31-1-2021 or 31-01-2021).
-  * `D-M-YYYY HHmm` (e.g. 31-1-2021 2359 or 31-01-2021 2359).
+  * `D/M/YYYY` (e.g. 31/1/2021 or 31/01/2021).
+  * `D/M/YYYY HHmm` (e.g. 31/1/2021 2359 or 31/01/2021 2359).
 
 Example(s):
-* `searchtask dd/12-1-2021` Search all tasks before 12-1-2021.
+* `searchtask dd/12/1/2021` Search all tasks before 12/1/2021.
 
 ### 5.5 View help: `help`
 

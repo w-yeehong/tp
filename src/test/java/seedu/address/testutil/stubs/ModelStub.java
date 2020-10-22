@@ -163,12 +163,27 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return null;
+    }
+
+    @Override
     public void updateFilteredRoomList(Predicate<Room> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+
+    }
+
     public void addTaskToRoom(Task task, Room room) {
         throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addTask(Task task) {
+
     }
 
     @Override
@@ -179,6 +194,16 @@ public class ModelStub implements Model {
     @Override
     public void setTaskToRoom(Task target, Task taskToEdit, Room room) {
         throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteTask(Task taskToDelete) {
+
+    }
+
+    @Override
+    public void setTask(Task taskToEdit, Task editedTask) {
+
     }
 
 }
