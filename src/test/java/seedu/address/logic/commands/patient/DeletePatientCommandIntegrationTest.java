@@ -21,7 +21,8 @@ public class DeletePatientCommandIntegrationTest {
 
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
     //room list -> [room 7, Alice; room 8, Benson; room 10, null]
-    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
+    private Model model =
+            new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
 
     @Test
     public void execute_deletePatientInRoom_success() {
