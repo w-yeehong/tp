@@ -1,3 +1,8 @@
+---
+layout: page
+title: Developer Guide
+---
+
 # Covigent - Developer Guide
 1. [Preface](#1-preface)
 2. [Setting Up](#2-setting-up)
@@ -43,7 +48,7 @@
 
 The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication. The link to the GitHub repository can be found [here](https://github.com/AY2021S1-CS2103T-W12-1/tp).
 
-_Written by: Yun Qing_ 
+ _Written by: Yun Qing_ 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -101,10 +106,8 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-**API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts inclduing `CommandBox`, `ResultDisplay`, `PatientListPanel`, `RoomListPanel` , `RoomDetailPanel` `TaskListPanel`, `StatusBarFooter`. These, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -113,52 +116,48 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+Below is a class diagram for `Ui`
+
+**API** :
+[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+_Written by: WaiLok_
+
 ### 3.3 Logic Component
 
-The `Logic` component is the "brains" of Covigent. While the `Ui` defines the GUI and `Model` defines in-memory data,
-the `Logic` component does most of the heavy-lifting in terms of deciding what to change within the `Model` and what to 
-return to the `Ui`.<br>
-The diagram below shows the structure of the `Logic` component.
-
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
-*Figure 4. Structure of the Logic Component*
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. Once a user input is obtained from the GUI, `Logic` uses the `CovigentAppParser` class to parse the users' commands
-and return a `Command` object.
-1. The `Command` is executed by `LogicManager`.
-1. Depending on the command input by the user, it may mutate the `Model`, such as adding a new patient, room or task.
-1. The result of the command execution is encapsulated as a `CommandResult` that is returned to the `Ui`.
-1. These `CommandResults` can instruct the `Ui` to perform certain actions, such as displaying help or error messages to the user.
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. This results in a `Command` object which is executed by the `LogicManager`.
+1. The command execution can affect the `Model` (e.g. adding a person).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("delete alex`.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-*Figure 5. Interactions inside the `Logic` Component for the `delete alex` Command*
-
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-<br>
-_Written by: Ming De_ 
 
 ### 3.4 Model Component
 
 The `Model` API acts as a facade that handles interaction between different kinds of data in Covigent. These data include user's preferences, patient records, room list and task list. 
 
 The `Model` component,
- * stores a `UserPref` object that represents the user’s preferences.
- * stores a `PatientRecords` object that stores the data of all the patients. 
- * stores a `RoomList` object that stores the data of all the rooms.
- * stores a `TaskList` object that stores the data of all the tasks.
- * exposes unmodifiable `ObservableList<Patient>`, `ObservableList<Room>` and `ObservableList<Task>` which can be observed. This means that the UI can be bound to the lists so that the UI automatically updates when data in the lists changes.
- * does not depend on any of the three components.
- 
- The concrete class `ModelManager` implements `Model` and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`. These classes manage the data related to their specific features. 
- 
- Below is a class diagram for `Model Manager`.
+  * stores a `UserPref` object that represents the user’s preferences.
+  * stores a `PatientRecords` object that stores the data of all the patients. 
+  * stores a `RoomList` object that stores the data of all the rooms.
+  * stores a `TaskList` object that stores the data of all the tasks.
+  * exposes unmodifiable `ObservableList<Patient>`, `ObservableList<Room>` and `ObservableList<Task>` which can be observed. This means that the UI can be bound to the lists so that the UI automatically updates when data in the lists changes.
+  * does not depend on any of the three components.
+
+The concrete class `ModelManager` implements `Model` and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`. These classes manage the data related to their specific features. 
+
+Below is a class diagram for `Model Manager`.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -168,9 +167,10 @@ The class diagrams for the data in `ModelManager`, being `UserPrefs`, `PatientRe
 
 //to insert class diagrams for userpref, room list, task list and patient records.
 
-_Written by: Yun Qing_ 
+ _Written by: Yun Qing_ 
 
-### 3.5 Storage Component
+
+### 3.5 Storage Component _Written by: Noorul Azlina>_
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -178,9 +178,9 @@ _Written by: Yun Qing_
 
 The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components. 
 
-* The Storage component,
-•	Can save Room and Patient Objects in json format
-•	Reads Room and Patient Objects in json format
+The Storage component,
+ * Can save Room and Patient Objects in json format
+ * Reads Room and Patient Objects in json format
 
 ### 3.6 Commons Component
 
@@ -215,21 +215,26 @@ This section describes some noteworthy details on how certain features are imple
 
 ## 4.2 Room Feature
 
-### 4.2.1 Initialise Room 
+### Proposed Implementation
 
+The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoomList` which reads the Room information Json file, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+* `RoomList#addRooms(int num)` — adds the number of which are said to add together and retains infromation previously stored in each room
+* `RoomList#containsRoom(Room toCehck)` - checks whether the given room exists
+* `RoomList#addTaskToRoom(Task task, Room room)` — adds task to the room given.
+* `RoomList#deletesTaskFromRoom(Task task, Room romm)` — deletes task from room given
+* `RoomList#setTaskToRoom(target, editedTask, room)` - sets task to room given
+* `RoomList#clearRoom(Name patientName)` - removes patient from the room
+* `RoomList#setSingleRoom(Room target, Room editedRoom)` - sets the editedRoom to the target room
 
-### 4.2.2 List Room 
+These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#addTaskToRoom(Task task, Room room)`, `Model#deleteTaskFromRoom(Task task, Room room)`, `Model#setTaskToRoom(Task target, Task editedTask, Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley. 
 
+## Feature details
 
-
-### 4.2.3 Edit Room 
-
-
-### 4.2.4 Search Room 
-
-
-
-### 4.2.5 Find Empty Room 
+* Initialise Room - Initializes the number of rooms in **Covigent** app.
+* List Room - Lists all the rooms in **Covigent** app.
+* Edit Room - Allocates a patient to a room or edits an existing room in the application.
+* Search Room - Searches for the room with the specified room number.
+* Find Empty Room - Finds an empty room with the lowest room number.
 
 
 ## 4.3 Task Feature
@@ -366,7 +371,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Can type fast
 * Is reasonably comfortable using Command Line Interface (CLI) apps
 
-**Value proposition**: 
+**Value proposition**:
 * Covigent is a handy tool for quarantine facility managers to manage the rooms and patients in the quarantine facility with increased productivity.
 * Covigent stores and retrieves information faster than a typical mouse/GUI driven app.
 
@@ -408,7 +413,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 4a1. System displays an error message.
 
   Use case ends.
- 
+
 **Use case: Edit a patient**
 
 **MSS**
@@ -426,7 +431,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 2a1. System displays an error message.
 
   Use case ends.
-  
+
 **Use case: Search a patient**
 
 **MSS**

@@ -4,14 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.patient.Patient;
+import seedu.address.model.task.Task;
 
 /**
- * An UI component that displays information of a {@code Patient}.
+ * An UI component that displays information of a {@code Task}.
  */
-public class PatientCard extends UiPart<Region> {
+public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "PatientListCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -21,26 +21,28 @@ public class PatientCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on CovigentApp level 4</a>
      */
 
-    public final Patient patient;
+    public final Task task;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
-    @FXML
     private Label id;
     @FXML
-    private Label temperature;
+    private Label description;
+    @FXML
+    private Label duedate;
 
     /**
-     * Creates a {@code PatientCard} with the given {@code Patient} and index to display.
+     * Create a Task Card Object.
+     * @param task
+     * @param displayedIndex
      */
-    public PatientCard(Patient patient, int displayedIndex) {
+    public TaskCard(Task task, int displayedIndex) {
         super(FXML);
-        this.patient = patient;
+        this.task = task;
         id.setText(displayedIndex + ". ");
-        name.setText(patient.getName().fullName);
-        temperature.setText("Temperature: " + patient.getTemperature().toString());
+        description.setText(task.getDescription().toString());
+        duedate.setText(task.getDueAt().toString());
     }
 
     @Override
@@ -51,13 +53,13 @@ public class PatientCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PatientCard)) {
+        if (!(other instanceof TaskCard)) {
             return false;
         }
 
         // state check
-        PatientCard card = (PatientCard) other;
+        TaskCard card = (TaskCard) other;
         return id.getText().equals(card.id.getText())
-                && patient.equals(card.patient);
+                && task.equals(card.task);
     }
 }

@@ -12,6 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.TaskList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListPatientCommand.
@@ -23,8 +24,10 @@ public class ListPatientCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
-        expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
+        model = new ModelManager(getTypicalPatientRecords(),
+                new UserPrefs(), new RoomList(), new TaskList());
+        expectedModel =
+                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
     }
 
     @Test
