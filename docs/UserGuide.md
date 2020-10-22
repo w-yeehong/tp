@@ -112,7 +112,7 @@ This section contains all the commands related to patients. Scroll down to find 
 
 #### 5.2.1 Add a patient: `addpatient`
 
-You can use this command to add the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
+Adds the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
 
 Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
 
@@ -127,7 +127,8 @@ Example(s):
 * `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named Betsy Crowe with temperature 36.5, period of stay from 1 October 2020 to 14 October 2020, phone number 91234567, age 19 and comment is added to Covigent.
 
 Expected Outcome: <br>
-The result display shows a success message "New patient added: John Doe" and the new details of the patient. The new patient can now be found in the patient panel in Covigent.
+* Using the first example, the result box displays the message, "New patient added: John Doe Temperature: 37.4 Period of stay: 10 Sep 2020 to 24 Sep 2020 Phone: 98765432 Age: 35 Comment: -".
+* The new patient can now be found in the list of patients in Covigent.
 
 
 #### 5.2.2 Delete a patient: `deletepatient`
