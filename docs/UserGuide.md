@@ -95,8 +95,6 @@ _Written by: Wai Lok_
 
 ## 3. Getting Started
 
-_Written by: Yee Hong_
-
 If you are tired of lengthy and problematic installation processes, Covigent is perfect for you.
 No matter whether you are using Windows, Mac OS X, or other operating systems, you can set up Covigent in 4 simple steps.
 
@@ -123,6 +121,8 @@ Some example commands you may try:
    * **`addtask`** `r/3 d/Restock supplies dd/20201230 2359` : Adds a task to room 3 with description `Restock supplies` and due date `20201230 2359`.
 
 For more details of each command, please refer to the section on [Section 5, Features](#5-features).
+
+_Written by: Yee Hong_
 
 
 
@@ -232,7 +232,7 @@ Expected Outcome: <br>
 * Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
 * Details panel will show the details of the edited patient.
 
-_Written by: MingDe_
+_Written by: Ming De_
 
 
 #### 5.2.4 Search Patients by Information: `searchpatient`
@@ -298,7 +298,7 @@ Expected Outcome: <br>
 Phone: 12345678 Age: 23 Comment: - TaskList: -". 
 * Details panel will show the details of the room with the allocated patient.
 
-_Written by: MingDe_
+_Written by: Ming De_
 
 
 ### 5.3 Room
@@ -349,7 +349,7 @@ Expected Outcome: <br>
 * Using the first example, the result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -". 
 * Details panel will show the details of the newly edited room.
 
-_Written by: MingDe_
+_Written by: Ming De_
 
 
 #### 5.3.3 Search by Room Number: `searchroom` 
