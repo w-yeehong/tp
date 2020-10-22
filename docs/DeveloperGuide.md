@@ -213,6 +213,15 @@ This section describes some noteworthy details on how certain features are imple
 
 
 ### 4.1 Patient Feature
+The patient feature utilises the `CovigentAppParser` class to parse the user command input into different command types and
+validates the input. Patients are then added into the `UniquePatientList#internalList` observable list.
+
+The feature comprises of five commands namely,
+* [`AddPatientCommand`](#411-add-patient) - Adding patients
+* [`ListPatientCommand`](#412-list-patient) - Listing all the patients
+* [`EditPatientCommand`](#413-edit-patient) - Editing patients
+* [`DeletePatientCommand`](#414-delete-patient) - Deleting patients
+* [`SearchPatientCommand`](#415-search-patient) - Searching for patients
 
 #### 4.1.1 Add Patient 
 
@@ -225,7 +234,7 @@ This section describes some noteworthy details on how certain features are imple
 #### 4.1.3 Edit Patient 
 
 **Implementation**
-The following is a detailed explanation of the operations `EditPatientCommand` performs.
+The following is a detailed explanation of the operations that `EditPatientCommand` performs.
 
 **Step 1.** The `EditPatientCommand#execute(Model model)` method is executed and it checks if the `Name` defined when instantiating
 `EditPatientCommand(Name patientToBeEdited, EditPatientDescriptor editPatientDescriptor)` is valid. The `EditPatientDescriptor` holds
@@ -238,7 +247,7 @@ using the `Model#hasPatient(Patient patient)` method to check if the patient alr
 **Step 3.** The newly created `Patient` will replace the existing patient object through the `Model#setPatient(Patient target, Patient editedPatient)`
 method.
 
-**Step 4.** A success message with the edited patient will be appended with the `PatientEditCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
+**Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
 new `CommandResult` will be returned with the message.
 
 #### 4.1.4 Delete Patient 
@@ -281,7 +290,33 @@ The activity diagram below illustrates the `findEmptyRoom`.
  ![SequenceDiagramForSequenceDiagram](images/Room_SequenceDiagram.png)
  
  _Written By: Noorul Azlina_
-## 4.3 Task Feature
+
+#### 4.2.1 Initialise Room
+
+#### 4.2.2 List Room 
+
+#### 4.2.3 Edit Room 
+
+**Implementation**
+The following is a detailed explanation of the operations that `EditRoomCommand` performs.
+
+**Step 1.** The `EditRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
+`EditRoomCommand(Integer roomNumberToEdit, EditRoomDescriptor editRoomDescriptor)` is valid. This check is done through the `Model#checkifRoomPresent` method.
+ The `EditRoomDescriptor` holds the edited information of the `Room`.
+
+**Step 2.** A new `Room` with the updated values will be created and the room is then searched through `RoomList#internalList`
+using the `Model#hasRoom(Room room)` method to check if a room with the same room number exists. If it already exists,
+`CommandException` will be thrown with an error message.
+
+**Step 3.** The newly created `Room` will replace the existing room object through the `Model#setSingleRoom(Room target, Room editedRoom)`
+method.
+
+**Step 4.** A success message with the edited room will be appended with the `EditRoomCommand#MESSAGE_EDIT_ROOM_SUCCESS` constant. A 
+new `CommandResult` will be returned with the message.
+
+#### 4.2.4 Search Room  
+
+#### 4.2.5 Find Empty Room  
 
 ### 4.3 Task Feature
 
