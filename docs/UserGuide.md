@@ -108,6 +108,8 @@ This is what **Covigent** looks like:
 
 ### 5.2 Patients
 
+This section contains all the commands related to patients. Scroll down to find out which feature you need!
+
 #### 5.2.1 Add a patient: `addpatient`
 
 You can use this command to add the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
@@ -210,6 +212,8 @@ Phone: 12345678 Age: 23 Comment: - TaskList: -". Details panel will show the det
 
 ### 5.3 Room
 
+This section contains all the commands related to rooms. Scroll down to find out which feature you need!
+
 #### 5.3.1 Initialize rooms in hotel: `initRoom`
 
 Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
@@ -298,6 +302,8 @@ Expected Outcome:<br>
 The result display shows a success message "Room Number 1 is empty.".
 
 ### 5.4 Task
+
+This section contains all the commands related to tasks. Scroll down to find out which feature you need!
 
 #### 5.4.1 Add a task to a room: `addtask`
 
