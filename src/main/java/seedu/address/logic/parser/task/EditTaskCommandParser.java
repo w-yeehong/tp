@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_TASK_NUMBER;
 
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -17,7 +16,6 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -38,7 +36,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_ROOM_NUMBER, PREFIX_TASK_NUMBER, PREFIX_DESCRIPTION, PREFIX_DUE_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER, PREFIX_TASK_NUMBER)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER, PREFIX_TASK_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
         }
@@ -68,13 +66,5 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
 
         return new EditTaskCommand(roomNumber, taskNumber, editTaskDescriptor);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

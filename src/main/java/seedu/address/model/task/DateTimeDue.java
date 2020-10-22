@@ -120,6 +120,7 @@ public class DateTimeDue implements Comparable<DateTimeDue> {
 
     @Override
     public int compareTo(DateTimeDue other) {
-        return value.get().isBefore(other.getValue().get()) ? 1 : 0;
+        return value.get().isBefore(other.getValue().get())
+                || value.get().isEqual(other.getValue().get()) ? 1 : 0;
     }
 }

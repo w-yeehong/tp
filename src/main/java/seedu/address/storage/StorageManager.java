@@ -9,9 +9,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyPatientRecords;
 import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.TaskList;
 
 /**
  * Manages storage of CovigentApp data in local storage.
@@ -22,15 +24,18 @@ public class StorageManager implements Storage {
     private PatientRecordsStorage patientRecordsStorage;
     private UserPrefsStorage userPrefsStorage;
     private JsonRoomOccupancyStorage roomOccupancyStorage;
+    private JsonTaskOccupancyStorage taskOccupancyStorage;
     /**
      * Creates a {@code StorageManager} with the given {@code PatientRecordsStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(PatientRecordsStorage patientRecordsStorage, UserPrefsStorage userPrefsStorage,
-                          JsonRoomOccupancyStorage roomOccupancyStorage) {
+                          JsonRoomOccupancyStorage roomOccupancyStorage,
+                          JsonTaskOccupancyStorage taskOccupancyStorage) {
         super();
         this.patientRecordsStorage = patientRecordsStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.roomOccupancyStorage = roomOccupancyStorage;
+        this.taskOccupancyStorage = taskOccupancyStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -88,8 +93,18 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public void saveTaskList(TaskList taskList) throws IOException {
+        taskOccupancyStorage.saveTask(taskList);
+    }
+
+    @Override
     public Optional<ReadOnlyRoomList> readRoomOccupancyStorage() throws DataConversionException, IOException {
         return roomOccupancyStorage.readOnlyRoomOccupancy();
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskList> readTaskOccupancyStorage() throws DataConversionException, IOException {
+        return taskOccupancyStorage.readOnlyTaskOccupancy();
     }
 
 }

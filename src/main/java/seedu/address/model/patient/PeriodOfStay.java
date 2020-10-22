@@ -50,6 +50,15 @@ public class PeriodOfStay {
         return false;
     }
 
+    /**
+     * Returns a string that is more human readable (e.g. 09 Jan 2020)
+     * @return reader friendly string
+     */
+    public String readerFriendlyString() {
+        return startDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + " to "
+                + endDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+    }
+
     @Override
     public String toString() {
         return startDate.format(DateTimeFormatter.ofPattern("yyyyMMdd")) + "-"

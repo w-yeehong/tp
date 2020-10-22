@@ -104,10 +104,8 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-**API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts inclduing `CommandBox`, `ResultDisplay`, `PatientListPanel`, `RoomListPanel` , `RoomDetailPanel` `TaskListPanel`, `StatusBarFooter`. These, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -115,6 +113,13 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+Below is a class diagram for `Ui`
+
+**API** :
+[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+_Written by: WaiLok_
 
 ### 3.3 Logic Component
 
@@ -357,7 +362,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Can type fast
 * Is reasonably comfortable using Command Line Interface (CLI) apps
 
-**Value proposition**: 
+**Value proposition**:
 * Covigent is a handy tool for quarantine facility managers to manage the rooms and patients in the quarantine facility with increased productivity.
 * Covigent stores and retrieves information faster than a typical mouse/GUI driven app.
 
@@ -399,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 4a1. System displays an error message.
 
   Use case ends.
- 
+
 **Use case: Edit a patient**
 
 **MSS**
@@ -417,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 2a1. System displays an error message.
 
   Use case ends.
-  
+
 **Use case: Search a patient**
 
 **MSS**

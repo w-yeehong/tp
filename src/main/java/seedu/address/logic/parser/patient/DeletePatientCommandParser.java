@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.patient.DeletePatientCommand;
 import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Name;
 
@@ -21,7 +20,7 @@ public class DeletePatientCommandParser implements Parser<DeletePatientCommand> 
     public DeletePatientCommand parse(String args) throws ParseException {
         Name patientName = null;
         try {
-            patientName = ParserUtil.parseName(args);
+            patientName = PatientParserUtil.parseName(args);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePatientCommand.MESSAGE_USAGE));
         }
