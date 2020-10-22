@@ -58,7 +58,6 @@ This is what **Covigent** looks like:
 _Written by: Ming De_
 
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. About this Document
@@ -128,13 +127,12 @@ _Written by: Yee Hong_
 
 ## 4. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Command Line Interface**: A form of user interface that processes commands to a computer program in the form of lines of text.
+* **Graphical User Interface**: A form of user interface that allows users to interact with electronic devices through graphical icons.
 * **Patient**: An individual who resides in the quarantine facility. 
 * **Task**: A task to be completed by staff of the quarantine facility.
 
 _Written by: Yun Qing_
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -247,12 +245,12 @@ Additional Information:
 Example(s):
 
 *  `searchpatient n/john` Searches patients with a name John.
-*  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive.
+*  `searchpatient tr/36.5-36.7` Searches patients with temperature range _36.5 to 36.7_ degree celsius, both inclusive.
 
 Expected Outcome: <br>
 
 * Using the second example, the result box displays the message, "Listed patient(s) matching the criteria.".
-* Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in **Covigent**.
+* Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in Covigent.
 
 _Written by: Wai Lok_
 
@@ -265,7 +263,7 @@ Format: `listpatient`
 
 Example(s):
 
-*  `listpatient` List all patients that present in Covigent.
+*  `listpatient` Lists all patients that are present in Covigent.
 
 Expected Outcome: <br>
 
@@ -310,7 +308,8 @@ be stored.
 
 Format: `initroom NUMBER_OF_ROOMS`
 
-* Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there
+Additional Information:
+* Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there.
 
 Example(s):
 * `initroom 123`. 123 rooms are initialised in Covigent.
@@ -540,7 +539,6 @@ Searches all tasks before a date in Covigent.
 Format: `searchtask dd/DUE_DATE`
 
 Additional Information:
-
 * Due date can be in the any of the following formats:
   * `YYYYMMDD` (e.g. 20210131).
   * `YYYYMMDD HHmm` (e.g. 20210131 2359).
