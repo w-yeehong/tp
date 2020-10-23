@@ -43,7 +43,7 @@ public class DeletePatientCommand extends Command {
         Optional<Patient> patientToDelete = model.getPatientWithName(nameOfPatientToDelete);
 
         if (patientToDelete.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME);
         }
 
         Patient deletedPatient = patientToDelete.get();

@@ -3,8 +3,8 @@ package seedu.address.logic.commands.room;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_NO_ROOM;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
@@ -51,7 +51,7 @@ public class SearchRoomCommandTest {
         SearchRoomDescriptorBuilder descriptorRoomNum = new SearchRoomDescriptorBuilder();
         descriptorRoomNum.setRoomNumber(9999);
         SearchRoomCommand searchRoomCommand = new SearchRoomCommand(descriptorRoomNum.build());
-        assertCommandFailure(searchRoomCommand, model, MESSAGE_INVALID_ROOM_NOT_FOUND);
+        assertCommandFailure(searchRoomCommand, model, MESSAGE_INVALID_ROOM_NUMBER);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class SearchRoomCommandTest {
         SearchRoomDescriptorBuilder descriptorNameNotInApp = new SearchRoomDescriptorBuilder();
         descriptorNameNotInApp.setPatientName(VALID_NAME_BOB);
         SearchRoomCommand noPatientSearchRoomCommand = new SearchRoomCommand(descriptorNameNotInApp.build());
-        assertCommandFailure(noPatientSearchRoomCommand, model, MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        assertCommandFailure(noPatientSearchRoomCommand, model, MESSAGE_INVALID_PATIENT_NAME);
 
         //patient is not in any room
         SearchRoomDescriptorBuilder descriptorPatientNotInRoom = new SearchRoomDescriptorBuilder();

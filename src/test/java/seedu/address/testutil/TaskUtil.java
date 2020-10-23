@@ -19,15 +19,15 @@ public class TaskUtil {
     /**
      * Returns an add command string for adding the {@code Task}.
      */
-    public static String getAddTaskCommand(Task task, Index roomIndex) {
-        return AddTaskCommand.COMMAND_WORD + " " + getTaskDetails(task, roomIndex);
+    public static String getAddTaskCommand(Task task, int roomNumber) {
+        return AddTaskCommand.COMMAND_WORD + " " + getTaskDetails(task, roomNumber);
     }
 
     /**
      * Returns an edit command string for editing the {@code Task}.
      */
-    public static String getEditTaskCommand(Task task, Index roomIndex, Index taskIndex) {
-        return EditTaskCommand.COMMAND_WORD + " " + getTaskDetails(task, roomIndex, taskIndex);
+    public static String getEditTaskCommand(Task task, int roomNumber, Index taskIndex) {
+        return EditTaskCommand.COMMAND_WORD + " " + getTaskDetails(task, roomNumber, taskIndex);
     }
 
     /**
@@ -54,12 +54,12 @@ public class TaskUtil {
      * Returns the part of command string for the given {@code Task}'s details.
      * Includes a valid room number given by {@code roomIndex} in the command string.
      */
-    public static String getTaskDetails(Task task, Index roomIndex) {
+    public static String getTaskDetails(Task task, int roomNumber) {
         final StringBuilder builder = new StringBuilder();
 
         builder.append(getTaskDetails(task));
         // Use any valid room number as room number not stored in task
-        builder.append(" " + PREFIX_ROOM_NUMBER + String.valueOf(roomIndex.getOneBased()));
+        builder.append(" " + PREFIX_ROOM_NUMBER + roomNumber);
 
         return builder.toString();
     }
@@ -69,12 +69,12 @@ public class TaskUtil {
      * Includes a valid room number given by {@code roomIndex} and a valid task number
      * given by {@code taskIndex} in the command string.
      */
-    public static String getTaskDetails(Task task, Index roomIndex, Index taskIndex) {
+    public static String getTaskDetails(Task task, int roomNumber, Index taskIndex) {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append(getTaskDetails(task, roomIndex));
+        builder.append(getTaskDetails(task, roomNumber));
         // Use any valid task number as task number not stored in task
-        builder.append(" " + PREFIX_TASK_NUMBER + String.valueOf(roomIndex.getOneBased()));
+        builder.append(" " + PREFIX_TASK_NUMBER + String.valueOf(taskIndex.getOneBased()));
 
         return builder.toString();
     }

@@ -45,7 +45,7 @@ public class DeletePatientCommandTest {
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
         Name invalidPatientName = new Name("Obviously invalid name");
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(invalidPatientName);
-        assertCommandFailure(deletePatientCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        assertCommandFailure(deletePatientCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME);
     }
 
     @Test
