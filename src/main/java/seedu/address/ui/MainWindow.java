@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private RoomListPanel roomListPanel;
     private TaskListPanel taskListPanel;
+    private HelpWindow helpWindow;
 
     @FXML
     private ImageView logoIcon;
@@ -89,6 +90,8 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+
+        helpWindow = new HelpWindow();
     }
 
     private void setTabImage(Tab tab, Image image) {
@@ -144,8 +147,32 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleHelp() {
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
+    }
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void handleExit() {
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY());
+        logic.setGuiSettings(guiSettings);
+        helpWindow.hide();
+        primaryStage.hide();
     }
 
 
@@ -163,6 +190,14 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isShowHelp()) {
+                handleHelp();
+            }
+
+            if (commandResult.isExit()) {
+                handleExit();
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
