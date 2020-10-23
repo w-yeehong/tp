@@ -178,7 +178,7 @@ The breakdown for each type of data in `ModelManager`, which include `PatientRec
 
 The `PatientRecords` class is in charge of maintaining the data of the patients and in ensuring the uniqueness of patients according to their names. Below is a class diagram for `PatientRecords`.
 
-//to insert class diagram for patient records.
+![Class Diagram For PatientRecords](images/PatientRecordsClassDiagram.png) <br>
 _Figure XX. Class Diagram for PatientRecords_
 
 The `TaskList` class is in charge of maintaining the data of all the tasks in Covigent. The class diagram for `TaskList` is shown below.
