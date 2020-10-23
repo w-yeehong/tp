@@ -15,25 +15,27 @@ title: Developer Guide
     3.6  [Commons Component](#36-commons-component)<br>
  4. [Implementation](#4-implementation)<br>
     4.1  [Patient Feature](#41-patient-feature)<br>
-        4.1.1 [Add Patient](#411-add-patient)<br>
-        4.1.2 [List Patient](#412-list-patient)<br>
-        4.1.3 [Edit Patient](#413-edit-patient)<br>
-        4.1.4 [Delete Patient](#414-delete-patient)<br>
-        4.1.5 [Search Patient](#415-search-patient)<br>
+          4.1.1 [Add Patient](#411-add-patient)<br>
+          4.1.2 [List Patient](#412-list-patient)<br>
+          4.1.3 [Edit Patient](#413-edit-patient)<br>
+          4.1.4 [Delete Patient](#414-delete-patient)<br>
+          4.1.5 [Search Patient](#415-search-patient)<br>
     4.2  [Room Feature](#42-room-feature)<br>
-        4.2.1 [Initialise Room](#421-initialise-room)<br>
-        4.2.2 [List Room](#422-list-room)<br>
-        4.2.3 [Edit Room](#423-edit-room)<br>
-        4.2.4 [Search Room](#424-search-room)<br>
-        4.2.5 [Find Empty Room](#425-find-empty-room)<br>
+          4.2.1 [Initialise Room](#421-initialise-room)<br>
+          4.2.2 [List Room](#422-list-room)<br>
+          4.2.3 [Edit Room](#423-edit-room)<br>
+          4.2.4 [Search Room](#424-search-room)<br>
+          4.2.5 [Find Empty Room](#425-find-empty-room)<br>
     4.3  [Task Feature](#43-task-feature)<br>
-        4.3.1 [Add Task](#431-add-task)<br>
-        4.3.2 [List Task](#432-list-task)<br>
-        4.3.3 [Delete Task](#433-delete-task)<br>
-        4.3.4 [Edit Task](#434-edit-task)<br>
-        4.3.5 [Search Task](#435-search-task)<br>
+          4.3.1 [Add Task](#431-add-task)<br>
+          4.3.2 [List Task](#432-list-task)<br>
+          4.3.3 [Delete Task](#433-delete-task)<br>
+          4.3.4 [Edit Task](#434-edit-task)<br>
+          4.3.5 [Search Task](#435-search-task)<br>
     4.4  [Storage Feature(KIV)]<br>
     4.5  [Logging Feature(KIV)]<br>
+    4.6  [Miscellaneous Feature](#46-miscellaneous-feature)<br>
+          4.6.1 [Support for Multiple Date-Time Formats](#461-support-for-multiple-date-time-formats)<br>
  5. [Documentation](#5-documentation)<br>
  6. [Testing(KIV)]<br>
  7. [Appendix](#7-appendix)<br>
@@ -50,15 +52,18 @@ The Covigent Developer Guide is designed to illustrate and identify the high lev
 
  _Written by: Yun Qing_ 
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Setting Up
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Design
+
 
 ### 3.1 Architecture: High Level View
 
@@ -102,6 +107,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+
 ### 3.2 UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -121,7 +127,8 @@ Below is a class diagram for `Ui`
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-_Written by: WaiLok_
+_Written by: Wai Lok_
+
 
 ### 3.3 Logic Component
 
@@ -152,6 +159,7 @@ Shown below is the Sequence Diagram within the `Logic` component for the API cal
 </div>
 <br>
 _Written by: Ming De_
+
 
 ### 3.4 Model Component
 
@@ -199,11 +207,14 @@ The Storage component,
  Fig of `JsonSerializablePatientList`
  ![Structure of the JsonSerializableTaskList](images/JsonSerializableTaskList.png)
  Fig of `JsonSerializableTaskList`
-  _Written by: Noorul Azlina_
+ 
+ _Written by: Noorul Azlina_
+
 
 ### 3.6 Commons Component
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -213,6 +224,7 @@ This section describes some noteworthy details on how certain features are imple
 
 
 ### 4.1 Patient Feature
+
 The patient feature utilises the `CovigentAppParser` class to parse the user command input into different command types and
 validates the input. Patients are then added into the `UniquePatientList#internalList` observable list.
 
@@ -250,10 +262,13 @@ method.
 **Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
 new `CommandResult` will be returned with the message.
 
+
 #### 4.1.4 Delete Patient 
 
 
 #### 4.1.5 Search Patient
+
+
 
 
 ### 4.2 Room Feature
@@ -280,7 +295,6 @@ These operations are exposed in the `Model` interface as `Model#addRooms(int num
 * `findEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
 We will illustrate the progress of one of the above commands for simplicity.
-
 
 The activity diagram below illustrates the `findEmptyRoom`.
 
@@ -314,23 +328,58 @@ method.
 **Step 4.** A success message with the edited room will be appended with the `EditRoomCommand#MESSAGE_EDIT_ROOM_SUCCESS` constant. A 
 new `CommandResult` will be returned with the message.
 
+
 #### 4.2.4 Search Room  
 
 #### 4.2.5 Find Empty Room  
 
+
+
+
 ### 4.3 Task Feature
 
+The task feature involves the CRUD of `Task` objects.
+
+The feature comprises five commands, namely
+* [`AddTaskCommand`](#431-add-task) - Adding tasks
+* [`ListTaskCommand`](#432-list-task) - Listing tasks
+* [`EditTaskCommand`](#433-edit-task) - Editing tasks
+* [`DeleteTaskCommand`](#434-delete-task) - Deleting tasks
+* [`SearchTaskCommand`](#435-search-task) - Searching for tasks
 
 #### 4.3.1 Add Task 
 
+**Implementation**
+The following is a detailed explanation of the operations that `AddTaskCommand` performs.
+
+**Step 1.** The `AddTaskCommand#execute(Model model)` method is executed and it checks if the `Name` defined when instantiating
+`EditPatientCommand(Name patientToBeEdited, EditPatientDescriptor editPatientDescriptor)` is valid. The `EditPatientDescriptor` holds
+the edited information of the `Patient`.
+
+**Step 2.** A new `Patient` with the updated values will be created and the patient is then searched through `UniquePatientList#internalList`
+using the `Model#hasPatient(Patient patient)` method to check if the patient already exists. If the patient already exists,
+`CommandException` will be thrown with an error message.
+
+**Step 3.** The newly created `Patient` will replace the existing patient object through the `Model#setPatient(Patient target, Patient editedPatient)`
+method.
+
+**Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
+new `CommandResult` will be returned with the message.
 
 #### 4.3.2 List Task 
 
-#### 4.3.3 Delete Task 
+#### 4.3.3 Edit Task 
 
-#### 4.3.4 Edit Task 
+#### 4.3.4 Delete Task 
 
 #### 4.3.5 Search Task
+
+
+
+
+### 4.6 Miscellaneous Feature
+
+#### 4.6.1 Support for Multiple Date-Time Formats
 
 
 ##BELOW UNDO AND REDO TO BE DELETED, CAN REFERENCE FOR NOW FIRST
