@@ -19,6 +19,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,15 +29,17 @@ public class ModelManager implements Model {
 
     private final PatientRecords patientRecords;
     private final RoomList roomList;
+    private final TaskList taskList;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Room> filteredRooms;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given patient records, room records and userPrefs.
      */
     public ModelManager(ReadOnlyPatientRecords patientRecords, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyRoomList roomList) {
+                        ReadOnlyRoomList roomList, ReadOnlyTaskList taskList) {
         super();
         requireAllNonNull(patientRecords, userPrefs);
 
@@ -45,12 +48,14 @@ public class ModelManager implements Model {
         this.patientRecords = new PatientRecords(patientRecords);
         this.roomList = new RoomList(roomList);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.taskList = new TaskList(taskList);
         filteredPatients = new FilteredList<>(this.patientRecords.getPatientList());
         filteredRooms = new FilteredList<>(this.roomList.asUnmodifiableObservableList());
+        filteredTasks = new FilteredList<>(this.taskList.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
-        this(new PatientRecords(), new UserPrefs(), new RoomList());
+        this(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -263,6 +268,8 @@ public class ModelManager implements Model {
         filteredRooms.setPredicate(predicate);
 
     }
+
+
     //=========== Tasks ========================================================================================
 
     @Override
@@ -282,6 +289,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addTask(Task task) {
+        requireAllNonNull(task);
+        taskList.add(task);
+        filteredTasks.setPredicate(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
     public void deleteTaskFromRoom(Task task, Room room) {
         requireAllNonNull(task, room);
         roomList.deleteTaskFromRoom(task, room);
@@ -293,6 +307,28 @@ public class ModelManager implements Model {
         roomList.setTaskToRoom(target, editedTask, room);
     }
 
+    @Override
+    public void deleteTask(Task taskToDelete) {
+        requireAllNonNull(taskToDelete);
+        taskList.remove(taskToDelete);
+    }
+
+    @Override
+    public void setTask(Task taskToEdit, Task editedTask) {
+        requireAllNonNull(taskToEdit, editedTask);
+        taskList.setTask(taskToEdit, editedTask);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
     //=========== Miscellaneous ========================================================================================
 
     @Override
@@ -317,4 +353,3 @@ public class ModelManager implements Model {
                 && filteredRooms.equals(other.filteredRooms);
     }
 }
-

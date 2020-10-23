@@ -21,6 +21,8 @@ public interface Model {
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
 
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
+
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -184,11 +186,15 @@ public interface Model {
      */
     ObservableList<Room> getFilteredRoomList();
 
+    ObservableList<Task> getFilteredTaskList();
+
     /**
      * Updates the filter of the filtered rooms to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRoomList(Predicate<Room> predicate);
+
+    void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
      * Returns Priority Queue of rooms
@@ -211,6 +217,14 @@ public interface Model {
     void addTaskToRoom(Task task, Room room);
 
     /**
+     * Adds {@code task}.
+     * The room must exist in {@code CovigentApp}.
+     *
+     * @param task The task to add.
+     */
+    void addTask(Task task);
+
+    /**
      * Deletes {@code task} from {@code room}.
      * The room must exist in Covigent.
      * The task must exist in room.
@@ -230,4 +244,21 @@ public interface Model {
      * @param room The room from which the task should be replaced.
      */
     void setTaskToRoom(Task target, Task editedTask, Room room);
+
+    /**
+     * Deletes {@code task}.
+     * The room must exist in Covigent.
+     *
+     * @param taskToDelete The task to delete.
+     */
+    void deleteTask(Task taskToDelete);
+
+    /**
+     * Sets {@code task}.
+     * The room must exist in Covigent.
+     *
+     * @param taskToEdit The task to edit.
+     * @param editedTask the edited task.
+     */
+    void setTask(Task taskToEdit, Task editedTask);
 }

@@ -16,6 +16,7 @@ import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.task.TaskList;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -23,7 +24,7 @@ import seedu.address.model.patient.Patient;
  */
 public class DeletePatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
 
     @Test
     public void execute_validNameUnfilteredList_success() {
@@ -33,7 +34,8 @@ public class DeletePatientCommandTest {
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList());
+        ModelManager expectedModel =
+                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
         expectedModel.deletePatient(patientToDelete);
 
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);
