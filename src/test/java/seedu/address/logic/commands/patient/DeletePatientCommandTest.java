@@ -18,8 +18,9 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.TaskList;
 
+//@@author chiamyunqing
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
+ * Contains integration tests (interaction with only PatientRecords in the Model) and unit tests for
  * {@code DeleteCommand}.
  */
 public class DeletePatientCommandTest {

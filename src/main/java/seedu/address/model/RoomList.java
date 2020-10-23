@@ -225,11 +225,11 @@ public class RoomList implements ReadOnlyRoomList {
         return internalList.stream().anyMatch(toCheck::isSameRoom);
     }
 
+    //@@author chiamyunqing
     /**
-     * Clears the room which contains the patient with the given name.
-     * @param patientName to clear the room from.
+     * Removes the patient with the given name {@code patientName} from the room.
      */
-    public void clearRoom(Name patientName) {
+    public void removePatientFromRoom(Name patientName) {
         requireNonNull(patientName);
         for (int i = 1; i <= internalList.size(); i++) {
             if (!internalList.get(i - 1).isOccupied()) {
@@ -238,11 +238,14 @@ public class RoomList implements ReadOnlyRoomList {
             Name patientNameInRoom = internalList.get(i - 1).getPatient().getName();
             if (patientName.equals(patientNameInRoom)) {
                 Room roomToClear = internalList.get(i - 1);
-                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber()));
+                Room roomWithoutPatient = new Room(roomToClear.getRoomNumber(), false, null,
+                                                roomToClear.getTaskList());
+                setSingleRoom(roomToClear, roomWithoutPatient);
                 break;
             }
         }
     }
+    //@@author chiamyunqing
 
     /**
      * Replaces the room {@code target} in the list with {@code editedRoom}.

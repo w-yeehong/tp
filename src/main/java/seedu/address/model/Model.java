@@ -143,11 +143,9 @@ public interface Model {
     void setSingleRoom(Room target, Room editedRoom);
 
     /**
-     * Clears the room with the given patient name {@code patientName}.
-     *
-     * @param patientName must be in a room.
+     * Removes the patient with the given name {@code patientName} from the room.
      */
-    void clearRoom(Name patientName);
+    void removePatientFromRoom(Name patientName);
 
 
     /**
