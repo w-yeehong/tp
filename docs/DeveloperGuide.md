@@ -155,7 +155,7 @@ _Written by: Ming De_
 
 ### 3.4 Model Component
 
-The `Model` API acts as a facade that handles interaction between different kinds of data in Covigent. These data include user's preferences, patient records, room list and task list. 
+The `Model` API acts as a facade that handles interaction between different kinds of data in Covigent. These data include user's preferences, patient records, room list and task list. The `Model` API exposes the methods that allow the logic component to utilise to perform retrieving and updating of data.
 
 The `Model` component,
   * stores a `UserPref` object that represents the user’s preferences.
@@ -165,18 +165,32 @@ The `Model` component,
   * exposes unmodifiable `ObservableList<Patient>`, `ObservableList<Room>` and `ObservableList<Task>` which can be observed. This means that the UI can be bound to the lists so that the UI automatically updates when data in the lists changes.
   * does not depend on any of the three components.
 
-The concrete class `ModelManager` implements `Model` and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`. These classes manage the data related to their specific features. 
+The concrete class `ModelManager` implements `Model` interface and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`. These classes manage the data related to their specific features.
 
-Below is a class diagram for `Model Manager`.
+Below is a class diagram for `ModelManager`.
 
 ![Structure of the Model Component](images/ModelManagerClassDiagram.png) <br>
 _Figure XX. Class Diagram for Model Component_
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The class diagrams for the data in `ModelManager` which include `PatientRecords`, `RoomList` and `TaskList`, can be found below.
+The breakdown for each type of data in `ModelManager`, which include `PatientRecords`, `RoomList` and `TaskList`, can be found below.
 
-//to insert class diagrams for userpref, room list, task list and patient records.
+The `PatientRecords` class is in charge of maintaining the data of the patients and in ensuring the uniqueness of patients according to their names. Below is a class diagram for `PatientRecords`.
+
+//to insert class diagram for patient records.
+_Figure XX. Class Diagram for PatientRecords_
+
+The `TaskList` class is in charge of maintaining the data of all the tasks in Covigent. The class diagram for `TaskList` is shown below.
+
+//to insert class diagram for task list.
+_Figure XX. Class Diagram for TaskList_
+
+The `RoomList` class is in charge of maintaining the data in the rooms. It incorporates data from both `PatientRecords` and `TaskList` as each room stores the data of the patient who resides in the room and the tasklist meant for the room. The class diagram for `RoomList` is shown below.
+
+//to insert class diagram for room list.
+
+_Figure XX. Class Diagram for RoomList_
 
  _Written by: Yun Qing_ 
 
