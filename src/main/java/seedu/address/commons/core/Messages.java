@@ -13,14 +13,14 @@ public class Messages {
 
     // patients
 
-    public static final String MESSAGE_INVALID_PATIENT_NAME_INPUT = "The patient name provided "
+    public static final String MESSAGE_INVALID_PATIENT_NAME = "The patient name provided "
             + "cannot be found in Covigent.";
     public static final String MESSAGE_PATIENT_LISTED_OVERVIEW = "%1$d patient listed!";
 
     // rooms
 
-    public static final String MESSAGE_INVALID_ROOM_NOT_FOUND = "The room number provided is not found.";
-    public static final String MESSAGE_INVALID_ROOM_INDEX = "The room number provided is invalid";
+    public static final String MESSAGE_INVALID_ROOM_NUMBER = "The room number provided "
+            + "cannot be found in Covigent.";
     public static final String NUMBER_OF_ROOMS_GIVEN_IN_DIGITS = "Please give the number of digits in numbers\n"
             + "Example: addRooms 200";
     public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient has already been assigned a room.\nPlease"
@@ -29,7 +29,8 @@ public class Messages {
 
     // tasks
 
-    public static final String MESSAGE_INVALID_TASK_INDEX = "The task number provided is invalid";
+    public static final String MESSAGE_INVALID_TASK_INDEX = "The task number provided "
+            + "cannot be found in the room.";
     public static final String MESSAGE_TASK_NOT_EDITED = "Task has not been edited.\nPlease ensure that at least"
             + " one valid and different value has been provided.";
 

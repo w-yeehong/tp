@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_TASK_NUMBER;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
@@ -47,7 +46,7 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Task %1$d edited from Room %2$d. \nDescription: %3$s";
 
-    private final Index roomIndex;
+    private final int roomNumber;
     private final Index taskIndex;
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -55,10 +54,10 @@ public class EditTaskCommand extends Command {
      * Creates an EditTaskCommand to replace a {@code Task} in a {@code Room} with another
      * {@code Task} described by {@code editTaskDescriptor}.
      */
-    public EditTaskCommand(Index roomIndex, Index taskIndex, EditTaskDescriptor editTaskDescriptor) {
-        requireAllNonNull(roomIndex, taskIndex, editTaskDescriptor);
-
-        this.roomIndex = roomIndex;
+    public EditTaskCommand(int roomNumber, Index taskIndex, EditTaskDescriptor editTaskDescriptor) {
+        requireAllNonNull(taskIndex, editTaskDescriptor);
+        assert roomNumber > 0 : "Room number should be greater than 0.";
+        this.roomNumber = roomNumber;
         this.taskIndex = taskIndex;
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
@@ -66,35 +65,32 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        // TODO: refactor get room and get task into two methods (reuse in DeleteTaskCommand)
-
-        // Get the room from which the user wants to edit the task
-        List<Room> rooms = model.getRoomList();
-        if (roomIndex.getZeroBased() >= rooms.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_INDEX);
+        if (roomNumber < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER);
         }
-        Room targetRoom = rooms.get(roomIndex.getZeroBased());
-        assert targetRoom != null : "Target room should never be null.";
+
+        // Get the room from which the user wants to delete the task
+        Optional<Room> optionalRoom = model.getRoomWithRoomNumber(roomNumber);
+        Room room = optionalRoom.orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER));
+        assert room != null : "Target room should never be null.";
 
         // Get the task which the user wants to edit
-        // TODO: get list of task from model instead
-        List<Task> tasks = targetRoom.getTaskList().asUnmodifiableObservableList();
-        if (taskIndex.getZeroBased() >= tasks.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
-        }
-        Task taskToEdit = tasks.get(taskIndex.getZeroBased());
+        Optional<Task> optionalTask = model.getTaskFromRoomWithTaskIndex(taskIndex, room);
+        Task taskToEdit = optionalTask.orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX));
         assert taskToEdit != null : "The task to edit should never be null.";
 
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
         if (taskToEdit.equals(editedTask)) {
             throw new CommandException(Messages.MESSAGE_TASK_NOT_EDITED);
         }
+
         model.setTask(taskToEdit, editedTask);
+        model.setTaskToRoom(taskToEdit, editedTask, room);
         model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
-        model.setTaskToRoom(taskToEdit, editedTask, targetRoom);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
-                taskIndex.getOneBased(), roomIndex.getOneBased(), editedTask));
+                taskIndex.getOneBased(), roomNumber, editedTask));
     }
 
     /**
@@ -118,8 +114,8 @@ public class EditTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EditTaskCommand // instanceof handles nulls
+                && roomNumber == (((EditTaskCommand) other).roomNumber)
                 && taskIndex.equals(((EditTaskCommand) other).taskIndex)
-                && roomIndex.equals(((EditTaskCommand) other).roomIndex)
                 && editTaskDescriptor.equals(((EditTaskCommand) other).editTaskDescriptor));
     }
 

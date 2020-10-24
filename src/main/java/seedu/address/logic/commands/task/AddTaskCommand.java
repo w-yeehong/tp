@@ -1,15 +1,13 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
 
-import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -37,32 +35,35 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_ADD_TASK_SUCCESS = "New Task added to Room %1$d. \nDescription: %2$s";
 
     private final Task taskToAdd;
-    private final Index roomIndex;
+    private final int roomNumber;
 
     /**
      * Creates an AddTaskCommand to add the specified {@code Task} to a {@code Room}
-     * with the {@code roomIndex}.
+     * with the {@code roomNumber}.
      */
-    public AddTaskCommand(Task task, Index roomIndex) {
-        requireAllNonNull(task, roomIndex);
+    public AddTaskCommand(Task task, int roomNumber) {
+        requireNonNull(task);
+        assert roomNumber > 0 : "Room number should be greater than 0.";
         taskToAdd = task;
-        this.roomIndex = roomIndex;
+        this.roomNumber = roomNumber;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Room> rooms = model.getRoomList();
-
-        if (roomIndex.getZeroBased() >= rooms.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_INDEX);
+        if (roomNumber < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER);
         }
 
-        Room targetRoom = rooms.get(roomIndex.getZeroBased());
-        model.addTaskToRoom(taskToAdd, targetRoom);
+        Optional<Room> optionalRoom = model.getRoomWithRoomNumber(roomNumber);
+        Room room = optionalRoom.orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER));
+        assert room != null : "Target room should never be null.";
+
         model.addTask(taskToAdd);
+        model.addTaskToRoom(taskToAdd, room);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
-                roomIndex.getOneBased(), taskToAdd));
+                roomNumber, taskToAdd));
     }
 
     @Override
@@ -70,6 +71,6 @@ public class AddTaskCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
                 && taskToAdd.equals(((AddTaskCommand) other).taskToAdd)
-                && roomIndex.equals(((AddTaskCommand) other).roomIndex));
+                && roomNumber == (((AddTaskCommand) other).roomNumber));
     }
 }

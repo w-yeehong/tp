@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -36,7 +35,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         Description description = TaskParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Index roomNumber = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
+        int roomNumber = ParserUtil.parsePositiveInteger(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
         DateTimeDue dueAt = TaskParserUtil.parseDateTimeDue(argMultimap.getValue(PREFIX_DUE_DATE)); // optional
 
         Task task = new Task(description, dueAt);
