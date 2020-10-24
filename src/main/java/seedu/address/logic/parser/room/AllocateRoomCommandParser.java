@@ -2,7 +2,7 @@ package seedu.address.logic.parser.room;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
+import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.room.AllocateRoomCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -29,7 +29,7 @@ public class AllocateRoomCommandParser implements Parser<AllocateRoomCommand> {
     public AllocateRoomCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PATIENT_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
         Integer roomToBeAllocated;
 
@@ -46,8 +46,8 @@ public class AllocateRoomCommandParser implements Parser<AllocateRoomCommand> {
         AllocateRoomCommand.AllocateRoomDescriptor
             allocateRoomDescriptor = new AllocateRoomCommand.AllocateRoomDescriptor();
 
-        if (argMultimap.getValue(PREFIX_PATIENT_NAME).isPresent()) {
-            String patientFieldInput = argMultimap.getValue(PREFIX_PATIENT_NAME).get();
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            String patientFieldInput = argMultimap.getValue(PREFIX_NAME).get();
             if (patientFieldInput.equals(INPUT_REMOVE_PATIENT)) {
                 allocateRoomDescriptor.setOccupied(false); //empty the room
             } else {

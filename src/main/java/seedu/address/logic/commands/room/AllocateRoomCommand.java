@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_ALREADY_ASSIGNED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
+import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 
 import java.util.Optional;
 
@@ -31,12 +31,12 @@ public class AllocateRoomCommand extends Command {
             + "Existing values will be overwritten by the input values. \n"
             + "To make an occupied room empty, the parameter for patient name should be set to '-'.\n"
             + "Parameters: ROOM NUMBER "
-            + "[" + PREFIX_PATIENT_NAME + "PATIENT NAME]\n"
+            + "[" + PREFIX_NAME + "PATIENT NAME]\n"
             + "Example: " + COMMAND_WORD + " 23 "
-            + PREFIX_PATIENT_NAME + "Mary Doe";
+            + PREFIX_NAME + "Mary Doe";
 
     public static final String MESSAGE_ALLOCATE_ROOM_SUCCESS = "Allocated Room: %1$s";
-    public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in the application.";
+    public static final String MESSAGE_DUPLICATE_ROOM = "The patient is already allocated to a room.";
 
     private final Integer roomNumberToAllocate;
     private final AllocateRoomDescriptor allocateRoomDescriptor;
@@ -88,24 +88,16 @@ public class AllocateRoomCommand extends Command {
         assert (roomToAllocate != null);
         assert (allocateRoomDescriptor != null);
 
-        Integer roomNumber = roomToAllocate.getRoomNumber();
+        int roomNumber = roomToAllocate.getRoomNumber();
         TaskList roomTaskList = roomToAllocate.getTaskList();
         boolean isClearRoom = allocateRoomDescriptor.getIsOccupied().isPresent();
-        boolean hasNewPatient = allocateRoomDescriptor.getPatientName().isPresent();
-        boolean isCurrentlyOccupied = roomToAllocate.isOccupied();
-        if (!isClearRoom && !hasNewPatient && isCurrentlyOccupied) {
-            //case 1: change room number in a room with patient already
-            return new Room(roomNumber, roomToAllocate.getPatient(), roomTaskList);
-        } else if (!hasNewPatient) {
-            //case 2: change room number in an empty room
+        if (isClearRoom) {
             return new Room(roomNumber, false, null, roomTaskList);
         }
-        //case 3: patient is already allocated to a room.
         Name patientName = allocateRoomDescriptor.getPatientName().get(); //definitely has name
         if (model.isPatientAssignedToRoom(patientName)) {
             throw new CommandException(MESSAGE_PATIENT_ALREADY_ASSIGNED);
         }
-        //case 4: allocate patient to the room
         Optional<Patient> updatedPatient = model.getPatientWithName(patientName);
         if (updatedPatient.isEmpty()) {
             throw new CommandException(MESSAGE_INVALID_PATIENT_NAME);
