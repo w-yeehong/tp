@@ -6,12 +6,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_ALREADY_ASSIGNED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 
 import java.util.Optional;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -26,90 +23,86 @@ import seedu.address.model.task.TaskList;
  * Edits the details of a room identified by the room number in the app.
  * Allows setting/removing/changing patient in the room and changing the room number of the room.
  */
-public class EditRoomCommand extends Command {
+public class AllocateRoomCommand extends Command {
 
-    public static final String COMMAND_WORD = "editroom";
+    public static final String COMMAND_WORD = "allocateroom";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the room identified "
-            + "by the room number.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocate a patient to a room. \n"
             + "Existing values will be overwritten by the input values. \n"
             + "To make an occupied room empty, the parameter for patient name should be set to '-'.\n"
             + "Parameters: ROOM NUMBER "
-            + "[" + PREFIX_ROOM_NUMBER + "ROOM NUMBER] "
             + "[" + PREFIX_PATIENT_NAME + "PATIENT NAME]\n"
             + "Example: " + COMMAND_WORD + " 23 "
-            + PREFIX_ROOM_NUMBER + "123 "
             + PREFIX_PATIENT_NAME + "Mary Doe";
 
     public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Room: %1$s";
     public static final String MESSAGE_ROOM_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in the application.";
 
-    private final Integer roomNumberToEdit;
-    private final EditRoomDescriptor editRoomDescriptor;
+    private final Integer roomNumberToAllocate;
+    private final AllocateRoomDescriptor allocateRoomDescriptor;
 
     /**
-     * Constructs an EditRoomCommand to edit the room with the room number {@code Integer}.
+     * Constructs an AllocateRoomCommand to edit the room with the room number {@code Integer}.
      *
-     * @param roomNumberToEdit room number to edit
-     * @param editRoomDescriptor details to edit the room with
+     * @param roomNumberToAllocate room number to edit
+     * @param allocateRoomDescriptor details to edit the room with
      */
-    public EditRoomCommand(Integer roomNumberToEdit, EditRoomDescriptor editRoomDescriptor) {
-        requireAllNonNull(roomNumberToEdit, editRoomDescriptor);
-        this.roomNumberToEdit = roomNumberToEdit;
-        this.editRoomDescriptor = new EditRoomDescriptor(editRoomDescriptor);
+    public AllocateRoomCommand(Integer roomNumberToAllocate, AllocateRoomDescriptor allocateRoomDescriptor) {
+        requireAllNonNull(roomNumberToAllocate, allocateRoomDescriptor);
+        this.roomNumberToAllocate = roomNumberToAllocate;
+        this.allocateRoomDescriptor = new AllocateRoomDescriptor(allocateRoomDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Room> roomList = model.getRoomList();
-        Index index = model.checkIfRoomPresent(roomNumberToEdit);
+        Optional<Room> roomOptional = model.getRoomWithRoomNumber(roomNumberToAllocate);
 
-        if (index.getZeroBased() == 0) {
+        if (roomOptional.isEmpty()) {
             throw new CommandException(MESSAGE_INVALID_ROOM_NUMBER);
         }
 
-        Room roomToEdit = roomList.get(index.getZeroBased() - 1);
-        Room editedRoom = createEditedRoom(model, roomToEdit, editRoomDescriptor);
+        Room roomToAllocate = roomOptional.get();
+        Room roomWithAllocatedPatient = allocatePatientToRoom(model, roomToAllocate, allocateRoomDescriptor);
 
-        if (!roomToEdit.isSameRoom(editedRoom) && model.hasRoom(editedRoom)) {
+        if (!roomToAllocate.isSameRoom(roomWithAllocatedPatient) && model.hasRoom(roomWithAllocatedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
 
-        model.setSingleRoom(roomToEdit, editedRoom);
-        return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom));
+        model.setSingleRoom(roomToAllocate, roomWithAllocatedPatient);
+        return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, roomWithAllocatedPatient));
     }
 
     /**
-     * Creates and returns a {@code Room} with the details of {@code roomToEdit}
-     * edited with {@code editRoomDescriptor}.
+     * Creates and returns a {@code Room} with the details of {@code roomToAllocate}
+     * edited with {@code allocateRoomDescriptor}.
      *
      * @param model Current model
-     * @param roomToEdit Room that is to be edited.
-     * @param editRoomDescriptor Details to edit the room with.
+     * @param roomToAllocate Room that is to be edited.
+     * @param allocateRoomDescriptor Details to edit the room with.
      * @return Room that has been edited.
      */
-    private Room createEditedRoom(Model model, Room roomToEdit,
-                                  EditRoomDescriptor editRoomDescriptor) throws CommandException {
-        assert (roomToEdit != null);
-        assert (editRoomDescriptor != null);
+    private Room allocatePatientToRoom(Model model, Room roomToAllocate,
+                                       AllocateRoomDescriptor allocateRoomDescriptor) throws CommandException {
+        assert (roomToAllocate != null);
+        assert (allocateRoomDescriptor != null);
 
-        int updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
-        TaskList roomTaskList = roomToEdit.getTaskList();
-        boolean isClearRoom = editRoomDescriptor.getIsOccupied().isPresent();
-        boolean hasNewPatient = editRoomDescriptor.getPatientName().isPresent();
-        boolean isCurrentlyOccupied = roomToEdit.isOccupied();
+        Integer roomNumber = roomToAllocate.getRoomNumber();
+        TaskList roomTaskList = roomToAllocate.getTaskList();
+        boolean isClearRoom = allocateRoomDescriptor.getIsOccupied().isPresent();
+        boolean hasNewPatient = allocateRoomDescriptor.getPatientName().isPresent();
+        boolean isCurrentlyOccupied = roomToAllocate.isOccupied();
         if (!isClearRoom && !hasNewPatient && isCurrentlyOccupied) {
             //case 1: change room number in a room with patient already
-            return new Room(updatedRoomNumber, roomToEdit.getPatient(), roomTaskList);
+            return new Room(roomNumber, roomToAllocate.getPatient(), roomTaskList);
         } else if (!hasNewPatient) {
             //case 2: change room number in an empty room
-            return new Room(updatedRoomNumber, false, null, roomTaskList);
+            return new Room(roomNumber, false, null, roomTaskList);
         }
         //case 3: patient is already allocated to a room.
-        Name patientName = editRoomDescriptor.getPatientName().get(); //definitely has name
+        Name patientName = allocateRoomDescriptor.getPatientName().get(); //definitely has name
         if (model.isPatientAssignedToRoom(patientName)) {
             throw new CommandException(MESSAGE_PATIENT_ALREADY_ASSIGNED);
         }
@@ -118,7 +111,7 @@ public class EditRoomCommand extends Command {
         if (updatedPatient.isEmpty()) {
             throw new CommandException(MESSAGE_INVALID_PATIENT_NAME);
         } else {
-            Room updatedRoom = new Room(updatedRoomNumber, updatedPatient.get(), roomTaskList);
+            Room updatedRoom = new Room(roomNumber, updatedPatient.get(), roomTaskList);
             return updatedRoom;
         }
     }
@@ -129,47 +122,37 @@ public class EditRoomCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof EditRoomCommand)) { // instanceof handles nulls
+        if (!(other instanceof AllocateRoomCommand)) { // instanceof handles nulls
             return false;
         }
 
-        EditRoomCommand e = (EditRoomCommand) other; // state check
-        return roomNumberToEdit.equals(e.roomNumberToEdit)
-                && editRoomDescriptor.equals(e.editRoomDescriptor);
+        AllocateRoomCommand e = (AllocateRoomCommand) other; // state check
+        return roomNumberToAllocate.equals(e.roomNumberToAllocate)
+                && allocateRoomDescriptor.equals(e.allocateRoomDescriptor);
     }
 
     /**
      * Stores the details to edit the room with. Each non-empty field value will replace the
      * corresponding field value of the room.
      */
-    public static class EditRoomDescriptor {
-        private Integer roomNumber;
+    public static class AllocateRoomDescriptor {
         private Boolean isOccupied;
         private Name patientName;
 
-        public EditRoomDescriptor() {}
+        public AllocateRoomDescriptor() {}
 
         /**
-         * Constructs an EditRoomDescriptor object with the following fields.
+         * Constructs an AllocateRoomDescriptor object with the following fields.
          *
-         * @param toCopy EditRoomDescriptor to copy the fields from.
+         * @param toCopy AllocateRoomDescriptor to copy the fields from.
          */
-        public EditRoomDescriptor(EditRoomDescriptor toCopy) {
-            setRoomNumber(toCopy.roomNumber);
+        public AllocateRoomDescriptor(AllocateRoomDescriptor toCopy) {
             setOccupied(toCopy.isOccupied);
             setPatientName(toCopy.patientName);
         }
 
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(roomNumber, patientName, isOccupied);
-        }
-
-        public void setRoomNumber(Integer roomNumber) {
-            this.roomNumber = roomNumber;
-        }
-
-        public Optional<Integer> getRoomNumber() {
-            return Optional.ofNullable(roomNumber);
+            return CollectionUtil.isAnyNonNull(patientName, isOccupied);
         }
 
         public void setOccupied(Boolean isOccupied) {
@@ -194,20 +177,18 @@ public class EditRoomCommand extends Command {
                 return true;
             }
 
-            if (!(other instanceof EditRoomDescriptor)) { // instanceof handles nulls
+            if (!(other instanceof AllocateRoomDescriptor)) { // instanceof handles nulls
                 return false;
             }
 
-            EditRoomDescriptor e = (EditRoomDescriptor) other; // state check
-            return getRoomNumber().equals(e.getRoomNumber())
-                    && getIsOccupied().equals(e.getIsOccupied())
+            AllocateRoomDescriptor e = (AllocateRoomDescriptor) other; // state check
+            return getIsOccupied().equals(e.getIsOccupied())
                     && getPatientName().equals(e.getPatientName());
         }
 
         @Override
         public String toString() {
-            return "EditRoomDescriptor{"
-                    + "roomNumber=" + roomNumber
+            return "AllocateRoomDescriptor{"
                     + ", isOccupied=" + isOccupied
                     + ", patientName=" + patientName
                     + '}';
@@ -216,9 +197,9 @@ public class EditRoomCommand extends Command {
 
     @Override
     public String toString() {
-        return "EditRoomCommand{"
-                + "roomNumberToEdit=" + roomNumberToEdit
-                + ", editRoomDescriptor=" + editRoomDescriptor
+        return "AllocateRoomCommand{"
+                + "roomNumberToEdit=" + roomNumberToAllocate
+                + ", allocateRoomDescriptor=" + allocateRoomDescriptor
                 + '}';
     }
 }

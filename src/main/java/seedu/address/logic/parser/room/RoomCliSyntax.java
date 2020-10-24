@@ -9,6 +9,6 @@ public class RoomCliSyntax {
 
     /* Prefix definitions */
     public static final Prefix PREFIX_ROOM_NUMBER = new Prefix("r/");
-    public static final Prefix PREFIX_PATIENT_NAME = new Prefix("p/");
+    public static final Prefix PREFIX_PATIENT_NAME = new Prefix("n/");
 
 }

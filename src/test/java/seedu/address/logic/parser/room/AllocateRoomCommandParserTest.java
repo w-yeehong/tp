@@ -15,7 +15,7 @@ import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_JAMES_D
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PATIENT_NAME_JAMES;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_ONE;
 import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_TWO;
-import static seedu.address.logic.commands.room.EditRoomCommand.MESSAGE_ROOM_NOT_EDITED;
+import static seedu.address.logic.commands.room.AllocateRoomCommand.MESSAGE_ROOM_NOT_EDITED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
@@ -23,15 +23,15 @@ import static seedu.address.model.patient.Name.MESSAGE_CONSTRAINTS;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.room.EditRoomCommand;
+import seedu.address.logic.commands.room.AllocateRoomCommand;
 import seedu.address.model.patient.Name;
 import seedu.address.testutil.EditRoomDescriptorBuilder;
 
-public class EditRoomCommandParserTest {
+public class AllocateRoomCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
-        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRoomCommand.MESSAGE_USAGE);
+        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateRoomCommand.MESSAGE_USAGE);
 
-    private EditRoomCommandParser parser = new EditRoomCommandParser();
+    private AllocateRoomCommandParser parser = new AllocateRoomCommandParser();
 
     @Test
     public void parse_invalidInput_failure() {
@@ -87,11 +87,11 @@ public class EditRoomCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         String userInput = VALID_ROOM_NUMBER_ONE + ROOM_NUMBER_DESC_TWO + VALID_NAME_JAMES_DESC;
 
-        EditRoomCommand.EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
+        AllocateRoomCommand.AllocateRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
                 .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_TWO))
                 .withPatient(new Name(VALID_PATIENT_NAME_JAMES))
                 .build();
-        EditRoomCommand expectedCommand = new EditRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
+        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -100,16 +100,16 @@ public class EditRoomCommandParserTest {
         // only valid room number
         String userInput = VALID_ROOM_NUMBER_ONE + ROOM_NUMBER_DESC_TWO;
 
-        EditRoomCommand.EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
+        AllocateRoomCommand.AllocateRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
                 .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_TWO)).build();
-        EditRoomCommand expectedCommand = new EditRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
+        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
         // only valid patient
         userInput = VALID_ROOM_NUMBER_ONE + VALID_NAME_JAMES_DESC;
 
         descriptor = new EditRoomDescriptorBuilder()
             .withPatient(new Name(VALID_PATIENT_NAME_JAMES)).build();
-        expectedCommand = new EditRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
+        expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -118,11 +118,11 @@ public class EditRoomCommandParserTest {
         String userInput = VALID_ROOM_NUMBER_ONE + VALID_NAME_JAMES_DESC + ROOM_NUMBER_DESC_ONE
             + VALID_NAME_AMY_DESC + ROOM_NUMBER_DESC_TWO;
 
-        EditRoomCommand.EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
+        AllocateRoomCommand.AllocateRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_TWO))
             .withPatient(new Name(VALID_NAME_AMY))
             .build();
-        EditRoomCommand expectedCommand = new EditRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
+        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -130,10 +130,10 @@ public class EditRoomCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // No other valid values specified
         String userInput = VALID_ROOM_NUMBER_TWO + INVALID_ROOM_NUMBER_DESC + ROOM_NUMBER_DESC_ONE;
-        EditRoomCommand.EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
+        AllocateRoomCommand.AllocateRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
             .build();
-        EditRoomCommand expectedCommand = new EditRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_TWO), descriptor);
+        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_TWO), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // Other valid values specified
@@ -141,7 +141,7 @@ public class EditRoomCommandParserTest {
         descriptor = new EditRoomDescriptorBuilder()
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
             .withPatient(new Name(VALID_PATIENT_NAME_JAMES)).build();
-        expectedCommand = new EditRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_TWO), descriptor);
+        expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_TWO), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }
