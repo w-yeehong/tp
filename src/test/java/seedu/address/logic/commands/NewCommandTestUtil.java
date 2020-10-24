@@ -21,7 +21,6 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
-import seedu.address.logic.parser.room.RoomCliSyntax;
 import seedu.address.model.Model;
 import seedu.address.model.PatientRecords;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
