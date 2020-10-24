@@ -120,11 +120,13 @@ public class ModelManager implements Model {
         return patientRecords.hasPatient(patient);
     }
 
+    //@@author chiamyunqing
     @Override
     public Optional<Patient> getPatientWithName(Name nameOfPatient) {
         requireNonNull(nameOfPatient);
         return patientRecords.getPatientWithName(nameOfPatient);
     }
+    //@@author chiamyunqing
 
     @Override
     public void deletePatient(Patient target) {
@@ -200,11 +202,13 @@ public class ModelManager implements Model {
         roomList.setSingleRoom(target, editedRoom);
     }
 
+    //@@author chiamyunqing
     @Override
-    public void clearRoom(Name patientName) {
-        assert(isPatientAssignedToRoom(patientName));
-        roomList.clearRoom(patientName);
+    public void removePatientFromRoom(Name patientName) {
+        assert (isPatientAssignedToRoom(patientName));
+        roomList.removePatientFromRoom(patientName);
     }
+    //@@author chiamyunqing
 
     @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
