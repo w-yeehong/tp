@@ -6,8 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_ALREADY_ASSIGNED;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.room.AllocateRoomCommand.MESSAGE_ALLOCATE_ROOM_SUCCESS;
 import static seedu.address.logic.commands.room.AllocateRoomCommand.MESSAGE_DUPLICATE_ROOM;
-import static seedu.address.logic.commands.room.AllocateRoomCommand.MESSAGE_EDIT_ROOM_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.BOB;
 import static seedu.address.testutil.TypicalPatients.CARL;
@@ -60,7 +60,7 @@ class AllocateRoomCommandTest {
                 .withRoomNumber(roomNumberToEdit + 10).build();
         AllocateRoomCommand allocateRoomCommand = new AllocateRoomCommand(roomNumberToEdit, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
+        String expectedMessage = String.format(MESSAGE_ALLOCATE_ROOM_SUCCESS, editedRoom);
         Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
                 new RoomList(model.getModifiableRoomList()), new TaskList());
         expectedModel.setSingleRoom(roomToEdit, editedRoom);
@@ -78,7 +78,7 @@ class AllocateRoomCommandTest {
                 .withPatient(CARL.getName()).build();
         AllocateRoomCommand allocateRoomCommand = new AllocateRoomCommand(roomNumberToEdit, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
+        String expectedMessage = String.format(MESSAGE_ALLOCATE_ROOM_SUCCESS, editedRoom);
         Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
                 new RoomList(model.getModifiableRoomList()), new TaskList());
         expectedModel.setSingleRoom(roomToEdit, editedRoom);
@@ -97,7 +97,7 @@ class AllocateRoomCommandTest {
 
         AllocateRoomCommand allocateRoomCommand = new AllocateRoomCommand(roomNumberToEdit, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
+        String expectedMessage = String.format(MESSAGE_ALLOCATE_ROOM_SUCCESS, editedRoom);
 
         Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
                 new RoomList(model.getModifiableRoomList()), new TaskList());

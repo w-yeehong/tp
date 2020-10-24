@@ -91,7 +91,8 @@ public class AllocateRoomCommandParserTest {
                 .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_TWO))
                 .withPatient(new Name(VALID_PATIENT_NAME_JAMES))
                 .build();
-        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
+        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE),
+            descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -102,7 +103,8 @@ public class AllocateRoomCommandParserTest {
 
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
                 .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_TWO)).build();
-        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
+        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE),
+            descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
         // only valid patient
         userInput = VALID_ROOM_NUMBER_ONE + VALID_NAME_JAMES_DESC;
@@ -122,7 +124,8 @@ public class AllocateRoomCommandParserTest {
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_TWO))
             .withPatient(new Name(VALID_NAME_AMY))
             .build();
-        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptor);
+        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE),
+            descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -133,7 +136,8 @@ public class AllocateRoomCommandParserTest {
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
             .build();
-        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_TWO), descriptor);
+        AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_TWO),
+            descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // Other valid values specified

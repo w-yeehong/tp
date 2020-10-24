@@ -35,8 +35,7 @@ public class AllocateRoomCommand extends Command {
             + "Example: " + COMMAND_WORD + " 23 "
             + PREFIX_PATIENT_NAME + "Mary Doe";
 
-    public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Room: %1$s";
-    public static final String MESSAGE_ROOM_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_ALLOCATE_ROOM_SUCCESS = "Allocated Room: %1$s";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in the application.";
 
     private final Integer roomNumberToAllocate;
@@ -72,7 +71,7 @@ public class AllocateRoomCommand extends Command {
         }
 
         model.setSingleRoom(roomToAllocate, roomWithAllocatedPatient);
-        return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, roomWithAllocatedPatient));
+        return new CommandResult(String.format(MESSAGE_ALLOCATE_ROOM_SUCCESS, roomWithAllocatedPatient));
     }
 
     /**

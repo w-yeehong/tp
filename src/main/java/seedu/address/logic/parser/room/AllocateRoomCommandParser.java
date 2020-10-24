@@ -56,7 +56,7 @@ public class AllocateRoomCommandParser implements Parser<AllocateRoomCommand> {
         }
 
         if (!allocateRoomDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(AllocateRoomCommand.MESSAGE_ROOM_NOT_EDITED);
+            throw new ParseException(AllocateRoomCommand.MESSAGE_USAGE);
         }
 
         return new AllocateRoomCommand(roomToBeAllocated, allocateRoomDescriptor);
