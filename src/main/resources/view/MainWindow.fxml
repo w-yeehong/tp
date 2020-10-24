@@ -65,9 +65,11 @@
         <StackPane fx:id="commandBoxPlaceholder" styleClass="main-pane-with-border" VBox.vgrow="NEVER">
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300" minHeight="100" prefHeight="200" styleClass="main-pane-with-border" VBox.vgrow="NEVER">
-        </StackPane>
-        <StackPane fx:id="statusBarPlaceholder" alignment="BOTTOM_LEFT" VBox.vgrow="NEVER" />
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300" minHeight="100" prefHeight="200" styleClass="main-pane-with-border" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></StackPane>
+        <StackPane fx:id="statusBarPlaceholder" alignment="BOTTOM_LEFT" minHeight="30.0" />
       </VBox>
     </Scene>
   </scene>
