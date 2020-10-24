@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP;
-import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_PATIENT_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
@@ -129,8 +128,8 @@ public class NewCommandTestUtil {
     public static final String ROOM_NUMBER_DESC_TWO = " " + PREFIX_ROOM_NUMBER + "2";
     public static final String ROOM_NUMBER_SEVEN_DESC = " " + PREFIX_ROOM_NUMBER + "7";
     public static final String ROOM_NUMBER_EIGHT_DESC = " " + PREFIX_ROOM_NUMBER + "8";
-    public static final String VALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + VALID_PATIENT_NAME_JAMES;
-    public static final String VALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY;
+    public static final String VALID_NAME_JAMES_DESC = " " + PREFIX_NAME + VALID_PATIENT_NAME_JAMES;
+    public static final String VALID_NAME_AMY_DESC = " " + PREFIX_NAME + VALID_NAME_AMY;
 
     public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
             + INVALID_ROOM_NUMBER;
@@ -139,8 +138,8 @@ public class NewCommandTestUtil {
     public static final String INVALID_INTEGER_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER
         + INVALID_NON_INTEGER_ROOM_NUMBER;
     //invalid name with symbol
-    public static final String INVALID_NAME_JAMES_DESC = " " + PREFIX_PATIENT_NAME + INVALID_PATIENT_NAME_JAMES;
-    public static final String INVALID_NAME_AMY_DESC = " " + PREFIX_PATIENT_NAME + VALID_NAME_AMY + "$";
+    public static final String INVALID_NAME_JAMES_DESC = " " + PREFIX_NAME + INVALID_PATIENT_NAME_JAMES;
+    public static final String INVALID_NAME_AMY_DESC = " " + PREFIX_NAME + VALID_NAME_AMY + "$";
 
     /**
      * Executes the given {@code command}, confirms that <br>
