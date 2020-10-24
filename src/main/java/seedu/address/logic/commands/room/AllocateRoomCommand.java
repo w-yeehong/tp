@@ -135,6 +135,7 @@ public class AllocateRoomCommand extends Command {
      * corresponding field value of the room.
      */
     public static class AllocateRoomDescriptor {
+        private Integer roomNumber;
         private Boolean isOccupied;
         private Name patientName;
 
@@ -152,6 +153,14 @@ public class AllocateRoomCommand extends Command {
 
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(patientName, isOccupied);
+        }
+
+        public void setRoomNumber(Integer roomNumber) {
+            this.roomNumber = roomNumber;
+        }
+
+        public Optional<Integer> getRoomNumber() {
+            return Optional.ofNullable(roomNumber);
         }
 
         public void setOccupied(Boolean isOccupied) {

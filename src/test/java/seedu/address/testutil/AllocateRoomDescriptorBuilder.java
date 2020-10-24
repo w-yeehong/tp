@@ -5,22 +5,22 @@ import seedu.address.logic.commands.room.AllocateRoomCommand.AllocateRoomDescrip
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.Room;
 
-public class EditRoomDescriptorBuilder {
+public class AllocateRoomDescriptorBuilder {
 
     private AllocateRoomDescriptor descriptor;
 
-    public EditRoomDescriptorBuilder() {
+    public AllocateRoomDescriptorBuilder() {
         descriptor = new AllocateRoomDescriptor();
     }
 
-    public EditRoomDescriptorBuilder(AllocateRoomCommand.AllocateRoomDescriptor descriptor) {
+    public AllocateRoomDescriptorBuilder(AllocateRoomCommand.AllocateRoomDescriptor descriptor) {
         this.descriptor = new AllocateRoomCommand.AllocateRoomDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code AllocateRoomDescriptor} with fields containing {@code room}'s details
      */
-    public EditRoomDescriptorBuilder(Room room) {
+    public AllocateRoomDescriptorBuilder(Room room) {
         descriptor = new AllocateRoomDescriptor();
         descriptor.setRoomNumber(room.getRoomNumber());
         descriptor.setOccupied(room.isOccupied());
@@ -30,7 +30,7 @@ public class EditRoomDescriptorBuilder {
     /**
      * Sets the {@code roomNumber} of the {@code AllocateRoomDescriptor} that we are building.
      */
-    public EditRoomDescriptorBuilder withRoomNumber(Integer roomNumber) {
+    public AllocateRoomDescriptorBuilder withRoomNumber(Integer roomNumber) {
         descriptor.setRoomNumber(roomNumber);
         return this;
     }
@@ -38,7 +38,7 @@ public class EditRoomDescriptorBuilder {
     /**
      * Sets the {@code isOccupied} of the {@code AllocateRoomDescriptor} that we are building.
      */
-    public EditRoomDescriptorBuilder withOccupancy(Boolean isOccupied) {
+    public AllocateRoomDescriptorBuilder withOccupancy(Boolean isOccupied) {
         descriptor.setOccupied(isOccupied);
         return this;
     }
@@ -46,7 +46,7 @@ public class EditRoomDescriptorBuilder {
     /**
      * Sets the {@code patient} of the {@code AllocateRoomDescriptor} that we are building.
      */
-    public EditRoomDescriptorBuilder withPatient(Name name) {
+    public AllocateRoomDescriptorBuilder withPatient(Name name) {
         descriptor.setPatientName(name);
         return this;
     }
@@ -57,7 +57,7 @@ public class EditRoomDescriptorBuilder {
 
     @Override
     public String toString() {
-        return "EditRoomDescriptorBuilder{"
+        return "AllocateRoomDescriptorBuilder{"
             + "descriptor=" + descriptor
             + '}';
     }
