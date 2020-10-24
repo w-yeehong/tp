@@ -133,7 +133,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void clearRoom(Name patientName) {
+    public void removePatientFromRoom(Name patientName) {
         throw new AssertionError("This method should not be called.");
     }
 
