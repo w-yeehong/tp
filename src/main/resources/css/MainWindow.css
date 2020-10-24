@@ -4,7 +4,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#aec6cf, -10%);
+    -fx-background-color: #aec6cf;
 }
 
 .scroll-bar .thumb {
@@ -87,6 +87,7 @@
     -fx-min-height: 0;
     -fx-max-height: 0;
     -fx-text-alignment: center;
+    
 }
 
 .main-tab-pane .tab-header-area .tab-header-background {

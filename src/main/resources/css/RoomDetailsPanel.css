@@ -16,49 +16,18 @@
     -fx-background-insets: 20px 40px 30px 40px;
 }
 
-.scroll-bar:vertical .track {
-    -fx-background-color: black;
-    -fx-padding: 3px 6px 3px 0;
-}
-
-.scroll-bar .thumb {
-    -fx-background-color: #fff1f1;
-    -fx-background-insets: 3px;
-}
-
-.scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
-    -fx-padding: 0 0 0 0;
-}
-
-.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-}
-
-.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 0;
-}
-
-.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 0;
-}
-
-.scrollbar .corner {
-    -fx-background-color: #000000;
-}
-
-#room-number {
+.room-details-panel #room-number {
     -fx-font-size: 2.2em;
     -fx-font-weight: bold;
-    -fx-text-fill: rgb(31, 31, 31);
+    -fx-text-fill: #555555;
     -fx-font-family: "Segoe UI Semibold";
     -fx-opacity: 1;
 }
 
-.label-header {
+.room-details-panel .label-header {
     -fx-font-size: 1.5em;
     -fx-font-weight: bold;
-    -fx-text-fill:  rgb(31, 31, 31);
+    -fx-text-fill: #555555;
     -fx-font-family: "Segoe UI Semibold";
     -fx-opacity: 1;
 }
