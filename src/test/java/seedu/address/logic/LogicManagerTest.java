@@ -1,7 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_AMY;
 import static seedu.address.logic.commands.NewCommandTestUtil.NAME_DESC_AMY;
@@ -69,7 +69,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "deletepatient IDoNotExist";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_NAME);
     }
 
     @Test

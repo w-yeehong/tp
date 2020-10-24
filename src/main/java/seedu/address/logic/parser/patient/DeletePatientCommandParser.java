@@ -7,8 +7,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Name;
 
+//@@author chiamyunqing
 /**
- * Parses input arguments and creates a new DeletePatientCommand object
+ * Parses input arguments and creates a new DeletePatientCommand object.
  */
 public class DeletePatientCommandParser implements Parser<DeletePatientCommand> {
 
@@ -18,12 +19,11 @@ public class DeletePatientCommandParser implements Parser<DeletePatientCommand> 
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeletePatientCommand parse(String args) throws ParseException {
-        Name patientName = null;
         try {
-            patientName = PatientParserUtil.parseName(args);
+            Name patientName = PatientParserUtil.parseName(args);
+            return new DeletePatientCommand(patientName);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePatientCommand.MESSAGE_USAGE));
         }
-        return new DeletePatientCommand(patientName);
     }
 }

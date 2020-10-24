@@ -74,7 +74,7 @@ public class EditPatientCommand extends Command {
 
         Optional<Patient> optionalPatient = model.getPatientWithName(patientToBeEdited);
         if (optionalPatient.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME);
         }
 
         Patient patientToEdit = optionalPatient.get();
