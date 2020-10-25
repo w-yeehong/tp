@@ -137,10 +137,10 @@ _Written by: Yee Hong_
 
 ## 4. Glossary
 
-* **Command Line Interface**: A form of user interface that processes commands to a computer program in the form of lines of text.
-* **Graphical User Interface**: A form of user interface that allows users to interact with electronic devices through graphical icons.
-* **Patient**: An individual who resides in the quarantine facility. 
-* **Task**: A task to be completed by staff of the quarantine facility.
+* **Command Line Interface**: A form of user interface that processes commands to a computer program in the form of lines of text.<br>
+* **Graphical User Interface**: A form of user interface that allows users to interact with electronic devices through graphical icons.<br>
+* **Patient**: An individual who resides in the quarantine facility.<br>
+* **Task**: A task to be completed by staff of the quarantine facility.<br>
 
 _Written by: Yun Qing_
 
@@ -173,23 +173,30 @@ This section contains all the commands related to patients. Scroll down to find 
 
 #### 5.2.1 Add a patient: `addpatient` 
 
-Adds the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
+You can use this command to add a patient with the following details: name, temperature, period of stay, phone number, age and comment.
 
 Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
 
-Additional Information:
-* Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
-* `PERIOD_OF_STAY` is in the format `YYYYMMDD-YYYYMMDD`.
-* `TEMPERATURE` should be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
-* `COMMENT`for the patient is optional. 
+Parameter | Description
+------------ | -------------
+`NAME` | The name of the patient. It should preferably be the full name of the patient.
+`TEMPERATURE` | The temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
+`PERIOD_OF_STAY` | The period of stay of the patient in the facility. It must be in the format YYYYMMDD-YYYYMMDD.
+`PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by.
+`AGE` | The age of the patient, which is between 0 and 120.
+`COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
+
+Additional Information: <br>
+![icon](images/infoicon.PNG) Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
 
 Example(s):
-* `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35` A patient named John Doe with phone number _98765432_, temperature _37.4_, period of stay from _10 September 2020 to 24 September 2020_ and age _35_ is added to Covigent.
-* `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named Betsy Crowe with temperature _36.5_, period of stay from _1 October 2020 to 14 October 2020_, phone number _91234567_, age _19_ and comment _Is asthmatic_ is added to Covigent.
+1) `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named Betsy Crowe with temperature _36.5_, period of stay from _1 October 2020 to 14 October 2020_, phone number _91234567_, age _19_ and comment _Is asthmatic_ is added to Covigent.
 
 Expected Outcome: <br>
-* Using the first example, the result box displays the message, "New patient added: John Doe Temperature: 37.4 Period of stay: 10 Sep 2020 to 24 Sep 2020 Phone: 98765432 Age: 35 Comment: -".
+* Using the first example, the result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic".
 * The newly added patient can now be found in the list of patients in Covigent.
+
+//insert ss
 
 _Written by: Yun Qing_
 
