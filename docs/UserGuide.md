@@ -17,10 +17,9 @@
           5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
           5.2.4  [Search Patients by Information: `searchpatient`](#524-search-patients-by-information-searchpatient)<br>
           5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
-          5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
     5.3. [Room](#53-room)<br>
           5.3.1  [Initialise Rooms in Hotel: `initroom`](#531-initialise-rooms-in-hotel-initroom)<br>
-          5.3.2  [Edit Room: `editroom`](#532-edit-room-editroom)<br>
+          5.3.2  [Allocate Patient to Room: `allocateroom`](#532-allocate-patient-to-room-allocateroom)<br>
           5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br>
           5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br>
           5.3.5  [List the Current Rooms: `listroom`](#535-list-the-current-rooms-listroom)<br>
@@ -185,7 +184,8 @@ Parameter | Description
 `PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by.
 `AGE` | The age of the patient, which is between 0 and 120.
 `COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
-<br> 
+<br>
+ 
 **Additional Information:** <br>
 ![icon](images/infoicon.PNG) Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
 <br>
@@ -235,24 +235,28 @@ _Written by: Yun Qing_
 
 Edits an existing patient's details in Covigent.
 
-Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`
+**Format**: `editpatient ORIGNIAL_NAME [n/NEW_NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br>
 
-Additional Information:
-* Edits the patient with the specified `NAME`. 
-* `NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* `NAME` is case-insensitive.
-* `TEMPERATURE` must be to 1 decimal place (e.g. 37.0 instead of 37).
-* `PERIOD_OF_STAY` is in the format `YYYYMMDD-YYYYMMDD`.
-* `PHONE_NUMBER` consists of only 8 digits (e.g. 84321234).
-* `AGE` should be a positive integer between 0 to 119.
+Parameter | Description
+------------ | -------------
+`ORIGNIAL_NAME` | The name of the patient whom details are to be edited. It must match exactly with the name of the patient that was input into Covigent previously. It is case-insensitive.
+`NEW_NAME` | The new name of the patient. The new name must not already exist within Covigent.
+`TEMPERATURE` | The new temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
+`PERIOD_OF_STAY` | The new period of stay of the patient. It must be in the format YYYYMMDD-YYYYMMDD.
+`PHONE_NUMBER` | The new phone number of the patient.
+`AGE` | The new age of the patient. Age should be between 0 and 120.
+`COMMENT` | The new comments about the patient.
 
-Example(s):
+**Additional Information:**<br>
+![icon](images/infoicon.PNG) At least one of the optional fields must be provided.<br>
+![icon](images/infoicon.PNG) Existing values will be updated to the input values.
+<br>
+
+**Example(s)**:
 *  `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to _91234567_.
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
 
-Expected Outcome: <br>
+**Expected Outcome**: <br>
 * Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
 * Details panel will show the details of the edited patient.
 
@@ -299,32 +303,6 @@ Expected Outcome: <br>
 
 _Written by: Wai Lok_
 
-
-#### 5.2.6 Allocate a Patient to a Room: `editroom`
-
-Allocates a patient to a room.
-
-Format: `editroom ROOM_NUMBER p/PATIENT_NAME`
-
-Additional Information:
-* Allocates a person to the room with the specified `ROOM_NUMBER`.
-* `PATIENT_NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
-* `PATIENT_NAME` is case-insensitive.
-* `PATIENT_NAME` is compulsory and must be provided.
-* A room with the `ROOM_NUMBER` must be present.
-* This is only one of features of the editroom command. Refer to the full command [here](#532-edit-room-editroom).
-
-Example(s):
-* `editroom 1 p/alex`. The patient named Alex will be allocated to Room #1.
-
-Expected Outcome: <br>
-* Using the first example, the result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
-Phone: 12345678 Age: 23 Comment: - TaskList: -". 
-* Details panel will show the details of the room with the allocated patient.
-
-_Written by: Ming De_
-
-
 ### 5.3 Room
 
 This section contains all the commands related to rooms. Scroll down to find out which feature you need!
@@ -349,30 +327,27 @@ Expected Outcome: <br>
 _Written by: Noorul Azlina_
 
 
-#### 5.3.2 Edit room: `editroom`
+#### 5.3.2 Allocate Patient to Room: `allocateroom`
 
-Edits an existing room in Covigent.
+Allocates a patient to a room.
 
-Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
+**Format**: `allocateroom ROOM_NUMBER n/PATIENT_NAME`
 
-Additional Information:
-* Edits the room with the specified `ROOM_NUMBER`.
-* `PATIENT_NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
-* `PATIENT_NAME` is case-insensitive.
-* Remove patient from room by inputting a `-` for `PATIENT_NAME`.
-* At least one of the optional fields must be provided.
-* A room with the `ROOM_NUMBER` must be present.
-* Refer [here](#526-allocate-a-patient-to-a-room-editroom) for the instructions on allocating a patient to a room.
+Parameter | Description
+----------|-------------
+`ROOM_NUMBER` | The room number of the room of which the patient is to be allocated to. A room with the `ROOM_NUMBER` must already exist within Covigent.
+`PATIENT_NAME` | The name of the patient to be allocated to the room. It is case-sensitive but must match exactly with the name of the patient that was input into Covigent previously.
 
+![icon](images/infoicon.PNG) To remove a patient from the room, input the patient name as "-". Refer to the example below for more clarity.
 
-Example(s):
-* `editroom 1 r/2 p/alex`. The room with room number #1 will be changed to #2. Afterwards, the previous patient in room #2 will be replaced with the patient named _Alex_.
-* `editroom 1 p/-`. The patient in the room with room number #1 will be removed. 
-* `editroom 1 r/3 p/-`. The room with room number #1 will be changed to #3. Afterwards, the previous patient in room #3 will be removed.
+**Example(s):**
+* `allocateroom 1 n/alex`. The patient named Alex will be allocated to Room #1.
+* `allocateroom 1 n/-`. The previous patient will be removed from Room #1.
 
-Expected Outcome: <br>
-* Using the first example, the result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -". 
-* Details panel will show the details of the newly edited room.
+**Expected Outcome:** <br>
+* Using the first example, the result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
+Phone: 12345678 Age: 23 Comment: - TaskList: -". 
+* The details of the room with the allocated patient will be shown in the details panel.
 
 _Written by: Ming De_
 
@@ -629,9 +604,8 @@ Action | Format, Examples
 **Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g., editpatient James Lee t/36.5
 **Search Patient** | `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]` <br> e.g., searchpatient tr/36.5-36.7
 **List Patients** | `listpatient`<br>
-**Allocate Patient to Room** | `editroom ROOM_NUMBER p/NAME` <br> e.g., editroom 5 p/David Li
 **Initialise Room** | `initroom NUMBER_OF_ROOMS` <br> e.g., initroom 123
-**Edit Room Number** | `editroom ROOM_NUMBER r/NEW_ROOM_NUMBER` <br> e.g., editroom 1 r/2
+**Allocate Patient to Room** | `allocateroom ROOM_NUMBER p/NAME` <br> e.g., editroom 5 n/David Li
 **Search by Room Number** | `searchroom r/ROOM_NUMBER`<br> e.g., searchroom r/15
 **Search for Room with Patient** | `searchroom n/NAME`<br> e.g., searchroom n/Jane Doe
 **List Rooms** | `listroom` <br>
@@ -664,5 +638,8 @@ _Written by: Yun Qing_
 
 **Q**: How do I look at all the rooms and patient when only one is being displayed after commands such as `findroom`?<br>
 **A**: Use the command `listroom` for rooms and `listpatient` for patients.
+
+**Q**: What should I do if nothing happens when I double click the Jar file?<br>
+**A**: Open Terminal(Mac)/Command Prompt(Windows) . Type `cd [PATH TO DIRECTORY CONTAINING .JAR FILE]` . Type java `-jar covigent.jar` to run the application.
 
 _Written by: Noorul Azlina_<br>
