@@ -328,11 +328,19 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+        for (Task task : filteredTasks) {
+            System.out.println("1" + task);
+        }
     }
 
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    @Override
+    public TaskList getModifiableTaskList() {
+        return taskList;
     }
     //=========== Miscellaneous ========================================================================================
 

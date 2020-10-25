@@ -29,7 +29,7 @@ public class JsonSerializableTaskList {
      * @param source future changes to this will not affect the created {@code JsonSerializableTaskList}.
      */
     public JsonSerializableTaskList(TaskList source) {
-        tasks.addAll(source.getInternalList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskObservableList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -39,7 +39,7 @@ public class JsonSerializableTaskList {
      */
     public TaskList toModelType() throws IllegalValueException {
         TaskList taskList = new TaskList();
-        taskList.getInternalList().clear();
+        taskList.getTaskObservableList().clear();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
             taskList.add(task);

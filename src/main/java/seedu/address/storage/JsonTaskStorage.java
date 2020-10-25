@@ -17,18 +17,18 @@ import seedu.address.model.task.TaskList;
 /**
  * Reads data from storage data files and imports them into TaskList
  */
-public class JsonTaskOccupancyStorage {
+public class JsonTaskStorage {
     private Path task;
 
     /**
      * Creates the TaskOccupancy object
      */
-    public JsonTaskOccupancyStorage() {}
+    public JsonTaskStorage() {}
 
     /**
      * Creates the TaskOccupancy object
      */
-    public JsonTaskOccupancyStorage(Path task) {
+    public JsonTaskStorage(Path task) {
         this.task = task;
     }
 
@@ -36,8 +36,8 @@ public class JsonTaskOccupancyStorage {
         return task;
     }
 
-    public Optional<ReadOnlyTaskList> readOnlyTaskOccupancy() throws IOException, DataConversionException {
-        return readOnlyTaskOccupancy(task);
+    public Optional<ReadOnlyTaskList> readOnlyTask() throws IOException, DataConversionException {
+        return readOnlyTask(task);
     }
     /**
      * Returns TaskList data as a {@link ReadOnlyTaskList}.
@@ -45,7 +45,7 @@ public class JsonTaskOccupancyStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    public Optional<ReadOnlyTaskList> readOnlyTaskOccupancy(Path filePath) throws IOException, DataConversionException {
+    public Optional<ReadOnlyTaskList> readOnlyTask(Path filePath) throws IOException, DataConversionException {
         Optional<JsonSerializableTaskList> jsonCovigentApp = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTaskList.class);
         if (!jsonCovigentApp.isPresent()) {
