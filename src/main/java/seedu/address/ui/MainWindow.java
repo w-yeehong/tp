@@ -3,11 +3,16 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -29,10 +34,16 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    private Image logoImage = new Image(this.getClass().getResourceAsStream("/images/logo.png"));
-    private Image patientImage = new Image(this.getClass().getResourceAsStream("/images/patient.png"));
-    private Image roomImage = new Image(this.getClass().getResourceAsStream("/images/room.png"));
-    private Image taskImage = new Image(this.getClass().getResourceAsStream("/images/task.png"));
+    private Image logoImage = new Image(this.getClass().getResourceAsStream("/images/covigent.png"));
+
+    // attributes for tabs ----------------------
+    private Image patientImage = new Image(this.getClass().getResourceAsStream("/images/patientlogo.png"));
+    private Image roomImage = new Image(this.getClass().getResourceAsStream("/images/roomlogo.png"));
+    private Image taskImage = new Image(this.getClass().getResourceAsStream("/images/tasklogo.png"));
+    private final String patientTabContent = "PATIENTS";
+    private final String roomTabContent = "ROOMS";
+    private final String taskTabContent = "TASKS";
+
     // Independent Ui parts residing in this Ui container
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
@@ -84,9 +95,9 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         //set images
-        this.setTabImage(patientTab, patientImage);
-        this.setTabImage(roomTab, roomImage);
-        this.setTabImage(taskTab, taskImage);
+        this.setTabContent(patientTab, patientImage, patientTabContent);
+        this.setTabContent(roomTab, roomImage, roomTabContent);
+        this.setTabContent(taskTab, taskImage, taskTabContent);
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -94,13 +105,21 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
     }
 
-    private void setTabImage(Tab tab, Image image) {
-        ImageView imageView = new ImageView();
-        imageView.setFitHeight(90);
-        imageView.setFitWidth(90);
-        imageView.setImage(image);
-        tab.setGraphic(imageView);
-
+    private void setTabContent(Tab tab, Image image, String text) {
+        VBox content = new VBox();
+        //set image
+        ImageView icon = new ImageView(image);
+        icon.setFitHeight(70);
+        icon.setFitWidth(70);
+        //set text
+        Label label = new Label(text);
+        label.setFont(Font.font("American Typewriter", FontWeight.BOLD, 15));
+        //manually centre-align text
+        if (!text.equals(patientTabContent)) {
+            label.setPadding(new Insets(0, 0, 0, 10));
+        }
+        content.getChildren().addAll(icon, label);
+        tab.setGraphic(content);
     }
 
     public void displayAppIcon() {
