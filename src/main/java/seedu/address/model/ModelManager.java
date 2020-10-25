@@ -142,12 +142,13 @@ public class ModelManager implements Model {
     @Override
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
-
         patientRecords.setPatient(target, editedPatient);
     }
 
+    //@@author LeeMingDe
     @Override
     public boolean isPatientAssignedToRoom(Name name) {
+        requireNonNull(name);
         for (Room room : roomList.getRoomObservableList()) {
             if (room.getPatient() != null) {
                 Name patientNameInRoom = room.getPatient().getName();
@@ -158,6 +159,7 @@ public class ModelManager implements Model {
         }
         return false;
     }
+    //@@author LeeMingDe
 
     //=========== Filtered Patient List Accessors =============================================================
 
@@ -184,6 +186,7 @@ public class ModelManager implements Model {
         roomList.addRooms(num);
     }
 
+    //@@author LeeMingDe
     @Override
     public boolean hasRoom(Room room) {
         requireNonNull(room);
@@ -191,15 +194,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
-        assert (roomNumber > 0) : "Room number should be greater than 0.";
-        return roomList.getRoomWithRoomNumber(roomNumber);
-    }
-
-    @Override
     public void setSingleRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
         roomList.setSingleRoom(target, editedRoom);
+    }
+    //@@author LeeMingDe
+
+    @Override
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        assert (roomNumber > 0) : "Room number should be greater than 0.";
+        return roomList.getRoomWithRoomNumber(roomNumber);
     }
 
     //@@author chiamyunqing
@@ -210,6 +214,7 @@ public class ModelManager implements Model {
     }
     //@@author chiamyunqing
 
+    //@@author LeeMingDe
     @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
         ObservableList<Room> roomObservableList = this.getRoomList();
@@ -227,6 +232,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
+        requireNonNull(patientToEdit);
         ObservableList<Room> roomObservableList = this.roomList.getRoomObservableList();
         for (int i = 0; i < roomObservableList.size(); i++) {
             Patient patient = roomObservableList.get(i).getPatient();
@@ -242,6 +248,7 @@ public class ModelManager implements Model {
             }
         }
     }
+    //@@author LeeMingDe
 
     //=========== Filtered RoomList Accessors ==========================================================================
 
