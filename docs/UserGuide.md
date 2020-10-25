@@ -173,9 +173,9 @@ This section contains all the commands related to patients. Scroll down to find 
 
 #### 5.2.1 Add a patient: `addpatient` 
 
-You can use this command to add a patient with the following details: name, temperature, period of stay, phone number, age and comment.
+You can use this command to add a patient with the following details: name, temperature, period of stay, phone number, age and comment.<br>
 
-**Format:** `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
+**Format:** `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`<br>
 
 Parameter | Description
 ------------ | -------------
@@ -185,12 +185,14 @@ Parameter | Description
 `PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by.
 `AGE` | The age of the patient, which is between 0 and 120.
 `COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
-
+<br> 
 **Additional Information:** <br>
 ![icon](images/infoicon.PNG) Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
+<br>
 
 **Example(s):**
 1. `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named Betsy Crowe with temperature _36.5_, period of stay from _1 October 2020 to 14 October 2020_, phone number _91234567_, age _19_ and comment _Is asthmatic_ is added to Covigent.
+<br>
 
 **Expected Outcome:** <br>
 * Using the first example, the result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic".
@@ -203,16 +205,22 @@ _Written by: Yun Qing_
 
 #### 5.2.2 Delete a patient: `deletepatient` 
 
-You can use this command to delete the details of the existing patient identified by his/her name from Covigent. 
+You can use this command to delete the details of the existing patient identified by his/her name from Covigent.<br> 
 
-**Format:** `deletepatient NAME`
+**Format:** `deletepatient NAME`<br>
+
+Parameter | Description
+------------ | -------------
+`NAME` | The name of the patient to be deleted. It is case-insensitive and must match exactly with the name of the patient that was input into Covigent previously.
+<br>
 
 **Additional Information:**<br>
-![icon](images/infoicon.PNG) `NAME` must match exactly with the name of the patient that was input into Covigent previously and is case-insensitive.
-* If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent.
+![icon](images/infoicon.PNG) If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent.
+<br>
 
 **Example(s):**
 1. `deletepatient Mary Doe` The patient details of Mary Doe will be deleted from Covigent.
+<br>
 
 **Expected Outcome:** <br>
 * Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". 
