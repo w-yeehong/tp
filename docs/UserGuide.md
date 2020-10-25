@@ -266,19 +266,24 @@ _Written by: Ming De_
 
 Searches the patients that match the given criteria(name or a range of temperature) in Covigent.
 
-Format: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
+**Format**: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
-Additional Information:
+Parameter | Description
+------------ | -------------
+`NAME` | The name or a substring of the name of the patient you want to look for. It may not be the full name of the patient. Any patient with the entered sub-name could be displayed. It is case-insensitive.
+`TEMPERATURE_RANGE` | The temperature range that you want to look for. It is made up of two temperatures. A temperature must be keyed in to 1 decimal place (e.g. 37.0 instead of 37). The two temperature are linked using a dash "-". 
 
-* Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.
-* The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
+**Additional Information:**<br>
 
-Example(s):
+![icon](images/infoicon.PNG)  Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.
+![icon](images/infoicon.PNG) The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
 
-*  `searchpatient n/john` Searches patients with a name John.
-*  `searchpatient tr/36.5-36.7` Searches patients with temperature range _36.5 to 36.7_ degree celsius, both inclusive.
+**Example(s)**:
 
-Expected Outcome: <br>
+*  `searchpatient n/john` Searches patients with a name or subname john.
+*  `searchpatient tr/36.5-36.7` Searches patients within temperature range _36.5 to 36.7_ degree celsius, both inclusive.
+
+**Expected Outcome**: <br>
 
 * Using the second example, the result box displays the message, "Listed patient(s) matching the criteria.".
 * Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in Covigent.
@@ -290,13 +295,13 @@ _Written by: Wai Lok_
 
 Shows a list of all patients in the patient tab.
 
-Format: `listpatient`
+**Format**: `listpatient`
 
-Example(s):
+**Example(s)**:
 
 *  `listpatient` Lists all patients that are present in Covigent.
 
-Expected Outcome: <br>
+**Expected Outcome**: <br>
 
 * The result box displays the message, "All patients are listed.".
 
@@ -544,24 +549,22 @@ _Written by: Yee Hong_
 
 Searches all tasks before a date in Covigent.
 
-Format: `searchtask dd/DUE_DATE`
+**Format**: `searchtask dd/DUE_DATE`
 
-Additional Information:
-* Due date can be in the any of the following formats:
-  * `YYYYMMDD` (e.g. 20210131).
-  * `YYYYMMDD HHmm` (e.g. 20210131 2359).
-  * `D/M/YYYY` (e.g. 31/1/2021 or 31/01/2021).
-  * `D/M/YYYY HHmm` (e.g. 31/1/2021 2359 or 31/01/2021 2359).
-  
-* If the time is not given for a due date, it defaults to 0000 (12am).
+Parameter | Description
+----------|-------------
+`Due_Date` | The due date you are looking for. It must be in any of the following forms: `YYYYMMDD`, `YYYYMMDD HHmm`, `D/M/YYYY`, `D/M/YYYY HHmm`.
 
-Example(s):
+**Additional Information**:<br>
+![icon](images/infoicon.PNG)  If the time `HHmm` is not specified for a due date, it defaults to 0000 (12am).
 
-* `searchtask dd/12/1/2021` Search all tasks before and including 12 January 2021.
+**Example(s)**:
 
-Expected Outcome:<br>
+* `searchtask dd/12/1/2021` Search all tasks before and including 12 January 2021 0000.
+
+**Expected Outcome**:<br>
 * The result box displays the message, "Tasks before the due date found.".
-* Tasks before and including 12 January 2021 can now be found in the list of tasks in Covigent
+* Tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent
 
 _Written by: Wai Lok_
 
