@@ -1,16 +1,16 @@
 package seedu.address.logic.commands.task;
 
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
-import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.command.GeneralCommandTestUtil.showPatientAtIndex;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.*;
-import seedu.address.model.task.TaskList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.RoomList;
+import seedu.address.model.UserPrefs;
 
 /**
  * Contains unit tests for ListTaskCommand.
