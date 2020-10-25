@@ -184,8 +184,6 @@ Parameter | Description
 `PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by.
 `AGE` | The age of the patient, which is between 0 and 120.
 `COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
-<br>
- 
 **Additional Information:** <br>
 ![icon](images/infoicon.PNG) Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
 <br>
@@ -212,7 +210,7 @@ You can use this command to delete the details of the existing patient identifie
 Parameter | Description
 ------------ | -------------
 `NAME` | The name of the patient to be deleted. It is case-insensitive and must match exactly with the name of the patient that was input into Covigent previously.
-<br>
+
 
 **Additional Information:**<br>
 ![icon](images/infoicon.PNG) If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent.
@@ -376,7 +374,7 @@ _Written by: Yun Qing_
 
 You can use this command to search for the room that the specified patient is residing in. 
 
-**Format** `searchroom n/NAME`
+**Format:** `searchroom n/NAME`
 
 Parameter | Description
 ----------|-------------
