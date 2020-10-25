@@ -175,7 +175,7 @@ This section contains all the commands related to patients. Scroll down to find 
 
 You can use this command to add a patient with the following details: name, temperature, period of stay, phone number, age and comment.
 
-Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
+**Format:** `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
 
 Parameter | Description
 ------------ | -------------
@@ -186,13 +186,13 @@ Parameter | Description
 `AGE` | The age of the patient, which is between 0 and 120.
 `COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
 
-Additional Information: <br>
+**Additional Information:** <br>
 ![icon](images/infoicon.PNG) Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
 
-Example(s):
+**Example(s):**
 1. `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named Betsy Crowe with temperature _36.5_, period of stay from _1 October 2020 to 14 October 2020_, phone number _91234567_, age _19_ and comment _Is asthmatic_ is added to Covigent.
 
-Expected Outcome: <br>
+**Expected Outcome:** <br>
 * Using the first example, the result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic".
 * The newly added patient can now be found in the list of patients in Covigent.
 
@@ -203,20 +203,22 @@ _Written by: Yun Qing_
 
 #### 5.2.2 Delete a patient: `deletepatient` 
 
-Deletes the details of the existing patient identified by his/her name from Covigent. 
+You can use this command to delete the details of the existing patient identified by his/her name from Covigent. 
 
-Format: `deletepatient NAME`
+**Format:** `deletepatient NAME`
 
-Additional Information:
-* `NAME` **must match exactly with the name of the patient that was input into Covigent previously** and is case-insensitive.
+**Additional Information:**<br>
+![icon](images/infoicon.PNG) `NAME` must match exactly with the name of the patient that was input into Covigent previously and is case-insensitive.
 * If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent.
 
-Example(s):
-* `deletepatient Mary Doe` The patient details of Mary Doe will be deleted from Covigent.
+**Example(s):**
+1. `deletepatient Mary Doe` The patient details of Mary Doe will be deleted from Covigent.
 
-Expected Outcome: <br>
+**Expected Outcome:** <br>
 * Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". 
 * The deleted patient can no longer be found in the list of patients in Covigent.
+
+//insert ss
 
 _Written by: Yun Qing_
 
@@ -369,35 +371,41 @@ _Written by: Ming De_
 
 #### 5.3.3 Search by Room Number: `searchroom` 
 
-Searches for the room details with the specified room number.
+You can use this command to search for the room details with the specified room number.
 
-Format: `searchroom r/ROOM_NUMBER`
+**Format:** `searchroom r/ROOM_NUMBER`
 
-Example(s):
-* `searchroom r/6` The room details of room number 6 will be searched.
+Parameter | Description
+----------|-------------
+`ROOM_NUMBER` | The room number of the room to be searched for. The room number should be present in the list of rooms in Covigent.
 
-Expected Outcome:<br>
+**Example(s):**
+1. `searchroom r/6` The room details of room number 6 will be searched.
+
+**Expected Outcome:**<br>
 * The result box displays a message "Room has been found and listed." 
 * The room with the specified room number is shown in the room details panel.
-
+//insert ss
 _Written by: Yun Qing_
 
 
 #### 5.3.4 Search for Room with Patient: `searchroom` 
 
-Searches for the room that the specified patient is residing in. 
+You can use this command to search for the room that the specified patient is residing in. 
 
-Format `searchroom n/NAME`
+**Format** `searchroom n/NAME`
 
-Addition Information:
-* `NAME` **must match exactly with the name of the patient that was input into Covigent previously** and is case-insensitive.
+Parameter | Description
+----------|-------------
+`NAME` | The name of the patient whose room you are looking for. It is case-insensitive and must match exactly with the name of the patient that was input into Covigent previously.
 
-Example(s):
-* `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
+**Example(s):**
+1. `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
 
-Expected Outcome: <br>
+**Expected Outcome:**<br>
 * The result box displays a message "Room has been found and listed." 
 * The room that the specified patient resides in is shown in the room details panel.
+//insert ss
 
 _Written by: Yun Qing_
 
