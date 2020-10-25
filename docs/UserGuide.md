@@ -184,6 +184,7 @@ Parameter | Description
 `PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by.
 `AGE` | The age of the patient, which is between 0 and 120.
 `COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
+
 **Additional Information:** <br>
 ![icon](images/infoicon.PNG) Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
 <br>
