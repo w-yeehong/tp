@@ -1,13 +1,13 @@
 package seedu.address.model.patient;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.COMMENT;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_AGE_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PERIOD_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_BOB;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.COMMENT;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_AGE_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PERIOD_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_TEMP_BOB;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

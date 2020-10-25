@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DATETIME_DUE_ORDER_BEDSHEET;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DESCRIPTION_ORDER_BEDSHEET;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DATETIME_DUE_ORDER_BEDSHEET;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DESCRIPTION_ORDER_BEDSHEET;
 
 import java.util.ArrayList;
 import java.util.Arrays;
