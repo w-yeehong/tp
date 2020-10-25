@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -59,6 +60,7 @@ public class RoomDetailsPanel extends UiPart<Region> {
      * @param room To set the details for.
      */
     public void setRoomDetails(Room room) {
+        logger.log(Level.INFO, "Set non-empty room details successfully.");
         if (room.getPatient() != null) {
             patientDetails.setText(room.getPatient().toString());
         } else {
@@ -72,6 +74,7 @@ public class RoomDetailsPanel extends UiPart<Region> {
      * Sets the details for an empty room.
      */
     public void setEmptyRoomDetails() {
+        logger.log(Level.INFO, "Set empty room details successfully.");
         roomNumber.setText("NO ROOM PRESENT");
         patientDetails.setText("-");
         taskDetails.setText("-");

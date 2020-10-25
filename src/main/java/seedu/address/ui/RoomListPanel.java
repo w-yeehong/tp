@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
@@ -54,6 +55,7 @@ public class RoomListPanel extends UiPart<Region> {
     public void handleMouseClick(MouseEvent mouseEvent) {
         Room roomToDisplay = roomListView.getSelectionModel().getSelectedItem();
         roomDetailsPanel.setRoomDetails(roomToDisplay);;
+        logger.log(Level.INFO, "MouseClick is fired and handled");
     }
 
     /**
@@ -67,6 +69,7 @@ public class RoomListPanel extends UiPart<Region> {
             public void onChanged(Change<? extends Room> change) {
                 while (change.next()) {
                     if (change.wasAdded()) {
+                        logger.log(Level.INFO, "OnChangeListener is fired");
                         int indexToChange = change.getFrom();
                         Room roomToDisplay = change.getList().get(indexToChange);
                         roomListView.scrollTo(indexToChange);
