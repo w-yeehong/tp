@@ -274,8 +274,7 @@ Parameter | Description
 `TEMPERATURE_RANGE` | The temperature range that you want to look for. It is made up of two temperatures. A temperature must be keyed in to 1 decimal place (e.g. 37.0 instead of 37). The two temperature are linked using a dash "-". 
 
 **Additional Information:**<br>
-
-![icon](images/infoicon.PNG)  Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.
+![icon](images/infoicon.PNG)  Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.<br>
 ![icon](images/infoicon.PNG) The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
 
 **Example(s)**:
