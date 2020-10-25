@@ -26,6 +26,7 @@ import seedu.address.model.patient.PeriodOfStay;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
 
+//@@author LeeMingDe
 /**
  * Edits a patient in the app with the selected name.
  * Input of name is case insensitive.
@@ -230,4 +231,5 @@ public class EditPatientCommand extends Command {
                     && getComment().equals(e.getComment());
         }
     }
+    //@@author LeeMingDe
 }

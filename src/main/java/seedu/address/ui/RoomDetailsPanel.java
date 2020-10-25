@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.room.Room;
 
+//@@author LeeMingDe
 /**
  * Panel containing the room details.
  */
@@ -79,4 +80,5 @@ public class RoomDetailsPanel extends UiPart<Region> {
         patientDetails.setText("-");
         taskDetails.setText("-");
     }
+    //@@author LeeMingDe
 }

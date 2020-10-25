@@ -19,6 +19,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.TaskList;
 
+//@@author LeeMingDe
 /**
  * Edits the details of a room identified by the room number in the app.
  * Allows setting/removing/changing patient in the room and changing the room number of the room.
@@ -202,4 +203,5 @@ public class AllocateRoomCommand extends Command {
                 + ", allocateRoomDescriptor=" + allocateRoomDescriptor
                 + '}';
     }
+    //@@author LeeMingDe
 }

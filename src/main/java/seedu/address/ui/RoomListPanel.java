@@ -14,6 +14,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.room.Room;
 
+//@@author LeeMingDe
 /**
  * Panel containing the list of rooms.
  */
@@ -98,5 +99,5 @@ public class RoomListPanel extends UiPart<Region> {
             }
         }
     }
-
+    //@@author LeeMingDe
 }
