@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -14,7 +13,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -98,8 +96,8 @@ public class MainWindow extends UiPart<Stage> {
 
         //set images
         this.setTabContent(patientTab, patientImage, patientTabContent);
-        this.setTabContent(roomTab, roomImage,  roomTabContent);
-        this.setTabContent(taskTab, taskImage,  taskTabContent);
+        this.setTabContent(roomTab, roomImage, roomTabContent);
+        this.setTabContent(taskTab, taskImage, taskTabContent);
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -118,10 +116,9 @@ public class MainWindow extends UiPart<Stage> {
         label.setFont(Font.font("American Typewriter", FontWeight.BOLD, 15));
         //manually centre-align text
         if (!text.equals(patientTabContent)) {
-            label.setPadding(new Insets(0,0,0,10));
+            label.setPadding(new Insets(0, 0, 0, 10));
         }
         content.getChildren().addAll(icon, label);
-
         tab.setGraphic(content);
     }
 
