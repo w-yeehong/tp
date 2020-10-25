@@ -401,7 +401,7 @@ _Written by: Yun Qing_
 
 You can use this command to search for the room that the specified patient is residing in. 
 
-**Format** `searchroom n/NAME`
+**Format:** `searchroom n/NAME`
 
 Parameter | Description
 ----------|-------------
