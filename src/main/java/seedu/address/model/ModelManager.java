@@ -227,10 +227,11 @@ public class ModelManager implements Model {
 
     @Override
     public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
+        assert patientToEdit != null;
         ObservableList<Room> roomObservableList = this.roomList.getRoomObservableList();
         for (int i = 0; i < roomObservableList.size(); i++) {
             Patient patient = roomObservableList.get(i).getPatient();
-            if (isPatientAssignedToRoom(patientToEdit.getName()) && patient != null
+            if (isPatientAssignedToRoom(patientToEdit.getName()) && roomObservableList.get(i).isOccupied()
                 && patient.isSamePatient(patientToEdit)) {
                 Room updatedRoom = roomObservableList.get(i);
                 if (editedPatient == null) {

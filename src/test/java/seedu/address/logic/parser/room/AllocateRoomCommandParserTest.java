@@ -3,18 +3,18 @@ package seedu.address.logic.parser.room;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NAME_JAMES_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NON_NUMBER_ROOM_NUMBER;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_ROOM_NUMBER;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_AMY_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_JAMES_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PATIENT_NAME_JAMES;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_ONE;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_NUMBER_TWO;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.patient.Name.MESSAGE_CONSTRAINTS;
+import static seedu.address.testutil.command.PatientCommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.testutil.command.PatientCommandTestUtil.NAME_DESC_JAMES;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_JAMES;
+import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_NON_NUMBER_ROOM_NUMBER;
+import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_ROOM_NUMBER;
+import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_NAME_AMY_DESC;
+import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_ONE;
+import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_TWO;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,23 +47,23 @@ public class AllocateRoomCommandParserTest {
 
     @Test
     public void parse_invalidPatientName_failure() {
-        assertParseFailure(parser, VALID_ROOM_NUMBER_ONE + INVALID_NAME_JAMES_DESC,
+        assertParseFailure(parser, VALID_ROOM_NUMBER_ONE + INVALID_NAME_DESC,
                 MESSAGE_CONSTRAINTS); // invalid patient name
     }
 
     @Test
     public void parse_invalidFieldsValue_failure() {
         // Invalid patient name
-        assertParseFailure(parser, VALID_ROOM_NUMBER_ONE + INVALID_NAME_JAMES_DESC, MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, VALID_ROOM_NUMBER_ONE + INVALID_NAME_DESC, MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = VALID_ROOM_NUMBER_ONE + VALID_NAME_JAMES_DESC;
+        String userInput = VALID_ROOM_NUMBER_ONE + NAME_DESC_JAMES;
 
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder()
                 .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_TWO))
-                .withPatient(new Name(VALID_PATIENT_NAME_JAMES))
+                .withPatient(new Name(VALID_NAME_JAMES))
                 .build();
         AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE),
             descriptor);
@@ -72,7 +72,7 @@ public class AllocateRoomCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedValue_acceptsLast() {
-        String userInput = VALID_ROOM_NUMBER_ONE + VALID_NAME_JAMES_DESC
+        String userInput = VALID_ROOM_NUMBER_ONE + NAME_DESC_JAMES
             + VALID_NAME_AMY_DESC;
 
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder()
@@ -86,10 +86,10 @@ public class AllocateRoomCommandParserTest {
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
-        String userInput = VALID_ROOM_NUMBER_TWO + INVALID_NAME_JAMES_DESC + VALID_NAME_JAMES_DESC;
+        String userInput = VALID_ROOM_NUMBER_TWO + INVALID_NAME_DESC + NAME_DESC_JAMES;
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder()
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
-            .withPatient(new Name(VALID_PATIENT_NAME_JAMES)).build();
+            .withPatient(new Name(VALID_NAME_JAMES)).build();
         AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_TWO),
             descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -99,11 +99,11 @@ public class AllocateRoomCommandParserTest {
     public void equals() {
         AllocateRoomCommand.AllocateRoomDescriptor descriptorOne = new AllocateRoomDescriptorBuilder()
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
-            .withPatient(new Name(VALID_PATIENT_NAME_JAMES)).build();
+            .withPatient(new Name(VALID_NAME_JAMES)).build();
 
         AllocateRoomCommand.AllocateRoomDescriptor descriptorTwo = new AllocateRoomDescriptorBuilder()
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_TWO))
-            .withPatient(new Name(VALID_PATIENT_NAME_JAMES)).build();
+            .withPatient(new Name(VALID_NAME_JAMES)).build();
 
         AllocateRoomCommand allocateFirstRoomCommand = new AllocateRoomCommand(
             Integer.valueOf(VALID_ROOM_NUMBER_ONE), descriptorOne);
