@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.patient;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.showPatientAtIndex;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

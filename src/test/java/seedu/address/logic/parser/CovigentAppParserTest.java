@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_DESC_ONE;
-import static seedu.address.logic.commands.NewCommandTestUtil.TASK_NUMBER_DESC_ONE;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_INDEX_ONE;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TASK_INDEX_ONE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
+import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
+import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_ONE;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_TASK_INDEX_ONE;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,8 +49,8 @@ public class CovigentAppParserTest {
     public void parseCommand_addTask() throws Exception {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(
-                TaskUtil.getAddTaskCommand(task, VALID_ROOM_INDEX_ONE));
-        assertEquals(new AddTaskCommand(task, VALID_ROOM_INDEX_ONE), command);
+                TaskUtil.getAddTaskCommand(task, VALID_ROOM_NUMBER_SEVEN));
+        assertEquals(new AddTaskCommand(task, VALID_ROOM_NUMBER_SEVEN), command);
     }
 
     @Test
@@ -71,8 +71,8 @@ public class CovigentAppParserTest {
         descriptor.setDateTimeDue(task.getDueAt());
 
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
-                TaskUtil.getEditTaskCommand(task, VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE));
-        assertEquals(new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE, descriptor), command);
+                TaskUtil.getEditTaskCommand(task, VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE));
+        assertEquals(new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor), command);
     }
 
     @Test
@@ -85,8 +85,8 @@ public class CovigentAppParserTest {
     @Test
     public void parseCommand_deleteTask() throws Exception {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
-                DeleteTaskCommand.COMMAND_WORD + ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE);
-        assertEquals(new DeleteTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE), command);
+                DeleteTaskCommand.COMMAND_WORD + ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE);
+        assertEquals(new DeleteTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE), command);
     }
 
     @Test

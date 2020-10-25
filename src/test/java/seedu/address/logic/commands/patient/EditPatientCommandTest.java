@@ -2,16 +2,16 @@ package seedu.address.logic.commands.patient;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.showPatientAtIndex;
+import static seedu.address.testutil.command.PatientCommandTestUtil.DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.DESC_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -128,7 +128,7 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditPatientCommand editCommand = new EditPatientCommand(new Name("Unknown"), descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME);
     }
 
     @Test
