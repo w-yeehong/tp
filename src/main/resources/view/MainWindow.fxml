@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.Scene?>
 <?import java.net.URL?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Scene?>
-<?import javafx.stage.Stage?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<fx:root minHeight="600" minWidth="500.0" title="Covigent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="500.0" title="Covigent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/covigent.png" />
   </icons>
-
   <scene>
     <Scene>
       <stylesheets>
@@ -30,7 +25,7 @@
       <VBox>
         <HBox fx:id="covigentLogoPlaceholder" styleClass="main-logo-stack-pane" HBox.hgrow="NEVER">
           <children>
-            <ImageView fx:id="logoIcon" fitHeight="100.0" fitWidth="200" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logoIcon" fitHeight="150.0" fitWidth="200" pickOnBounds="true" preserveRatio="true">
               <HBox.margin>
                 <Insets left="-10" top="3.0" />
               </HBox.margin>
@@ -38,27 +33,27 @@
           </children>
         </HBox>
 
-        <TabPane fx:id="covigentTabs" styleClass="main-tab-pane" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="covigentTabs" rotateGraphic="true" side="LEFT" styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE">
           <tabs>
-            <Tab fx:id="patientTab" styleClass="main-tab" text="Patients">
+            <Tab fx:id="patientTab" styleClass="main-tab">
               <content>
-                <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="patientListPanelPlaceholder" styleClass="main-logo-stack-pane" stylesheets="@../css/MainWindow.css" VBox.vgrow="ALWAYS" />
               </content>
             </Tab>
-            <Tab fx:id="roomTab" styleClass="main-tab" text="Rooms">
+            <Tab fx:id="roomTab" styleClass="main-tab">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                  <children>
-                    <StackPane fx:id="roomListPanelPlaceHolder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    <StackPane fx:id="roomListPanelPlaceHolder" styleClass="main-logo-stack-pane" stylesheets="@../css/MainWindow.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                  </children>
                 </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="taskTab" styleClass="main-tab" text="Tasks">
+            <Tab fx:id="taskTab" styleClass="main-tab">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                    <StackPane fx:id="taskListPanelPlaceholder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    <StackPane fx:id="taskListPanelPlaceholder" styleClass="main-logo-stack-pane" stylesheets="@../css/MainWindow.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   </children>
                 </AnchorPane>
               </content>
@@ -69,10 +64,11 @@
         <StackPane fx:id="commandBoxPlaceholder" styleClass="main-pane-with-border" VBox.vgrow="NEVER">
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" styleClass="main-pane-with-border" VBox.vgrow="NEVER"
-                   minHeight="100" prefHeight="200" maxHeight="300">
-        </StackPane>
-        <StackPane fx:id="statusBarPlaceholder" alignment="BOTTOM_LEFT" VBox.vgrow="NEVER" />
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300" minHeight="100" prefHeight="200" styleClass="main-pane-with-border" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></StackPane>
+        <StackPane fx:id="statusBarPlaceholder" alignment="BOTTOM_LEFT" minHeight="30.0" />
       </VBox>
     </Scene>
   </scene>

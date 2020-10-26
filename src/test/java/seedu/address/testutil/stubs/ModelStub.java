@@ -17,6 +17,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * A default model stub that has all of the methods failing.
@@ -123,12 +124,17 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void setSingleRoom(Room target, Room editedRoom) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void clearRoom(Name patientName) {
+    public void removePatientFromRoom(Name patientName) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -164,7 +170,12 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<Task> getFilteredTaskList() {
-        return null;
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public TaskList getModifiableTaskList() {
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -173,8 +184,13 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
+    public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
 
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        throw new AssertionError("This method should not be called.");
     }
 
     public void addTaskToRoom(Task task, Room room) {

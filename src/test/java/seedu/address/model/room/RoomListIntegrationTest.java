@@ -1,17 +1,22 @@
 package seedu.address.model.room;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_NO_TASK;
 import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_TASK_INDEX_ONE;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.RoomList;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.testutil.RoomBuilder;
 
@@ -26,6 +31,33 @@ public class RoomListIntegrationTest {
     @BeforeEach
     public void setUp() {
         roomList = new RoomList();
+    }
+
+    @Test
+    public void getTaskFromRoomWithTaskIndex_nullTaskIndex_throwsNullPointerException() {
+        Room room = new RoomBuilder().build();
+        assertThrows(NullPointerException.class, () ->
+                roomList.getTaskFromRoomWithTaskIndex(null, room));
+    }
+
+    @Test
+    public void getTaskFromRoomWithTaskIndex_nullRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                roomList.getTaskFromRoomWithTaskIndex(VALID_TASK_INDEX_ONE, null));
+    }
+
+    @Test
+    public void getTaskFromRoomWithTaskIndex_taskNotInRoom_returnsEmptyOptional() {
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_NO_TASK).build();
+        Optional<Task> optionalTask = roomList.getTaskFromRoomWithTaskIndex(VALID_TASK_INDEX_ONE, room);
+        assertTrue(optionalTask.isEmpty());
+    }
+
+    @Test
+    public void getTaskFromRoomWithTaskIndex_taskInRoom_returnsTask() {
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        Optional<Task> optionalTask = roomList.getTaskFromRoomWithTaskIndex(VALID_TASK_INDEX_ONE, room);
+        assertTrue(optionalTask.map(task -> task.equals(REMIND_PATIENT)).orElse(false));
     }
 
     @Test

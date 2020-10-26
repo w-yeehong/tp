@@ -15,7 +15,7 @@ import seedu.address.logic.commands.patient.DeletePatientCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand;
 import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.commands.patient.SearchPatientCommand;
-import seedu.address.logic.commands.room.EditRoomCommand;
+import seedu.address.logic.commands.room.AllocateRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.InitRoomCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
@@ -23,13 +23,14 @@ import seedu.address.logic.commands.room.SearchRoomCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand;
+import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.SearchTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.AddPatientCommandParser;
 import seedu.address.logic.parser.patient.DeletePatientCommandParser;
 import seedu.address.logic.parser.patient.EditPatientCommandParser;
 import seedu.address.logic.parser.patient.SearchPatientCommandParser;
-import seedu.address.logic.parser.room.EditRoomCommandParser;
+import seedu.address.logic.parser.room.AllocateRoomCommandParser;
 import seedu.address.logic.parser.room.InitRoomCommandParser;
 import seedu.address.logic.parser.room.SearchRoomCommandParser;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
@@ -81,8 +82,8 @@ public class CovigentAppParser {
         case EditPatientCommand.COMMAND_WORD:
             return new EditPatientCommandParser().parse(arguments);
 
-        case EditRoomCommand.COMMAND_WORD:
-            return new EditRoomCommandParser().parse(arguments);
+        case AllocateRoomCommand.COMMAND_WORD:
+            return new AllocateRoomCommandParser().parse(arguments);
 
         case EditTaskCommand.COMMAND_WORD:
             return new EditTaskCommandParser().parse(arguments);
@@ -91,6 +92,9 @@ public class CovigentAppParser {
 
         case ListPatientCommand.COMMAND_WORD:
             return new ListPatientCommand();
+
+        case ListTaskCommand.COMMAND_WORD:
+            return new ListTaskCommand();
 
         // delete
 

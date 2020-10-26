@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_NO_ROOM;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
@@ -56,7 +56,7 @@ public class SearchRoomCommand extends Command {
             Integer roomNumber = descriptor.roomNumber;
             Index index = model.checkIfRoomPresent(roomNumber);
             if (index.getZeroBased() == 0) {
-                throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
+                throw new CommandException(MESSAGE_INVALID_ROOM_NUMBER);
             }
             model.updateFilteredRoomList(room -> room.getRoomNumber() == roomNumber);
             return new CommandResult(MESSAGE_SUCCESS);
@@ -65,7 +65,7 @@ public class SearchRoomCommand extends Command {
 
         Name patientName = descriptor.patientName;
         if (model.getPatientWithName(patientName).isEmpty()) {
-            throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
+            throw new CommandException(MESSAGE_INVALID_PATIENT_NAME);
         } else if (!model.isPatientAssignedToRoom(patientName)) {
             throw new CommandException(MESSAGE_PATIENT_NO_ROOM);
         }

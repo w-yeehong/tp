@@ -4,5 +4,5 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane fx:id="placeHolder"  stylesheets="@../css/ResultDisplay.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" styleClass="result-display" text="Welcome to Covigent. Key in any command to get started."/>
+  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" text="Welcome to Covigent. Key in any command to get started."/>
 </StackPane>

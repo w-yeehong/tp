@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.patient;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +13,13 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.TaskList;
 
-
+//@@author chiamyunqing
 /**
- * Contains integration tests (interaction with the Model) for {@code DeletePatientCommand}.
+ * Contains integration tests (interaction with both PatientRecords and RoomList inthe Model)
+ * for {@code DeletePatientCommand}.
  */
+
+//TODO -> to test rooms with tasklist once the NewCommandParserUtil is abstracted
 public class DeletePatientCommandIntegrationTest {
 
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
@@ -33,7 +36,7 @@ public class DeletePatientCommandIntegrationTest {
 
         ModelManager expectedModel =
                 new ModelManager(model.getPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
-        expectedModel.clearRoom(aliceName);
+        expectedModel.removePatientFromRoom(aliceName);
         expectedModel.deletePatient(alice);
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);
     }

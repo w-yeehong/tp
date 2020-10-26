@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.room;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

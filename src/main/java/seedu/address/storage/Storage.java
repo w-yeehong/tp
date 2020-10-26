@@ -36,7 +36,7 @@ public interface Storage extends PatientRecordsStorage, UserPrefsStorage {
     /** Reads the data of number of rooms and occupied rooms into RoomList **/
     Optional<ReadOnlyRoomList> readRoomOccupancyStorage() throws DataConversionException, IOException;
 
-    Optional<ReadOnlyTaskList> readTaskOccupancyStorage() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaskList> readTaskStorage() throws DataConversionException, IOException;
     /**
      * Saves the information given by user into a hard disk. Such information includes number of rooms and room number
      * of occupied rooms
