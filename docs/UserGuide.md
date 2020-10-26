@@ -343,6 +343,12 @@ be stored.
 
 Format: `initroom NUMBER_OF_ROOMS`
 
+Parameter | Description
+----------|-------------
+`NUMBER_OF_ROOMS` the number of rooms you wish to have in hotel
+
+![icon](images/infoicon.PNG) If the number of rooms is less than the number of patients error is thrown.
+
 Additional Information:
 * Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there.
 
@@ -448,6 +454,8 @@ _Written by: Yun Qing_
 
 Lists all the rooms in the hotel together with informtion of whether the room is occupied or not.
 
+![icon](images/infoicon.PNG) If there are no rooms, then no rooms will be mentioned and informs user to initialize rooms using the `initroom` command.
+
 Format: `listroom` All the rooms in Covigent.
 
 **Additional Information:**<br>
@@ -467,6 +475,8 @@ _Written by: Noorul Azlina_
 #### 5.3.6 Find the First Free Room: `findemptyroom`
 
 Finds the room with the lowest room number that is free for use.
+
+![icon](images/infoicon.PNG) If there are no empty rooms then an error message informing hotel staff is mentioned.
 
 Format: `findemptyroom` The unoccupied room in Covigent with the lowest room number will be displayed on UI.
 
