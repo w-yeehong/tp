@@ -5,7 +5,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.BENSON;
 import static seedu.address.testutil.TypicalRooms.ROOM_NO_PATIENT_NO_TASK;
 import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_NO_TASK;
-import static seedu.address.testutil.TypicalRooms.ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT;
+import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 
 import java.util.ArrayList;
@@ -41,8 +41,8 @@ class JsonAdaptedRoomTest {
 
     private static final String COMMENT = "Vegan";
 
-    private static final int VALID_ROOM_NUM = ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT.getRoomNumber();
-    private static final boolean VALID_IS_OCCUPIED = ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT.isOccupied();
+    private static final int VALID_ROOM_NUM = ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT.getRoomNumber();
+    private static final boolean VALID_IS_OCCUPIED = ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT.isOccupied();
 
     private static final Room ROOM_INVALID_PATIENT_PRESENT_OCCUPIED_FALSE =
             new RoomBuilder(ROOM_PATIENT_ALICE_NO_TASK).withIsOccupied(false).build();

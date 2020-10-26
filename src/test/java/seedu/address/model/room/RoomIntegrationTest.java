@@ -3,7 +3,7 @@ package seedu.address.model.room;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_NO_TASK;
-import static seedu.address.testutil.TypicalRooms.ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT;
+import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 
@@ -34,7 +34,7 @@ public class RoomIntegrationTest {
     public void addTask_validTask_success() {
         Room room = new RoomBuilder(ROOM_PATIENT_ALICE_NO_TASK).build();
         room.addTask(REMIND_PATIENT);
-        assertEquals(ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT, room);
+        assertEquals(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT, room);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class RoomIntegrationTest {
 
     @Test
     public void deleteTask_taskInTaskList_success() {
-        Room room = new RoomBuilder(ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
         room.deleteTask(REMIND_PATIENT);
 
         assertEquals(ROOM_PATIENT_ALICE_NO_TASK, room);
@@ -72,7 +72,7 @@ public class RoomIntegrationTest {
 
     @Test
     public void setTask_taskInTaskList_success() {
-        Room room = new RoomBuilder(ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
         room.setTask(REMIND_PATIENT, RESTOCK_SUPPLY);
 
         Room expectedRoom = new RoomBuilder(ROOM_PATIENT_ALICE_NO_TASK).withTasks(RESTOCK_SUPPLY).build();

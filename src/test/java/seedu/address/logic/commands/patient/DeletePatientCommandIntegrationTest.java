@@ -21,12 +21,12 @@ import seedu.address.model.task.TaskList;
 public class DeletePatientCommandIntegrationTest {
 
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
-    //room list -> [room 7, Alice, with task; room 8, Benson; room 10, null, room 11, null, with task]
+    //room list -> [room 7, Alice; room 8, Benson; room 10, null, room 11, null, with task]
     private Model model =
             new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
 
     @Test
-    public void execute_deletePatientInRoomWithTasks_success() {
+    public void execute_deletePatientInRoom_success() {
         Patient alice = model.getFilteredPatientList().get(0);
         Name aliceName = alice.getName();
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(aliceName);
