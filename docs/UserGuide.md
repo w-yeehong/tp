@@ -230,9 +230,9 @@ Parameter | Description
 * The deleted patient can no longer be found in the list of patients in Covigent.
 * Shown below is an example of a successful execution.
 <p align="center">
-
+   <img src="images/screenshot-for-ug/deletepatient.png">
     <br />
-    <i>Figure 5.1 A successful execution of deletepatient</i>
+    <i>Figure 5.2 A successful execution of deletepatient</i>
 </p>
 
 _Written by: Yun Qing_
@@ -422,7 +422,7 @@ Parameter | Description
 <p align="center">
     <img src="images/screenshot-for-ug/searchroompatient.png">
     <br />
-    <i>Figure 5.8 A successful execution of searchroom for patient</i>
+    <i>Figure 5.9 A successful execution of searchroom for patient</i>
 </p>
 
 _Written by: Yun Qing_
