@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BENSON;
+import static seedu.address.testutil.TypicalRooms.ROOM7_PATIENT_ALICE_NO_TASK;
+import static seedu.address.testutil.TypicalRooms.ROOM7_PATIENT_BENSON_NO_TASK;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.room.Room;
 import seedu.address.model.task.TaskList;
 import seedu.address.testutil.PatientRecordsBuilder;
 
@@ -89,6 +92,47 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasPatient(ALICE));
     }
 
+    //@@author LeeMingDe
+    @Test
+    public void setPatient_nullTarget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPatient(null, ALICE));
+    }
+
+    @Test
+    public void setPatient_nullEditedPatient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPatient(ALICE, null));
+    }
+
+    @Test
+    public void setPatient_targetAndEditedPatient_success() {
+        modelManager.addPatient(ALICE);
+        modelManager.setPatient(ALICE, BENSON);
+        assertFalse(modelManager.hasPatient(ALICE));
+        assertTrue(modelManager.hasPatient(BENSON));
+    }
+
+    @Test
+    public void isPatientAssignedToRoom_null_throwsNullPointerException() {
+        modelManager.addRooms(1);
+        modelManager.getRoomList().get(0).setPatient(ALICE);
+        assertThrows(NullPointerException.class, () -> modelManager.isPatientAssignedToRoom(null));
+    }
+
+    @Test
+    public void isPatientAssignedToRoom_personInRoom_returnsTrue() {
+        modelManager.addRooms(1);
+        modelManager.getRoomList().get(0).setPatient(ALICE);
+        assertTrue(modelManager.isPatientAssignedToRoom(ALICE.getName()));
+    }
+
+    @Test
+    public void isPatientAssignedToRoom_personNotInRoom_returnsFalse() {
+        modelManager.addRooms(1);
+        modelManager.getRoomList().get(0).setPatient(ALICE);
+        assertFalse(modelManager.isPatientAssignedToRoom(BENSON.getName()));
+    }
+    //@@author LeeMingDe
+
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPatientList().remove(0));
@@ -98,6 +142,55 @@ public class ModelManagerTest {
     public void getRoomList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getRoomList().remove(0));
     }
+
+    //@@author LeeMingDe
+    @Test
+    public void hasRoom_nullRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRoom(null));
+    }
+
+    @Test
+    public void hasRoom_roomInCovigentApp_returnsTrue() {
+        modelManager.addRooms(1);
+        assertTrue(modelManager.hasRoom(new Room(1)));
+    }
+
+    @Test
+    public void hasRoom_roomNotInCovigentApp_returnsFalse() {
+        modelManager.addRooms(1);
+        assertFalse(modelManager.hasRoom(new Room(2)));
+    }
+
+    @Test
+    public void setSingleRoom_nullEditedRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+            modelManager.setSingleRoom(ROOM7_PATIENT_ALICE_NO_TASK, null));
+    }
+
+    @Test
+    public void setSingleRoom_nullTarget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+            modelManager.setSingleRoom(null, ROOM7_PATIENT_ALICE_NO_TASK));
+    }
+
+    @Test
+    public void setSingleRoom_targetEditedRoom_success() {
+        modelManager.addRooms(8);
+        Room room = modelManager.getRoomList().get(6);
+        room.setPatient(ALICE);
+        room.setOccupied(true);
+        modelManager.setSingleRoom(ROOM7_PATIENT_ALICE_NO_TASK, ROOM7_PATIENT_BENSON_NO_TASK);
+        assertEquals(true, modelManager.getRoomList().get(6).equals(ROOM7_PATIENT_BENSON_NO_TASK));
+        assertEquals(false, modelManager.getRoomList().get(6).equals(ROOM7_PATIENT_ALICE_NO_TASK));
+
+    }
+
+    @Test
+    public void updateRoomListWhenPatientsChanges_nullPatientToEdit_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+            modelManager.updateRoomListWhenPatientsChanges(null, ALICE));
+    }
+    //@@author LeeMingDe
 
     @Test
     public void equals() {

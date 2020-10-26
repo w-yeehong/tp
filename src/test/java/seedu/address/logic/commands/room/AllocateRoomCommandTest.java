@@ -41,13 +41,12 @@ class AllocateRoomCommandTest {
         assertThrows(NullPointerException.class, () -> new AllocateRoomCommand(null, null));
     }
 
-    //TODO for YQ to fix or remove.
-    //@Test
-    //public void execute_invalidRoomNumber_failure() {
-    //    AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder().build();
-    //    AllocateRoomCommand allocateRoomCommand = new AllocateRoomCommand(-100, descriptor);
-    //    assertCommandFailure(allocateRoomCommand, model, MESSAGE_INVALID_ROOM_NUMBER);
-    //}
+    @Test
+    public void execute_invalidRoomNumber_failure() {
+        AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder().build();
+        AllocateRoomCommand allocateRoomCommand = new AllocateRoomCommand(-100, descriptor);
+        assertThrows(AssertionError.class, () -> allocateRoomCommand.execute(model));
+    }
 
     @Test
     public void execute_changePatientInRoom_success() {

@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import seedu.address.model.room.Room;
 
+//@@author LeeMingDe
 /**
  * An UI component that displays information of a {@code Room}.
  */
@@ -83,4 +84,5 @@ public class RoomCard extends UiPart<Region> {
         return roomNumber.getText().equals(card.roomNumber.getText())
                 && room.equals(card.room);
     }
+    //@@author LeeMingDe
 }
