@@ -21,6 +21,7 @@ import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.TaskList;
 import seedu.address.testutil.PatientRecordsBuilder;
+import seedu.address.testutil.RoomBuilder;
 
 public class ModelManagerTest {
 
@@ -191,6 +192,20 @@ public class ModelManagerTest {
             modelManager.updateRoomListWhenPatientsChanges(null, ALICE));
     }
     //@@author LeeMingDe
+
+    //@@author chiamyunqing
+    @Test
+    public void removePatientFromRoom_success() {
+        modelManager.addRooms(1);
+        Room roomWithPatient = modelManager.getRoomList().get(0);
+        Room duplicateRoomWithoutAlice = new RoomBuilder(roomWithPatient).build();
+        roomWithPatient.setPatient(ALICE);
+        roomWithPatient.setOccupied(true);
+        modelManager.setSingleRoom(roomWithPatient,modelManager.getRoomList().get(0));
+        modelManager.removePatientFromRoom(ALICE.getName());
+        assertEquals(modelManager.getRoomList().get(0), duplicateRoomWithoutAlice);
+    }
+    //@@author chiamyunqing
 
     @Test
     public void equals() {
