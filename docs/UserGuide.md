@@ -15,24 +15,24 @@ title: User Guide
 5. [Features](#5-features)<br>
     5.1. [Command Format](#51-command-format)<br>
     5.2. [Patients](#52-patients)<br>
-        5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br>
-        5.2.2  [Delete a Patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
-        5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
-        5.2.4  [Search information: `searchpatient`](#524-search-patients-by-information-searchpatient)<br>
-        5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
-        5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
+          5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br>
+          5.2.2  [Delete a Patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br>
+          5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
+          5.2.4  [Search information: `searchpatient`](#524-search-patients-by-information-searchpatient)<br>
+          5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
+          5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
     5.3. [Room](#53-room)<br>
-        5.3.1  [Initialize rooms in hotel: `initRooms`](#531-initialize-rooms-in-hotel-initrooms)<br>
-        5.3.2  [Edit Room: `editroom`](#532-edit-room-editroom)<br>
-        5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br>
-        5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br>
-        5.3.5  [Lists the current rooms: `listRoom`](#535-lists-the-current-rooms-listroom)<br>
-        5.3.6  [Find the first free room: `findRoom`](#536-find-the-first-free-room-findroom)<br>
+          5.3.1  [Initialize rooms in hotel: `initRooms`](#531-initialize-rooms-in-hotel-initrooms)<br>
+          5.3.2  [Edit Room: `editroom`](#532-edit-room-editroom)<br>
+          5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br>
+          5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br>
+          5.3.5  [Lists the current rooms: `listRoom`](#535-lists-the-current-rooms-listroom)<br>
+          5.3.6  [Find the first free room: `findRoom`](#536-find-the-first-free-room-findroom)<br>
     5.4 [Task](#54-task)<br>
-        5.4.1  [Add a task to a room: `addtask`](#541-add-a-task-to-a-room-addtask)<br>
-        5.4.2  [Delete a task from a room: `deletetask`](#542-delete-a-task-from-a-room-deletetask)<br>
-        5.4.3  [Edit a task in a room: `edittask`](#543-edit-a-task-in-a-room-edittask)<br>
-        5.4.4  [Searches all tasks before the given date: `searchtask`](#544-search-tasks-before-a-date-searchtask)<br>
+          5.4.1  [Add a task to a room: `addtask`](#541-add-a-task-to-a-room-addtask)<br>
+          5.4.2  [Delete a task from a room: `deletetask`](#542-delete-a-task-from-a-room-deletetask)<br>
+          5.4.3  [Edit a task in a room: `edittask`](#543-edit-a-task-in-a-room-edittask)<br>
+          5.4.4  [Searches all tasks before the given date: `searchtask`](#544-search-tasks-before-a-date-searchtask)<br>
     5.5  [View help: `help`](#55-view-help-help)<br>
     5.6  [Exit Covgient: `exit`](#56-exit-covigent-exit)<br>
     5.7  [Autosave](#57-autosave)<br>
@@ -44,7 +44,7 @@ title: User Guide
 
 ## 1. Introduction
 
-Covigent (CG) is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. 
+Covigent (CG) is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities.
 It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI).
 This means that you operate Covigent mainly by typing commands into a Command Box.
 If you can type quickly, CG can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
@@ -57,10 +57,10 @@ This is what **Covigent** looks like:
 _Written by: MingDe_
 
 ## 2. About this Document
-Welcome to the **Covigent User Guide**! 
-Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
+Welcome to the **Covigent User Guide**!
+Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**.
 
-### 2.1 What is in Covigent 
+### 2.1 What is in Covigent
 Covigent contains the following features:
 * Patient Features: `addpatient`, `deletepatient`, `editpatient`, `searchpatient`, `listpatient`.
 * Room Features: `initroom`, `editroom`, `searchroom`, `listroom`, `findemptyroom`.
@@ -68,13 +68,13 @@ Covigent contains the following features:
 * Miscellaneous Features: `help`, `exit`, `autosave`.
 
 ### 2.2 About the guide
-This tutorial gives you an overview of the features in the **Covigent** and shows you how to get started using the **Covigent** 
+This tutorial gives you an overview of the features in the **Covigent** and shows you how to get started using the **Covigent**
 
 ### 2.3 Formats in the guide
 Note the following formatting used in this document:
 * ![icon](images/infoicon.PNG) This symbol indicates important information.
 
-* ![icon](images/commandhighlight.PNG) 
+* ![icon](images/commandhighlight.PNG)
 A grey highlight (called a mark-up) indicates that this is a parameter or command
 that can be typed into the command line and executed by the **Covigent**.
 
@@ -107,7 +107,7 @@ _Written by: Wai Lok_
 ## 4. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Patient**: An individual who resides in the quarantine facility. 
+* **Patient**: An individual who resides in the quarantine facility.
 * **Task**: A task to be completed by staff of the quarantine facility.
 
 _Written by: Yun Qing_
@@ -136,7 +136,7 @@ _Written by: Yun Qing_
 
 This section contains all the commands related to patients. Scroll down to find out which feature you need!
 
-#### 5.2.1 Add a patient: `addpatient` 
+#### 5.2.1 Add a patient: `addpatient`
 
 Adds the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
 
@@ -146,7 +146,7 @@ Additional Information:
 * Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
 * `PERIOD_OF_STAY` is in the format `YYYYMMDD-YYYYMMDD`.
 * `TEMPERATURE` should be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
-* `COMMENT`for the patient is optional. 
+* `COMMENT`for the patient is optional.
 
 Example(s):
 * `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35` A patient named John Doe with phone number 98765432, temperature 37.4, period of stay from 10 September 2020 to 24 September 2020 and age 35 is added to Covigent.
@@ -158,9 +158,9 @@ Expected Outcome: <br>
 
 _Written by: Yun Qing_
 
-#### 5.2.2 Delete a patient: `deletepatient` 
+#### 5.2.2 Delete a patient: `deletepatient`
 
-Deletes the details of the existing patient identified by his/her name from Covigent. 
+Deletes the details of the existing patient identified by his/her name from Covigent.
 
 Format: `deletepatient NAME`
 
@@ -172,7 +172,7 @@ Example(s):
 * `deletepatient Mary Doe` The patient details of Mary Doe will be deleted from Covigent.
 
 Expected Outcome: <br>
-* Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". 
+* Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic".
 * The deleted patient can no longer be found in the list of patients in Covigent.
 
 _Written by: Yun Qing_
@@ -184,7 +184,7 @@ Edits an existing patient's details in Covigent.
 Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`
 
 Additional Information:
-* Edits the patient with the specified `NAME`. 
+* Edits the patient with the specified `NAME`.
 * `NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -199,12 +199,12 @@ Example(s):
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
 
 Expected Outcome: <br>
-* Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
+* Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -".
 * Details panel will show the details of the edited patient.
 
 _Written by: MingDe_
 
-#### 5.2.4 Search patients by information: `searchpatient` 
+#### 5.2.4 Search patients by information: `searchpatient`
 
 
 Searches the patients that match the given criteria(name or a range of temperature) in Covigent.
@@ -263,7 +263,7 @@ Example(s):
 
 Expected Outcome: <br>
 * Using the first example, the result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
-Phone: 12345678 Age: 23 Comment: - TaskList: -". 
+Phone: 12345678 Age: 23 Comment: - TaskList: -".
 * Details panel will show the details of the room with the allocated patient.
 
 _Written by: MingDe_
@@ -274,7 +274,7 @@ This section contains all the commands related to rooms. Scroll down to find out
 
 #### 5.3.1 Initialize rooms in hotel: `initRoom`
 
-Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would 
+Initializes the number of rooms in the quarantine facility to the app, if there was data given previously, they would
 be stored.
 
 Format: `initRoom NUMBER_OF_ROOMS`
@@ -307,16 +307,16 @@ Additional Information:
 
 Example(s):
 * `editroom 1 r/2 p/alex`. The room with room number #1 will be changed to #2. Afterwards, the previous patient in room #2 will be replaced with the patient named _Alex_.
-* `editroom 1 p/-`. The patient in the room with room number #1 will be removed. 
+* `editroom 1 p/-`. The patient in the room with room number #1 will be removed.
 * `editroom 1 r/3 p/-`. The room with room number #1 will be changed to #3. Afterwards, the previous patient in room #3 will be removed.
 
 Expected Outcome: <br>
-* Using the first example, the result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -". 
+* Using the first example, the result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -".
 * Details panel will show the details of the newly edited room.
 
 _Written by: MingDe_
 
-#### 5.3.3 Search by Room Number: `searchroom` 
+#### 5.3.3 Search by Room Number: `searchroom`
 
 Searches for the room details with the specified room number.
 
@@ -326,14 +326,14 @@ Example(s):
 * `searchroom r/6` The room details of room number 6 will be searched.
 
 Expected Outcome:<br>
-* The result box displays a message "Room has been found and listed." 
+* The result box displays a message "Room has been found and listed."
 * The room with the specified room number is shown in the room details panel.
 
 _Written by: Yun Qing_
 
-#### 5.3.4 Search for Room with Patient: `searchroom` 
+#### 5.3.4 Search for Room with Patient: `searchroom`
 
-Searches for the room that the specified patient is residing in. 
+Searches for the room that the specified patient is residing in.
 
 Format `searchroom n/NAME`
 
@@ -344,7 +344,7 @@ Example(s):
 * `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
 
 Expected Outcome: <br>
-* The result box displays a message "Room has been found and listed." 
+* The result box displays a message "Room has been found and listed."
 * The room that the specified patient resides in is shown in the room details panel.
 
 _Written by: Yun Qing_
@@ -433,7 +433,7 @@ Example(s):
 * `edittask r/1 t/3 d/Running low on masks and needs to be restocked. dd/12-1-2021` Modifies the third task in Room #1 to have the description "Running low on masks and needs to be restocked." and due date "12 Jan 2021 1200".
 
 
-#### 5.4.4 Search tasks before a date: `searchtask` 
+#### 5.4.4 Search tasks before a date: `searchtask`
 
 Search all tasks before a date in Covigent.
 
@@ -446,7 +446,7 @@ Additional Information:
   * `YYYYMMDD HHmm` (e.g. 20210131 2359).
   * `D/M/YYYY` (e.g. 31/1/2021 or 31/01/2021).
   * `D/M/YYYY HHmm` (e.g. 31/1/2021 2359 or 31/01/2021 2359).
-  
+
 * If the time is not given for a due date, it defaults to 0000 (12am).
 
 Example(s):
@@ -480,7 +480,7 @@ Covigent data are saved in the hard disk automatically after any command that ch
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command Summary 
+## 6. Command Summary
 
 Action | Format, Examples
 --------|------------------
@@ -496,7 +496,7 @@ Action | Format, Examples
 **Search for Room with Patient** | `searchroom n/NAME`<br> e.g., searchroom n/Jane Doe
 **List Rooms** | `listroom` <br>
 **Find Empty Room** | `findemptyroom` <br>
-**Add Task to Room** | `addtask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br> e.g., addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021 
+**Add Task to Room** | `addtask d/DESCRIPTION r/ROOM_NUMBER [dd/DUE_DATE]` <br> e.g., addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021
 **Delete Task from Room** | `deletetask r/ROOM_NUMBER t/TASK_NUMBER` <br> e.g., deletetask r/1 t/3
 **Edit Task in Room** | `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]` <br> e.g., edittask r/5 t/1 dd/-
 **Search Task** | `searchtask dd/DUE_DATE` <br> e.g., searchtask dd/12-1-2021
@@ -510,9 +510,9 @@ _Written by: Yun Qing_
 ## 7. FAQ
 
 **Q**: Why does the output sometimes appear red and sometimes balck?<br>
-**A**: If the command input is given in the wrong format, then the output is given in red. Also the correct format for the particular command is given. 
+**A**: If the command input is given in the wrong format, then the output is given in red. Also the correct format for the particular command is given.
         Example:<br>
-        Invalid command format! 
+        Invalid command format!
         Please give the number of digits in numbers
         Example: addRooms 200
 
@@ -522,5 +522,4 @@ _Written by: Yun Qing_
 **Q**: How do I look at all the rooms and patient when only one is being displayed after commands such as findRoom?
 **A**: Use the command ListRoom for rooms and ListPatient for patients.
 
-_Written by: Noorul Azlina_
 _Written by: Noorul Azlina_

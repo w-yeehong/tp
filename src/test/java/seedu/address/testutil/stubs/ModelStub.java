@@ -17,6 +17,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * A default model stub that has all of the methods failing.
@@ -169,6 +170,11 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<Task> getFilteredTaskList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public TaskList getModifiableTaskList() {
         throw new AssertionError("This method should not be called.");
     }
 

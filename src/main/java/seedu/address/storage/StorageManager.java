@@ -24,18 +24,18 @@ public class StorageManager implements Storage {
     private PatientRecordsStorage patientRecordsStorage;
     private UserPrefsStorage userPrefsStorage;
     private JsonRoomOccupancyStorage roomOccupancyStorage;
-    private JsonTaskOccupancyStorage taskOccupancyStorage;
+    private JsonTaskStorage taskStorage;
     /**
      * Creates a {@code StorageManager} with the given {@code PatientRecordsStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(PatientRecordsStorage patientRecordsStorage, UserPrefsStorage userPrefsStorage,
                           JsonRoomOccupancyStorage roomOccupancyStorage,
-                          JsonTaskOccupancyStorage taskOccupancyStorage) {
+                          JsonTaskStorage taskStorage) {
         super();
         this.patientRecordsStorage = patientRecordsStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.roomOccupancyStorage = roomOccupancyStorage;
-        this.taskOccupancyStorage = taskOccupancyStorage;
+        this.taskStorage = taskStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -94,7 +94,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveTaskList(TaskList taskList) throws IOException {
-        taskOccupancyStorage.saveTask(taskList);
+        taskStorage.saveTask(taskList);
     }
 
     @Override
@@ -103,8 +103,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyTaskList> readTaskOccupancyStorage() throws DataConversionException, IOException {
-        return taskOccupancyStorage.readOnlyTaskOccupancy();
+    public Optional<ReadOnlyTaskList> readTaskStorage() throws DataConversionException, IOException {
+        return taskStorage.readOnlyTask();
     }
 
 }

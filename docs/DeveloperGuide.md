@@ -42,13 +42,13 @@ title: Developer Guide
     A3. [Use Cases](#a3-use-cases)<br>
     A4. [Non-Functional Requirements](#a4-non-functional-requirements)<br>
     A5. [Glossary](#a5-glossary)<br>
-    
+
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
 
 The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication. The link to the GitHub repository can be found [here](https://github.com/AY2021S1-CS2103T-W12-1/tp).
 
- _Written by: Yun Qing_ 
+ _Written by: Yun Qing_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -126,7 +126,7 @@ _Written by: WaiLok_
 ### 3.3 Logic Component
 
 The `Logic` component is the "brains" of Covigent. While the `Ui` defines the GUI and `Model` defines in-memory data,
-the `Logic` component does most of the heavy-lifting in terms of deciding what to change within the `Model` and what to 
+the `Logic` component does most of the heavy-lifting in terms of deciding what to change within the `Model` and what to
 return to the `Ui`.<br>
 The diagram below shows the structure of the `Logic` component.
 
@@ -159,7 +159,7 @@ The `Model` API acts as a facade that handles interaction between different kind
 
 The `Model` component,
   * stores a `UserPref` object that represents the user’s preferences.
-  * stores a `PatientRecords` object that stores the data of all the patients. 
+  * stores a `PatientRecords` object that stores the data of all the patients.
   * stores a `RoomList` object that stores the data of all the rooms.
   * stores a `TaskList` object that stores the data of all the tasks.
   * exposes unmodifiable `ObservableList<Patient>`, `ObservableList<Room>` and `ObservableList<Task>` which can be observed. This means that the UI can be bound to the lists so that the UI automatically updates when data in the lists changes.
@@ -192,7 +192,7 @@ The `RoomList` class is in charge of maintaining the data in the rooms. It incor
 
 _Figure XX. Class Diagram for RoomList_
 
- _Written by: Yun Qing_ 
+ _Written by: Yun Qing_
 
 
 ### 3.5 Storage Component
@@ -201,12 +201,12 @@ _Figure XX. Class Diagram for RoomList_
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components. 
+The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components.
 
 The Storage component,
  * Can save Room and Patient Objects in json format
  * Reads Room and Patient Objects in json format
- 
+
  ![Structure of the JsonSerializableRoomList](images/JsonSerializableRoomList.png)
  Fig of `JsonSerializableRoomList`
  ![Structure of the JsonSerializablePatientList](images/JsonSerializableRoomList.png)
@@ -237,7 +237,7 @@ The feature comprises of five commands namely,
 * [`DeletePatientCommand`](#414-delete-patient) - Deleting patients
 * [`SearchPatientCommand`](#415-search-patient) - Searching for patients
 
-#### 4.1.1 Add Patient 
+#### 4.1.1 Add Patient
 
 
 
@@ -245,7 +245,7 @@ The feature comprises of five commands namely,
 
 
 
-#### 4.1.3 Edit Patient 
+#### 4.1.3 Edit Patient
 
 **Implementation**
 The following is a detailed explanation of the operations that `EditPatientCommand` performs.
@@ -261,10 +261,10 @@ using the `Model#hasPatient(Patient patient)` method to check if the patient alr
 **Step 3.** The newly created `Patient` will replace the existing patient object through the `Model#setPatient(Patient target, Patient editedPatient)`
 method.
 
-**Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
+**Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A
 new `CommandResult` will be returned with the message.
 
-#### 4.1.4 Delete Patient 
+#### 4.1.4 Delete Patient
 
 
 #### 4.1.5 Search Patient
@@ -283,7 +283,7 @@ The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoom
 * `RoomList#clearRoom(Name patientName)` - removes patient from the room
 * `RoomList#setSingleRoom(Room target, Room editedRoom)` - sets the editedRoom to the target room
 
-These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#addTaskToRoom(Task task, Room room)`, `Model#deleteTaskFromRoom(Task task, Room room)`, `Model#setTaskToRoom(Task target, Task editedTask, Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley. 
+These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#addTaskToRoom(Task task, Room room)`, `Model#deleteTaskFromRoom(Task task, Room room)`, `Model#setTaskToRoom(Task target, Task editedTask, Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley.
 
 ### Feature details
 
@@ -302,14 +302,14 @@ The activity diagram below illustrates the `findEmptyRoom`.
  
  The Sequence Diagram for `initRooms` is shown below.
  ![SequenceDiagramForSequenceDiagram](images/Room_SequenceDiagram.png)
- 
+
  _Written By: Noorul Azlina_
 
 #### 4.2.1 Initialise Room
 
-#### 4.2.2 List Room 
+#### 4.2.2 List Room
 
-#### 4.2.3 Edit Room 
+#### 4.2.3 Edit Room
 
 **Implementation**
 The following is a detailed explanation of the operations that `EditRoomCommand` performs.
@@ -325,24 +325,24 @@ using the `Model#hasRoom(Room room)` method to check if a room with the same roo
 **Step 3.** The newly created `Room` will replace the existing room object through the `Model#setSingleRoom(Room target, Room editedRoom)`
 method.
 
-**Step 4.** A success message with the edited room will be appended with the `EditRoomCommand#MESSAGE_EDIT_ROOM_SUCCESS` constant. A 
+**Step 4.** A success message with the edited room will be appended with the `EditRoomCommand#MESSAGE_EDIT_ROOM_SUCCESS` constant. A
 new `CommandResult` will be returned with the message.
 
-#### 4.2.4 Search Room  
+#### 4.2.4 Search Room
 
-#### 4.2.5 Find Empty Room  
+#### 4.2.5 Find Empty Room
 
 ### 4.3 Task Feature
 
 
-#### 4.3.1 Add Task 
+#### 4.3.1 Add Task
 
 
-#### 4.3.2 List Task 
+#### 4.3.2 List Task
 
-#### 4.3.3 Delete Task 
+#### 4.3.3 Delete Task
 
-#### 4.3.4 Edit Task 
+#### 4.3.4 Edit Task
 
 #### 4.3.5 Search Task
 
@@ -617,7 +617,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 3.5 Storage component
 
-The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components. 
+The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components.
 
 
 

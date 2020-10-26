@@ -12,6 +12,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * The API of the Model component.
@@ -184,8 +185,13 @@ public interface Model {
      */
     ObservableList<Room> getFilteredRoomList();
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code TaskList}.
+     */
     ObservableList<Task> getFilteredTaskList();
 
+    TaskList getModifiableTaskList();
     /**
      * Updates the filter of the filtered rooms to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

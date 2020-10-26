@@ -49,6 +49,11 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
+            storage.saveTaskList(model.getModifiableTaskList());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE);
+        }
+        try {
             storage.saveRoomList(model.getModifiableRoomList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE);

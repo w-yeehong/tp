@@ -334,6 +334,11 @@ public class ModelManager implements Model {
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }
+
+    @Override
+    public TaskList getModifiableTaskList() {
+        return taskList;
+    }
     //=========== Miscellaneous ========================================================================================
 
     @Override
