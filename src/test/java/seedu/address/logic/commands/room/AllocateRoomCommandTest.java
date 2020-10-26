@@ -25,16 +25,16 @@ import seedu.address.model.task.TaskList;
 import seedu.address.testutil.AllocateRoomDescriptorBuilder;
 import seedu.address.testutil.RoomBuilder;
 
+//@@author chiamyunqing
 /**
  * Contains integration tests and unit tests for AllocateRoomCommand.
  */
 class AllocateRoomCommandTest {
 
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
-    //room list -> [room 7, Alice; room 8, Benson; room 10, null]
+    //room list -> [room 7, Alice; room 8, Benson; room 10, null; room 11, with task]
     private Model model =
             new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
-
 
     @Test
     public void constructor_nullInputs_throwsNullPointerException() {

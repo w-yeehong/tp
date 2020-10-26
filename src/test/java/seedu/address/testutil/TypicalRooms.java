@@ -50,6 +50,7 @@ public class TypicalRooms {
     }
 
     public static List<Room> getTypicalRooms() {
+        //do not change, used in integration tests
         return new ArrayList<>(Arrays.asList(ROOM7_PATIENT_ALICE_NO_TASK, ROOM8_PATIENT_BENSON_NO_TASK,
                 ROOM_NO_PATIENT_NO_TASK, ROOM_NO_PATIENT_TASK_RESTOCK_SUPPLY));
     }

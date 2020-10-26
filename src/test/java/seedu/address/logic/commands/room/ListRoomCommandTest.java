@@ -12,6 +12,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.TaskList;
 
+//@@author chiamyunqing
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListRoomCommand.
  */

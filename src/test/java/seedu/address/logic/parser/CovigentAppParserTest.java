@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.command.PatientCommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_DESC_ONE;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
 import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_ONE;
@@ -19,6 +22,7 @@ import seedu.address.logic.commands.patient.DeletePatientCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.logic.commands.patient.ListPatientCommand;
+import seedu.address.logic.commands.room.SearchRoomCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand;
@@ -77,8 +81,8 @@ public class CovigentAppParserTest {
     @Test
     public void parseCommand_deletePatient() throws Exception {
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
-                DeletePatientCommand.COMMAND_WORD + " " + "Alice Pauline");
-        assertEquals(new DeletePatientCommand(new Name("Alice Pauline")), command);
+                DeletePatientCommand.COMMAND_WORD + VALID_NAME_AMY);
+        assertEquals(new DeletePatientCommand(new Name(VALID_NAME_AMY)), command);
     }
 
     @Test
@@ -104,6 +108,14 @@ public class CovigentAppParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListPatientCommand.COMMAND_WORD) instanceof ListPatientCommand);
         assertTrue(parser.parseCommand(ListPatientCommand.COMMAND_WORD + " 3") instanceof ListPatientCommand);
+    }
+
+    @Test
+    public void parseCommand_searchRoom() throws Exception {
+        assertTrue(parser.parseCommand(SearchRoomCommand.COMMAND_WORD
+                + ROOM_NUMBER_DESC_ONE) instanceof SearchRoomCommand);
+        assertTrue(parser.parseCommand(SearchRoomCommand.COMMAND_WORD
+                + NAME_DESC_AMY) instanceof SearchRoomCommand);
     }
 
     @Test
