@@ -11,7 +11,12 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
+Class PatientListPanel
+Class RoomListPanel
+Class RoomDetailsPanel
+Class TaskListPanel
+Class TaskCard
+Class RoomCard
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
@@ -33,10 +38,15 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> PatientListPanel
+MainWindow *-down-> TaskListPanel
+MainWindow *-down-> RoomListPanel
 MainWindow *-down-> StatusBarFooter
 
-PersonListPanel -down-> PersonCard
+PatientListPanel -down-> PersonCard
+TaskListPanel -down-> TaskCard
+RoomListPanel *-down -> RoomCard
+RoomListPanel *-down -> RoomDetailsPanel
 
 MainWindow -left-|> UiPart
 
@@ -47,11 +57,14 @@ PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
+PatientCard ..> Model
+RoomCard ..> Model
+RoomDetailsPanel ..> Model
+TaskCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+PatientListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
