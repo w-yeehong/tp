@@ -347,6 +347,7 @@ Parameter | Description
 ----------|-------------
 `NUMBER_OF_ROOMS` the number of rooms you wish to have in hotel
 
+**Additional Information:**<br>
 ![icon](images/infoicon.PNG) If the number of rooms is less than the number of patients error is thrown.
 
 Additional Information:
@@ -476,6 +477,7 @@ _Written by: Noorul Azlina_
 
 Finds the room with the lowest room number that is free for use.
 
+**Additional Information:**<br>
 ![icon](images/infoicon.PNG) If there are no empty rooms then an error message informing hotel staff is mentioned.
 
 Format: `findemptyroom` The unoccupied room in Covigent with the lowest room number will be displayed on UI.
