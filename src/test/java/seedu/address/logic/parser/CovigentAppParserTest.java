@@ -81,7 +81,7 @@ public class CovigentAppParserTest {
     @Test
     public void parseCommand_deletePatient() throws Exception {
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
-                DeletePatientCommand.COMMAND_WORD + VALID_NAME_AMY);
+                DeletePatientCommand.COMMAND_WORD + " " + VALID_NAME_AMY);
         assertEquals(new DeletePatientCommand(new Name(VALID_NAME_AMY)), command);
     }
 

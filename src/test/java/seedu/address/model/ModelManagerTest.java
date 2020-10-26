@@ -201,7 +201,7 @@ public class ModelManagerTest {
         Room duplicateRoomWithoutAlice = new RoomBuilder(roomWithPatient).build();
         roomWithPatient.setPatient(ALICE);
         roomWithPatient.setOccupied(true);
-        modelManager.setSingleRoom(roomWithPatient,modelManager.getRoomList().get(0));
+        modelManager.setSingleRoom(roomWithPatient, modelManager.getRoomList().get(0));
         modelManager.removePatientFromRoom(ALICE.getName());
         assertEquals(modelManager.getRoomList().get(0), duplicateRoomWithoutAlice);
     }
