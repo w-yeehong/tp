@@ -131,6 +131,8 @@ public class ModelManager implements Model {
     @Override
     public void deletePatient(Patient target) {
         patientRecords.removePatient(target);
+        //model's responsibility to update room list when patient is updated
+        this.updateRoomListWhenPatientsChanges(target, null);
     }
 
     @Override

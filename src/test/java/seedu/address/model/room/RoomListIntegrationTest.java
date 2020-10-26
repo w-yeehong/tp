@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_NO_TASK;
-import static seedu.address.testutil.TypicalRooms.ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT;
+import static seedu.address.testutil.TypicalRooms.ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_TASK_INDEX_ONE;
@@ -55,7 +55,7 @@ public class RoomListIntegrationTest {
 
     @Test
     public void getTaskFromRoomWithTaskIndex_taskInRoom_returnsTask() {
-        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        Room room = new RoomBuilder(ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
         Optional<Task> optionalTask = roomList.getTaskFromRoomWithTaskIndex(VALID_TASK_INDEX_ONE, room);
         assertTrue(optionalTask.map(task -> task.equals(REMIND_PATIENT)).orElse(false));
     }
@@ -85,7 +85,7 @@ public class RoomListIntegrationTest {
         roomList.addTaskToRoom(REMIND_PATIENT, room);
 
         RoomList expectedRoomList = new RoomList();
-        expectedRoomList.addRooms(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT);
+        expectedRoomList.addRooms(ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT);
 
         assertEquals(expectedRoomList, roomList);
     }
@@ -103,7 +103,7 @@ public class RoomListIntegrationTest {
 
     @Test
     public void deleteTaskFromRoom_roomNotInRoomList_throwsRoomNotFoundException() {
-        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        Room room = new RoomBuilder(ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
         assertThrows(RoomNotFoundException.class, () ->
                 roomList.deleteTaskFromRoom(REMIND_PATIENT, room));
     }
@@ -118,7 +118,7 @@ public class RoomListIntegrationTest {
 
     @Test
     public void deleteTaskFromRoom_validTaskValidRoom_success() {
-        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        Room room = new RoomBuilder(ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
         roomList.addRooms(room);
         roomList.deleteTaskFromRoom(REMIND_PATIENT, room);
 
@@ -147,7 +147,7 @@ public class RoomListIntegrationTest {
 
     @Test
     public void setTaskToRoom_roomNotInRoomList_throwsRoomNotFoundException() {
-        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        Room room = new RoomBuilder(ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
         assertThrows(RoomNotFoundException.class, () ->
                 roomList.setTaskToRoom(REMIND_PATIENT, RESTOCK_SUPPLY, room));
     }
@@ -162,7 +162,7 @@ public class RoomListIntegrationTest {
 
     @Test
     public void setTaskToRoom_validTaskValidEditedTaskValidRoom_success() {
-        Room room = new RoomBuilder(ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
+        Room room = new RoomBuilder(ROOM7_PATIENT_ALICE_TASK_REMIND_PATIENT).build();
         roomList.addRooms(room);
         roomList.setTaskToRoom(REMIND_PATIENT, RESTOCK_SUPPLY, room);
 
