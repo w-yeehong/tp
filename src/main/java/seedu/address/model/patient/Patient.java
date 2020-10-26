@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+//@@author chiamyunqing
 /**
  * Represents a Patient in the app.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -18,7 +19,7 @@ public class Patient {
     private final Comment comment; // an optional field, if null is initialised to "-"
 
     /**
-     * Every field must be present and not null.
+     * Every field, except comment, must be present and not null.
      */
     public Patient(Name name, Temperature temperature, PeriodOfStay periodOfStay,
                    Phone phone, Age age, Comment comment) {
@@ -63,7 +64,6 @@ public class Patient {
         if (otherPatient == this) {
             return true;
         }
-
         return otherPatient != null
                 && otherPatient.getName().equals(getName());
     }
@@ -87,13 +87,14 @@ public class Patient {
                 && otherPatient.getTemperature().equals(getTemperature())
                 && otherPatient.getPeriodOfStay().equals(getPeriodOfStay())
                 && otherPatient.getPhone().equals(getPhone())
-                && otherPatient.getAge().equals(getAge());
+                && otherPatient.getAge().equals(getAge())
+                && otherPatient.getComment().equals(getComment());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, temperature, periodOfStay, phone, age);
+        return Objects.hash(name, temperature, periodOfStay, phone, age, comment);
     }
 
     @Override
