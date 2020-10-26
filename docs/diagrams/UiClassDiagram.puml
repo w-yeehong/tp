@@ -40,10 +40,10 @@ MainWindow *-down-> TaskListPanel
 MainWindow *-down-> RoomListPanel
 MainWindow *-down-> StatusBarFooter
 
-PatientListPanel -down-> PatientCard : defined by >
-TaskListPanel -down-> TaskCard : defined by >
-RoomListPanel *-down-> RoomCard : defined by >
-RoomListPanel *-down-> RoomDetailsPanel : defined by >
+PatientListPanel .down-> PatientCard : defined by >
+TaskListPanel .down-> TaskCard : defined by >
+RoomListPanel *.down-> RoomCard : defined by >
+RoomListPanel *.down-> RoomDetailsPanel : defined by >
 
 MainWindow -left-|> UiPart
 

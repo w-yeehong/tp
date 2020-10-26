@@ -120,7 +120,7 @@ The `MainWindow` is made up of
 * A `HelpWindow` that displays the link to the help page.
 * A `CommandBox` that displays the area for command input.
 * A `ResultDisplay` that displays the robot response.
-* A `StatusBarFooter` that displays the status bar footer.
+* A `StatusBarFooter` that displays the status bar footer.<br>
 Below is a class diagram for `Ui`
 ![Structure of the UI Component](images/UiClassDiagram.png)
 **API** :
