@@ -87,8 +87,7 @@ public class Patient {
                 && otherPatient.getTemperature().equals(getTemperature())
                 && otherPatient.getPeriodOfStay().equals(getPeriodOfStay())
                 && otherPatient.getPhone().equals(getPhone())
-                && otherPatient.getAge().equals(getAge())
-                && otherPatient.getComment().equals(getComment());
+                && otherPatient.getAge().equals(getAge());
     }
 
     @Override

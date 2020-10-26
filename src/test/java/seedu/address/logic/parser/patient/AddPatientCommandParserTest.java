@@ -39,7 +39,10 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
 import seedu.address.testutil.PatientBuilder;
 
-
+//@@author chiamyunqing
+/**
+ * Contains unit tests for AddPatientCommandParser.
+ */
 public class AddPatientCommandParserTest {
 
     private AddPatientCommandParser parser = new AddPatientCommandParser();
