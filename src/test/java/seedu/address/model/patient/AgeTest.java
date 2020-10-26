@@ -6,6 +6,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author chiamyunqing
+/**
+ * Test cases for the attribute age of patient.
+ */
 public class AgeTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -14,7 +18,13 @@ public class AgeTest {
 
     @Test
     public void constructor_invalidAge_throwsIllegalArgumentException() {
-        String invalidAge = "";
+        String emptyString = "";
+        assertThrows(IllegalArgumentException.class, () -> new Age(emptyString));
+
+        String nonIntegerAge = "twenty";
+        assertThrows(IllegalArgumentException.class, () -> new Age(nonIntegerAge));
+
+        String invalidAge = "1000";
         assertThrows(IllegalArgumentException.class, () -> new Age(invalidAge));
     }
 
@@ -27,10 +37,12 @@ public class AgeTest {
         assertFalse(Age.isValidAge("")); // empty string
         assertFalse(Age.isValidAge(" ")); // spaces only
         assertFalse(Age.isValidAge("twenty")); //non-numeric
-        assertFalse(Age.isValidAge("1200")); //impossible to be so old
+        assertFalse(Age.isValidAge("-1")); //negative age
+        assertFalse(Age.isValidAge("120")); // >= 120 years old
 
         //valid age
+        assertTrue(Age.isValidAge("0"));
         assertTrue(Age.isValidAge("30"));
-        assertTrue(Age.isValidAge("101")); //still possible
+        assertTrue(Age.isValidAge("119")); //still possible
     }
 }
