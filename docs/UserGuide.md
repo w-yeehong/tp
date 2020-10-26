@@ -296,7 +296,7 @@ Parameter | Description
 <p align="center">
     <img src="images/screenshot-for-ug/searchpatient.PNG">
     <br />
-    <i>Figure 5.3. A successful execution of searchpatient command</i>
+    <i>Figure 5.4. A successful execution of searchpatient command</i>
 </p>
 
 _Written by: Wai Lok_
@@ -319,7 +319,7 @@ You can use this command to look at the list of all patients in the patient tab.
 <p align="center">
     <img src="images/screenshot-for-ug/listpatient.PNG">
     <br />
-    <i>Figure 5.3. A successful execution of listpatient command</i>
+    <i>Figure 5.5. A successful execution of listpatient command</i>
 </p>
 
 _Written by: Wai Lok_
@@ -593,7 +593,7 @@ Parameter | Description
 <p align="center">
     <img src="images/screenshot-for-ug/searchtask.PNG">
     <br />
-    <i>Figure 5.7. A successful execution of searchtask command</i>
+    <i>Figure 5.16. A successful execution of searchtask command</i>
 </p>
 
 _Written by: Wai Lok_
