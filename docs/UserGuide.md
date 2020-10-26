@@ -234,7 +234,7 @@ _Written by: Yun Qing_
 
 Edits an existing patient's details in Covigent.
 
-**Format**: `editpatient ORIGNIAL_NAME [n/NEW_NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br>
+**Format**: `editpatient ORIGINAL_NAME [n/NEW_NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br>
 
 Parameter | Description
 ------------ | -------------
@@ -252,8 +252,8 @@ Parameter | Description
 <br>
 
 **Example(s)**:
-*  `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to _91234567_.
-*  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
+1. `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to _91234567_.
+1. `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
 
 **Expected Outcome**: <br>
 * Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 91234567 Age: 23 Comment: -".
@@ -351,8 +351,8 @@ Parameter | Description
 ![icon](images/infoicon.PNG) To remove a patient from the room, input the patient name as "-". Refer to the example below for more clarity.
 
 **Example(s):**
-* `allocateroom 1 n/john doe`. The patient named John Doe will be allocated to Room #1.
-* `allocateroom 1 n/-`. The previous patient will be removed from Room #1.
+1. `allocateroom 1 n/john doe`. The patient named John Doe will be allocated to Room #1.
+1. `allocateroom 1 n/-`. The previous patient will be removed from Room #1.
 
 **Expected Outcome:** <br>
 * Using the first example, the result box displays the message, "Allocate Room: Room Number: 1 Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
