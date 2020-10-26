@@ -348,7 +348,7 @@ Parameter | Description
 `NUMBER_OF_ROOMS` the number of rooms you wish to have in hotel
 
 **Additional Information:**<br>
-![icon](images/infoicon.PNG) If the number of rooms is less than the number of patients error is thrown.
+![icon](images/infoicon.PNG) If the number of rooms is less than the number of patients error is thrown when decreasing the number of existing rooms.
 
 Additional Information:
 * Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there.
