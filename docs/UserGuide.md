@@ -445,9 +445,17 @@ Lists all the rooms in the hotel together with informtion of whether the room is
 
 Format: `listroom` All the rooms in Covigent.
 
-Expected Outcome: <br>
+**Additional Information:**<br>
+![icon](images/infoicon.PNG) You need at least one room for this command to work.<br>
+
+**Expected Outcome:** <br>
 * The result display shows a success message "All rooms are listed.".
 
+<p align="center">
+    <img src="images/screenshot-for-ug/listroom.png">
+    <br />
+    <i>Figure 5.10 A successful execution of listroom</i>
+</p> 
 _Written by: Noorul Azlina_
 
 
@@ -459,6 +467,12 @@ Format: `findemptyroom` The unoccupied room in Covigent with the lowest room num
 
 Expected Outcome: <br>
 * The result display shows a success message "Room Number 1 is empty.".
+
+<p align="center">
+    <img src="images/screenshot-for-ug/findemptyroom.png">
+    <br />
+    <i>Figure 5.10 A successful execution of findemptyroom</i>
+</p> 
 
 _Written by: Noorul Azlina_
 
