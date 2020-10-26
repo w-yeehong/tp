@@ -263,7 +263,7 @@ Parameter | Description
 <p align="center">
     <img src="images/screenshot-for-ug/editpatient.PNG">
     <br />
-    <i>Figure 5.3. A successful execution of editpatient</i>
+    <i>Figure 5.3. A successful execution of editpatient command</i>
 </p>
 
 _Written by: Ming De_
@@ -271,18 +271,17 @@ _Written by: Ming De_
 
 #### 5.2.4 Search Patients by Information: `searchpatient`
 
-Searches the patients that match the given criteria(name or a range of temperature) in Covigent.
+You can use this command to search patients that match the given criteria(name or a range of temperature) in Covigent.
 
 **Format**: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
 Parameter | Description
 ------------ | -------------
 `NAME` | The name or a substring of the name of the patient you want to look for. It may not be the full name of the patient. Any patient with the entered sub-name could be displayed. It is case-insensitive.
-`TEMPERATURE_RANGE` | The temperature range that you want to look for. It is made up of two temperatures. A temperature must be keyed in to 1 decimal place (e.g. 37.0 instead of 37). The two temperature are linked using a dash "-". 
+`TEMPERATURE_RANGE` | The temperature range that you want to look for. It is made up of two temperatures. A temperature must be keyed in to 1 decimal place (e.g. 37.0 instead of 37). The two temperature are linked using a dash "-". The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
 
 **Additional Information:**<br>
-![icon](images/infoicon.PNG)  Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.<br>
-![icon](images/infoicon.PNG) The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
+![icon](images/infoicon.PNG)  Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.<br> 
 
 **Example(s)**:
 
@@ -294,12 +293,18 @@ Parameter | Description
 * Using the second example, the result box displays the message, "Listed patient(s) matching the criteria.".
 * Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in Covigent.
 
+<p align="center">
+    <img src="images/screenshot-for-ug/searchpatient.PNG">
+    <br />
+    <i>Figure 5.3. A successful execution of searchpatient command</i>
+</p>
+
 _Written by: Wai Lok_
 
 
 #### 5.2.5 List all patients: `listpatient`
 
-Shows a list of all patients in the patient tab.
+You can use this command to look at the list of all patients in the patient tab.
 
 **Format**: `listpatient`
 
@@ -310,6 +315,12 @@ Shows a list of all patients in the patient tab.
 **Expected Outcome**: <br>
 
 * The result box displays the message, "All patients are listed.".
+
+<p align="center">
+    <img src="images/screenshot-for-ug/listpatient.PNG">
+    <br />
+    <i>Figure 5.3. A successful execution of listpatient command</i>
+</p>
 
 _Written by: Wai Lok_
 
@@ -363,7 +374,7 @@ Phone: 91234567 Age: 23 Comment: - TaskList: -".
 <p align="center">
     <img src="images/screenshot-for-ug/allocateroom.PNG">
     <br />
-    <i>Figure 5.7. A successful execution of allocateroom</i>
+    <i>Figure 5.7. A successful execution of allocateroom command</i>
 </p>
 
 _Written by: Ming De_
@@ -560,7 +571,7 @@ _Written by: Yee Hong_
 
 #### 5.4.5 Search Tasks before a Given Date: `searchtask`
 
-Searches all tasks before a date in Covigent.
+You can use this command to search all tasks before a date in Covigent.
 
 **Format**: `searchtask dd/DUE_DATE`
 
@@ -578,6 +589,12 @@ Parameter | Description
 **Expected Outcome**:<br>
 * The result box displays the message, "Tasks before the due date found.".
 * Tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent
+
+<p align="center">
+    <img src="images/screenshot-for-ug/searchtask.PNG">
+    <br />
+    <i>Figure 5.7. A successful execution of searchtask command</i>
+</p>
 
 _Written by: Wai Lok_
 
