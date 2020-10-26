@@ -353,6 +353,11 @@ Example(s):
 Expected Outcome: <br>
 * The result display shows a success message "Initialise the number of rooms to 400 rooms in the application.".
 
+<p align="center">
+    <img src="images/screenshot-for-ug/initroom.png">
+    <br />
+    <i>Figure 5.10 A successful execution of initroom</i>
+</p> 
 _Written by: Noorul Azlina_
 
 
