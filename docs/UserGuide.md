@@ -196,8 +196,12 @@ Parameter | Description
 **Expected Outcome:** <br>
 * Using the first example, the result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic".
 * The newly added patient can now be found in the list of patients in Covigent.
-
-//insert ss
+* Shown below is an example of a successful execution. Note that you will need to click on the newly added patient in the patient list to view his/her details.
+<p align="center">
+    <img src="images/screenshot-for-ug/addpatient.png">
+    <br />
+    <i>Figure 5.1 A successful execution of addpatient</i>
+</p>
 
 _Written by: Yun Qing_
 
@@ -224,8 +228,12 @@ Parameter | Description
 **Expected Outcome:** <br>
 * Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". 
 * The deleted patient can no longer be found in the list of patients in Covigent.
+* Shown below is an example of a successful execution.
+<p align="center">
 
-//insert ss
+    <br />
+    <i>Figure 5.1 A successful execution of deletepatient</i>
+</p>
 
 _Written by: Yun Qing_
 
@@ -263,7 +271,7 @@ Parameter | Description
 <p align="center">
     <img src="images/screenshot-for-ug/editpatient.PNG">
     <br />
-    <i>Figure 5.3. A successful execution of editpatient</i>
+    <i>Figure 5.3 A successful execution of editpatient</i>
 </p>
 
 _Written by: Ming De_
@@ -363,7 +371,7 @@ Phone: 91234567 Age: 23 Comment: - TaskList: -".
 <p align="center">
     <img src="images/screenshot-for-ug/allocateroom.PNG">
     <br />
-    <i>Figure 5.7. A successful execution of allocateroom</i>
+    <i>Figure 5.7 A successful execution of allocateroom</i>
 </p>
 
 _Written by: Ming De_
@@ -385,7 +393,12 @@ Parameter | Description
 **Expected Outcome:**<br>
 * The result box displays a message "Room has been found and listed." 
 * The room with the specified room number is shown in the room details panel.
-//insert ss
+* Shown below is an example of a successful execution.
+<p align="center">
+    <img src="images/screenshot-for-ug/searchroomnumber.png">
+    <br />
+    <i>Figure 5.8 A successful execution of searchroom for room number</i>
+</p>
 _Written by: Yun Qing_
 
 
@@ -405,7 +418,12 @@ Parameter | Description
 **Expected Outcome:**<br>
 * The result box displays a message "Room has been found and listed." 
 * The room that the specified patient resides in is shown in the room details panel.
-//insert ss
+* Shown below is an example of a successful execution.
+<p align="center">
+    <img src="images/screenshot-for-ug/searchroompatient.png">
+    <br />
+    <i>Figure 5.8 A successful execution of searchroom for patient</i>
+</p>
 
 _Written by: Yun Qing_
 
@@ -620,7 +638,7 @@ Action | Format, Examples
 **Search Patient** | `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]` <br> e.g., searchpatient tr/36.5-36.7
 **List Patients** | `listpatient`<br>
 **Initialise Room** | `initroom NUMBER_OF_ROOMS` <br> e.g., initroom 123
-**Allocate Patient to Room** | `allocateroom ROOM_NUMBER p/NAME` <br> e.g., editroom 5 n/David Li
+**Allocate Patient to Room** | `allocateroom ROOM_NUMBER n/NAME` <br> e.g., allocateroom 5 n/David Li
 **Search by Room Number** | `searchroom r/ROOM_NUMBER`<br> e.g., searchroom r/15
 **Search for Room with Patient** | `searchroom n/NAME`<br> e.g., searchroom n/Jane Doe
 **List Rooms** | `listroom` <br>
