@@ -2,10 +2,12 @@
 
 1. [Introduction](#1-introduction)
 1. [About this Document](#2-about-this-document)<br>
-   2.1 [What's in Covigent](#21-what-is-in-covigent)<br>
-   2.2 [About the Guide](#22-about-the-guide)<br>
-   2.3 [Formats in the Guide](#23-formats-in-the-guide)<br>
-1. [Getting Started](#3-getting-started)
+   2.1. [What's in Covigent](#21-what-is-in-covigent)<br>
+   2.2. [About the Guide](#22-about-the-guide)<br>
+   2.3. [Formats in the Guide](#23-formats-in-the-guide)<br>
+1. [Getting Started](#3-getting-started)<br>
+   3.1. [Setting Up](#31-setting-up)<br>
+   3.2. [Using Covigent](#32-using-covigent)<br>
 1. [Glossary](#4-glossary)
 1. [Features](#5-features)<br>
     5.1. [Command Format](#51-command-format)<br>
@@ -15,20 +17,19 @@
           5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br>
           5.2.4  [Search Patients by Information: `searchpatient`](#524-search-patients-by-information-searchpatient)<br>
           5.2.5  [List all Patients: `listpatient`](#525-list-all-patients-listpatient)<br>
-          5.2.6  [Allocate a Patient to a Room: `editroom`](#526-allocate-a-patient-to-a-room-editroom)<br>
     5.3. [Room](#53-room)<br>
-          5.3.1  [Initialise rooms in hotel: `initroom`](#531-initialise-rooms-in-hotel-initrooms)<br>
-          5.3.2  [Edit Room: `editroom`](#532-edit-room-editroom)<br>
+          5.3.1  [Initialise Rooms in Hotel: `initroom`](#531-initialise-rooms-in-hotel-initroom)<br>
+          5.3.2  [Allocate Patient to Room: `allocateroom`](#532-allocate-patient-to-room-allocateroom)<br>
           5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br>
           5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br>
-          5.3.5  [Lists the Current Rooms: `listroom`](#535-lists-the-current-rooms-listroom)<br>
-          5.3.6  [Find the first free room: `findroom`](#536-find-the-first-free-room-findroom)<br>
+          5.3.5  [List the Current Rooms: `listroom`](#535-list-the-current-rooms-listroom)<br>
+          5.3.6  [Find the first free room: `findroom`](#536-find-the-first-free-room-findemptyroom)<br>
     5.4 [Task](#54-task)<br>
           5.4.1  [Add a Task to a Room: `addtask`](#541-add-a-task-to-a-room-addtask)<br>
           5.4.2  [Delete a Task from a Room: `deletetask`](#542-delete-a-task-from-a-room-deletetask)<br>
           5.4.3  [Edit Task Description or Due Date: `edittask`](#543-edit-task-description-or-due-date-edittask)<br>
           5.4.4  [Remove Due Date from a Task: `edittask`](#544-remove-due-date-from-a-task-edittask)<br>
-          5.4.5  [Search all Tasks before the Given Date: `searchtask`](#545-search-tasks-before-a-date-searchtask)<br>
+          5.4.5  [Search all Tasks before the Given Date: `searchtask`](#545-search-tasks-before-a-given-date-searchtask)<br>
     5.5  [View Help: `help`](#55-view-help-help)<br>
     5.6  [Exit Covigent: `exit`](#56-exit-covigent-exit)<br>
     5.7  [Autosave](#57-autosave)<br>
@@ -58,14 +59,14 @@ This is what **Covigent** looks like:
 _Written by: Ming De_
 
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. About this Document
 
 Welcome to the **Covigent User Guide**! Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
 
-### 2.1 What is in Covigent 
+### 2.1 What is in Covigent
+
 Covigent contains the following features:
 * Patient Features: `addpatient`, `deletepatient`, `editpatient`, `searchpatient`, `listpatient`.
 * Room Features: `initroom`, `editroom`, `searchroom`, `listroom`, `findemptyroom`.
@@ -75,7 +76,7 @@ Covigent contains the following features:
 
 ### 2.2 About the Guide
 
-This tutorial gives you an overview of the features in **Covigent** and shows you how to get started using **Covigent** 
+This tutorial gives you an overview of the features in **Covigent** and shows you how to get started using **Covigent**.
 
 
 ### 2.3 Formats in the Guide
@@ -84,27 +85,35 @@ Note the following formatting used in this document:
 * ![icon](images/infoicon.PNG) This symbol indicates important information.
 
 * ![icon](images/commandhighlight.PNG) 
-A grey highlight (called a mark-up) indicates that this is a parameter or command
-that can be typed into the command line and executed by the **Covigent**.
+A grey highlight (called a mark-up) indicates that this is a field or command
+that can be typed into the command line and executed by **Covigent**.
 
 _Written by: Wai Lok_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Getting Started
 
-If you are tired of lengthy and problematic installation processes, Covigent is perfect for you.
-No matter whether you are using Windows, Mac OS X, or other operating systems, you can set up Covigent in 4 simple steps.
+If you are tired of lengthy and problematic installation processes, **Covigent** is perfect for you.
+The setup is minimal and can be completed in 4 simple steps. Follow the instructions below to try it out!
+
+### 3.1 Setting Up
+
+The following steps to set up **Covigent** are applicable to Windows, Mac OS X, and Linux.
 
 1. Install _Java 11_ or a later version. The latest version of _Java_ can be found [here](https://java.com/en/download/).
 
-1. Download the latest version of Covigent from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). Look for the file `covigent.jar`.
+1. Download the latest version of **Covigent** from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). Look for the file `covigent.jar`.
 
-1. Copy the file to the folder you want to use as the home folder of Covigent.
+1. Copy the file to the folder you want to use as the home folder of **Covigent**.
 
-1. Double-click on _covigent.jar_ to start Covigent.
+1. Double-click on _covigent.jar_ to start **Covigent**.
 
-Type a command in the command box (see Figure 2) and press Enter to execute it.
+### 3.2 Using Covigent
+
+**Covigent** has numerous features, including adding quarantined individuals, creating rooms, assigning tasks to rooms, and more.
+Every feature has a corresponding command. Using a feature is as simple as typing a command in the command box (see Figure 2) and pressing Enter to execute it.
 
 <p align="center">
     <img src="images/CommandBox.png" width="800" height="100">
@@ -115,7 +124,7 @@ Type a command in the command box (see Figure 2) and press Enter to execute it.
 Some example commands you may try:
 
    * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named _John Doe_ with age _35_, phone number _98765432_, period of stay _20200910-20200924_, and temperature _37.4_.
-   * **`initroom`** `5` : Sets up 5 rooms in the quarantine facility.
+   * **`initroom`** `5` : Creates 5 rooms in the quarantine facility.
    * **`addtask`** `r/3 d/Restock supplies dd/20201230 2359` : Adds a task to room 3 with description _Restock supplies_ and due date _20201230 2359_.
 
 For more details of each command, please refer to the section on [Section 5, Features](#5-features).
@@ -123,17 +132,16 @@ For more details of each command, please refer to the section on [Section 5, Fea
 _Written by: Yee Hong_
 
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Patient**: An individual who resides in the quarantine facility. 
-* **Task**: A task to be completed by staff of the quarantine facility.
+* **Command Line Interface**: A form of user interface that processes commands to a computer program in the form of lines of text.<br>
+* **Graphical User Interface**: A form of user interface that allows users to interact with electronic devices through graphical icons.<br>
+* **Patient**: An individual who resides in the quarantine facility.<br>
+* **Task**: A task to be completed by staff of the quarantine facility.<br>
 
 _Written by: Yun Qing_
-
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -164,43 +172,68 @@ This section contains all the commands related to patients. Scroll down to find 
 
 #### 5.2.1 Add a patient: `addpatient` 
 
-Adds the patient details (name, temperature, period of stay, phone number, age and comment) to Covigent.
+You can use this command to add a patient with the following details: name, temperature, period of stay, phone number, age and comment.<br>
 
-Format: `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`
+**Format:** `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]`<br>
 
-Additional Information:
-* Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
-* `PERIOD_OF_STAY` is in the format `YYYYMMDD-YYYYMMDD`.
-* `TEMPERATURE` should be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
-* `COMMENT`for the patient is optional. 
+Parameter | Description
+------------ | -------------
+`NAME` | The name of the patient. It should preferably be the full name of the patient.
+`TEMPERATURE` | The temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
+`PERIOD_OF_STAY` | The period of stay of the patient in the facility. It must be in the format YYYYMMDD-YYYYMMDD.
+`PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by.
+`AGE` | The age of the patient, which is between 0 and 120.
+`COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
 
-Example(s):
-* `addpatient n/John Doe p/98765432 t/37.4 d/20200910-20200924 a/35` A patient named John Doe with phone number _98765432_, temperature _37.4_, period of stay from _10 September 2020 to 24 September 2020_ and age _35_ is added to Covigent.
-* `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named Betsy Crowe with temperature _36.5_, period of stay from _1 October 2020 to 14 October 2020_, phone number _91234567_, age _19_ and comment _Is asthmatic_ is added to Covigent.
+**Additional Information:** <br>
+![icon](images/infoicon.PNG) Duplicate names are not allowed. If an entry of name `John Doe` is recorded in Covigent, you should not add a patient of the name `John Doe` again.
+<br>
 
-Expected Outcome: <br>
-* Using the first example, the result box displays the message, "New patient added: John Doe Temperature: 37.4 Period of stay: 10 Sep 2020 to 24 Sep 2020 Phone: 98765432 Age: 35 Comment: -".
+**Example(s):**
+1. `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named Betsy Crowe with temperature _36.5_, period of stay from _1 October 2020 to 14 October 2020_, phone number _91234567_, age _19_ and comment _Is asthmatic_ is added to Covigent.
+<br>
+
+**Expected Outcome:** <br>
+* Using the first example, the result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic".
 * The newly added patient can now be found in the list of patients in Covigent.
+* Shown below is an example of a successful execution. Note that you will need to click on the newly added patient in the patient list to view his/her details.
+<p align="center">
+    <img src="images/screenshot-for-ug/addpatient.png">
+    <br />
+    <i>Figure 5.1 A successful execution of addpatient</i>
+</p>
 
 _Written by: Yun Qing_
 
 
 #### 5.2.2 Delete a patient: `deletepatient` 
 
-Deletes the details of the existing patient identified by his/her name from Covigent. 
+You can use this command to delete the details of the existing patient identified by his/her name from Covigent.<br> 
 
-Format: `deletepatient NAME`
+**Format:** `deletepatient NAME`<br>
 
-Additional Information:
-* `NAME` **must match exactly with the name of the patient that was input into Covigent previously** and is case-insensitive.
-* If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent.
+Parameter | Description
+------------ | -------------
+`NAME` | The name of the patient to be deleted. It is case-insensitive and must match exactly with the name of the patient that was input into Covigent previously.
 
-Example(s):
-* `deletepatient Mary Doe` The patient details of Mary Doe will be deleted from Covigent.
 
-Expected Outcome: <br>
+**Additional Information:**<br>
+![icon](images/infoicon.PNG) If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent.
+<br>
+
+**Example(s):**
+1. `deletepatient Mary Doe` The patient details of Mary Doe will be deleted from Covigent.
+<br>
+
+**Expected Outcome:** <br>
 * Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". 
 * The deleted patient can no longer be found in the list of patients in Covigent.
+* Shown below is an example of a successful execution.
+<p align="center">
+   <img src="images/screenshot-for-ug/deletepatient.png">
+    <br />
+    <i>Figure 5.2 A successful execution of deletepatient</i>
+</p>
 
 _Written by: Yun Qing_
 
@@ -209,95 +242,95 @@ _Written by: Yun Qing_
 
 Edits an existing patient's details in Covigent.
 
-Format: `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`
+**Format**: `editpatient ORIGINAL_NAME [n/NEW_NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br>
 
-Additional Information:
-* Edits the patient with the specified `NAME`. 
-* `NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* `NAME` is case-insensitive.
-* `TEMPERATURE` must be to 1 decimal place (e.g. 37.0 instead of 37).
-* `PERIOD_OF_STAY` is in the format `YYYYMMDD-YYYYMMDD`.
-* `PHONE_NUMBER` consists of only 8 digits (e.g. 84321234).
-* `AGE` should be a positive integer between 0 to 119.
+Parameter | Description
+------------ | -------------
+`ORIGNIAL_NAME` | The name of the patient whom details are to be edited. It must match exactly with the name of the patient that was input into Covigent previously. It is case-insensitive.
+`NEW_NAME` | The new name of the patient. The new name must not already exist within Covigent.
+`TEMPERATURE` | The new temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
+`PERIOD_OF_STAY` | The new period of stay of the patient. It must be in the format YYYYMMDD-YYYYMMDD.
+`PHONE_NUMBER` | The new phone number of the patient.
+`AGE` | The new age of the patient. Age should be between 0 and 120.
+`COMMENT` | The new comments about the patient.
 
-Example(s):
-*  `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to _91234567_.
-*  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
+**Additional Information:**<br>
+![icon](images/infoicon.PNG) At least one of the optional fields must be provided.<br>
+![icon](images/infoicon.PNG) Existing values will be updated to the input values.
+<br>
 
-Expected Outcome: <br>
-* Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
-* Details panel will show the details of the edited patient.
+**Example(s)**:
+1. `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to _91234567_.
+1. `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
+
+**Expected Outcome**: <br>
+* Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 91234567 Age: 23 Comment: -".
+* The details of the patient will be shown in the details panel.
+* Shown below is an example of a successful execution:
+
+<p align="center">
+    <img src="images/screenshot-for-ug/editpatient.PNG">
+    <br />
+    <i>Figure 5.3. A successful execution of editpatient command</i>
+</p>
 
 _Written by: Ming De_
 
 
 #### 5.2.4 Search Patients by Information: `searchpatient`
 
-Searches the patients that match the given criteria(name or a range of temperature) in Covigent.
+You can use this command to search patients that match the given criteria(name or a range of temperature) in Covigent.
 
-Format: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
+**Format**: `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]`
 
-Additional Information:
+Parameter | Description
+------------ | -------------
+`NAME` | The name or a substring of the name of the patient you want to look for. It may not be the full name of the patient. Any patient with the entered sub-name could be displayed. It is case-insensitive.
+`TEMPERATURE_RANGE` | The temperature range that you want to look for. It is made up of two temperatures. A temperature must be keyed in to 1 decimal place (e.g. 37.0 instead of 37). The two temperature are linked using a dash "-". The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
 
-* Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.
-* The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
+**Additional Information:**<br>
+![icon](images/infoicon.PNG)  Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.<br> 
 
-Example(s):
+**Example(s)**:
 
-*  `searchpatient n/john` Searches patients with a name John.
-*  `searchpatient tr/36.5-36.7` Searches patients with temperature 36.5 to 36.7 degree, celsius, both inclusive.
+*  `searchpatient n/john` Searches patients with a name or subname john.
+*  `searchpatient tr/36.5-36.7` Searches patients within temperature range _36.5 to 36.7_ degree celsius, both inclusive.
 
-Expected Outcome: <br>
+**Expected Outcome**: <br>
 
 * Using the second example, the result box displays the message, "Listed patient(s) matching the criteria.".
-* Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in **Covigent**.
+* Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in Covigent.
+
+<p align="center">
+    <img src="images/screenshot-for-ug/searchpatient.PNG">
+    <br />
+    <i>Figure 5.4. A successful execution of searchpatient command</i>
+</p>
 
 _Written by: Wai Lok_
 
 
 #### 5.2.5 List all patients: `listpatient`
 
-Shows a list of all patients in the patient tab.
+You can use this command to look at the list of all patients in the patient tab.
 
-Format: `listpatient`
+**Format**: `listpatient`
 
-Example(s):
+**Example(s)**:
 
-*  `listpatient` List all patients that present in Covigent.
+*  `listpatient` Lists all patients that are present in Covigent.
 
-Expected Outcome: <br>
+**Expected Outcome**: <br>
 
 * The result box displays the message, "All patients are listed.".
 
+<p align="center">
+    <img src="images/screenshot-for-ug/listpatient.PNG">
+    <br />
+    <i>Figure 5.5. A successful execution of listpatient command</i>
+</p>
+
 _Written by: Wai Lok_
-
-
-#### 5.2.6 Allocate a Patient to a Room: `editroom`
-
-Allocates a patient to a room.
-
-Format: `editroom ROOM_NUMBER p/PATIENT_NAME`
-
-Additional Information:
-* Allocates a person to the room with the specified `ROOM_NUMBER`.
-* `PATIENT_NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
-* `PATIENT_NAME` is case-insensitive.
-* `PATIENT_NAME` is compulsory and must be provided.
-* A room with the `ROOM_NUMBER` must be present.
-* This is only one of features of the editroom command. Refer to the full command [here](#532-edit-room-editroom).
-
-Example(s):
-* `editroom 1 p/alex`. The patient named Alex will be allocated to Room #1.
-
-Expected Outcome: <br>
-* Using the first example, the result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
-Phone: 12345678 Age: 23 Comment: - TaskList: -". 
-* Details panel will show the details of the room with the allocated patient.
-
-_Written by: Ming De_
-
 
 ### 5.3 Room
 
@@ -310,7 +343,8 @@ be stored.
 
 Format: `initroom NUMBER_OF_ROOMS`
 
-* Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there
+Additional Information:
+* Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there.
 
 Example(s):
 * `initroom 123`. 123 rooms are initialised in Covigent.
@@ -322,70 +356,90 @@ Expected Outcome: <br>
 _Written by: Noorul Azlina_
 
 
-#### 5.3.2 Edit room: `editroom`
+#### 5.3.2 Allocate Patient to Room: `allocateroom`
 
-Edits an existing room in Covigent.
+Allocates a patient to a room.
 
-Format: `editroom ROOM_NUMBER [r/NEW_ROOM_NUMBER] [p/PATIENT_NAME]`
+**Format**: `allocateroom ROOM_NUMBER n/PATIENT_NAME`
 
-Additional Information:
-* Edits the room with the specified `ROOM_NUMBER`.
-* `PATIENT_NAME` **must match exactly with the name of the patient that was input into Covigent previously**.
-* `PATIENT_NAME` is case-insensitive.
-* Remove patient from room by inputting a `-` for `PATIENT_NAME`.
-* At least one of the optional fields must be provided.
-* A room with the `ROOM_NUMBER` must be present.
-* Refer [here](#526-allocate-a-patient-to-a-room-editroom) for the instructions on allocating a patient to a room.
+Parameter | Description
+----------|-------------
+`ROOM_NUMBER` | The room number of the room of which the patient is to be allocated to. A room with the `ROOM_NUMBER` must already exist within Covigent.
+`PATIENT_NAME` | The name of the patient to be allocated to the room. It is case-sensitive but must match exactly with the name of the patient that was input into Covigent previously.
 
+![icon](images/infoicon.PNG) To remove a patient from the room, input the patient name as "-". Refer to the example below for more clarity.
 
-Example(s):
-* `editroom 1 r/2 p/alex`. The room with room number #1 will be changed to #2. Afterwards, the previous patient in room #2 will be replaced with the patient named _Alex_.
-* `editroom 1 p/-`. The patient in the room with room number #1 will be removed. 
-* `editroom 1 r/3 p/-`. The room with room number #1 will be changed to #3. Afterwards, the previous patient in room #3 will be removed.
+**Example(s):**
+1. `allocateroom 1 n/john doe`. The patient named John Doe will be allocated to Room #1.
+1. `allocateroom 1 n/-`. The previous patient will be removed from Room #1.
 
-Expected Outcome: <br>
-* Using the first example, the result box displays the message, "Edited Room: Room Number: 2 Patient: Alex Temperature: 37.0 Period of stay: 08 Aug 2020 to 19 Aug 2020 Phone: 99272758 Age: 37 Comment: - TaskList: -". 
-* Details panel will show the details of the newly edited room.
+**Expected Outcome:** <br>
+* Using the first example, the result box displays the message, "Allocate Room: Room Number: 1 Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
+Phone: 91234567 Age: 23 Comment: - TaskList: -".
+* The details of the room with the allocated patient will be shown in the details panel.
+* Shown below is an example of a successful execution:
+
+<p align="center">
+    <img src="images/screenshot-for-ug/allocateroom.PNG">
+    <br />
+    <i>Figure 5.7. A successful execution of allocateroom command</i>
+</p>
 
 _Written by: Ming De_
 
 
 #### 5.3.3 Search by Room Number: `searchroom` 
 
-Searches for the room details with the specified room number.
+You can use this command to search for the room details with the specified room number.
 
-Format: `searchroom r/ROOM_NUMBER`
+**Format:** `searchroom r/ROOM_NUMBER`
 
-Example(s):
-* `searchroom r/6` The room details of room number 6 will be searched.
+Parameter | Description
+----------|-------------
+`ROOM_NUMBER` | The room number of the room to be searched for. The room number should be present in the list of rooms in Covigent.
 
-Expected Outcome:<br>
+**Example(s):**
+1. `searchroom r/6` The room details of room number 6 will be searched.
+
+**Expected Outcome:**<br>
 * The result box displays a message "Room has been found and listed." 
 * The room with the specified room number is shown in the room details panel.
-
+* Shown below is an example of a successful execution.
+<p align="center">
+    <img src="images/screenshot-for-ug/searchroomnumber.png">
+    <br />
+    <i>Figure 5.8 A successful execution of searchroom for room number</i>
+</p>
 _Written by: Yun Qing_
 
 
 #### 5.3.4 Search for Room with Patient: `searchroom` 
 
-Searches for the room that the specified patient is residing in. 
+You can use this command to search for the room that the specified patient is residing in. 
 
-Format `searchroom n/NAME`
+**Format:** `searchroom n/NAME`
 
-Addition Information:
-* `NAME` **must match exactly with the name of the patient that was input into Covigent previously** and is case-insensitive.
+Parameter | Description
+----------|-------------
+`NAME` | The name of the patient whose room you are looking for. It is case-insensitive and must match exactly with the name of the patient that was input into Covigent previously.
 
-Example(s):
-* `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
+**Example(s):**
+1. `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
 
-Expected Outcome: <br>
+**Expected Outcome:**<br>
 * The result box displays a message "Room has been found and listed." 
 * The room that the specified patient resides in is shown in the room details panel.
+* Shown below is an example of a successful execution.
+<p align="center">
+    <img src="images/screenshot-for-ug/searchroompatient.png">
+    <br />
+    <i>Figure 5.9 A successful execution of searchroom for patient</i>
+</p>
 
 _Written by: Yun Qing_
 
 
-#### 5.3.5 List the current Rooms: `listroom`
+#### 5.3.5 List the Current Rooms: `listroom`
 
 Lists all the rooms in the hotel together with informtion of whether the room is occupied or not.
 
@@ -397,7 +451,7 @@ Expected Outcome: <br>
 _Written by: Noorul Azlina_
 
 
-#### 5.3.6 Find the first free room: `findemptyroom`
+#### 5.3.6 Find the First Free Room: `findemptyroom`
 
 Finds the room with the lowest room number that is free for use.
 
@@ -535,27 +589,30 @@ _Written by: Yee Hong_
 
 #### 5.4.5 Search Tasks before a Given Date: `searchtask`
 
-Searches all tasks before a date in Covigent.
+You can use this command to search all tasks before a date in Covigent.
 
-Format: `searchtask dd/DUE_DATE`
+**Format**: `searchtask dd/DUE_DATE`
 
-Additional Information:
+Parameter | Description
+----------|-------------
+`Due_Date` | The due date you are looking for. It must be in any of the following forms: `YYYYMMDD`, `YYYYMMDD HHmm`, `D/M/YYYY`, `D/M/YYYY HHmm`.
 
-* Due date can be in the any of the following formats:
-  * `YYYYMMDD` (e.g. 20210131).
-  * `YYYYMMDD HHmm` (e.g. 20210131 2359).
-  * `D/M/YYYY` (e.g. 31/1/2021 or 31/01/2021).
-  * `D/M/YYYY HHmm` (e.g. 31/1/2021 2359 or 31/01/2021 2359).
-  
-* If the time is not given for a due date, it defaults to 0000 (12am).
+**Additional Information**:<br>
+![icon](images/infoicon.PNG)  If the time `HHmm` is not specified for a due date, it defaults to 0000 (12am).
 
-Example(s):
+**Example(s)**:
 
-* `searchtask dd/12/1/2021` Search all tasks before and including 12 January 2021.
+* `searchtask dd/12/1/2021` Search all tasks before and including 12 January 2021 0000.
 
-Expected Outcome:<br>
+**Expected Outcome**:<br>
 * The result box displays the message, "Tasks before the due date found.".
-* Tasks before and including 12 January 2021 can now be found in the list of tasks in Covigent
+* Tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent
+
+<p align="center">
+    <img src="images/screenshot-for-ug/searchtask.PNG">
+    <br />
+    <i>Figure 5.16. A successful execution of searchtask command</i>
+</p>
 
 _Written by: Wai Lok_
 
@@ -577,8 +634,9 @@ Exits Covigent and closes it.
 Format: `exit`
 
 Expected Outcome:<br>
-* Covigent closes.
+* Covigent exits and closes.
 
+_Written by: MingDe_
 
 ### 5.7 Autosave
 
@@ -596,9 +654,8 @@ Action | Format, Examples
 **Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br> e.g., editpatient James Lee t/36.5
 **Search Patient** | `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]` <br> e.g., searchpatient tr/36.5-36.7
 **List Patients** | `listpatient`<br>
-**Allocate Patient to Room** | `editroom ROOM_NUMBER p/NAME` <br> e.g., editroom 5 p/David Li
 **Initialise Room** | `initroom NUMBER_OF_ROOMS` <br> e.g., initroom 123
-**Edit Room Number** | `editroom ROOM_NUMBER r/NEW_ROOM_NUMBER` <br> e.g., editroom 1 r/2
+**Allocate Patient to Room** | `allocateroom ROOM_NUMBER n/NAME` <br> e.g., allocateroom 5 n/David Li
 **Search by Room Number** | `searchroom r/ROOM_NUMBER`<br> e.g., searchroom r/15
 **Search for Room with Patient** | `searchroom n/NAME`<br> e.g., searchroom n/Jane Doe
 **List Rooms** | `listroom` <br>
@@ -631,5 +688,8 @@ _Written by: Yun Qing_
 
 **Q**: How do I look at all the rooms and patient when only one is being displayed after commands such as `findroom`?<br>
 **A**: Use the command `listroom` for rooms and `listpatient` for patients.
+
+**Q**: What should I do if nothing happens when I double click the Jar file?<br>
+**A**: Open Terminal(Mac)/Command Prompt(Windows) . Type `cd [PATH TO DIRECTORY CONTAINING .JAR FILE]` . Type java `-jar covigent.jar` to run the application.
 
 _Written by: Noorul Azlina_<br>
