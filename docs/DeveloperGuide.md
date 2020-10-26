@@ -33,7 +33,7 @@ title: Developer Guide
         4.3.4 [Edit Task](#434-edit-task)<br>
         4.3.5 [Search Task](#435-search-task)<br>
     4.4  [Storage Feature(KIV)]<br>
-    4.5  [Logging Feature(KIV)]<br>
+    4.5  [Logging Feature](#45-logging-feature)<br>
  5. [Documentation](#5-documentation)<br>
  6. [Testing(KIV)]<br>
  7. [Appendix](#7-appendix)<br>
@@ -133,13 +133,13 @@ _Written by: WaiLok_
 The `Logic` component is the "brains" of Covigent. While the `Ui` defines the GUI and `Model` defines in-memory data,
 the `Logic` component does most of the heavy-lifting in terms of deciding what to change within the `Model` and what to 
 return to the `Ui`.<br>
-The diagram below shows the structure of the `Logic` component.
+The diagram below shows the structure of the `Logic` component and how it interacts with its internal parts.
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 *Figure 4. Structure of the Logic Component*
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. Once a user input is obtained from the GUI, `Logic` uses the `CovigentAppParser` class to parse the users' commands
 and return a `Command` object.
@@ -148,12 +148,12 @@ and return a `Command` object.
 1. The result of the command execution is encapsulated as a `CommandResult` that is returned to the `Ui`.
 1. These `CommandResults` can instruct the `Ui` to perform certain actions, such as displaying help or error messages to the user.
 
-Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("delete alex)`.
+Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("deletepatient alex")`.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-*Figure 5. Interactions inside the `Logic` Component for the `delete alex` Command*
+![Interactions Inside the Logic Component for the `deletepatient alex` Command](images/DeletePatientSequenceDiagram.png)
+*Figure 5. Interactions inside the `Logic` Component for the `deletepatient alex` Command*
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 <br>
 _Written by: Ming De_
@@ -351,6 +351,22 @@ new `CommandResult` will be returned with the message.
 
 #### 4.3.5 Search Task
 
+
+### 4.5 Logging Feature
+We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
+
+* The logging level can be controlled using the `logLevel` setting in the configuration file (See [Section 4.2, "Configuration"](#46-configuration-feature))
+* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level
+* Log messages are output through: `Console` and to a `.log` file
+
+**Logging Levels**:
+* `SEVERE` : Critical problem detected which may possibly cause the termination of the application
+* `WARNING` : Can continue, but with caution
+* `INFO` : Information showing the noteworthy actions by the App
+* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
+
+### 4.6 Configuration Feature
+Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
 
 ##BELOW UNDO AND REDO TO BE DELETED, CAN REFERENCE FOR NOW FIRST
 
