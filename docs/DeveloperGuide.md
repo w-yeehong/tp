@@ -23,7 +23,7 @@ title: Developer Guide
     4.2  [Room Feature](#42-room-feature)<br>
         4.2.1 [Initialise Room](#421-initialise-room)<br>
         4.2.2 [List Room](#422-list-room)<br>
-        4.2.3 [Edit Room](#423-edit-room)<br>
+        4.2.3 [Allocate Room](#423-allocate-room)<br>
         4.2.4 [Search Room](#424-search-room)<br>
         4.2.5 [Find Empty Room](#425-find-empty-room)<br>
     4.3  [Task Feature](#43-task-feature)<br>
@@ -294,7 +294,7 @@ These operations are exposed in the `Model` interface as `Model#addRooms(int num
 
 * `initRoomCommand` - Initializes the number of rooms in **Covigent** app.
 * `listRoomCommand` - Lists all the rooms in **Covigent** app.
-* `editRoomCommand` - Allocates a patient to a room or edits an existing room in the application.
+* `AllocateRoomCommand` - Allocates a patient to a room.
 * `searchRoomCommand` - Searches for the room with the specified room number.
 * `findEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
@@ -314,24 +314,42 @@ The activity diagram below illustrates the `findEmptyRoom`.
 
 #### 4.2.2 List Room 
 
-#### 4.2.3 Edit Room 
+#### 4.2.3 Allocate Room 
 
 **Implementation**
-The following is a detailed explanation of the operations that `EditRoomCommand` performs.
+The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
-**Step 1.** The `EditRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
-`EditRoomCommand(Integer roomNumberToEdit, EditRoomDescriptor editRoomDescriptor)` is valid. This check is done through the `Model#checkifRoomPresent` method.
- The `EditRoomDescriptor` holds the edited information of the `Room`.
+**Step 1.** The `AllocateRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
+`AllocateRoomCommand(Integer roomNumberToAllocate, AllocateRoomDescriptor AllocateRoomDescriptor)` is valid. This is done using the `Model#getRoomWithRoomNumber` method
+ where it is used to get an `Optional<Room>`. If `Optional<Room>` is empty, the `Integer` is not valid.
+ The `AllocateRoomDescriptor` holds the information of the `Room` with the patient allocated.
 
-**Step 2.** A new `Room` with the updated values will be created and the room is then searched through `RoomList#internalList`
+**Step 2.** A new `Room` with the allocated patient will be created and the room is then searched through `RoomList#internalList`
 using the `Model#hasRoom(Room room)` method to check if a room with the same room number exists. If it already exists,
 `CommandException` will be thrown with an error message.
 
 **Step 3.** The newly created `Room` will replace the existing room object through the `Model#setSingleRoom(Room target, Room editedRoom)`
 method.
 
-**Step 4.** A success message with the edited room will be appended with the `EditRoomCommand#MESSAGE_EDIT_ROOM_SUCCESS` constant. A 
+**Step 4.** A success message with the allocated room will be appended with the `AllocateRoomCommand#MESSAGE_ALLOCATE_ROOM_SUCCESS ` constant. A 
 new `CommandResult` will be returned with the message.
+
+<h4> Design Considerations: </h4>
+
+**Aspect: Enable the function to change the room numbers and occupancy status**
+
+* **Option 1**: Enable users to change the room number and occupancy status
+    * Pros: Gives the user more power to customize the rooms
+    * Cons: Introduces more bugs into the system that can only be fixed by creating another new feature
+    
+* **Option 2**: Disable the function to change the room number and occupancy status
+    * Pros: Introduces less bug into the system
+    * Cons: Reduces the freedom and ability of the user to change the rooms.
+    
+Ultimately, we decided on Option 2. This is because implementing this function would introduce bugs to
+ `InitRoom`. To solve this bug, we would have to store the count of the number of times `InitRoom` was called. This would
+ cause us to store information in another `.json` file which is unnecessary. Therefore, we decided that the forgoing a
+ small function like this would be a better choice.
 
 #### 4.2.4 Search Room  
 
