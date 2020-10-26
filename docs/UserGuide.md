@@ -343,6 +343,13 @@ be stored.
 
 Format: `initroom NUMBER_OF_ROOMS`
 
+Parameter | Description
+----------|-------------
+`NUMBER_OF_ROOMS` the number of rooms you wish to have in hotel
+
+**Additional Information:**<br>
+![icon](images/infoicon.PNG) If the number of rooms is less than the number of patients error is thrown when decreasing the number of existing rooms.
+
 Additional Information:
 * Adds NUMBER_OF_ROOMS rooms into the hotel system, if there were previously added information that information for respective rooms will still be there.
 
@@ -353,6 +360,11 @@ Example(s):
 Expected Outcome: <br>
 * The result display shows a success message "Initialise the number of rooms to 400 rooms in the application.".
 
+<p align="center">
+    <img src="images/screenshot-for-ug/initroom.png">
+    <br />
+    <i>Figure 5.10 A successful execution of initroom</i>
+</p> 
 _Written by: Noorul Azlina_
 
 
@@ -443,11 +455,21 @@ _Written by: Yun Qing_
 
 Lists all the rooms in the hotel together with informtion of whether the room is occupied or not.
 
+![icon](images/infoicon.PNG) If there are no rooms, then no rooms will be mentioned and informs user to initialize rooms using the `initroom` command.
+
 Format: `listroom` All the rooms in Covigent.
 
-Expected Outcome: <br>
+**Additional Information:**<br>
+![icon](images/infoicon.PNG) You need at least one room for this command to work.<br>
+
+**Expected Outcome:** <br>
 * The result display shows a success message "All rooms are listed.".
 
+<p align="center">
+    <img src="images/screenshot-for-ug/listroom.png">
+    <br />
+    <i>Figure 5.10 A successful execution of listroom</i>
+</p> 
 _Written by: Noorul Azlina_
 
 
@@ -455,10 +477,19 @@ _Written by: Noorul Azlina_
 
 Finds the room with the lowest room number that is free for use.
 
+**Additional Information:**<br>
+![icon](images/infoicon.PNG) If there are no empty rooms then an error message informing hotel staff is mentioned.
+
 Format: `findemptyroom` The unoccupied room in Covigent with the lowest room number will be displayed on UI.
 
 Expected Outcome: <br>
 * The result display shows a success message "Room Number 1 is empty.".
+
+<p align="center">
+    <img src="images/screenshot-for-ug/findemptyroom.png">
+    <br />
+    <i>Figure 5.10 A successful execution of findemptyroom</i>
+</p> 
 
 _Written by: Noorul Azlina_
 
