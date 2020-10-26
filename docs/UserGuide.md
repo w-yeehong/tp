@@ -256,8 +256,15 @@ Parameter | Description
 *  `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
 
 **Expected Outcome**: <br>
-* Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 12345678 Age: 23 Comment: -". 
-* Details panel will show the details of the edited patient.
+* Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 91234567 Age: 23 Comment: -".
+* The details of the patient will be shown in the details panel.
+* Shown below is an example of a successful execution:
+
+<p align="center">
+    <img src="images/screenshot-for-ug/editpatient.PNG">
+    <br />
+    <i>Figure 5.3. A successful execution of editpatient</i>
+</p>
 
 _Written by: Ming De_
 
@@ -344,13 +351,20 @@ Parameter | Description
 ![icon](images/infoicon.PNG) To remove a patient from the room, input the patient name as "-". Refer to the example below for more clarity.
 
 **Example(s):**
-* `allocateroom 1 n/alex`. The patient named Alex will be allocated to Room #1.
+* `allocateroom 1 n/john doe`. The patient named John Doe will be allocated to Room #1.
 * `allocateroom 1 n/-`. The previous patient will be removed from Room #1.
 
 **Expected Outcome:** <br>
-* Using the first example, the result box displays the message, "Edited Room: Room Number: 1 Patient: Alex Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
-Phone: 12345678 Age: 23 Comment: - TaskList: -". 
+* Using the first example, the result box displays the message, "Allocate Room: Room Number: 1 Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
+Phone: 91234567 Age: 23 Comment: - TaskList: -".
 * The details of the room with the allocated patient will be shown in the details panel.
+* Shown below is an example of a successful execution:
+
+<p align="center">
+    <img src="images/screenshot-for-ug/allocateroom.PNG">
+    <br />
+    <i>Figure 5.7. A successful execution of allocateroom</i>
+</p>
 
 _Written by: Ming De_
 
