@@ -104,20 +104,25 @@ The sections below give more details of each component.
 
 ### 3.2 UI Component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
 
 
-The UI consists of a `MainWindow` that is made up of parts inclduing `CommandBox`, `ResultDisplay`, `PatientListPanel`, `RoomListPanel` , `RoomDetailPanel` `TaskListPanel`, `StatusBarFooter`. These, including the `MainWindow`, inherit from the abstract `UiPart` class.
-
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component displays information for the users based on user's input. The GUI to displayed is based on the return from logic.
+It uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Consists of a `MainWindow` that is made up of many different parts that inherit from the abstract `UiPart` class.
 
+The `MainWindow` is made up of 
+* A `PatientListPanel` that displays the list of patients. The layout is defined by `PatientCard`.
+* A `RoomListPanel` that displays the list of rooms. The layout is defined by `RoomCard` and `RoomDetailPanel`.
+* A `TaskListPanel` that displays the list of tasks. The layout is defined by `TaskCard`.
+* A `HelpWindow` that displays the link to the help page.
+* A `CommandBox` that displays the area for command input.
+* A `ResultDisplay` that displays the robot response.
+* A `StatusBarFooter` that displays the status bar footer.
 Below is a class diagram for `Ui`
-
+![Structure of the UI Component](images/UiClassDiagram.png)
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 

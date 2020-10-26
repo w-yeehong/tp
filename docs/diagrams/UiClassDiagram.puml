@@ -17,14 +17,11 @@ Class RoomDetailsPanel
 Class TaskListPanel
 Class TaskCard
 Class RoomCard
-Class PersonCard
+Class PatientCard
 Class StatusBarFooter
 Class CommandBox
 }
 
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
-}
 
 package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
@@ -43,24 +40,25 @@ MainWindow *-down-> TaskListPanel
 MainWindow *-down-> RoomListPanel
 MainWindow *-down-> StatusBarFooter
 
-PatientListPanel -down-> PersonCard
-TaskListPanel -down-> TaskCard
-RoomListPanel *-down -> RoomCard
-RoomListPanel *-down -> RoomDetailsPanel
+PatientListPanel -down-> PatientCard : defined by >
+TaskListPanel -down-> TaskCard : defined by >
+RoomListPanel *-down-> RoomCard : defined by >
+RoomListPanel *-down-> RoomDetailsPanel : defined by >
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+RoomDetailsPanel --|> UiPart
+RoomCard --|> UiPart
+TaskCard --|> UiPart
+PatientListPanel --|> UiPart
+RoomListPanel --|> UiPart
+TaskListPanel --|> UiPart
+PatientCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PatientCard ..> Model
-RoomCard ..> Model
-RoomDetailsPanel ..> Model
-TaskCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
