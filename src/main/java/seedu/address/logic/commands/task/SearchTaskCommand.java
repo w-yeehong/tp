@@ -30,7 +30,7 @@ public class SearchTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DUE_DATE + "20200928 2359";
 
-    public static final String MESSAGE_SEARCH_TASK_SUCCESS = "Tasks before the due date found: \n";
+    public static final String MESSAGE_SEARCH_TASK_SUCCESS = "Tasks before the due date found.";
     public static final String MESSAGE_TASK_NOT_FOUND = "There is no task that matches your criteria.";
 
 
@@ -66,21 +66,7 @@ public class SearchTaskCommand extends Command {
         assert taskListWithDesirableResult.size() >= 1;
         datePredicate = new DueDatePredicate(duedate);
         model.updateFilteredTaskList(datePredicate);
-        return new CommandResult(String.format(MESSAGE_SEARCH_TASK_SUCCESS
-                + getListOutput(taskListWithDesirableResult)));
-    }
-
-    /**
-     * Returns the list of tasks' details
-     * @param list a list that stores the tasks.
-     * @return a String output of the tasks' details.
-     */
-    private String getListOutput(ArrayList<Task> list) {
-        StringBuilder outputString = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            outputString.append(String.format("%d. Description: %s\n", i + 1, list.get(i)));
-        }
-        return outputString.toString();
+        return new CommandResult(String.format(MESSAGE_SEARCH_TASK_SUCCESS));
     }
 
     @Override
