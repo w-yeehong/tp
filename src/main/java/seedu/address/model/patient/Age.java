@@ -7,8 +7,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Patient's age recorded in the app.
  * A valid patient age is between 0 (inclusive) and 120 (exclusive),
- * as declared in {@link #isValidAge(String)}
- * Guarantees: immutable
+ * as declared in {@link #isValidAge(String)}.
+ * Guarantees: immutable.
  */
 public class Age {
 
@@ -16,7 +16,7 @@ public class Age {
             "Age should only contain numbers.";
 
     public static final String VALIDATION_REGEX = "\\d{1,3}";
-    public final int value;
+    private final int value;
 
     /**
      * Constructs a {@code Age}.
@@ -37,6 +37,13 @@ public class Age {
                 && (Integer.parseInt(test) < 120);
     }
 
+    /**
+     * Returns the value of the age.
+     */
+    public int getValue() {
+        return this.value;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(value);
@@ -46,7 +53,7 @@ public class Age {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Age // instanceof handles nulls
-                && value == ((Age) other).value); // state check
+                && value == ((Age) other).getValue()); // state check
     }
 
     @Override

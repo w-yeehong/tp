@@ -18,13 +18,13 @@ public class AgeTest {
 
     @Test
     public void constructor_invalidAge_throwsIllegalArgumentException() {
-        String emptyString = "";
+        String emptyString = ""; //EP: empty strings
         assertThrows(IllegalArgumentException.class, () -> new Age(emptyString));
 
-        String nonIntegerAge = "twenty";
+        String nonIntegerAge = "twenty"; //EP: non-integer
         assertThrows(IllegalArgumentException.class, () -> new Age(nonIntegerAge));
 
-        String invalidAge = "1000";
+        String invalidAge = "1000"; //EP: invalid age
         assertThrows(IllegalArgumentException.class, () -> new Age(invalidAge));
     }
 
@@ -34,11 +34,11 @@ public class AgeTest {
         assertThrows(NullPointerException.class, () -> Age.isValidAge(null));
 
         // invalid age
-        assertFalse(Age.isValidAge("")); // empty string
-        assertFalse(Age.isValidAge(" ")); // spaces only
-        assertFalse(Age.isValidAge("twenty")); //non-numeric
-        assertFalse(Age.isValidAge("-1")); //negative age
-        assertFalse(Age.isValidAge("120")); // >= 120 years old
+        assertFalse(Age.isValidAge("")); // EP: empty string
+        assertFalse(Age.isValidAge(" ")); // EP: spaces only
+        assertFalse(Age.isValidAge("twenty")); //EP: non-numeric
+        assertFalse(Age.isValidAge("-1")); //EP: negative age
+        assertFalse(Age.isValidAge("120")); //EP: >= 120 years old
 
         //valid age
         assertTrue(Age.isValidAge("0"));
