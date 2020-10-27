@@ -25,7 +25,7 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     /**
      * Create a TaskList Object.
      */
-    public TaskList(){}
+    public TaskList() {}
 
     /**
      * Create a TaskList Object.

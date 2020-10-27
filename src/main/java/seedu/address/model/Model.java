@@ -262,9 +262,6 @@ public interface Model {
      */
     void setTaskToRoom(Task target, Task editedTask, Room room);
 
-
-
-
     /**
      * Deletes {@code task}.
      * The room must exist in Covigent.

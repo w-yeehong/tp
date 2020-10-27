@@ -176,7 +176,6 @@ public class ModelManager implements Model {
 
     //=========== Room List ========================================================================================
 
-
     @Override
     public int numOfOccupiedRooms() {
         return roomList.numOfOccupiedRooms();
@@ -213,6 +212,7 @@ public class ModelManager implements Model {
     }
     //@@author LeeMingDe
 
+    //@@author chiamyunqing
     @Override
     public void removePatientFromRoom(Name patientName) {
         assert (isPatientAssignedToRoom(patientName));
@@ -256,13 +256,13 @@ public class ModelManager implements Model {
     }
     //@@author LeeMingDe
 
+    //@@author w-yeehong
     @Override
     public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
         assert (roomNumber > 0) : "Room number should be greater than 0.";
         return roomList.getRoomWithRoomNumber(roomNumber);
     }
-
-    //@@author chiamyunqing
+    //@@author w-yeehong
 
     //=========== Filtered RoomList Accessors ==========================================================================
 
@@ -293,9 +293,9 @@ public class ModelManager implements Model {
 
     }
 
-
     //=========== Tasks ========================================================================================
 
+    //@@author w-yeehong
     @Override
     public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
         requireAllNonNull(taskIndex, room);
@@ -314,7 +314,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addTask(Task task) {
-        requireAllNonNull(task);
+        requireNonNull(task);
         taskList.add(task);
         filteredTasks.setPredicate(PREDICATE_SHOW_ALL_TASKS);
     }
@@ -333,7 +333,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteTask(Task taskToDelete) {
-        requireAllNonNull(taskToDelete);
+        requireNonNull(taskToDelete);
         taskList.remove(taskToDelete);
     }
 
@@ -342,6 +342,7 @@ public class ModelManager implements Model {
         requireAllNonNull(taskToEdit, editedTask);
         taskList.setTask(taskToEdit, editedTask);
     }
+    //@@author w-yeehong
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
@@ -358,6 +359,7 @@ public class ModelManager implements Model {
     public TaskList getModifiableTaskList() {
         return taskList;
     }
+
     //=========== Miscellaneous ========================================================================================
 
     @Override
