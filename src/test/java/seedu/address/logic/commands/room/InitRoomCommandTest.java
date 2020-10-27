@@ -1,17 +1,16 @@
 package seedu.address.logic.commands.room;
 
-import java.util.function.Predicate;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PatientRecords;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.room.Room;
 import seedu.address.model.task.TaskList;
-
-import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
 
 public class InitRoomCommandTest {
 
@@ -19,8 +18,8 @@ public class InitRoomCommandTest {
     void execute_numberOfRooms_notDefined() {
         Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
 
-        assertCommandFailure(new InitRoomCommand(-100), model
-                , InitRoomCommand.MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
+        assertCommandFailure(new InitRoomCommand(-100), model,
+                InitRoomCommand.MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
     }
 
     @Test
@@ -68,7 +67,7 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_increaseNumberOfRooms_occupiedRooms_success() {
+    void execute_increaseNumberOfOccupiedRooms_success() {
         Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
         Model expectedModel =
                 new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
