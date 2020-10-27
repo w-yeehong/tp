@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
@@ -36,10 +36,10 @@ public class UniqueRoomList implements Iterable<Room> {
     /**
      * Resets the existing data of this {@code RoomList} with {@code newData}.
      */
-    public void resetData(ReadOnlyRoomList readOnlyRoomList) {
+    public void resetData(ReadOnlyList<Room> readOnlyRoomList) {
         requireAllNonNull(readOnlyRoomList);
 
-        ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
+        ObservableList<Room> roomLists = readOnlyRoomList.getReadOnlyList();
         rooms.addAll(roomLists);
         internalList.addAll(roomLists);
     }

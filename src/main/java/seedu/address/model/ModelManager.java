@@ -38,8 +38,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given patient records, room records and userPrefs.
      */
-    public ModelManager(ReadOnlyPatientRecords patientRecords, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyRoomList roomList, ReadOnlyTaskList taskList) {
+    public ModelManager(ReadOnlyList<Patient> patientRecords, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyList<Room> roomList, ReadOnlyList<Task> taskList) {
         super();
         requireAllNonNull(patientRecords, userPrefs);
 
@@ -49,9 +49,9 @@ public class ModelManager implements Model {
         this.roomList = new RoomList(roomList);
         this.userPrefs = new UserPrefs(userPrefs);
         this.taskList = new TaskList(taskList);
-        filteredPatients = new FilteredList<>(this.patientRecords.getPatientList());
-        filteredRooms = new FilteredList<>(this.roomList.asUnmodifiableObservableList());
-        filteredTasks = new FilteredList<>(this.taskList.asUnmodifiableObservableList());
+        filteredPatients = new FilteredList<>(this.patientRecords.getReadOnlyList());
+        filteredRooms = new FilteredList<>(this.roomList.getReadOnlyList());
+        filteredTasks = new FilteredList<>(this.taskList.getReadOnlyList());
     }
 
     public ModelManager() {
@@ -96,21 +96,21 @@ public class ModelManager implements Model {
     //=========== Patient Records ================================================================================
 
     @Override
-    public void setPatientRecords(ReadOnlyPatientRecords patientRecords) {
+    public void setPatientRecords(ReadOnlyList<Patient> patientRecords) {
         this.patientRecords.resetData(patientRecords);
     }
 
     @Override
-    public ReadOnlyPatientRecords getPatientRecords() {
+    public ReadOnlyList<Patient> getPatientRecords() {
         return patientRecords;
     }
 
     //=========== RoomList ================================================================================
+
     @Override
-    public void setRoomList(ReadOnlyRoomList rooms) {
+    public void setRoomList(ReadOnlyList<Room> rooms) {
         this.roomList.resetData(rooms);
     }
-
 
     //=========== Patients ====================================================================================
 
@@ -268,7 +268,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Room> getRoomListObservablList() {
-        return roomList.asUnmodifiableObservableList();
+        return roomList.getReadOnlyList();
     }
 
     @Override

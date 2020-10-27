@@ -6,7 +6,8 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.PatientRecords;
-import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyList;
+import seedu.address.model.patient.Patient;
 
 /**
  * Represents a storage for {@link PatientRecords}.
@@ -19,18 +20,18 @@ public interface PatientRecordsStorage {
     Path getPatientRecordsFilePath();
 
     /**
-     * Returns CovigentApp data as a {@link ReadOnlyPatientRecords}.
+     * Returns CovigentApp data as a {@code ReadOnlyList<Patient>}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyPatientRecords> readPatientRecords() throws DataConversionException, IOException;
+    Optional<ReadOnlyList<Patient>> readPatientRecords() throws DataConversionException, IOException;
 
     /**
      * @see #getPatientRecordsFilePath()
      */
-    Optional<ReadOnlyPatientRecords> readPatientRecords(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyList<Patient>> readPatientRecords(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyPatientRecords} to the storage.
@@ -38,11 +39,11 @@ public interface PatientRecordsStorage {
      *
      * @throws IOException if there was any problem writing to the file.
      */
-    void savePatientRecords(ReadOnlyPatientRecords patientRecords) throws IOException;
+    void savePatientRecords(ReadOnlyList<Patient> patientRecords) throws IOException;
 
     /**
      * @see #savePatientRecords(ReadOnlyPatientRecords)
      */
-    void savePatientRecords(ReadOnlyPatientRecords patientRecords, Path filePath) throws IOException;
+    void savePatientRecords(ReadOnlyList<Patient> patientRecords, Path filePath) throws IOException;
 
 }

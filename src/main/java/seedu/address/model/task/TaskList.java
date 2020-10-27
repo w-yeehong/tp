@@ -8,7 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -16,7 +16,7 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
  *
  * Supports a minimal set of list operations.
  */
-public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
+public class TaskList implements Iterable<Task>, ReadOnlyList<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
@@ -31,7 +31,7 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
      * Create a TaskList Object.
      * @param readOnlyTaskList
      */
-    public TaskList(ReadOnlyTaskList readOnlyTaskList) {
+    public TaskList(ReadOnlyList<Task> readOnlyTaskList) {
         this();
         resetData(readOnlyTaskList);
     }
@@ -40,9 +40,9 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
      * Reset the data.
      * @param readOnlyTaskList
      */
-    public void resetData(ReadOnlyTaskList readOnlyTaskList) {
+    public void resetData(ReadOnlyList<Task> readOnlyTaskList) {
         requireNonNull(readOnlyTaskList);
-        ObservableList<Task> taskLists = readOnlyTaskList.getTaskObservableList();
+        ObservableList<Task> taskLists = readOnlyTaskList.getReadOnlyList();
         internalList.addAll(taskLists);
     }
 
@@ -154,8 +154,8 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     }
 
     @Override
-    public ObservableList<Task> getTaskObservableList() {
-        return this.internalList;
+    public ObservableList<Task> getReadOnlyList() {
+        return internalUnmodifiableList;
     }
 
 }
