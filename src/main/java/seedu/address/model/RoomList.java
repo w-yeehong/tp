@@ -3,20 +3,16 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
@@ -25,16 +21,23 @@ import seedu.address.storage.JsonPatientRecordsStorage;
 /**
  * Contains information regarding the Room information
  */
+//@@author itssodium
 public class RoomList implements ReadOnlyRoomList {
     private static final Logger logger = LogsCenter.getLogger(JsonPatientRecordsStorage.class);
 
-    private int numOfRooms;
-    private PriorityQueue<Room> rooms = new PriorityQueue<>();
-    private ObservableList<Room> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Room> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final UniqueRoomList rooms;
 
-    /** Creates default RoomList() object where all fields are null**/
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        rooms = new UniqueRoomList();
+    }
+
     public RoomList() {}
 
     /**
@@ -44,72 +47,52 @@ public class RoomList implements ReadOnlyRoomList {
         this();
         resetData(readOnlyRoomList);
     }
-    /**
-     * Creates a RoomList object using the information given in files containing information about
-     * which rooms are occupied and number of rooms
-     */
-    public RoomList(PriorityQueue<Room> rooms, int numOfRooms) {
-        this.rooms = rooms;
-        this.numOfRooms = numOfRooms;
+
+    public boolean hasSpaceForRooms() {
+        return rooms.hasSpaceForRooms();
     }
 
+    public int numOfOccupiedRooms() {
+        return rooms.numOfOccupiedRooms();
+    }
     /**
      * Resets the existing data of this {@code RoomList} with {@code newData}.
      */
     public void resetData(ReadOnlyRoomList readOnlyRoomList) {
-        ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
-        numOfRooms = roomLists.size();
-        rooms.addAll(roomLists);
-        internalList.addAll(roomLists);
+        rooms.resetData(readOnlyRoomList);
     }
     /**
      * Returns Priority Queue of rooms
      */
     public PriorityQueue<Room> getRooms() {
-        return this.rooms;
+        return rooms.getRooms();
     }
 
     /**
      * Returns number of rooms in hotel
      */
     public int getNumOfRooms() {
-        return numOfRooms;
+        return rooms.getNumOfRooms();
+    }
+
+    public void setInitNumOfRooms(int numOfRooms) {
+        rooms.setNumOfRooms(numOfRooms);
     }
 
     public ObservableList<Room> getRoomObservableList() {
-        return internalList;
+        return rooms.getRoomObservableList();
     }
 
-    private void addRooms() {
-        if (numOfRooms < 0) {
-            return;
-        }
-        if (numOfRooms > internalList.size()) {
-            for (int i = internalList.size(); i < numOfRooms; i++) {
-                Room room = new Room(i + 1);
-                rooms.add(room);
-            }
-        } else if (numOfRooms < internalList.size()) {
-            for (int i = numOfRooms; i < internalList.size(); i++) {
-                Room room = internalList.get(i);
-                rooms.remove(room);
-            }
-            int size = internalList.size();
-            for (int i = numOfRooms; i < size; i++) {
-                internalList.remove(numOfRooms);
-            }
-        }
-        internalList.setAll(rooms); // to let the UI update
+    public void setRoom(Room room) {
+        rooms.setRoom(room);
     }
-
     /**
      * Adds the number of the rooms in a hotel
      *
      * @param numOfRooms is the number of rooms to be added
      */
     public void addRooms(int numOfRooms) {
-        this.numOfRooms = numOfRooms;
-        addRooms();
+        rooms.addRooms(numOfRooms);
     }
 
     /**
@@ -117,9 +100,7 @@ public class RoomList implements ReadOnlyRoomList {
      * @param room is added to RoomList
      */
     public void addRooms(Room room) {
-        this.numOfRooms++;
-        rooms.add(room);
-        internalList.add(room);
+        rooms.addRooms(room);
     }
 
     /**
@@ -130,12 +111,7 @@ public class RoomList implements ReadOnlyRoomList {
      * @return the optional-wrapped room if found, otherwise an empty optional
      */
     public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
-        for (Room room : internalList) {
-            if (roomNumber == room.getRoomNumber()) {
-                return Optional.of(room);
-            }
-        }
-        return Optional.empty();
+        return rooms.getRoomWithRoomNumber(roomNumber);
     }
 
     // TODO: Move task-related methods into another class
@@ -166,13 +142,7 @@ public class RoomList implements ReadOnlyRoomList {
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
 
-        int index = internalList.indexOf(room);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        room.addTask(task);
-        internalList.set(index, room);
+        rooms.addTaskToRoom(task, room);
     }
 
     /**
@@ -188,13 +158,7 @@ public class RoomList implements ReadOnlyRoomList {
     public void deleteTaskFromRoom(Task task, Room room) {
         requireAllNonNull(task, room);
 
-        int index = internalList.indexOf(room);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        room.deleteTask(task);
-        internalList.set(index, room);
+        rooms.deleteTaskFromRoom(task, room);
     }
 
     /**
@@ -211,58 +175,21 @@ public class RoomList implements ReadOnlyRoomList {
     public void setTaskToRoom(Task target, Task editedTask, Room room) {
         requireAllNonNull(target, editedTask, room);
 
-        int index = internalList.indexOf(room);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        room.setTask(target, editedTask);
-        internalList.set(index, room);
+        rooms.setTaskToRoom(target, editedTask, room);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Room> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return rooms.asUnmodifiableObservableList();
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        RoomList roomList = (RoomList) o;
-        Room[] roomsForPQ = this.rooms.toArray(new Room[0]);
-        Room[] rooms1ForPQ = roomList.rooms.toArray(new Room[0]);
-
-        Room[] roomsForObservableList = internalList.toArray(new Room[0]);
-        Room[] rooms1FOrObservableList = roomList.internalList.toArray(new Room[0]);
-        return numOfRooms == roomList.numOfRooms
-                && Arrays.equals(roomsForPQ, rooms1ForPQ)
-                && Arrays.equals(roomsForObservableList, rooms1FOrObservableList);
-    }
-
-    /**
-     * Tests whether 2 PriorityQueues are equal by checking whether at each relative position they contain the equal
-     * rooms
-     */
-    public boolean equals(PriorityQueue<Room> rooms1, PriorityQueue<Room> rooms2) {
-        if (rooms1.size() != rooms2.size()) {
-            return false;
-        } else {
-            int size = rooms1.size();
-            for (int i = 0; i < size; i++) {
-                if (!rooms1.poll().equals(rooms2.poll())) {
-                    return false;
-                }
-            }
-            return true;
-        }
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof RoomList // instanceof handles nulls
+                && rooms.equals(((RoomList) other).rooms));
     }
 
     /**
@@ -270,7 +197,7 @@ public class RoomList implements ReadOnlyRoomList {
      */
     public boolean containsRoom(Room toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameRoom);
+        return rooms.containsRoom(toCheck);
     }
 
     //@@author chiamyunqing
@@ -279,19 +206,8 @@ public class RoomList implements ReadOnlyRoomList {
      */
     public void removePatientFromRoom(Name patientName) {
         requireNonNull(patientName);
-        for (int i = 1; i <= internalList.size(); i++) {
-            if (!internalList.get(i - 1).isOccupied()) {
-                continue;
-            }
-            Name patientNameInRoom = internalList.get(i - 1).getPatient().getName();
-            if (patientName.equals(patientNameInRoom)) {
-                Room roomToClear = internalList.get(i - 1);
-                Room roomWithoutPatient = new Room(roomToClear.getRoomNumber(), false, null,
-                                                roomToClear.getTaskList());
-                setSingleRoom(roomToClear, roomWithoutPatient);
-                break;
-            }
-        }
+
+        rooms.clearRoom(patientName);
     }
     //@@author chiamyunqing
 
@@ -304,32 +220,20 @@ public class RoomList implements ReadOnlyRoomList {
      * @param editedRoom Room that has been changed.
      */
     public void setSingleRoom(Room target, Room editedRoom) {
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        if (!target.isSameRoom(editedRoom) && containsRoom(editedRoom)) {
-            throw new DuplicateRoomException();
-        }
-        rooms.remove(target); // this and the next LOC is to replace the room in the priority queue
-        rooms.add(editedRoom);
-        internalList.set(index, editedRoom);
+        rooms.setSingleRoom(target, editedRoom);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(numOfRooms, rooms, internalList);
-        result = 31 * result;
-        return result;
+        return rooms.hashCode();
     }
 
     public void setNumOfRooms(int numOfRooms) {
-        this.numOfRooms = numOfRooms;
+        rooms.setNumOfRooms(numOfRooms);
     }
 
     public void setRooms(PriorityQueue<Room> rooms) {
-        this.rooms = rooms;
+        this.rooms.setRooms(rooms);
     }
 
 }

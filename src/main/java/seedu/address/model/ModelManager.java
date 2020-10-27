@@ -176,11 +176,24 @@ public class ModelManager implements Model {
 
     //=========== Room List ========================================================================================
 
+
+    @Override
+    public int numOfOccupiedRooms() {
+        return roomList.numOfOccupiedRooms();
+    }
+
+    @Override
+    public boolean hasSpaceForRooms() {
+        return roomList.hasSpaceForRooms();
+    }
     @Override
     public int getNumOfRooms() {
         return roomList.getNumOfRooms();
     }
 
+    public void setInitNumOfRooms(int numOfRooms) {
+        roomList.setNumOfRooms(numOfRooms);
+    }
     @Override
     public void addRooms(int num) {
         roomList.addRooms(num);
@@ -201,13 +214,6 @@ public class ModelManager implements Model {
     //@@author LeeMingDe
 
     @Override
-    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
-        assert (roomNumber > 0) : "Room number should be greater than 0.";
-        return roomList.getRoomWithRoomNumber(roomNumber);
-    }
-
-    //@@author chiamyunqing
-    @Override
     public void removePatientFromRoom(Name patientName) {
         assert (isPatientAssignedToRoom(patientName));
         roomList.removePatientFromRoom(patientName);
@@ -217,7 +223,7 @@ public class ModelManager implements Model {
     //@@author LeeMingDe
     @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
-        ObservableList<Room> roomObservableList = this.getRoomList();
+        ObservableList<Room> roomObservableList = this.getRoomListObservablList();
         Index index = Index.fromZeroBased(0);
         for (int i = 1; i <= roomObservableList.size(); i++) {
             int roomNum = roomObservableList.get(i - 1).getRoomNumber();
@@ -237,7 +243,7 @@ public class ModelManager implements Model {
         for (int i = 0; i < roomObservableList.size(); i++) {
             Patient patient = roomObservableList.get(i).getPatient();
             if (isPatientAssignedToRoom(patientToEdit.getName()) && roomObservableList.get(i).isOccupied()
-                && patient.isSamePatient(patientToEdit)) {
+                    && patient.isSamePatient(patientToEdit)) {
                 Room updatedRoom = roomObservableList.get(i);
                 if (editedPatient == null) {
                     updatedRoom.setOccupied(false);
@@ -250,13 +256,20 @@ public class ModelManager implements Model {
     }
     //@@author LeeMingDe
 
+    @Override
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        assert (roomNumber > 0) : "Room number should be greater than 0.";
+        return roomList.getRoomWithRoomNumber(roomNumber);
+    }
+
+    //@@author chiamyunqing
+
     //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override
-    public ObservableList<Room> getRoomList() {
+    public ObservableList<Room> getRoomListObservablList() {
         return roomList.asUnmodifiableObservableList();
     }
-
 
     @Override
     public RoomList getModifiableRoomList() {

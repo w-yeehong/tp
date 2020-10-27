@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.room.InitRoomCommand;
 
-class AddRoomsParserTest {
+class InitRoomParserTest {
     private InitRoomCommandParser parser = new InitRoomCommandParser();
     @Test
     void parse() {
