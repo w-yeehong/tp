@@ -191,6 +191,9 @@ public class ModelManager implements Model {
         return roomList.getNumOfRooms();
     }
 
+    public void setInitNumOfRooms(int numOfRooms) {
+        roomList.setNumOfRooms(numOfRooms);
+    }
     @Override
     public void addRooms(int num) {
         roomList.addRooms(num);

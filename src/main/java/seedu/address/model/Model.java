@@ -67,6 +67,7 @@ public interface Model {
      */
     boolean hasPatient(Patient patient);
 
+    void setInitNumOfRooms(int numOfRooms);
     /**
      * Returns the patient with the {@code nameOfPatient} if it exists. Otherwise, an empty optional
      * is returned.

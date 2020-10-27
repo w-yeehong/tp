@@ -33,6 +33,7 @@ public class InitRoomCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        model.setInitNumOfRooms(numOfRooms);
         if (numOfRooms == 0) {
             throw new CommandException(MESSAGE_ZERO_CANNOT_BE_AN_INPUT);
         } else if (numOfRooms < 0) {

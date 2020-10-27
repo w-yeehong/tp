@@ -74,6 +74,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setInitNumOfRooms(int numOfRooms) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public Optional<Patient> getPatientWithName(Name nameOfPatient) {
         throw new AssertionError("This method should not be called.");
     }

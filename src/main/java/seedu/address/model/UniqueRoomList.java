@@ -43,9 +43,27 @@ public class UniqueRoomList implements Iterable<Room> {
         requireAllNonNull(readOnlyRoomList);
 
         ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
-        numOfRooms = roomLists.size();
         rooms.addAll(roomLists);
         internalList.addAll(roomLists);
+    }
+
+    public void setData(Room room) {
+        int roomNumber = room.getRoomNumber();
+        if (room.getRoomNumber() > internalList.size()) {
+            for (int i = internalList.size(); i < roomNumber - 1; i++) {
+                Room roomToAdd = new Room(i + 1);
+                internalList.add(roomToAdd);
+                rooms.add(room);
+            }
+            rooms.add(room);
+            internalList.add(room);
+        } else {
+            Room currRoom = internalList.get(roomNumber - 1);
+            internalList.remove(roomNumber - 1);
+            rooms.remove(currRoom);
+            internalList.add(roomNumber, room);
+            rooms.add(room);
+        }
     }
     /**
      * Returns Priority Queue of rooms
@@ -58,7 +76,7 @@ public class UniqueRoomList implements Iterable<Room> {
      * Returns number of rooms in hotel
      */
     public int getNumOfRooms() {
-        return numOfRooms;
+        return internalList.size();
     }
 
     public ObservableList<Room> getRoomObservableList() {
@@ -151,6 +169,10 @@ public class UniqueRoomList implements Iterable<Room> {
             empty.setPatient(room.getPatient());
             empty.addTask(room.getTaskList());
         }
+    }
+
+    public void setInitNumOfRooms(int numOfRooms) {
+        this.numOfRooms = numOfRooms;
     }
 
     public boolean canFit() {

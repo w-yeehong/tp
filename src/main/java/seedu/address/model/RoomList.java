@@ -74,10 +74,17 @@ public class RoomList implements ReadOnlyRoomList {
         return rooms.getNumOfRooms();
     }
 
+    public void setInitNumOfRooms(int numOfRooms) {
+        rooms.setNumOfRooms(numOfRooms);
+    }
+
     public ObservableList<Room> getRoomObservableList() {
         return rooms.getRoomObservableList();
     }
 
+    public void setData(Room room) {
+        rooms.setData(room);
+    }
     /**
      * Adds the number of the rooms in a hotel
      *
