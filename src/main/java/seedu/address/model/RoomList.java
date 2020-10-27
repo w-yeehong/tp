@@ -48,8 +48,8 @@ public class RoomList implements ReadOnlyRoomList {
         resetData(readOnlyRoomList);
     }
 
-    public boolean canFit() {
-        return rooms.canFit();
+    public boolean hasSpaceForRooms() {
+        return rooms.hasSpaceForRooms();
     }
 
     public int numOfOccupiedRooms() {
@@ -83,8 +83,8 @@ public class RoomList implements ReadOnlyRoomList {
         return rooms.getRoomObservableList();
     }
 
-    public void setData(Room room) {
-        rooms.setData(room);
+    public void setRoom(Room room) {
+        rooms.setRoom(room);
     }
     /**
      * Adds the number of the rooms in a hotel

@@ -124,7 +124,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean canFit() {
+    public boolean hasSpaceForRooms() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -164,7 +164,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomList() {
+    public ObservableList<Room> getRoomListObservablList() {
         throw new AssertionError("This method should not be called.");
     }
 

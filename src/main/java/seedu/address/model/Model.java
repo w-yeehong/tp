@@ -124,10 +124,19 @@ public interface Model {
      */
     int getNumOfRooms();
 
+    /**
+     * @param num is the number of rooms to define in a hotel.
+     */
     void addRooms(int num);
 
-    boolean canFit();
+    /**
+     * Returns whether a decrease in number of rooms would have space for existing rooms
+     */
+    boolean hasSpaceForRooms();
 
+    /**
+     * Returns number of occupied rooms after the reduced number of rooms
+     */
     int numOfOccupiedRooms();
     /**
      * Returns true if a room with the same identity as {@code room} exists in Covigent.
@@ -179,7 +188,7 @@ public interface Model {
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code RoomList}.
      */
-    ObservableList<Room> getRoomList();
+    ObservableList<Room> getRoomListObservablList();
 
     RoomList getModifiableRoomList();
 

@@ -183,8 +183,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean canFit() {
-        return roomList.canFit();
+    public boolean hasSpaceForRooms() {
+        return roomList.hasSpaceForRooms();
     }
     @Override
     public int getNumOfRooms() {
@@ -223,7 +223,7 @@ public class ModelManager implements Model {
     //@@author LeeMingDe
     @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
-        ObservableList<Room> roomObservableList = this.getRoomList();
+        ObservableList<Room> roomObservableList = this.getRoomListObservablList();
         Index index = Index.fromZeroBased(0);
         for (int i = 1; i <= roomObservableList.size(); i++) {
             int roomNum = roomObservableList.get(i - 1).getRoomNumber();
@@ -267,10 +267,9 @@ public class ModelManager implements Model {
     //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override
-    public ObservableList<Room> getRoomList() {
+    public ObservableList<Room> getRoomListObservablList() {
         return roomList.asUnmodifiableObservableList();
     }
-
 
     @Override
     public RoomList getModifiableRoomList() {

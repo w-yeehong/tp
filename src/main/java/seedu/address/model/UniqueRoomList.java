@@ -47,7 +47,7 @@ public class UniqueRoomList implements Iterable<Room> {
         internalList.addAll(roomLists);
     }
 
-    public void setData(Room room) {
+    public void setRoom(Room room) {
         int roomNumber = room.getRoomNumber();
         if (room.getRoomNumber() > internalList.size()) {
             for (int i = internalList.size(); i < roomNumber - 1; i++) {
@@ -175,7 +175,7 @@ public class UniqueRoomList implements Iterable<Room> {
         this.numOfRooms = numOfRooms;
     }
 
-    public boolean canFit() {
+    public boolean hasSpaceForRooms() {
         return numOfOccupiedRooms() <= numOfEmptyRooms();
     }
 

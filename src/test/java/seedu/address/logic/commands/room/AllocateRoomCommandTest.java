@@ -64,7 +64,7 @@ class AllocateRoomCommandTest {
 
     @Test
     public void execute_clearRoom_success() {
-        Room roomToAllocatePatient = model.getRoomList().get(0);
+        Room roomToAllocatePatient = model.getRoomListObservablList().get(0);
         Integer roomNumberForAllocation = roomToAllocatePatient.getRoomNumber();
         Room allocatedRoom = new RoomBuilder(roomToAllocatePatient).withIsOccupied(false).withPatient(null).build();
 
@@ -97,7 +97,7 @@ class AllocateRoomCommandTest {
 
     @Test
     public void execute_invalidPatientAllocated_failure() {
-        Room roomToAllocatePatient = model.getRoomList().get(0);
+        Room roomToAllocatePatient = model.getRoomListObservablList().get(0);
         Integer roomNumberForAllocation = roomToAllocatePatient.getRoomNumber();
 
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder()

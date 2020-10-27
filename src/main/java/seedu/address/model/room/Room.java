@@ -174,14 +174,14 @@ public class Room {
         }
 
         Room room = (Room) o;
-        if (taskList == null && patient.isEmpty()) {
-            return room.taskList == null
+        if (taskList.isEmpty() && patient.isEmpty()) {
+            return room.taskList.isEmpty()
                     && room.patient.isEmpty()
                     && roomNumber == room.roomNumber
                     && isOccupied == room.isOccupied;
-        } else if (taskList == null) {
+        } else if (taskList.isEmpty()) {
             return roomNumber == room.roomNumber
-                    && room.taskList == null
+                    && room.taskList.isEmpty()
                     && isOccupied == room.isOccupied
                     && patient.equals(room.getPatient());
         } else if (patient.isEmpty()) {

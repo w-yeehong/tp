@@ -39,7 +39,7 @@ public class InitRoomCommand extends Command {
             throw new CommandException(MESSAGE_ZERO_CANNOT_BE_AN_INPUT);
         } else if (numOfRooms < 0) {
             throw new CommandException(MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
-        } else if (model.getNumOfRooms() > numOfRooms && !model.canFit()) {
+        } else if (model.getNumOfRooms() > numOfRooms && !model.hasSpaceForRooms()) {
             throw new CommandException(String.format(MESSAGE_INSUFFICIENT_ROOMS, model.numOfOccupiedRooms()));
         }
         model.addRooms(numOfRooms);

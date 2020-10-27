@@ -158,5 +158,10 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
         return this.internalList;
     }
 
-
+    /**
+     * Checks whether TaskList is empty
+     */
+    public boolean isEmpty() {
+        return internalList.size() == 0;
+    }
 }

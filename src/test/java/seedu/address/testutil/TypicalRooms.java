@@ -44,7 +44,7 @@ public class TypicalRooms {
     public static RoomList getTypicalRoomList() {
         RoomList roomList = new RoomList();
         for (Room room : getTypicalRooms()) {
-            roomList.setData(room);
+            roomList.setRoom(room);
         }
         roomList.addRooms(15);
         return roomList;
