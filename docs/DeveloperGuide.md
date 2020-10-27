@@ -1,8 +1,3 @@
----
-layout: page
-title: Developer Guide
----
-
 # Covigent - Developer Guide
 1. [Preface](#1-preface)
 2. [Setting Up](#2-setting-up)
@@ -23,7 +18,7 @@ title: Developer Guide
     4.2  [Room Feature](#42-room-feature)<br>
           4.2.1 [Initialise Room](#421-initialise-room)<br>
           4.2.2 [List Room](#422-list-room)<br>
-          4.2.3 [Edit Room](#423-edit-room)<br>
+          4.2.3 [Allocate Room](#423-allocate-room)<br>
           4.2.4 [Search Room](#424-search-room)<br>
           4.2.5 [Find Empty Room](#425-find-empty-room)<br>
     4.3  [Task Feature](#43-task-feature)<br>
@@ -36,6 +31,7 @@ title: Developer Guide
     4.5  [Logging Feature(KIV)]<br>
     4.6  [Miscellaneous Feature](#46-miscellaneous-feature)<br>
           4.6.1 [Support for Multiple Date-Time Formats](#461-support-for-multiple-date-time-formats)<br>
+    4.7  [Configuration Feature](#47-configuration-feature)<br>
  5. [Documentation](#5-documentation)<br>
  6. [Testing(KIV)]<br>
  7. [Appendix](#7-appendix)<br>
@@ -110,20 +106,25 @@ The sections below give more details of each component.
 
 ### 3.2 UI Component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
 
 
-The UI consists of a `MainWindow` that is made up of parts inclduing `CommandBox`, `ResultDisplay`, `PatientListPanel`, `RoomListPanel` , `RoomDetailPanel` `TaskListPanel`, `StatusBarFooter`. These, including the `MainWindow`, inherit from the abstract `UiPart` class.
-
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component displays information for the users based on user's input. The GUI to displayed is based on the return from logic.
+It uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Consists of a `MainWindow` that is made up of many different parts that inherit from the abstract `UiPart` class.
 
+The `MainWindow` is made up of 
+* A `PatientListPanel` that displays the list of patients. The layout is defined by `PatientCard`.
+* A `RoomListPanel` that displays the list of rooms. The layout is defined by `RoomCard` and `RoomDetailPanel`.
+* A `TaskListPanel` that displays the list of tasks. The layout is defined by `TaskCard`.
+* A `HelpWindow` that displays the link to the help page.
+* A `CommandBox` that displays the area for command input.
+* A `ResultDisplay` that displays the robot response.
+* A `StatusBarFooter` that displays the status bar footer.
 Below is a class diagram for `Ui`
-
+![Structure of the UI Component](images/UiClassDiagram.png)
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -135,13 +136,13 @@ _Written by: Wai Lok_
 The `Logic` component is the "brains" of Covigent. While the `Ui` defines the GUI and `Model` defines in-memory data,
 the `Logic` component does most of the heavy-lifting in terms of deciding what to change within the `Model` and what to 
 return to the `Ui`.<br>
-The diagram below shows the structure of the `Logic` component.
+The diagram below shows the structure of the `Logic` component and how it interacts with its internal parts.
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 *Figure 4. Structure of the Logic Component*
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. Once a user input is obtained from the GUI, `Logic` uses the `CovigentAppParser` class to parse the users' commands
 and return a `Command` object.
@@ -150,12 +151,12 @@ and return a `Command` object.
 1. The result of the command execution is encapsulated as a `CommandResult` that is returned to the `Ui`.
 1. These `CommandResults` can instruct the `Ui` to perform certain actions, such as displaying help or error messages to the user.
 
-Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("delete alex)`.
+Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("deletepatient alex")`.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-*Figure 5. Interactions inside the `Logic` Component for the `delete alex` Command*
+![Interactions Inside the Logic Component for the `deletepatient alex` Command](images/DeletePatientSequenceDiagram.png)
+*Figure 5. Interactions inside the `Logic` Component for the `deletepatient alex` Command*
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 <br>
 _Written by: Ming De_
@@ -163,7 +164,7 @@ _Written by: Ming De_
 
 ### 3.4 Model Component
 
-The `Model` API acts as a facade that handles interaction between different kinds of data in Covigent. These data include user's preferences, patient records, room list and task list. 
+The `Model` API acts as a facade that handles interaction between different kinds of data in Covigent. These data include user's preferences, patient records, room list and task list. The `Model` API exposes the methods that allow the logic component to utilise to perform retrieving and updating of data.
 
 The `Model` component,
   * stores a `UserPref` object that represents the user’s preferences.
@@ -173,18 +174,32 @@ The `Model` component,
   * exposes unmodifiable `ObservableList<Patient>`, `ObservableList<Room>` and `ObservableList<Task>` which can be observed. This means that the UI can be bound to the lists so that the UI automatically updates when data in the lists changes.
   * does not depend on any of the three components.
 
-The concrete class `ModelManager` implements `Model` and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`. These classes manage the data related to their specific features. 
+The concrete class `ModelManager` implements `Model` interface and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`. These classes manage the data related to their specific features.
 
-Below is a class diagram for `Model Manager`.
+Below is a class diagram for `ModelManager`.
 
 ![Structure of the Model Component](images/ModelManagerClassDiagram.png) <br>
 _Figure XX. Class Diagram for Model Component_
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The class diagrams for the data in `ModelManager` which include `PatientRecords`, `RoomList` and `TaskList`, can be found below.
+The breakdown for each type of data in `ModelManager`, which include `PatientRecords`, `RoomList` and `TaskList`, can be found below.
 
-//to insert class diagrams for userpref, room list, task list and patient records.
+The `PatientRecords` class is in charge of maintaining the data of the patients and in ensuring the uniqueness of patients according to their names. Below is a class diagram for `PatientRecords`.
+
+![Class Diagram For PatientRecords](images/PatientRecordsClassDiagram.png) <br>
+_Figure XX. Class Diagram for PatientRecords_
+
+The `TaskList` class is in charge of maintaining the data of all the tasks in Covigent. The class diagram for `TaskList` is shown below.
+
+//to insert class diagram for task list.
+_Figure XX. Class Diagram for TaskList_
+
+The `RoomList` class is in charge of maintaining the data in the rooms. It incorporates data from both `PatientRecords` and `TaskList` as each room stores the data of the patient who resides in the room and the tasklist meant for the room. The class diagram for `RoomList` is shown below.
+
+//to insert class diagram for room list.
+
+_Figure XX. Class Diagram for RoomList_
 
  _Written by: Yun Qing_ 
 
@@ -290,7 +305,7 @@ These operations are exposed in the `Model` interface as `Model#addRooms(int num
 
 * `initRoomCommand` - Initializes the number of rooms in **Covigent** app.
 * `listRoomCommand` - Lists all the rooms in **Covigent** app.
-* `editRoomCommand` - Allocates a patient to a room or edits an existing room in the application.
+* `AllocateRoomCommand` - Allocates a patient to a room.
 * `searchRoomCommand` - Searches for the room with the specified room number.
 * `findEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
@@ -309,25 +324,42 @@ The activity diagram below illustrates the `findEmptyRoom`.
 
 #### 4.2.2 List Room 
 
-#### 4.2.3 Edit Room 
+#### 4.2.3 Allocate Room 
 
 **Implementation**
-The following is a detailed explanation of the operations that `EditRoomCommand` performs.
+The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
-**Step 1.** The `EditRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
-`EditRoomCommand(Integer roomNumberToEdit, EditRoomDescriptor editRoomDescriptor)` is valid. This check is done through the `Model#checkifRoomPresent` method.
- The `EditRoomDescriptor` holds the edited information of the `Room`.
+**Step 1.** The `AllocateRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
+`AllocateRoomCommand(Integer roomNumberToAllocate, AllocateRoomDescriptor AllocateRoomDescriptor)` is valid. This is done using the `Model#getRoomWithRoomNumber` method
+ where it is used to get an `Optional<Room>`. If `Optional<Room>` is empty, the `Integer` is not valid.
+ The `AllocateRoomDescriptor` holds the information of the `Room` with the patient allocated.
 
-**Step 2.** A new `Room` with the updated values will be created and the room is then searched through `RoomList#internalList`
+**Step 2.** A new `Room` with the allocated patient will be created and the room is then searched through `RoomList#internalList`
 using the `Model#hasRoom(Room room)` method to check if a room with the same room number exists. If it already exists,
 `CommandException` will be thrown with an error message.
 
 **Step 3.** The newly created `Room` will replace the existing room object through the `Model#setSingleRoom(Room target, Room editedRoom)`
 method.
 
-**Step 4.** A success message with the edited room will be appended with the `EditRoomCommand#MESSAGE_EDIT_ROOM_SUCCESS` constant. A 
+**Step 4.** A success message with the allocated room will be appended with the `AllocateRoomCommand#MESSAGE_ALLOCATE_ROOM_SUCCESS ` constant. A 
 new `CommandResult` will be returned with the message.
 
+<h4> Design Considerations: </h4>
+
+**Aspect: Enable the function to change the room numbers and occupancy status**
+
+* **Option 1**: Enable users to change the room number and occupancy status
+    * Pros: Gives the user more power to customize the rooms
+    * Cons: Introduces more bugs into the system that can only be fixed by creating another new feature
+    
+* **Option 2**: Disable the function to change the room number and occupancy status
+    * Pros: Introduces less bug into the system
+    * Cons: Reduces the freedom and ability of the user to change the rooms.
+    
+Ultimately, we decided on Option 2. This is because implementing this function would introduce bugs to
+ `InitRoom`. To solve this bug, we would have to store the count of the number of times `InitRoom` was called. This would
+ cause us to store information in another `.json` file which is unnecessary. Therefore, we decided that the forgoing a
+ small function like this would be a better choice.
 
 #### 4.2.4 Search Room  
 
@@ -375,12 +407,26 @@ new `CommandResult` will be returned with the message.
 #### 4.3.5 Search Task
 
 
+### 4.5 Logging Feature
 
+We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
+
+* The logging level can be controlled using the `logLevel` setting in the configuration file (See [Section 4.2, "Configuration"](#46-configuration-feature))
+* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level
+* Log messages are output through: `Console` and to a `.log` file
+
+**Logging Levels**:
+* `SEVERE` : Critical problem detected which may possibly cause the termination of the application
+* `WARNING` : Can continue, but with caution
+* `INFO` : Information showing the noteworthy actions by the App
+* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
 ### 4.6 Miscellaneous Feature
 
 #### 4.6.1 Support for Multiple Date-Time Formats
 
+### 4.7 Configuration Feature
+Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
 
 ##BELOW UNDO AND REDO TO BE DELETED, CAN REFERENCE FOR NOW FIRST
 
