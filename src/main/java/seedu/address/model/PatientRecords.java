@@ -68,6 +68,7 @@ public class PatientRecords implements ReadOnlyPatientRecords {
         return patients.contains(patient);
     }
 
+    //@@author chiamyunqing
     /**
      * Returns the patient with the input name.
      * @param name of patient to find.
@@ -77,6 +78,7 @@ public class PatientRecords implements ReadOnlyPatientRecords {
         requireNonNull(name);
         return patients.getPatientWithName(name);
     }
+    //@@author chiamyunqing
 
     /**
      * Adds a patient to the address book.

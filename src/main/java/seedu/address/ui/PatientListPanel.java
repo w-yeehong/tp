@@ -56,7 +56,7 @@ public class PatientListPanel extends UiPart<Region> {
                         patientListView.getSelectionModel().select(indexToChange);
                         patientListView.getFocusModel().focus(indexToChange);
                         patientDetailsPanel = new PatientDetailsPanel(patientToDisplay);
-                        patientDetailsPanelPlaceholder.getChildren().add(patientDetailsPanel.getRoot());
+                        patientDetailsPanelPlaceholder.getChildren().setAll(patientDetailsPanel.getRoot());
                     }
                 }
             }
@@ -72,7 +72,7 @@ public class PatientListPanel extends UiPart<Region> {
     public void handleMouseClick(MouseEvent mouseEvent) {
         Patient patientToDisplay = patientListView.getSelectionModel().getSelectedItem();
         patientDetailsPanel = new PatientDetailsPanel(patientToDisplay);
-        patientDetailsPanelPlaceholder.getChildren().add(patientDetailsPanel.getRoot());
+        patientDetailsPanelPlaceholder.getChildren().setAll(patientDetailsPanel.getRoot());
     }
 
     /**

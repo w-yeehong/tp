@@ -100,9 +100,7 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
         requireAllNonNull(tasks);
         internalList.setAll(tasks);
     }
-    public ObservableList<Task> getInternalList() {
-        return this.internalList;
-    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

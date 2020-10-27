@@ -33,6 +33,8 @@ public class TypicalRooms {
             .withIsOccupied(true).withPatient(ALICE).withTasks(REMIND_PATIENT).build();
     public static final Room ROOM7_PATIENT_ALICE_NO_TASK = new RoomBuilder()
             .withIsOccupied(true).withPatient(ALICE).withRoomNumber(ROOM_NUMBER_7).build();
+    public static final Room ROOM7_PATIENT_BENSON_NO_TASK = new RoomBuilder()
+        .withIsOccupied(true).withPatient(BENSON).withRoomNumber(ROOM_NUMBER_7).build();
     public static final Room ROOM8_PATIENT_BENSON_NO_TASK = new RoomBuilder()
             .withIsOccupied(true).withPatient(BENSON).withRoomNumber(ROOM_NUMBER_8).build();
 

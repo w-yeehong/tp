@@ -1,15 +1,15 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.PERIOD_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.TEMP_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.AGE_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.PERIOD_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.TEMP_DESC_AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -32,7 +32,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.task.TaskList;
 import seedu.address.storage.JsonPatientRecordsStorage;
 import seedu.address.storage.JsonRoomOccupancyStorage;
-import seedu.address.storage.JsonTaskOccupancyStorage;
+import seedu.address.storage.JsonTaskStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PatientBuilder;
@@ -53,8 +53,8 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonRoomOccupancyStorage roomOccupancyStorage =
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
-        JsonTaskOccupancyStorage taskOccupancyStorage =
-                new JsonTaskOccupancyStorage((temporaryFolder.resolve("task")));
+        JsonTaskStorage taskOccupancyStorage =
+                new JsonTaskStorage((temporaryFolder.resolve("task")));
         StorageManager storage =
                 new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
         logic = new LogicManager(model, storage);
@@ -69,7 +69,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "deletepatient IDoNotExist";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_NAME);
     }
 
     @Test
@@ -87,8 +87,8 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonRoomOccupancyStorage roomOccupancyStorage =
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
-        JsonTaskOccupancyStorage taskOccupancyStorage =
-                new JsonTaskOccupancyStorage(temporaryFolder.resolve("task"));
+        JsonTaskStorage taskOccupancyStorage =
+                new JsonTaskStorage(temporaryFolder.resolve("task"));
         StorageManager storage =
                 new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
         logic = new LogicManager(model, storage);

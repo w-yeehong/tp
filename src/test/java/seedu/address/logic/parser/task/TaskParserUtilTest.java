@@ -1,12 +1,12 @@
 package seedu.address.logic.parser.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_DATETIME_DUE_FORMAT;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_DATETIME_DUE_VALUE;
-import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DATETIME_DUE_REMIND_PATIENT;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DESCRIPTION_REMIND_PATIENT;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_FORMAT;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_VALUE;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DATETIME_DUE_REMIND_PATIENT;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DESCRIPTION_REMIND_PATIENT;
 
 import java.util.Optional;
 

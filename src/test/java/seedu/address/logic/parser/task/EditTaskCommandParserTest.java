@@ -1,26 +1,27 @@
 package seedu.address.logic.parser.task;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NewCommandTestUtil.DATETIME_DUE_DESC_ORDER_BEDSHEETS;
-import static seedu.address.logic.commands.NewCommandTestUtil.DATETIME_DUE_DESC_REMIND_PATIENT;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESCRIPTION_DESC_ORDER_BEDSHEETS;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESCRIPTION_DESC_REMIND_PATIENT;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_DATETIME_DUE_FORMAT_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_DATETIME_DUE_VALUE_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_ROOM_NUMBER_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_TASK_NUMBER_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.NewCommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_DESC_ONE;
-import static seedu.address.logic.commands.NewCommandTestUtil.ROOM_NUMBER_DESC_TWO;
-import static seedu.address.logic.commands.NewCommandTestUtil.TASK_NUMBER_DESC_ONE;
-import static seedu.address.logic.commands.NewCommandTestUtil.TASK_NUMBER_DESC_TWO;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DATETIME_DUE_REMIND_PATIENT;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_DESCRIPTION_REMIND_PATIENT;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_ROOM_INDEX_ONE;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TASK_INDEX_ONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_ROOM_NUMBER_DESC;
+import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_EIGHT_DESC;
+import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
+import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_INDEX_ONE;
+import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
+import static seedu.address.testutil.command.TaskCommandTestUtil.DATETIME_DUE_DESC_ORDER_BEDSHEETS;
+import static seedu.address.testutil.command.TaskCommandTestUtil.DATETIME_DUE_DESC_REMIND_PATIENT;
+import static seedu.address.testutil.command.TaskCommandTestUtil.DESCRIPTION_DESC_ORDER_BEDSHEETS;
+import static seedu.address.testutil.command.TaskCommandTestUtil.DESCRIPTION_DESC_REMIND_PATIENT;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_FORMAT_DESC;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_VALUE_DESC;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_TASK_NUMBER_DESC;
+import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_ONE;
+import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_TWO;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DATETIME_DUE_REMIND_PATIENT;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DESCRIPTION_REMIND_PATIENT;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_TASK_INDEX_ONE;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,29 +43,29 @@ public class EditTaskCommandParserTest {
         descriptor.setDateTimeDue(new DateTimeDue(VALID_DATETIME_DUE_REMIND_PATIENT));
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE
                 + DESCRIPTION_DESC_REMIND_PATIENT + DATETIME_DUE_DESC_REMIND_PATIENT,
-                new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE, descriptor));
+                new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor));
 
-        // multiple room number - last room number accepted
-        assertParseSuccess(parser, ROOM_NUMBER_DESC_TWO + ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE
+        // multiple room numbers - last room number accepted
+        assertParseSuccess(parser, ROOM_NUMBER_EIGHT_DESC + ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE
                 + DESCRIPTION_DESC_REMIND_PATIENT + DATETIME_DUE_DESC_REMIND_PATIENT,
-                new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE, descriptor));
+                new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor));
 
-        // multiple task number - last task number accepted
-        assertParseSuccess(parser, ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_TWO + TASK_NUMBER_DESC_ONE
+        // multiple task indexes - last task number accepted
+        assertParseSuccess(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_TWO + TASK_NUMBER_DESC_ONE
                 + DESCRIPTION_DESC_REMIND_PATIENT + DATETIME_DUE_DESC_REMIND_PATIENT,
-                new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE, descriptor));
+                new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor));
 
-        // multiple description - last description accepted
-        assertParseSuccess(parser, ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_ORDER_BEDSHEETS
+        // multiple descriptions - last description accepted
+        assertParseSuccess(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_ORDER_BEDSHEETS
                 + DESCRIPTION_DESC_REMIND_PATIENT + DATETIME_DUE_DESC_REMIND_PATIENT,
-                new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE, descriptor));
+                new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor));
 
-        // multiple due date - last due date accepted
-        assertParseSuccess(parser, ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
+        // multiple due dates - last due date accepted
+        assertParseSuccess(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
                 + DATETIME_DUE_DESC_ORDER_BEDSHEETS + DATETIME_DUE_DESC_REMIND_PATIENT,
-                new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_TASK_INDEX_ONE, descriptor));
+                new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor));
     }
 
     @Test
@@ -72,20 +73,20 @@ public class EditTaskCommandParserTest {
         // no description
         EditTaskDescriptor descriptor = new EditTaskDescriptor();
         descriptor.setDateTimeDue(new DateTimeDue(VALID_DATETIME_DUE_REMIND_PATIENT));
-        assertParseSuccess(parser, ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE + DATETIME_DUE_DESC_REMIND_PATIENT,
-                new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_ROOM_INDEX_ONE, descriptor));
+        assertParseSuccess(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE + DATETIME_DUE_DESC_REMIND_PATIENT,
+                new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_ROOM_INDEX_ONE, descriptor));
 
         // no due date
         descriptor = new EditTaskDescriptor();
         descriptor.setDescription(new Description(VALID_DESCRIPTION_REMIND_PATIENT));
-        assertParseSuccess(parser, ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT,
-                new EditTaskCommand(VALID_ROOM_INDEX_ONE, VALID_ROOM_INDEX_ONE, descriptor));
+        assertParseSuccess(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT,
+                new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_ROOM_INDEX_ONE, descriptor));
     }
 
     @Test
     public void parse_allOptionalFieldsMissing_failure() {
         // no description or due date
-        assertParseFailure(parser, ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE, Messages.MESSAGE_TASK_NOT_EDITED);
+        assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE, Messages.MESSAGE_TASK_NOT_EDITED);
     }
 
     @Test
@@ -96,35 +97,35 @@ public class EditTaskCommandParserTest {
         assertParseFailure(parser, TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
                 + DATETIME_DUE_DESC_REMIND_PATIENT, expectedMessage);
 
-        // missing task number prefix
-        assertParseFailure(parser, ROOM_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
+        // missing task index prefix
+        assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + DESCRIPTION_DESC_REMIND_PATIENT
                 + DATETIME_DUE_DESC_REMIND_PATIENT, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid due date value
-        assertParseFailure(parser, ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
+        assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
                 + INVALID_DATETIME_DUE_VALUE_DESC, DateTimeDue.MESSAGE_CONSTRAINTS);
 
         // invalid due date format
-        assertParseFailure(parser, ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
+        assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
                 + INVALID_DATETIME_DUE_FORMAT_DESC, DateTimeDue.MESSAGE_CONSTRAINTS);
 
         // invalid room number
         assertParseFailure(parser, INVALID_ROOM_NUMBER_DESC + TASK_NUMBER_DESC_ONE,
-                ParserUtil.MESSAGE_INVALID_INDEX);
+                ParserUtil.MESSAGE_INVALID_NUMBER);
 
         // invalid task number
-        assertParseFailure(parser, ROOM_NUMBER_DESC_ONE + INVALID_TASK_NUMBER_DESC,
+        assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + INVALID_TASK_NUMBER_DESC,
                 ParserUtil.MESSAGE_INVALID_INDEX);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, ROOM_NUMBER_DESC_ONE + INVALID_TASK_NUMBER_DESC + DESCRIPTION_DESC_REMIND_PATIENT
+        assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + INVALID_TASK_NUMBER_DESC + DESCRIPTION_DESC_REMIND_PATIENT
                 + INVALID_DATETIME_DUE_VALUE_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + ROOM_NUMBER_DESC_ONE + TASK_NUMBER_DESC_ONE
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE
                 + DESCRIPTION_DESC_REMIND_PATIENT + DATETIME_DUE_DESC_REMIND_PATIENT,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
     }

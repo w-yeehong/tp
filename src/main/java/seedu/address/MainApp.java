@@ -28,7 +28,7 @@ import seedu.address.model.task.TaskList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonPatientRecordsStorage;
 import seedu.address.storage.JsonRoomOccupancyStorage;
-import seedu.address.storage.JsonTaskOccupancyStorage;
+import seedu.address.storage.JsonTaskStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.PatientRecordsStorage;
 import seedu.address.storage.Storage;
@@ -66,7 +66,7 @@ public class MainApp extends Application {
                 new JsonPatientRecordsStorage(userPrefs.getCovigentAppFilePath());
         JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(
                 userPrefs.getRoomsOccupiedFilePath());
-        JsonTaskOccupancyStorage taskOccupancyStorage = new JsonTaskOccupancyStorage(
+        JsonTaskStorage taskOccupancyStorage = new JsonTaskStorage(
                 userPrefs.getTaskOccupiedFilePath());
         storage = new StorageManager(patientRecordsStorage,
                 userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
@@ -95,7 +95,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyTaskList> readOnlyTaskOccupancy;
         ReadOnlyTaskList initialTaskList;
         try {
-            readOnlyTaskOccupancy = storage.readTaskOccupancyStorage();
+            readOnlyTaskOccupancy = storage.readTaskStorage();
             initialTaskList = readOnlyTaskOccupancy.orElseGet(SampleDataUtil::getSampleTaskList);
         } catch (DataConversionException e) {
             logger.warning(
