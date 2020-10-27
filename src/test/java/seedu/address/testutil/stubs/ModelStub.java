@@ -74,6 +74,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setInitNumOfRooms(int numOfRooms) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public Optional<Patient> getPatientWithName(Name nameOfPatient) {
         throw new AssertionError("This method should not be called.");
     }
@@ -119,6 +124,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasSpaceForRooms() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public int numOfOccupiedRooms() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasRoom(Room room) {
         throw new AssertionError("This method should not be called.");
     }
@@ -149,7 +164,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomList() {
+    public ObservableList<Room> getRoomListObservablList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -214,12 +229,12 @@ public class ModelStub implements Model {
 
     @Override
     public void deleteTask(Task taskToDelete) {
-
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setTask(Task taskToEdit, Task editedTask) {
-
+        throw new AssertionError("This method should not be called.");
     }
 
 }

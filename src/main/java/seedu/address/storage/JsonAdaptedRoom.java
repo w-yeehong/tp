@@ -1,11 +1,13 @@
 package seedu.address.storage;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.room.Room;
-
+//@@author itssodium
 public class JsonAdaptedRoom {
 
     public static final String PATIENT_PRESENT_IS_OCCUPIED_FALSE = "When patient is present isOccupied cannot be false";
@@ -74,9 +76,9 @@ public class JsonAdaptedRoom {
             throw new IllegalValueException(DATE_WRONG_FORMAT_IN_TASKS);
         }
         if (this.patient == null) {
-            return new Room(roomNumber, isOccupied, null, tasks.toModelType());
+            return new Room(roomNumber, isOccupied, Optional.empty(), tasks.toModelType());
         }
-        return new Room(roomNumber, isOccupied, patient.toModelType(), tasks.toModelType());
+        return new Room(roomNumber, isOccupied, Optional.of(patient.toModelType()), tasks.toModelType());
     }
 
 }

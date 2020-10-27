@@ -67,6 +67,7 @@ public interface Model {
      */
     boolean hasPatient(Patient patient);
 
+    void setInitNumOfRooms(int numOfRooms);
     /**
      * Returns the patient with the {@code nameOfPatient} if it exists. Otherwise, an empty optional
      * is returned.
@@ -123,8 +124,20 @@ public interface Model {
      */
     int getNumOfRooms();
 
+    /**
+     * @param num is the number of rooms to define in a hotel.
+     */
     void addRooms(int num);
 
+    /**
+     * Returns whether a decrease in number of rooms would have space for existing rooms
+     */
+    boolean hasSpaceForRooms();
+
+    /**
+     * Returns number of occupied rooms after the reduced number of rooms
+     */
+    int numOfOccupiedRooms();
     /**
      * Returns true if a room with the same identity as {@code room} exists in Covigent.
      *
@@ -175,7 +188,7 @@ public interface Model {
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code RoomList}.
      */
-    ObservableList<Room> getRoomList();
+    ObservableList<Room> getRoomListObservablList();
 
     RoomList getModifiableRoomList();
 
@@ -249,6 +262,9 @@ public interface Model {
      */
     void setTaskToRoom(Task target, Task editedTask, Room room);
 
+
+
+
     /**
      * Deletes {@code task}.
      * The room must exist in Covigent.
@@ -265,4 +281,5 @@ public interface Model {
      * @param editedTask the edited task.
      */
     void setTask(Task taskToEdit, Task editedTask);
+
 }

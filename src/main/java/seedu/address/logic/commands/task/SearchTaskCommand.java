@@ -49,7 +49,7 @@ public class SearchTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Room> rooms = model.getRoomList();
+        List<Room> rooms = model.getRoomListObservablList();
         ArrayList<Task> taskListWithDesirableResult = new ArrayList<>();
         for (Room room : rooms) {
             tasks = room.getTaskList().asUnmodifiableObservableList();

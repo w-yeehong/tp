@@ -11,6 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input and creates new AddRoomsCommand object
  */
+//@@author itssodium
 public class InitRoomCommandParser implements Parser<InitRoomCommand> {
 
     /**
