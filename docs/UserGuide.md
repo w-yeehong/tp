@@ -331,7 +331,7 @@ Format: `initroom NUMBER_OF_ROOMS`
 
 Field | Description
 ----------|-------------
-`NUMBER_OF_ROOMS` the number of rooms you wish to have in hotel
+`NUMBER_OF_ROOMS` | the number of rooms you wish to have in hotel
 
 **:information_source: Important Information:** <br />
 * If the number of rooms is less than the number of patients error is thrown when decreasing the number of existing rooms.
