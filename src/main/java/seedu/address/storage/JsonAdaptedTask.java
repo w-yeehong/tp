@@ -14,6 +14,7 @@ import seedu.address.model.task.Task;
 /**
  * Jackson-friendly version of {@link Task}.
  */
+//@@author itssodium
 public class JsonAdaptedTask {
     public static final String DATE_WRONG_FORMAT = "The date is given in the wrong format.";
 

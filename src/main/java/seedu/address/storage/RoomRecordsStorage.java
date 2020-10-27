@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyRoomList;
-
+//@@author itssodium
 public interface RoomRecordsStorage {
 
     Path getRoomsOccupied();

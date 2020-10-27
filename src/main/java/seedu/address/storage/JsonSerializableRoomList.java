@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.RoomList;
 import seedu.address.model.room.Room;
-
+//@@author itssodium
 @JsonRootName(value = "roomList")
 public class JsonSerializableRoomList {
 

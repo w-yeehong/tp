@@ -185,10 +185,6 @@ public class Room {
                     && isOccupied == room.isOccupied
                     && patient.equals(room.getPatient());
         } else if (patient.isEmpty()) {
-            System.out.println(roomNumber == room.roomNumber
-                    && room.patient.isEmpty()
-                    && isOccupied == room.isOccupied
-                    && taskList.equals(room.getTaskList()));
             return roomNumber == room.roomNumber
                     && room.patient.isEmpty()
                     && isOccupied == room.isOccupied

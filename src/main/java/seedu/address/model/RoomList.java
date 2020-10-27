@@ -21,6 +21,7 @@ import seedu.address.storage.JsonPatientRecordsStorage;
 /**
  * Contains information regarding the Room information
  */
+//@@author itssodium
 public class RoomList implements ReadOnlyRoomList {
     private static final Logger logger = LogsCenter.getLogger(JsonPatientRecordsStorage.class);
 

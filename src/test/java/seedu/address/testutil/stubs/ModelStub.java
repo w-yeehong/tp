@@ -229,12 +229,12 @@ public class ModelStub implements Model {
 
     @Override
     public void deleteTask(Task taskToDelete) {
-
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setTask(Task taskToEdit, Task editedTask) {
-
+        throw new AssertionError("This method should not be called.");
     }
 
 }

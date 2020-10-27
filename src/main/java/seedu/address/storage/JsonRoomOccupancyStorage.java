@@ -16,6 +16,7 @@ import seedu.address.model.room.Room;
 /**
  * Reads data from storage data files and imports them into RoomList
  */
+//@@author itssodium
 public class JsonRoomOccupancyStorage implements RoomRecordsStorage {
     private Path roomsOccupied;
 

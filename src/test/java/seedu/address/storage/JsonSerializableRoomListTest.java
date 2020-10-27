@@ -21,8 +21,6 @@ class JsonSerializableRoomListTest {
                 JsonSerializableRoomList.class).get();
         RoomList covigentAppFromFile = dataFromFile.toModelType();
         RoomList typicalRoomList = TypicalRooms.getTypicalRoomList();
-        System.out.println(covigentAppFromFile.getRoomObservableList());
-        System.out.println(typicalRoomList.getRoomObservableList());
         assertEquals(covigentAppFromFile, typicalRoomList);
     }
 

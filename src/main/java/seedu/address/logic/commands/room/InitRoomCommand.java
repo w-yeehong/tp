@@ -10,6 +10,7 @@ import seedu.address.model.Model;
 /**
  * Adds the number of hotel rooms in a hotel
  */
+//@@author itssodium
 public class InitRoomCommand extends Command {
     public static final String COMMAND_WORD = "initroom";
     public static final String MESSAGE_ZERO_CANNOT_BE_AN_INPUT = "Please input a positive value";
