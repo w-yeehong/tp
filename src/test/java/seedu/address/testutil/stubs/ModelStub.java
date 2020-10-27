@@ -119,6 +119,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean canFit() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public int numOfOccupiedRooms() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasRoom(Room room) {
         throw new AssertionError("This method should not be called.");
     }
