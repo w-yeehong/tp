@@ -223,7 +223,7 @@ public class ModelManager implements Model {
     //@@author LeeMingDe
     @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
-        ObservableList<Room> roomObservableList = this.getRoomListObservablList();
+        ObservableList<Room> roomObservableList = this.getRoomListObservableList();
         Index index = Index.fromZeroBased(0);
         for (int i = 1; i <= roomObservableList.size(); i++) {
             int roomNum = roomObservableList.get(i - 1).getRoomNumber();
@@ -267,7 +267,7 @@ public class ModelManager implements Model {
     //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override
-    public ObservableList<Room> getRoomListObservablList() {
+    public ObservableList<Room> getRoomListObservableList() {
         return roomList.getReadOnlyList();
     }
 

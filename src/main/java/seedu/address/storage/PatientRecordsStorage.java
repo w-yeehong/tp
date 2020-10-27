@@ -34,7 +34,7 @@ public interface PatientRecordsStorage {
     Optional<ReadOnlyList<Patient>> readPatientRecords(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyPatientRecords} to the storage.
+     * Saves the given {@code ReadOnlyList<Patient>} to the storage.
      * @param patientRecords cannot be null.
      *
      * @throws IOException if there was any problem writing to the file.
@@ -42,7 +42,7 @@ public interface PatientRecordsStorage {
     void savePatientRecords(ReadOnlyList<Patient> patientRecords) throws IOException;
 
     /**
-     * @see #savePatientRecords(ReadOnlyPatientRecords)
+     * @see #savePatientRecords(ReadOnlyList)
      */
     void savePatientRecords(ReadOnlyList<Patient> patientRecords, Path filePath) throws IOException;
 

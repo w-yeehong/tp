@@ -188,7 +188,7 @@ public interface Model {
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code RoomList}.
      */
-    ObservableList<Room> getRoomListObservablList();
+    ObservableList<Room> getRoomListObservableList();
 
     RoomList getModifiableRoomList();
 

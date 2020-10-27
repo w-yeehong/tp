@@ -115,21 +115,21 @@ public class ModelManagerTest {
     @Test
     public void isPatientAssignedToRoom_null_throwsNullPointerException() {
         modelManager.addRooms(1);
-        modelManager.getRoomListObservablList().get(0).setPatient(ALICE);
+        modelManager.getRoomListObservableList().get(0).setPatient(ALICE);
         assertThrows(NullPointerException.class, () -> modelManager.isPatientAssignedToRoom(null));
     }
 
     @Test
     public void isPatientAssignedToRoom_personInRoom_returnsTrue() {
         modelManager.addRooms(1);
-        modelManager.getRoomListObservablList().get(0).setPatient(ALICE);
+        modelManager.getRoomListObservableList().get(0).setPatient(ALICE);
         assertTrue(modelManager.isPatientAssignedToRoom(ALICE.getName()));
     }
 
     @Test
     public void isPatientAssignedToRoom_personNotInRoom_returnsFalse() {
         modelManager.addRooms(1);
-        modelManager.getRoomListObservablList().get(0).setPatient(ALICE);
+        modelManager.getRoomListObservableList().get(0).setPatient(ALICE);
         assertFalse(modelManager.isPatientAssignedToRoom(BENSON.getName()));
     }
     //@@author LeeMingDe
@@ -141,7 +141,7 @@ public class ModelManagerTest {
 
     @Test
     public void getRoomList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getRoomListObservablList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getRoomListObservableList().remove(0));
     }
 
     //@@author LeeMingDe
@@ -177,12 +177,12 @@ public class ModelManagerTest {
     @Test
     public void setSingleRoom_targetEditedRoom_success() {
         modelManager.addRooms(8);
-        Room room = modelManager.getRoomListObservablList().get(6);
+        Room room = modelManager.getRoomListObservableList().get(6);
         room.setPatient(ALICE);
         room.setOccupied(true);
         modelManager.setSingleRoom(ROOM7_PATIENT_ALICE_NO_TASK, ROOM7_PATIENT_BENSON_NO_TASK);
-        assertEquals(true, modelManager.getRoomListObservablList().get(6).equals(ROOM7_PATIENT_BENSON_NO_TASK));
-        assertEquals(false, modelManager.getRoomListObservablList().get(6).equals(ROOM7_PATIENT_ALICE_NO_TASK));
+        assertEquals(true, modelManager.getRoomListObservableList().get(6).equals(ROOM7_PATIENT_BENSON_NO_TASK));
+        assertEquals(false, modelManager.getRoomListObservableList().get(6).equals(ROOM7_PATIENT_ALICE_NO_TASK));
 
     }
 
