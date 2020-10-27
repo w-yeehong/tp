@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.room;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -13,15 +13,12 @@ import java.util.stream.IntStream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyRoomList;
 import seedu.address.model.patient.Name;
-import seedu.address.model.room.ComparableRoom;
-import seedu.address.model.room.Room;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
-
-
 
 public class UniqueRoomList implements Iterable<Room> {
 
