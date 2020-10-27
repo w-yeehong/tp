@@ -176,6 +176,16 @@ public class ModelManager implements Model {
 
     //=========== Room List ========================================================================================
 
+
+    @Override
+    public int numOfOccupiedRooms() {
+        return roomList.numOfOccupiedRooms();
+    }
+
+    @Override
+    public boolean canFit() {
+        return roomList.canFit();
+    }
     @Override
     public int getNumOfRooms() {
         return roomList.getNumOfRooms();
@@ -200,13 +210,6 @@ public class ModelManager implements Model {
     }
     //@@author LeeMingDe
 
-    @Override
-    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
-        assert (roomNumber > 0) : "Room number should be greater than 0.";
-        return roomList.getRoomWithRoomNumber(roomNumber);
-    }
-
-    //@@author chiamyunqing
     @Override
     public void removePatientFromRoom(Name patientName) {
         assert (isPatientAssignedToRoom(patientName));
@@ -237,7 +240,7 @@ public class ModelManager implements Model {
         for (int i = 0; i < roomObservableList.size(); i++) {
             Patient patient = roomObservableList.get(i).getPatient();
             if (isPatientAssignedToRoom(patientToEdit.getName()) && roomObservableList.get(i).isOccupied()
-                && patient.isSamePatient(patientToEdit)) {
+                    && patient.isSamePatient(patientToEdit)) {
                 Room updatedRoom = roomObservableList.get(i);
                 if (editedPatient == null) {
                     updatedRoom.setOccupied(false);
@@ -249,6 +252,14 @@ public class ModelManager implements Model {
         }
     }
     //@@author LeeMingDe
+
+    @Override
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        assert (roomNumber > 0) : "Room number should be greater than 0.";
+        return roomList.getRoomWithRoomNumber(roomNumber);
+    }
+
+    //@@author chiamyunqing
 
     //=========== Filtered RoomList Accessors ==========================================================================
 

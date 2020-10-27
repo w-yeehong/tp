@@ -93,7 +93,7 @@ public class AllocateRoomCommand extends Command {
         TaskList roomTaskList = roomToAllocate.getTaskList();
         boolean isClearRoom = allocateRoomDescriptor.getIsOccupied().isPresent();
         if (isClearRoom) {
-            return new Room(roomNumber, false, null, roomTaskList);
+            return new Room(roomNumber, false, Optional.empty(), roomTaskList);
         }
         Name patientName = allocateRoomDescriptor.getPatientName().get(); //definitely has name
         if (model.isPatientAssignedToRoom(patientName)) {
@@ -103,7 +103,8 @@ public class AllocateRoomCommand extends Command {
         if (updatedPatient.isEmpty()) {
             throw new CommandException(MESSAGE_INVALID_PATIENT_NAME);
         } else {
-            Room updatedRoom = new Room(roomNumber, updatedPatient.get(), roomTaskList);
+            Room updatedRoom = new Room(roomNumber, updatedPatient, roomTaskList);
+
             return updatedRoom;
         }
     }

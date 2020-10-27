@@ -125,6 +125,9 @@ public interface Model {
 
     void addRooms(int num);
 
+    boolean canFit();
+
+    int numOfOccupiedRooms();
     /**
      * Returns true if a room with the same identity as {@code room} exists in Covigent.
      *
@@ -249,6 +252,9 @@ public interface Model {
      */
     void setTaskToRoom(Task target, Task editedTask, Room room);
 
+
+
+
     /**
      * Deletes {@code task}.
      * The room must exist in Covigent.
@@ -265,4 +271,5 @@ public interface Model {
      * @param editedTask the edited task.
      */
     void setTask(Task taskToEdit, Task editedTask);
+
 }

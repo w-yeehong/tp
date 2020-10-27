@@ -11,13 +11,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyRoomList;
-import seedu.address.model.RoomList;
 import seedu.address.model.room.Room;
 
 /**
  * Reads data from storage data files and imports them into RoomList
  */
-public class JsonRoomOccupancyStorage {
+public class JsonRoomOccupancyStorage implements RoomRecordsStorage {
     private Path roomsOccupied;
 
     public JsonRoomOccupancyStorage() {}
@@ -33,7 +32,8 @@ public class JsonRoomOccupancyStorage {
         return roomsOccupied;
     }
 
-    public Optional<ReadOnlyRoomList> readOnlyRoomOccupancy() throws IOException, DataConversionException {
+    @Override
+    public Optional<ReadOnlyRoomList> readOnlyRoomOccupancy() throws DataConversionException {
         return readOnlyRoomOccupancy(roomsOccupied);
     }
     /**
@@ -42,7 +42,8 @@ public class JsonRoomOccupancyStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    public Optional<ReadOnlyRoomList> readOnlyRoomOccupancy(Path filePath) throws IOException, DataConversionException {
+    @Override
+    public Optional<ReadOnlyRoomList> readOnlyRoomOccupancy(Path filePath) throws DataConversionException {
         Optional<JsonSerializableRoomList> jsonCovigentApp = JsonUtil.readJsonFile(
                 filePath, JsonSerializableRoomList.class);
         if (!jsonCovigentApp.isPresent()) {
@@ -55,7 +56,8 @@ public class JsonRoomOccupancyStorage {
         }
     }
 
-    public void saveOccupiedRooms(RoomList roomList) throws IOException {
+    @Override
+    public void saveOccupiedRooms(ReadOnlyRoomList roomList) throws IOException {
         saveOccupiedRooms(roomList, roomsOccupied);
     }
     /**
@@ -64,7 +66,7 @@ public class JsonRoomOccupancyStorage {
      * @param roomList contains information of which rooms are occupied
      * @param fileRoomsOccupied Path to where to write the room numbers of occupied rooms
      */
-    public void saveOccupiedRooms(RoomList roomList, Path fileRoomsOccupied) throws IOException {
+    public void saveOccupiedRooms(ReadOnlyRoomList roomList, Path fileRoomsOccupied) throws IOException {
         FileUtil.createIfMissing(fileRoomsOccupied);
         List<Room> rooms = new ArrayList<>();
         rooms.addAll(roomList.getRoomObservableList());

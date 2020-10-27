@@ -44,7 +44,8 @@ public class AllocateRoomCommandParser implements Parser<AllocateRoomCommand> {
         }
 
         AllocateRoomCommand.AllocateRoomDescriptor
-            allocateRoomDescriptor = new AllocateRoomCommand.AllocateRoomDescriptor();
+                allocateRoomDescriptor = new AllocateRoomCommand.AllocateRoomDescriptor();
+
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String patientFieldInput = argMultimap.getValue(PREFIX_NAME).get();

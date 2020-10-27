@@ -1,6 +1,10 @@
 package seedu.address.model.room;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.Task;
@@ -10,29 +14,31 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
 /**
  * Represents Room in the app
  */
-public class Room implements Comparable<Room> {
+public class Room {
 
     private int roomNumber;
     private boolean isOccupied;
-    private Patient patient;
+    private Optional<Patient> patient;
     private TaskList taskList = new TaskList();
 
     /**
      * Creates room object where isOccupied is always false
      */
     public Room(int roomNumber) {
+        requireAllNonNull(roomNumber);
         this.roomNumber = roomNumber;
         this.isOccupied = false;
-        this.patient = null;
+        this.patient = Optional.empty();
     }
 
     /**
      * Creates room object where roomNumber and isOccupied values are values given by user
      */
     public Room(int roomNumber, boolean isOccupied) {
+        requireAllNonNull(roomNumber, isOccupied);
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
-        this.patient = null;
+        this.patient = Optional.empty();
     }
 
     /**
@@ -42,7 +48,8 @@ public class Room implements Comparable<Room> {
      * @param patient Patient to be added to the room.
      * @param taskList TaskList of tasks for the room.
      */
-    public Room(int roomNumber, Patient patient, TaskList taskList) {
+    public Room(int roomNumber, Optional<Patient> patient, TaskList taskList) {
+        requireAllNonNull(roomNumber, patient, taskList);
         this.roomNumber = roomNumber;
         this.isOccupied = true;
         this.patient = patient;
@@ -52,7 +59,8 @@ public class Room implements Comparable<Room> {
     /**
      * Creates a Room object where none of the values are pre determined by app
      */
-    public Room(int roomNumber, boolean isOccupied, Patient patient, TaskList taskList) {
+    public Room(int roomNumber, boolean isOccupied, Optional<Patient> patient, TaskList taskList) {
+        requireAllNonNull(roomNumber, isOccupied, patient, taskList);
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
         this.patient = patient;
@@ -64,7 +72,11 @@ public class Room implements Comparable<Room> {
     }
 
     public Patient getPatient() {
-        return patient;
+        if (patient.isEmpty()) {
+            return null;
+        } else {
+            return patient.get();
+        }
     }
 
     public TaskList getTaskList() {
@@ -80,7 +92,7 @@ public class Room implements Comparable<Room> {
     }
 
     public void setPatient(Patient patient) {
-        this.patient = patient;
+        this.patient = Optional.ofNullable(patient);
     }
 
     /**
@@ -90,6 +102,15 @@ public class Room implements Comparable<Room> {
      */
     public void addTask(Task task) {
         taskList.add(task);
+    }
+
+    /**
+     * Adds tasks of TaskList to the task list of this room.
+     *
+     * @param tasks The task to add.
+     */
+    public void addTask(TaskList tasks) {
+        this.taskList.add(tasks);
     }
 
     /**
@@ -123,6 +144,9 @@ public class Room implements Comparable<Room> {
         }
     }
 
+    public void setTaskList(List<Task> taskList) {
+        this.taskList.setTasks(taskList);
+    }
     /**
      * Returns true if both rooms of the same number have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two rooms.
@@ -150,9 +174,9 @@ public class Room implements Comparable<Room> {
         }
 
         Room room = (Room) o;
-        if (taskList == null && patient == null) {
+        if (taskList == null && patient.isEmpty()) {
             return room.taskList == null
-                    && room.patient == null
+                    && room.patient.isEmpty()
                     && roomNumber == room.roomNumber
                     && isOccupied == room.isOccupied;
         } else if (taskList == null) {
@@ -160,15 +184,19 @@ public class Room implements Comparable<Room> {
                     && room.taskList == null
                     && isOccupied == room.isOccupied
                     && patient.equals(room.getPatient());
-        } else if (patient == null) {
+        } else if (patient.isEmpty()) {
+            System.out.println(roomNumber == room.roomNumber
+                    && room.patient.isEmpty()
+                    && isOccupied == room.isOccupied
+                    && taskList.equals(room.getTaskList()));
             return roomNumber == room.roomNumber
-                    && room.patient == null
+                    && room.patient.isEmpty()
                     && isOccupied == room.isOccupied
                     && taskList.equals(room.getTaskList());
         } else {
             return roomNumber == room.roomNumber
                     && isOccupied == room.isOccupied
-                    && patient.equals(room.getPatient())
+                    && patient.get().equals(room.getPatient())
                     && taskList.equals(room.getTaskList());
         }
     }
@@ -178,33 +206,17 @@ public class Room implements Comparable<Room> {
         return Objects.hash(roomNumber, isOccupied, taskList);
     }
 
-    @Override
-    public int compareTo(Room room) {
-        if (room.isOccupied == this.isOccupied) {
-            if (room.roomNumber < this.roomNumber) {
-                return 1;
-            } else {
-                return -1;
-            }
-        } else {
-            if (room.isOccupied) {
-                return -1;
-            } else {
-                return 1;
-            }
-        }
-    }
 
     @Override
     public String toString() {
         String patientDetails = getPatient() == null ? "-" : getPatient().toString();
         final StringBuilder builder = new StringBuilder();
         builder.append("Room Number: ")
-            .append(getRoomNumber() + "\n")
-            .append("Patient: ")
-            .append(patientDetails + "\n")
-            .append("TaskList: ")
-            .append(taskList.toString() + "\n");
+                .append(getRoomNumber() + "\n")
+                .append("Patient: ")
+                .append(patientDetails + "\n")
+                .append("TaskList: ")
+                .append(taskList.toString() + "\n");
         return builder.toString();
     }
 }

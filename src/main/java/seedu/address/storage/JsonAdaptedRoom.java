@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -74,9 +76,9 @@ public class JsonAdaptedRoom {
             throw new IllegalValueException(DATE_WRONG_FORMAT_IN_TASKS);
         }
         if (this.patient == null) {
-            return new Room(roomNumber, isOccupied, null, tasks.toModelType());
+            return new Room(roomNumber, isOccupied, Optional.empty(), tasks.toModelType());
         }
-        return new Room(roomNumber, isOccupied, patient.toModelType(), tasks.toModelType());
+        return new Room(roomNumber, isOccupied, Optional.of(patient.toModelType()), tasks.toModelType());
     }
 
 }
