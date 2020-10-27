@@ -174,17 +174,7 @@ public class Room {
         }
 
         Room room = (Room) o;
-        if (taskList.isEmpty() && patient.isEmpty()) {
-            return room.taskList.isEmpty()
-                    && room.patient.isEmpty()
-                    && roomNumber == room.roomNumber
-                    && isOccupied == room.isOccupied;
-        } else if (taskList.isEmpty()) {
-            return roomNumber == room.roomNumber
-                    && room.taskList.isEmpty()
-                    && isOccupied == room.isOccupied
-                    && patient.equals(room.getPatient());
-        } else if (patient.isEmpty()) {
+        if (patient.isEmpty()) {
             return roomNumber == room.roomNumber
                     && room.patient.isEmpty()
                     && isOccupied == room.isOccupied
