@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+//@@author chiamyunqing
 /**
  * Represents a Patient's period of stay in the facility.
  * Guarantees: immutable; is valid as declared in {@link #isValidPeriodOfStay(String)}
@@ -18,8 +19,8 @@ public class PeriodOfStay {
 
     public static final String VALIDATION_REGEX = "\\d{8}[-]\\d{8}";
 
-    public final LocalDate startDate;
-    public final LocalDate endDate;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
 
     /**
      * Constructs a {@code PeriodOfStay}.
@@ -37,28 +38,39 @@ public class PeriodOfStay {
      */
     public static boolean isValidPeriodOfStay(String test) {
         boolean isRegexCorrect = test.matches(VALIDATION_REGEX);
-        if (isRegexCorrect) {
-            String[] dates = test.split("-");
-            try {
-                LocalDate start = LocalDate.parse(dates[0], DateTimeFormatter.ofPattern("yyyyMMdd")); //check start date
-                LocalDate end = LocalDate.parse(dates[1], DateTimeFormatter.ofPattern("yyyyMMdd")); //check end date
-                return start.compareTo(end) < 0; //check start date less than end date
-            } catch (DateTimeParseException e) {
-                return false;
-            }
+        if (!isRegexCorrect) {
+            return false;
         }
-        return false;
+        String[] dates = test.split("-");
+        try {
+            LocalDate start = LocalDate.parse(dates[0], DateTimeFormatter.ofPattern("yyyyMMdd"));
+            LocalDate end = LocalDate.parse(dates[1], DateTimeFormatter.ofPattern("yyyyMMdd"));
+            return start.compareTo(end) < 0; //check start date less than end date
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    public LocalDate getStartDate() {
+        return this.startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return this.endDate;
     }
 
     /**
-     * Returns a string that is more human readable (e.g. 09 Jan 2020)
-     * @return reader friendly string
+     * Returns a string that is more human readable (e.g. 09 Jan 2020), meant for UI.
+     * @return reader friendly string.
      */
     public String readerFriendlyString() {
         return startDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + " to "
                 + endDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
 
+    /**
+     * Primarily used for storage of data.
+     */
     @Override
     public String toString() {
         return startDate.format(DateTimeFormatter.ofPattern("yyyyMMdd")) + "-"

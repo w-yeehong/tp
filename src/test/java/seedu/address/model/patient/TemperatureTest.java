@@ -6,6 +6,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author chiamyunqing
+/**
+ * Test cases for the attribute temperature of patient.
+ */
 public class TemperatureTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -14,7 +18,10 @@ public class TemperatureTest {
 
     @Test
     public void constructor_invalidTemperature_throwsIllegalArgumentException() {
-        String invalidTemperature = "";
+        String emptyString = ""; //EP: empty strings
+        assertThrows(IllegalArgumentException.class, () -> new Temperature(emptyString));
+
+        String invalidTemperature = "37"; //EP: invalid temperature
         assertThrows(IllegalArgumentException.class, () -> new Temperature(invalidTemperature));
     }
 
@@ -24,13 +31,13 @@ public class TemperatureTest {
         assertThrows(NullPointerException.class, () -> Temperature.isValidTemperature(null));
 
         // invalid temperature
-        assertFalse(Temperature.isValidTemperature("")); //empty string
-        assertFalse(Temperature.isValidTemperature(" ")); // spaces only
-        assertFalse(Temperature.isValidTemperature("37")); //not 1 decimal place
-        assertFalse(Temperature.isValidTemperature("temp")); //non-numeric
-        assertFalse(Temperature.isValidTemperature("37.a")); //alphabets within digits
-        assertFalse(Temperature.isValidTemperature("37.")); //no digit after decimal
-        assertFalse(Temperature.isValidTemperature("3 7.6")); //spaces within digits
+        assertFalse(Temperature.isValidTemperature("")); //EP: empty string
+        assertFalse(Temperature.isValidTemperature(" ")); //EP: spaces only
+        assertFalse(Temperature.isValidTemperature("37")); //EP: not 1 decimal place
+        assertFalse(Temperature.isValidTemperature("temp")); //EP: non-numeric
+        assertFalse(Temperature.isValidTemperature("37.a")); //EP: alphabets within digits
+        assertFalse(Temperature.isValidTemperature("37.")); //EP: no digit after decimal
+        assertFalse(Temperature.isValidTemperature("3 7.6")); //EP: spaces within digits
 
         // valid temperature
         assertTrue(Temperature.isValidTemperature("36.7"));

@@ -184,4 +184,22 @@ public class UniquePatientListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePatientList.asUnmodifiableObservableList().remove(0));
     }
+
+    //@@author chiamyunqing
+    @Test
+    public void getPatientWithName_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, ()-> uniquePatientList.getPatientWithName(null));
+    }
+
+    @Test
+    public void getPatientWithName_nameNotInList_returnsOptionalEmpty() {
+        assertEquals(uniquePatientList.getPatientWithName(ALICE.getName()), Optional.empty());
+    }
+
+    @Test
+    public void getPatientWithName_nameInList_returnsOptionalName() {
+        uniquePatientList.add(ALICE);
+        assertEquals(uniquePatientList.getPatientWithName(ALICE.getName()), Optional.of(ALICE));
+    }
+    //@@author chiamyunqing
 }

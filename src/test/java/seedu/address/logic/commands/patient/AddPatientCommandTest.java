@@ -19,8 +19,10 @@ import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.stubs.ModelStub;
 
+/**
+ * Contains unit tests for AddPatientCommand.
+ */
 public class AddPatientCommandTest {
-
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddPatientCommand(null));

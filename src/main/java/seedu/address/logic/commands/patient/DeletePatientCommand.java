@@ -15,7 +15,7 @@ import seedu.address.model.patient.Patient;
 //@@author chiamyunqing
 /**
  * Deletes a patient identified by the patient's name from the application.
- * If the patient resides in a room, the room will be set to unoccupied.
+ * If the patient resides in a room, the patient will be removed and the room will be set to unoccupied.
  */
 public class DeletePatientCommand extends Command {
 
@@ -54,8 +54,6 @@ public class DeletePatientCommand extends Command {
 
         Patient deletedPatient = patientToDelete.get();
         model.deletePatient(deletedPatient);
-        model.updateRoomListWhenPatientsChanges(deletedPatient, null);
-
         return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, deletedPatient));
     }
 

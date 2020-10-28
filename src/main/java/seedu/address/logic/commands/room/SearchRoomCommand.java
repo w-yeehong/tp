@@ -17,8 +17,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
 
+//@@author chiamyunqing
 /**
- * Searches a room according to the given room number.
+ * Searches a room by the given room number or by the patient name who resides in the room.
  */
 public class SearchRoomCommand extends Command {
 

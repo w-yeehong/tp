@@ -126,12 +126,14 @@ public class ModelManager implements Model {
         requireNonNull(nameOfPatient);
         return patientRecords.getPatientWithName(nameOfPatient);
     }
-    //@@author chiamyunqing
 
     @Override
     public void deletePatient(Patient target) {
         patientRecords.removePatient(target);
+        //model's responsibility to update room list when patient is updated
+        this.updateRoomListWhenPatientsChanges(target, null);
     }
+    //@@author chiamyunqing
 
     @Override
     public void addPatient(Patient patient) {
