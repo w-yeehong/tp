@@ -164,7 +164,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomListObservablList() {
+    public ObservableList<Room> getRoomListObservableList() {
         throw new AssertionError("This method should not be called.");
     }
 

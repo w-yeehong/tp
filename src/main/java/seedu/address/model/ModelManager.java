@@ -126,7 +126,6 @@ public class ModelManager implements Model {
         requireNonNull(nameOfPatient);
         return patientRecords.getPatientWithName(nameOfPatient);
     }
-    //@@author chiamyunqing
 
     @Override
     public void deletePatient(Patient target) {
@@ -134,6 +133,7 @@ public class ModelManager implements Model {
         //model's responsibility to update room list when patient is updated
         this.updateRoomListWhenPatientsChanges(target, null);
     }
+    //@@author chiamyunqing
 
     @Override
     public void addPatient(Patient patient) {
@@ -215,6 +215,7 @@ public class ModelManager implements Model {
     }
     //@@author LeeMingDe
 
+    //@@author chiamyunqing
     @Override
     public void removePatientFromRoom(Name patientName) {
         assert (isPatientAssignedToRoom(patientName));
@@ -225,7 +226,7 @@ public class ModelManager implements Model {
     //@@author LeeMingDe
     @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
-        ObservableList<Room> roomObservableList = this.getRoomListObservablList();
+        ObservableList<Room> roomObservableList = this.getRoomListObservableList();
         Index index = Index.fromZeroBased(0);
         for (int i = 1; i <= roomObservableList.size(); i++) {
             int roomNum = roomObservableList.get(i - 1).getRoomNumber();
@@ -269,7 +270,7 @@ public class ModelManager implements Model {
     //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override
-    public ObservableList<Room> getRoomListObservablList() {
+    public ObservableList<Room> getRoomListObservableList() {
         return roomList.asUnmodifiableObservableList();
     }
 
