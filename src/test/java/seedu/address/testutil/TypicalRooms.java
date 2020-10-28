@@ -44,8 +44,9 @@ public class TypicalRooms {
     public static RoomList getTypicalRoomList() {
         RoomList roomList = new RoomList();
         for (Room room : getTypicalRooms()) {
-            roomList.addRooms(room);
+            roomList.setRoom(room);
         }
+        roomList.addRooms(15);
         return roomList;
     }
 
@@ -54,4 +55,5 @@ public class TypicalRooms {
         return new ArrayList<>(Arrays.asList(ROOM7_PATIENT_ALICE_NO_TASK, ROOM8_PATIENT_BENSON_NO_TASK,
                 ROOM_NO_PATIENT_NO_TASK, ROOM_NO_PATIENT_TASK_RESTOCK_SUPPLY));
     }
+
 }

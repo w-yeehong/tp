@@ -63,6 +63,14 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     }
 
     /**
+     * Adds all tasks in TaskList to the list.
+     */
+    public void add(TaskList tasks) {
+        requireAllNonNull(tasks);
+        internalList.addAll(tasks.internalList);
+    }
+
+    /**
      * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
      */
@@ -149,4 +157,5 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     public ObservableList<Task> getTaskObservableList() {
         return this.internalList;
     }
+
 }

@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
@@ -86,7 +87,7 @@ public class RoomBuilder {
     }
 
     public Room build() {
-        return new Room(roomNumber, isOccupied, patient, taskList);
+        return new Room(roomNumber, isOccupied, Optional.ofNullable(patient), taskList);
     }
 }
 
