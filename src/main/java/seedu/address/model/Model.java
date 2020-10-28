@@ -57,10 +57,10 @@ public interface Model {
     /**
      * Replaces patient records with the data in {@code covigentApp}.
      */
-    void setPatientRecords(ReadOnlyPatientRecords patientRecords);
+    void setPatientRecords(ReadOnlyList<Patient> patientRecords);
 
     /** Returns the patient records */
-    ReadOnlyPatientRecords getPatientRecords();
+    ReadOnlyList<Patient> getPatientRecords();
 
     /**
      * Returns true if a patient with the same identity as {@code patient} exists in the patient records.
@@ -117,7 +117,7 @@ public interface Model {
     /**
      * Replaces room list with the data in {@code covigentApp}.
      */
-    void setRoomList(ReadOnlyRoomList rooms);
+    void setRoomList(ReadOnlyList<Room> rooms);
 
     /**
      * Returns total number of rooms in the application's {@code RoomList}.
@@ -261,9 +261,6 @@ public interface Model {
      * @param room The room from which the task should be replaced.
      */
     void setTaskToRoom(Task target, Task editedTask, Room room);
-
-
-
 
     /**
      * Deletes {@code task}.

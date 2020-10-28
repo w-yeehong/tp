@@ -116,7 +116,7 @@ public class EditPatientCommandTest {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
         // Edit patient in filtered list into a duplicate in address book
-        Patient patientInList = model.getPatientRecords().getPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+        Patient patientInList = model.getPatientRecords().getReadOnlyList().get(INDEX_SECOND_PATIENT.getZeroBased());
         EditPatientCommand editCommand = new EditPatientCommand(new Name("Alice Pauline"),
                 new EditPatientDescriptorBuilder(patientInList).build());
 

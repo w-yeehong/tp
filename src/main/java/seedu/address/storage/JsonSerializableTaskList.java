@@ -8,8 +8,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
+
 //@@author itssodium
 public class JsonSerializableTaskList {
 
@@ -28,8 +30,8 @@ public class JsonSerializableTaskList {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableTaskList}.
      */
-    public JsonSerializableTaskList(TaskList source) {
-        tasks.addAll(source.getTaskObservableList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+    public JsonSerializableTaskList(ReadOnlyList<Task> source) {
+        tasks.addAll(source.getReadOnlyList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -39,7 +41,7 @@ public class JsonSerializableTaskList {
      */
     public TaskList toModelType() throws IllegalValueException {
         TaskList taskList = new TaskList();
-        taskList.getTaskObservableList().clear();
+        taskList.getReadOnlyList().clear();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
             taskList.add(task);

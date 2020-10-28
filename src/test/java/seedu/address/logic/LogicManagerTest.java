@@ -25,7 +25,7 @@ import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
@@ -173,7 +173,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void savePatientRecords(ReadOnlyPatientRecords patientRecords, Path filePath) throws IOException {
+        public void savePatientRecords(ReadOnlyList<Patient> patientRecords, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

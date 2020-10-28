@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.PatientRecords;
-import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -36,8 +36,8 @@ class JsonSerializablePatientRecords {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializablePatientRecords}.
      */
-    public JsonSerializablePatientRecords(ReadOnlyPatientRecords source) {
-        patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
+    public JsonSerializablePatientRecords(ReadOnlyList<Patient> source) {
+        patients.addAll(source.getReadOnlyList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
     }
 
     /**
