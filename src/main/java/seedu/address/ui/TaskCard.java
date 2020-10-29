@@ -34,8 +34,9 @@ public class TaskCard extends UiPart<Region> {
 
     /**
      * Create a Task Card Object.
-     * @param task
-     * @param displayedIndex
+     *
+     * @param task Task to be displayed.
+     * @param displayedIndex Index of which task is to be displayed.
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);

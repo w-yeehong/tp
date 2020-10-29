@@ -27,6 +27,7 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    //@author LeeMingDe
     /**
      * Parses {@code integer} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -39,6 +40,7 @@ public class ParserUtil {
         }
         return Integer.parseInt(trimmedInteger);
     }
+    //@author LeeMingDe
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

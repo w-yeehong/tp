@@ -48,7 +48,6 @@ public class PatientDetailsPanel extends UiPart<Region> {
 
     /**
      * Sets the details of the patient.
-     *
      */
     private void setPatientDetails() {
         //sets up the image
