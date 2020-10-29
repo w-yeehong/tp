@@ -38,8 +38,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given patient records, room records and userPrefs.
      */
-    public ModelManager(ReadOnlyPatientRecords patientRecords, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyRoomList roomList, ReadOnlyTaskList taskList) {
+    public ModelManager(ReadOnlyList<Patient> patientRecords, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyList<Room> roomList, ReadOnlyList<Task> taskList) {
         super();
         requireAllNonNull(patientRecords, userPrefs);
 
@@ -49,9 +49,9 @@ public class ModelManager implements Model {
         this.roomList = new RoomList(roomList);
         this.userPrefs = new UserPrefs(userPrefs);
         this.taskList = new TaskList(taskList);
-        filteredPatients = new FilteredList<>(this.patientRecords.getPatientList());
-        filteredRooms = new FilteredList<>(this.roomList.asUnmodifiableObservableList());
-        filteredTasks = new FilteredList<>(this.taskList.asUnmodifiableObservableList());
+        filteredPatients = new FilteredList<>(this.patientRecords.getReadOnlyList());
+        filteredRooms = new FilteredList<>(this.roomList.getReadOnlyList());
+        filteredTasks = new FilteredList<>(this.taskList.getReadOnlyList());
     }
 
     public ModelManager() {
@@ -96,21 +96,21 @@ public class ModelManager implements Model {
     //=========== Patient Records ================================================================================
 
     @Override
-    public void setPatientRecords(ReadOnlyPatientRecords patientRecords) {
+    public void setPatientRecords(ReadOnlyList<Patient> patientRecords) {
         this.patientRecords.resetData(patientRecords);
     }
 
     @Override
-    public ReadOnlyPatientRecords getPatientRecords() {
+    public ReadOnlyList<Patient> getPatientRecords() {
         return patientRecords;
     }
 
     //=========== RoomList ================================================================================
+
     @Override
-    public void setRoomList(ReadOnlyRoomList rooms) {
+    public void setRoomList(ReadOnlyList<Room> rooms) {
         this.roomList.resetData(rooms);
     }
-
 
     //=========== Patients ====================================================================================
 
@@ -126,12 +126,14 @@ public class ModelManager implements Model {
         requireNonNull(nameOfPatient);
         return patientRecords.getPatientWithName(nameOfPatient);
     }
-    //@@author chiamyunqing
 
     @Override
     public void deletePatient(Patient target) {
         patientRecords.removePatient(target);
+        //model's responsibility to update room list when patient is updated
+        this.updateRoomListWhenPatientsChanges(target, null);
     }
+    //@@author chiamyunqing
 
     @Override
     public void addPatient(Patient patient) {
@@ -176,7 +178,6 @@ public class ModelManager implements Model {
 
     //=========== Room List ========================================================================================
 
-
     @Override
     public int numOfOccupiedRooms() {
         return roomList.numOfOccupiedRooms();
@@ -213,6 +214,7 @@ public class ModelManager implements Model {
     }
     //@@author LeeMingDe
 
+    //@@author chiamyunqing
     @Override
     public void removePatientFromRoom(Name patientName) {
         assert (isPatientAssignedToRoom(patientName));
@@ -223,7 +225,7 @@ public class ModelManager implements Model {
     //@@author LeeMingDe
     @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
-        ObservableList<Room> roomObservableList = this.getRoomListObservablList();
+        ObservableList<Room> roomObservableList = this.getRoomListObservableList();
         Index index = Index.fromZeroBased(0);
         for (int i = 1; i <= roomObservableList.size(); i++) {
             int roomNum = roomObservableList.get(i - 1).getRoomNumber();
@@ -256,19 +258,19 @@ public class ModelManager implements Model {
     }
     //@@author LeeMingDe
 
+    //@@author w-yeehong
     @Override
     public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
         assert (roomNumber > 0) : "Room number should be greater than 0.";
         return roomList.getRoomWithRoomNumber(roomNumber);
     }
-
-    //@@author chiamyunqing
+    //@@author w-yeehong
 
     //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override
-    public ObservableList<Room> getRoomListObservablList() {
-        return roomList.asUnmodifiableObservableList();
+    public ObservableList<Room> getRoomListObservableList() {
+        return roomList.getReadOnlyList();
     }
 
     @Override
@@ -293,9 +295,9 @@ public class ModelManager implements Model {
 
     }
 
-
     //=========== Tasks ========================================================================================
 
+    //@@author w-yeehong
     @Override
     public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
         requireAllNonNull(taskIndex, room);
@@ -314,7 +316,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addTask(Task task) {
-        requireAllNonNull(task);
+        requireNonNull(task);
         taskList.add(task);
         filteredTasks.setPredicate(PREDICATE_SHOW_ALL_TASKS);
     }
@@ -333,7 +335,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteTask(Task taskToDelete) {
-        requireAllNonNull(taskToDelete);
+        requireNonNull(taskToDelete);
         taskList.remove(taskToDelete);
     }
 
@@ -342,6 +344,7 @@ public class ModelManager implements Model {
         requireAllNonNull(taskToEdit, editedTask);
         taskList.setTask(taskToEdit, editedTask);
     }
+    //@@author w-yeehong
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
@@ -358,6 +361,7 @@ public class ModelManager implements Model {
     public TaskList getModifiableTaskList() {
         return taskList;
     }
+
     //=========== Miscellaneous ========================================================================================
 
     @Override

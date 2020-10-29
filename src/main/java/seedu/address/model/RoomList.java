@@ -13,6 +13,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.UniqueRoomList;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
@@ -22,7 +23,7 @@ import seedu.address.storage.JsonPatientRecordsStorage;
  * Contains information regarding the Room information
  */
 //@@author itssodium
-public class RoomList implements ReadOnlyRoomList {
+public class RoomList implements ReadOnlyList<Room> {
     private static final Logger logger = LogsCenter.getLogger(JsonPatientRecordsStorage.class);
 
     private final UniqueRoomList rooms;
@@ -43,7 +44,7 @@ public class RoomList implements ReadOnlyRoomList {
     /**
      * Converts data from readOnlyRoomList to roomList
      */
-    public RoomList(ReadOnlyRoomList readOnlyRoomList) {
+    public RoomList(ReadOnlyList<Room> readOnlyRoomList) {
         this();
         resetData(readOnlyRoomList);
     }
@@ -58,7 +59,7 @@ public class RoomList implements ReadOnlyRoomList {
     /**
      * Resets the existing data of this {@code RoomList} with {@code newData}.
      */
-    public void resetData(ReadOnlyRoomList readOnlyRoomList) {
+    public void resetData(ReadOnlyList<Room> readOnlyRoomList) {
         rooms.resetData(readOnlyRoomList);
     }
     /**
@@ -181,7 +182,8 @@ public class RoomList implements ReadOnlyRoomList {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Room> asUnmodifiableObservableList() {
+    @Override
+    public ObservableList<Room> getReadOnlyList() {
         return rooms.asUnmodifiableObservableList();
     }
 

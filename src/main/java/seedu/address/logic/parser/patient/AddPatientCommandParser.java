@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.patient;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.patient.AddPatientCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_AGE;
@@ -8,8 +9,6 @@ import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PERIOD_OF_STAY;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP;
-
-import java.util.NoSuchElementException;
 
 import seedu.address.logic.commands.patient.AddPatientCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -25,6 +24,7 @@ import seedu.address.model.patient.PeriodOfStay;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
 
+//@@author chiamyunqing
 /**
  * Parses input arguments and creates a new AddPatientCommand object.
  */
@@ -36,6 +36,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPatientCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TEMP, PREFIX_PERIOD_OF_STAY,
                         PREFIX_PHONE, PREFIX_AGE, PREFIX_COMMENTS);
@@ -53,10 +54,9 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Phone phone = PatientParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Age age = PatientParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
         Comment comment = new Comment("-");
-        try {
+
+        if (ParserUtil.arePrefixesPresent(argMultimap, PREFIX_COMMENTS)) {
             comment = PatientParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENTS).get());
-        } catch (NoSuchElementException e) {
-            // unhandled because comment will be initialised already
         }
 
         Patient patient = new Patient(name, temp, periodOfStay, phone, age, comment);

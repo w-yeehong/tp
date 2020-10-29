@@ -15,15 +15,13 @@ import seedu.address.model.task.TaskList;
 
 //@@author chiamyunqing
 /**
- * Contains integration tests (interaction with both PatientRecords and RoomList inthe Model)
+ * Contains integration tests (interaction with both PatientRecords and RoomList in the Model)
  * for {@code DeletePatientCommand}.
  */
-
-//TODO -> to test rooms with tasklist once the NewCommandParserUtil is abstracted
 public class DeletePatientCommandIntegrationTest {
 
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
-    //room list -> [room 7, Alice; room 8, Benson; room 10, null]
+    //room list -> [room 7, Alice; room 8, Benson; room 10, null, room 11, null, with task]
     private Model model =
             new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
 

@@ -7,12 +7,13 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyPatientRecords;
-import seedu.address.model.ReadOnlyRoomList;
-import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
@@ -64,24 +65,24 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyPatientRecords> readPatientRecords() throws DataConversionException, IOException {
+    public Optional<ReadOnlyList<Patient>> readPatientRecords() throws DataConversionException, IOException {
         return readPatientRecords(patientRecordsStorage.getPatientRecordsFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyPatientRecords> readPatientRecords(Path filePath) throws DataConversionException,
+    public Optional<ReadOnlyList<Patient>> readPatientRecords(Path filePath) throws DataConversionException,
             IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return patientRecordsStorage.readPatientRecords(filePath);
     }
 
     @Override
-    public void savePatientRecords(ReadOnlyPatientRecords patientRecords) throws IOException {
+    public void savePatientRecords(ReadOnlyList<Patient> patientRecords) throws IOException {
         savePatientRecords(patientRecords, patientRecordsStorage.getPatientRecordsFilePath());
     }
 
     @Override
-    public void savePatientRecords(ReadOnlyPatientRecords patientRecords, Path filePath) throws IOException {
+    public void savePatientRecords(ReadOnlyList<Patient> patientRecords, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         patientRecordsStorage.savePatientRecords(patientRecords, filePath);
     }
@@ -98,12 +99,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyRoomList> readRoomOccupancyStorage() throws DataConversionException, IOException {
+    public Optional<ReadOnlyList<Room>> readRoomOccupancyStorage() throws DataConversionException, IOException {
         return roomOccupancyStorage.readOnlyRoomOccupancy();
     }
 
     @Override
-    public Optional<ReadOnlyTaskList> readTaskStorage() throws DataConversionException, IOException {
+    public Optional<ReadOnlyList<Task>> readTaskStorage() throws DataConversionException, IOException {
         return taskStorage.readOnlyTask();
     }
 

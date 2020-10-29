@@ -16,7 +16,7 @@ import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PHONE_
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -116,7 +116,7 @@ public class EditPatientCommandTest {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
         // Edit patient in filtered list into a duplicate in address book
-        Patient patientInList = model.getPatientRecords().getPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+        Patient patientInList = model.getPatientRecords().getReadOnlyList().get(INDEX_SECOND_PATIENT.getZeroBased());
         EditPatientCommand editCommand = new EditPatientCommand(new Name("Alice Pauline"),
                 new EditPatientDescriptorBuilder(patientInList).build());
 
@@ -147,7 +147,7 @@ public class EditPatientCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // Different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ExitCommand()));
 
         // Different index -> returns false
         assertFalse(standardCommand.equals(new EditPatientCommand(new Name("Bob Choo"), DESC_AMY)));

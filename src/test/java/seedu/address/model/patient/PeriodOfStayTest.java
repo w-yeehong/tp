@@ -6,8 +6,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author chiamyunqing
+/**
+ * Test cases for the attribute period of stay of patient.
+ */
 public class PeriodOfStayTest {
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new PeriodOfStay(null));
@@ -15,7 +18,7 @@ public class PeriodOfStayTest {
 
     @Test
     public void constructor_invalidPeriodOfStay_throwsIllegalArgumentException() {
-        String invalidPeriodOfStay = "";
+        String invalidPeriodOfStay = "20200101-20209999";
         assertThrows(IllegalArgumentException.class, () -> new PeriodOfStay(invalidPeriodOfStay));
     }
 

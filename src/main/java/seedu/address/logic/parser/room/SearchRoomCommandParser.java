@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.PatientParserUtil;
 import seedu.address.model.patient.Name;
 
+//@@author chiamyunqing
 /**
  * Parses input arguments and creates a new SearchRoomCommand object.
  */

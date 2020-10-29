@@ -41,7 +41,8 @@ public class AddPatientCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePatient_throwsCommandException() {
-        Patient patientInList = model.getPatientRecords().getPatientList().get(0);
-        assertCommandFailure(new AddPatientCommand(patientInList), model, AddPatientCommand.MESSAGE_DUPLICATE_PATIENT);
+        Patient duplicatePatient = model.getPatientRecords().getReadOnlyList().get(0);
+        assertCommandFailure(new AddPatientCommand(duplicatePatient), model,
+                AddPatientCommand.MESSAGE_DUPLICATE_PATIENT);
     }
 }

@@ -26,7 +26,7 @@ public class PatientRecordsTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), patientRecords.getPatientList());
+        assertEquals(Collections.emptyList(), patientRecords.getReadOnlyList());
     }
 
     @Test
@@ -76,13 +76,13 @@ public class PatientRecordsTest {
 
     @Test
     public void getPatientList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> patientRecords.getPatientList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> patientRecords.getReadOnlyList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyPatientRecords whose patients list can violate interface constraints.
+     * A stub {@code ReadOnlyList<Patient>} whose patients list can violate interface constraints.
      */
-    private static class PatientRecordsStub implements ReadOnlyPatientRecords {
+    private static class PatientRecordsStub implements ReadOnlyList<Patient> {
         private final ObservableList<Patient> patients = FXCollections.observableArrayList();
 
         PatientRecordsStub(Collection<Patient> patients) {
@@ -90,7 +90,7 @@ public class PatientRecordsTest {
         }
 
         @Override
-        public ObservableList<Patient> getPatientList() {
+        public ObservableList<Patient> getReadOnlyList() {
             return patients;
         }
     }

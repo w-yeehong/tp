@@ -19,6 +19,10 @@ import seedu.address.logic.commands.room.SearchRoomCommand;
 import seedu.address.model.patient.Name;
 import seedu.address.testutil.SearchRoomDescriptorBuilder;
 
+//@@author chiamyunqing
+/**
+ * Contains unit test for SearchRoomCommandParser.
+ */
 public class SearchRoomCommandParserTest {
 
     private SearchRoomCommandParser parser = new SearchRoomCommandParser();
@@ -36,10 +40,6 @@ public class SearchRoomCommandParserTest {
         //multiple prefixes found
         assertParseFailure(parser, VALID_NAME_AMY_DESC + ROOM_NUMBER_DESC_ONE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRoomCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, ROOM_NUMBER_DESC_ONE + NAME_DESC_AMY,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRoomCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, TEMP_DESC_AMY + ROOM_NUMBER_DESC_ONE + NAME_DESC_AMY,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRoomCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -52,10 +52,11 @@ public class SearchRoomCommandParserTest {
 
     @Test
     public void parse_validInput_success() {
+        //find by patient name
         SearchRoomDescriptorBuilder descriptorName = new SearchRoomDescriptorBuilder();
         descriptorName.setPatientName(VALID_NAME_AMY);
         assertParseSuccess(parser, NAME_DESC_AMY, new SearchRoomCommand(descriptorName.build()));
-
+        //find by room number
         SearchRoomDescriptorBuilder descriptorRoomNum = new SearchRoomDescriptorBuilder();
         descriptorRoomNum.setRoomNumber(Integer.parseInt(VALID_ROOM_NUMBER_ONE));
         assertParseSuccess(parser, ROOM_NUMBER_DESC_ONE, new SearchRoomCommand(descriptorRoomNum.build()));

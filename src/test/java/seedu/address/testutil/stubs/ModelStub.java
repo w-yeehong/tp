@@ -9,8 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyPatientRecords;
-import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RoomList;
 import seedu.address.model.patient.Name;
@@ -23,6 +22,7 @@ import seedu.address.model.task.TaskList;
  * A default model stub that has all of the methods failing.
  */
 public class ModelStub implements Model {
+
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         throw new AssertionError("This method should not be called.");
@@ -59,12 +59,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setPatientRecords(ReadOnlyPatientRecords newData) {
+    public void setPatientRecords(ReadOnlyList<Patient> newData) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ReadOnlyPatientRecords getPatientRecords() {
+    public ReadOnlyList<Patient> getPatientRecords() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -109,7 +109,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setRoomList(ReadOnlyRoomList rooms) {
+    public void setRoomList(ReadOnlyList<Room> rooms) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -164,7 +164,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomListObservablList() {
+    public ObservableList<Room> getRoomListObservableList() {
         throw new AssertionError("This method should not be called.");
     }
 

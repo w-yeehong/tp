@@ -18,12 +18,13 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PatientRecords;
-import seedu.address.model.ReadOnlyPatientRecords;
-import seedu.address.model.ReadOnlyRoomList;
-import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonPatientRecordsStorage;
@@ -88,12 +89,13 @@ public class MainApp extends Application {
      * address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPatientRecords> patientRecordsOptional;
-        ReadOnlyPatientRecords initialData;
-        Optional<ReadOnlyRoomList> readOnlyRoomOccupancy;
-        ReadOnlyRoomList initialRoomList;
-        Optional<ReadOnlyTaskList> readOnlyTaskOccupancy;
-        ReadOnlyTaskList initialTaskList;
+        Optional<ReadOnlyList<Patient>> patientRecordsOptional;
+        ReadOnlyList<Patient> initialData;
+        Optional<ReadOnlyList<Room>> readOnlyRoomOccupancy;
+        ReadOnlyList<Room> initialRoomList;
+        Optional<ReadOnlyList<Task>> readOnlyTaskOccupancy;
+        ReadOnlyList<Task> initialTaskList;
+
         try {
             readOnlyTaskOccupancy = storage.readTaskStorage();
             initialTaskList = readOnlyTaskOccupancy.orElseGet(SampleDataUtil::getSampleTaskList);
