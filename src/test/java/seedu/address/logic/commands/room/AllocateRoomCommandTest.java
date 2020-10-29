@@ -21,7 +21,6 @@ import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.task.TaskList;
 import seedu.address.testutil.AllocateRoomDescriptorBuilder;
 import seedu.address.testutil.RoomBuilder;
 
@@ -36,7 +35,7 @@ class AllocateRoomCommandTest {
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
     //Alice is in Room 7, Benson in Room 8, Room 11 with tasks
     private Model model =
-            new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
+            new ModelManager(getTypicalPatientRecords(), getTypicalRoomList(), new UserPrefs());
 
     @Test
     public void constructor_nullInputs_throwsNullPointerException() {
@@ -61,8 +60,8 @@ class AllocateRoomCommandTest {
         AllocateRoomCommand allocateRoomCommand = new AllocateRoomCommand(roomNumberForAllocation, descriptor);
 
         String expectedMessage = String.format(MESSAGE_ALLOCATE_ROOM_SUCCESS, editedRoom);
-        Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
-                new RoomList(model.getModifiableRoomList()), new TaskList());
+        Model expectedModel = new ModelManager(getTypicalPatientRecords(),
+                new RoomList(model.getModifiableRoomList()), new UserPrefs());
         expectedModel.setSingleRoom(roomToAllocatePatient, editedRoom);
 
         assertCommandSuccess(allocateRoomCommand, model, expectedMessage, expectedModel);
@@ -81,8 +80,8 @@ class AllocateRoomCommandTest {
         AllocateRoomCommand allocateRoomCommand = new AllocateRoomCommand(roomNumberForAllocation, descriptor);
 
         String expectedMessage = String.format(MESSAGE_ALLOCATE_ROOM_SUCCESS, allocatedRoom);
-        Model expectedModel = new ModelManager(getTypicalPatientRecords(), new UserPrefs(),
-                new RoomList(model.getModifiableRoomList()), new TaskList());
+        Model expectedModel = new ModelManager(getTypicalPatientRecords(),
+                new RoomList(model.getModifiableRoomList()), new UserPrefs());
         expectedModel.setSingleRoom(roomToAllocatePatient, allocatedRoom);
 
         assertCommandSuccess(allocateRoomCommand, model, expectedMessage, expectedModel);

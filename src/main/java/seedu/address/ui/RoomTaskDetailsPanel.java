@@ -16,8 +16,9 @@ import seedu.address.model.task.Task;
  */
 public class RoomTaskDetailsPanel extends UiPart<Region> {
 
-    private static final String FXML = "RoomTaskDetailsPanel.fxml";
     public static final double LIST_CELL_HEIGHT = 90.0;
+
+    private static final String FXML = "RoomTaskDetailsPanel.fxml";
 
     public final Room room;
 

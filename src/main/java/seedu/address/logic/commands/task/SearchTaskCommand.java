@@ -65,7 +65,7 @@ public class SearchTaskCommand extends Command {
         }
         assert taskListWithDesirableResult.size() >= 1;
         datePredicate = new DueDatePredicate(duedate);
-        model.updateFilteredTaskList(datePredicate);
+        //model.updateFilteredTaskList(datePredicate);
         return new CommandResult(String.format(MESSAGE_SEARCH_TASK_SUCCESS));
     }
 

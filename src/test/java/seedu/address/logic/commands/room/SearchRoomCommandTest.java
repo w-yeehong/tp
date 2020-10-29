@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.TaskList;
 import seedu.address.testutil.SearchRoomDescriptorBuilder;
 
 //@@author chiamyunqing
@@ -39,9 +38,9 @@ public class SearchRoomCommandTest {
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
     //room list -> [room 7, Alice; room 8, Benson; room 10, null, room 11, null, with task]
     private Model model =
-            new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
+            new ModelManager(getTypicalPatientRecords(), getTypicalRoomList(), new UserPrefs());
     private Model expectedModel =
-            new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
+            new ModelManager(getTypicalPatientRecords(), getTypicalRoomList(), new UserPrefs());
 
     @Test
     public void constructor_nullRoomNumber_throwsNullPointerException() {

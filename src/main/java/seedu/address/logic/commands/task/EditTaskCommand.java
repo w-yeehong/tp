@@ -87,9 +87,8 @@ public class EditTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_TASK_NOT_EDITED);
         }
 
-        model.setTask(taskToEdit, editedTask);
         model.setTaskToRoom(taskToEdit, editedTask, room);
-        model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
+        //model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
                 taskIndex.getOneBased(), roomNumber, editedTask));
     }
