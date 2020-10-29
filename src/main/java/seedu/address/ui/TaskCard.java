@@ -33,7 +33,7 @@ public class TaskCard extends UiPart<Region> {
     private Label duedate;
 
     /**
-     * Create a Task Card Object.
+     * Creates a Task Card Object.
      *
      * @param task Task to be displayed.
      * @param displayedIndex Index of which task is to be displayed.

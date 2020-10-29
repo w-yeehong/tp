@@ -23,13 +23,14 @@ public class TaskList implements Iterable<Task>, ReadOnlyList<Task> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Create a TaskList Object.
+     * Creates a TaskList Object.
      */
     public TaskList() {}
 
     /**
-     * Create a TaskList Object.
-     * @param readOnlyTaskList
+     * Creates a TaskList Object.
+     *
+     * @param readOnlyTaskList The readOnlyTaskList containing all the tasks.
      */
     public TaskList(ReadOnlyList<Task> readOnlyTaskList) {
         this();
@@ -37,8 +38,9 @@ public class TaskList implements Iterable<Task>, ReadOnlyList<Task> {
     }
 
     /**
-     * Reset the data.
-     * @param readOnlyTaskList
+     * Resets the data.
+     *
+     * @param readOnlyTaskList The readOnlyTaskList containing all the tasks.
      */
     public void resetData(ReadOnlyList<Task> readOnlyTaskList) {
         requireNonNull(readOnlyTaskList);
