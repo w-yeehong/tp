@@ -189,7 +189,7 @@ Field | Description
 **Step By Step Usage:** <br />
 1. Navigate to the Patient tab under the navigation bar as shown in Figure 3.
 <p align="center">
-    <img src="images/ug/patienttab.png" width="400" height="300">
+    <img src="images/ug/patienttab.png" width="380" height="300">
     <br />
    <i>Figure 3. Navigation to Patient tab</i>
 </p>
@@ -232,10 +232,20 @@ Field | Description
 1. `deletepatient Mary Doe` The patient details of Mary Doe will be deleted from Covigent.
 <br />
 
-**Expected Outcome:** <br />
-* Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". 
-* The deleted patient can no longer be found in the list of patients in Covigent.
-* Figure 4 shows an example of a successful execution.
+**Step By Step Usage:** <br />
+1. Navigate to the Patient tab under the navigation bar as shown in Figure 6.
+<p align="center">
+    <img src="images/ug/patienttab.png" width="380" height="300">
+    <br />
+   <i>Figure 6. Navigation to Patient tab</i>
+</p>
+
+2. Using the first example, key in the command into the command box as shown below.
+
+3. Press `enter` to run the command.
+
+4. With reference to Figure ?, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". The deleted patient can no longer be found in the list of patients in Covigent.
+
 <p align="center">
     <img src="images/ug/figure4_deletepatient.png" width="620" height="400">
     <br />
