@@ -71,6 +71,7 @@ class AllocateRoomCommandTest {
     @Test
     public void execute_clearRoom_success() {
         Room roomToAllocatePatient = model.getRoomListObservableList().get(6);
+
         Integer roomNumberForAllocation = roomToAllocatePatient.getRoomNumber();
         Room allocatedRoom = new RoomBuilder(roomToAllocatePatient).withIsOccupied(false).withPatient(null).build();
 

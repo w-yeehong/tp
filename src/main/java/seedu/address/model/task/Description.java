@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+//@@author w-yeehong
 /**
  * Represents a description of a Task in the app.
  * Guarantees: immutable

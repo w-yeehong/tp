@@ -30,8 +30,10 @@ import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalPatients;
 
+//@author LeeMingDe
 /**
- * Contains integration tests and unit tests for EditPatientCommand.
+ * Contains integration tests (interaction with only PatientRecords in the Model) and unit tests for
+ * {@code EditPatientCommand}.
  */
 public class EditPatientCommandTest {
 
@@ -116,7 +118,7 @@ public class EditPatientCommandTest {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
         // Edit patient in filtered list into a duplicate in address book
-        Patient patientInList = model.getPatientRecords().getPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+        Patient patientInList = model.getPatientRecords().getReadOnlyList().get(INDEX_SECOND_PATIENT.getZeroBased());
         EditPatientCommand editCommand = new EditPatientCommand(new Name("Alice Pauline"),
                 new EditPatientDescriptorBuilder(patientInList).build());
 
@@ -155,5 +157,5 @@ public class EditPatientCommandTest {
         // Different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditPatientCommand(new Name("Amy Bee"), DESC_BOB)));
     }
-
 }
+//@author LeeMingDe
