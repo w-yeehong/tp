@@ -23,7 +23,7 @@
           5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br />
           5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br />
           5.3.5  [List the Current Rooms: `listroom`](#535-list-the-current-rooms-listroom)<br />
-          5.3.6  [Find the first free room: `findroom`](#536-find-the-first-free-room-findemptyroom)<br />
+          5.3.6  [Find the first free room: `findemptyroom`](#536-find-the-first-free-room-findemptyroom)<br />
     5.4 [Task](#54-task)<br />
           5.4.1  [Add a Task to a Room: `addtask`](#541-add-a-task-to-a-room-addtask)<br />
           5.4.2  [Delete a Task from a Room: `deletetask`](#542-delete-a-task-from-a-room-deletetask)<br />
@@ -188,21 +188,29 @@ Field | Description
 
 **Step By Step Usage:** <br />
 1. Navigate to the Patient tab under the navigation bar as shown in Figure 3.
-
-2. Using the first example, key in the command into the command box as shown below.
-
-3. Press `enter`.
-
-4. The result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic". The newly added patient can now be found in the list of patients in Covigent. 
-
 <p align="center">
-    <img src="images/ug/figure3_addpatient.png" width="620" height="400">
+    <img src="images/ug/patienttab.png" width="400" height="300">
     <br />
-    <i>Figure 5. A Successful Execution of <code>addpatient</code></i>
+   <i>Figure 3. Navigation to Patient tab</i>
 </p>
 
-5. To view the details of the newly added patient, click on the newly added patient in the patient list.
+2. Using the first example, key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/addpatientcommand.png" width="700" height="150">
+    <br />
+   <i>Figure 4. <code>addpatient</code> command in Command Box</i>
+</p>
 
+3. Press `enter` to run the command.
+
+4. With reference to Figure 5, the result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic". The newly added patient can now be found in the list of patients in Covigent. 
+
+5. To view the details of the newly added patient, click on the newly added patient in the patient list.
+<p align="center">
+    <img src="images/ug/addpatientsuccess.png" width="620" height="400">
+    <br />
+    <i>Figure 5. A Successful Execution of <code>addpatient</code> command</i>
+</p>
 
 _Written by: Yun Qing_
 
