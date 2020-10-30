@@ -187,11 +187,11 @@ Field | Description
 <br />
 
 **Step By Step Usage:** <br />
-1. Navigate to the Patient tab under the navigation bar as shown in Figure 3.
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 3.
 <p align="center">
     <img src="images/ug/patienttab.png" width="380" height="300">
     <br />
-   <i>Figure 3. Navigation to Patient tab</i>
+   <i>Figure 3. Navigation to Patients tab</i>
 </p>
 
 2. Using the first example, key in the command into the command box as shown below.
@@ -211,6 +211,8 @@ Field | Description
     <br />
     <i>Figure 5. A Successful Execution of <code>addpatient</code> command</i>
 </p>
+
+6. If you do not see the success message as shown in Figure 5, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -233,24 +235,30 @@ Field | Description
 <br />
 
 **Step By Step Usage:** <br />
-1. Navigate to the Patient tab under the navigation bar as shown in Figure 6.
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 6.
 <p align="center">
     <img src="images/ug/patienttab.png" width="380" height="300">
     <br />
-   <i>Figure 6. Navigation to Patient tab</i>
+   <i>Figure 6. Navigation to Patients tab</i>
 </p>
 
 2. Using the first example, key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/deletepatientcommand.png" width="700" height="150">
+    <br />
+   <i>Figure 7. <code>deletepatient</code> command in Command Box</i>
+</p>
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure ?, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". The deleted patient can no longer be found in the list of patients in Covigent.
-
+4. With reference to Figure 8, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". The deleted patient can no longer be found in the list of patients in Covigent.
 <p align="center">
-    <img src="images/ug/figure4_deletepatient.png" width="620" height="400">
+    <img src="images/ug/deletepatientsuccess.png" width="620" height="400">
     <br />
-    <i>Figure 4. A Successful Execution of <code>deletepatient</code></i>
+    <i>Figure 8. A Successful Execution of <code>deletepatient</code></i>
 </p>
+
+5. If you do not see the success message as shown in Figure 8, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -422,15 +430,26 @@ Field | Description
 **Example(s):**
 1. `searchroom r/6` The room details of room number 6 will be searched.
 
-**Expected Outcome:** <br />
-* The result box displays a message "Room has been found and listed." 
-* The room with the specified room number is shown in the room details panel.
-* Figure 10 shows an example of a successful execution.
+**Step By Step Usage:** <br />
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure ?.
+
+2. Using the first example, key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/deletepatientcommand.png" width="700" height="150">
+    <br />
+   <i>Figure 7. <code>deletepatient</code> command in Command Box</i>
+</p>
+
+3. Press `enter` to run the command.
+
+4. With reference to Figure 8, the result box displays the message "Room has been found and listed." The room with the specified room number is shown in the room details panel.
 <p align="center">
     <img src="images/ug/figure10_searchroomnumber.png" width="620" height="400">
     <br />
     <i>Figure 10. A Successful Execution of <code>searchroom</code> for Room Number</i>
 </p>
+
+5. If you do not see the success message as shown in Figure 8, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
