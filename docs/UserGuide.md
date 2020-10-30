@@ -146,8 +146,6 @@ _Written by: Yun Qing_
 
 ## 5. Features
 
-<div markdown="block" class="alert alert-info"></div>
-
 ### 5.1 Command Format
 
 **:information_source: Notes about the command format:** <br />
@@ -177,7 +175,7 @@ Field | Description
 `TEMPERATURE` | The temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
 `PERIOD_OF_STAY` | The period of stay of the patient in the facility. It must be in the format _YYYYMMDD-YYYYMMDD_.
 `PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by.
-`AGE` | The age of the patient, which is between 0 and 120.
+`AGE` | The age of the patient, which is between 0 (inclusive) and 120 (exclusive).
 `COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
 
 **:information_source: Important Information:** <br />
@@ -188,15 +186,23 @@ Field | Description
 1. `addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic` A patient named _Betsy Crowe_ with temperature _36.5_, period of stay from _1 October 2020 to 14 October 2020_, phone number _91234567_, age _19_ and comment _Is asthmatic_ is added to Covigent.
 <br />
 
-**Expected Outcome:** <br />
-* Using the first example, the result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic".
-* The newly added patient can now be found in the list of patients in Covigent.
-* Figure 3 shows an example of a successful execution. Note that you will need to click on the newly added patient in the patient list to view his/her details.
+**Step By Step Usage:** <br />
+1. Navigate to the Patient tab under the navigation bar as shown in Figure 3.
+
+2. Using the first example, key in the command into the command box as shown below.
+
+3. Press `enter`.
+
+4. The result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic". The newly added patient can now be found in the list of patients in Covigent. 
+
 <p align="center">
     <img src="images/ug/figure3_addpatient.png" width="620" height="400">
     <br />
-    <i>Figure 3. A Successful Execution of <code>addpatient</code></i>
+    <i>Figure 5. A Successful Execution of <code>addpatient</code></i>
 </p>
+
+5. To view the details of the newly added patient, click on the newly added patient in the patient list.
+
 
 _Written by: Yun Qing_
 
@@ -243,7 +249,7 @@ Field | Description
 `TEMPERATURE` | The new temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
 `PERIOD_OF_STAY` | The new period of stay of the patient. It must be in the format _YYYYMMDD-YYYYMMDD_.
 `PHONE_NUMBER` | The new phone number of the patient.
-`AGE` | The new age of the patient. Age should be between 0 and 120.
+`AGE` | The new age of the patient. Age should be between 0 (inclusive) and 120 (exclusive).
 `COMMENT` | The new comments about the patient.
 
 **:information_source: Important Information:** <br />
