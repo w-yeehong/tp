@@ -431,25 +431,30 @@ Field | Description
 1. `searchroom r/6` The room details of room number 6 will be searched.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Rooms tab under the navigation bar as shown in Figure ?.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure ??.
+<p align="center">
+    <img src="images/ug/roomstab.png" width="380" height="300">
+    <br />
+   <i>Figure ??. Navigation to Rooms tab</i>
+</p>
 
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/deletepatientcommand.png" width="700" height="150">
+    <img src="images/ug/searchroomnumbercommand.png" width="700" height="150">
     <br />
-   <i>Figure 7. <code>deletepatient</code> command in Command Box</i>
+   <i>Figure 7. <code>searchroom</code> command in Command Box</i>
 </p>
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure 8, the result box displays the message "Room has been found and listed." The room with the specified room number is shown in the room details panel.
+4. With reference to Figure ??, the result box displays the message "Room has been found and listed." The room with the specified room number is shown in the room details panel.
 <p align="center">
-    <img src="images/ug/figure10_searchroomnumber.png" width="620" height="400">
+    <img src="images/ug/searchroomnumbersuccess.png" width="620" height="400">
     <br />
-    <i>Figure 10. A Successful Execution of <code>searchroom</code> for Room Number</i>
+    <i>Figure ??. A Successful Execution of <code>searchroom</code> for Room Number</i>
 </p>
 
-5. If you do not see the success message as shown in Figure 8, please repeat step 2 onwards.
+5. If you do not see the success message as shown in Figure ??, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -466,15 +471,31 @@ Field | Description
 **Example(s):**
 1. `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
 
-**Expected Outcome:** <br />
-* The result box displays a message "Room has been found and listed." 
-* The room that the specified patient resides in is shown in the room details panel.
-* Figure 11 shows an example of a successful execution.
+**Step By Step Usage:** <br />
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure ??.
 <p align="center">
-    <img src="images/ug/figure11_searchroompatient.png" width="620" height="400">
+    <img src="images/ug/roomstab.png" width="380" height="300">
     <br />
-    <i>Figure 11. A Successful Execution of <code>searchroom</code> for Patient</i>
+   <i>Figure ??. Navigation to Rooms tab</i>
 </p>
+
+2. Using the first example, key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/searchroompatientcommand.png" width="700" height="150">
+    <br />
+   <i>Figure ??. <code>searchroom</code> command in Command Box</i>
+</p>
+
+3. Press `enter` to run the command.
+
+4. With reference to Figure ??, the result box displays the message "Room has been found and listed." The room that the specified patient resides in is shown in the room details panel.
+<p align="center">
+    <img src="images/ug/searchroompatientsuccess.png" width="620" height="400">
+    <br />
+    <i>Figure ??. A Successful Execution of <code>searchroom</code> for Patient</i>
+</p>
+
+5. If you do not see the success message as shown in Figure ??, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
