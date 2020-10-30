@@ -10,6 +10,7 @@ public class DueDatePredicate implements Predicate<Task> {
 
     /**
      * Constructs a {@code DueDatePredicate}.
+     *
      * @param duedate The start of temperature range.
      */
     public DueDatePredicate(DateTimeDue duedate) {

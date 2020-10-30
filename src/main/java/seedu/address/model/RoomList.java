@@ -213,6 +213,7 @@ public class RoomList implements ReadOnlyList<Room> {
     }
     //@@author chiamyunqing
 
+    //@author LeeMingDe
     /**
      * Replaces the room {@code target} in the list with {@code editedRoom}.
      * {@code target} must exist in the list.
@@ -224,6 +225,7 @@ public class RoomList implements ReadOnlyList<Room> {
     public void setSingleRoom(Room target, Room editedRoom) {
         rooms.setSingleRoom(target, editedRoom);
     }
+    //@author LeeMingDe
 
     @Override
     public int hashCode() {

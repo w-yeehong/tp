@@ -43,7 +43,8 @@ public class JsonTaskStorage {
 
     /**
      * Returns TaskList data as a {@code ReadOnlyList<Task>}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -62,8 +63,9 @@ public class JsonTaskStorage {
 
     /**
      * Save the task to the tasklist.
-     * @param taskList
-     * @throws IOException
+     *
+     * @param taskList TaskList to be saved.
+     * @throws IOException If tasklist cannot be found.
      */
     public void saveTask(TaskList taskList) throws IOException {
         saveTasks(taskList, task);
@@ -71,9 +73,10 @@ public class JsonTaskStorage {
 
     /**
      * Save the task to the tasklist with the path.
-     * @param taskList
-     * @param fileTask
-     * @throws IOException
+     *
+     * @param taskList TaskList to save tasks.
+     * @param fileTask Path of file.
+     * @throws IOException If file cannot be found.
      */
     public void saveTasks(TaskList taskList, Path fileTask) throws IOException {
         FileUtil.createIfMissing(fileTask);
