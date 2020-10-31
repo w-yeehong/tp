@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.task.DueDatePredicate;
 import seedu.address.model.task.Task;
 
 /**
@@ -245,4 +246,10 @@ public interface Model {
      */
     void setTaskToRoom(Task target, Task editedTask, Room room);
 
+    /**
+     * Update the filterTaskList with {@code datePredicate}.
+     *
+     * @param datePredicate The dueDate predicate.
+     */
+    void updateFilteredTaskList(Predicate<Task> datePredicate);
 }

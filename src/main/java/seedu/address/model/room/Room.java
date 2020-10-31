@@ -103,7 +103,7 @@ public class Room {
      * Returns an unmodifiable version of the list of tasks in this room as an {@code ObservableList}.
      */
     public ObservableList<Task> getReadOnlyTasks() {
-        return tasks.getReadOnlyList();
+        return tasks.getFilteredList();
     }
 
     /**
@@ -172,6 +172,14 @@ public class Room {
             throw e;
         }
     }
+
+    /**
+     * Fetch the taskList
+     */
+    public RoomTasks getTaskList() {
+        return tasks;
+    }
+
 
     /**
      * Enumerates the tasks in this room, numbering and specifying the details of each task.

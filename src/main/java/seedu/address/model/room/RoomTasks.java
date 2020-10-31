@@ -5,8 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.task.Task;
@@ -19,12 +21,13 @@ import seedu.address.model.task.TaskList;
 public class RoomTasks implements ReadOnlyList<Task> {
 
     private final TaskList tasks;
-
+    private FilteredList<Task>filteredtasklist;
     /**
      * Creates an empty list of tasks in the room.
      */
     public RoomTasks() {
         tasks = new TaskList();
+        filteredtasklist = new FilteredList<>(tasks.asUnmodifiableObservableList());
     }
 
     /**
@@ -34,6 +37,7 @@ public class RoomTasks implements ReadOnlyList<Task> {
         requireAllNonNull(tasksToAdd);
         tasks = new TaskList();
         tasks.setTasks(tasksToAdd);
+        filteredtasklist = new FilteredList<>(tasks.asUnmodifiableObservableList());
     }
 
     //// task-level operations
@@ -81,6 +85,13 @@ public class RoomTasks implements ReadOnlyList<Task> {
     }
 
     /**
+     * Set the Predicate {@code predicate} to the {@code  filteredtasklist} .
+     */
+    public void setTaskListPredicate(Predicate<Task> predicate) {
+        filteredtasklist.setPredicate(predicate);
+    }
+
+    /**
      * Removes {@code key} from {@code RoomTasks}.
      * {@code key} must exist in the room.
      */
@@ -93,6 +104,10 @@ public class RoomTasks implements ReadOnlyList<Task> {
      */
     public boolean isEmpty() {
         return tasks.isEmpty();
+    }
+
+    public ObservableList<Task> getFilteredList() {
+        return filteredtasklist;
     }
 
     @Override
