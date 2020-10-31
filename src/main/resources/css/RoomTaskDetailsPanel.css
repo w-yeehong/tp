@@ -32,3 +32,11 @@
 .list-cell .label {
     -fx-text-fill: #000000;
 }
+
+.pretty-list-view > .virtual-flow > .scroll-bar,
+.pretty-list-view > .virtual-flow > .scroll-bar .decrement-arrow,
+.pretty-list-view > .virtual-flow > .scroll-bar .increment-arrow,
+.pretty-list-view > .virtual-flow > .scroll-bar .decrement-button,
+.pretty-list-view > .virtual-flow > .scroll-bar .increment-button {
+    -fx-padding:0;
+}
