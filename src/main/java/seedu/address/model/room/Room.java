@@ -103,6 +103,13 @@ public class Room {
      * Returns an unmodifiable version of the list of tasks in this room as an {@code ObservableList}.
      */
     public ObservableList<Task> getReadOnlyTasks() {
+        return tasks.getReadOnlyList();
+    }
+
+    /**
+     * Returns an filtered list as an {@code ObservableList}.
+     */
+    public ObservableList<Task> getFilteredTasks() {
         return tasks.getFilteredList();
     }
 

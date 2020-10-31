@@ -206,4 +206,9 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> datePredicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
 }
