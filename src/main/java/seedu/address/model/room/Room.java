@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.Task;
@@ -110,6 +111,17 @@ public class Room {
      */
     public ReadOnlyList<Task> getReadOnlyList() {
         return tasks;
+    }
+
+    /**
+     * Returns the task with the provided {@code taskIndex} from this room.
+     * An empty optional is returned if such a task is not found in the room.
+     *
+     * @param taskIndex The index of the task in this room.
+     * @return the optional-wrapped task if found, otherwise an empty optional
+     */
+    public Optional<Task> getTaskWithTaskIndex(Index taskIndex) {
+        return tasks.getTaskWithTaskIndex(taskIndex);
     }
 
     /**

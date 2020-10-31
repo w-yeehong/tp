@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
@@ -35,6 +37,23 @@ public class RoomTasks implements ReadOnlyList<Task> {
     }
 
     //// task-level operations
+
+    /**
+     * Returns the task with the provided {@code taskIndex} from the room.
+     * An empty optional is returned if such a task is not found in the room.
+     *
+     * @param taskIndex The index of the task in the room.
+     * @return the optional-wrapped task if found, otherwise an empty optional
+     */
+    public Optional<Task> getTaskWithTaskIndex(Index taskIndex) {
+        requireNonNull(taskIndex);
+
+        List<Task> tasks = getReadOnlyList();
+        if (taskIndex.getZeroBased() >= tasks.size()) {
+            return Optional.empty();
+        }
+        return Optional.of(tasks.get(taskIndex.getZeroBased()));
+    }
 
     /**
      * Adds a task to the room.

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.function.Predicate;
@@ -296,29 +295,28 @@ public class ModelManager implements Model {
     @Override
     public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
         requireAllNonNull(taskIndex, room);
-        List<Task> tasks = room.getReadOnlyTasks();
-        if (taskIndex.getZeroBased() >= tasks.size()) {
-            return Optional.empty();
-        }
-        return Optional.of(tasks.get(taskIndex.getZeroBased()));
+        return room.getTaskWithTaskIndex(taskIndex);
     }
 
     @Override
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-        roomList.addTaskToRoom(task, room);
+        assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
+        room.addTask(task);
     }
 
     @Override
     public void deleteTaskFromRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-        roomList.deleteTaskFromRoom(task, room);
+        assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
+        room.deleteTask(task);
     }
 
     @Override
     public void setTaskToRoom(Task target, Task editedTask, Room room) {
         requireAllNonNull(target, editedTask, room);
-        roomList.setTaskToRoom(target, editedTask, room);
+        assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
+        room.setTask(target, editedTask);
     }
     //@@author w-yeehong
 
