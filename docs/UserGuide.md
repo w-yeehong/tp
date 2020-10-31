@@ -317,7 +317,7 @@ Field | Description
 
 4. With reference to Figure 5, the result box displays the message, "_Edited Patient: Alex Yeoh Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 912345678 Age: 23 Comment: -_". The patient will be edited in Covigent. 
 
-5. To view the details of the newly added patient, click on the newly added patient in the patient list.
+5. The details of the newly edited patient will be shown in the details panel.
 <p align="center">
     <img src="images/ug/f11_editpatientsuccess.png" width="620" height="400">
     <br />
@@ -452,7 +452,7 @@ Field | Description
 
 4. With reference to Figure ??, the result box displays the message "_Allocated Room: Room Number: 1 Patient: Alex Yeoh 
 Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 912345678Age: 23 Comment: - TaskList: -_" 
-The room with the specified room number is shown in the room details panel.
+The room with the newly allocated patient is shown in the room details panel.
 <p align="center">
     <img src="images/ug/allocateroomsuccess.png" width="620" height="400">
     <br />
