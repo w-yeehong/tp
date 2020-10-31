@@ -11,8 +11,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyList;
+import seedu.address.model.room.RoomTasks;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 //@@author itssodium
 /**
@@ -62,23 +62,23 @@ public class JsonTaskStorage {
 
     /**
      * Save the task to the tasklist.
-     * @param taskList
+     * @param roomTasks
      * @throws IOException
      */
-    public void saveTask(TaskList taskList) throws IOException {
-        saveTasks(taskList, task);
+    public void saveTask(RoomTasks roomTasks) throws IOException {
+        saveTasks(roomTasks, task);
     }
 
     /**
      * Save the task to the tasklist with the path.
-     * @param taskList
+     * @param roomTasks
      * @param fileTask
      * @throws IOException
      */
-    public void saveTasks(TaskList taskList, Path fileTask) throws IOException {
+    public void saveTasks(RoomTasks roomTasks, Path fileTask) throws IOException {
         FileUtil.createIfMissing(fileTask);
         List<Task> tasks = new ArrayList<>();
-        tasks.addAll(taskList.getReadOnlyList());
-        JsonUtil.saveJsonFile(new JsonSerializableTaskList(taskList), fileTask);
+        tasks.addAll(roomTasks.getReadOnlyList());
+        JsonUtil.saveJsonFile(new JsonSerializableTaskList(roomTasks), fileTask);
     }
 }

@@ -35,8 +35,8 @@ public class RoomTaskDetailsPanel extends UiPart<Region> {
     public RoomTaskDetailsPanel(Room room) {
         super(FXML);
         this.room = room;
-        setTaskDetails(room.getTaskList().getReadOnlyList());
-        setCellSize(room.getTaskList().getReadOnlyList());
+        setTaskDetails(room.getReadOnlyTasks());
+        setCellSize(room.getReadOnlyTasks());
     }
 
     /**
@@ -85,7 +85,8 @@ public class RoomTaskDetailsPanel extends UiPart<Region> {
             } else {
                 int roomNumber = room.getRoomNumber();
                 int taskNumber = getIndex() + 1;
-                setGraphic(new TaskCard(roomNumber, taskNumber, room.getTaskList().getReadOnlyList().size(), task)
+                int totalNumberOfTasksInRoom = room.getReadOnlyTasks().size();
+                setGraphic(new TaskCard(roomNumber, taskNumber, totalNumberOfTasksInRoom, task)
                         .getRoot());
             }
         }

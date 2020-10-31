@@ -48,7 +48,7 @@ public class JsonAdaptedRoom {
         if (source.getPatient() != null) {
             this.patient = new JsonAdaptedPatient(source.getPatient());
         }
-        this.tasks = new JsonSerializableTaskList(source.getTaskList());
+        this.tasks = new JsonSerializableTaskList(source.getReadOnlyList());
     }
 
     /**

@@ -38,7 +38,7 @@ public class RoomTaskListPanel extends UiPart<Region> {
      */
     private void populatePanel(ObservableList<Room> roomTaskList) {
         for (Room room : roomTaskList) {
-            if (!room.getTaskList().getReadOnlyList().isEmpty()) {
+            if (!room.getReadOnlyTasks().isEmpty()) {
                 roomBox.getChildren().add(new RoomTaskDetailsPanel(room).getRoot());
             }
         }

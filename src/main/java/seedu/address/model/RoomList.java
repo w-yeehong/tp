@@ -115,7 +115,7 @@ public class RoomList implements ReadOnlyList<Room> {
         return rooms.getRoomWithRoomNumber(roomNumber);
     }
 
-    // TODO: Move task-related methods into another class
+    // TODO: Move task-related methods into another class (need a setRoom() method)
 
     /**
      * Returns the task with the provided {@code taskIndex} from {@code room}.
@@ -125,7 +125,7 @@ public class RoomList implements ReadOnlyList<Room> {
      * @return the optional-wrapped task if found, otherwise an empty optional
      */
     public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
-        List<Task> tasks = room.getTaskList().asUnmodifiableObservableList();
+        List<Task> tasks = room.getReadOnlyTasks();
         if (taskIndex.getZeroBased() >= tasks.size()) {
             return Optional.empty();
         }
@@ -142,7 +142,6 @@ public class RoomList implements ReadOnlyList<Room> {
      */
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-
         rooms.addTaskToRoom(task, room);
     }
 
@@ -152,13 +151,12 @@ public class RoomList implements ReadOnlyList<Room> {
      * The task must exist in the {@code TaskList} of the room.
      *
      * @param task The task to delete.
-     * @param room The room to which the task should be deleted.
+     * @param room The room from which the task should be deleted.
      * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
      * @throws TaskNotFoundException if {@code task} is not in {@code room}.
      */
     public void deleteTaskFromRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-
         rooms.deleteTaskFromRoom(task, room);
     }
 
@@ -175,7 +173,6 @@ public class RoomList implements ReadOnlyList<Room> {
      */
     public void setTaskToRoom(Task target, Task editedTask, Room room) {
         requireAllNonNull(target, editedTask, room);
-
         rooms.setTaskToRoom(target, editedTask, room);
     }
 
@@ -208,7 +205,6 @@ public class RoomList implements ReadOnlyList<Room> {
      */
     public void removePatientFromRoom(Name patientName) {
         requireNonNull(patientName);
-
         rooms.clearRoom(patientName);
     }
     //@@author chiamyunqing

@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -19,7 +20,7 @@ public class Room {
     private int roomNumber;
     private boolean isOccupied;
     private Optional<Patient> patient;
-    private TaskList taskList = new TaskList();
+    private RoomTasks tasks;
 
     /**
      * Creates room object where isOccupied is always false
@@ -29,6 +30,7 @@ public class Room {
         this.roomNumber = roomNumber;
         this.isOccupied = false;
         this.patient = Optional.empty();
+        tasks = new RoomTasks();
     }
 
     /**
@@ -39,6 +41,7 @@ public class Room {
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
         this.patient = Optional.empty();
+        tasks = new RoomTasks();
     }
 
     /**
@@ -46,30 +49,32 @@ public class Room {
      *
      * @param roomNumber Room Number of the room.
      * @param patient Patient to be added to the room.
-     * @param taskList TaskList of tasks for the room.
+     * @param tasks RoomTasks containing tasks for the room.
      */
-    public Room(int roomNumber, Optional<Patient> patient, TaskList taskList) {
-        requireAllNonNull(roomNumber, patient, taskList);
+    public Room(int roomNumber, Optional<Patient> patient, RoomTasks tasks) {
+        requireAllNonNull(roomNumber, patient, tasks);
         this.roomNumber = roomNumber;
         this.isOccupied = true;
         this.patient = patient;
-        this.taskList = taskList;
+        this.tasks = tasks;
     }
 
     /**
      * Creates a Room object where none of the values are pre determined by app
      */
-    public Room(int roomNumber, boolean isOccupied, Optional<Patient> patient, TaskList taskList) {
-        requireAllNonNull(roomNumber, isOccupied, patient, taskList);
+    public Room(int roomNumber, boolean isOccupied, Optional<Patient> patient, RoomTasks tasks) {
+        requireAllNonNull(roomNumber, isOccupied, patient, tasks);
         this.roomNumber = roomNumber;
         this.isOccupied = isOccupied;
         this.patient = patient;
-        this.taskList = taskList;
+        this.tasks = tasks;
     }
 
     public int getRoomNumber() {
         return roomNumber;
     }
+
+    //// patient
 
     public Patient getPatient() {
         if (patient.isEmpty()) {
@@ -77,10 +82,6 @@ public class Room {
         } else {
             return patient.get();
         }
-    }
-
-    public TaskList getTaskList() {
-        return taskList;
     }
 
     public boolean isOccupied() {
@@ -95,22 +96,38 @@ public class Room {
         this.patient = Optional.ofNullable(patient);
     }
 
+    //// tasks
+
+    /**
+     * Returns an unmodifiable version of the list of tasks in this room as an {@code ObservableList}.
+     */
+    public ObservableList<Task> getReadOnlyTasks() {
+        return tasks.getReadOnlyList();
+    }
+
+    /**
+     * Returns an unmodifiable version of the list of tasks in this room as a {@code ReadOnlyList}.
+     */
+    public ReadOnlyList<Task> getReadOnlyList() {
+        return tasks;
+    }
+
     /**
      * Adds a task to the task list of this room.
      *
      * @param task The task to add.
      */
     public void addTask(Task task) {
-        taskList.add(task);
+        tasks.addTask(task);
     }
 
     /**
-     * Adds tasks of TaskList to the task list of this room.
+     * Adds tasks in {@code roomTasks} to this room.
      *
-     * @param tasks The task to add.
+     * @param roomTasks The tasks to add.
      */
-    public void addTask(TaskList tasks) {
-        this.taskList.add(tasks);
+    public void addTasks(List<Task> roomTasks) {
+        tasks.addTasks(roomTasks);
     }
 
     /**
@@ -122,7 +139,7 @@ public class Room {
      */
     public void deleteTask(Task task) {
         try {
-            taskList.remove(task);
+            tasks.removeTask(task);
         } catch (TaskNotFoundException e) {
             throw e;
         }
@@ -138,15 +155,21 @@ public class Room {
      */
     public void setTask(Task target, Task editedTask) {
         try {
-            taskList.setTask(target, editedTask);
+            tasks.setTask(target, editedTask);
         } catch (TaskNotFoundException e) {
             throw e;
         }
     }
 
-    public void setTaskList(List<Task> taskList) {
-        this.taskList.setTasks(taskList);
+    /**
+     * Enumerates the tasks in this room, numbering and specifying the details of each task.
+     *
+     * @return A print-friendly summary for the tasks in this room.
+     */
+    public String getPrintFriendlyTaskSummary() {
+        return tasks.toString();
     }
+
     /**
      * Returns true if both rooms of the same number have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two rooms.
@@ -178,18 +201,18 @@ public class Room {
             return roomNumber == room.roomNumber
                     && room.patient.isEmpty()
                     && isOccupied == room.isOccupied
-                    && taskList.equals(room.getTaskList());
+                    && tasks.equals(room.tasks);
         } else {
             return roomNumber == room.roomNumber
                     && isOccupied == room.isOccupied
                     && patient.get().equals(room.getPatient())
-                    && taskList.equals(room.getTaskList());
+                    && tasks.equals(room.tasks);
         }
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roomNumber, isOccupied, taskList);
+        return Objects.hash(roomNumber, isOccupied, tasks);
     }
 
 
@@ -201,8 +224,8 @@ public class Room {
                 .append(getRoomNumber() + "\n")
                 .append("Patient: ")
                 .append(patientDetails + "\n")
-                .append("TaskList: ")
-                .append(taskList.toString() + "\n");
+                .append("Tasks: ")
+                .append(tasks.toString() + "\n");
         return builder.toString();
     }
 }

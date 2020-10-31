@@ -296,7 +296,7 @@ public class ModelManager implements Model {
     @Override
     public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
         requireAllNonNull(taskIndex, room);
-        List<Task> tasks = room.getTaskList().asUnmodifiableObservableList();
+        List<Task> tasks = room.getReadOnlyTasks();
         if (taskIndex.getZeroBased() >= tasks.size()) {
             return Optional.empty();
         }

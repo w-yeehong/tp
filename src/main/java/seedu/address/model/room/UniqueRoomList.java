@@ -164,7 +164,7 @@ public class UniqueRoomList implements Iterable<Room> {
             unoccupiedRooms.remove(0);
             empty.setOccupied(true);
             empty.setPatient(room.getPatient());
-            empty.addTask(room.getTaskList());
+            empty.addTasks(room.getReadOnlyTasks());
         }
     }
 
@@ -193,6 +193,22 @@ public class UniqueRoomList implements Iterable<Room> {
     }
 
     /**
+     * Returns the room with the provided {@code roomNumber}.
+     * An empty optional is returned if such a room is not found in the {@code RoomList}.
+     *
+     * @param roomNumber The room number of the room.
+     * @return the optional-wrapped room if found, otherwise an empty optional
+     */
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        for (Room room : internalUnmodifiableList) {
+            if (roomNumber == room.getRoomNumber()) {
+                return Optional.of(room);
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
      * Adds a task to a room.
      * The room must exist in the {@code RoomList}.
      *
@@ -218,7 +234,7 @@ public class UniqueRoomList implements Iterable<Room> {
      * The task must exist in the {@code TaskList} of the room.
      *
      * @param task The task to delete.
-     * @param room The room to which the task should be deleted.
+     * @param room The room from which the task should be deleted.
      * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
      * @throws TaskNotFoundException if {@code task} is not in {@code room}.
      */
@@ -234,6 +250,17 @@ public class UniqueRoomList implements Iterable<Room> {
         internalList.set(index, room);
     }
 
+    /**
+     * Replaces a task {code target} in a room with {@code editedTask}.
+     * The room must exist in the {@code RoomList}.
+     * The {@code target} must exist in the {@code TaskList} of the room.
+     *
+     * @param target The task to be replaced.
+     * @param editedTask The edited task to replace the target.
+     * @param room The room in which the task should be replaced.
+     * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
+     * @throws TaskNotFoundException if {@code target} is not in {@code room}.
+     */
     public void setTaskToRoom(Task target, Task editedTask, Room room) {
         requireAllNonNull(target, editedTask, room);
 
@@ -277,6 +304,7 @@ public class UniqueRoomList implements Iterable<Room> {
             return true;
         }
     }
+
     /**
      * Returns true if the list contains an equivalent room as the given argument.
      */
@@ -325,6 +353,7 @@ public class UniqueRoomList implements Iterable<Room> {
         rooms.add(editedRoom);
         internalList.set(index, editedRoom);
     }
+
     @Override
     public int hashCode() {
         int result = Objects.hash(numOfRooms, rooms, internalList);
@@ -338,15 +367,6 @@ public class UniqueRoomList implements Iterable<Room> {
 
     public void setRooms(PriorityQueue<Room> rooms) {
         this.rooms = rooms;
-    }
-
-    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
-        for (Room room : internalList) {
-            if (roomNumber == room.getRoomNumber()) {
-                return Optional.of(room);
-            }
-        }
-        return Optional.empty();
     }
 
 }

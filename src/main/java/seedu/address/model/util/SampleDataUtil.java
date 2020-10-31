@@ -10,8 +10,8 @@ import seedu.address.model.patient.PeriodOfStay;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTasks;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 /**
  * Contains utility methods for populating {@code CovigentApp} with sample data.
@@ -57,11 +57,11 @@ public class SampleDataUtil {
         return roomList;
     }
 
-    public static ReadOnlyList<Task> getSampleTaskList() {
-        TaskList taskList = new TaskList();
+    public static ReadOnlyList<Task> getSampleRoomTasks() {
+        RoomTasks roomTasks = new RoomTasks();
         for (Task task : getSampleTask()) {
-            taskList.add(task);
+            roomTasks.addTask(task);
         }
-        return taskList;
+        return roomTasks;
     }
 }

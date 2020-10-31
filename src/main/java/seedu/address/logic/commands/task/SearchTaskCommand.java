@@ -52,7 +52,7 @@ public class SearchTaskCommand extends Command {
         List<Room> rooms = model.getRoomListObservableList();
         ArrayList<Task> taskListWithDesirableResult = new ArrayList<>();
         for (Room room : rooms) {
-            tasks = room.getTaskList().asUnmodifiableObservableList();
+            tasks = room.getReadOnlyTasks();
             for (Task task : tasks) {
                 if (task.getDueAt().compareTo(duedate) == 1) {
                     taskListWithDesirableResult.add(task);
