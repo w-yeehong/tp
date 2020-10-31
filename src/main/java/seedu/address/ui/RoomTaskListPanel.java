@@ -38,9 +38,7 @@ public class RoomTaskListPanel extends UiPart<Region> {
      */
     private void populatePanel(ObservableList<Room> roomTaskList) {
         for (Room room : roomTaskList) {
-            if (!room.getReadOnlyTasks().isEmpty()) {
-                roomBox.getChildren().add(new RoomTaskDetailsPanel(room).getRoot());
-            }
+            roomBox.getChildren().add(new RoomTaskDetailsPanel(room).getRoot());
         }
     }
 
@@ -59,9 +57,10 @@ public class RoomTaskListPanel extends UiPart<Region> {
     //@@author w-yeehong
     /**
      * Attaches a listener to {@code roomTaskList}, repopulating the panel whenever
-     * there are changes.
+     * there are removals in the list of rooms.
      *
-     * Fixes the issue of the panel not refreshing when a new task is added to an empty list.
+     * Fixes the issue of the panel not refreshing when a room is removed from the
+     * list of rooms.
      *
      * @param roomTaskList to listen for changes.
      */
