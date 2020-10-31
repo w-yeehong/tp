@@ -41,14 +41,25 @@
 
 ## 1. Introduction
 
-**Covigent** is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. 
-It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI).
-This means that you operate Covigent mainly by typing commands into a Command Box.
-If you can type quickly, **Covigent** can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
+Welcome to User Guide for our application, Covigent! Are you a manager of a quarantine facility searching for an application 
+to manage the information of quarantined individuals or the tasks to be done by your staff? Your search ends here! 
 
-Interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get started.
+Covigent is a desktop management application that helps to keep track of the information of quarantined individuals 
+and the tasks to be done by the staff of the quarantined facility. The main features include:<br>
 
-This is what **Covigent** looks like:
+      1. Managing quarantined individuals information - Period of Stay, temperature, phone number etc.<br>
+      2. Managing the rooms of the quarantine facility - Allocate quarantined individuals to rooms, search for a room, etc.<br>
+      3. Managing the tasks to be done by each room - Add a task to a room, editing a task to the room, etc.<br>
+
+As an application optimized for use with a keyboard rather than the mouse, you operate Covigent mainly by 
+typing commands into a Command Box. If you can type quickly, Covigent can improve your efficiency in managing your patients and tasks instead of using traditional apps.
+But wait! Don't forget our beautiful Graphical User Interface (GUI) too!
+With our easy to navigate GUI, it has served it's purpose well as an interface that facilitates interaction with our application
+through graphical icons. 
+
+Getting interested? Jump to [Section 3, "Getting Started"](#3-getting-started) to get started.
+
+This is what Covigent looks like:
 
 <p align="center">
     <img src="images/ug/figure1_ui.png">
