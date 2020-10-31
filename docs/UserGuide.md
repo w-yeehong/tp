@@ -298,7 +298,7 @@ Field | Description
 1. `editpatient john doe p/91234567` The phone number of the patient named John Doe will be updated to _91234567_.
 1. `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
 
-**Expected Outcome:** <br />
+**Step By Step Usage:** <br />
 * Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 91234567 Age: 23 Comment: -".
 * The details of the patient will be shown in the details panel.
 * Figure 5 shows an example of a successful execution.
@@ -329,7 +329,7 @@ Field | Description
 1 `searchpatient n/john` Searches patients with names containing _john_.
 1 `searchpatient tr/36.5-36.7` Searches patients within temperature range _36.5 to 36.7_ degree celsius, both inclusive.
 
-**Expected Outcome**: <br />
+**Step By Step Usage:**  <br />
 * Using the second example, the result box displays the message, "Listed patient(s) matching the criteria.".
 * Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in Covigent.
 * Figure 6 shows an example of a successful execution.
@@ -350,7 +350,7 @@ You can use this command to look at the list of all patients in the patient tab.
 **Example(s)**:
 1. `listpatient` Lists all patients that are present in Covigent.
 
-**Expected Outcome**: <br />
+**Step By Step Usage:**  <br />
 * The result box displays the message, "All patients are listed.".
 * Figure 7 shows an example of a successful execution.
 <p align="center">
@@ -385,7 +385,7 @@ Field | Description
 1. `initroom 123`. 123 rooms are initialised in Covigent.
 1. `initroom 400`. 400 rooms are initialised in Covigent.
 
-**Expected Outcome:** <br />
+**Step By Step Usage:** <br />
 * The result box shows a success message "Initialise the number of rooms to 400 rooms in the application.".
 * Figure 8 shows an example of a successful execution.
 <p align="center">
@@ -415,7 +415,7 @@ Field | Description
 1. `allocateroom 1 n/john doe`. The patient named John Doe will be allocated to Room #1.
 1. `allocateroom 1 n/-`. The previous patient will be removed from Room #1.
 
-**Expected Outcome:** <br />
+**Step By Step Usage:** <br />
 * Using the first example, the result box displays the message, "Allocate Room: Room Number: 1 Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
 Phone: 91234567 Age: 23 Comment: - TaskList: -".
 * The details of the room with the allocated patient will be shown in the details panel.
@@ -521,7 +521,7 @@ Format: `listroom` All the rooms in Covigent.
 * You need at least one room for this command to work.<br />
 <br />
 
-**Expected Outcome:** <br />
+**Step By Step Usage:** <br />
 * The result box shows a success message "All rooms are listed.".
 * Figure 12 shows an example of a successful execution.
 <p align="center">
@@ -542,7 +542,7 @@ Format: `findemptyroom` The unoccupied room in Covigent with the lowest room num
 * If there are no empty rooms then an error message informing hotel staff is mentioned.
 <br />
 
-**Expected Outcome:** <br />
+**Step By Step Usage:** <br />
 * The result box shows a success message "Room Number 1 is empty.".
 
 <p align="center">
@@ -578,7 +578,7 @@ Field | Description
 1. `addtask r/5 d/Remind patient to change bedsheets.` A task with description _Remind patient to change bedsheets._ is added to Room #5.
 1. `addtask r/1 d/Running low on masks and needs to be restocked. dd/12/1/2021` A task with description _Running low on masks and needs to be restocked._ and due date _12 Jan 2021 0000_ is added to Room #1.
 
-**Expected Outcome:** <br />
+**Step By Step Usage:** <br />
 * Using the first example, the result box displays the message _New Task added to Room 5. Description: Remind Alice to change bedsheets. Due Date: -_.
 * The newly added task can now be found in Room #5.
 * The newly added task can now be found in the list of tasks in Covigent.
@@ -614,7 +614,7 @@ Field | Description
 **Example(s):**
 1. `deletetask r/5 t/1` The first task (Task 1) of Room #5 is deleted.
 
-**Expected Outcome:** <br />
+**Step By Step Usage:** <br />
 * The result box displays the message _Task 1 deleted from Room 5._, followed by the description and due date of Task 1.
 * Task 1 is no longer in Room #5.
 * For tasks that come after Task 1, the `TASK_NUMBER` is decreased by 1. E.g. The previous Task 4 will become Task 3.
@@ -651,7 +651,7 @@ Field | Description
 1. `edittask r/3 t/1 d/Return a call to the patient. dd/12/1/2021 1500` The description and due date of the first task (Task 1) in Room #3 are updated to _Return a call to the patient._ and _12 Jan 2021 1500_ respectively.
 1. `edittask r/2 t/2 dd/12-1-2021` The due date for the second task (Task 2) of Room #2 is updated to _12 Jan 2021 0000_.
 
-**Expected Outcome:** <br />
+**Step By Step Usage:** <br />
 * Using the first example, the result box displays the message _Task 1 edited from Room 3. Description: Return a call to the patient. Due Date: 12 Jan 2021 1500_.
 * The details panel for Room #3 shows the updated description and due date of Task 1.
 * The list of tasks in Covigent shows the updated description and due date of Task 1.
@@ -684,7 +684,7 @@ Field | Description
 **Example(s):**
 1. `edittask r/3 t/1 dd/-` The due date of the first task (Task 1) in Room #3 is removed, i.e. set to `-`.
 
-**Expected Outcome:** <br />
+**Step By Step Usage:** <br />
 * The result box displays the message _Task 1 edited from Room 3._ followed by the current description of Task 1 and _Due Date: -_.
 * The details panel for Room #3 shows that Task 1 no longer has a due date.
 * The list of tasks in Covigent shows that Task 1 of Room #3 no longer has a due date.
@@ -714,7 +714,7 @@ Field | Description
 **Example(s)**:
 1. `searchtask dd/12/1/2021` Search all tasks before and including 12 January 2021 0000.
 
-**Expected Outcome**:<br />
+**Step By Step Usage:** <br />
 * The result box displays the message, "Tasks before the due date found.".
 * Tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent.
 * Figure 19 shows an example of a successful execution.
