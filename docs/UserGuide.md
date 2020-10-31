@@ -62,7 +62,7 @@ Getting interested? Jump to [Section 3, "Getting Started"](#3-getting-started) t
 This is what Covigent looks like:
 
 <p align="center">
-    <img src="images/ug/figure1_ui.png">
+    <img src="images/ug/f1_ui.png">
     <br />
     <i>Figure 1. The Graphical User Interface for Covigent</i>
 </p>
@@ -125,7 +125,7 @@ The following steps to set up **Covigent** are applicable to Windows, Mac OS X, 
 Every feature has a corresponding command. Using a feature is as simple as typing a command in the command box (see Figure 2) and pressing Enter to execute it.
 
 <p align="center">
-    <img src="images/ug/figure2_commandbox.png" width="800" height="100">
+    <img src="images/ug/f2_commandbox.png" width="800" height="100">
     <br />
     <i>Figure 2. Command Box of Covigent</i>
 </p>
@@ -207,18 +207,18 @@ Field | Description
 
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/addpatientcommand.png" width="700" height="150">
+    <img src="images/ug/f4_addpatientcommand.png" width="700" height="150">
     <br />
    <i>Figure 4. <code>addpatient</code> command in Command Box</i>
 </p>
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure 5, the result box displays the message, "New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic". The newly added patient can now be found in the list of patients in Covigent. 
+4. With reference to Figure 5, the result box displays the message, "_New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic_". The newly added patient can now be found in the list of patients in Covigent. 
 
 5. To view the details of the newly added patient, click on the newly added patient in the patient list.
 <p align="center">
-    <img src="images/ug/addpatientsuccess.png" width="620" height="400">
+    <img src="images/ug/f5_addpatientsuccess.png" width="620" height="400">
     <br />
     <i>Figure 5. A Successful Execution of <code>addpatient</code> command</i>
 </p>
@@ -255,16 +255,16 @@ Field | Description
 
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/deletepatientcommand.png" width="700" height="150">
+    <img src="images/ug/f7_deletepatientcommand.png" width="700" height="150">
     <br />
    <i>Figure 7. <code>deletepatient</code> command in Command Box</i>
 </p>
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure 8, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". The deleted patient can no longer be found in the list of patients in Covigent.
+4. With reference to Figure 8, the result box displays the message "_Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic_". The deleted patient can no longer be found in the list of patients in Covigent.
 <p align="center">
-    <img src="images/ug/deletepatientsuccess.png" width="620" height="400">
+    <img src="images/ug/f8_deletepatientsuccess.png" width="620" height="400">
     <br />
     <i>Figure 8. A Successful Execution of <code>deletepatient</code></i>
 </p>
@@ -275,7 +275,7 @@ _Written by: Yun Qing_
 
 #### 5.2.3 Edit Patient Details: `editpatient`
 
-Edits an existing patient's details in Covigent.
+You can use this command to edit an existing patient's details in Covigent.
 
 **Format**: `editpatient ORIGINAL_NAME [n/NEW_NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br />
 
@@ -299,14 +299,32 @@ Field | Description
 1. `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
 
 **Step By Step Usage:** <br />
-* Using the first example, the result box displays the message, "Edited Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 91234567 Age: 23 Comment: -".
-* The details of the patient will be shown in the details panel.
-* Figure 5 shows an example of a successful execution.
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 3.
 <p align="center">
-    <img src="images/ug/figure5_editpatient.png" width="620" height="400">
+    <img src="images/ug/patienttab.png" width="380" height="300">
     <br />
-    <i>Figure 5. A Successful Execution of <code>editpatient</code></i>
+   <i>Figure 9. Navigation to Patients tab</i>
 </p>
+
+2. Using the first example, key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/f10_editpatientcommand.png" width="700" height="150">
+    <br />
+   <i>Figure 10. <code>editpatient</code> command in Command Box</i>
+</p>
+
+3. Press `enter` to run the command.
+
+4. With reference to Figure 5, the result box displays the message, "_Edited Patient: Alex Yeoh Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 912345678 Age: 23 Comment: -_". The patient will be edited in Covigent. 
+
+5. To view the details of the newly added patient, click on the newly added patient in the patient list.
+<p align="center">
+    <img src="images/ug/f11_editpatientsuccess.png" width="620" height="400">
+    <br />
+    <i>Figure 11. A Successful Execution of <code>editpatient</code> command</i>
+</p>
+
+6. If you do not see the success message as shown in Figure 5, please repeat step 2 onwards.
 
 _Written by: Ming De_
 
@@ -416,15 +434,32 @@ Field | Description
 1. `allocateroom 1 n/-`. The previous patient will be removed from Room #1.
 
 **Step By Step Usage:** <br />
-* Using the first example, the result box displays the message, "Allocate Room: Room Number: 1 Patient: John Doe Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020
-Phone: 91234567 Age: 23 Comment: - TaskList: -".
-* The details of the room with the allocated patient will be shown in the details panel.
-* Figure 9 shows an example of a successful execution.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure ??.
 <p align="center">
-    <img src="images/ug/figure9_allocateroom.png" width="620" height="400">
+    <img src="images/ug/roomstab.png" width="380" height="300">
     <br />
-    <i>Figure 9. A Successful Execution of <code>allocateroom</code></i>
+   <i>Figure ??. Navigation to Rooms tab</i>
 </p>
+
+2. Using the first example, key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/allocateroomcommand.png" width="700" height="150">
+    <br />
+   <i>Figure 7. <code>allocateroom</code> command in Command Box</i>
+</p>
+
+3. Press `enter` to run the command.
+
+4. With reference to Figure ??, the result box displays the message "_Allocated Room: Room Number: 1 Patient: Alex Yeoh 
+Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 912345678Age: 23 Comment: - TaskList: -_" 
+The room with the specified room number is shown in the room details panel.
+<p align="center">
+    <img src="images/ug/allocateroomsuccess.png" width="620" height="400">
+    <br />
+    <i>Figure ??. A Successful Execution of <code>allocateroom</code> for Room Number</i>
+</p>
+
+5. If you do not see the success message as shown in Figure ??, please repeat step 2 onwards.
 
 _Written by: Ming De_
 
@@ -458,7 +493,7 @@ Field | Description
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure ??, the result box displays the message "Room has been found and listed." The room with the specified room number is shown in the room details panel.
+4. With reference to Figure ??, the result box displays the message "_Room has been found and listed._" The room with the specified room number is shown in the room details panel.
 <p align="center">
     <img src="images/ug/searchroomnumbersuccess.png" width="620" height="400">
     <br />
@@ -499,7 +534,7 @@ Field | Description
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure ??, the result box displays the message "Room has been found and listed." The room that the specified patient resides in is shown in the room details panel.
+4. With reference to Figure ??, the result box displays the message "_Room has been found and listed._" The room that the specified patient resides in is shown in the room details panel.
 <p align="center">
     <img src="images/ug/searchroompatientsuccess.png" width="620" height="400">
     <br />
@@ -512,7 +547,7 @@ _Written by: Yun Qing_
 
 #### 5.3.5 List the Current Rooms: `listroom`
 
-You can use this command to list all the rooms in the hotel together with informtion of whether the room is occupied or not.
+You can use this command to list all the rooms in the hotel together with information of whether the room is occupied or not.
 
 Format: `listroom` All the rooms in Covigent.
 
