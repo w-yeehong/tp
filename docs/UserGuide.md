@@ -72,21 +72,36 @@ _Written by: Ming De_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. About this Document
+## 2. About this Guide
 
-Welcome to the **Covigent User Guide**! Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
+This guide gives you an overview of the features in Covigent and shows you how to get started using Covigent. 
+Choose a link in the [Feature](#5-features) section to get a step-by-step instruction, and understand how to use Covigent. 
 
 ### 2.1 What is in Covigent
 
+@wailok, change or delete if you want or need to
+
+In our patient features, you can [add](#521-add-a-patient-addpatient), [delete](#522-delete-a-patient-deletepatient),
+[edit](#523-edit-patient-details-editpatient), [search](#524-search-patients-by-information-searchpatient) for a patient,
+or you can [list](#525-list-all-patients-listpatient) out all the patients in Covigent.
+
+Moving on to our room features, you can [initialize](#531-initialise-rooms-in-hotel-initroom), [allocate](#532-allocate-patient-to-room-allocateroom),
+[search](#533-search-by-room-number-searchroom) and [find](#536-find-the-first-free-room-findemptyroom) the rooms which you need.
+If you want an overview of the rooms, you can [list](#535-list-the-current-rooms-listroom) out all the rooms in Covigent.
+
+Next, for our task features, you can [add](#541-add-a-task-to-a-room-addtask), [delete](#542-delete-a-task-from-a-room-deletetask), 
+[edit](#543-edit-task-description-or-due-date-edittask) and [search](#545-search-tasks-before-a-given-date-searchtask) for a task
+and see it be displayed on our amazing GUI.
+
+Lastly, our miscellaneous features will ensure that you can seek [help](#55-view-help-help) if you are lost, or 
+[exit](#56-exit-covigent-exit) the program when you are done with it.
+
+(@wailok, can delete below portion after you are done with it)<br>
 Covigent contains the following features:
 * Patient Features: `addpatient`, `deletepatient`, `editpatient`, `searchpatient`, `listpatient`.
-* Room Features: `initroom`, `editroom`, `searchroom`, `listroom`, `findemptyroom`.
+* Room Features: `initroom`, `allocateroom`, `searchroom`, `listroom`, `findemptyroom`.
 * Task Features: `addtask`, `deletetask`, `edittask`, `searchtask`.
 * Miscellaneous Features: `help`, `exit`, `autosave`.
-
-### 2.2 About the Guide
-
-This tutorial gives you an overview of the features in **Covigent** and shows you how to get started using **Covigent**.
 
 ### 2.3 Formats in the Guide
 
