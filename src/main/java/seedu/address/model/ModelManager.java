@@ -17,7 +17,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.task.DueDatePredicate;
 import seedu.address.model.task.Task;
 
 /**
@@ -324,7 +323,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> datePredicate) {
-        for (int i = 0; i < roomList.getNumOfRooms(); i ++) {
+        for (int i = 0; i < roomList.getNumOfRooms(); i++) {
             roomList.getRoomObservableList().get(i).getTaskList().setTaskListPredicate(datePredicate);
         }
 
