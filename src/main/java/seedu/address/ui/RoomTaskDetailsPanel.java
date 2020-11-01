@@ -3,12 +3,9 @@ package seedu.address.ui;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Orientation;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
@@ -29,8 +26,6 @@ public class RoomTaskDetailsPanel extends UiPart<Region> {
     private VBox taskDetailsBox;
     @FXML
     private ListView<Task> taskListView;
-    @FXML
-    private StackPane pane;
 
     /**
      * Creates a RoomTaskDetailsPanel to display tasks in a room.
@@ -49,12 +44,14 @@ public class RoomTaskDetailsPanel extends UiPart<Region> {
      *
      * @param taskList The list of tasks to create the {@code TaskListViewCell}.
      */
+    //@@author raymondge
     private void setTaskDetails(ObservableList<Task> taskList) {
 
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
         taskListView.getStyleClass().add("pretty-list-view");
     }
+    //@@author raymondge
 
     /**
      * Sets a fixed size for each {@code TaskListViewCell}. This is necessary to dynamically set the height
