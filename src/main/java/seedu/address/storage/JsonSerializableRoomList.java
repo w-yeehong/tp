@@ -51,6 +51,7 @@ public class JsonSerializableRoomList {
             if (room.getRoomNumber() != currRoomNum) {
                 throw new IllegalValueException(WRONG_ORDER_OF_ROOM);
             }
+            currRoomNum++;
             roomList.addRooms(room);
         }
         return roomList;
