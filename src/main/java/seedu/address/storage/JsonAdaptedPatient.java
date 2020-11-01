@@ -84,7 +84,7 @@ class JsonAdaptedPatient {
         }
 
         if (!PeriodOfStay.isValidPeriodOfStay(periodOfStay)) {
-            throw new IllegalValueException(PeriodOfStay.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(PeriodOfStay.getErrorMessage(periodOfStay));
         }
 
         final PeriodOfStay modelPeriod = new PeriodOfStay(periodOfStay);

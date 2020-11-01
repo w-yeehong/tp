@@ -129,7 +129,7 @@ public class AddPatientCommandParserTest {
 
         //invalid period of stay
         assertParseFailure(parser, NAME_DESC_BOB + TEMP_DESC_BOB + INVALID_PERIOD_DESC
-                + PHONE_DESC_BOB + AGE_DESC_BOB, PeriodOfStay.MESSAGE_CONSTRAINTS);
+                + PHONE_DESC_BOB + AGE_DESC_BOB, PeriodOfStay.MESSAGE_INVALID_DATE);
 
         //invalid age
         assertParseFailure(parser, NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB

@@ -72,7 +72,7 @@ public class PatientParserUtil {
         requireNonNull(periodOfStay);
         String trimmedPeriodOfStay = periodOfStay.trim();
         if (!PeriodOfStay.isValidPeriodOfStay(trimmedPeriodOfStay)) {
-            throw new ParseException(PeriodOfStay.MESSAGE_CONSTRAINTS);
+            throw new ParseException(PeriodOfStay.getErrorMessage(trimmedPeriodOfStay));
         }
         return new PeriodOfStay(trimmedPeriodOfStay);
     }

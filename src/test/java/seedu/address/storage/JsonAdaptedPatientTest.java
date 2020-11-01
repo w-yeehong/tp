@@ -74,7 +74,7 @@ public class JsonAdaptedPatientTest {
         JsonAdaptedPatient patient =
                 new JsonAdaptedPatient(VALID_NAME, VALID_TEMP, INVALID_PERIOD,
                         VALID_PHONE, VALID_AGE, COMMENT);
-        String expectedMessage = PeriodOfStay.MESSAGE_CONSTRAINTS;
+        String expectedMessage = PeriodOfStay.MESSAGE_INVALID_DATE;
         assertThrows(IllegalValueException.class, expectedMessage, patient::toModelType);
     }
 
