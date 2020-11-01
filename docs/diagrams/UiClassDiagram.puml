@@ -14,7 +14,8 @@ Class ResultDisplay
 Class PatientListPanel
 Class RoomListPanel
 Class RoomDetailsPanel
-Class TaskListPanel
+Class RoomTaskListPanel
+Class RoomTaskDetailsPanel
 Class TaskCard
 Class RoomCard
 Class PatientCard
@@ -36,12 +37,13 @@ MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PatientListPanel
-MainWindow *-down-> TaskListPanel
+MainWindow *-down-> RoomTaskListPanel
 MainWindow *-down-> RoomListPanel
 MainWindow *-down-> StatusBarFooter
 
 PatientListPanel .down-> PatientCard : defined by >
-TaskListPanel .down-> TaskCard : defined by >
+RoomTaskListPanel *.down-> TaskCard : defined by >
+RoomTaskListPanel *.down-> RoomTaskDetailsPanel : defined by >
 RoomListPanel *.down-> RoomCard : defined by >
 RoomListPanel *.down-> RoomDetailsPanel : defined by >
 
