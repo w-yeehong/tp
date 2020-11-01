@@ -803,13 +803,29 @@ Field | Description
 1. `searchtask dd/12/1/2021` Search all tasks before and including 12 January 2021 0000.
 
 **Step By Step Usage:** <br />
-* The result box displays the message, "Tasks before the due date found.".
-* Tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent.
-* Figure 19 shows an example of a successful execution.
+1. Navigate to the Tasks tab under the navigation bar as shown in Figure 60.
 <p align="center">
-    <img src="images/ug/figure19_searchtask.png" width="480" height="400">
+    <img src="images/ug/navigatetotask.PNG" width="380" height="300">
     <br />
-    <i>Figure 19. A Successful Execution of <code>searchtask</code></i>
+   <i>Figure 60. Navigation to Tasks tab</i>
+</p>
+
+2. Using the example,  key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/searchtaskcommand.PNG" width="380" height="300">
+    <br />
+   <i>Figure 61. <code>searchtask</code> command in Command Box</i>
+</p>
+
+3. Press `enter` to run the command.
+
+4. With reference to Figure 62, the result box displays the message, "Tasks before the due date found.".
+
+5. Now you can find tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent.
+<p align="center">
+    <img src="images/ug/searchtask.PNG" width="480" height="400">
+    <br />
+    <i>Figure 15. A Successful Execution of <code>searchtask</code></i>
 </p>
 
 _Written by: Wai Lok_
