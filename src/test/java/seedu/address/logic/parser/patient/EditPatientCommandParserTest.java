@@ -68,7 +68,7 @@ public class EditPatientCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, VALID_NAME_AMY + INVALID_AGE_DESC,
-                Age.MESSAGE_AGE_NOT_NUMBER); // invalid age
+                Age.MESSAGE_INVALID_AGE_RANGE); // invalid age
         assertParseFailure(parser, VALID_NAME_AMY + INVALID_PERIOD_DESC,
                 PeriodOfStay.MESSAGE_INVALID_DATE); // invalid period
         assertParseFailure(parser, VALID_NAME_AMY + INVALID_TEMP_DESC,

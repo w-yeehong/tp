@@ -12,8 +12,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Temperature {
     public static final String MESSAGE_CONSTRAINTS =
-            "Temperature should only contain numbers and it should be to one decimal place. (E.g. 36.0).\n" +
-                    "The range of temperature should be between 32.0 (inclusive) to 41.0 (inclusive) degree Celsius.";
+            "Temperature should only contain numbers and it should be to one decimal place. (E.g. 36.0).\n"
+                    + "The range of temperature should be between 32.0 (inclusive) to 41.0 (inclusive) degree Celsius.";
 
     public static final String VALIDATION_REGEX = "\\d\\d[.]\\d";
     private final double value;
