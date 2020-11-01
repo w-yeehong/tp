@@ -17,6 +17,7 @@ import seedu.address.model.room.Room;
 @JsonRootName(value = "roomList")
 public class JsonSerializableRoomList {
 
+    public static final String WRONG_ORDER_OF_ROOM = "Rooms are not inserted in the correct order.";
     @JsonProperty("rooms")
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
 
@@ -44,8 +45,12 @@ public class JsonSerializableRoomList {
      */
     public RoomList toModelType() throws IllegalValueException {
         RoomList roomList = new RoomList();
+        int currRoomNum = 1;
         for (JsonAdaptedRoom jsonAdaptedRoom : rooms) {
             Room room = jsonAdaptedRoom.toModelType();
+            if (room.getRoomNumber() != currRoomNum) {
+                throw new IllegalValueException(WRONG_ORDER_OF_ROOM);
+            }
             roomList.addRooms(room);
         }
         return roomList;

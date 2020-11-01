@@ -30,7 +30,7 @@ public class InitRoomCommandParser implements Parser<InitRoomCommand> {
             numberOfRooms = Integer.parseInt(trimmedArgs);
         } catch (NumberFormatException nfe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NUMBER_OF_ROOMS_GIVEN_IN_DIGITS));
-            //if user does not give number of rooms in terms of digits but gives in terms of words
+            //if user does not give number of rooms in terms of integers but gives in terms of words
         }
         return new InitRoomCommand(numberOfRooms);
     }

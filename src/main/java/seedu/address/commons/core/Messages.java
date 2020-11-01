@@ -21,12 +21,13 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_ROOM_NUMBER = "The room number provided "
             + "cannot be found in Covigent.";
-    public static final String NUMBER_OF_ROOMS_GIVEN_IN_DIGITS = "Please give the number of digits in numbers\n"
+    public static final String NUMBER_OF_ROOMS_GIVEN_IN_DIGITS = "Please give the number of digits in integers\n"
             + "Example: addRooms 200";
     public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient has already been assigned a room.\nPlease"
             + " clear patient from the room first.";
     public static final String MESSAGE_PATIENT_NO_ROOM = "Patient is not assigned to any room yet.";
-
+    public static final String MESSAGE_NO_EXCESS_WORDS_LIST_ROOM = "No excess words for list room.";
+    public static final String MESSAGE_NO_EXCESS_WORDS_FIND_EMPTY_ROOM = "No excess words for find empty room.";
     // tasks
 
     public static final String MESSAGE_INVALID_TASK_INDEX = "The task number provided "

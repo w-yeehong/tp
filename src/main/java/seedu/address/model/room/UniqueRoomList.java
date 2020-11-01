@@ -126,11 +126,11 @@ public class UniqueRoomList implements Iterable<Room> {
                 Room room = internalList.get(i);
                 rooms.add(room);
             }
-
             int size = internalList.size();
             for (int i = numOfRooms; i < size; i++) {
-                internalList.remove(numOfRooms);
+                roomArrayList.remove(numOfRooms);
             }
+            internalList.setAll(roomArrayList);
         }
     }
 
