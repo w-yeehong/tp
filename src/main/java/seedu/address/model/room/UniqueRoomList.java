@@ -82,6 +82,7 @@ public class UniqueRoomList implements Iterable<Room> {
 
     /**
      * Adds this room to the RoomList
+     *
      * @param room is added to RoomList
      */
     public void addRooms(Room room) {
@@ -101,6 +102,7 @@ public class UniqueRoomList implements Iterable<Room> {
     }
 
     private void addRooms() {
+        ArrayList<Room> roomArrayList = new ArrayList<>(internalList);
         if (numOfRooms <= 0) {
             return;
         }
@@ -108,8 +110,9 @@ public class UniqueRoomList implements Iterable<Room> {
             for (int i = internalList.size(); i < numOfRooms; i++) {
                 Room room = new Room(i + 1);
                 rooms.add(room);
-                internalList.add(room);
+                roomArrayList.add(room);
             }
+            internalList.setAll(roomArrayList);
         } else if (numOfRooms < internalList.size()) {
             List<Room> occupiedRooms = occupiedRooms();
             List<Room> unoccupiedRooms = unOccupiedRooms();
@@ -163,7 +166,7 @@ public class UniqueRoomList implements Iterable<Room> {
             Room empty = unoccupiedRooms.get(0);
             unoccupiedRooms.remove(0);
             empty.setOccupied(true);
-            empty.setPatient(room.getPatient());
+            empty.setPatient(room.getPatient().get());
             empty.addTask(room.getTaskList());
         }
     }
@@ -287,6 +290,7 @@ public class UniqueRoomList implements Iterable<Room> {
 
     /**
      * Clears the room which contains the patient with the given name.
+     *
      * @param patientName to clear the room from.
      */
     public void clearRoom(Name patientName) {
@@ -295,7 +299,7 @@ public class UniqueRoomList implements Iterable<Room> {
             if (!internalList.get(i - 1).isOccupied()) {
                 continue;
             }
-            Name patientNameInRoom = internalList.get(i - 1).getPatient().getName();
+            Name patientNameInRoom = internalList.get(i - 1).getPatient().get().getName();
             if (patientName.equals(patientNameInRoom)) {
                 Room roomToClear = internalList.get(i - 1);
                 setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber()));
