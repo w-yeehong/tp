@@ -108,7 +108,7 @@ public class JsonAdaptedPatientTest {
         JsonAdaptedPatient patient =
                 new JsonAdaptedPatient(VALID_NAME, VALID_TEMP, VALID_PERIOD,
                         VALID_PHONE, INVALID_AGE, COMMENT);
-        String expectedMessage = Age.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Age.MESSAGE_AGE_NOT_NUMBER;
         assertThrows(IllegalValueException.class, expectedMessage, patient::toModelType);
     }
 

@@ -133,7 +133,7 @@ public class AddPatientCommandParserTest {
 
         //invalid age
         assertParseFailure(parser, NAME_DESC_BOB + TEMP_DESC_BOB + PERIOD_DESC_BOB
-                + PHONE_DESC_BOB + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS);
+                + PHONE_DESC_BOB + INVALID_AGE_DESC, Age.MESSAGE_AGE_NOT_NUMBER);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + INVALID_TEMP_DESC + PERIOD_DESC_BOB

@@ -101,7 +101,7 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
         }
         if (!Age.isValidAge(age)) {
-            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Age.getErrorMessage(age));
         }
         final Age modelAge = new Age(age);
 

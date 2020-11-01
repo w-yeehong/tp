@@ -52,6 +52,7 @@ public class PeriodOfStay {
      * Start and end dates are valid if start date is before or equals end date.
      */
     private static boolean isValidDates(String test) {
+        assert(isRegexCorrect(test));
         String[] dates = test.split("-");
         try {
             LocalDate start = LocalDate.parse(dates[0], DateTimeFormatter.ofPattern("yyyyMMdd"));

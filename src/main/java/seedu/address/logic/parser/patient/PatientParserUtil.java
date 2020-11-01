@@ -87,7 +87,7 @@ public class PatientParserUtil {
         requireNonNull(age);
         String trimmedAge = age.trim();
         if (!Age.isValidAge(trimmedAge)) {
-            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Age.getErrorMessage(trimmedAge));
         }
         return new Age(trimmedAge);
     }
