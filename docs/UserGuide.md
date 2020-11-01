@@ -119,7 +119,7 @@ _Written by: Wai Lok_
 
 ## 3. Getting Started
 
-If you are tired of lengthy and problematic installation processes, **Covigent** is perfect for you.
+If you are tired of lengthy and problematic installation processes, Covigent is perfect for you.
 The setup is minimal and can be completed in 4 simple steps. Follow the instructions below to try it out!
 
 ### 3.1 Setting Up
@@ -160,22 +160,23 @@ _Written by: Yee Hong_
 
 ## 4. Glossary
 
-* **Command Line Interface**: A form of user interface that processes commands to a computer program in the form of lines of text. <br />
 * **Graphical User Interface**: A form of user interface that allows users to interact with electronic devices through graphical icons. <br />
 * **Patient**: An individual who resides in the quarantine facility. <br />
 * **Task**: A task to be completed by staff of the quarantine facility. <br />
 
 _Written by: Yun Qing_
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Features
 
+This section covers all the commands that you can type into the command box of Covigent. The commands are categorised into [patient features](#52-patients), [room features](#53-room) and [task features](#54-room). If it is the first time that you are using the command, we recommend that you refer to [Command Format](#51-command-format) to find out how to interpret the format of the commands.
+
+_Written by: Yun Qing_
+
 ### 5.1 Command Format
 
 **:information_source: Notes about the command format:** <br />
-
 * Words in `UPPER_CASE` are the fields to be supplied by the user. <br />
   e.g. in `addpatient n/NAME`, `NAME` is a field which can be used as `addpatient n/John Doe`.
 
@@ -185,9 +186,11 @@ _Written by: Yun Qing_
 * Fields can be in any order. <br />
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+
 ### 5.2 Patients
 
-This section contains all the commands related to patients. Scroll down to find out which feature you need!
+This section contains all the commands related to patients. You can [add](#521-add-a-patient-addpatient), [delete](#522-delete-a-patient-deletepatient),
+[edit](#523-edit-patient-details-editpatient), [search](#524-search-patients-by-information-searchpatient) for a patient, or you can [list](#525-list-all-patients-listpatient) out all the patients in Covigent. If you are unsure of how to interpret the command format, head back to [Command Format](#51-command-format) before executing the commands!
 
 #### 5.2.1 Add a patient: `addpatient` 
 
@@ -197,9 +200,9 @@ You can use this command to add a patient with the following details: name, temp
 
 Field | Description
 ------------ | -------------
-`NAME` | The name of the patient. It should preferably be the full name of the patient.
-`TEMPERATURE` | The temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
-`PERIOD_OF_STAY` | The period of stay of the patient in the facility. It must be in the format _YYYYMMDD-YYYYMMDD_.
+`NAME` | The name of the patient. It should preferably be the full name of the patient. The name should be less than 150 characters. 
+`TEMPERATURE` | The temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37) and must be within the range 32.0 to 41.0 degree celsius, both inclusive.
+`PERIOD_OF_STAY` | The period of stay of the patient in the facility. It must be in the format _YYYYMMDD-YYYYMMDD_. Both dates must be valid and the start date must be before or equals to the end date.
 `PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by.
 `AGE` | The age of the patient, which is between 0 (inclusive) and 120 (exclusive).
 `COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
@@ -229,7 +232,7 @@ Field | Description
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure 5, the result box displays the message, "_New patient added: Betsy Crowe Temperature: 36.5 Period of stay: 1 Oct 2020 to 14 Oct 2020 Phone: 91234567 Age: 19 Comment: Is asthmatic_". The newly added patient can now be found in the list of patients in Covigent. 
+4. The result box displays the message shown in Figure 5 and the newly added patient can now be found in the list of patients in Covigent. 
 
 5. To view the details of the newly added patient, click on the newly added patient in the patient list.
 <p align="center">
@@ -277,7 +280,7 @@ Field | Description
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure 8, the result box displays the message "_Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic_". The deleted patient can no longer be found in the list of patients in Covigent.
+4. The result box displays the message shown in Figure 8 and the deleted patient can no longer be found in the list of patients in Covigent.
 <p align="center">
     <img src="images/ug/f8_deletepatientsuccess.png" width="620" height="400">
     <br />
@@ -296,10 +299,10 @@ You can use this command to edit an existing patient's details in Covigent.
 
 Field | Description
 ------------ | -------------
-`ORIGNIAL_NAME` | The name of the patient whom details are to be edited. It must match exactly with the name of the patient that was input into Covigent previously. It is case-insensitive.
-`NEW_NAME` | The new name of the patient. The new name must not already exist within Covigent.
-`TEMPERATURE` | The new temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37).
-`PERIOD_OF_STAY` | The new period of stay of the patient. It must be in the format _YYYYMMDD-YYYYMMDD_.
+`ORIGINAL_NAME` | The name of the patient whom details are to be edited. It must match exactly with the name of the patient that was input into Covigent previously. It is case-insensitive.
+`NEW_NAME` | The new name of the patient. The new name must not already exist within Covigent and should be less than 150 characters. 
+`TEMPERATURE` | The new temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37) and must be within the range 32.0 to 41.0 degree Celsius, both inclusive.
+`PERIOD_OF_STAY` | The new period of stay of the patient. It must be in the format _YYYYMMDD-YYYYMMDD_. Both dates must be valid and the start date must be before or equals to the end date.
 `PHONE_NUMBER` | The new phone number of the patient.
 `AGE` | The new age of the patient. Age should be between 0 (inclusive) and 120 (exclusive).
 `COMMENT` | The new comments about the patient.
@@ -436,7 +439,9 @@ _Written by: Wai Lok_
 
 ### 5.3 Room
 
-This section contains all the commands related to rooms. Scroll down to find out which feature you need!
+This section contains all the commands related to rooms. You can [initialize](#531-initialise-rooms-in-hotel-initroom), [allocate](#532-allocate-patient-to-room-allocateroom),[search](#533-search-by-room-number-searchroom) and [find](#536-find-the-first-free-room-findemptyroom) the rooms which you need.
+If you want an overview of the rooms, you can [list](#535-list-the-current-rooms-listroom) out all the rooms in Covigent. If you are unsure of how to interpret the command format, head back to [Command Format](#51-command-format) before executing the commands!
+
 
 #### 5.3.1 Initialise Rooms in Hotel: `initroom`
 
@@ -447,7 +452,7 @@ Format: `initroom NUMBER_OF_ROOMS`
 
 Field | Description
 ----------|-------------
-`NUMBER_OF_ROOMS` | the number of rooms you wish to have in hotel
+`NUMBER_OF_ROOMS` | The number of rooms you wish to have in hotel
 
 **:information_source: Important Information:** <br />
 * If the number of rooms is less than the number of patients error is thrown when decreasing the number of existing rooms.
@@ -526,7 +531,7 @@ You can use this command to search for the room details with the specified room 
 
 Field | Description
 ----------|-------------
-`ROOM_NUMBER` | The room number of the room to be searched for. The room number should be present in the list of rooms in Covigent.
+`ROOM_NUMBER` | The room number of the room to be searched for, which is a positive integer. The room number should be present in the list of rooms in Covigent.
 
 **Example(s):**
 1. `searchroom r/6` The room details of room number 6 will be searched.
@@ -548,7 +553,7 @@ Field | Description
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure ??, the result box displays the message "_Room has been found and listed._" The room with the specified room number is shown in the room details panel.
+4. The result box displays the message shown in Figure ?? and the room with the specified room number is shown in the room details panel.
 <p align="center">
     <img src="images/ug/searchroomnumbersuccess.png" width="620" height="400">
     <br />
@@ -589,7 +594,7 @@ Field | Description
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure ??, the result box displays the message "_Room has been found and listed._" The room that the specified patient resides in is shown in the room details panel.
+4. The result box displays the message shown in Figure ?? and the room that the specified patient resides in is shown in the room details panel.
 <p align="center">
     <img src="images/ug/searchroompatientsuccess.png" width="620" height="400">
     <br />
@@ -645,7 +650,8 @@ _Written by: Noorul Azlina_
 
 ### 5.4 Task
 
-This section contains all the commands related to tasks. Scroll down to find out which feature you need!
+This section contains all the commands related to tasks. You can [add](#541-add-a-task-to-a-room-addtask), [delete](#542-delete-a-task-from-a-room-deletetask), 
+[edit](#543-edit-task-description-or-due-date-edittask) and [search](#545-search-tasks-before-a-given-date-searchtask) for a task and see it be displayed on our amazing GUI. If you want to see all the tasks, you can [list](#546-list-all-tasks-listtask) out all the tasks in Covigent. If you are unsure of how to interpret the command format, head back to [Command Format](#51-command-format) before executing the commands!
 
 #### 5.4.1 Add a task to a room: `addtask`
 
