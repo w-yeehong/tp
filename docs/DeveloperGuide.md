@@ -1,8 +1,3 @@
----
-layout: page
-title: Developer Guide
----
-
 # Covigent - Developer Guide
 1. [Preface](#1-preface)
 2. [Setting Up](#2-setting-up)
@@ -15,25 +10,28 @@ title: Developer Guide
     3.6  [Commons Component](#36-commons-component)<br>
  4. [Implementation](#4-implementation)<br>
     4.1  [Patient Feature](#41-patient-feature)<br>
-        4.1.1 [Add Patient](#411-add-patient)<br>
-        4.1.2 [List Patient](#412-list-patient)<br>
-        4.1.3 [Edit Patient](#413-edit-patient)<br>
-        4.1.4 [Delete Patient](#414-delete-patient)<br>
-        4.1.5 [Search Patient](#415-search-patient)<br>
+          4.1.1 [Add Patient](#411-add-patient)<br>
+          4.1.2 [List Patient](#412-list-patient)<br>
+          4.1.3 [Edit Patient](#413-edit-patient)<br>
+          4.1.4 [Delete Patient](#414-delete-patient)<br>
+          4.1.5 [Search Patient](#415-search-patient)<br>
     4.2  [Room Feature](#42-room-feature)<br>
-        4.2.1 [Initialise Room](#421-initialise-room)<br>
-        4.2.2 [List Room](#422-list-room)<br>
-        4.2.3 [Edit Room](#423-edit-room)<br>
-        4.2.4 [Search Room](#424-search-room)<br>
-        4.2.5 [Find Empty Room](#425-find-empty-room)<br>
+          4.2.1 [Initialise Room](#421-initialise-room)<br>
+          4.2.2 [List Room](#422-list-room)<br>
+          4.2.3 [Allocate Room](#423-allocate-room)<br>
+          4.2.4 [Search Room](#424-search-room)<br>
+          4.2.5 [Find Empty Room](#425-find-empty-room)<br>
     4.3  [Task Feature](#43-task-feature)<br>
-        4.3.1 [Add Task](#431-add-task)<br>
-        4.3.2 [List Task](#432-list-task)<br>
-        4.3.3 [Delete Task](#433-delete-task)<br>
-        4.3.4 [Edit Task](#434-edit-task)<br>
-        4.3.5 [Search Task](#435-search-task)<br>
+          4.3.1 [Add Task](#431-add-task)<br>
+          4.3.2 [List Task](#432-list-task)<br>
+          4.3.3 [Delete Task](#433-delete-task)<br>
+          4.3.4 [Edit Task](#434-edit-task)<br>
+          4.3.5 [Search Task](#435-search-task)<br>
     4.4  [Storage Feature(KIV)]<br>
     4.5  [Logging Feature(KIV)]<br>
+    4.6  [Miscellaneous Feature](#46-miscellaneous-feature)<br>
+          4.6.1 [Support for Multiple Date-Time Formats](#461-support-for-multiple-date-time-formats)<br>
+    4.7  [Configuration Feature](#47-configuration-feature)<br>
  5. [Documentation](#5-documentation)<br>
  6. [Testing(KIV)]<br>
  7. [Appendix](#7-appendix)<br>
@@ -50,15 +48,18 @@ The Covigent Developer Guide is designed to illustrate and identify the high lev
 
  _Written by: Yun Qing_ 
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Setting Up
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Design
+
 
 ### 3.1 Architecture: High Level View
 
@@ -102,6 +103,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+
 ### 3.2 UI Component
 
 
@@ -126,20 +128,21 @@ Below is a class diagram for `Ui`
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-_Written by: WaiLok_
+_Written by: Wai Lok_
+
 
 ### 3.3 Logic Component
 
 The `Logic` component is the "brains" of Covigent. While the `Ui` defines the GUI and `Model` defines in-memory data,
 the `Logic` component does most of the heavy-lifting in terms of deciding what to change within the `Model` and what to 
 return to the `Ui`.<br>
-The diagram below shows the structure of the `Logic` component.
+The diagram below shows the structure of the `Logic` component and how it interacts with its internal parts.
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 *Figure 4. Structure of the Logic Component*
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. Once a user input is obtained from the GUI, `Logic` uses the `CovigentAppParser` class to parse the users' commands
 and return a `Command` object.
@@ -148,15 +151,16 @@ and return a `Command` object.
 1. The result of the command execution is encapsulated as a `CommandResult` that is returned to the `Ui`.
 1. These `CommandResults` can instruct the `Ui` to perform certain actions, such as displaying help or error messages to the user.
 
-Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("delete alex)`.
+Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("deletepatient alex")`.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-*Figure 5. Interactions inside the `Logic` Component for the `delete alex` Command*
+![Interactions Inside the Logic Component for the `deletepatient alex` Command](images/DeletePatientSequenceDiagram.png)
+*Figure 5. Interactions inside the `Logic` Component for the `deletepatient alex` Command*
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 <br>
 _Written by: Ming De_
+
 
 ### 3.4 Model Component
 
@@ -218,11 +222,14 @@ The Storage component,
  Fig of `JsonSerializablePatientList`
  ![Structure of the JsonSerializableTaskList](images/JsonSerializableTaskList.png)
  Fig of `JsonSerializableTaskList`
-  _Written by: Noorul Azlina_
+ 
+ _Written by: Noorul Azlina_
+
 
 ### 3.6 Commons Component
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -232,6 +239,7 @@ This section describes some noteworthy details on how certain features are imple
 
 
 ### 4.1 Patient Feature
+
 The patient feature utilises the `CovigentAppParser` class to parse the user command input into different command types and
 validates the input. Patients are then added into the `UniquePatientList#internalList` observable list.
 
@@ -269,10 +277,13 @@ method.
 **Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
 new `CommandResult` will be returned with the message.
 
+
 #### 4.1.4 Delete Patient 
 
 
 #### 4.1.5 Search Patient
+
+
 
 
 ### 4.2 Room Feature
@@ -294,12 +305,11 @@ These operations are exposed in the `Model` interface as `Model#addRooms(int num
 
 * `initRoomCommand` - Initializes the number of rooms in **Covigent** app.
 * `listRoomCommand` - Lists all the rooms in **Covigent** app.
-* `editRoomCommand` - Allocates a patient to a room or edits an existing room in the application.
+* `AllocateRoomCommand` - Allocates a patient to a room.
 * `searchRoomCommand` - Searches for the room with the specified room number.
 * `findEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
 We will illustrate the progress of one of the above commands for simplicity.
-
 
 The activity diagram below illustrates the `findEmptyRoom`.
 
@@ -314,43 +324,109 @@ The activity diagram below illustrates the `findEmptyRoom`.
 
 #### 4.2.2 List Room 
 
-#### 4.2.3 Edit Room 
+#### 4.2.3 Allocate Room 
 
 **Implementation**
-The following is a detailed explanation of the operations that `EditRoomCommand` performs.
+The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
-**Step 1.** The `EditRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
-`EditRoomCommand(Integer roomNumberToEdit, EditRoomDescriptor editRoomDescriptor)` is valid. This check is done through the `Model#checkifRoomPresent` method.
- The `EditRoomDescriptor` holds the edited information of the `Room`.
+**Step 1.** The `AllocateRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
+`AllocateRoomCommand(Integer roomNumberToAllocate, AllocateRoomDescriptor AllocateRoomDescriptor)` is valid. This is done using the `Model#getRoomWithRoomNumber` method
+ where it is used to get an `Optional<Room>`. If `Optional<Room>` is empty, the `Integer` is not valid.
+ The `AllocateRoomDescriptor` holds the information of the `Room` with the patient allocated.
 
-**Step 2.** A new `Room` with the updated values will be created and the room is then searched through `RoomList#internalList`
+**Step 2.** A new `Room` with the allocated patient will be created and the room is then searched through `RoomList#internalList`
 using the `Model#hasRoom(Room room)` method to check if a room with the same room number exists. If it already exists,
 `CommandException` will be thrown with an error message.
 
 **Step 3.** The newly created `Room` will replace the existing room object through the `Model#setSingleRoom(Room target, Room editedRoom)`
 method.
 
-**Step 4.** A success message with the edited room will be appended with the `EditRoomCommand#MESSAGE_EDIT_ROOM_SUCCESS` constant. A 
+**Step 4.** A success message with the allocated room will be appended with the `AllocateRoomCommand#MESSAGE_ALLOCATE_ROOM_SUCCESS ` constant. A 
 new `CommandResult` will be returned with the message.
+
+<h4> Design Considerations: </h4>
+
+**Aspect: Enable the function to change the room numbers and occupancy status**
+
+* **Option 1**: Enable users to change the room number and occupancy status
+    * Pros: Gives the user more power to customize the rooms
+    * Cons: Introduces more bugs into the system that can only be fixed by creating another new feature
+    
+* **Option 2**: Disable the function to change the room number and occupancy status
+    * Pros: Introduces less bug into the system
+    * Cons: Reduces the freedom and ability of the user to change the rooms.
+    
+Ultimately, we decided on Option 2. This is because implementing this function would introduce bugs to
+ `InitRoom`. To solve this bug, we would have to store the count of the number of times `InitRoom` was called. This would
+ cause us to store information in another `.json` file which is unnecessary. Therefore, we decided that the forgoing a
+ small function like this would be a better choice.
 
 #### 4.2.4 Search Room  
 
 #### 4.2.5 Find Empty Room  
 
+
+
+
 ### 4.3 Task Feature
 
+The task feature involves the CRUD of `Task` objects.
+
+The feature comprises five commands, namely
+* [`AddTaskCommand`](#431-add-task) - Adding tasks
+* [`ListTaskCommand`](#432-list-task) - Listing tasks
+* [`EditTaskCommand`](#433-edit-task) - Editing tasks
+* [`DeleteTaskCommand`](#434-delete-task) - Deleting tasks
+* [`SearchTaskCommand`](#435-search-task) - Searching for tasks
 
 #### 4.3.1 Add Task 
 
+**Implementation**
+The following is a detailed explanation of the operations that `AddTaskCommand` performs.
+
+**Step 1.** The `AddTaskCommand#execute(Model model)` method is executed and it checks if the `Name` defined when instantiating
+`EditPatientCommand(Name patientToBeEdited, EditPatientDescriptor editPatientDescriptor)` is valid. The `EditPatientDescriptor` holds
+the edited information of the `Patient`.
+
+**Step 2.** A new `Patient` with the updated values will be created and the patient is then searched through `UniquePatientList#internalList`
+using the `Model#hasPatient(Patient patient)` method to check if the patient already exists. If the patient already exists,
+`CommandException` will be thrown with an error message.
+
+**Step 3.** The newly created `Patient` will replace the existing patient object through the `Model#setPatient(Patient target, Patient editedPatient)`
+method.
+
+**Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
+new `CommandResult` will be returned with the message.
 
 #### 4.3.2 List Task 
 
-#### 4.3.3 Delete Task 
+#### 4.3.3 Edit Task 
 
-#### 4.3.4 Edit Task 
+#### 4.3.4 Delete Task 
 
 #### 4.3.5 Search Task
 
+
+### 4.5 Logging Feature
+
+We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
+
+* The logging level can be controlled using the `logLevel` setting in the configuration file (See [Section 4.2, "Configuration"](#46-configuration-feature))
+* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level
+* Log messages are output through: `Console` and to a `.log` file
+
+**Logging Levels**:
+* `SEVERE` : Critical problem detected which may possibly cause the termination of the application
+* `WARNING` : Can continue, but with caution
+* `INFO` : Information showing the noteworthy actions by the App
+* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
+
+### 4.6 Miscellaneous Feature
+
+#### 4.6.1 Support for Multiple Date-Time Formats
+
+### 4.7 Configuration Feature
+Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
 
 ##BELOW UNDO AND REDO TO BE DELETED, CAN REFERENCE FOR NOW FIRST
 
