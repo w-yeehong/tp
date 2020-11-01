@@ -46,7 +46,7 @@ public class PeriodOfStay {
         try {
             LocalDate start = LocalDate.parse(dates[0], DateTimeFormatter.ofPattern("yyyyMMdd"));
             LocalDate end = LocalDate.parse(dates[1], DateTimeFormatter.ofPattern("yyyyMMdd"));
-            return start.compareTo(end) < 0; //check start date less than end date
+            return start.compareTo(end) <= 0; //check start date less than or equals end date
         } catch (DateTimeParseException e) {
             return false;
         }
