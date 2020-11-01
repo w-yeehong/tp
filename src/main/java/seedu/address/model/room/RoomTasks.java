@@ -21,13 +21,14 @@ import seedu.address.model.task.TaskList;
 public class RoomTasks implements ReadOnlyList<Task> {
 
     private final TaskList tasks;
-    private FilteredList<Task>filteredtasklist;
+    private final FilteredList<Task> filteredTaskList;
+
     /**
      * Creates an empty list of tasks in the room.
      */
     public RoomTasks() {
         tasks = new TaskList();
-        filteredtasklist = new FilteredList<>(tasks.asUnmodifiableObservableList());
+        filteredTaskList = new FilteredList<>(tasks.asUnmodifiableObservableList());
     }
 
     /**
@@ -37,7 +38,7 @@ public class RoomTasks implements ReadOnlyList<Task> {
         requireAllNonNull(tasksToAdd);
         tasks = new TaskList();
         tasks.setTasks(tasksToAdd);
-        filteredtasklist = new FilteredList<>(tasks.asUnmodifiableObservableList());
+        filteredTaskList = new FilteredList<>(tasks.asUnmodifiableObservableList());
     }
 
     //// task-level operations
@@ -85,13 +86,6 @@ public class RoomTasks implements ReadOnlyList<Task> {
     }
 
     /**
-     * Set the Predicate {@code predicate} to the {@code  filteredtasklist} .
-     */
-    public void setTaskListPredicate(Predicate<Task> predicate) {
-        filteredtasklist.setPredicate(predicate);
-    }
-
-    /**
      * Removes {@code key} from {@code RoomTasks}.
      * {@code key} must exist in the room.
      */
@@ -106,8 +100,20 @@ public class RoomTasks implements ReadOnlyList<Task> {
         return tasks.isEmpty();
     }
 
+    //// filtered-task operations
+
+    /**
+     * Returns the filtered list of tasks for this room.
+     */
     public ObservableList<Task> getFilteredList() {
-        return filteredtasklist;
+        return filteredTaskList;
+    }
+
+    /**
+     * Sets the {@code predicate} to filter the tasks in this room.
+     */
+    public void setTaskListPredicate(Predicate<Task> predicate) {
+        filteredTaskList.setPredicate(predicate);
     }
 
     @Override
@@ -118,6 +124,7 @@ public class RoomTasks implements ReadOnlyList<Task> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+
         if (isEmpty()) {
             builder.append("-");
             return builder.toString().trim();

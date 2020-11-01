@@ -37,20 +37,11 @@ public class TaskList implements Iterable<Task> {
         internalList.add(toAdd);
     }
 
-
-    /**
-     * Adds all tasks in TaskList to the list.
-     */
-    public void add(TaskList tasks) {
-        requireNonNull(tasks);
-        internalList.addAll(tasks.internalList);
-    }
-
     /**
      * Adds all tasks in {@code tasks} to the list.
      */
     public void add(List<Task> tasks) {
-        requireNonNull(tasks);
+        requireAllNonNull(tasks);
         internalList.addAll(tasks);
     }
 

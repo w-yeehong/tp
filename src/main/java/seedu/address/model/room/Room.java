@@ -107,7 +107,7 @@ public class Room {
     }
 
     /**
-     * Returns an filtered list as an {@code ObservableList}.
+     * Returns a filtered list as an {@code ObservableList}.
      */
     public ObservableList<Task> getFilteredTasks() {
         return tasks.getFilteredList();
