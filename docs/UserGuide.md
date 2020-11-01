@@ -1,10 +1,9 @@
 # Covigent - User Guide
 
 1. [Introduction](#1-introduction)
-1. [About this Document](#2-about-this-document)<br />
+1. [About this Guide](#2-about-this-guide)<br />
    2.1. [What's in Covigent](#21-what-is-in-covigent)<br />
-   2.2. [About the Guide](#22-about-the-guide)<br />
-   2.3. [Formats in the Guide](#23-formats-in-the-guide)<br />
+   2.2. [Formatting in the Guide](#22-formatting-in-the-guide)<br />
 1. [Getting Started](#3-getting-started)<br />
    3.1. [Setting Up](#31-setting-up)<br />
    3.2. [Using Covigent](#32-using-covigent)<br />
@@ -79,8 +78,6 @@ Choose a link in the [Feature](#5-features) section to get a step-by-step instru
 
 ### 2.1 What is in Covigent
 
-@wailok, change or delete if you want or need to
-
 In our patient features, you can [add](#521-add-a-patient-addpatient), [delete](#522-delete-a-patient-deletepatient),
 [edit](#523-edit-patient-details-editpatient), [search](#524-search-patients-by-information-searchpatient) for a patient,
 or you can [list](#525-list-all-patients-listpatient) out all the patients in Covigent.
@@ -94,23 +91,24 @@ Next, for our task features, you can [add](#541-add-a-task-to-a-room-addtask), [
 and see it be displayed on our amazing GUI.
 
 Lastly, our miscellaneous features will ensure that you can seek [help](#55-view-help-help) if you are lost, or 
-[exit](#56-exit-covigent-exit) the program when you are done with it.
+[exit](#56-exit-covigent-exit) the program when you are done with it. Our app also has an [autosave](#57-autosave) feature that allows you to save the data without manual command.
 
-(@wailok, can delete below portion after you are done with it)<br>
-Covigent contains the following features:
-* Patient Features: `addpatient`, `deletepatient`, `editpatient`, `searchpatient`, `listpatient`.
-* Room Features: `initroom`, `allocateroom`, `searchroom`, `listroom`, `findemptyroom`.
-* Task Features: `addtask`, `deletetask`, `edittask`, `searchtask`.
-* Miscellaneous Features: `help`, `exit`, `autosave`.
 
-### 2.3 Formats in the Guide
+### 2.2 Formatting in the Guide
 
 Note the following formatting used in this document:
 * ![icon](images/ug/icon_info.png) This symbol indicates important information.
 
+* ![icon](images/ug/italics.PNG) 
+Italicised words are used to indicate examples of input that the user can key in.
+
 * ![icon](images/ug/icon_keyword.png) 
 A grey highlight (called a mark-up) indicates that this is a field or command
-that can be typed into the command line and executed by **Covigent**.
+that can be typed into the command line and executed by Covigent.
+
+* ![icon](images/ug/HyperLink_words.PNG) 
+A light blue font color indicates that this is a Hyperlink that you can click on
+and be transferred to the coresponding section in Covigent.
 
 _Written by: Wai Lok_
 
@@ -124,19 +122,19 @@ The setup is minimal and can be completed in 4 simple steps. Follow the instruct
 
 ### 3.1 Setting Up
 
-The following steps to set up **Covigent** are applicable to Windows, Mac OS X, and Linux.
+The following steps to set up Covigent are applicable to Windows, Mac OS X, and Linux.
 
 1. Install _Java 11_ or a later version. The latest version of _Java_ can be found [here](https://java.com/en/download/).
 
-1. Download the latest version of **Covigent** from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). Look for the file `covigent.jar`.
+1. Download the latest version of Covigent from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). Look for the file `covigent.jar`.
 
-1. Copy the file to the folder you want to use as the home folder of **Covigent**.
+1. Copy the file to the folder you want to use as the home folder of Covigent.
 
-1. Double-click on _covigent.jar_ to start **Covigent**.
+1. Double-click on _covigent.jar_ to start Covigent.
 
 ### 3.2 Using Covigent
 
-**Covigent** has numerous features, including adding quarantined individuals, creating rooms, assigning tasks to rooms, and more.
+Covigent has numerous features, including adding quarantined individuals, creating rooms, assigning tasks to rooms, and more.
 Every feature has a corresponding command. Using a feature is as simple as typing a command in the command box (see Figure 2) and pressing Enter to execute it.
 
 <p align="center">
@@ -351,25 +349,49 @@ You can use this command to search patients that match the given criteria(name o
 
 Field | Description
 ------------ | -------------
-`NAME` | The name or a substring of the name of the patient you want to look for. It may not be the full name of the patient. Any patient with the entered sub-name could be displayed. It is case-insensitive.
-`TEMPERATURE_RANGE` | The temperature range that you want to look for. It is made up of two temperatures. A temperature must be keyed in to 1 decimal place (e.g. 37.0 instead of 37). The two temperature are linked using a dash "-". The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
+`NAME` | The full name or the sub-name of the patient you want to look for. If the patient's name is "Alex Joe", then you must enter "Alex", "Joe" or "Alex Joe" to find him. You input is case-insensitive.
+`TEMPERATURE_RANGE` | The temperature range that you want to look for. It is made up of two valid temperatures. A temperature must be keyed in to 1 decimal place (e.g. 37.0 instead of 37). The two temperature are linked using a dash "-". The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
 
 **:information_source: Important Information:** <br />
 * Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.<br /> 
+* The two temperature you enter for field `tr/TEMPERATURE_RANGE` must both be valid, if one of the temperature is invalid, the search function will fail.<br /> 
 <br />
-
 **Example(s):**
 1 `searchpatient n/john` Searches patients with names containing _john_.
 1 `searchpatient tr/36.5-36.7` Searches patients within temperature range _36.5 to 36.7_ degree celsius, both inclusive.
 
 **Step By Step Usage:**  <br />
-* Using the second example, the result box displays the message, "Listed patient(s) matching the criteria.".
-* Patients with a temperature between 36.5 and 36.7 degree celsius can now be found in the list of patients in Covigent.
-* Figure 6 shows an example of a successful execution.
+
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 12.
+<p align="center">
+    <img src="images/ug/patienttab.png" width="380" height="300">
+    <br />
+   <i>Figure 12. Navigation to Patients tab</i>
+</p>
+
+2. Before the search, this is what you see in the list of patient.
+<p align="center">
+    <img src="images/ug/patientuibeforesearch.PNG" width="380" height="300">
+    <br />
+   <i>Figure 13. Patient List before <code>searchpatient</code> command </i>
+</p>
+
+3. Using the second example, key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/searchpatientcommand.PNG" width="700" height="150">
+    <br />
+   <i>Figure 14. <code>searchpatient</code> command in Command Box</i>
+</p>
+
+4. Press `enter` to run the command.
+
+5. With reference to Figure 15, the result box displays the message, "Listed patient(s) matching the criteria.".
+
+6. Now you can find Patients with a temperature between 36.5 and 36.7 degree celsius in the list of patients in Covigent.
 <p align="center">
     <img src="images/ug/figure6_searchpatient.png" width="480" height="400">
     <br />
-    <i>Figure 6. A Successful Execution of <code>searchpatient</code></i>
+    <i>Figure 15. A Successful Execution of <code>searchpatient</code></i>
 </p>
 
 _Written by: Wai Lok_
@@ -384,12 +406,28 @@ You can use this command to look at the list of all patients in the patient tab.
 1. `listpatient` Lists all patients that are present in Covigent.
 
 **Step By Step Usage:**  <br />
-* The result box displays the message, "All patients are listed.".
-* Figure 7 shows an example of a successful execution.
+
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 16.
+<p align="center">
+    <img src="images/ug/patienttab.png" width="380" height="300">
+    <br />
+   <i>Figure 16. Navigation to Patients tab</i>
+</p>
+
+2. Key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/figure7_listpatientcommand.png" width="480" height="400">
+    <br />
+    <i>Figure 17. <code>listpatient</code> command in Command Box</i>
+</p>
+
+3. Press `enter` to run the command.
+
+4. Now you can find the full list of patient in Covigent.
 <p align="center">
     <img src="images/ug/figure7_listpatient.png" width="480" height="400">
     <br />
-    <i>Figure 7. A Successful Execution of <code>listpatient</code></i>
+    <i>Figure 18. A Successful Execution of <code>listpatient</code></i>
 </p>
 
 _Written by: Wai Lok_
@@ -765,13 +803,29 @@ Field | Description
 1. `searchtask dd/12/1/2021` Search all tasks before and including 12 January 2021 0000.
 
 **Step By Step Usage:** <br />
-* The result box displays the message, "Tasks before the due date found.".
-* Tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent.
-* Figure 19 shows an example of a successful execution.
+1. Navigate to the Tasks tab under the navigation bar as shown in Figure 60.
 <p align="center">
-    <img src="images/ug/figure19_searchtask.png" width="480" height="400">
+    <img src="images/ug/navigatetotask.PNG" width="380" height="300">
     <br />
-    <i>Figure 19. A Successful Execution of <code>searchtask</code></i>
+   <i>Figure 60. Navigation to Tasks tab</i>
+</p>
+
+2. Using the example,  key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/searchtaskcommand.PNG" width="700" height="150">
+    <br />
+   <i>Figure 61. <code>searchtask</code> command in Command Box</i>
+</p>
+
+3. Press `enter` to run the command.
+
+4. With reference to Figure 62, the result box displays the message, "Tasks before the due date found.".
+
+5. Now you can find tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent.
+<p align="center">
+    <img src="images/ug/searchtask.PNG" width="480" height="400">
+    <br />
+    <i>Figure 15. A Successful Execution of <code>searchtask</code></i>
 </p>
 
 _Written by: Wai Lok_
