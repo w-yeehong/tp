@@ -112,7 +112,8 @@ public class RoomTasks implements ReadOnlyList<Task> {
     /**
      * Sets the {@code predicate} to filter the tasks in this room.
      */
-    public void setTaskListPredicate(Predicate<Task> predicate) {
+    public void setPredicate(Predicate<Task> predicate) {
+        requireNonNull(predicate);
         filteredTaskList.setPredicate(predicate);
     }
 

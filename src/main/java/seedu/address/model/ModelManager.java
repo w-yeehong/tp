@@ -324,9 +324,8 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredTaskList(Predicate<Task> datePredicate) {
         for (int i = 0; i < roomList.getNumOfRooms(); i++) {
-            roomList.getRoomObservableList().get(i).getTaskList().setTaskListPredicate(datePredicate);
+            roomList.getRoomObservableList().get(i).setPredicateOnRoomTasks(datePredicate);
         }
-
     }
 
     //=========== Miscellaneous ========================================================================================

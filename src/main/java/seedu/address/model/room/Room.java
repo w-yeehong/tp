@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -181,10 +182,10 @@ public class Room {
     }
 
     /**
-     * Fetch the taskList
+     * Sets the {@code predicate} to filter the tasks in this room.
      */
-    public RoomTasks getTaskList() {
-        return tasks;
+    public void setPredicateOnRoomTasks(Predicate<Task> predicate) {
+        tasks.setPredicate(predicate);
     }
 
 
