@@ -118,7 +118,7 @@ The `UI` component,
 The `MainWindow` is made up of 
 * A `PatientListPanel` that displays the list of patients. The layout is defined by `PatientCard`.
 * A `RoomListPanel` that displays the list of rooms. The layout is defined by `RoomCard` and `RoomDetailPanel`.
-* A `TaskListPanel` that displays the list of tasks. The layout is defined by `TaskCard`.
+* A `RoomTaskListPanel` that displays the list of tasks. The layout is defined by `TaskCard`.
 * A `HelpWindow` that displays the link to the help page.
 * A `CommandBox` that displays the area for command input.
 * A `ResultDisplay` that displays the robot response.
@@ -127,6 +127,11 @@ Below is a class diagram for `Ui`
 ![Structure of the UI Component](images/UiClassDiagram.png)
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+The `UI` component,
+* Listens for changes to `Model` data so that the `UI` can be updated with the modified data.
+Below shows the interaction with `Model`
+![Structure of the UI Component](images/UiClassDiagram1.png)
 
 _Written by: Wai Lok_
 
@@ -283,7 +288,22 @@ new `CommandResult` will be returned with the message.
 
 #### 4.1.5 Search Patient
 
+**Implementation**
+The following is a detailed explanation of the operations that `SearchPatientCommand` performs.
 
+**Step 1.** The `SearchPatientCommand#execute(Model model)` method is executed and checks the `criteriaToSearch` via `confirmCriteria(SearchPatientDescriptor searchPatientDescriptor)`. 
+The `SearchPatientDescriptor` holds the `name` or `temperatureRange` of the Command.
+
+**Step 2.** If the `criteriaToSearch` is `SearchCriteria.CRITERIA_NOT_FOUND`, `CommandException` will be thrown with an error message.
+
+**Step 3.** If the `criteriaToSearch` is `SearchCriteria.CRITERIA_IS_NAME`, we update the `Model`'s `FilteredPatientList` Predicate via `updateNamePredicate(Model model, SearchPatientDescriptor searchPatientDescriptor)`
+Then `findPatientWithName(SearchPatientDescriptor searchPatientDescriptor, List<Patient> patientList)` will go through `Model`'s `FilteredPatientList`, if no patient is found, `CommandException` will be thrown with an error message. If there is at least one patient found, a new `CommandResult` will be returned with the message.
+
+**Step 4.** If the `criteriaToSearch` is `CRITERIA_IS_TEMPERATURE`, we update the `Model`'s `FilteredPatientList` Predicate via `updateTemperaturePredicate(Model model, SearchPatientDescriptor searchPatientDescriptor)`
+Then `findPatientWithTemperature(SearchPatientDescriptor searchPatientDescriptor, List<Patient> patientList)` will go through `Model`'s `FilteredPatientList`, if no patient is found, `CommandException` will be thrown with an error message. If there is at least one patient found, a new `CommandResult` will be returned with the message.
+
+**Step 5.** If the `criteriaToSearch` is `TOO_MANY_CRITERIA` A new `CommandResult` will be returned with the message.
+method.
 
 
 ### 4.2 Room Feature
@@ -405,6 +425,19 @@ new `CommandResult` will be returned with the message.
 #### 4.3.4 Delete Task 
 
 #### 4.3.5 Search Task
+
+**Implementation**
+The following is a detailed explanation of the operations that `SearchTaskCommand` performs.
+
+**Step 1.** The `SearchTaskCommand#execute(Model model)` method is executed and it gets information of `task` from each `room` in the `roomList`.
+
+**Step 2.** If the `task` has a `duedate` before the `duedate` from user command, it is stored in `taskListWithDesirableResult`.
+
+**Step 3.** If no `task` is found, `CommandException` will be thrown with an error message. 
+
+**Step 4.** If there is at least one task found, the `model`'s `filteredTaskList` is updated with a `dueDatePredicate` using `updateFilteredTaskList`
+
+**Step 5.** a new `CommandResult` will be returned with the message.
 
 
 ### 4.5 Logging Feature

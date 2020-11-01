@@ -41,11 +41,11 @@ MainWindow *-down-> RoomTaskListPanel
 MainWindow *-down-> RoomListPanel
 MainWindow *-down-> StatusBarFooter
 
-PatientListPanel .down-> PatientCard : defined by >
-RoomTaskListPanel *.down-> TaskCard : defined by >
-RoomTaskListPanel *.down-> RoomTaskDetailsPanel : defined by >
-RoomListPanel *.down-> RoomCard : defined by >
-RoomListPanel *.down-> RoomDetailsPanel : defined by >
+PatientListPanel .right-> PatientCard : defined by >
+RoomTaskListPanel *.left-> TaskCard : defined by >
+RoomTaskListPanel *.right-> RoomTaskDetailsPanel : defined by >
+RoomListPanel *.left-> RoomCard : defined by >
+RoomListPanel *.right-> RoomDetailsPanel : defined by >
 
 MainWindow -left-|> UiPart
 
@@ -56,13 +56,14 @@ RoomCard --|> UiPart
 TaskCard --|> UiPart
 PatientListPanel --|> UiPart
 RoomListPanel --|> UiPart
-TaskListPanel --|> UiPart
+RoomTaskListPanel --|> UiPart
 PatientCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
 UiManager -right-> Logic
 MainWindow -left-> Logic
+
 
 PatientListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
