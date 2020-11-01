@@ -99,7 +99,7 @@ public class PatientParserUtil {
      * @return an "-" comment if no comment is added
      */
     public static Comment parseComment(String comment) {
-        if (comment == null) {
+        if (comment == null || comment.trim().length() == 0) {
             return new Comment("-");
         } else {
             return new Comment(comment.trim());
