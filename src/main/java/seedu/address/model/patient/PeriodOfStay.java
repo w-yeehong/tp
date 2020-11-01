@@ -24,6 +24,7 @@ public class PeriodOfStay {
 
     /**
      * Constructs a {@code PeriodOfStay}.
+     *
      * @param periodOfStay A valid period of stay.
      */
     public PeriodOfStay(String periodOfStay) {
@@ -61,6 +62,7 @@ public class PeriodOfStay {
 
     /**
      * Returns a string that is more human readable (e.g. 09 Jan 2020), meant for UI.
+     *
      * @return reader friendly string.
      */
     public String readerFriendlyString() {

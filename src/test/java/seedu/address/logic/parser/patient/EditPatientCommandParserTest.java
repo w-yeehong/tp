@@ -41,6 +41,10 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
+//@author LeeMingDe
+/**
+ * Contains unit tests for EditPatientCommandParser.
+ */
 public class EditPatientCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
@@ -179,3 +183,4 @@ public class EditPatientCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }
+//@author LeeMingDe
