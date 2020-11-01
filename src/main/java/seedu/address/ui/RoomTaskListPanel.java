@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
@@ -19,6 +20,8 @@ public class RoomTaskListPanel extends UiPart<Region> {
     private static final String FXML = "RoomTaskListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RoomTaskListPanel.class);
 
+    @FXML
+    private ScrollPane roomScrollPane;
     @FXML
     private VBox roomBox;
 
@@ -40,6 +43,8 @@ public class RoomTaskListPanel extends UiPart<Region> {
         for (Room room : roomTaskList) {
             roomBox.getChildren().add(new RoomTaskDetailsPanel(room).getRoot());
         }
+
+        logger.info("RoomTaskListPanel has been populated.");
     }
 
     /**

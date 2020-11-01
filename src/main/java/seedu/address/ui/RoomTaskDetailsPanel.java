@@ -46,7 +46,6 @@ public class RoomTaskDetailsPanel extends UiPart<Region> {
      */
     //@@author raymondge
     private void setTaskDetails(ObservableList<Task> taskList) {
-
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
         taskListView.getStyleClass().add("pretty-list-view");
