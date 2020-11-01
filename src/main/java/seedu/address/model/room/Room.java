@@ -71,12 +71,8 @@ public class Room {
         return roomNumber;
     }
 
-    public Patient getPatient() {
-        if (patient.isEmpty()) {
-            return null;
-        } else {
-            return patient.get();
-        }
+    public Optional<Patient> getPatient() {
+        return this.patient;
     }
 
     public TaskList getTaskList() {
@@ -182,7 +178,7 @@ public class Room {
         } else {
             return roomNumber == room.roomNumber
                     && isOccupied == room.isOccupied
-                    && patient.get().equals(room.getPatient())
+                    && patient.equals(room.getPatient())
                     && taskList.equals(room.getTaskList());
         }
     }
@@ -195,7 +191,7 @@ public class Room {
 
     @Override
     public String toString() {
-        String patientDetails = getPatient() == null ? "-" : getPatient().toString();
+        String patientDetails = getPatient().isEmpty() ? "-" : getPatient().toString();
         final StringBuilder builder = new StringBuilder();
         builder.append("Room Number: ")
                 .append(getRoomNumber() + "\n")

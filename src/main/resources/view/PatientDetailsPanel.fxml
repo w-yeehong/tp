@@ -9,8 +9,7 @@
 
 <!--emulates room details panel -->
 
-<ScrollPane fitToWidth="true" styleClass="patient-details-panel" stylesheets="@../css/PatientDetailsPanel.css"
-            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToWidth="true" styleClass="patient-details-panel" stylesheets="@../css/PatientDetailsPanel.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <content>
         <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
@@ -63,6 +62,9 @@
         </VBox>
     </content>
     <effect>
-        <DropShadow />
+        <DropShadow>
+         <color>
+            <Color opacity="0.3199999928474426" />
+         </color></DropShadow>
     </effect>
 </ScrollPane>
