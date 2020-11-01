@@ -371,7 +371,7 @@ Field | Description
 
 2. Before the search, this is what you see in the list of patient.
 <p align="center">
-    <img src="images/ug/patientuibeforesearch.PNG" width="700" height="150">
+    <img src="images/ug/patientuibeforesearch.PNG" width="380" height="300">
     <br />
    <i>Figure 13. Patient List before <code>searchpatient</code> command </i>
 </p>
@@ -812,7 +812,7 @@ Field | Description
 
 2. Using the example,  key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/searchtaskcommand.PNG" width="380" height="300">
+    <img src="images/ug/searchtaskcommand.PNG" width="700" height="150">
     <br />
    <i>Figure 61. <code>searchtask</code> command in Command Box</i>
 </p>
