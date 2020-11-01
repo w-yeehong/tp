@@ -29,6 +29,7 @@
           5.4.3  [Edit Task Description or Due Date: `edittask`](#543-edit-task-description-or-due-date-edittask)<br />
           5.4.4  [Remove Due Date from a Task: `edittask`](#544-remove-due-date-from-a-task-edittask)<br />
           5.4.5  [Search all Tasks before the Given Date: `searchtask`](#545-search-tasks-before-a-given-date-searchtask)<br />
+          5.4.6  [List all Tasks: `listtask`](#546-list-all-tasks-listtask)<br />
     5.5  [View Help: `help`](#55-view-help-help)<br />
     5.6  [Exit Covigent: `exit`](#56-exit-covigent-exit)<br />
     5.7  [Autosave](#57-autosave)<br />
@@ -88,7 +89,8 @@ If you want an overview of the rooms, you can [list](#535-list-the-current-rooms
 
 Next, for our task features, you can [add](#541-add-a-task-to-a-room-addtask), [delete](#542-delete-a-task-from-a-room-deletetask), 
 [edit](#543-edit-task-description-or-due-date-edittask) and [search](#545-search-tasks-before-a-given-date-searchtask) for a task
-and see it be displayed on our amazing GUI.
+and see it be displayed on our amazing GUI. If you want to see all the tasks, you can [list](#546-list-all-tasks-listtask) out all the tasks in Covigent.
+
 
 Lastly, our miscellaneous features will ensure that you can seek [help](#55-view-help-help) if you are lost, or 
 [exit](#56-exit-covigent-exit) the program when you are done with it. Our app also has an [autosave](#57-autosave) feature that allows you to save the data without manual command.
@@ -825,7 +827,43 @@ Field | Description
 <p align="center">
     <img src="images/ug/searchtask.PNG" width="480" height="400">
     <br />
-    <i>Figure 15. A Successful Execution of <code>searchtask</code></i>
+    <i>Figure 62. A Successful Execution of <code>searchtask</code></i>
+</p>
+
+_Written by: Wai Lok_
+
+#### 5.4.6 List all Tasks: `listtask`
+
+You can use this command to look at the list of all tasks in the task tab.
+
+**Format**: `listtask`
+
+**Example(s)**:
+1. `listtask` Lists all tasks that are present in Covigent.
+
+**Step By Step Usage:**  <br />
+
+1. Navigate to the Tasks tab under the navigation bar as shown in Figure 63.
+<p align="center">
+    <img src="images/ug/navigatetotask.PNG" width="380" height="300">
+    <br />
+   <i>Figure 63. Navigation to Tasks tab</i>
+</p>
+
+2. Key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/listtaskcommand.PNG" width="480" height="400">
+    <br />
+    <i>Figure 64. <code>listtask</code> command in Command Box</i>
+</p>
+
+3. Press `enter` to run the command.
+
+4. Now you can find the full list of patient in Covigent.
+<p align="center">
+    <img src="images/ug/listtask.PNG" width="480" height="400">
+    <br />
+    <i>Figure 18. A Successful Execution of <code>listtask</code></i>
 </p>
 
 _Written by: Wai Lok_
@@ -872,11 +910,11 @@ Action | Format, Examples
 **Search for Room with Patient** | `searchroom n/NAME`<br /> e.g., searchroom n/Jane Doe
 **List Rooms** | `listroom` <br />
 **Find Empty Room** | `findemptyroom` <br />
-**Add Task to Room** | `addtask r/ROOM_NUMBER d/DESCRIPTION [dd/DUE_DATE]` <br /> e.g., addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021 
+**Add Task to Room** | `addtask r/ROOM_NUMBER d/DESCRIPTION [dd/DUE_DATE]` <br /> e.g., addtask d/Running low on masks and needs to be restocked. r/1 dd/12/1/2021 
 **Delete Task from Room** | `deletetask r/ROOM_NUMBER t/TASK_NUMBER` <br /> e.g., deletetask r/1 t/3
-**Edit Task Description or Due Date** | `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]` <br /> e.g., edittask r/1 t/3 dd/12-1-2021 1500
+**Edit Task Description or Due Date** | `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]` <br /> e.g., edittask r/1 t/3 dd/12/1/2021 1500
 **Remove Due Date from a Task** | `edittask r/ROOM_NUMBER t/TASK_NUMBER dd/-` <br /> e.g., edittask r/1 t/3 dd/-
-**Search Task** | `searchtask dd/DUE_DATE` <br /> e.g., searchtask dd/12-1-2021
+**Search Task** | `searchtask dd/DUE_DATE` <br /> e.g., searchtask dd/12/1/2021
 **Help** | `help`
 **Exit** | `exit`
 
