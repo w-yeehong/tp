@@ -10,11 +10,9 @@
     3.6  [Commons Component](#36-commons-component)<br>
  4. [Implementation](#4-implementation)<br>
     4.1  [Patient Feature](#41-patient-feature)<br>
-          4.1.1 [Add Patient](#411-add-patient)<br>
-          4.1.2 [List Patient](#412-list-patient)<br>
-          4.1.3 [Edit Patient](#413-edit-patient)<br>
-          4.1.4 [Delete Patient](#414-delete-patient)<br>
-          4.1.5 [Search Patient](#415-search-patient)<br>
+          4.1.1 [High Level Details](#411-high-level-details)<br>
+          4.1.2 [CRUD](#412-crud)<br>
+          4.1.3 [Search Patient](#413-search-patient)<br>
     4.2  [Room Feature](#42-room-feature)<br>
           4.2.1 [Initialise Room](#421-initialise-room)<br>
           4.2.2 [List Room](#422-list-room)<br>
@@ -169,26 +167,23 @@ _Written by: Ming De_
 
 ### 3.4 Model Component
 
-The `Model` API acts as a facade that handles interaction between different kinds of data in Covigent. These data include user's preferences, patient records, room list and task list. The `Model` API exposes the methods that allow the logic component to utilise to perform retrieving and updating of data.
+The `Model` API acts as a facade that handles interaction between different kinds of data in Covigent. These data include user's preferences, patient records and room list. The `Model` API exposes the methods that allow the logic component to utilise to perform retrieving and updating of data.
 
 The `Model` component,
   * stores a `UserPref` object that represents the user’s preferences.
   * stores a `PatientRecords` object that stores the data of all the patients. 
   * stores a `RoomList` object that stores the data of all the rooms.
-  * stores a `TaskList` object that stores the data of all the tasks.
   * exposes unmodifiable `ObservableList<Patient>`, `ObservableList<Room>` and `ObservableList<Task>` which can be observed. This means that the UI can be bound to the lists so that the UI automatically updates when data in the lists changes.
   * does not depend on any of the three components.
 
-The concrete class `ModelManager` implements `Model` interface and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords`, `RoomList` and `TaskList`. These classes manage the data related to their specific features.
+The concrete class `ModelManager` implements `Model` interface and manages the data for Covigent. `ModelManager` contains `UserPrefs`, `PatientRecords` and `RoomList`. These classes manage the data related to their specific features.
 
 Below is a class diagram for `ModelManager`.
 
-![Structure of the Model Component](images/ModelManagerClassDiagram.png) <br>
-_Figure XX. Class Diagram for Model Component_
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The breakdown for each type of data in `ModelManager`, which include `PatientRecords`, `RoomList` and `TaskList`, can be found below.
+The breakdown for each type of data in `ModelManager`, which include `PatientRecords` and `RoomList`, can be found below.
 
 The `PatientRecords` class is in charge of maintaining the data of the patients and in ensuring the uniqueness of patients according to their names. Below is a class diagram for `PatientRecords`.
 
@@ -201,6 +196,8 @@ The `TaskList` class is in charge of maintaining the data of all the tasks in Co
 _Figure XX. Class Diagram for TaskList_
 
 The `RoomList` class is in charge of maintaining the data in the rooms. It incorporates data from both `PatientRecords` and `TaskList` as each room stores the data of the patient who resides in the room and the tasklist meant for the room. The class diagram for `RoomList` is shown below.
+
+//to do later RoomList -> RoomTask -> TaskList (Observable ) 
 
 //to insert class diagram for room list.
 
