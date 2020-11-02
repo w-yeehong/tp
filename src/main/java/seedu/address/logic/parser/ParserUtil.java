@@ -27,6 +27,7 @@ public class ParserUtil {
      * @throws ParseException if the specified room number is invalid (not non-zero unsigned integer).
      */
     public static Integer parseRoomNumber(String roomNumber) throws ParseException {
+        requireNonNull(roomNumber);
         String trimmedRoomNumber = roomNumber.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedRoomNumber)) {
             throw new ParseException(String.format(MESSAGE_INVALID_UNSIGNED_INT,

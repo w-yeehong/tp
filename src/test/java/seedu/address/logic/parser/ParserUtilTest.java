@@ -17,6 +17,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ParserUtilTest {
 
     @Test
+    public void parseRoomNumber_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRoomNumber(null));
+    }
+
+    @Test
     public void parseRoomNumber_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseRoomNumber("10 a"));
     }
@@ -39,6 +44,11 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(1, ParserUtil.parseRoomNumber("  1  "));
+    }
+
+    @Test
+    public void parseTaskIndex_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskIndex(null));
     }
 
     @Test
