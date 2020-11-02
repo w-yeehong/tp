@@ -26,7 +26,7 @@ public class DueDatePredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        if (task.getDueAt().compareTo(duedate) == 1) {
+        if (task.getDueAt().compareTo(duedate) == 1 || task.getDueAt().compareTo(duedate) == 2) {
             return true;
         }
         return false;
