@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.stream.IntStream;
 
@@ -17,8 +16,6 @@ import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 public class UniqueRoomList implements Iterable<Room> {
 
@@ -167,7 +164,7 @@ public class UniqueRoomList implements Iterable<Room> {
             unoccupiedRooms.remove(0);
             empty.setOccupied(true);
             empty.setPatient(room.getPatient().get());
-            empty.addTask(room.getTaskList());
+            empty.addTasks(room.getReadOnlyTasks());
         }
     }
 
@@ -193,60 +190,6 @@ public class UniqueRoomList implements Iterable<Room> {
     public int numOfEmptyRooms() {
         return (int) IntStream.rangeClosed(0, numOfRooms - 1)
                 .mapToObj(x -> internalList.get(x)).filter(room -> !room.isOccupied()).count();
-    }
-
-    /**
-     * Adds a task to a room.
-     * The room must exist in the {@code RoomList}.
-     *
-     * @param task The task to add.
-     * @param room The room to which the task should be added.
-     * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
-     */
-    public void addTaskToRoom(Task task, Room room) {
-        requireAllNonNull(task, room);
-
-        int index = internalList.indexOf(room);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        room.addTask(task);
-        internalList.set(index, room);
-    }
-
-    /**
-     * Deletes a task from a room.
-     * The room must exist in the {@code RoomList}.
-     * The task must exist in the {@code TaskList} of the room.
-     *
-     * @param task The task to delete.
-     * @param room The room to which the task should be deleted.
-     * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
-     * @throws TaskNotFoundException if {@code task} is not in {@code room}.
-     */
-    public void deleteTaskFromRoom(Task task, Room room) {
-        requireAllNonNull(task, room);
-
-        int index = internalList.indexOf(room);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        room.deleteTask(task);
-        internalList.set(index, room);
-    }
-
-    public void setTaskToRoom(Task target, Task editedTask, Room room) {
-        requireAllNonNull(target, editedTask, room);
-
-        int index = internalList.indexOf(room);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        room.setTask(target, editedTask);
-        internalList.set(index, room);
     }
 
     /**
@@ -280,6 +223,7 @@ public class UniqueRoomList implements Iterable<Room> {
             return true;
         }
     }
+
     /**
      * Returns true if the list contains an equivalent room as the given argument.
      */
@@ -329,6 +273,7 @@ public class UniqueRoomList implements Iterable<Room> {
         rooms.add(editedRoom);
         internalList.set(index, editedRoom);
     }
+
     @Override
     public int hashCode() {
         int result = Objects.hash(numOfRooms, rooms, internalList);
@@ -342,15 +287,6 @@ public class UniqueRoomList implements Iterable<Room> {
 
     public void setRooms(PriorityQueue<Room> rooms) {
         this.rooms = rooms;
-    }
-
-    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
-        for (Room room : internalList) {
-            if (roomNumber == room.getRoomNumber()) {
-                return Optional.of(room);
-            }
-        }
-        return Optional.empty();
     }
 
 }

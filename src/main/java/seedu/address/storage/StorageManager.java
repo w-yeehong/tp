@@ -13,8 +13,6 @@ import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 /**
  * Manages storage of CovigentApp data in local storage.
@@ -25,18 +23,16 @@ public class StorageManager implements Storage {
     private PatientRecordsStorage patientRecordsStorage;
     private UserPrefsStorage userPrefsStorage;
     private JsonRoomOccupancyStorage roomOccupancyStorage;
-    private JsonTaskStorage taskStorage;
+
     /**
      * Creates a {@code StorageManager} with the given {@code PatientRecordsStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(PatientRecordsStorage patientRecordsStorage, UserPrefsStorage userPrefsStorage,
-                          JsonRoomOccupancyStorage roomOccupancyStorage,
-                          JsonTaskStorage taskStorage) {
+    public StorageManager(PatientRecordsStorage patientRecordsStorage,
+                        JsonRoomOccupancyStorage roomOccupancyStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.patientRecordsStorage = patientRecordsStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.roomOccupancyStorage = roomOccupancyStorage;
-        this.taskStorage = taskStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -87,25 +83,14 @@ public class StorageManager implements Storage {
         patientRecordsStorage.savePatientRecords(patientRecords, filePath);
     }
 
-
     @Override
     public void saveRoomList(RoomList roomList) throws IOException {
         roomOccupancyStorage.saveOccupiedRooms(roomList);
     }
 
     @Override
-    public void saveTaskList(TaskList taskList) throws IOException {
-        taskStorage.saveTask(taskList);
-    }
-
-    @Override
     public Optional<ReadOnlyList<Room>> readRoomOccupancyStorage() throws DataConversionException, IOException {
         return roomOccupancyStorage.readOnlyRoomOccupancy();
-    }
-
-    @Override
-    public Optional<ReadOnlyList<Task>> readTaskStorage() throws DataConversionException, IOException {
-        return taskStorage.readOnlyTask();
     }
 
 }

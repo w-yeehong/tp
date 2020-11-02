@@ -16,7 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 
@@ -48,11 +47,6 @@ public class LogicManager implements Logic {
         Command command = covigentAppParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
-        try {
-            storage.saveTaskList(model.getModifiableTaskList());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE);
-        }
         try {
             storage.saveRoomList(model.getModifiableRoomList());
         } catch (IOException ioe) {
@@ -100,10 +94,5 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Room> getFilteredRoomList() {
         return model.getFilteredRoomList();
-    }
-
-    @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return model.getFilteredTaskList();
     }
 }

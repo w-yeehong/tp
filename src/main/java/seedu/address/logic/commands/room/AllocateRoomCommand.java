@@ -17,7 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.task.TaskList;
+import seedu.address.model.room.RoomTasks;
 
 //@@author LeeMingDe
 /**
@@ -95,7 +95,7 @@ public class AllocateRoomCommand extends Command {
         assert (allocateRoomDescriptor != null);
 
         int roomNumber = roomToAllocate.getRoomNumber();
-        TaskList roomTaskList = roomToAllocate.getTaskList();
+        RoomTasks roomTaskList = new RoomTasks(roomToAllocate.getReadOnlyTasks());
         if (toRemove) {
             if (roomToAllocate.getPatient().isEmpty()) {
                 throw new CommandException(MESSAGE_NO_PATIENT_TO_REMOVE);

@@ -12,7 +12,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.task.TaskList;
 import seedu.address.testutil.PatientBuilder;
 
 /**
@@ -24,7 +23,7 @@ public class AddPatientCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        model = new ModelManager(getTypicalPatientRecords(), new RoomList(), new UserPrefs());
     }
 
     @Test
@@ -32,7 +31,7 @@ public class AddPatientCommandIntegrationTest {
         Patient validPatient = new PatientBuilder().withName("John Doe").build();
 
         Model expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+                new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
         expectedModel.addPatient(validPatient);
 
         assertCommandSuccess(new AddPatientCommand(validPatient), model,
