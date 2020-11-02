@@ -18,6 +18,7 @@ import seedu.address.model.room.Room;
 public class RoomTaskListPanel extends UiPart<Region> {
 
     private static final String FXML = "RoomTaskListPanel.fxml";
+
     private final Logger logger = LogsCenter.getLogger(RoomTaskListPanel.class);
 
     @FXML
@@ -61,16 +62,16 @@ public class RoomTaskListPanel extends UiPart<Region> {
 
     //@@author w-yeehong
     /**
-     * Attaches a listener to {@code roomTaskList}, repopulating the panel whenever
+     * Attaches a listener to {@code roomList}, repopulating the panel whenever
      * there are removals in the list of rooms.
      *
      * Fixes the issue of the panel not refreshing when a room is removed from the
      * list of rooms.
      *
-     * @param roomTaskList to listen for changes.
+     * @param roomList The room list to listen to for changes.
      */
-    private void updateDetailsIfChanged(ObservableList<Room> roomTaskList) {
-        roomTaskList.addListener(new ListChangeListener<Room>() {
+    private void updateDetailsIfChanged(ObservableList<Room> roomList) {
+        roomList.addListener(new ListChangeListener<Room>() {
             @Override
             public void onChanged(Change<? extends Room> change) {
                 while (change.next()) {
@@ -78,7 +79,7 @@ public class RoomTaskListPanel extends UiPart<Region> {
                     Index index = Index.fromZeroBased(indexOfChange);
                     logger.info("Changes detected in Room " + index.getOneBased()
                             + ". Updating RoomTaskListPanel...");
-                    resetPanel(roomTaskList);
+                    resetPanel(roomList);
                 }
             }
         });
