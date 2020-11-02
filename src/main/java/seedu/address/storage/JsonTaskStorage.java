@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
 
 //@@author itssodium
 /**
- * Reads data from storage data files and imports them into TaskList
+ * Reads data from storage data files and imports them into RoomTasks
  */
 public class JsonTaskStorage {
     private Path task;
@@ -42,7 +42,7 @@ public class JsonTaskStorage {
     }
 
     /**
-     * Returns TaskList data as a {@code ReadOnlyList<Task>}.
+     * Returns RoomTasks data as a {@code ReadOnlyList<Task>}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
@@ -62,18 +62,15 @@ public class JsonTaskStorage {
     }
 
     /**
-     * Save the task to the tasklist.
-     * @param roomTasks
-     * @throws IOException
+     * Saves the task to the {@code roomTasks}.
      */
     public void saveTask(RoomTasks roomTasks) throws IOException {
         saveTasks(roomTasks, task);
     }
 
     /**
-     * Save the task to the tasklist with the path.
-     * @param roomTasks
-     * @param fileTask
+     * Saves the task to the {@code roomTasks} with the path.
+     *
      * @throws IOException
      */
     public void saveTasks(RoomTasks roomTasks, Path fileTask) throws IOException {
