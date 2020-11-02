@@ -180,6 +180,8 @@ The concrete class `ModelManager` implements `Model` interface and manages the d
 
 Below is a class diagram for `ModelManager`.
 
+![Structure of the Model Component](images/ModelClassDiagram.png) <br>
+_Figure XX. Class Diagram for Model Component_
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -192,10 +194,8 @@ _Figure XX. Class Diagram for PatientRecords_
 
 The `TaskList` class is in charge of maintaining the data of all the tasks in Covigent. The class diagram for `TaskList` is shown below.
 
-//to insert class diagram for task list.
-_Figure XX. Class Diagram for TaskList_
 
-The `RoomList` class is in charge of maintaining the data in the rooms. It incorporates data from both `PatientRecords` and `TaskList` as each room stores the data of the patient who resides in the room and the tasklist meant for the room. The class diagram for `RoomList` is shown below.
+The `RoomList` class is in charge of maintaining the data in the rooms. It incorporates data from both `PatientRecords` and `RoomTasks` as each room stores the data of the patient who resides in the room and the tasklist meant for the room. The class diagram for `RoomList` is shown below.
 
 //to do later RoomList -> RoomTask -> TaskList (Observable ) 
 
