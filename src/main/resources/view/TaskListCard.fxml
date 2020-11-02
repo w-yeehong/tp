@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.TextField?>
 <HBox fx:id="cardPane" styleClass="card-pane" stylesheets="@../css/ListCard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -23,12 +24,7 @@
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
-        <Label fx:id="description" styleClass="label-big">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
+        <TextField fx:id="description" styleClass="text-field" editable="false" HBox.hgrow="ALWAYS"/>
       </HBox>
       <Label fx:id="taskId" styleClass="label-small" GridPane.columnIndex="0" />
       <Label fx:id="dueAt" styleClass="label-small" GridPane.columnIndex="1" />
