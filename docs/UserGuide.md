@@ -186,6 +186,9 @@ _Written by: Yun Qing_
 * Fields can be in any order. <br />
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* If the same field is provided multiple times, only the last input for that field will be processed.<br />
+  e.g. if you input `n/John Doe n/Mary Doe`, Covigent will only process `n/Mary Doe` and ignore `n/John Doe`. Similarly, if you input `n/John Doe t/37.4 n/Mary Doe t/36.5`, Covigent will interpret the fields provided as simply `n/Mary Doe t/36.5`.
+
 
 ### 5.2 Patients
 
