@@ -879,21 +879,40 @@ _Written by: Wai Lok_
 
 ### 5.5 View help: `help`
 
-Shows a message explaining how to access the help page.
+If you encounter any issues using Covigent and need to access this user guide again, simply key in `help` into the command box.
 
-Format: `help`
+**Format:** `help`
 
-Expected Outcome: <br />
-* A new help window appears.
+**Step By Step Usage:**  <br />
+
+1. Key in the command into the command box as shown below.
+2. Press `enter` to run the command.
+3. The result box displays the message as shown in Figure xx.
+<p align="center">
+    <img src="images/ug/helpresultdisplay.png" width="750" height="150">
+    <br />
+    <i>Figure xx. Result display box</i>
+</p>
+
+4. A new help window appears.
+<p align="center">
+    <img src="images/ug/helpwindow.png" width="550" height="100">
+    <br />
+    <i>Figure xx. Help window</i>
+</p>
+
+_Written by Yun Qing_
 
 ### 5.6 Exit Covigent: `exit`
 
-Exits Covigent and closes it.
+You can use this command to exit from Covigent.
 
-Format: `exit`
+**Format:** `exit`
 
-Expected Outcome:<br />
-* Covigent exits and closes.
+**Step By Step Usage:**<br />
+1. Key in the command into the command box.
+2. Press `enter` to run the command.
+3. Covigent exits and closes.
 
 _Written by: MingDe_
 
