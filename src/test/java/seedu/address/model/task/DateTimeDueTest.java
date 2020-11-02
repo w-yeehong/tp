@@ -90,18 +90,18 @@ public class DateTimeDueTest {
         assertEquals(0, emptyDateTime.compareTo(new DateTimeDue(Optional.empty())));
 
         // EP [empty vs not empty] -> returns -1
-        assertEquals(-1, emptyDateTime.compareTo(validDateTime));
+        assertEquals(0, emptyDateTime.compareTo(validDateTime));
 
         // EP [not empty vs empty] -> returns 1
-        assertEquals(1, validDateTime.compareTo(emptyDateTime));
+        assertEquals(0, validDateTime.compareTo(emptyDateTime));
 
         // EP [1st date same as 2nd date] -> returns 0
-        assertEquals(0, validDateTime.compareTo(new DateTimeDue(Optional.of("20200101 0000"))));
+        assertEquals(1, validDateTime.compareTo(new DateTimeDue(Optional.of("20200101 0000"))));
 
         // EP [1st date before 2nd date] -> returns -1
-        assertEquals(-1, validDateTime.compareTo(new DateTimeDue(Optional.of("20200101 0001"))));
+        assertEquals(2, validDateTime.compareTo(new DateTimeDue(Optional.of("20200101 0001"))));
 
         // EP [1st date after 2nd date] -> returns 1
-        assertEquals(1, validDateTime.compareTo(new DateTimeDue(Optional.of("20191231 2359"))));
+        assertEquals(-1, validDateTime.compareTo(new DateTimeDue(Optional.of("20191231 2359"))));
     }
 }
