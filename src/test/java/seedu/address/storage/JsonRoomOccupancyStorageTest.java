@@ -3,8 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRooms.ROOM_NO_PATIENT_NO_TASK;
-import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
+import static seedu.address.testutil.TypicalRooms.*;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -87,13 +86,13 @@ class JsonRoomOccupancyStorageTest {
         assertEquals(original, roomList);
 
         // Modify data, overwrite exiting file, and read back
-        original.addRooms(ROOM_NO_PATIENT_NO_TASK);
+        original.addRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_1);
         jsonRoomOccupancyStorage.saveOccupiedRooms(original, filePath);
         readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy(filePath).get();
         assertEquals(original, new RoomList(readBack));
 
         // Save and read without specifying file path
-        original.addRooms(ROOM_NO_PATIENT_NO_TASK);
+        original.addRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_2);
         jsonRoomOccupancyStorage.saveOccupiedRooms(original); // file path not specified
         readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy().get(); // file path not specified
         assertEquals(original, new RoomList(readBack));
