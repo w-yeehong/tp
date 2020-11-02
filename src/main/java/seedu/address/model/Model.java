@@ -12,7 +12,6 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 /**
  * The API of the Model component.
@@ -24,6 +23,7 @@ public interface Model {
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
 
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -199,19 +199,10 @@ public interface Model {
     ObservableList<Room> getFilteredRoomList();
 
     /**
-     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code TaskList}.
-     */
-    ObservableList<Task> getFilteredTaskList();
-
-    TaskList getModifiableTaskList();
-    /**
      * Updates the filter of the filtered rooms to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRoomList(Predicate<Room> predicate);
-
-    void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
      * Returns Priority Queue of rooms
@@ -232,14 +223,6 @@ public interface Model {
      * @param room The room to which the task should be added.
      */
     void addTaskToRoom(Task task, Room room);
-
-    /**
-     * Adds {@code task}.
-     * The room must exist in {@code CovigentApp}.
-     *
-     * @param task The task to add.
-     */
-    void addTask(Task task);
 
     /**
      * Deletes {@code task} from {@code room}.
@@ -263,20 +246,9 @@ public interface Model {
     void setTaskToRoom(Task target, Task editedTask, Room room);
 
     /**
-     * Deletes {@code task}.
-     * The room must exist in Covigent.
+     * Update the filterTaskList with {@code datePredicate}.
      *
-     * @param taskToDelete The task to delete.
+     * @param datePredicate The dueDate predicate.
      */
-    void deleteTask(Task taskToDelete);
-
-    /**
-     * Sets {@code task}.
-     * The room must exist in Covigent.
-     *
-     * @param taskToEdit The task to edit.
-     * @param editedTask the edited task.
-     */
-    void setTask(Task taskToEdit, Task editedTask);
-
+    void updateFilteredTaskList(Predicate<Task> datePredicate);
 }

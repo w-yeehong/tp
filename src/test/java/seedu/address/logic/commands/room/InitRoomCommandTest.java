@@ -11,14 +11,13 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.PatientRecords;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.TaskList;
 import seedu.address.testutil.TypicalRooms;
 
 public class InitRoomCommandTest {
 
     @Test
     void execute_numberOfRooms_notDefined() {
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
 
         assertCommandFailure(new InitRoomCommand(-100), model,
                 InitRoomCommand.MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
@@ -26,9 +25,9 @@ public class InitRoomCommandTest {
 
     @Test
     void execute_numberOfRooms_success() {
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         Model expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+                new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
         String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 100);
         expectedModel.addRooms(100);
         assertCommandSuccess(new InitRoomCommand(100), model, expectedMessage, expectedModel);
@@ -36,9 +35,9 @@ public class InitRoomCommandTest {
 
     @Test
     void execute_increaseNumberOfRooms_success() {
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         Model expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+                new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
 
         //initRoom to 10 rooms first
         String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 10);
@@ -53,9 +52,9 @@ public class InitRoomCommandTest {
 
     @Test
     void execute_decreaseNumberOfRooms_success() {
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         Model expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+                new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
 
         //initRoom to 50 rooms first
         String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 50);
@@ -90,8 +89,8 @@ public class InitRoomCommandTest {
 
         Model model = new ModelManager(new PatientRecords(), new UserPrefs(), roomList, new TaskList());
         Model expectedModel =
-                new ModelManager(new PatientRecords(), new UserPrefs(), roomList1, new TaskList());
-
+                new ModelManager(model.getPatientRecords(), new UserPrefs(), roomList1, new TaskList());
+      
         //initRoom to 5 rooms -> decrease number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 5);
         expectedModel.addRooms(5);
@@ -103,7 +102,7 @@ public class InitRoomCommandTest {
     void execute_decreaseNumberOfOccupiedRooms_failure() {
         RoomList roomList = TypicalRooms.getTypicalRoomList();
 
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), roomList, new TaskList());
+        Model model = new ModelManager(new PatientRecords(), roomList, new UserPrefs());
 
         //initRoom to 2 rooms -> decrease number of rooms
         String expectedMessage = String.format(InitRoomCommand.MESSAGE_INSUFFICIENT_ROOMS, 2);
