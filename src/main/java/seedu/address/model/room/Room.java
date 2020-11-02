@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
@@ -108,9 +109,9 @@ public class Room {
     }
 
     /**
-     * Returns a filtered list as an {@code ObservableList}.
+     * Returns a filtered list as an {@code FilteredList}.
      */
-    public ObservableList<Task> getFilteredTasks() {
+    public FilteredList<Task> getFilteredTasks() {
         return tasks.getFilteredList();
     }
 
