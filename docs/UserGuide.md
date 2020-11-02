@@ -83,7 +83,7 @@ In our patient features, you can [add](#521-add-a-patient-addpatient), [delete](
 [edit](#523-edit-patient-details-editpatient), [search](#524-search-patients-by-information-searchpatient) for a patient,
 or you can [list](#525-list-all-patients-listpatient) out all the patients in Covigent.
 
-Moving on to our room features, you can [initialize](#531-initialise-rooms-in-hotel-initroom), [allocate](#532-allocate-patient-to-room-allocateroom),
+Moving on to our room features, you can [initialise](#531-initialise-rooms-in-hotel-initroom), [allocate](#532-allocate-patient-to-room-allocateroom),
 [search](#533-search-by-room-number-searchroom) and [find](#536-find-the-first-free-room-findemptyroom) the rooms which you need.
 If you want an overview of the rooms, you can [list](#535-list-the-current-rooms-listroom) out all the rooms in Covigent.
 
@@ -442,7 +442,7 @@ _Written by: Wai Lok_
 
 ### 5.3 Room
 
-This section contains all the commands related to rooms. You can [initialize](#531-initialise-rooms-in-hotel-initroom), [allocate](#532-allocate-patient-to-room-allocateroom),[search](#533-search-by-room-number-searchroom) and [find](#536-find-the-first-free-room-findemptyroom) the rooms which you need.
+This section contains all the commands related to rooms. You can [initialise](#531-initialise-rooms-in-hotel-initroom), [allocate](#532-allocate-patient-to-room-allocateroom),[search](#533-search-by-room-number-searchroom) and [find](#536-find-the-first-free-room-findemptyroom) the rooms which you need.
 If you want an overview of the rooms, you can [list](#535-list-the-current-rooms-listroom) out all the rooms in Covigent. If you are unsure of how to interpret the command format, head back to [Command Format](#51-command-format) before executing the commands!
 
 
