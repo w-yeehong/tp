@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.testutil.TaskBuilder;
 
+//@@author w-yeehong
 public class TaskListTest {
 
     private final TaskList taskList = new TaskList();
@@ -46,6 +49,31 @@ public class TaskListTest {
     public void add_nullTask_throwsNullPointerException() {
         Task nullTask = null;
         assertThrows(NullPointerException.class, () -> taskList.add(nullTask));
+    }
+
+    @Test
+    public void add_listWithNullTask_throwsNullPointerException() {
+        // Only null task
+        List<Task> listWithOnlyNullTask = Collections.singletonList(null);
+        assertThrows(NullPointerException.class, () -> taskList.add(listWithOnlyNullTask));
+
+        // Multiple valid tasks, with one null task
+        List<Task> listWithOneNullTask = new ArrayList<>(Arrays.asList(
+                REMIND_PATIENT, null, RESTOCK_SUPPLY));
+        assertThrows(NullPointerException.class, () -> taskList.add(listWithOneNullTask));
+    }
+
+    @Test
+    public void add_listWithOnlyValidTasks_allTasksAdded() {
+        List<Task> listWithValidTasks = new ArrayList<>(Arrays.asList(
+                REMIND_PATIENT, RESTOCK_SUPPLY));
+        taskList.add(listWithValidTasks);
+
+        TaskList expectedTaskList = new TaskList();
+        expectedTaskList.add(REMIND_PATIENT);
+        expectedTaskList.add(RESTOCK_SUPPLY);
+
+        assertEquals(expectedTaskList, taskList);
     }
 
     @Test
@@ -126,6 +154,18 @@ public class TaskListTest {
         TaskList expectedTaskList = new TaskList();
         expectedTaskList.add(RESTOCK_SUPPLY);
         assertEquals(expectedTaskList, taskList);
+    }
+
+    @Test
+    public void isEmpty() {
+        // EP for empty task list: [empty], [not empty]
+
+        // EP [empty]: returns true
+        assertTrue(taskList.isEmpty());
+
+        // EP [not empty]: returns false
+        taskList.add(REMIND_PATIENT);
+        assertFalse(taskList.isEmpty());
     }
 
     @Test

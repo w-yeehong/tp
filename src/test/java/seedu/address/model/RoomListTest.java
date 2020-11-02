@@ -38,14 +38,14 @@ class RoomListTest {
 
         // EP for room number: [MIN_INT...0], [1...MAX_INT]
 
-        // EP [1...MAX_INT]: returns empty optional
+        // EP [1...MAX_INT] -> returns empty optional
         Optional<Room> validRoom = roomList.getRoomWithRoomNumber(1);
         assertTrue(validRoom.isEmpty());
 
-        // EP [MIN_INT...0]: throws AssertionError
+        // EP [MIN_INT...0] -> throws AssertionError
         assertThrows(AssertionError.class, () -> roomList.getRoomWithRoomNumber(0));
 
-        // EP [MIN_INT...0]: throws AssertionError
+        // EP [MIN_INT...0] -> throws AssertionError
         assertThrows(AssertionError.class, () -> roomList.getRoomWithRoomNumber(-1));
     }
 

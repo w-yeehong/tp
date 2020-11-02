@@ -188,7 +188,6 @@ public class Room {
         tasks.setPredicate(predicate);
     }
 
-
     /**
      * Enumerates the tasks in this room, numbering and specifying the details of each task.
      *
