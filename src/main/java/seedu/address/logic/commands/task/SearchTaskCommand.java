@@ -54,8 +54,10 @@ public class SearchTaskCommand extends Command {
         for (Room room : rooms) {
             tasks = room.getReadOnlyTasks();
             for (Task task : tasks) {
-                if (task.getDueAt().compareTo(duedate) == 1) {
+                if (task.getDueAt().compareTo(duedate) == 1
+                        || task.getDueAt().compareTo(duedate) == 2) {
                     taskListWithDesirableResult.add(task);
+                    break;
                 }
             }
         }
