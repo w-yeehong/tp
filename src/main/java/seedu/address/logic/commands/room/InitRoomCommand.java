@@ -16,6 +16,8 @@ public class InitRoomCommand extends Command {
     public static final String MESSAGE_ZERO_CANNOT_BE_AN_INPUT = "Please input a positive value";
     public static final String MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT = "Please check your value! "
             + "You have input a negative value!";
+    public static final String MESSAGE_LARGE_NUMBER_OF_ROOMS_INPUT = "Please reduce the number of rooms input."
+            + "maximum number of rooms are 5000";
     public static final String MESSAGE_INSUFFICIENT_ROOMS = "There would be insufficient rooms for existing number of "
             + "patients of %d";
     public static final String MESSAGE_SUCCESS = "Initialize the number of rooms to %d rooms in the application";
@@ -39,6 +41,8 @@ public class InitRoomCommand extends Command {
             throw new CommandException(MESSAGE_ZERO_CANNOT_BE_AN_INPUT);
         } else if (numOfRooms < 0) {
             throw new CommandException(MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
+        } else if (numOfRooms > 5000) {
+            throw new CommandException(MESSAGE_LARGE_NUMBER_OF_ROOMS_INPUT);
         } else if (model.getNumOfRooms() > numOfRooms && !model.hasSpaceForRooms()) {
             throw new CommandException(String.format(MESSAGE_INSUFFICIENT_ROOMS, model.numOfOccupiedRooms()));
         }

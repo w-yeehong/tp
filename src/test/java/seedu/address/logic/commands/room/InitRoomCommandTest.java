@@ -106,5 +106,14 @@ public class InitRoomCommandTest {
                 expectedMessage);
     }
 
+    @Test
+    void execute_largeNumberOfRooms_failure() {
+        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+
+        //initRoom to 5001 room -> throws too many rooms as maximum number of rooms i 5000
+        String expectedMessage = InitRoomCommand.MESSAGE_LARGE_NUMBER_OF_ROOMS_INPUT;
+        assertCommandFailure(new InitRoomCommand(5001), model, expectedMessage);
+    }
+
 }
 //@@author itssodium

@@ -3,7 +3,9 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRooms.*;
+import static seedu.address.testutil.TypicalRooms.ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_1;
+import static seedu.address.testutil.TypicalRooms.ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_2;
+import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
 
 import java.io.IOException;
 import java.nio.file.Path;
