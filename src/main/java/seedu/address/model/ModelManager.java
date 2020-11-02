@@ -52,6 +52,7 @@ public class ModelManager implements Model {
         this(new PatientRecords(), new RoomList(), new UserPrefs());
     }
 
+
     //=========== UserPrefs ==================================================================================
 
     @Override

@@ -72,9 +72,8 @@ public class InitRoomCommandTest {
         RoomList roomList = TypicalRooms.getTypicalRoomList();
         RoomList roomList1 = TypicalRooms.getTypicalRoomList();
 
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), roomList, new TaskList());
-        Model expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), roomList1, new TaskList());
+        Model model = new ModelManager(new PatientRecords(), roomList, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPatientRecords(), roomList1, new UserPrefs());
 
         //initRoom to 50 rooms -> increase number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 50);
@@ -87,10 +86,9 @@ public class InitRoomCommandTest {
         RoomList roomList = TypicalRooms.getTypicalRoomList();
         RoomList roomList1 = TypicalRooms.getTypicalRoomList();
 
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), roomList, new TaskList());
-        Model expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), roomList1, new TaskList());
-      
+        Model model = new ModelManager(new PatientRecords(), roomList, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPatientRecords(), roomList1, new UserPrefs());
+
         //initRoom to 5 rooms -> decrease number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 5);
         expectedModel.addRooms(5);
@@ -112,7 +110,7 @@ public class InitRoomCommandTest {
 
     @Test
     void execute_largeNumberOfRooms_failure() {
-        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
 
         //initRoom to 5001 rooms -> too many rooms initialised
         String expectedMessage = InitRoomCommand.MESSAGE_LARGE_NUMBER_OF_ROOMS_INPUT;
