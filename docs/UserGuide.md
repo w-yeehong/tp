@@ -220,11 +220,7 @@ Field | Description
 
 **Step By Step Usage:** <br />
 1. Navigate to the Patients tab under the navigation bar as shown in Figure 3.
-<p align="center">
-    <img src="images/ug/patienttab.png" width="380" height="300">
-    <br />
-   <i>Figure 3. Navigation to Patients tab</i>
-</p>
+//HERE
 
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
@@ -268,11 +264,8 @@ Field | Description
 
 **Step By Step Usage:** <br />
 1. Navigate to the Patients tab under the navigation bar as shown in Figure 6.
-<p align="center">
-    <img src="images/ug/patienttab.png" width="380" height="300">
-    <br />
-   <i>Figure 6. Navigation to Patients tab</i>
-</p>
+
+//here
 
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
@@ -321,11 +314,7 @@ Field | Description
 
 **Step By Step Usage:** <br />
 1. Navigate to the Patients tab under the navigation bar as shown in Figure 3.
-<p align="center">
-    <img src="images/ug/patienttab.png" width="380" height="300">
-    <br />
-   <i>Figure 9. Navigation to Patients tab</i>
-</p>
+//HERE
 
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
@@ -371,11 +360,8 @@ Field | Description
 **Step By Step Usage:**  <br />
 
 1. Navigate to the Patients tab under the navigation bar as shown in Figure 12.
-<p align="center">
-    <img src="images/ug/patienttab.png" width="380" height="300">
-    <br />
-   <i>Figure 12. Navigation to Patients tab</i>
-</p>
+
+//HERE
 
 2. Before the search, this is what you see in the list of patient.
 <p align="center">
@@ -416,11 +402,8 @@ You can use this command to look at the list of all patients in the patient tab.
 **Step By Step Usage:**  <br />
 
 1. Navigate to the Patients tab under the navigation bar as shown in Figure 16.
-<p align="center">
-    <img src="images/ug/patienttab.png" width="380" height="300">
-    <br />
-   <i>Figure 16. Navigation to Patients tab</i>
-</p>
+
+//HERE
 
 2. Key in the command into the command box as shown below.
 <p align="center">
