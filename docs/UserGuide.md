@@ -220,7 +220,11 @@ Field | Description
 
 **Step By Step Usage:** <br />
 1. Navigate to the Patients tab under the navigation bar as shown in Figure 3.
-//HERE
+<p align="center">
+    <img src="images/ug/patienttab.png" width="380" height="300">
+    <br />
+   <i>Figure 3. Navigation to Patients tab</i>
+</p>
 
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
@@ -264,8 +268,11 @@ Field | Description
 
 **Step By Step Usage:** <br />
 1. Navigate to the Patients tab under the navigation bar as shown in Figure 6.
-
-//here
+<p align="center">
+    <img src="images/ug/patienttab.png" width="380" height="300">
+    <br />
+   <i>Figure 6. Navigation to Patients tab</i>
+</p>
 
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
@@ -313,8 +320,12 @@ Field | Description
 1. `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Patients tab under the navigation bar as shown in Figure 3.
-//HERE
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 9.
+<p align="center">
+    <img src="images/ug/patienttab.png" width="380" height="300">
+    <br />
+   <i>Figure 9. Navigation to Patients tab</i>
+</p>
 
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
@@ -325,7 +336,7 @@ Field | Description
 
 3. Press `enter` to run the command.
 
-4. With reference to Figure 5, the result box displays the message, "_Edited Patient: Alex Yeoh Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 912345678 Age: 23 Comment: -_". The patient will be edited in Covigent. 
+4.  The result box displays the message shown in Figure 11 and the patient is edited in Covigent. 
 
 5. The details of the newly edited patient will be shown in the details panel.
 <p align="center">
@@ -334,7 +345,7 @@ Field | Description
     <i>Figure 11. A Successful Execution of <code>editpatient</code> command</i>
 </p>
 
-6. If you do not see the success message as shown in Figure 5, please repeat step 2 onwards.
+6. If you do not see the success message as shown in Figure 11, please repeat step 2 onwards.
 
 _Written by: Ming De_
 
@@ -360,8 +371,11 @@ Field | Description
 **Step By Step Usage:**  <br />
 
 1. Navigate to the Patients tab under the navigation bar as shown in Figure 12.
-
-//HERE
+<p align="center">
+    <img src="images/ug/patienttab.png" width="380" height="300">
+    <br />
+   <i>Figure 12. Navigation to Patients tab</i>
+</p>
 
 2. Before the search, this is what you see in the list of patient.
 <p align="center">
@@ -379,7 +393,7 @@ Field | Description
 
 4. Press `enter` to run the command.
 
-5. With reference to Figure 15, the result box displays the message, "Listed patient(s) matching the criteria.".
+5. With reference to Figure 15, the result box displays the message "Listed patient(s) matching the criteria.".
 
 6. Now you can find Patients with a temperature between 36.5 and 36.7 degree celsius in the list of patients in Covigent.
 <p align="center">
@@ -402,8 +416,11 @@ You can use this command to look at the list of all patients in the patient tab.
 **Step By Step Usage:**  <br />
 
 1. Navigate to the Patients tab under the navigation bar as shown in Figure 16.
-
-//HERE
+<p align="center">
+    <img src="images/ug/patienttab.png" width="380" height="300">
+    <br />
+   <i>Figure 16. Navigation to Patients tab</i>
+</p>
 
 2. Key in the command into the command box as shown below.
 <p align="center">
