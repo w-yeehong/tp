@@ -5,6 +5,7 @@ import static seedu.address.testutil.command.GeneralCommandTestUtil.assertComman
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PatientRecords;
@@ -70,9 +71,11 @@ public class InitRoomCommandTest {
     @Test
     void execute_increaseNumberOfOccupiedRooms_success() {
         RoomList roomList = TypicalRooms.getTypicalRoomList();
+        RoomList roomList1 = TypicalRooms.getTypicalRoomList();
+
         Model model = new ModelManager(new PatientRecords(), new UserPrefs(), roomList, new TaskList());
         Model expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), roomList, new TaskList());
+                new ModelManager(model.getPatientRecords(), new UserPrefs(), roomList1, new TaskList());
 
         //initRoom to 50 rooms -> increase number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 50);
@@ -81,16 +84,18 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_decreaseNumberOfOccupiedRooms_success() {
+    void execute_decreaseNumberOfOccupiedRooms_success() throws CommandException {
         RoomList roomList = TypicalRooms.getTypicalRoomList();
+        RoomList roomList1 = TypicalRooms.getTypicalRoomList();
 
         Model model = new ModelManager(new PatientRecords(), new UserPrefs(), roomList, new TaskList());
         Model expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), roomList, new TaskList());
+                new ModelManager(new PatientRecords(), new UserPrefs(), roomList1, new TaskList());
 
         //initRoom to 5 rooms -> decrease number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 5);
         expectedModel.addRooms(5);
+
         assertCommandSuccess(new InitRoomCommand(5), model, expectedMessage2, expectedModel);
     }
 
@@ -106,6 +111,13 @@ public class InitRoomCommandTest {
                 expectedMessage);
     }
 
+    @Test
+    void execute_largeNumberOfRooms_failure() {
+        Model model = new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
 
+        //initRoom to 5001 rooms -> too many rooms initialised
+        String expectedMessage = InitRoomCommand.MESSAGE_LARGE_NUMBER_OF_ROOMS_INPUT;
+        assertCommandFailure(new InitRoomCommand(5001), model, expectedMessage);
+    }
 }
 //@@author itssodium

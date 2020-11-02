@@ -52,13 +52,13 @@ public class UniqueRoomList implements Iterable<Room> {
                 internalList.add(roomToAdd);
                 rooms.add(room);
             }
-            rooms.add(room);
-            internalList.add(room);
+            //rooms.add(room);
+            //internalList.add(room);
         } else {
             Room currRoom = internalList.get(roomNumber - 1);
             internalList.remove(roomNumber - 1);
             rooms.remove(currRoom);
-            internalList.add(roomNumber, room);
+            internalList.add(roomNumber - 1, room);
             rooms.add(room);
         }
     }
@@ -86,7 +86,6 @@ public class UniqueRoomList implements Iterable<Room> {
      * @param room is added to RoomList
      */
     public void addRooms(Room room) {
-        this.numOfRooms++;
         rooms.add(room);
         internalList.add(room);
     }
@@ -103,6 +102,7 @@ public class UniqueRoomList implements Iterable<Room> {
 
     private void addRooms() {
         ArrayList<Room> roomArrayList = new ArrayList<>(internalList);
+        PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
         if (numOfRooms <= 0) {
             return;
         }
@@ -112,6 +112,7 @@ public class UniqueRoomList implements Iterable<Room> {
                 rooms.add(room);
                 roomArrayList.add(room);
             }
+            this.rooms.addAll(rooms);
             internalList.setAll(roomArrayList);
         } else if (numOfRooms < internalList.size()) {
             List<Room> occupiedRooms = occupiedRooms();
@@ -121,7 +122,7 @@ public class UniqueRoomList implements Iterable<Room> {
             } else {
                 combinedStream(occupiedRooms, unoccupiedRooms);
             }
-            rooms = new PriorityQueue<>(new ComparableRoom());
+            this.rooms = new PriorityQueue<>(new ComparableRoom());
             for (int i = 0; i < numOfRooms; i++) {
                 Room room = internalList.get(i);
                 rooms.add(room);
@@ -130,6 +131,7 @@ public class UniqueRoomList implements Iterable<Room> {
             for (int i = numOfRooms; i < size; i++) {
                 roomArrayList.remove(numOfRooms);
             }
+            this.rooms.addAll(rooms);
             internalList.setAll(roomArrayList);
         }
     }
@@ -258,9 +260,16 @@ public class UniqueRoomList implements Iterable<Room> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueRoomList // instanceof handles nulls
-                && internalList.equals(((UniqueRoomList) other).internalList));
+        if (other == this) {
+            return true;
+        }
+
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+
+        return equals(new PriorityQueue<>(rooms), new PriorityQueue<>(((UniqueRoomList) other).rooms))
+                && internalList.equals(((UniqueRoomList) other).internalList);
     }
 
     /**

@@ -49,10 +49,10 @@ public class TypicalRooms {
 
     public static RoomList getTypicalRoomList() {
         RoomList roomList = new RoomList();
+        roomList.addRooms(15);
         for (Room room : getTypicalRooms()) {
             roomList.setRoom(room);
         }
-        roomList.addRooms(15);
         return roomList;
     }
 
