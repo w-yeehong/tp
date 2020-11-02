@@ -28,7 +28,7 @@ class JsonSerializableRoomListTest {
     }
 
     @Test
-    public void toModelType_roomList_wrongOrder_failure() throws Exception {
+    public void toModelType_roomListWrongOrder_failure() throws Exception {
         JsonSerializableRoomList dataFromFile = JsonUtil.readJsonFile(WRONG_ORDER_ROOM_LIST,
                 JsonSerializableRoomList.class).get();
         String expectedMessage = JsonSerializableRoomList.WRONG_ORDER_OF_ROOM;
@@ -36,7 +36,7 @@ class JsonSerializableRoomListTest {
     }
 
     @Test
-    public void toModelType_roomList_wrongStartNumber_failure() throws Exception {
+    public void toModelType_roomListWrongStartNumber_failure() throws Exception {
         JsonSerializableRoomList dataFromFile = JsonUtil.readJsonFile(START_ROOM_NUMBER_NOT_ONE,
                 JsonSerializableRoomList.class).get();
         String expectedMessage = JsonSerializableRoomList.WRONG_ORDER_OF_ROOM;
