@@ -48,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private RoomListPanel roomListPanel;
-    private TaskListPanel taskListPanel;
+    private RoomTaskListPanel roomTaskListPanel;
     private HelpWindow helpWindow;
 
     @FXML
@@ -143,14 +143,14 @@ public class MainWindow extends UiPart<Stage> {
         roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
         roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
 
+        roomTaskListPanel = new RoomTaskListPanel(logic.getFilteredRoomList());
+        taskListPanelPlaceholder.getChildren().add(roomTaskListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCovigentAppFilePath());
         statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
