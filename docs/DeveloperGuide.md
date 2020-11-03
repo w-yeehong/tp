@@ -190,7 +190,7 @@ The `PatientRecords` class is in charge of maintaining the data of the patients 
 ![Class Diagram For PatientRecords](images/PatientRecordsClassDiagram.png) <br>
 _Figure XX. Class Diagram for PatientRecords_
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `PatientRecords` class implements the interface ReadOnlyList &lt Patient &gt but due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `PatientRecords` class implements the interface ReadOnlyList&lt;Patient&gt; but due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
 </div>
 <br>
 
@@ -199,7 +199,7 @@ The `RoomList` class is in charge of maintaining the data in the rooms and in en
 ![Class Diagram For RoomList](images/RoomListClassDiagram.png) <br>
 _Figure XX. Class Diagram for RoomList_
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `RoomList` class implements the interface ReadOnlyList &ltRoom&gt and the `RoomTasks` class implements the interface ReadOnlyList &ltTask&gt. However, due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `RoomList` class implements the interface ReadOnlyList &lt;Room&gt; and the `RoomTasks` class implements the interface ReadOnlyList&lt;Task&gt;. However, due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
 </div>
 <br>
 
@@ -252,7 +252,7 @@ A `Patient` object in Covigent contains the following attributes, which is also 
 5. Phone
 6. Comment  
 
-//INSERT
+ ![Class Diagram for Patient](images/PatientClassDiagram.png)
 _Figure XX. Class Diagram for Patient_
 
 #### Design Considerations for Patient 
@@ -271,11 +271,11 @@ This option increases OOP and is aligned to the original design of AddressBook3.
 
 * Option 1: Uniqueness is identified by name, age and phone
 
-Originally, our team intended to define `Patient` to be non-unique if they have the same `Name`, `Age` and `Phone`. However, such a design will make it difficult for users of Covigent as they will have to key in all these fields when executing `editpatient` and `deletepatient` in order for Covigent to uniquely identify the `Patient` to manipulate. 
+Originally, our team intended to define two `Patient` to be equals if they have the same `Name`, `Age` and `Phone`. However, such a design will make it difficult for users of Covigent as they will have to key in all these fields when executing `EditPatientCommand` and `DeletePatientCommand` in order for Covigent to uniquely identify the `Patient` to manipulate. 
 
 * Option 2: Uniqueness is identified by name
 
-Keeping in mind the ease of usage of Covigent for users, our team chose to identify `Patient` uniquely by `Name` only. As such, when users need to manipulate the data of a `Patient`, all they need to input is the `Name`. Furthermore, our team believes that since Covigent is used by small hotels, there is a very low chance of 2 patients having the same names.
+Keeping in mind the ease of usage of Covigent for users, our team chose to identify `Patient` uniquely by `Name` only. As such, when users need to manipulate the data of a `Patient`, all they need to input is the `Name`. Furthermore, our team believes that since Covigent is used by small hotels, there is a very low chance of two patients having the same names.
 
 #### Features related to Patient
 
@@ -288,8 +288,13 @@ The features comprise of five commands namely,
 * `DeletePatientCommand` - Deleting patients
 * `SearchPatientCommand`- Searching for patients
 
-
+_Written by Yun Qing_
 #### 4.1.2 Create, Read, Update, Delete
+
+//patient functions in model
+//how they support the command
+//example of editcommand
+
 The patient feature utilises the `CovigentAppParser` class to parse the user command input into different command types and validates the input. Patients are then added into the `UniquePatientList#internalList` observable list.
 
 The feature comprises of five commands namely,
@@ -320,7 +325,7 @@ method.
 **Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
 new `CommandResult` will be returned with the message.
 
-
+_Edit Patient Implementation written by Ming De_
 
 
 #### 4.1.3 Search Patient
