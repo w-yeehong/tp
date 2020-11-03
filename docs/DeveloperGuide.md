@@ -10,8 +10,8 @@
     3.6  [Commons Component](#36-commons-component)<br>
  4. [Implementation](#4-implementation)<br>
     4.1  [Patient Feature](#41-patient-feature)<br>
-          4.1.1 [High Level Details](#411-high-level-details)<br>
-          4.1.2 [CRUD](#412-crud)<br>
+          4.1.1 [Overview](#411-overview)<br>
+          4.1.2 [Create, Read, Update, Delete](#412-create-read-update-delete)<br>
           4.1.3 [Search Patient](#413-search-patient)<br>
     4.2  [Room Feature](#42-room-feature)<br>
           4.2.1 [Initialise Room](#421-initialise-room)<br>
@@ -239,8 +239,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-
 ### 4.1 Patient Feature
+
+#### 4.1.1 Overview
+
+The data of a `Patient` in Covigent consists of ...
+
+\\insert picture of patient class diagram attribute
+
+\\why we use diff classes to represent attributes -> extend from AB3, alternatives -> no need extra class 
+
+\\patient is unique identified by name -> justify small hotels, low chance of 2 same names
+
+How the feature is implemented (or is going to be implemented).
+Why it is implemented that way.
+Alternatives considered.
 
 The patient feature utilises the `CovigentAppParser` class to parse the user command input into different command types and
 validates the input. Patients are then added into the `UniquePatientList#internalList` observable list.
@@ -252,11 +265,9 @@ The feature comprises of five commands namely,
 * [`DeletePatientCommand`](#414-delete-patient) - Deleting patients
 * [`SearchPatientCommand`](#415-search-patient) - Searching for patients
 
-#### 4.1.1 Add Patient 
+#### 4.1.2 Create, Read, Update, Delete
 
 
-
-#### 4.1.2 List Patient
 
 
 
@@ -280,10 +291,9 @@ method.
 new `CommandResult` will be returned with the message.
 
 
-#### 4.1.4 Delete Patient 
 
 
-#### 4.1.5 Search Patient
+#### 4.1.3 Search Patient
 
 **Implementation**
 The following is a detailed explanation of the operations that `SearchPatientCommand` performs.
