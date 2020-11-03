@@ -49,8 +49,6 @@ public class UniqueRoomList implements Iterable<Room> {
                 internalList.add(roomToAdd);
                 rooms.add(room);
             }
-            //rooms.add(room);
-            //internalList.add(room);
         } else {
             Room currRoom = internalList.get(roomNumber - 1);
             internalList.remove(roomNumber - 1);
