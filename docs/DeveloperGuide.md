@@ -190,7 +190,7 @@ The `PatientRecords` class is in charge of maintaining the data of the patients 
 ![Class Diagram For PatientRecords](images/PatientRecordsClassDiagram.png) <br>
 _Figure XX. Class Diagram for PatientRecords_
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `PatientRecords` class implements the interface ReadOnlyList<Patient> but due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `PatientRecords` class implements the interface ReadOnlyList&ltPatient&gt but due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
 </div>
 <br>
 
@@ -199,7 +199,7 @@ The `RoomList` class is in charge of maintaining the data in the rooms and in en
 ![Class Diagram For RoomList](images/RoomListClassDiagram.png) <br>
 _Figure XX. Class Diagram for RoomList_
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `RoomList` class implements the interface ` ReadOnlyList<Room> ` and the `RoomTasks` class implements the interface `ReadOnlyList<Task>`. However, due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `RoomList` class implements the interface `ReadOnlyList&ltRoom&gt` and the `RoomTasks` class implements the interface `ReadOnlyList&ltTask&gt`. However, due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
 </div>
 <br>
 
