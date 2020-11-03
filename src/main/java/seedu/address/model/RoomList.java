@@ -47,8 +47,8 @@ public class RoomList implements ReadOnlyList<Room> {
         return rooms.hasSpaceForRooms();
     }
 
-    public int numOfOccupiedRooms() {
-        return rooms.numOfOccupiedRooms();
+    public int getNumOfExcessOccupiedRooms() {
+        return rooms.getNumOfExcessOccupiedRooms();
     }
     /**
      * Resets the existing data of this {@code RoomList} with {@code newData}.
@@ -71,7 +71,7 @@ public class RoomList implements ReadOnlyList<Room> {
     }
 
     public void setInitNumOfRooms(int numOfRooms) {
-        rooms.setNumOfRooms(numOfRooms);
+        rooms.setPreferredNumOfRooms(numOfRooms);
     }
 
     public ObservableList<Room> getRoomObservableList() {
@@ -169,8 +169,8 @@ public class RoomList implements ReadOnlyList<Room> {
         return rooms.hashCode();
     }
 
-    public void setNumOfRooms(int numOfRooms) {
-        rooms.setNumOfRooms(numOfRooms);
+    public void setPreferredNumOfRooms(int numOfRooms) {
+        rooms.setPreferredNumOfRooms(numOfRooms);
     }
 
     public void setRooms(PriorityQueue<Room> rooms) {
