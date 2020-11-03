@@ -104,8 +104,6 @@ The sections below give more details of each component.
 
 ### 3.2 UI Component
 
-
-
 The `UI` component displays information for the users based on user's input. The GUI to displayed is based on the return from logic.
 It uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -183,25 +181,27 @@ Below is a class diagram for `ModelManager`.
 ![Structure of the Model Component](images/ModelClassDiagram.png) <br>
 _Figure XX. Class Diagram for Model Component_
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The breakdown for each type of data in `ModelManager`, which include `PatientRecords` and `RoomList`, can be found below.
 
-The `PatientRecords` class is in charge of maintaining the data of the patients and in ensuring the uniqueness of patients according to their names. Below is a class diagram for `PatientRecords`.
+The `PatientRecords` class is in charge of maintaining the data of the patients and in ensuring the uniqueness of patients according to their names. Below is a class diagram for `PatientRecords`. 
 
 ![Class Diagram For PatientRecords](images/PatientRecordsClassDiagram.png) <br>
 _Figure XX. Class Diagram for PatientRecords_
 
-The `TaskList` class is in charge of maintaining the data of all the tasks in Covigent. The class diagram for `TaskList` is shown below.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `PatientRecords` class implements the interface ReadOnlyList<Patient> but due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
+</div>
+<br>
 
+The `RoomList` class is in charge of maintaining the data in the rooms and in ensuring the uniqueness of rooms according to the room numbers. As each room stores the data of the patient who resides in the room and the tasks meant for the room, it incorporates data from both `Patient` and `RoomTasks`. `RoomTasks` class is in charge of maintaining the data of the tasks in a room. The full details of `Patient` can be found in the previous class diagram for `PatientRecords` so it is no longer reflected in the class diagram for `RoomList`. The class diagram for `RoomList` is shown below.  
 
-The `RoomList` class is in charge of maintaining the data in the rooms. It incorporates data from both `PatientRecords` and `RoomTasks` as each room stores the data of the patient who resides in the room and the tasklist meant for the room. The class diagram for `RoomList` is shown below.
-
-//to do later RoomList -> RoomTask -> TaskList (Observable ) 
-
-//to insert class diagram for room list.
-
+![Class Diagram For RoomList](images/RoomListClassDiagram.png) <br>
 _Figure XX. Class Diagram for RoomList_
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `RoomList` class implements the interface ` ReadOnlyList<Room> ` and the `RoomTasks` class implements the interface `ReadOnlyList<Task>`. However, due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
+</div>
+<br>
 
  _Written by: Yun Qing_ 
 
