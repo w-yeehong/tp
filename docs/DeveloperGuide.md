@@ -42,7 +42,11 @@
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
 
-The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication. The link to the GitHub repository can be found [here](https://github.com/AY2021S1-CS2103T-W12-1/tp).
+Covigent is a desktop management application that helps to keep track of the information of quarantined individuals and the tasks to be done by the staff of a small hotel that has been converted to a quarantine facility.
+
+The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication. We hope that this Developer Guide serves you well in understanding and maintaining the Covigent application. 
+
+The link to the GitHub repository can be found [here](https://github.com/AY2021S1-CS2103T-W12-1/tp).
 
  _Written by: Yun Qing_ 
 
@@ -309,15 +313,19 @@ For brevity's sake, we will only illustrate the implementation of 2 specific com
 
 **Implementation of AddPatientCommand**
 
+The following is a detailed explanation of the operations that `AddPatientCommand` performs.
 
-The description can contain things such as,
-How the feature is implemented (or is going to be implemented).
-Why it is implemented that way.
-Alternatives considered.
+**Step 1.** The user executes `addpatient [input all attributes of Patient]` command to add a patient to Covigent. An `AddPatientCommandParser` object is created and the `AddPatientCommandParser#parse(String args)` method is called, which helps to parse the different attributes of `Patient`. The parse method returns a new `AddPatientCommand` object and the `AddPatientCommand` object stores the `Patient` to be added.
+
+**Step 2.** The `Patient` to be added is then searched through `UniquePatientList#internalList`using the `Model#hasPatient(Patient patient)` method to check if the patient already exists. If the patient already exists, a `CommandException` object will be thrown with an error message.
+
+**Step 3.** Through `Model#addPatient(Patient toAdd)`, the `Patient` will be added to `UniquePatientList`.
+
+**Step 4.** A success message with the new patient details will be appended with the `AddPatientCommand#MESSAGE_SUCCESS` constant. A new `CommandResult` will be returned with the message.
+
+The sequence diagram for `AddPatientCommand` can be found below.
 
 
-
-//example of editcommand
 
 **Implementation**
 The following is a detailed explanation of the operations that `EditPatientCommand` performs.
