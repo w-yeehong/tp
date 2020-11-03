@@ -44,7 +44,7 @@ public class InitRoomCommand extends Command {
         } else if (numOfRooms > 5000) {
             throw new CommandException(MESSAGE_LARGE_NUMBER_OF_ROOMS_INPUT);
         } else if (model.getNumOfRooms() > numOfRooms && !model.hasSpaceForRooms()) {
-            throw new CommandException(String.format(MESSAGE_INSUFFICIENT_ROOMS, model.numOfOccupiedRooms()));
+            throw new CommandException(String.format(MESSAGE_INSUFFICIENT_ROOMS, model.numOfExcessOccupiedRooms()));
         }
         model.addRooms(numOfRooms);
         return new CommandResult(String.format(MESSAGE_SUCCESS, numOfRooms));

@@ -290,7 +290,7 @@ public class UniqueRoomList implements Iterable<Room> {
         return result;
     }
 
-    public void setNumOfRooms(int numOfRooms) {
+    public void setPreferredNumOfRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
     }
 

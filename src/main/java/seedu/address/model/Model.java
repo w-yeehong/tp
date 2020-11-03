@@ -137,7 +137,7 @@ public interface Model {
     /**
      * Returns number of occupied rooms after the reduced number of rooms
      */
-    int numOfOccupiedRooms();
+    int numOfExcessOccupiedRooms();
     /**
      * Returns true if a room with the same identity as {@code room} exists in Covigent.
      *

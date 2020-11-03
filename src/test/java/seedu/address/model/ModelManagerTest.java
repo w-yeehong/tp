@@ -21,6 +21,7 @@ import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.room.Room;
 import seedu.address.testutil.PatientRecordsBuilder;
 import seedu.address.testutil.RoomBuilder;
+import seedu.address.testutil.TypicalRooms;
 
 public class ModelManagerTest {
 
@@ -207,6 +208,44 @@ public class ModelManagerTest {
     }
     //@@author chiamyunqing
 
+    @Test
+    public void numOfExcessOccupiedRooms_success() {
+        modelManager.setRoomList(TypicalRooms.getTypicalRoomList());
+        modelManager.setInitNumOfRooms(0); // same number of rooms, number of occupied room is 4
+        assertEquals(modelManager.numOfExcessOccupiedRooms(), 2);
+    }
+
+    @Test
+    public void hasSpaceForRooms_success() {
+        modelManager.setRoomList(TypicalRooms.getTypicalRoomList());
+        modelManager.setInitNumOfRooms(2); // number of occupied rooms is 2, therefore has space
+        assertTrue(modelManager.hasSpaceForRooms());
+
+        modelManager.setInitNumOfRooms(3); // number of occupied rooms is 2, therefore has space
+        assertTrue(modelManager.hasSpaceForRooms());
+
+        modelManager.setInitNumOfRooms(1); // number of occupied rooms is 2, therefore has no space
+        assertFalse(modelManager.hasSpaceForRooms());
+    }
+
+    @Test
+    public void numOfRooms_success() {
+        modelManager.setRoomList(TypicalRooms.getTypicalRoomList());
+        //the number of rooms in Typical Room List is 15 -> modelManager should contain 15 rooms
+        assertEquals(modelManager.getNumOfRooms(), 15);
+    }
+
+    @Test
+    public void addRooms_success() {
+        modelManager.setRoomList(TypicalRooms.getTypicalRoomList());
+        //by adding 50 much rooms(increase) there should be 50 rooms in modelManager
+        modelManager.addRooms(50);
+        assertEquals(modelManager.getNumOfRooms(), 50);
+
+        //by adding 5 much rooms(decrease) there should be 5 rooms in modelManager
+        modelManager.addRooms(5);
+        assertEquals(modelManager.getNumOfRooms(), 5);
+    }
     @Test
     public void equals() {
         PatientRecords patientRecords = new PatientRecordsBuilder().withPatient(ALICE).withPatient(BENSON).build();
