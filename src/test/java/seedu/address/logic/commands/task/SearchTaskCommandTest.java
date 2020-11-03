@@ -7,7 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.model.task.DateTimeDue;
 
 public class SearchTaskCommandTest {
@@ -29,7 +29,7 @@ public class SearchTaskCommandTest {
         assertFalse(searchCommand.equals(null));
 
         // Different types -> returns false
-        assertFalse(searchCommand.equals(new ClearCommand()));
+        assertFalse(searchCommand.equals(new ExitCommand()));
 
         // Different due date -> returns false
         assertNotEquals(wrongSearchCommand, searchCommand);

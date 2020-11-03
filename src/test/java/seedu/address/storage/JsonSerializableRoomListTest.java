@@ -23,7 +23,6 @@ class JsonSerializableRoomListTest {
         RoomList typicalRoomList = TypicalRooms.getTypicalRoomList();
         assertEquals(covigentAppFromFile, typicalRoomList);
     }
-
 }
 
 

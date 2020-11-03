@@ -32,6 +32,22 @@ public class PatientParserUtil {
     }
 
     /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Phone parsePhone(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(trimmedPhone);
+    }
+
+    //@@author chiamyunqing
+    /**
      * Parses a {@code String temperature} into a {@code Temperature}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -44,21 +60,6 @@ public class PatientParserUtil {
             throw new ParseException(Temperature.MESSAGE_CONSTRAINTS);
         }
         return new Temperature(trimmedTemp);
-    }
-
-    /**
-     * Parses a {@code String temperature} into a {@code Temperature}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code temperature} is invalid.
-     */
-    public static TemperatureRange parseTemperatureRange(String tempRange) throws ParseException {
-        requireNonNull(tempRange);
-        String trimmedTempRange = tempRange.trim();
-        if (!TemperatureRange.isValidTemperatureRange(trimmedTempRange)) {
-            throw new ParseException(TemperatureRange.MESSAGE_CONSTRAINTS_TEMPERATURERANGE);
-        }
-        return new TemperatureRange(trimmedTempRange);
     }
 
     /**
@@ -92,21 +93,6 @@ public class PatientParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
-    }
-
-    /**
      * Parses a {@code String comment} into a {@code Comment}
      * Leading and trailing whitespaces will be trimmed
      *
@@ -119,4 +105,22 @@ public class PatientParserUtil {
             return new Comment(comment.trim());
         }
     }
+    //@@author chiamyunqing
+
+    //@@author raymondge
+    /**
+     * Parses a {@code String temperature} into a {@code Temperature}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code temperature} is invalid.
+     */
+    public static TemperatureRange parseTemperatureRange(String tempRange) throws ParseException {
+        requireNonNull(tempRange);
+        String trimmedTempRange = tempRange.trim();
+        if (!TemperatureRange.isValidTemperatureRange(trimmedTempRange)) {
+            throw new ParseException(TemperatureRange.MESSAGE_CONSTRAINTS_TEMPERATURERANGE);
+        }
+        return new TemperatureRange(trimmedTempRange);
+    }
+    //@@author raymondge
 }

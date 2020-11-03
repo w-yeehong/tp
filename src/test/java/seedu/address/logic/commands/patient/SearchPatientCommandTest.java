@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PatientRecords;
@@ -134,7 +134,7 @@ public class SearchPatientCommandTest {
         assertFalse(searchCommand.equals(null));
 
         // Different types -> returns false
-        assertFalse(searchCommand.equals(new ClearCommand()));
+        assertFalse(searchCommand.equals(new ExitCommand()));
 
         // Different descriptor -> returns false
         assertNotEquals(newSearchCommand, searchCommand);

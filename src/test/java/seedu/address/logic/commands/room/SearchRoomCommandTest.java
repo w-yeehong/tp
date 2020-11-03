@@ -29,13 +29,15 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.TaskList;
 import seedu.address.testutil.SearchRoomDescriptorBuilder;
 
-
+//@@author chiamyunqing
 /**
- * Contains unit tests for SearchRoomCommand.
+ * Contains integration tests (interaction with both PatientRecords and RoomList in the Model)
+ * for {@code SearchRoomCommand}.
  */
+
 public class SearchRoomCommandTest {
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
-    //room list -> [room 7, Alice; room 8, Benson; room 10, null]
+    //room list -> [room 7, Alice; room 8, Benson; room 10, null, room 11, null, with task]
     private Model model =
             new ModelManager(getTypicalPatientRecords(), new UserPrefs(), getTypicalRoomList(), new TaskList());
     private Model expectedModel =
@@ -49,7 +51,7 @@ public class SearchRoomCommandTest {
     @Test
     public void execute_findInvalidRoomNumber_failure() {
         SearchRoomDescriptorBuilder descriptorRoomNum = new SearchRoomDescriptorBuilder();
-        descriptorRoomNum.setRoomNumber(9999);
+        descriptorRoomNum.setRoomNumber(9999999);
         SearchRoomCommand searchRoomCommand = new SearchRoomCommand(descriptorRoomNum.build());
         assertCommandFailure(searchRoomCommand, model, MESSAGE_INVALID_ROOM_NUMBER);
     }
