@@ -52,6 +52,7 @@ public class ModelManager implements Model {
         this(new PatientRecords(), new RoomList(), new UserPrefs());
     }
 
+
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -173,8 +174,8 @@ public class ModelManager implements Model {
     //=========== Room List ========================================================================================
 
     @Override
-    public int numOfOccupiedRooms() {
-        return roomList.numOfOccupiedRooms();
+    public int getNumOfExcessOccupiedRooms() {
+        return roomList.getNumOfExcessOccupiedRooms();
     }
 
     @Override
@@ -185,9 +186,9 @@ public class ModelManager implements Model {
     public int getNumOfRooms() {
         return roomList.getNumOfRooms();
     }
-
+    @Override
     public void setInitNumOfRooms(int numOfRooms) {
-        roomList.setNumOfRooms(numOfRooms);
+        roomList.setPreferredNumOfRooms(numOfRooms);
     }
     @Override
     public void addRooms(int num) {
