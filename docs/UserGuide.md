@@ -620,8 +620,20 @@ Format: `listroom` All the rooms in Covigent.
 <br />
 
 **Step By Step Usage:** <br />
-* The result box shows a success message "All rooms are listed.".
-* Figure 12 shows an example of a successful execution.
+1. Navigate to Rooms tab under the navigation bar as shown in Figure ??
+<p align="center">
+    <img src="images/ug/figure12_listroom.png" width="550" height="400">
+    <br />
+    <i>Figure 12. A Successful Execution of <code>listroom</code></i>
+</p>
+2. Next, type the command `listroom` in the command box as shown below
+<p align="center">
+    <img src="images/ug/figure12_listroom.png" width="550" height="400">
+    <br />
+    <i>Figure 12. A Successful Execution of <code>listroom</code></i>
+</p>
+3. Press `enter` to run the command
+4. The result box shows a success message "All rooms are listed."
 <p align="center">
     <img src="images/ug/figure12_listroom.png" width="550" height="400">
     <br />
