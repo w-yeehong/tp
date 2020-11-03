@@ -289,24 +289,35 @@ The features comprise of five commands namely,
 * `SearchPatientCommand`- Searching for patients
 
 _Written by Yun Qing_
+
 #### 4.1.2 Create, Read, Update, Delete
 
-//patient functions in model
-//how they support the command
+In this section, we will cover the implementation of the manipulation of the `Patient` data. The commands that allow creating, reading, updating and deleting of `Patient` include `AddPatientCommand`, `ListPatientCommand`, `EditPatientCommand` and `DeletePatientCommand`. 
+
+As the `Patient` data are stored in `UniquePatientList`, which ensures the uniqueness of `Patient`, the actual manipulation of the `Patient` data is made in `UniquePatientList` class.
+
+Some of the significant methods within `UniquePatientList` class that allows the manipulation of the `Patient` data are shown below:
+* `UniquePatientList#add(Patient toAdd)` - Adds a `Patient` to `UniquePatientList`.
+* `UniquePatientList#setPatient(Patient target, Patient editedPatient)` - Edits the attributes of `Patient`.
+* `UniquePatientList#remove(Patient toRemove)` - Deletes a `Patient` from `UniquePatientList`.
+* `UniquePatientList#asUnmodifiableObservableList()` - Returns an observable list of `Patient`
+* `UniquePatientList#getPatientWithName(Name name)` - Returns the `Patient` with the given `Name` if the `Patient` object exists in `UniquePatientList`. Since `Name` is an identifier of a `Patient`, this method is used in `EditPatientCommand` and `DeletePatientCommand` to modify the `Patient` or check if the `Patient` to be deleted exists.
+
+These methods in `UniquePatientList` class support the corresponding methods in the facade classes `PatientRecords` and `ModelManager`. In particular, the `Model` interface exposes the methods `Model#addPatient(Patient patient)`, `Model#setPatient(Patient target, Patient editedPatient)`, `Model#deletePatient(Patient target)`, `Model#getPatientWithName(Name name)` and `Model#getFilteredPatientList()`.
+
+For brevity's sake, we will only illustrate the implementation of 2 specific commands - `AddPatientCommand` and `EditPatientCommand`.
+
+**Implementation of AddPatientCommand**
+
+
+The description can contain things such as,
+How the feature is implemented (or is going to be implemented).
+Why it is implemented that way.
+Alternatives considered.
+
+
+
 //example of editcommand
-
-The patient feature utilises the `CovigentAppParser` class to parse the user command input into different command types and validates the input. Patients are then added into the `UniquePatientList#internalList` observable list.
-
-The feature comprises of five commands namely,
-* [`AddPatientCommand`](#411-add-patient) - Adding patients
-* [`ListPatientCommand`](#412-list-patient) - Listing all the patients
-* [`EditPatientCommand`](#413-edit-patient) - Editing patients
-* [`DeletePatientCommand`](#414-delete-patient) - Deleting patients
-* [`SearchPatientCommand`](#415-search-patient) - Searching for patients
-
-
-
-#### 4.1.3 Edit Patient 
 
 **Implementation**
 The following is a detailed explanation of the operations that `EditPatientCommand` performs.
