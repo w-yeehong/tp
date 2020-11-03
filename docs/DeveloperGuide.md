@@ -376,6 +376,18 @@ method.
 
 ### 4.2 Room Feature
 
+#### 4.2.1 Overview
+The application is able to track the room details. It keep tracks of the whether a room is occupied and the patient inside the room if it is occupied. It also keeps track of the tasks assigned to a specific room. Hence, there is a need to represent the Room List as a list of Rooms on which the application can perform read and update operations.
+
+#### 4.2.2 Room List Components
+The class diagram or UniqueRoomList is shown below:
+
+As seen in the diagram above, the UniqueRoomList contains a single RoomList object. This is a wrapper class around an ObservableList and PriorityQueue of Room objects. The UniqueRoomList contains no rooms at the start, however, after that you would require at least one room to be defined here.
+
+Each Room contains the following member attributes, all of which are non-nullable attributes:
+
+
+
 #### Proposed Implementation
 
 The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoomList` which reads the Room information Json file, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
