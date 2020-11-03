@@ -467,8 +467,21 @@ Field | Description
 1. `initroom 400`. 400 rooms are initialised in Covigent.
 
 **Step By Step Usage:** <br />
-* The result box shows a success message "Initialise the number of rooms to 400 rooms in the application.".
-* Figure 8 shows an example of a successful execution.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure ??.
+<p align="center">
+    <img src="images/ug/roomstab.png" width="380" height="300">
+    <br />
+   <i>Figure ??. Navigation to Rooms tab</i>
+</p>
+
+2. Using the first example, key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/initroomcommand.png" width="380" height="200">
+    <br />
+   <i>Figure ??. Navigation to Rooms tab</i>
+</p>
+3. Press `enter` to run the command
+4. The result box shows a success message "Initialise the number of rooms to 400 rooms in the application.".
 <p align="center">
     <img src="images/ug/figure8_initroom.png" width="550" height="400">
     <br />
@@ -620,8 +633,20 @@ Format: `listroom` All the rooms in Covigent.
 <br />
 
 **Step By Step Usage:** <br />
-* The result box shows a success message "All rooms are listed.".
-* Figure 12 shows an example of a successful execution.
+1. Navigate to Rooms tab under the navigation bar as shown in Figure ??
+<p align="center">
+    <img src="images/ug/roomstab.png" width="550" height="400">
+    <br />
+    <i>Figure 12. A Successful Execution of <code>listroom</code></i>
+</p>
+2. Next, type the command `listroom` in the command box as shown below
+<p align="center">
+    <img src="images/ug/listroomcommand.png" width="550" height="200">
+    <br />
+    <i>Figure 12. A Successful Execution of <code>listroom</code></i>
+</p>
+3. Press `enter` to run the command
+4. The result box shows a success message "All rooms are listed."
 <p align="center">
     <img src="images/ug/figure12_listroom.png" width="550" height="400">
     <br />
@@ -641,12 +666,26 @@ Format: `findemptyroom` The unoccupied room in Covigent with the lowest room num
 <br />
 
 **Step By Step Usage:** <br />
-* The result box shows a success message "Room Number 1 is empty.".
+
+1. Navigate to Rooms tab under the navigation bar as shown in Figure ??
+<p align="center">
+    <img src="images/ug/roomstab.png" width="550" height="400">
+    <br />
+    <i>Figure ??. A Successful Execution of <code>listroom</code></i>
+</p>
+2. Next, type the command `findemptyroom` in the command box as shown below
+<p align="center">
+    <img src="images/ug/findemptyroomcommand.png" width="550" height="200">
+    <br />
+    <i>Figure ??. A Successful Execution of <code>listroom</code></i>
+</p>
+3. Press `enter` to run the command
+4. The result box shows a success message that "Room Number 4 is empty"
 
 <p align="center">
     <img src="images/ug/figure13_findemptyroom.png" width="550" height="400">
     <br />
-    <i>Figure 13. A Successful Execution of <code>findemptyroom</code></i>
+    <i>Figure ??. A Successful Execution of <code>findemptyroom</code></i>
 </p> 
 
 _Written by: Noorul Azlina_
