@@ -243,20 +243,54 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 4.1.1 Overview
 
-The data of a `Patient` in Covigent consists of ...
+#### Design of Patient
+A `Patient` object in Covigent contains the following attributes, which is also reflected in Figure xx:
+1. Name
+2. Temperature
+3. PeriodOfStay
+4. Age
+5. Phone
+6. Comment  
 
-\\insert picture of patient class diagram attribute
+//INSERT
+_Figure XX. Class Diagram for Patient_
 
-\\why we use diff classes to represent attributes -> extend from AB3, alternatives -> no need extra class 
+#### Design Considerations for Patient 
 
-\\patient is unique identified by name -> justify small hotels, low chance of 2 same names
+**Aspect: Encapsulation of fields for `Patient` object**
 
-How the feature is implemented (or is going to be implemented).
-Why it is implemented that way.
-Alternatives considered.
+* Option 1: Using primitive data types for `Temperature`, `Age` and `Comment` classes
 
-The patient feature utilises the `CovigentAppParser` class to parse the user command input into different command types and
-validates the input. Patients are then added into the `UniquePatientList#internalList` observable list.
+Classes like `Temperature`, `Age` and `Comment` can be easily treated as primitive data types including double and string. However, this option goes against the spirit of OOP. Furthermore, it does not align to the original design of AddressBook3, which Covigent was morphed from, in which `Name` and `Phone` attributes were abstracted out as separate classes. 
+
+* Option 2: Encapsulate constituent patient attributes in their own classes
+
+This option increases OOP and is aligned to the original design of AddressBook3. In addition, this design has proven itself to be extensible in the long run and allows for adjustments to `Patient` attributes easily. For example, when setting the valid temperature range as input for `Temperature`, only the `Temperature` class needs to change, which demonstrates the essence of the single responsibility principle. This allows for better understanding and maintenance of our code base in the future.
+
+**Aspect: Decision on the uniqueness of `Patient` object**
+
+* Option 1: Uniqueness is identified by name, age and phone
+
+Originally, our team intended to define `Patient` to be non-unique if they have the same `Name`, `Age` and `Phone`. However, such a design will make it difficult for users of Covigent as they will have to key in all these fields when executing `editpatient` and `deletepatient` in order for Covigent to uniquely identify the `Patient` to manipulate. 
+
+* Option 2: Uniqueness is identified by name
+
+Keeping in mind the ease of usage of Covigent for users, our team chose to identify `Patient` uniquely by `Name` only. As such, when users need to manipulate the data of a `Patient`, all they need to input is the `Name`. Furthermore, our team believes that since Covigent is used by small hotels, there is a very low chance of 2 patients having the same names.
+
+#### Features related to Patient
+
+Having looked at the design of `Patient`, we can now explore the possible features related to `Patient`. In particular, our commands support [create, read, update, delete](#412-create-read-update-delete) and [search](#413-search-patient). 
+
+The features comprise of five commands namely,
+* `AddPatientCommand` - Adding patients
+* `ListPatientCommand` - Listing all the patients
+* `EditPatientCommand` - Editing patients
+* `DeletePatientCommand` - Deleting patients
+* `SearchPatientCommand`- Searching for patients
+
+
+#### 4.1.2 Create, Read, Update, Delete
+The patient feature utilises the `CovigentAppParser` class to parse the user command input into different command types and validates the input. Patients are then added into the `UniquePatientList#internalList` observable list.
 
 The feature comprises of five commands namely,
 * [`AddPatientCommand`](#411-add-patient) - Adding patients
@@ -264,10 +298,6 @@ The feature comprises of five commands namely,
 * [`EditPatientCommand`](#413-edit-patient) - Editing patients
 * [`DeletePatientCommand`](#414-delete-patient) - Deleting patients
 * [`SearchPatientCommand`](#415-search-patient) - Searching for patients
-
-#### 4.1.2 Create, Read, Update, Delete
-
-
 
 
 
