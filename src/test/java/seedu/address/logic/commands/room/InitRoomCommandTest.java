@@ -70,10 +70,10 @@ public class InitRoomCommandTest {
     @Test
     void execute_increaseNumberOfOccupiedRooms_success() {
         RoomList roomList = TypicalRooms.getTypicalRoomList();
-        RoomList roomList1 = TypicalRooms.getTypicalRoomList();
+        RoomList expectedRoomList = TypicalRooms.getTypicalRoomList();
 
         Model model = new ModelManager(new PatientRecords(), roomList, new UserPrefs());
-        Model expectedModel = new ModelManager(model.getPatientRecords(), roomList1, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPatientRecords(), expectedRoomList, new UserPrefs());
 
         //initRoom to 50 rooms -> increase number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 50);
@@ -84,10 +84,10 @@ public class InitRoomCommandTest {
     @Test
     void execute_decreaseNumberOfOccupiedRooms_success() throws CommandException {
         RoomList roomList = TypicalRooms.getTypicalRoomList();
-        RoomList roomList1 = TypicalRooms.getTypicalRoomList();
+        RoomList expectedRoomList = TypicalRooms.getTypicalRoomList();
 
         Model model = new ModelManager(new PatientRecords(), roomList, new UserPrefs());
-        Model expectedModel = new ModelManager(model.getPatientRecords(), roomList1, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPatientRecords(), expectedRoomList, new UserPrefs());
 
         //initRoom to 5 rooms -> decrease number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 5);

@@ -128,7 +128,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public int numOfExcessOccupiedRooms() {
+    public int getNumOfExcessOccupiedRooms() {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -48,7 +48,7 @@ public class JsonSerializableRoomList {
         int currRoomNum = 1;
         for (JsonAdaptedRoom jsonAdaptedRoom : rooms) {
             Room room = jsonAdaptedRoom.toModelType();
-            if (room.getRoomNumber() != currRoomNum) {
+            if (isNotInOrder(room, currRoomNum)) {
                 throw new IllegalValueException(WRONG_ORDER_OF_ROOM);
             }
             currRoomNum++;
@@ -57,4 +57,7 @@ public class JsonSerializableRoomList {
         return roomList;
     }
 
+    private boolean isNotInOrder(Room room, int currRoomNum) {
+        return room.getRoomNumber() != currRoomNum;
+    }
 }

@@ -135,9 +135,10 @@ public interface Model {
     boolean hasSpaceForRooms();
 
     /**
-     * Returns number of occupied rooms after the reduced number of rooms
+     * Returns number of occupied rooms whose room number is more than the number of rooms to be defined
+     * using initRoom command
      */
-    int numOfExcessOccupiedRooms();
+    int getNumOfExcessOccupiedRooms();
     /**
      * Returns true if a room with the same identity as {@code room} exists in Covigent.
      *

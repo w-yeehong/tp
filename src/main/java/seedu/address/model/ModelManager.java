@@ -174,8 +174,8 @@ public class ModelManager implements Model {
     //=========== Room List ========================================================================================
 
     @Override
-    public int numOfExcessOccupiedRooms() {
-        return roomList.numOfExcessOccupiedRooms();
+    public int getNumOfExcessOccupiedRooms() {
+        return roomList.getNumOfExcessOccupiedRooms();
     }
 
     @Override
@@ -188,7 +188,7 @@ public class ModelManager implements Model {
     }
     @Override
     public void setInitNumOfRooms(int numOfRooms) {
-        roomList.setPreferredNamOfRooms(numOfRooms);
+        roomList.setPreferredNumOfRooms(numOfRooms);
     }
     @Override
     public void addRooms(int num) {

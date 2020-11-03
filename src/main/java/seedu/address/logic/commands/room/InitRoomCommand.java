@@ -26,6 +26,9 @@ public class InitRoomCommand extends Command {
             + "Parameters: NUMBER_OF_ROOMS\n"
             + "Example: " + COMMAND_WORD + " 123";
 
+    private static final int ZERO = 0;
+    private static final int MAXIMUM_NUMBER_OF_ROOMS = 5000;
+
     private int numOfRooms;
 
     /**
@@ -37,14 +40,14 @@ public class InitRoomCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.setInitNumOfRooms(numOfRooms);
-        if (numOfRooms == 0) {
+        if (numOfRooms == ZERO) {
             throw new CommandException(MESSAGE_ZERO_CANNOT_BE_AN_INPUT);
-        } else if (numOfRooms < 0) {
+        } else if (numOfRooms < ZERO) {
             throw new CommandException(MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
-        } else if (numOfRooms > 5000) {
+        } else if (numOfRooms > MAXIMUM_NUMBER_OF_ROOMS) {
             throw new CommandException(MESSAGE_LARGE_NUMBER_OF_ROOMS_INPUT);
         } else if (model.getNumOfRooms() > numOfRooms && !model.hasSpaceForRooms()) {
-            throw new CommandException(String.format(MESSAGE_INSUFFICIENT_ROOMS, model.numOfExcessOccupiedRooms()));
+            throw new CommandException(String.format(MESSAGE_INSUFFICIENT_ROOMS, model.getNumOfExcessOccupiedRooms()));
         }
         model.addRooms(numOfRooms);
         return new CommandResult(String.format(MESSAGE_SUCCESS, numOfRooms));

@@ -47,8 +47,8 @@ public class RoomList implements ReadOnlyList<Room> {
         return rooms.hasSpaceForRooms();
     }
 
-    public int numOfExcessOccupiedRooms() {
-        return rooms.numOfOccupiedRooms();
+    public int getNumOfExcessOccupiedRooms() {
+        return rooms.getNumOfExcessOccupiedRooms();
     }
     /**
      * Resets the existing data of this {@code RoomList} with {@code newData}.
@@ -169,7 +169,7 @@ public class RoomList implements ReadOnlyList<Room> {
         return rooms.hashCode();
     }
 
-    public void setPreferredNamOfRooms(int numOfRooms) {
+    public void setPreferredNumOfRooms(int numOfRooms) {
         rooms.setPreferredNumOfRooms(numOfRooms);
     }
 

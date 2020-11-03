@@ -213,7 +213,7 @@ public class ModelManagerTest {
     public void numOfExcessOccupiedRooms_success() {
         modelManager.setRoomList(TypicalRooms.getTypicalRoomList());
         modelManager.setInitNumOfRooms(0); // same number of rooms, number of occupied room is 4
-        assertEquals(modelManager.numOfExcessOccupiedRooms(), 2);
+        assertEquals(modelManager.getNumOfExcessOccupiedRooms(), 2);
     }
 
     @Test

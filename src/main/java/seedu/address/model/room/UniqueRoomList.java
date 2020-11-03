@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
@@ -41,19 +42,26 @@ public class UniqueRoomList implements Iterable<Room> {
         internalList.addAll(roomLists);
     }
 
+    /**
+     * Used it test cases to set rooms with a higher room number which can be more than number of rooms existing
+     * in hotel
+     * @param room is the room to be input into data
+     */
     public void setRoom(Room room) {
         int roomNumber = room.getRoomNumber();
         if (room.getRoomNumber() > internalList.size()) {
             for (int i = internalList.size(); i < roomNumber - 1; i++) {
-                Room roomToAdd = new Room(i + 1);
+                Index index = Index.fromOneBased(i);
+                Room roomToAdd = new Room(index.getOneBased());
                 internalList.add(roomToAdd);
                 rooms.add(room);
             }
         } else {
-            Room currRoom = internalList.get(roomNumber - 1);
-            internalList.remove(roomNumber - 1);
+            Index index = Index.fromOneBased(roomNumber);
+            Room currRoom = internalList.get(index.getZeroBased());
+            internalList.remove(index.getZeroBased());
             rooms.remove(currRoom);
-            internalList.add(roomNumber - 1, room);
+            internalList.add(index.getZeroBased(), room);
             rooms.add(room);
         }
     }
@@ -96,39 +104,53 @@ public class UniqueRoomList implements Iterable<Room> {
     }
 
     private void addRooms() {
-        ArrayList<Room> roomArrayList = new ArrayList<>(internalList);
-        PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
         if (numOfRooms <= 0) {
             return;
-        }
-        if (numOfRooms > internalList.size()) {
-            for (int i = internalList.size(); i < numOfRooms; i++) {
-                Room room = new Room(i + 1);
-                rooms.add(room);
-                roomArrayList.add(room);
-            }
-            this.rooms.addAll(rooms);
-            internalList.setAll(roomArrayList);
+        } else if (numOfRooms > internalList.size()) {
+            setRoomsInHotel_increaseInNumberOfRooms();
         } else if (numOfRooms < internalList.size()) {
-            List<Room> occupiedRooms = occupiedRooms();
-            List<Room> unoccupiedRooms = unOccupiedRooms();
-            if (occupiedRooms.size() == 0) {
-
-            } else {
-                combinedStream(occupiedRooms, unoccupiedRooms);
-            }
-            this.rooms = new PriorityQueue<>(new ComparableRoom());
-            for (int i = 0; i < numOfRooms; i++) {
-                Room room = internalList.get(i);
-                rooms.add(room);
-            }
-            int size = internalList.size();
-            for (int i = numOfRooms; i < size; i++) {
-                roomArrayList.remove(numOfRooms);
-            }
-            this.rooms.addAll(rooms);
-            internalList.setAll(roomArrayList);
+            setRoomsInHotel_decreaseInNumberOfRooms();
+        } else {
+            //would not reach this block, exists to improve code quality
         }
+    }
+
+    private void setRoomsInHotel_increaseInNumberOfRooms() {
+        ArrayList<Room> roomArrayList = new ArrayList<>(internalList);
+        PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
+
+        this.rooms = new PriorityQueue<>(new ComparableRoom()); //remove all the rooms in the PQ
+        for (int i = internalList.size(); i < numOfRooms; i++) {
+            Room room = new Room(i + 1);
+            rooms.add(room);
+            roomArrayList.add(room);
+        }
+        this.rooms.addAll(rooms);
+        internalList.setAll(roomArrayList);
+    }
+
+    private void setRoomsInHotel_decreaseInNumberOfRooms() {
+        ArrayList<Room> roomArrayList = new ArrayList<>(internalList);
+        PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
+
+        List<Room> occupiedRooms = occupiedRooms();
+        List<Room> unoccupiedRooms = unOccupiedRooms();
+        if (occupiedRooms.size() == 0) {
+
+        } else {
+            combinedStream(occupiedRooms, unoccupiedRooms);
+        }
+        this.rooms = new PriorityQueue<>(new ComparableRoom()); //remove all the rooms in the PQ
+        for (int i = 0; i < numOfRooms; i++) {
+            Room room = internalList.get(i);
+            rooms.add(room);
+        }
+        int size = internalList.size();
+        for (int i = numOfRooms; i < size; i++) {
+            roomArrayList.remove(numOfRooms);
+        }
+        this.rooms.addAll(rooms);
+        internalList.setAll(roomArrayList);
     }
 
     /**
@@ -168,18 +190,14 @@ public class UniqueRoomList implements Iterable<Room> {
         }
     }
 
-    public void setInitNumOfRooms(int numOfRooms) {
-        this.numOfRooms = numOfRooms;
-    }
-
     public boolean hasSpaceForRooms() {
-        return numOfOccupiedRooms() <= numOfEmptyRooms();
+        return getNumOfExcessOccupiedRooms() <= numOfEmptyRooms();
     }
 
     /**
      * Gives the number of rooms that are occupied in the hotel facility beyond shrinkage
      */
-    public int numOfOccupiedRooms() {
+    public int getNumOfExcessOccupiedRooms() {
         return (int) IntStream.rangeClosed(numOfRooms, internalList.size() - 1)
                 .mapToObj(x -> internalList.get(x)).filter(Room::isOccupied).count();
     }

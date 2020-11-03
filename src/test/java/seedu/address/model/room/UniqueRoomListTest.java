@@ -121,7 +121,7 @@ class UniqueRoomListTest {
         IntStream.iterate(1, x -> x <= 10, x -> x + 2).forEach(x ->
                 uniqueRoomList.getRoomObservableList().get(x - 1).setOccupied(true));
         uniqueRoomList.setPreferredNumOfRooms(5);
-        assertEquals(2, uniqueRoomList.numOfOccupiedRooms());
+        assertEquals(2, uniqueRoomList.getNumOfExcessOccupiedRooms());
     }
 
     @Test
