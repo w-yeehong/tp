@@ -208,6 +208,7 @@ public class ModelManagerTest {
     }
     //@@author chiamyunqing
 
+    //@@author itssodium
     @Test
     public void numOfExcessOccupiedRooms_success() {
         modelManager.setRoomList(TypicalRooms.getTypicalRoomList());
@@ -246,6 +247,8 @@ public class ModelManagerTest {
         modelManager.addRooms(5);
         assertEquals(modelManager.getNumOfRooms(), 5);
     }
+    //@@author itssodium
+
     @Test
     public void equals() {
         PatientRecords patientRecords = new PatientRecordsBuilder().withPatient(ALICE).withPatient(BENSON).build();
