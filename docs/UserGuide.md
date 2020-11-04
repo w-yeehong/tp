@@ -224,14 +224,15 @@ Field | Description
     <br />
    <i>Figure 3. Navigation to Patients tab</i>
 </p>
+<br/>
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
     <img src="images/ug/f4_addpatientcommand.png" width="700" height="150">
     <br />
    <i>Figure 4. <code>addpatient</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command.<p></p>
-4. The result box displays the sucess message shown in Figure 5 and the newly added patient can now be found in the list of patients in Covigent.<p></p>
+3. Press `enter` to run the command.<br/><br/>
+4. The result box displays the sucess message shown in Figure 5 and the newly added patient can now be found in the list of patients in Covigent.<br/><br/>
 5. To view the details of the newly added patient, click on the newly added patient in the patient list.
 <p align="center">
     <img src="images/ug/f5_addpatientsuccess.png" width="620" height="400">
@@ -267,20 +268,22 @@ Field | Description
     <br />
    <i>Figure 6. Navigation to Patients tab</i>
 </p>
+<br/>
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
     <img src="images/ug/f7_deletepatientcommand.png" width="700" height="150">
     <br />
    <i>Figure 7. <code>deletepatient</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command.<p></p>
+3. Press `enter` to run the command.<br/><br/>
 4. The result box displays the success message shown in Figure 8 and the deleted patient can no longer be found in the list of patients in Covigent.
 <p align="center">
     <img src="images/ug/f8_deletepatientsuccess.png" width="620" height="400">
     <br />
     <i>Figure 8. A Successful Execution of <code>deletepatient</code></i>
 </p>
-5. If you do not see the success message as shown in Figure 8, please repeat step 2 onwards.<p></p>
+<br/>
+5. If you do not see the success message as shown in Figure 8, please repeat step 2 onwards.<br/><br/>
 
 _Written by: Yun Qing_
 
