@@ -106,7 +106,7 @@ public class EditTaskCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         DateTimeDue updatedDueAt = editTaskDescriptor.getDateTimeDue().orElse(taskToEdit.getDueAt());
 
-        return new Task(updatedDescription, updatedDueAt);
+        return new Task(updatedDescription, updatedDueAt, taskToEdit.getTaskRoomNumber());
     }
 
     @Override

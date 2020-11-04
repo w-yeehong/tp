@@ -106,7 +106,7 @@ public class RoomTaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                int roomNumber = 1; //TODO: task class needs to have room number
+                int roomNumber = task.getTaskRoomNumber(); //TODO: task class needs to have room number
                 int taskNumber = 2; //TODO: No more index
                         //room.getFilteredTasks().getSourceIndex(getIndex()) + 1;
                 int totalNumberOfTasksInRoom = 3;

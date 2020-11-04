@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Room> filteredRooms;
-    private final TaskRecords taskRecords;
+    private final RoomTaskRecords roomTaskRecords;
     private final FilteredList<Task> filteredTasks;
 
     /**
@@ -49,8 +49,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.patientRecords.getReadOnlyList());
         filteredRooms = new FilteredList<>(this.roomList.getReadOnlyList());
-        taskRecords = new TaskRecords(getTaskList());
-        filteredTasks = new FilteredList<>(this.taskRecords.getReadOnlyList());
+        roomTaskRecords = new RoomTaskRecords(getTaskList(), getFilteredRoomList());
+        filteredTasks = new FilteredList<>(this.roomTaskRecords.getReadOnlyList());
     }
 
     /**
@@ -327,12 +327,6 @@ public class ModelManager implements Model {
         requireAllNonNull(task, room);
         assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
         room.addTask(task);
-
-        //TODO sir pls review this method don't kill me for lack of OOP
-        //One way to improve OOP is the methods should take in the TaskRecords so pass
-        //until TaskList stage then the execution is done there
-        //then can remove from here
-        taskRecords.addTask(task);
     }
 
     @Override
@@ -340,7 +334,6 @@ public class ModelManager implements Model {
         requireAllNonNull(task, room);
         assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
         room.deleteTask(task);
-        taskRecords.deleteTask(task); //TODO same for this method
     }
 
     @Override
@@ -348,7 +341,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask, room);
         assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
         room.setTask(target, editedTask);
-        taskRecords.setTask(target, editedTask); //TODO same for this method
     }
 
     //@@author w-yeehong

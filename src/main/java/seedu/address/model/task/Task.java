@@ -14,14 +14,16 @@ public class Task {
     // Data fields (i.e. values entered by user).
     private final Description description;
     private final DateTimeDue dueAt;
+    private int taskRoomNumber;
 
     /**
      * Every field apart must be present and not null.
      */
-    public Task(Description description, DateTimeDue dueAt) {
-        requireAllNonNull(description, dueAt);
+    public Task(Description description, DateTimeDue dueAt, int taskRoomNumber) {
+        requireAllNonNull(description, dueAt, taskRoomNumber);
         this.description = description;
         this.dueAt = dueAt;
+        this.taskRoomNumber = taskRoomNumber;
     }
 
     public Description getDescription() {
@@ -30,6 +32,10 @@ public class Task {
 
     public DateTimeDue getDueAt() {
         return dueAt;
+    }
+
+    public int getTaskRoomNumber() {
+        return taskRoomNumber;
     }
 
     /**
@@ -47,7 +53,8 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getDescription().equals(getDescription())
-                && otherTask.getDueAt().equals(getDueAt());
+                && otherTask.getDueAt().equals(getDueAt())
+                && otherTask.getTaskRoomNumber() == getTaskRoomNumber();
     }
 
     @Override
@@ -65,5 +72,4 @@ public class Task {
                 .append(getDueAt());
         return builder.toString();
     }
-
 }
