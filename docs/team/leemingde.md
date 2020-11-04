@@ -10,7 +10,7 @@ Covigent is a desktop application that is used to aid hotel staff handle the Cov
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to edit a patient's information.
-  * What it does: allows the user to change a patient's information (eg, name, temperature, age) after a patient has been added to Covgient.
+  * What it does: allows the user to change a patient's information (eg, name, temperature, age) after a patient has been added to Covigent.
   * Justification: This feature improves the product significantly because a user can make mistakes in typing in the details of the patient and the application should provide a convenient way to rectify them.
 
 * **New Feature**: Added the ability for a user to allocate a patient to a room.
@@ -27,7 +27,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `editpatient` and `allocateroom` [\#44](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/44)
-    * Added introduction for Covgient` [[\#44](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/44)
+    * Added introduction for Covigent [\#44](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/44)
   * Developer Guide:
     * Added implementation details of the `allocateroom` and `logging` features
     * Added implementation details of GUI
@@ -37,4 +37,3 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): [\#10](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/10), [\#26](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/26),
    [\#27](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/27), [\#69](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/69), [\#80](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/80),
    [\#84](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/84), [\#99](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/99)
-  * Reported bugs and suggestions for other teams in the class
