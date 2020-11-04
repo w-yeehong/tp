@@ -205,7 +205,7 @@ Field | Description
 `NAME` | The name of the patient. It should preferably be the full name of the patient. The name should be less than 150 characters. 
 `TEMPERATURE` | The temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37) and must be within the range 32.0 to 41.0 degree celsius, both inclusive.
 `PERIOD_OF_STAY` | The period of stay of the patient in the facility. It must be in the format _YYYYMMDD-YYYYMMDD_. Both dates must be valid and the start date must be before or equals to the end date.
-`PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by.
+`PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by. The maximum number of digits allowed is 20.
 `AGE` | The age of the patient, which is between 0 (inclusive) and 120 (exclusive).
 `COMMENT` | An optional field that is used to indicate any special details of the patient such as dietary preferences or health conditions.
 
@@ -296,7 +296,7 @@ Field | Description
 `NEW_NAME` | The new name of the patient. The new name must not already exist within Covigent and should be less than 150 characters. 
 `TEMPERATURE` | The new temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37) and must be within the range 32.0 to 41.0 degree Celsius, both inclusive.
 `PERIOD_OF_STAY` | The new period of stay of the patient. It must be in the format _YYYYMMDD-YYYYMMDD_. Both dates must be valid and the start date must be before or equals to the end date.
-`PHONE_NUMBER` | The new phone number of the patient.
+`PHONE_NUMBER` | The new phone number of the patient. The maximum number of digits allowed is 20.
 `AGE` | The new age of the patient. Age should be between 0 (inclusive) and 120 (exclusive).
 `COMMENT` | The new comments about the patient.
 
