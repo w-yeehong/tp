@@ -26,7 +26,7 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
      * Whenever there's a change in room list, we will force update of tasklist
      * to reload the tasks in that room.
      */
-    private void updateTaskListIfChanged(ObservableList<Room> roomList) {
+    public void updateTaskListIfChanged(ObservableList<Room> roomList) {
         roomList.addListener(new ListChangeListener<Room>() {
             @Override
             public void onChanged(Change<? extends Room> change) {
@@ -36,7 +36,6 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
                         int indexToChange = change.getFrom();
                         Room changedRoom = change.getList().get(indexToChange);
                         int roomNumber = changedRoom.getRoomNumber();
-                        System.out.println("before " + internalList.size());
                         //remove tasks in that room
                         for (Task task : internalList) {
                             if (task.getTaskRoomNumber() == roomNumber) {
@@ -46,7 +45,6 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
                         //reload tasks into the room
                         ObservableList<Task> taskListInRoom = changedRoom.getReadOnlyTasks();
                         internalList.addAll(taskListInRoom);
-                        System.out.println("after " + internalList.size());
                     }
                 }
             }
