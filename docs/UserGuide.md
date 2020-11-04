@@ -402,7 +402,7 @@ You can use this command to look at the list of all patients in the patient tab.
 </p>
 2. Key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/f17_listpatientcommand.PNG" width="480" height="400">
+    <img src="images/ug/f17_listpatientcommand.png" width="480" height="400">
     <br />
     <i>Figure 17. <code>listpatient</code> command in Command Box</i>
 </p>
