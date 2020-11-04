@@ -41,11 +41,11 @@
 
 ## 1. Introduction
 
-Welcome to User Guide for our application, Covigent! Are you a manager of a quarantine facility searching for an application 
-to manage the information of quarantined individuals or the tasks to be done by your staff? Your search ends here! 
+Welcome to User Guide for our application, Covigent! Has Covid-19 hit your boutique hotel hard and left you scrambling to search for an application
+that can ease your transition from a boutique hotel to a quarantine facility? Your search ends here! 
 
-Covigent is a desktop management application that helps to keep track of the information of quarantined individuals 
-and the tasks to be done by the staff of the quarantined facility. The main features include:<br>
+Covigent is a desktop management application to ease boutique hotels' transitions into quarantine facilities. Covigent aims to help boutique hotel managers
+keep track of the information of quarantined individuals and the tasks to be done by their staff. The main features include:<br>
 
       1. Managing quarantined individuals information - Period of Stay, temperature, phone number etc.<br>
       2. Managing the rooms of the quarantine facility - Allocate quarantined individuals to rooms, search for a room, etc.<br>
