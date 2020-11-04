@@ -23,7 +23,7 @@
           5.3.3  [Search by Room Number: `searchroom`](#533-search-by-room-number-searchroom)<br />
           5.3.4  [Search for Room with Patient: `searchroom`](#534-search-for-room-with-patient-searchroom)<br />
           5.3.5  [List the Current Rooms: `listroom`](#535-list-the-current-rooms-listroom)<br />
-          5.3.6  [Find the first free room: `findroom`](#536-find-the-first-free-room-findemptyroom)<br />
+          5.3.6  [Find the first free room: `findemptyroom`](#536-find-the-first-free-room-findemptyroom)<br />
     5.4 [Task](#54-task)<br />
           5.4.1  [Add a Task to a Room: `addtask`](#541-add-a-task-to-a-room-addtask)<br />
           5.4.2  [Delete a Task from a Room: `deletetask`](#542-delete-a-task-from-a-room-deletetask)<br />
@@ -334,7 +334,7 @@ Field | Description
 `NUMBER_OF_ROOMS` | the number of rooms you wish to have in hotel
 
 **:information_source: Important Information:** <br />
-* If the number of rooms is less than the number of patients error is thrown when decreasing the number of existing rooms.
+* If the `NUMBER_OF_ROOMS` is less than the number of occupied rooms, error is thrown.
 * Adds `NUMBER_OF_ROOMS` rooms into the hotel system, if there were previously added information that information for respective rooms will still be there.
 <br />
 
@@ -723,6 +723,6 @@ _Written by: Yun Qing_
 **A**: Use the command `listroom` for rooms and `listpatient` for patients.
 
 **Q**: What should I do if nothing happens when I double click the Jar file?<br />
-**A**: Open Terminal(Mac)/Command Prompt(Windows) . Type `cd [PATH TO DIRECTORY CONTAINING .JAR FILE]` . Type java `-jar covigent.jar` to run the application.
+**A**: Open Terminal(Mac)/Command Prompt(Windows) . Type `cd [PATH TO DIRECTORY CONTAINING .JAR FILE]` . Type `java -jar covigent.jar` to run the application.
 
 _Written by: Noorul Azlina_<br />
