@@ -239,7 +239,7 @@ Field | Description
     <br />
     <i>Figure 5. A Successful Execution of <code>addpatient</code> command</i>
 </p>
-6. If you do not see the success message as shown in Figure 5, please repeat step 2 onwards.<p></p>
+6. If you do not see the success message as shown in Figure 5, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -376,7 +376,7 @@ Field | Description
     <br />
    <i>Figure 14. <code>searchpatient</code> command in Command Box</i>
 </p>
-4. Press `enter` to run the command. <p></p>
+4. Press `enter` to run the command. 
 5. The result box displays the success message shown in Figure 15 and you can find the patients with temperatures in the inputted temperature range in Covigent.
 <p align="center">
     <img src="images/ug/f15_searchpatient.png" width="480" height="400">
@@ -409,7 +409,7 @@ You can use this command to look at the list of all patients in the patient tab.
     <br />
     <i>Figure 17. <code>listpatient</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command.<p></p>
+3. Press `enter` to run the command.
 4. The result box displays the sucess message shown in Figure 18 and you can find the full list of patient in Covigent.
 <p align="center">
     <img src="images/ug/f18_listpatient.png" width="480" height="400">
@@ -458,7 +458,7 @@ Field | Description
     <br />
    <i>Figure 20. Navigation to Rooms tab</i>
 </p>
-3. Press `enter` to run the command.<p></p>
+3. Press `enter` to run the command.
 4. The result box shows a success message "Initialise the number of rooms to 400 rooms in the application.".
 <p align="center">
     <img src="images/ug/f21_initroom.png" width="550" height="400">
@@ -500,7 +500,7 @@ Field | Description
     <br />
    <i>Figure 23. <code>allocateroom</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command.<p></p>
+3. Press `enter` to run the command.
 4. The result box displays the sucess message shown in Figure 24 and the patient is allocated to the room.
 The room with the newly allocated patient is shown in the room details panel.
 <p align="center">
@@ -508,7 +508,7 @@ The room with the newly allocated patient is shown in the room details panel.
     <br />
     <i>Figure 24. A Successful Execution of <code>allocateroom</code> for Room Number</i>
 </p>
-5. If you do not see the success message as shown in Figure 24, please repeat step 2 onwards.<p></p>
+5. If you do not see the success message as shown in Figure 24, please repeat step 2 onwards.
 
 _Written by: Ming De_
 
@@ -538,14 +538,14 @@ Field | Description
     <br />
    <i>Figure 26. <code>searchroom</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command.<p></p>
+3. Press `enter` to run the command.
 4. The result box displays the sucess message shown in Figure 27 and the room with the specified room number is shown in the room details panel.
 <p align="center">
     <img src="images/ug/f27_searchroomnumbersuccess.png" width="620" height="400">
     <br />
     <i>Figure 27. A Successful Execution of <code>searchroom</code> for Room Number</i>
 </p>
-5. If you do not see the success message as shown in Figure 27, please repeat step 2 onwards.<p></p>
+5. If you do not see the success message as shown in Figure 27, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -575,14 +575,14 @@ Field | Description
     <br />
    <i>Figure 29. <code>searchroom</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command. <p></p>
+3. Press `enter` to run the command. 
 4. The result box displays the success message shown in Figure 30 and the room that the specified patient resides in is shown in the room details panel.
 <p align="center">
     <img src="images/ug/f30_searchroompatientsuccess.png" width="620" height="400">
     <br />
     <i>Figure 30. A Successful Execution of <code>searchroom</code> for Patient</i>
 </p>
-5. If you do not see the success message as shown in Figure 30, please repeat step 2 onwards.<p></p>
+5. If you do not see the success message as shown in Figure 30, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -610,7 +610,7 @@ Format: `listroom` All the rooms in Covigent.
     <br />
     <i>Figure 32. <code>listroom</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command<p></p>
+3. Press `enter` to run the command
 4. The result box shows a success message "All rooms are listed."
 <p align="center">
     <img src="images/ug/f33_listroom.png" width="550" height="400">
@@ -644,7 +644,7 @@ Format: `findemptyroom` The unoccupied room in Covigent with the lowest room num
     <br />
     <i>Figure 35. <code>findemptyroom</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command<p></p>
+3. Press `enter` to run the command
 4. The result box shows a success message that "Room Number 4 is empty"
 <p align="center">
     <img src="images/ug/f36_findemptyroom.png" width="550" height="400">
@@ -829,8 +829,8 @@ Field | Description
     <br />
    <i>Figure 61. <code>searchtask</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command.<p></p>
-4. With reference to Figure 62, the result box displays the message, "Tasks before the due date found.".<p></p>
+3. Press `enter` to run the command.
+4. With reference to Figure 62, the result box displays the message, "Tasks before the due date found.".
 5. Now you can find tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent.
 <p align="center">
     <img src="images/ug/searchtask.PNG" width="480" height="400">
@@ -863,7 +863,7 @@ You can use this command to look at the list of all tasks in the task tab.
     <br />
     <i>Figure 64. <code>listtask</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command.<p></p>
+3. Press `enter` to run the command.
 4. Now you can find the full list of patient in Covigent.
 <p align="center">
     <img src="images/ug/listtask.PNG" width="480" height="400">
@@ -887,7 +887,7 @@ If you encounter any issues using Covigent and need to access this user guide ag
     <br />
     <i>Figure xx. <code>help</code> command in Command Box</i>
 </p>
-2. Press `enter` to run the command.<p></p>
+2. Press `enter` to run the command.<br/>
 3. The result box displays the message as shown in Figure xx.
 <p align="center">
     <img src="images/ug/helpresultdisplay.png" width="750" height="150">
@@ -916,7 +916,7 @@ You can use this command to exit from Covigent.
     <br />
     <i>Figure xx. <code>exit</code> command in Command Box</i>
 </p>
-2. Press `enter` to run the command.<p></p>
+2. Press `enter` to run the command.
 3. Covigent exits and closes.
 
 _Written by: MingDe_
