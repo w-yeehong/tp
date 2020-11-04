@@ -14,7 +14,7 @@
           4.1.2 [Create, Read, Update, Delete](#412-create-read-update-delete)<br>
           4.1.3 [Search Patient](#413-search-patient)<br>
     4.2  [Room Feature](#42-room-feature)<br>
-          4.2.1 [Initialise Room](#421-initialise-room)<br>
+          4.2.1 [Overview](#421-overview)<br>
           4.2.2 [List Room](#422-list-room)<br>
           4.2.3 [Allocate Room](#423-allocate-room)<br>
           4.2.4 [Search Room](#424-search-room)<br>
@@ -377,16 +377,35 @@ method.
 ### 4.2 Room Feature
 
 #### 4.2.1 Overview
-The application is able to track the room details. It keep tracks of the whether a room is occupied and the patient inside the room if it is occupied. It also keeps track of the tasks assigned to a specific room. Hence, there is a need to represent the Room List as a list of Rooms on which the application can perform read and update operations.
+The application is able to track the room details. It keep tracks of the whether a room is occupied and the patient inside the room if it is occupied. 
+It also keeps track of the tasks assigned to a specific room. 
+Hence, there is a need to represent the Room List as a list of Rooms on which the application can perform read and update operations.
 
-#### 4.2.2 Room List Components
+#### Design of RoomList and Room
 The class diagram or UniqueRoomList is shown below:
 
 As seen in the diagram above, the UniqueRoomList contains a single RoomList object. This is a wrapper class around an ObservableList and PriorityQueue of Room objects. The UniqueRoomList contains no rooms at the start, however, after that you would require at least one room to be defined here.
 
 Each Room contains the following member attributes, all of which are non-nullable attributes:
 
+#### Design Considerations for RoomList and Room
 
+**Aspect: Decision on allowing `editRoomCommand` that allows changing of room number to remain**
+
+* Option 1: Do not change the `editRoomCommand`
+Allowing the users to change room numbers will give the user more power in customising the rooms. However, this option introduced a bug into the system
+that could not be easily resolved unless we changed our entire implementation of `initroomCommand`.
+    
+* Option 2: Remove `editRoomCommand` ability to change room number and rename it to `allocateRoomCommand`
+Removing the `editRoomCommand` to change room number is much more time-efficient compared to changing the entire implementation of `initRoomCommand`. We
+also decided that there should be no reason that a user would need to change the room number. Renaming the method to `allocateRoomCommand` would provide
+more clarity for the method.
+    
+Ultimately, we decided on Option 2. This is because keeping `editRoomCommand` would lead to a large consumption of time to redesign the system. In order
+to not stray from our schedule, we have to remove `editRoomCommand` to ensure that we can develop the other features on time.
+`InitRoom`. Furthermore, to solve the bug that was introduced, we would have to store the count of the number of times `InitRoom` was called. This would
+cause us to store information in another `.json` file which is unnecessary. Therefore, we decided that the forgoing a
+small function like this would be a better choice.
 
 #### Proposed Implementation
 
@@ -401,11 +420,11 @@ The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoom
 
 These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#addTaskToRoom(Task task, Room room)`, `Model#deleteTaskFromRoom(Task task, Room room)`, `Model#setTaskToRoom(Task target, Task editedTask, Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley. 
 
-### Feature details
+### Feature related to Room
 
 * `initRoomCommand` - Initializes the number of rooms in **Covigent** app.
 * `listRoomCommand` - Lists all the rooms in **Covigent** app.
-* `AllocateRoomCommand` - Allocates a patient to a room.
+* `allocateRoomCommand` - Allocates a patient to a room.
 * `searchRoomCommand` - Searches for the room with the specified room number.
 * `findEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
@@ -420,13 +439,7 @@ The activity diagram below illustrates the `findEmptyRoom`.
  
  _Written By: Noorul Azlina_
 
-#### 4.2.1 Initialise Room
-
-#### 4.2.2 List Room 
-
-#### 4.2.3 Allocate Room 
-
-**Implementation**
+**Implementation of AllocateRoomCommand**
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
 **Step 1.** The `AllocateRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
@@ -443,23 +456,6 @@ method.
 
 **Step 4.** A success message with the allocated room will be appended with the `AllocateRoomCommand#MESSAGE_ALLOCATE_ROOM_SUCCESS ` constant. A 
 new `CommandResult` will be returned with the message.
-
-<h4> Design Considerations: </h4>
-
-**Aspect: Enable the function to change the room numbers and occupancy status**
-
-* **Option 1**: Enable users to change the room number and occupancy status
-    * Pros: Gives the user more power to customize the rooms
-    * Cons: Introduces more bugs into the system that can only be fixed by creating another new feature
-    
-* **Option 2**: Disable the function to change the room number and occupancy status
-    * Pros: Introduces less bug into the system
-    * Cons: Reduces the freedom and ability of the user to change the rooms.
-    
-Ultimately, we decided on Option 2. This is because implementing this function would introduce bugs to
- `InitRoom`. To solve this bug, we would have to store the count of the number of times `InitRoom` was called. This would
- cause us to store information in another `.json` file which is unnecessary. Therefore, we decided that the forgoing a
- small function like this would be a better choice.
 
 #### 4.2.4 Search Room  
 
