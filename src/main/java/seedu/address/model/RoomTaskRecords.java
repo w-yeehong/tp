@@ -1,12 +1,12 @@
 package seedu.address.model;
 
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
-
-import java.util.ArrayList;
 
 //@@author chiamyunqing
 /**
@@ -18,8 +18,14 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
     private final ObservableList<Task> internalList;
     private final ObservableList<Task> internalUnmodifiableList;
 
+    /**
+     * Constructs a listener to roomList so that task list is updated whenever
+     * there's a change in roomList
+     * @param taskList stores all the tasks in the rooms.
+     * @param roomList stores all the rooms.
+     */
     public RoomTaskRecords(ObservableList<Task> taskList, ObservableList<Room> roomList) {
-        updateTaskListIfChanged(roomList); //attaches a listener to roomList
+        updateTaskListIfChanged(roomList);
         internalList = taskList;
         internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
     }

@@ -53,6 +53,10 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(this.roomTaskRecords.getReadOnlyList());
     }
 
+    public ModelManager() {
+        this(new PatientRecords(), new RoomList(), new UserPrefs());
+    }
+
     /**
      * Initialises the task tab when app is just launched.
      * @return an ObservableList of tasks which collects all the tasks in the rooms
@@ -70,11 +74,6 @@ public class ModelManager implements Model {
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }
-
-    public ModelManager() {
-        this(new PatientRecords(), new RoomList(), new UserPrefs());
-    }
-
 
     //=========== UserPrefs ==================================================================================
 

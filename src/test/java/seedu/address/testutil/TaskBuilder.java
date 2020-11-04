@@ -14,7 +14,7 @@ public class TaskBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Remind John to clean bedsheets.";
     public static final String DEFAULT_DATETIME_DUE = "20201014 2359";
-    public static final int DEFAULT_TASK_ROOM_NUM = 3;
+    public static final int DEFAULT_TASK_ROOM_NUM = 11;
 
     private Description description;
     private DateTimeDue dueAt;

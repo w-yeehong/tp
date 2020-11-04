@@ -13,24 +13,20 @@ import java.util.stream.IntStream;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.util.Callback;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
-import seedu.address.model.task.TaskList;
 
 public class UniqueRoomList implements Iterable<Room> {
 
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
-    Callback<Room, Observable[]> extractor = (Room p) -> {
-        Observable[] res = new Observable[]{p.getFilteredTasks()};
+    private final ObservableList<Room> internalList = FXCollections.observableArrayList((Room room) -> {
+        Observable[] res = new Observable[]{room.getFilteredTasks()};
         return res;
-    };
-
-    private final ObservableList<Room> internalList = FXCollections.observableArrayList(extractor);
+    });
     private final ObservableList<Room> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
