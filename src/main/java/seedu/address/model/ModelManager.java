@@ -49,7 +49,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.patientRecords.getReadOnlyList());
         filteredRooms = new FilteredList<>(this.roomList.getReadOnlyList());
-        roomTaskRecords = new RoomTaskRecords(getTaskList(), getFilteredRoomList());
+        roomTaskRecords = new RoomTaskRecords(initialiseTaskList(), getFilteredRoomList());
         filteredTasks = new FilteredList<>(this.roomTaskRecords.getReadOnlyList());
     }
 
@@ -57,7 +57,7 @@ public class ModelManager implements Model {
      * Initialises the task tab when app is just launched.
      * @return an ObservableList of tasks which collects all the tasks in the rooms
      */
-    public ObservableList<Task> getTaskList() {
+    public ObservableList<Task> initialiseTaskList() {
         ObservableList<Task> taskList = FXCollections.observableArrayList();
         ObservableList<Room> roomsList = roomList.getRoomObservableList();
         for (Room room : roomsList) {
@@ -347,9 +347,9 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> datePredicate) {
-        for (int i = 0; i < roomList.getNumOfRooms(); i++) {
-            roomList.getRoomObservableList().get(i).setPredicateOnRoomTasks(datePredicate);
-        }
+        requireNonNull(datePredicate);
+        filteredTasks.setPredicate(datePredicate);
+
     }
 
     //=========== Miscellaneous ========================================================================================

@@ -6,7 +6,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
 
+import java.util.ArrayList;
 
+//@@author chiamyunqing
 /**
  * The RoomTaskRecords class collects and updates all the Tasks from the rooms.
  * It exists mainly for the purpose of Task tab UI.
@@ -17,7 +19,7 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
     private final ObservableList<Task> internalUnmodifiableList;
 
     public RoomTaskRecords(ObservableList<Task> taskList, ObservableList<Room> roomList) {
-        updateTaskListIfChanged(roomList); //attaches a listener to roomList which will
+        updateTaskListIfChanged(roomList); //attaches a listener to roomList
         internalList = taskList;
         internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
     }
@@ -30,45 +32,24 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
         roomList.addListener(new ListChangeListener<Room>() {
             @Override
             public void onChanged(Change<? extends Room> change) {
-                System.out.println("got change!");
                 while (change.next()) {
-                    if (change.wasAdded()) {
+                    if (change.wasUpdated()) {
                         int indexToChange = change.getFrom();
                         Room changedRoom = change.getList().get(indexToChange);
                         int roomNumber = changedRoom.getRoomNumber();
-                        //remove tasks in that room
+                        ArrayList<Task> updatedTaskList = new ArrayList<>();
                         for (Task task : internalList) {
-                            if (task.getTaskRoomNumber() == roomNumber) {
-                                internalList.remove(task);
+                            if (task.getTaskRoomNumber() != roomNumber) {
+                                updatedTaskList.add(task);
                             }
                         }
-                        //reload tasks into the room
-                        ObservableList<Task> taskListInRoom = changedRoom.getReadOnlyTasks();
-                        internalList.addAll(taskListInRoom);
+                        updatedTaskList.addAll(changedRoom.getReadOnlyTasks());
+                        internalList.setAll(updatedTaskList);
                     }
                 }
             }
         });
     }
-
-    /*public void deleteTask(Task task) {
-        internalList.remove(task);
-    }
-
-    public void addTask(Task task) {
-        internalList.add(task);
-    }
-
-    public void setTask(Task target, Task editedTask) {
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new TaskNotFoundException();
-        }
-
-        internalList.set(index, editedTask);
-    }
-
-     */
 
     public ObservableList<Task> getReadOnlyList() {
         return internalUnmodifiableList;

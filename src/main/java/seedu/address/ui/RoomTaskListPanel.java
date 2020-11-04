@@ -36,45 +36,13 @@ public class RoomTaskListPanel extends UiPart<Region> {
         taskListView.setItems(roomTaskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
 
-      //  populatePanel(roomTaskList);
         updateDetailsIfChanged(roomTaskList);
     }
 
 
     //@@author w-yeehong
     /**
-     * Attaches a listener to {@code roomList}, repopulating the panel whenever
-     * there are removals in the list of rooms.
-     *
-     * Fixes the issue of the panel not refreshing when a room is removed from the
-     * list of rooms.
-     *
-     * @param taskList The room list to listen to for changes.
-     */
-    /*
-    private void updateDetailsIfChanged(ObservableList<Task> taskList) {
-        taskList.addListener(new ListChangeListener<Room>() {
-            @Override
-            public void onChanged(Change<? extends Room> change) {
-                while (change.next()) {
-                    int indexOfChange = change.getFrom();
-                    Index index = Index.fromZeroBased(indexOfChange);
-                    logger.info("Changes detected in Room " + index.getOneBased()
-                            + ". Updating RoomTaskListPanel...");
-                    resetPanel(taskList);
-                }
-            }
-        });
-    }
-     */
-    //@@author w-yeehong
-
-    /**
-     * Attaches a listener to {@code roomTaskList}. {@code roomTaskList} should be the original task list of
-     * the room, i.e. not the filtered list.
-     *
-     * Fixes the issue of task index not refreshing when a new task is added and is not
-     * in the filtered list.
+     * Attaches a listener to {@code roomTaskList}.
      *
      * @param roomTaskList The task list to listen to for changes.
      */
@@ -86,13 +54,13 @@ public class RoomTaskListPanel extends UiPart<Region> {
                     int indexOfChange = change.getFrom();
                     Index index = Index.fromZeroBased(indexOfChange);
                     logger.info("Changes detected in Task " + index.getOneBased()
-                            + ". Updating RoomTaskDetailsPanel...");
+                            + ". Updating RoomTaskListPanel...");
                     taskListView.setCellFactory(listView -> new TaskListViewCell());
                 }
             }
         });
     }
-
+    //@@author w-yeehong
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
@@ -106,15 +74,10 @@ public class RoomTaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                int roomNumber = task.getTaskRoomNumber(); //TODO: task class needs to have room number
-                int taskNumber = 2; //TODO: No more index
-                        //room.getFilteredTasks().getSourceIndex(getIndex()) + 1;
-                int totalNumberOfTasksInRoom = 3;
-                        //room.getReadOnlyTasks().size();
-                setGraphic(new TaskCard(roomNumber, taskNumber, totalNumberOfTasksInRoom, task)
+                int roomNumber = task.getTaskRoomNumber();
+                setGraphic(new TaskCard(roomNumber, task)
                         .getRoot());
             }
         }
     }
-
 }
