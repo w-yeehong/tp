@@ -38,4 +38,3 @@ Given below are my contributions to the project.
    [\#27](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/27), [\#69](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/69), [\#80](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/80),
    [\#84](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/84), [\#99](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/99)
   * Reported bugs and suggestions for other teams in the class
-  * Some parts of the UI feature I added was adopted by other group members
