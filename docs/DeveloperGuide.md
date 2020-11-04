@@ -394,18 +394,20 @@ Each Room contains the following member attributes, all of which are non-nullabl
 
 * Option 1: Do not change the `editRoomCommand`
 Allowing the users to change room numbers will give the user more power in customising the rooms. However, this option introduced a bug into the system
-that could not be easily resolved unless we changed our entire implementation of `initroomCommand`.
+that could not be easily resolved unless we changed our entire implementation of `InitRoomCommand`.
     
-* Option 2: Remove `editRoomCommand` ability to change room number and rename it to `allocateRoomCommand`
-Removing the `editRoomCommand` to change room number is much more time-efficient compared to changing the entire implementation of `initRoomCommand`. We
-also decided that there should be no reason that a user would need to change the room number. Renaming the method to `allocateRoomCommand` would provide
+* Option 2: Remove `editRoomCommand` ability to change room number and rename it to `AllocateRoomCommand`
+Removing the `editRoomCommand` to change room number is much more time-efficient compared to changing the entire implementation of `InitRoomCommand`. We
+also decided that there should be no reason that a user would need to change the room number. Renaming the method to `AllocateRoomCommand` would provide
 more clarity for the method.
     
 Ultimately, we decided on Option 2. This is because keeping `editRoomCommand` would lead to a large consumption of time to redesign the system. In order
 to not stray from our schedule, we have to remove `editRoomCommand` to ensure that we can develop the other features on time.
-`InitRoom`. Furthermore, to solve the bug that was introduced, we would have to store the count of the number of times `InitRoom` was called. This would
+Furthermore, to solve the bug that was introduced, we would have to store the count of the number of times `InitRoomCommand` was called. This would
 cause us to store information in another `.json` file which is unnecessary. Therefore, we decided that the forgoing a
 small function like this would be a better choice.
+
+_Written by Mingde_
 
 #### Proposed Implementation
 
@@ -422,16 +424,16 @@ These operations are exposed in the `Model` interface as `Model#addRooms(int num
 
 ### Feature related to Room
 
-* `initRoomCommand` - Initializes the number of rooms in **Covigent** app.
-* `listRoomCommand` - Lists all the rooms in **Covigent** app.
-* `allocateRoomCommand` - Allocates a patient to a room.
-* `searchRoomCommand` - Searches for the room with the specified room number.
-* `findEmptyRoomCommand` - Finds an empty room with the lowest room number.
+The features comprise of five commands namely,
+* `InitRoomCommand` - Initializes the number of rooms in Covigent app.
+* `ListRoomCommand` - Lists all the rooms in Covigent app.
+* `AllocateRoomCommand` - Allocates a patient to a room.
+* `SearchRoomCommand` - Searches for the room with the specified room number.
+* `FindEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
 We will illustrate the progress of one of the above commands for simplicity.
 
 The activity diagram below illustrates the `findEmptyRoom`.
-
 ![ActivityDiagramForRoomFeature](images/ActivityDiagramForRoomFeature.png)
  
  The Sequence Diagram for `initRooms` is shown below.
@@ -457,12 +459,14 @@ method.
 **Step 4.** A success message with the allocated room will be appended with the `AllocateRoomCommand#MESSAGE_ALLOCATE_ROOM_SUCCESS ` constant. A 
 new `CommandResult` will be returned with the message.
 
-#### 4.2.4 Search Room  
-
-#### 4.2.5 Find Empty Room  
-
-
-
+The activity diagram below illustrates `allocateRoom`.
+![Activity Diagram For AllocateRoom](images/AllocateRoomActivityDiagram.png)
+ 
+The sequence diagram for `AllocateRoomCommand` is shown below.
+![Sequence Diagram for AllocateRoomCommand](images/AllocateRoomSequenceDiagram.png)
+_Figure XX. Sequence Diagram for AllocateRoomCommand_
+ 
+_Written by Mingde_
 
 ### 4.3 Task Feature
 

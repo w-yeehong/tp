@@ -38,13 +38,13 @@ AddPatientCommand --> AddPatientCommandParser :
 deactivate AddPatientCommand
 
 AddPatientCommandParser --> CovigentAppParser :
-deactivate DeleteCommandParser
+deactivate AddPatientCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddPatientCommandParser -[hidden]-> CovigentAppParser
 destroy AddPatientCommandParser
 
 CovigentAppParser --> LogicManager :
-deactivate AddressBookParser
+deactivate CovigentAppParser
 
 LogicManager -> AddPatientCommand : execute()
 activate AddPatientCommand
