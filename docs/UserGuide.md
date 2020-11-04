@@ -91,7 +91,6 @@ Next, for our task features, you can [add](#541-add-a-task-to-a-room-addtask), [
 [edit](#543-edit-task-description-or-due-date-edittask) and [search](#545-search-tasks-before-a-given-date-searchtask) for a task
 and see it be displayed on our amazing GUI. If you want to see all the tasks, you can [list](#546-list-all-tasks-listtask) out all the tasks in Covigent.
 
-
 Lastly, our miscellaneous features will ensure that you can seek [help](#55-view-help-help) if you are lost, or 
 [exit](#56-exit-covigent-exit) the program when you are done with it. Our app also has an [autosave](#57-autosave) feature that allows you to save the data without manual command.
 
@@ -110,7 +109,7 @@ that can be typed into the command line and executed by Covigent.
 
 * ![icon](images/ug/HyperLink_words.PNG) 
 A light blue font color indicates that this is a Hyperlink that you can click on
-and be transferred to the coresponding section in Covigent.
+and be transferred to the corresponding section in Covigent.
 
 _Written by: Wai Lok_
 
