@@ -455,7 +455,7 @@ Field | Description
     <br />
    <i>Figure 20. Navigation to Rooms tab</i>
 </p>
-3. Press `enter` to run the command <p></p>
+3. Press `enter` to run the command.<p></p>
 4. The result box shows a success message "Initialise the number of rooms to 400 rooms in the application.".
 <p align="center">
     <img src="images/ug/f21_initroom.png" width="550" height="400">
@@ -607,7 +607,7 @@ Format: `listroom` All the rooms in Covigent.
     <br />
     <i>Figure 32. <code>listroom</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command
+3. Press `enter` to run the command<p></p>
 4. The result box shows a success message "All rooms are listed."
 <p align="center">
     <img src="images/ug/f33_listroom.png" width="550" height="400">
@@ -641,9 +641,8 @@ Format: `findemptyroom` The unoccupied room in Covigent with the lowest room num
     <br />
     <i>Figure 35. <code>findemptyroom</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command
+3. Press `enter` to run the command<p></p>
 4. The result box shows a success message that "Room Number 4 is empty"
-
 <p align="center">
     <img src="images/ug/f36_findemptyroom.png" width="550" height="400">
     <br />
@@ -821,18 +820,14 @@ Field | Description
     <br />
    <i>Figure 60. Navigation to Tasks tab</i>
 </p>
-
 2. Using the example,  key in the command into the command box as shown below.
 <p align="center">
     <img src="images/ug/searchtaskcommand.PNG" width="700" height="150">
     <br />
    <i>Figure 61. <code>searchtask</code> command in Command Box</i>
 </p>
-
-3. Press `enter` to run the command.
-
-4. With reference to Figure 62, the result box displays the message, "Tasks before the due date found.".
-
+3. Press `enter` to run the command.<p></p>
+4. With reference to Figure 62, the result box displays the message, "Tasks before the due date found.".<p></p>
 5. Now you can find tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent.
 <p align="center">
     <img src="images/ug/searchtask.PNG" width="480" height="400">
@@ -859,16 +854,13 @@ You can use this command to look at the list of all tasks in the task tab.
     <br />
    <i>Figure 63. Navigation to Tasks tab</i>
 </p>
-
 2. Key in the command into the command box as shown below.
 <p align="center">
     <img src="images/ug/listtaskcommand.PNG" width="480" height="400">
     <br />
     <i>Figure 64. <code>listtask</code> command in Command Box</i>
 </p>
-
-3. Press `enter` to run the command.
-
+3. Press `enter` to run the command.<p></p>
 4. Now you can find the full list of patient in Covigent.
 <p align="center">
     <img src="images/ug/listtask.PNG" width="480" height="400">
@@ -892,14 +884,13 @@ If you encounter any issues using Covigent and need to access this user guide ag
     <br />
     <i>Figure xx. <code>help</code> command in Command Box</i>
 </p>
-2. Press `enter` to run the command.
+2. Press `enter` to run the command.<p></p>
 3. The result box displays the message as shown in Figure xx.
 <p align="center">
     <img src="images/ug/helpresultdisplay.png" width="750" height="150">
     <br />
     <i>Figure xx. Result display box</i>
 </p>
-
 4. A new help window appears.
 <p align="center">
     <img src="images/ug/helpwindow.png" width="550" height="100">
@@ -922,7 +913,7 @@ You can use this command to exit from Covigent.
     <br />
     <i>Figure xx. <code>exit</code> command in Command Box</i>
 </p>
-2. Press `enter` to run the command.
+2. Press `enter` to run the command.<p></p>
 3. Covigent exits and closes.
 
 _Written by: MingDe_
