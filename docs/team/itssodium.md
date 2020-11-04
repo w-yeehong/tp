@@ -5,7 +5,7 @@ title: Noorul Azlina's Project Portfolio Page
 
 ## Project: Covigent
 
-Covigent is a desktop application that is used to aid hotel staff handle the Covid situation better used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Covigent is a desktop application that is used to aid hotel staff handle the Covid situation better. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to list all rooms defined by user
   * What it does: allows user to look at all rooms defined by user as the UI can change when displaying an empty room.
   
-* **Code contributed**: [[[Github](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=itssodium)]]
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=itssodium)
 
 * **Enhancements to existing features**:
   * Wrote additional test cases for some of the features and classes that I created
