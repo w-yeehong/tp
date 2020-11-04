@@ -15,10 +15,9 @@
           4.1.3 [Search Patient](#413-search-patient)<br>
     4.2  [Room Feature](#42-room-feature)<br>
           4.2.1 [Overview](#421-overview)<br>
-          4.2.2 [List Room](#422-list-room)<br>
-          4.2.3 [Allocate Room](#423-allocate-room)<br>
-          4.2.4 [Search Room](#424-search-room)<br>
-          4.2.5 [Find Empty Room](#425-find-empty-room)<br>
+          4.2.2 [Initialize Room](#422-implementation-of-initroomcommand)<br>
+          4.2.3 [Allocate Room](#423-implementation-of-allocateroomcommand)<br>
+          4.2.4 [GUI](#424-search-room)<br>
     4.3  [Task Feature](#43-task-feature)<br>
           4.3.1 [Add Task](#431-add-task)<br>
           4.3.2 [List Task](#432-list-task)<br>
@@ -440,8 +439,10 @@ The activity diagram below illustrates the `findEmptyRoom`.
  ![SequenceDiagramForSequenceDiagram](images/Room_SequenceDiagram.png)
  
  _Written By: Noorul Azlina_
+ 
+#### 4.2.2 Implementation of InitRoomCommand
 
-**Implementation of AllocateRoomCommand**
+#### 4.2.3 Implementation of AllocateRoomCommand
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
 **Step 1.** The `AllocateRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
@@ -459,14 +460,20 @@ method.
 **Step 4.** A success message with the allocated room will be appended with the `AllocateRoomCommand#MESSAGE_ALLOCATE_ROOM_SUCCESS ` constant. A 
 new `CommandResult` will be returned with the message.
 
-The activity diagram below illustrates `allocateRoom`.
+The activity diagram below illustrates `allocateRoomCommand`.
 ![Activity Diagram For AllocateRoom](images/AllocateRoomActivityDiagram.png)
+_Figure XX. Activity Diagram for AllocateRoomCommand_
  
 The sequence diagram for `AllocateRoomCommand` is shown below.
 ![Sequence Diagram for AllocateRoomCommand](images/AllocateRoomSequenceDiagram.png)
 _Figure XX. Sequence Diagram for AllocateRoomCommand_
  
 _Written by Mingde_
+
+#### 4.2.4 Implementation of GUI
+The GUI for room feature is based on a `ListView` that updates whenever the `RoomList` is updated and a `scroll pane` that
+displays the details of the room. To ensure that the information displayed in the `scroll pane` is updated dynamically, 
+we employ the use of `Listeners` that listens for changes and notify the `scroll pane` to update.
 
 ### 4.3 Task Feature
 
@@ -534,6 +541,8 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
+_Written by Mingde_
+
 ### 4.6 Miscellaneous Feature
 
 #### 4.6.1 Support for Multiple Date-Time Formats
@@ -594,8 +603,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | staff of a quarantine facility       | edit patient information       | update his/her health status                                                                  |
 | `* * *`  | staff of a quarantine facility       | key in new task information    | keep track of the details of the tasks that I must complete                                  |
 | `* * *`  | staff of a quarantine facility       | view which rooms are empty     |allocate patients to them |
+| `* * *`  | staff of a quarantine facility       | allocate patients to room     |keep track of which room they are living in|
 | `* *`    | staff of the quarantine facility     | indicate that I have completed the task in the room | let other staff know that they no longer have to handle them
-| `* *`      | staff of a quarantine facility | find out all the outstanding tasks left in each room |  serve the quarantined individuals better                                               |
+| `* *`    | staff of a quarantine facility | find out all the outstanding tasks left in each room |  serve the quarantined individuals better                                               |
 | `* *` | staff of a quarantine facility | quickly search through patient information | find the patients that match my criteria
 
 *{More to be added}*
