@@ -319,21 +319,21 @@ Field | Description
     <br />
    <i>Figure 9. Navigation to Patients tab</i>
 </p>
-2. Using the first example, key in the command into the command box as shown below.
+1. Using the first example, key in the command into the command box as shown below.
 <p align="center">
     <img src="images/ug/f10_editpatientcommand.PNG" width="700" height="150">
     <br />
    <i>Figure 10. <code>editpatient</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command. <p></p>
-4.  The result box displays the success message shown in Figure 11 and the patient has been edited in Covigent.<p></p> 
-5. The details of the newly edited patient will be shown in the details panel.
+1. Press `enter` to run the command.
+1.  The result box displays the success message shown in Figure 11 and the patient has been edited in Covigent.
+1. The details of the newly edited patient will be shown in the details panel.
 <p align="center">
     <img src="images/ug/f11_editpatientsuccess.PNG" width="620" height="400">
     <br />
     <i>Figure 11. A Successful Execution of <code>editpatient</code> command</i>
 </p>
-6. If you do not see the success message as shown in Figure 11, please repeat step 2 onwards. <p></p>
+1. If you do not see the success message as shown in Figure 11, please repeat step 2 onwards.<br/><br/>
 
 _Written by: Ming De_
 
