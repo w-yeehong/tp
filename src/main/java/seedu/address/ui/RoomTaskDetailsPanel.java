@@ -15,6 +15,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
 
+//TODO: This class is no longer needed since it's integrated with RoomTaskListPanel
+
 //@@author w-yeehong
 /**
  * Panel containing the list of tasks in a room.

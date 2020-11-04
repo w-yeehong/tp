@@ -252,4 +252,10 @@ public interface Model {
      * @param datePredicate The dueDate predicate.
      */
     void updateFilteredTaskList(Predicate<Task> datePredicate);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code TaskRecords}.
+     */
+    ObservableList<Task> getFilteredTaskList();
 }
