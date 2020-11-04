@@ -225,26 +225,21 @@ Field | Description
     <br />
    <i>Figure 3. Navigation to Patients tab</i>
 </p>
-
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
     <img src="images/ug/f4_addpatientcommand.png" width="700" height="150">
     <br />
    <i>Figure 4. <code>addpatient</code> command in Command Box</i>
 </p>
-
-3. Press `enter` to run the command.
-
-4. The result box displays the message shown in Figure 5 and the newly added patient can now be found in the list of patients in Covigent. 
-
+3. Press `enter` to run the command.<p></p>
+4. The result box displays the sucess message shown in Figure 5 and the newly added patient can now be found in the list of patients in Covigent.<p></p>
 5. To view the details of the newly added patient, click on the newly added patient in the patient list.
 <p align="center">
     <img src="images/ug/f5_addpatientsuccess.png" width="620" height="400">
     <br />
     <i>Figure 5. A Successful Execution of <code>addpatient</code> command</i>
 </p>
-
-6. If you do not see the success message as shown in Figure 5, please repeat step 2 onwards.
+6. If you do not see the success message as shown in Figure 5, please repeat step 2 onwards.<p></p>
 
 _Written by: Yun Qing_
 
@@ -273,24 +268,20 @@ Field | Description
     <br />
    <i>Figure 6. Navigation to Patients tab</i>
 </p>
-
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
     <img src="images/ug/f7_deletepatientcommand.png" width="700" height="150">
     <br />
    <i>Figure 7. <code>deletepatient</code> command in Command Box</i>
 </p>
-
-3. Press `enter` to run the command.
-
-4. The result box displays the message shown in Figure 8 and the deleted patient can no longer be found in the list of patients in Covigent.
+3. Press `enter` to run the command.<p></p>
+4. The result box displays the success message shown in Figure 8 and the deleted patient can no longer be found in the list of patients in Covigent.
 <p align="center">
     <img src="images/ug/f8_deletepatientsuccess.png" width="620" height="400">
     <br />
     <i>Figure 8. A Successful Execution of <code>deletepatient</code></i>
 </p>
-
-5. If you do not see the success message as shown in Figure 8, please repeat step 2 onwards.
+5. If you do not see the success message as shown in Figure 8, please repeat step 2 onwards.<p></p>
 
 _Written by: Yun Qing_
 
@@ -326,26 +317,21 @@ Field | Description
     <br />
    <i>Figure 9. Navigation to Patients tab</i>
 </p>
-
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/f10_editpatientcommand.png" width="700" height="150">
+    <img src="images/ug/f10_editpatientcommand.PNG" width="700" height="150">
     <br />
    <i>Figure 10. <code>editpatient</code> command in Command Box</i>
 </p>
-
-3. Press `enter` to run the command.
-
-4.  The result box displays the message shown in Figure 11 and the patient is edited in Covigent. 
-
+3. Press `enter` to run the command. <p></p>
+4.  The result box displays the success message shown in Figure 11 and the patient has been edited in Covigent.<p></p> 
 5. The details of the newly edited patient will be shown in the details panel.
 <p align="center">
-    <img src="images/ug/f11_editpatientsuccess.png" width="620" height="400">
+    <img src="images/ug/f11_editpatientsuccess.PNG" width="620" height="400">
     <br />
     <i>Figure 11. A Successful Execution of <code>editpatient</code> command</i>
 </p>
-
-6. If you do not see the success message as shown in Figure 11, please repeat step 2 onwards.
+6. If you do not see the success message as shown in Figure 11, please repeat step 2 onwards. <p></p>
 
 _Written by: Ming De_
 
@@ -376,28 +362,22 @@ Field | Description
     <br />
    <i>Figure 12. Navigation to Patients tab</i>
 </p>
-
 2. Before the search, this is what you see in the list of patient.
 <p align="center">
-    <img src="images/ug/patientuibeforesearch.PNG" width="380" height="300">
+    <img src="images/ug/f13_patientuibeforesearch.PNG" width="380" height="300">
     <br />
    <i>Figure 13. Patient List before <code>searchpatient</code> command </i>
 </p>
-
 3. Using the second example, key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/searchpatientcommand.PNG" width="700" height="150">
+    <img src="images/ug/f14_searchpatientcommand.PNG" width="700" height="150">
     <br />
    <i>Figure 14. <code>searchpatient</code> command in Command Box</i>
 </p>
-
-4. Press `enter` to run the command.
-
-5. With reference to Figure 15, the result box displays the message "Listed patient(s) matching the criteria.".
-
-6. Now you can find Patients with a temperature between 36.5 and 36.7 degree celsius in the list of patients in Covigent.
+4. Press `enter` to run the command. <p></p>
+5. The result box displays the success message shown in Figure 15 and you can find the patients with temperatures in the inputted temperature range in Covigent.
 <p align="center">
-    <img src="images/ug/figure6_searchpatient.png" width="480" height="400">
+    <img src="images/ug/f15_searchpatient.png" width="480" height="400">
     <br />
     <i>Figure 15. A Successful Execution of <code>searchpatient</code></i>
 </p>
@@ -421,19 +401,16 @@ You can use this command to look at the list of all patients in the patient tab.
     <br />
    <i>Figure 16. Navigation to Patients tab</i>
 </p>
-
 2. Key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/figure7_listpatientcommand.png" width="480" height="400">
+    <img src="images/ug/f17_listpatientcommand.PNG" width="480" height="400">
     <br />
     <i>Figure 17. <code>listpatient</code> command in Command Box</i>
 </p>
-
-3. Press `enter` to run the command.
-
-4. Now you can find the full list of patient in Covigent.
+3. Press `enter` to run the command.<p></p>
+4. The result box displays the sucess message shown in Figure 18 and you can find the full list of patient in Covigent.
 <p align="center">
-    <img src="images/ug/figure7_listpatient.png" width="480" height="400">
+    <img src="images/ug/f18_listpatient.png" width="480" height="400">
     <br />
     <i>Figure 18. A Successful Execution of <code>listpatient</code></i>
 </p>
@@ -467,25 +444,24 @@ Field | Description
 1. `initroom 400`. 400 rooms are initialised in Covigent.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Rooms tab under the navigation bar as shown in Figure ??.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure 19.
 <p align="center">
     <img src="images/ug/roomstab.png" width="380" height="300">
     <br />
-   <i>Figure ??. Navigation to Rooms tab</i>
+   <i>Figure 19. Navigation to Rooms tab</i>
 </p>
-
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/initroomcommand.png" width="380" height="200">
+    <img src="images/ug/f20_initroomcommand.png" width="380" height="200">
     <br />
-   <i>Figure ??. Navigation to Rooms tab</i>
+   <i>Figure 20. Navigation to Rooms tab</i>
 </p>
-3. Press `enter` to run the command
+3. Press `enter` to run the command <p></p>
 4. The result box shows a success message "Initialise the number of rooms to 400 rooms in the application.".
 <p align="center">
-    <img src="images/ug/figure8_initroom.png" width="550" height="400">
+    <img src="images/ug/f21_initroom.png" width="550" height="400">
     <br />
-    <i>Figure 8. A Successful Execution of <code>initroom</code></i>
+    <i>Figure 21. A Successful Execution of <code>initroom</code></i>
 </p> 
 
 _Written by: Noorul Azlina_
@@ -510,32 +486,27 @@ Field | Description
 1. `allocateroom 1 n/-`. The previous patient will be removed from Room #1.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Rooms tab under the navigation bar as shown in Figure ??.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure 22.
 <p align="center">
     <img src="images/ug/roomstab.png" width="380" height="300">
     <br />
-   <i>Figure ??. Navigation to Rooms tab</i>
+   <i>Figure 22. Navigation to Rooms tab</i>
 </p>
-
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/allocateroomcommand.png" width="700" height="150">
+    <img src="images/ug/f23_allocateroomcommand.PNG" width="700" height="150">
     <br />
-   <i>Figure 7. <code>allocateroom</code> command in Command Box</i>
+   <i>Figure 23. <code>allocateroom</code> command in Command Box</i>
 </p>
-
-3. Press `enter` to run the command.
-
-4. With reference to Figure ??, the result box displays the message "_Allocated Room: Room Number: 1 Patient: Alex Yeoh 
-Temperature: 36.7 Period of stay: 08 Sep 2020 to 18 Sep 2020 Phone: 912345678Age: 23 Comment: - TaskList: -_" 
+3. Press `enter` to run the command.<p></p>
+4. The result box displays the sucess message shown in Figure 24 and the patient is allocated to the room.
 The room with the newly allocated patient is shown in the room details panel.
 <p align="center">
-    <img src="images/ug/allocateroomsuccess.png" width="620" height="400">
+    <img src="images/ug/f24_allocateroomsuccess.PNG" width="620" height="400">
     <br />
-    <i>Figure ??. A Successful Execution of <code>allocateroom</code> for Room Number</i>
+    <i>Figure 24. A Successful Execution of <code>allocateroom</code> for Room Number</i>
 </p>
-
-5. If you do not see the success message as shown in Figure ??, please repeat step 2 onwards.
+5. If you do not see the success message as shown in Figure 24, please repeat step 2 onwards.<p></p>
 
 _Written by: Ming De_
 
@@ -553,30 +524,26 @@ Field | Description
 1. `searchroom r/6` The room details of room number 6 will be searched.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Rooms tab under the navigation bar as shown in Figure ??.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure 25.
 <p align="center">
     <img src="images/ug/roomstab.png" width="380" height="300">
     <br />
-   <i>Figure ??. Navigation to Rooms tab</i>
+   <i>Figure 25. Navigation to Rooms tab</i>
 </p>
-
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/searchroomnumbercommand.png" width="700" height="150">
+    <img src="images/ug/f26_searchroomnumbercommand.png" width="700" height="150">
     <br />
-   <i>Figure 7. <code>searchroom</code> command in Command Box</i>
+   <i>Figure 26. <code>searchroom</code> command in Command Box</i>
 </p>
-
-3. Press `enter` to run the command.
-
-4. The result box displays the message shown in Figure ?? and the room with the specified room number is shown in the room details panel.
+3. Press `enter` to run the command.<p></p>
+4. The result box displays the sucess message shown in Figure 27 and the room with the specified room number is shown in the room details panel.
 <p align="center">
-    <img src="images/ug/searchroomnumbersuccess.png" width="620" height="400">
+    <img src="images/ug/f27_searchroomnumbersuccess.png" width="620" height="400">
     <br />
-    <i>Figure ??. A Successful Execution of <code>searchroom</code> for Room Number</i>
+    <i>Figure 27. A Successful Execution of <code>searchroom</code> for Room Number</i>
 </p>
-
-5. If you do not see the success message as shown in Figure ??, please repeat step 2 onwards.
+5. If you do not see the success message as shown in Figure 27, please repeat step 2 onwards.<p></p>
 
 _Written by: Yun Qing_
 
@@ -594,30 +561,26 @@ Field | Description
 1. `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Rooms tab under the navigation bar as shown in Figure ??.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure 28.
 <p align="center">
     <img src="images/ug/roomstab.png" width="380" height="300">
     <br />
-   <i>Figure ??. Navigation to Rooms tab</i>
+   <i>Figure 28. Navigation to Rooms tab</i>
 </p>
-
 2. Using the first example, key in the command into the command box as shown below.
 <p align="center">
-    <img src="images/ug/searchroompatientcommand.png" width="700" height="150">
+    <img src="images/ug/f29_searchroompatientcommand.png" width="700" height="150">
     <br />
-   <i>Figure ??. <code>searchroom</code> command in Command Box</i>
+   <i>Figure 29. <code>searchroom</code> command in Command Box</i>
 </p>
-
-3. Press `enter` to run the command.
-
-4. The result box displays the message shown in Figure ?? and the room that the specified patient resides in is shown in the room details panel.
+3. Press `enter` to run the command. <p></p>
+4. The result box displays the success message shown in Figure 30 and the room that the specified patient resides in is shown in the room details panel.
 <p align="center">
-    <img src="images/ug/searchroompatientsuccess.png" width="620" height="400">
+    <img src="images/ug/f30_searchroompatientsuccess.png" width="620" height="400">
     <br />
-    <i>Figure ??. A Successful Execution of <code>searchroom</code> for Patient</i>
+    <i>Figure 30. A Successful Execution of <code>searchroom</code> for Patient</i>
 </p>
-
-5. If you do not see the success message as shown in Figure ??, please repeat step 2 onwards.
+5. If you do not see the success message as shown in Figure 30, please repeat step 2 onwards.<p></p>
 
 _Written by: Yun Qing_
 
@@ -633,24 +596,24 @@ Format: `listroom` All the rooms in Covigent.
 <br />
 
 **Step By Step Usage:** <br />
-1. Navigate to Rooms tab under the navigation bar as shown in Figure ??
+1. Navigate to Rooms tab under the navigation bar as shown in Figure 28
 <p align="center">
     <img src="images/ug/roomstab.png" width="550" height="400">
     <br />
-    <i>Figure 12. A Successful Execution of <code>listroom</code></i>
+    <i>Figure 31. Navigation to Rooms tab</i>
 </p>
 2. Next, type the command `listroom` in the command box as shown below
 <p align="center">
-    <img src="images/ug/listroomcommand.png" width="550" height="200">
+    <img src="images/ug/f32_listroomcommand.png" width="550" height="200">
     <br />
-    <i>Figure 12. A Successful Execution of <code>listroom</code></i>
+    <i>Figure 32. <code>listroom</code> command in Command Box</i>
 </p>
 3. Press `enter` to run the command
 4. The result box shows a success message "All rooms are listed."
 <p align="center">
-    <img src="images/ug/figure12_listroom.png" width="550" height="400">
+    <img src="images/ug/f33_listroom.png" width="550" height="400">
     <br />
-    <i>Figure 12. A Successful Execution of <code>listroom</code></i>
+    <i>Figure 33. A Successful Execution of <code>listroom</code></i>
 </p>
 
 _Written by: Noorul Azlina_
@@ -667,25 +630,25 @@ Format: `findemptyroom` The unoccupied room in Covigent with the lowest room num
 
 **Step By Step Usage:** <br />
 
-1. Navigate to Rooms tab under the navigation bar as shown in Figure ??
+1. Navigate to Rooms tab under the navigation bar as shown in Figure 34.
 <p align="center">
     <img src="images/ug/roomstab.png" width="550" height="400">
     <br />
-    <i>Figure ??. A Successful Execution of <code>listroom</code></i>
+    <i>Figure 34. Navigation to Rooms tab</i>
 </p>
 2. Next, type the command `findemptyroom` in the command box as shown below
 <p align="center">
-    <img src="images/ug/findemptyroomcommand.png" width="550" height="200">
+    <img src="images/ug/f35_findemptyroomcommand.png" width="550" height="200">
     <br />
-    <i>Figure ??. A Successful Execution of <code>listroom</code></i>
+    <i>Figure 35. <code>findemptyroom</code> command in Command Box</i>
 </p>
 3. Press `enter` to run the command
 4. The result box shows a success message that "Room Number 4 is empty"
 
 <p align="center">
-    <img src="images/ug/figure13_findemptyroom.png" width="550" height="400">
+    <img src="images/ug/f36_findemptyroom.png" width="550" height="400">
     <br />
-    <i>Figure ??. A Successful Execution of <code>findemptyroom</code></i>
+    <i>Figure 36. A Successful Execution of <code>findemptyroom</code></i>
 </p> 
 
 _Written by: Noorul Azlina_
@@ -925,6 +888,11 @@ If you encounter any issues using Covigent and need to access this user guide ag
 **Step By Step Usage:**  <br />
 
 1. Key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/helpcommand.PNG" width="750" height="150">
+    <br />
+    <i>Figure xx. <code>help</code> command in Command Box</i>
+</p>
 2. Press `enter` to run the command.
 3. The result box displays the message as shown in Figure xx.
 <p align="center">
@@ -949,7 +917,12 @@ You can use this command to exit from Covigent.
 **Format:** `exit`
 
 **Step By Step Usage:**<br />
-1. Key in the command into the command box.
+1. Key in the command into the command box as shown below.
+<p align="center">
+    <img src="images/ug/exitcommand.PNG" width="750" height="150">
+    <br />
+    <i>Figure xx. <code>exit</code> command in Command Box</i>
+</p>
 2. Press `enter` to run the command.
 3. Covigent exits and closes.
 
