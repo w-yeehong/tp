@@ -32,12 +32,11 @@ Given below are my contributions to the project.
   
 * **Documentation**:
     * User Guide:
-      * Added documentation for the features `searchpatient` , `listpatient`, `searchtask` and `listtask` [\#72]()
+      * Added documentation for the features `searchpatient` , `listpatient`, `searchtask` and `listtask` 
       * Added documentation for the section `About this Guide`
     * Developer Guide:
       * Added implementation details of the `searchpatient` , `listpatient`, `searchtask` and `listtask` feature.
-      * Added documentation for the section `UI`
+      * Added documentation and UML diagram for the section `UI`
   
   * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
+    * PRs reviewed (with non-trivial review comments): [\#72](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/72), [\#79](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/79), [\#80](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/80)
