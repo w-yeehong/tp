@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Yun Qing's Project Portfolio Page
+title: Chiam Yun Qing's Project Portfolio Page
 ---
 
 ## Project: Covigent
@@ -33,25 +33,18 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Modified the GUI from AB3 to get a basic structure for the GUI of Covigent. (Pull request [\#24](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/24))
-  * Improved the GUI by adding in a panel to display patient information. (Credit: Code reused from LeeMingDe)(Pull requests [\#110](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/110)
+  * Improved the GUI by adding in a panel to display patient information. (Credit: Code reused from LeeMingDe)(Pull requests [\#110](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/110))
   * Wrote unit tests for `addpatient`, `deletepatient`, `searchroom`, `allocateroom` and `listroom` commands and patient attributes.(Pull requests [\#10](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/10), [\#59](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/59), [\#60](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/60), [\#99](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/99))
   * Refactored the codebase to reflect the functionalities of classes clearly. (Pull request [\#80](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/80))
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `addpatient`, `deletepatient`, `searchroom`.
-    * Did cosmetic tweaks to existing documentation of features `help`
+    * Did cosmetic tweaks to existing documentation of features `help`.
   * Developer Guide:
-    * Added implementation details of the ` feature.
+    * Updated the implementation of `Model Component`.
+    * Added the implementation details for Patient and its CRUD operations.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): [\#12](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/12), [\#26](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/26), [\#27](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/27), [\#79](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/79), [#115](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/115)
+  * Reported bugs and provided suggestions for another team, Homerce: [Link](https://github.com/chiamyunqing/ped/issues)
