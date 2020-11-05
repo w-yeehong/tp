@@ -15,6 +15,7 @@ import seedu.address.model.task.Task;
  */
 public class RoomTaskRecords implements ReadOnlyList<Task> {
 
+  //  private final ObservableList<Room> roomList;
     private final ObservableList<Task> internalList;
     private final ObservableList<Task> internalUnmodifiableList;
 
@@ -25,6 +26,7 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
      * @param roomList stores all the rooms.
      */
     public RoomTaskRecords(ObservableList<Task> taskList, ObservableList<Room> roomList) {
+    //    this.roomList = roomList;
         updateTaskListIfChanged(roomList);
         internalList = taskList;
         internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
@@ -39,7 +41,16 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
             @Override
             public void onChanged(Change<? extends Room> change) {
                 while (change.next()) {
-                    if (change.wasUpdated()) {
+                    if (change.wasRemoved()) {
+                        //caters to initroom
+                        ArrayList<Task> updatedTaskList = new ArrayList<>();
+                        for (Room room : roomList) {
+                            updatedTaskList.addAll(room.getReadOnlyTasks());
+                        }
+                        internalList.setAll(updatedTaskList);
+                    } else if (change.wasUpdated()) {
+                        //when there's a change, the changes in tasks room is added last
+                        //tasks are not sorted according to room num (we can do that too)
                         int indexToChange = change.getFrom();
                         Room changedRoom = change.getList().get(indexToChange);
                         int roomNumber = changedRoom.getRoomNumber();
