@@ -51,11 +51,17 @@ public class SearchTaskCommand extends Command {
         requireNonNull(model);
         List<Room> rooms = model.getRoomListObservableList();
         ArrayList<Task> taskListWithDesirableResult = new ArrayList<>();
+        datePredicate = new DueDatePredicate(duedate);
+
         for (Room room : rooms) {
             tasks = room.getReadOnlyTasks();
             for (Task task : tasks) {
+<<<<<<< HEAD
                 if (task.getDueAt().compareTo(duedate) == 1
                         || task.getDueAt().compareTo(duedate) == 2) {
+=======
+                if (datePredicate.test(task)) {
+>>>>>>> 21b599e14acf650c5c0a851b1787f697c60c75b0
                     taskListWithDesirableResult.add(task);
                     break;
                 }
@@ -63,12 +69,10 @@ public class SearchTaskCommand extends Command {
         }
 
         if (taskListWithDesirableResult.size() < 1) {
-            datePredicate = new DueDatePredicate(duedate);
             model.updateFilteredTaskList(datePredicate);
             throw new CommandException(MESSAGE_TASK_NOT_FOUND);
         }
         assert taskListWithDesirableResult.size() >= 1;
-        datePredicate = new DueDatePredicate(duedate);
         model.updateFilteredTaskList(datePredicate);
         return new CommandResult(String.format(MESSAGE_SEARCH_TASK_SUCCESS));
     }
