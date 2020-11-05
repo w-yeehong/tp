@@ -15,7 +15,6 @@ import seedu.address.model.task.Task;
  */
 public class RoomTaskRecords implements ReadOnlyList<Task> {
 
-  //  private final ObservableList<Room> roomList;
     private final ObservableList<Task> internalList;
     private final ObservableList<Task> internalUnmodifiableList;
 
@@ -26,7 +25,6 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
      * @param roomList stores all the rooms.
      */
     public RoomTaskRecords(ObservableList<Task> taskList, ObservableList<Room> roomList) {
-    //    this.roomList = roomList;
         updateTaskListIfChanged(roomList);
         internalList = taskList;
         internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);

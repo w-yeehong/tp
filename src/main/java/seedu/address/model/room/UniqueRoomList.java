@@ -277,7 +277,8 @@ public class UniqueRoomList implements Iterable<Room> {
             Name patientNameInRoom = internalList.get(i - 1).getPatient().get().getName();
             if (patientName.equals(patientNameInRoom)) {
                 Room roomToClear = internalList.get(i - 1);
-                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber(), false, Optional.empty(), roomToClear.getRoomTasks()));
+                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber(),
+                        false, Optional.empty(), roomToClear.getRoomTasks()));
                 break;
             }
         }
