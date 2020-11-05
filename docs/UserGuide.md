@@ -41,7 +41,7 @@
 
 ## 1. Introduction
 
-**Covigent** is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities. 
+**Covigent** is a desktop app for managing information of quarantined individuals and the tasks to be done by staff of the quarantine facilities.
 It is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI).
 This means that you operate Covigent mainly by typing commands into a Command Box.
 If you can type quickly, **Covigent** can improve your efficiency in managing your patients and tasks instead of using traditional GUI apps.
@@ -63,7 +63,7 @@ _Written by: Ming De_
 
 ## 2. About this Document
 
-Welcome to the **Covigent User Guide**! Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**. 
+Welcome to the **Covigent User Guide**! Choose a link in the **Feature** section, get a step-by-step instruction, and understand how to use **Covigent**.
 
 ### 2.1 What is in Covigent
 
@@ -82,7 +82,7 @@ This tutorial gives you an overview of the features in **Covigent** and shows yo
 Note the following formatting used in this document:
 * ![icon](images/ug/icon_info.png) This symbol indicates important information.
 
-* ![icon](images/ug/icon_keyword.png) 
+* ![icon](images/ug/icon_keyword.png)
 A grey highlight (called a mark-up) indicates that this is a field or command
 that can be typed into the command line and executed by **Covigent**.
 
@@ -165,7 +165,7 @@ _Written by: Yun Qing_
 
 This section contains all the commands related to patients. Scroll down to find out which feature you need!
 
-#### 5.2.1 Add a patient: `addpatient` 
+#### 5.2.1 Add a patient: `addpatient`
 
 You can use this command to add a patient with the following details: name, temperature, period of stay, phone number, age and comment.<br />
 
@@ -200,9 +200,9 @@ Field | Description
 
 _Written by: Yun Qing_
 
-#### 5.2.2 Delete a patient: `deletepatient` 
+#### 5.2.2 Delete a patient: `deletepatient`
 
-You can use this command to delete the details of the existing patient identified by his/her name from Covigent.<br /> 
+You can use this command to delete the details of the existing patient identified by his/her name from Covigent.<br />
 
 **Format:** `deletepatient NAME`<br />
 
@@ -219,7 +219,7 @@ Field | Description
 <br />
 
 **Expected Outcome:** <br />
-* Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic". 
+* Using the first example, the result box displays the message "Deleted Patient: Mary Doe Temperature: 37.0 Period of stay: 14 Sep 2020 to 28 Sep 2020 Phone: 98765432 Age: 22  Comment: Vegan,asthmatic".
 * The deleted patient can no longer be found in the list of patients in Covigent.
 * Figure 4 shows an example of a successful execution.
 <p align="center">
@@ -279,7 +279,7 @@ Field | Description
 `TEMPERATURE_RANGE` | The temperature range that you want to look for. It is made up of two temperatures. A temperature must be keyed in to 1 decimal place (e.g. 37.0 instead of 37). The two temperature are linked using a dash "-". The `TEMPERATURE_RANGE` is inclusive of start and end temperatures. `tr/35.5-36.0` means a temperature range of 35.5-36.0 degree, celsius, both inclusive.
 
 **:information_source: Important Information:** <br />
-* Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.<br /> 
+* Only one of the fields can be provided. If the field `n\name` is entered, you should not enter the field `tr/TEMPERATURE_RANGE`.<br />
 <br />
 
 **Example(s):**
@@ -324,7 +324,7 @@ This section contains all the commands related to rooms. Scroll down to find out
 
 #### 5.3.1 Initialise Rooms in Hotel: `initroom`
 
-You can use this command to initialise a number of rooms in the quarantine facility to the app, if there was data given previously, they would 
+You can use this command to initialise a number of rooms in the quarantine facility to the app, if there was data given previously, they would
 be stored.
 
 Format: `initroom NUMBER_OF_ROOMS`
@@ -349,7 +349,7 @@ Field | Description
     <img src="images/ug/figure8_initroom.png" width="550" height="400">
     <br />
     <i>Figure 8. A Successful Execution of <code>initroom</code></i>
-</p> 
+</p>
 
 _Written by: Noorul Azlina_
 
@@ -385,7 +385,7 @@ Phone: 91234567 Age: 23 Comment: - TaskList: -".
 
 _Written by: Ming De_
 
-#### 5.3.3 Search by Room Number: `searchroom` 
+#### 5.3.3 Search by Room Number: `searchroom`
 
 You can use this command to search for the room details with the specified room number.
 
@@ -399,7 +399,7 @@ Field | Description
 1. `searchroom r/6` The room details of room number 6 will be searched.
 
 **Expected Outcome:** <br />
-* The result box displays a message "Room has been found and listed." 
+* The result box displays a message "Room has been found and listed."
 * The room with the specified room number is shown in the room details panel.
 * Figure 10 shows an example of a successful execution.
 <p align="center">
@@ -410,9 +410,9 @@ Field | Description
 
 _Written by: Yun Qing_
 
-#### 5.3.4 Search for Room with Patient: `searchroom` 
+#### 5.3.4 Search for Room with Patient: `searchroom`
 
-You can use this command to search for the room that the specified patient is residing in. 
+You can use this command to search for the room that the specified patient is residing in.
 
 **Format:** `searchroom n/NAME`
 
@@ -424,7 +424,7 @@ Field | Description
 1. `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
 
 **Expected Outcome:** <br />
-* The result box displays a message "Room has been found and listed." 
+* The result box displays a message "Room has been found and listed."
 * The room that the specified patient resides in is shown in the room details panel.
 * Figure 11 shows an example of a successful execution.
 <p align="center">
@@ -474,7 +474,7 @@ Format: `findemptyroom` The unoccupied room in Covigent with the lowest room num
     <img src="images/ug/figure13_findemptyroom.png" width="550" height="400">
     <br />
     <i>Figure 13. A Successful Execution of <code>findemptyroom</code></i>
-</p> 
+</p>
 
 _Written by: Noorul Azlina_
 
@@ -563,7 +563,7 @@ Field | Description
 ------------ | -------------
 `ROOM_NUMBER` | The room number of the room from which you want to edit the task. It refers to the number displayed beside each room under the list of rooms. An example of the room number highlighted in red: <br /><img src="images/ug/icon_roomnumber.png" width="250" />
 `TASK_NUMBER` | The task number of the task to be edited. It refers to the number displayed beside each task in the details panel for rooms. An example of the task number highlighted in red: <br /><img src="images/ug/icon_tasknumber.png" width="250" />
-`DESCRIPTION` | The description of the task. It can be related to the patient in the room, e.g. _Call the patient_; or related to the room, e.g. _Restock the supplies in this room_. 
+`DESCRIPTION` | The description of the task. It can be related to the patient in the room, e.g. _Call the patient_; or related to the room, e.g. _Restock the supplies in this room_.
 `DUE_DATE` | An optional field that is used to indicate by what date and time should the task be completed. It can in any of the following formats: <br /><ul><li>_YYYYMMDD_ \| e.g. 20210131</li><li>_YYYYMMDD HHmm_ \| 20210131 2359</li><li>_D/M/YYYY_ \| e.g. 31/1/2021 or 31/01/2021</li><li>_D/M/YYYY HHmm_ \| e.g. 31/1/2021 2359 or 31/01/2021 2359</li></ul>
 
 **:information_source: Important Information:** <br />
@@ -599,7 +599,7 @@ Field | Description
 ------------ | -------------
 `ROOM_NUMBER` | The room number of the room from which you want to edit the task. It refers to the number displayed beside each room under the list of rooms. An example of the room number highlighted in red: <br /><img src="images/ug/icon_roomnumber.png" width="250" />
 `TASK_NUMBER` | The task number of the task from which you want to remove the due date. It refers to the number displayed beside each task in the details panel for rooms. An example of the task number highlighted in red: <br /><img src="images/ug/icon_tasknumber.png" width="250" />
-`-` | A `-` indicates the removal of a due date. 
+`-` | A `-` indicates the removal of a due date.
 
 **:information_source: Important Information:** <br />
 * Existing values will be updated to the input values.
@@ -678,7 +678,7 @@ Covigent data are saved in the hard disk automatically after any command that ch
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command Summary 
+## 6. Command Summary
 
 Action | Format, Examples
 --------|------------------
@@ -693,7 +693,7 @@ Action | Format, Examples
 **Search for Room with Patient** | `searchroom n/NAME`<br /> e.g., searchroom n/Jane Doe
 **List Rooms** | `listroom` <br />
 **Find Empty Room** | `findemptyroom` <br />
-**Add Task to Room** | `addtask r/ROOM_NUMBER d/DESCRIPTION [dd/DUE_DATE]` <br /> e.g., addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021 
+**Add Task to Room** | `addtask r/ROOM_NUMBER d/DESCRIPTION [dd/DUE_DATE]` <br /> e.g., addtask d/Running low on masks and needs to be restocked. r/1 dd/12-1-2021
 **Delete Task from Room** | `deletetask r/ROOM_NUMBER t/TASK_NUMBER` <br /> e.g., deletetask r/1 t/3
 **Edit Task Description or Due Date** | `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]` <br /> e.g., edittask r/1 t/3 dd/12-1-2021 1500
 **Remove Due Date from a Task** | `edittask r/ROOM_NUMBER t/TASK_NUMBER dd/-` <br /> e.g., edittask r/1 t/3 dd/-
@@ -709,10 +709,10 @@ _Written by: Yun Qing_
 ## 7. FAQ
 
 **Q**: Why does the output sometimes appear red and sometimes black?<br />
-**A**: If the command input is given in the wrong format, then the output is given in red. Also the correct format for the particular command is given.<br /> 
-        
+**A**: If the command input is given in the wrong format, then the output is given in red. Also the correct format for the particular command is given.<br />
+
         Example:<br />
-        Invalid command format! 
+        Invalid command format!
         Please give the number of digits in numbers
         Example: addRooms 200
 

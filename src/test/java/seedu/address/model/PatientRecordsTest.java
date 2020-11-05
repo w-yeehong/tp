@@ -20,6 +20,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.testutil.PatientBuilder;
 
+//@@author
 public class PatientRecordsTest {
 
     private final PatientRecords patientRecords = new PatientRecords();
