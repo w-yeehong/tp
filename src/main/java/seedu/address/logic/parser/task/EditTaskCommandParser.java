@@ -43,8 +43,8 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
 
         // Compulsory fields
-        int roomNumber = ParserUtil.parsePositiveInteger(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
-        Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK_NUMBER).get());
+        int roomNumber = ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
+        Index taskIndex = ParserUtil.parseTaskIndex(argMultimap.getValue(PREFIX_TASK_NUMBER).get());
 
         // Optional fields
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();

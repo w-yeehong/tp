@@ -34,7 +34,7 @@ public class AllocateRoomCommandParser implements Parser<AllocateRoomCommand> {
         Integer roomToBeAllocated;
         boolean toRemove = false;
         try {
-            roomToBeAllocated = ParserUtil.parsePositiveInteger(argMultimap.getPreamble().trim());
+            roomToBeAllocated = ParserUtil.parseRoomNumber(argMultimap.getPreamble().trim());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateRoomCommand.MESSAGE_USAGE));
         }
