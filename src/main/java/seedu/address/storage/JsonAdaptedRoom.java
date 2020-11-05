@@ -5,14 +5,19 @@ import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTasks;
+import seedu.address.model.task.Task;
+
 //@@author itssodium
 public class JsonAdaptedRoom {
 
     public static final String PATIENT_PRESENT_IS_OCCUPIED_FALSE = "When patient is present isOccupied cannot be false";
     public static final String PATIENT_ABSENT_IS_OCCUPIED_TRUE = "When patient is absent isOccupied cannot be true";
-    public static final String DATE_WRONG_FORMAT_IN_TASKS = "The date is given in the wrong format in tasks.";
+    public static final String DATE_WRONG_FORMAT_IN_TASKS = "The date is given in the wrong format in tasks "
+            + "or the task room number does not correspond to room number.";
     public static final String PATIENT_WRONG_FORMAT = "The patient is given in the wrong format";
 
     private int roomNumber;
@@ -84,9 +89,17 @@ public class JsonAdaptedRoom {
         }
     }
 
+
     private boolean isTaskNotInCorrectFormat() {
         try {
-            tasks.toModelType();
+            RoomTasks roomTasks = tasks.toModelType();
+            ObservableList<Task> taskLists = roomTasks.getReadOnlyList();
+            //check if task room number is same as room number
+            for (Task task : taskLists) {
+                if (task.getTaskRoomNumber() != this.roomNumber) {
+                    return true;
+                }
+            }
             return false;
         } catch (IllegalValueException i) {
             return true;
