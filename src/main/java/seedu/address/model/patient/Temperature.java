@@ -16,6 +16,8 @@ public class Temperature {
                     + "The range of temperature should be between 32.0 (inclusive) to 41.0 (inclusive) degree Celsius.";
 
     public static final String VALIDATION_REGEX = "\\d\\d[.]\\d";
+    private static final double MIN_TEMP_RANGE = 32.0;
+    private static final double MAX_TEMP_RANGE = 41.0;
     private final double value;
 
     /**
@@ -41,7 +43,7 @@ public class Temperature {
     private static boolean isWithinTempRange(String test) {
         assert(isRegexCorrect(test));
         Double temperature = Double.parseDouble(test);
-        return temperature >= 32.0 && temperature <= 41.0;
+        return temperature >= MIN_TEMP_RANGE && temperature <= MAX_TEMP_RANGE;
     }
 
     /**
