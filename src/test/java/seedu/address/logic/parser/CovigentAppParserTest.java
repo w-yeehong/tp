@@ -9,7 +9,6 @@ import static seedu.address.testutil.command.PatientCommandTestUtil.NAME_DESC_AM
 import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_DESC_ONE;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
-import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_ELEVEN;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
 import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_ONE;
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_TASK_INDEX_ONE;
@@ -53,8 +52,8 @@ public class CovigentAppParserTest {
     public void parseCommand_addTask() throws Exception {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(
-                TaskUtil.getAddTaskCommand(task, VALID_ROOM_NUMBER_ELEVEN));
-        assertEquals(new AddTaskCommand(task, VALID_ROOM_NUMBER_ELEVEN), command);
+                TaskUtil.getAddTaskCommand(task, VALID_ROOM_NUMBER_SEVEN));
+        assertEquals(new AddTaskCommand(task, VALID_ROOM_NUMBER_SEVEN), command);
     }
 
     @Test
@@ -122,7 +121,7 @@ public class CovigentAppParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test
