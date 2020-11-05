@@ -12,15 +12,15 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to add a task to a room.
   * What it does: allows the user to create a new task with description and due date in any room in Covigent.
   * Justification: This feature improves the product significantly because a user may want to keep track of time-critical tasks related to patients in each of the rooms.
-  
+
 * **New Feature**: Added the ability to delete a task from a room.
   * What it does: allows the user remove any tasks that she has completed or does not need from a room.
   * Justification: This feature improves the product significantly because too many tasks in a room can clutter the user interface and make it more difficult for the user to organize her tasks.
-    
+
 * **New Feature**: Added the ability to edit the information of a task in a room.
    * What it does: allows the user to change the description or due date after a task has been added to a room in Covigent.
    * Justification: This feature improves the product significantly because a user can make mistakes in typing in the details of a task and the application should provide a convenient way to rectify them.
-   
+
 * **New Feature**: Added the ability to view a list of tasks in the user interface.
   * What it does: allows the user to see in which rooms the tasks can be found and get an overview of all tasks that are in Covigent, without needing to know the room number of the room in which the task has been added.
   * Justification: This feature improves the product significantly because a user may forget which room she has added a task to and wants a quick way to look up the task.
@@ -35,7 +35,7 @@ Given below are my contributions to the project.
   * Updated GUI color scheme and separate CSS into multiple files based on the names of the views for easier lookup (Pull request [#101](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/101))
   * Refactored and repackaged the codebase for better organization of files based on the model type handled (Pull requests [#22](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/22), [#107](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/107))
   * Reduced code duplication (Pull request [#154](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/154))
-  
+
 * **Testing**:
   * Added unit tests to test and validate that the description and due date of a task should conform to a specified format.
   * Added unit tests for the `addtask`, `deletetask`, and `edittask` features.
@@ -60,4 +60,3 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * Integrated a third party library (Mockito) to the project ([\#104](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/104))
-  
