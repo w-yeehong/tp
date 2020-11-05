@@ -21,6 +21,7 @@ public class Age {
             "Age should be between the range 0 (inclusive) to 120 (exclusive).";
 
     public static final String VALIDATION_REGEX = "\\d{1,3}";
+    private static final int MAX_AGE = 120;
     private final int value;
 
     /**
@@ -47,7 +48,7 @@ public class Age {
      */
     private static boolean isWithinValidAgeRange(String test) {
         assert(isRegexCorrect(test));
-        return (Integer.parseInt(test) >= 0) && (Integer.parseInt(test) < 120);
+        return (Integer.parseInt(test) >= 0) && (Integer.parseInt(test) < MAX_AGE);
     }
 
     /**

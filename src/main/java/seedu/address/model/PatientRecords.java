@@ -78,7 +78,8 @@ public class PatientRecords implements ReadOnlyList<Patient> {
         requireNonNull(name);
         return patients.getPatientWithName(name);
     }
-    //@@author chiamyunqing
+
+    //@@author
 
     /**
      * Adds a patient to the address book.
