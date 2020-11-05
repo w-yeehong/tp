@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.stream.IntStream;
 
@@ -261,9 +262,10 @@ public class UniqueRoomList implements Iterable<Room> {
         return internalList.stream().anyMatch(toCheck::isSameRoom);
     }
 
+    //@@author chiamyunqing
     /**
      * Clears the room which contains the patient with the given name.
-     *
+     * Tasks should still remain in the room.
      * @param patientName to clear the room from.
      */
     public void clearRoom(Name patientName) {
@@ -275,11 +277,12 @@ public class UniqueRoomList implements Iterable<Room> {
             Name patientNameInRoom = internalList.get(i - 1).getPatient().get().getName();
             if (patientName.equals(patientNameInRoom)) {
                 Room roomToClear = internalList.get(i - 1);
-                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber()));
+                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber(), false, Optional.empty(), roomToClear.getRoomTasks()));
                 break;
             }
         }
     }
+    //@@author chiamyunqing
 
     /**
      * Replaces the room {@code target} in the list with {@code editedRoom}.

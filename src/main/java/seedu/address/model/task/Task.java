@@ -6,7 +6,8 @@ import java.util.Objects;
 
 //@@author w-yeehong
 /**
- * Represents a Task that can be assigned to a room.
+ * Represents a Task that can be assigned to a room. The task room number must strictly follow
+ * the room number of the room that the task is assigned to.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
@@ -14,7 +15,7 @@ public class Task {
     // Data fields (i.e. values entered by user).
     private final Description description;
     private final DateTimeDue dueAt;
-    private int taskRoomNumber;
+    private final int taskRoomNumber;
 
     /**
      * Every field apart must be present and not null.
