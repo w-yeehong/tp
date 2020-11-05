@@ -37,6 +37,6 @@ Given below are my contributions to the project.
     * Developer Guide:
       * Added implementation details of the `searchpatient` , `listpatient`, `searchtask` and `listtask` feature.
       * Added documentation and UML diagram for the section `UI`
-  
+
   * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#72](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/72), [\#79](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/79), [\#80](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/80)
