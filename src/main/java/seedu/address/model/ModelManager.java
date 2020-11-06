@@ -66,7 +66,7 @@ public class ModelManager implements Model {
         ObservableList<Task> taskList = FXCollections.observableArrayList();
         ObservableList<Room> roomsList = roomList.getRoomObservableList();
         for (Room room : roomsList) {
-            taskList = FXCollections.concat(taskList, room.getFilteredTasks());
+            taskList = FXCollections.concat(taskList, room.getReadOnlyTasks());
         }
         return taskList;
     }
