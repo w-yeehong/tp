@@ -343,9 +343,9 @@ public class ModelManager implements Model {
     //=========== Filtered RoomTaskRecords Accessors ========================================================
 
     @Override
-    public void updateFilteredTaskList(Predicate<Task> datePredicate) {
-        requireNonNull(datePredicate);
-        //filteredTasks.setPredicate(datePredicate);
+    public void updateTasksInFilteredRoomTaskRecords(Predicate<Task> taskPredicate) {
+        requireNonNull(taskPredicate);
+        filteredRoomTaskRecords.setPredicate(roomTaskAssociation -> taskPredicate.test(roomTaskAssociation.getTask()));
     }
 
     @Override

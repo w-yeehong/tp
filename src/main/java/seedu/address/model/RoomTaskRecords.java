@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomTaskAssociation;
 import seedu.address.model.task.Task;
@@ -105,13 +106,8 @@ public class RoomTaskRecords implements ReadOnlyList<RoomTaskAssociation> {
             @Override
             public void onChanged(Change<? extends Room> change) {
                 while (change.next()) {
-                    // Minor optimization; new rooms have no tasks and hence do not need associations to be refreshed
-                    if (!change.wasAdded()) {
-                        // Recreate all room-task assocations; caters to initroom
-                        createRoomTaskAssociations(roomList);
-                        logger.fine("Changes detected in Room #" + change.getFrom()
-                                + ". Updating room-task associations...");
-                    }
+                    logger.fine("Changes detected in list of rooms. Updating room-task associations...");
+                    createRoomTaskAssociations(roomList);
                 }
             }
         });

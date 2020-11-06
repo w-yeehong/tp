@@ -253,11 +253,11 @@ public interface Model {
     void setTaskToRoom(Task target, Task editedTask, Room room);
 
     /**
-     * Update the filterTaskList with {@code datePredicate}.
+     * Update the tasks in {@code filteredRoomTaskRecords} with {@code taskPredicate}.
      *
-     * @param datePredicate The dueDate predicate.
+     * @param taskPredicate The predicate to filter the tasks.
      */
-    void updateFilteredTaskList(Predicate<Task> datePredicate);
+    void updateTasksInFilteredRoomTaskRecords(Predicate<Task> taskPredicate);
 
     /**
      * Returns an unmodifiable view of the list of {@code RoomTaskAssociation} backed by the
