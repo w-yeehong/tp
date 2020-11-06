@@ -11,7 +11,8 @@ import seedu.address.model.task.Task;
 //@@author chiamyunqing
 /**
  * The RoomTaskRecords class collects and updates all the Tasks from the rooms.
- * It exists mainly for the purpose of Task tab UI.
+ * It exists mainly for the purpose of Task tab UI and is an Observer for changes in
+ * RoomList.
  */
 public class RoomTaskRecords implements ReadOnlyList<Task> {
 
@@ -48,7 +49,6 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
                         internalList.setAll(updatedTaskList);
                     } else if (change.wasUpdated()) {
                         //when there's a change, the changes in tasks room is added last
-                        //tasks are not sorted according to room num (we can do that too)
                         int indexToChange = change.getFrom();
                         Room changedRoom = change.getList().get(indexToChange);
                         int roomNumber = changedRoom.getRoomNumber();
