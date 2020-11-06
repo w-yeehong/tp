@@ -91,7 +91,7 @@ class JsonRoomOccupancyStorageTest {
         original.addRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_1);
         jsonRoomOccupancyStorage.saveOccupiedRooms(original, filePath);
         readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy(filePath).get();
-        //assertEquals(original, new RoomList(readBack));
+        assertEquals(original, new RoomList(readBack));
 
         // Save and read without specifying file path
         original.addRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_2);
