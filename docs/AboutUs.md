@@ -47,7 +47,7 @@ We are team CS2103T-W12-1 based in the [School of Computing, National University
 
 <img src="images/leemingde.png" width="200px">
 
-[[Github](http://github.com/LeeMingDe)][[Portfolio](/team/LeeMingDe.md)]
+[[Github](http://github.com/LeeMingDe)][[Portfolio](/team/leemingde.md)]
 
 * Role: Developer
 * Responsibilities: Integration (version the code, maintain the code repository and integrate various parts into a software)
