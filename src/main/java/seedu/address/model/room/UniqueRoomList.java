@@ -25,8 +25,8 @@ public class UniqueRoomList implements Iterable<Room> {
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
     private final ObservableList<Room> internalList = FXCollections.observableArrayList((Room room) -> {
-        Observable[] res = new Observable[]{room.getFilteredTasks()};
-        return res;
+        Observable[] updatedTasks = new Observable[]{room.getFilteredTasks()};
+        return updatedTasks;
     });
     private final ObservableList<Room> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
