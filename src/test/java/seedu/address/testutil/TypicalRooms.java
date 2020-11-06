@@ -32,7 +32,7 @@ public class TypicalRooms {
             .withIsOccupied(false).withPatient(null).build();
     public static final Room ROOM_NO_PATIENT_TASK_RESTOCK_SUPPLY = new RoomBuilder()
             .withIsOccupied(false).withPatient(null).withRoomNumber(ROOM_NUMBER_11)
-            .withTasks(new TaskBuilder(RESTOCK_SUPPLY).withRoomNumber(11).build()).build();
+            .withTasks(RESTOCK_SUPPLY).build();
     public static final Room ROOM_PATIENT_ALICE_NO_TASK = new RoomBuilder()
             .withIsOccupied(true).withPatient(ALICE).build();
     public static final Room ROOM_PATIENT_ALICE_TASK_REMIND_PATIENT = new RoomBuilder()

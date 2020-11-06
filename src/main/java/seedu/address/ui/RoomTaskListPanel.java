@@ -73,7 +73,7 @@ public class RoomTaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                int roomNumber = task.getTaskRoomNumber();
+                int roomNumber = 1; // temporary placeholder
                 setGraphic(new TaskCard(roomNumber, task)
                         .getRoot());
             }

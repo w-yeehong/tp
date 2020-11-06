@@ -13,11 +13,9 @@ public class TaskBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Remind John to clean bedsheets.";
     public static final String DEFAULT_DATETIME_DUE = "20201014 2359";
-    public static final int DEFAULT_TASK_ROOM_NUM = 7;
 
     private Description description;
     private DateTimeDue dueAt;
-    private int taskRoomNumber;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -25,7 +23,6 @@ public class TaskBuilder {
     public TaskBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
         dueAt = new DateTimeDue(DEFAULT_DATETIME_DUE);
-        taskRoomNumber = DEFAULT_TASK_ROOM_NUM;
     }
 
     /**
@@ -34,7 +31,6 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         description = taskToCopy.getDescription();
         dueAt = taskToCopy.getDueAt();
-        taskRoomNumber = taskToCopy.getTaskRoomNumber();
     }
 
     /**
@@ -53,15 +49,7 @@ public class TaskBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code task room number} of the {@Task} that we are building.
-     */
-    public TaskBuilder withRoomNumber(int roomNumber) {
-        this.taskRoomNumber = roomNumber;
-        return this;
-    }
-
     public Task build() {
-        return new Task(description, dueAt, taskRoomNumber);
+        return new Task(description, dueAt);
     }
 }

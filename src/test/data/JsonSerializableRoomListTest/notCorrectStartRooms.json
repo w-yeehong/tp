@@ -83,7 +83,7 @@
 "patient": null,
 "tasks": {
 "tasks": [{"description": "Room #1 is running low on masks and needs to be restocked.",
-"dueAt": "20200925", "roomNumber": "11"}]
+"dueAt": "20200925"}]
 }
 },{
 "roomNumber" : 12,

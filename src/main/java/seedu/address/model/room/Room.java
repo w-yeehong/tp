@@ -119,14 +119,6 @@ public class Room {
     }
 
     /**
-     * Returns the room tasks in the room.
-     */
-    public RoomTasks getRoomTasks() {
-        return tasks;
-    }
-
-
-    /**
      * Returns the task with the provided {@code taskIndex} from this room.
      * An empty optional is returned if such a task is not found in the room.
      *

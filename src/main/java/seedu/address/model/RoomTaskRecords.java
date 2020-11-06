@@ -54,9 +54,6 @@ public class RoomTaskRecords implements ReadOnlyList<Task> {
                         int roomNumber = changedRoom.getRoomNumber();
                         ArrayList<Task> updatedTaskList = new ArrayList<>();
                         for (Task task : internalList) {
-                            if (task.getTaskRoomNumber() != roomNumber) {
-                                updatedTaskList.add(task);
-                            }
                         }
                         updatedTaskList.addAll(changedRoom.getReadOnlyTasks());
                         internalList.setAll(updatedTaskList);
