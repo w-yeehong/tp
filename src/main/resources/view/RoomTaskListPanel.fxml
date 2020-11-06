@@ -3,11 +3,11 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ListView?>
 <ScrollPane fx:id="roomScrollPane" fitToWidth="true" stylesheets="@../css/ListPanel.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <content>
-    <VBox fx:id="roomBox">
-      <children>
-      </children>
+    <VBox>
+      <ListView fx:id="taskListView" />
     </VBox>
   </content>
 </ScrollPane>

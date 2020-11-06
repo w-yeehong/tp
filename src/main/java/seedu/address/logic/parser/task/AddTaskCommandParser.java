@@ -39,7 +39,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         int roomNumber = ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
         DateTimeDue dueAt = TaskParserUtil.parseDateTimeDue(argMultimap.getValue(PREFIX_DUE_DATE)); // optional
 
-        Task task = new Task(description, dueAt);
+        Task task = new Task(description, dueAt, roomNumber);
 
         return new AddTaskCommand(task, roomNumber);
     }

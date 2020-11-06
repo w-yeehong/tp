@@ -5,12 +5,13 @@ import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.room.Room;
+import seedu.address.model.task.Task;
 
 /**
  * Panel containing the list of room with tasks.
@@ -24,65 +25,58 @@ public class RoomTaskListPanel extends UiPart<Region> {
     @FXML
     private ScrollPane roomScrollPane;
     @FXML
-    private VBox roomBox;
+    private ListView<Task> taskListView;
 
     /**
      * Creates a {@code RoomTaskListPanel} with the given {@code ObservableList}.
      */
-    public RoomTaskListPanel(ObservableList<Room> roomTaskList) {
+    public RoomTaskListPanel(ObservableList<Task> roomTaskList) {
         super(FXML);
-        populatePanel(roomTaskList);
         updateDetailsIfChanged(roomTaskList);
-    }
-
-    /**
-     * Populates the {@code RoomTaskListPanel} with the {@code Room} containing at least one {@code Task}.
-     *
-     * @param roomTaskList The list of rooms containing tasks with which to populate the panel.
-     */
-    private void populatePanel(ObservableList<Room> roomTaskList) {
-        for (Room room : roomTaskList) {
-            roomBox.getChildren().add(new RoomTaskDetailsPanel(room).getRoot());
-        }
-
-        logger.info("RoomTaskListPanel has been populated.");
-    }
-
-    /**
-     * Clears old data and repopulates the @code RoomTaskListPanel} with the {@code Room} containing at least
-     * one {@code Task}.
-     *
-     * @param roomTaskList The list of rooms containing tasks with which to repopulate the panel.
-     */
-    private void resetPanel(ObservableList<Room> roomTaskList) {
-        // Naive solution; For better performance, employ some form of caching
-        roomBox.getChildren().clear();
-        populatePanel(roomTaskList);
+        taskListView.setItems(roomTaskList);
+        taskListView.setCellFactory(listView -> new TaskListViewCell());
+        updateDetailsIfChanged(roomTaskList);
+        logger.info("RoomTaskListPanel has been filled.");
     }
 
     //@@author w-yeehong
     /**
-     * Attaches a listener to {@code roomList}, repopulating the panel whenever
-     * there are removals in the list of rooms.
+     * Attaches a listener to {@code roomTaskList}.
      *
-     * Fixes the issue of the panel not refreshing when a room is removed from the
-     * list of rooms.
-     *
-     * @param roomList The room list to listen to for changes.
+     * @param roomTaskList The task list to listen to for changes.
      */
-    private void updateDetailsIfChanged(ObservableList<Room> roomList) {
-        roomList.addListener(new ListChangeListener<Room>() {
+    private void updateDetailsIfChanged(ObservableList<Task> roomTaskList) {
+        roomTaskList.addListener(new ListChangeListener<Task>() {
             @Override
-            public void onChanged(Change<? extends Room> change) {
+            public void onChanged(Change<? extends Task> change) {
                 while (change.next()) {
                     int indexOfChange = change.getFrom();
                     Index index = Index.fromZeroBased(indexOfChange);
-                    logger.info("Changes detected in Room " + index.getOneBased()
+                    logger.info("Changes detected in Task " + index.getOneBased()
                             + ". Updating RoomTaskListPanel...");
-                    resetPanel(roomList);
+                    taskListView.setCellFactory(listView -> new TaskListViewCell());
                 }
             }
         });
     }
     //@@author w-yeehong
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
+     */
+    class TaskListViewCell extends ListCell<Task> {
+        @Override
+        protected void updateItem(Task task, boolean empty) {
+            super.updateItem(task, empty);
+
+            if (empty || task == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                int roomNumber = task.getTaskRoomNumber();
+                setGraphic(new TaskCard(roomNumber, task)
+                        .getRoot());
+            }
+        }
+    }
 }

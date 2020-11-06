@@ -9,6 +9,7 @@ import java.util.PriorityQueue;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -30,6 +31,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Room> filteredRooms;
+    private final RoomTaskRecords roomTaskRecords;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given patient records, room records and userPrefs.
@@ -46,12 +49,32 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.patientRecords.getReadOnlyList());
         filteredRooms = new FilteredList<>(this.roomList.getReadOnlyList());
+        roomTaskRecords = new RoomTaskRecords(initialiseTaskList(), getFilteredRoomList());
+        filteredTasks = new FilteredList<>(this.roomTaskRecords.getReadOnlyList());
     }
 
     public ModelManager() {
         this(new PatientRecords(), new RoomList(), new UserPrefs());
     }
 
+    /**
+     * Initialises the task tab when app is just launched.
+     *
+     * @return an ObservableList of tasks which collects all the tasks in the rooms
+     */
+    public ObservableList<Task> initialiseTaskList() {
+        ObservableList<Task> taskList = FXCollections.observableArrayList();
+        ObservableList<Room> roomsList = roomList.getRoomObservableList();
+        for (Room room : roomsList) {
+            taskList = FXCollections.concat(taskList, room.getFilteredTasks());
+        }
+        return taskList;
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
 
     //=========== UserPrefs ==================================================================================
 
@@ -324,9 +347,9 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> datePredicate) {
-        for (int i = 0; i < roomList.getNumOfRooms(); i++) {
-            roomList.getRoomObservableList().get(i).setPredicateOnRoomTasks(datePredicate);
-        }
+        requireNonNull(datePredicate);
+        filteredTasks.setPredicate(datePredicate);
+
     }
 
     //=========== Miscellaneous ========================================================================================

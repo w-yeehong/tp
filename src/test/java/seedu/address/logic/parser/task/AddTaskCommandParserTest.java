@@ -36,7 +36,7 @@ public class AddTaskCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(REMIND_PATIENT).build();
+        Task expectedTask = new TaskBuilder(REMIND_PATIENT).withRoomNumber(7).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_SEVEN_DESC
@@ -61,7 +61,8 @@ public class AddTaskCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // no due date
-        Task expectedTask = new TaskBuilder(REMIND_PATIENT).withDateTimeDue(Optional.empty()).build();
+        Task expectedTask = new TaskBuilder(REMIND_PATIENT).withDateTimeDue(Optional.empty())
+                .withRoomNumber(7).build();
         assertParseSuccess(parser, DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_SEVEN_DESC,
                 new AddTaskCommand(expectedTask, VALID_ROOM_NUMBER_SEVEN));
     }
