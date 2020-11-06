@@ -26,6 +26,7 @@
           </minWidth>
         <TextField fx:id="description" styleClass="text-field" editable="false" HBox.hgrow="ALWAYS"/>
       </HBox>
+      <Label fx:id="taskId" styleClass="label-small" GridPane.columnIndex="0" />
       <Label fx:id="dueAt" styleClass="label-small" GridPane.columnIndex="1" />
     </VBox>
   </GridPane>
