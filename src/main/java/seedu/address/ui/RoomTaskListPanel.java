@@ -35,10 +35,9 @@ public class RoomTaskListPanel extends UiPart<Region> {
         updateDetailsIfChanged(roomTaskList);
         taskListView.setItems(roomTaskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
-
         updateDetailsIfChanged(roomTaskList);
+        logger.info("RoomTaskListPanel has been filled.");
     }
-
 
     //@@author w-yeehong
     /**

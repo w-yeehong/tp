@@ -59,6 +59,7 @@ public class ModelManager implements Model {
 
     /**
      * Initialises the task tab when app is just launched.
+     *
      * @return an ObservableList of tasks which collects all the tasks in the rooms
      */
     public ObservableList<Task> initialiseTaskList() {
