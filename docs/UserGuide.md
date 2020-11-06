@@ -10,7 +10,7 @@
 1. [Glossary](#4-glossary)
 1. [Features](#5-features)<br />
     5.1. [Command Format](#51-command-format)<br />
-    5.2. [Patients](#52-patients)<br />
+    5.2. [Patient](#52-patient)<br />
           5.2.1. [Add a Patient: `addpatient`](#521-add-a-patient-addpatient)<br />
           5.2.2  [Delete a Patient: `deletepatient`](#522-delete-a-patient-deletepatient)<br />
           5.2.3  [Edit Patient Details: `editpatient`](#523-edit-patient-details-editpatient)<br />
@@ -33,7 +33,11 @@
     5.5  [View Help: `help`](#55-view-help-help)<br />
     5.6  [Exit Covigent: `exit`](#56-exit-covigent-exit)<br />
     5.7  [Autosave](#57-autosave)<br />
-1. [Command Summary](#6-command-summary)
+1. [Command Summary](#6-command-summary)<br />
+   6.1 [Patient](#61-patient)<br />
+   6.2 [Room](#62-room)<br />
+   6.3 [Task](#63-task)<br />
+   6.4 [General](#64-general)<br />
 1. [FAQ](#7-faq)
 
 
@@ -189,7 +193,7 @@ _Written by: Yun Qing_
   e.g. if you input `n/John Doe n/Mary Doe`, Covigent will only process `n/Mary Doe` and ignore `n/John Doe`. Similarly, if you input `n/John Doe t/37.4 n/Mary Doe t/36.5`, Covigent will interpret the fields provided as simply `n/Mary Doe t/36.5`.
 
 
-### 5.2 Patients
+### 5.2 Patient
 
 This section contains all the commands related to patients. You can [add](#521-add-a-patient-addpatient), [delete](#522-delete-a-patient-deletepatient),
 [edit](#523-edit-patient-details-editpatient), [search](#524-search-patients-by-information-searchpatient) for a patient, or you can [list](#525-list-all-patients-listpatient) out all the patients in Covigent. If you are unsure of how to interpret the command format, head back to [Command Format](#51-command-format) before executing the commands!
@@ -928,6 +932,10 @@ Covigent data are saved in the hard disk automatically after any command that ch
 
 ## 6. Command Summary 
 
+This section provides a quick summary of the commands for [Patient](#61-patient), [Room](#62-room), [Task](#63-task) and [General](#64-general). For the detailed explanation of the usage of each command, head on to the [Features](#5-features) section to find out more.
+
+### 6.1 Patient
+
 Action | Format, Examples
 --------|------------------
 **Add Patient** | `addpatient n/NAME t/TEMPERATURE d/PERIOD_OF_STAY p/PHONE_NUMBER a/AGE [c/COMMENT]` <br /> e.g., addpatient n/Betsy Crowe t/36.5 d/20201001-20201014 p/91234567 a/19 c/Is asthmatic
@@ -935,22 +943,36 @@ Action | Format, Examples
 **Edit Patient** | `editpatient NAME [n/NAME] [t/TEMPERATURE] [d/PERIOD_OF_STAY] [p/PHONE_NUMBER] [a/AGE] [c/COMMENT]`<br /> e.g., editpatient James Lee t/36.5
 **Search Patient** | `searchpatient [n/NAME] [tr/TEMPERATURE_RANGE]` <br /> e.g., searchpatient tr/36.5-36.7
 **List Patients** | `listpatient`<br />
+
+### 6.2 Room
+
+Action | Format, Examples
+--------|------------------
 **Initialise Room** | `initroom NUMBER_OF_ROOMS` <br /> e.g., initroom 123
 **Allocate Patient to Room** | `allocateroom ROOM_NUMBER n/NAME` <br /> e.g., allocateroom 5 n/David Li
 **Search by Room Number** | `searchroom r/ROOM_NUMBER`<br /> e.g., searchroom r/15
 **Search for Room with Patient** | `searchroom n/NAME`<br /> e.g., searchroom n/Jane Doe
 **List Rooms** | `listroom` <br />
 **Find Empty Room** | `findemptyroom` <br />
+
+### 6.3 Task
+
+Action | Format, Examples
+--------|------------------
 **Add Task to Room** | `addtask r/ROOM_NUMBER d/DESCRIPTION [dd/DUE_DATE]` <br /> e.g., addtask d/Running low on masks and needs to be restocked. r/1 dd/12/1/2021 
 **Delete Task from Room** | `deletetask r/ROOM_NUMBER t/TASK_NUMBER` <br /> e.g., deletetask r/1 t/3
 **Edit Task Description or Due Date** | `edittask r/ROOM_NUMBER t/TASK_NUMBER [d/DESCRIPTION] [dd/DUE_DATE]` <br /> e.g., edittask r/1 t/3 dd/12/1/2021 1500
 **Remove Due Date from a Task** | `edittask r/ROOM_NUMBER t/TASK_NUMBER dd/-` <br /> e.g., edittask r/1 t/3 dd/-
 **Search Task** | `searchtask dd/DUE_DATE` <br /> e.g., searchtask dd/12/1/2021
+
+### 6.4 General
+
+Action | Format, Examples
+--------|------------------
 **Help** | `help`
 **Exit** | `exit`
 
 _Written by: Yun Qing_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
