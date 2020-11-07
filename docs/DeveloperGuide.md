@@ -221,7 +221,7 @@ _Figure XX. Class Diagram for RoomTaskRecords_
 
 ### 3.5 Storage Component
 
-![Structure of the Storage Component](images/UML_Storage.png)
+![Structure of the Storage Component](images/UML_Storage_Diagram.png)
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -235,12 +235,15 @@ The `Storage` component,
   *	Saves `RoomRecords` and `PatientRecords` data in json format 
   *	Reads `RoomRecords` and `PatientRecords` data in json format 
 
- 
- ![Structure of the JsonSerializableRoomList](images/JsonSerializableRoomList.png)
- Fig of `JsonSerializableRoomList`
- ![Structure of the JsonSerializablePatientList](images/JsonSerializableRoomList.png)
- Fig of `JsonSerializablePatientList`
- ![Structure of the JsonSerializableTaskList](images/JsonSerializableTaskList.png)
+The information of the `Patient` and `Room` feature of Covigent is stored locally in the Json format. This is done by adapting the Patient and Room feature into JsonSerializablePatientRecords and JsonSerializableRoomRecords respectively.
+
+The class diagram for StorageManager is shown below
+![Structure of the StorageManage Component](images/UML_Diagram_StorageManager.png)
+
+The class diagrams for the above stated adapted classes are shown below
+ ![Structure of the JsonSerializableRoomRecords](images/JsonSerializableRoomRecords.png)
+ Fig of `JsonSerializableRoomRecords`
+ ![Structure of the JsonSerializablePatientRecords](images/JsonSerializablePatientRecords.png)
  Fig of `JsonSerializableTaskList`
  
  _Written by: Noorul Azlina_
