@@ -462,7 +462,13 @@ The activity diagram below illustrates the `findEmptyRoom`.
  _Written By: Noorul Azlina_
  
 #### 4.2.2 Implementation of InitRoomCommand
+The following is a detailed explanation of the operations that `InitRoomCommand` performs.
 
+**Step 1.** The `InitRoomCommand#execute(Model model)` method is executed and it check if the `Integer`defined when instantiating
+If it is a positive integer and the number of rooms is more than or equal to the existing number of occupied rooms, InitRoomCommand is valid. 
+The checking of the number of rooms is done by `Model#hasSpaceForRooms()`. If this is true then `Integer` is valid, else it is invalid.
+
+**Step 2.** The stated number of rooms is then set
 #### 4.2.3 Implementation of AllocateRoomCommand
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
