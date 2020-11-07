@@ -18,6 +18,10 @@ Class PatientRecords
 Package RoomList {
 Class RoomList
 }
+
+Package RoomTaskRecords {
+Class RoomTaskRecords
+}
 }
 
 
@@ -29,6 +33,7 @@ ModelManager .up.|> Model
 ModelManager o-left-> "1" UserPrefs
 ModelManager o--> "1" PatientRecords
 ModelManager o--> "1" RoomList
+ModelManager o--> "1" RoomTaskRecords
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 @enduml
