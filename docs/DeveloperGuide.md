@@ -599,20 +599,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | staff of a quarantine facility       | key in new patient information | better serve them                |
-| `* * *`  | staff of a quarantine facility       | edit patient information       | update his/her health status                                                                  |
-| `* * *`  | staff of a quarantine facility       | key in new task information    | keep track of the details of the tasks that I must complete                                  |
+| `* * *`  | staff of a quarantine facility       | key in new patient information | better serve them |
+| `* * *`  | staff of a quarantine facility       | edit patient information       | update his/her health status                                                                |
+| `* * *` | staff of a quarantine facility | delete the records of patients who no longer resides in the facility | focus on information of existing patients residing in the facility
 | `* * *`  | staff of a quarantine facility       | view which rooms are empty     |allocate patients to them |
 | `* * *`  | staff of a quarantine facility       | allocate patients to room     |keep track of which room they are living in|
+| `* * *`  | staff of a quarantine facility | quickly find the room that a patient is staying in | locate the patient in the facility easily |
+| `* *`  | staff of a quarantine facility | quickly find the room details of a given room number | track the patient and tasks in that room easily |
+| `* * *`  | staff of a quarantine facility       | key in new task information    | keep track of the details of the tasks that I must complete                                  |
 | `* *`    | staff of the quarantine facility     | indicate that I have completed the task in the room | let other staff know that they no longer have to handle them
 | `* *`    | staff of a quarantine facility | find out all the outstanding tasks left in each room |  serve the quarantined individuals better                                               |
 | `* *` | staff of a quarantine facility | quickly search through patient information | find the patients that match my criteria
 
-*{More to be added}*
 
 ### A3. Use cases
 
 (For all use cases below, the **System** is`Covigent` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Deletes a patient from a room**
+
+**MSS**
+1. User requests to delete a patient into the system.
+2. System deletes the patient and removes the patient from the room he/she is residing in.
+Use case ends.
+
+**Extensions**
+* 1a. The patient name that the user input does not exist in the system.
+    * 1a1. System displays a message that the patient does not exist.
+Use case ends.
 
 **Use case: Allocates a patient to a room**
 
@@ -622,17 +636,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System adds the patient.
 3. User requests to allocate the patient to a specified room.
 4. System adds the patient to the specified room number.
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
-* 4a. System realises that the specified room is not empty.
+* 4a. System realises that the specified room number does not exist.
+    * 4a1. System displays an error message.
+* 4b. System realises that the specified room is not empty.
+   * 4b1. System displays an error message.
+Use case ends.
 
-   * 4a1. System displays an error message.
-
-  Use case ends.
-
-**Use case: Edit a patient**
+**Use case: Edits a patient**
 
 **MSS**
 
@@ -640,46 +653,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User inputs the new information about the patient.
 3. System edits the patient information to the new information.
 4. System saves the new patient information.
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
-* 2a. System realises that no optional fields are inputted.
-
+* 2a. System realises that no optional fields are input.
    * 2a1. System displays an error message.
+Use case ends.
 
-  Use case ends.
-
-**Use case: Search a patient**
+**Use case: Searches a patient**
 
 **MSS**
 
 1. User requests to search patients with a criteria.
 2. System search the patients with the inputted criteria.
 3. System shows the search results.
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
 * 2a. System realises that no such patient is recorded
-
    * 2a1. System displays an error message.
-
-  Use case ends.
+Use case ends.
 
 
 ### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should work even without internet connection.
-5. Should respond to commands in 3 seconds.
-
-*{More to be added}*
+5. Should respond to commands within 3 seconds.
 
 ### A5. Glossary
-
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Patient**: An individual residing in the quarantine facility
 * **Task**: Task is to be completed by staff of the quarantine facility
