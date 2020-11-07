@@ -11,6 +11,7 @@ import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_EIG
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_INDEX_ONE;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
+import static seedu.address.testutil.command.TaskCommandTestUtil.DATETIME_DUE_DESC_CLEAR_DATETIME;
 import static seedu.address.testutil.command.TaskCommandTestUtil.DATETIME_DUE_DESC_ORDER_BEDSHEETS;
 import static seedu.address.testutil.command.TaskCommandTestUtil.DATETIME_DUE_DESC_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.DESCRIPTION_DESC_ORDER_BEDSHEETS;
@@ -24,6 +25,8 @@ import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DES
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DATETIME_DUE_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DESCRIPTION_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_TASK_INDEX_ONE;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -68,6 +71,12 @@ public class EditTaskCommandParserTest {
         // multiple due dates - last due date accepted
         assertParseSuccess(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
                 + DATETIME_DUE_DESC_ORDER_BEDSHEETS + DATETIME_DUE_DESC_REMIND_PATIENT,
+                new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor));
+
+        // due date is set to INPUT_REMOVE_DUE_DATE
+        descriptor.setDateTimeDue(new DateTimeDue(Optional.empty()));
+        assertParseSuccess(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE
+                        + DESCRIPTION_DESC_REMIND_PATIENT + DATETIME_DUE_DESC_CLEAR_DATETIME,
                 new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor));
     }
 

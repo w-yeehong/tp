@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_DUE_DATE;
 import static seedu.address.logic.parser.task.TaskCliSyntax.PREFIX_TASK_NUMBER;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.task.EditTaskCommandParser;
 
 public class TaskCommandTestUtil {
 
@@ -27,6 +28,8 @@ public class TaskCommandTestUtil {
         + VALID_DATETIME_DUE_REMIND_PATIENT;
     public static final String DATETIME_DUE_DESC_ORDER_BEDSHEETS = " " + PREFIX_DUE_DATE
         + VALID_DATETIME_DUE_ORDER_BEDSHEET;
+    public static final String DATETIME_DUE_DESC_CLEAR_DATETIME = " " + PREFIX_DUE_DATE
+            + EditTaskCommandParser.INPUT_REMOVE_DUE_DATE;
     public static final String TASK_NUMBER_DESC_ONE = " " + PREFIX_TASK_NUMBER + "1";
     public static final String TASK_NUMBER_DESC_TWO = " " + PREFIX_TASK_NUMBER + "2";
 
