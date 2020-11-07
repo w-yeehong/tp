@@ -240,9 +240,12 @@ The information of the `Patient` and `Room` feature of Covigent is stored locall
 The class diagram for StorageManager is shown below
 ![Structure of the StorageManage Component](images/UML_Diagram_StorageManager.png)
 
+The information of the `Patient` and `Room` feature of Covigent is stored locally in the Json format. This is done by adapting the Patient and Room feature into JsonSerializablePatientRecords and JsonSerializableRoomRecords respectively.
+
 The class diagrams for the above stated adapted classes are shown below
  ![Structure of the JsonSerializableRoomRecords](images/JsonSerializableRoomRecords.png)
  Fig of `JsonSerializableRoomRecords`
+ 
  ![Structure of the JsonSerializablePatientRecords](images/JsonSerializablePatientRecords.png)
  Fig of `JsonSerializableTaskList`
  
