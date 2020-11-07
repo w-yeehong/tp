@@ -452,12 +452,6 @@ The features comprise of five commands namely,
 * `FindEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
 We will illustrate the progress of one of the above commands for simplicity.
-
-The activity diagram below illustrates the `findEmptyRoom`.
-![ActivityDiagramForRoomFeature](images/ActivityDiagramForRoomFeature.png)
- 
- The Sequence Diagram for `initRooms` is shown below.
- ![SequenceDiagramForSequenceDiagram](images/Room_SequenceDiagram.png)
  
  _Written By: Noorul Azlina_
  
@@ -468,7 +462,19 @@ The following is a detailed explanation of the operations that `InitRoomCommand`
 If it is a positive integer and the number of rooms is more than or equal to the existing number of occupied rooms, InitRoomCommand is valid. 
 The checking of the number of rooms is done by `Model#hasSpaceForRooms()`. If this is true then `Integer` is valid, else it is invalid.
 
-**Step 2.** The stated number of rooms is then set
+**Step 2.** The stated number of rooms is then set to `Integer`, if `Integer` is greater than the existing number of rooms then excess rooms are added to the back of the 
+UniqueRoomList. If the number of rooms is less than the `Integer` and there are occupied rooms the information of patients in that room is transferred to an empty room 
+in the reduced number of rooms
+
+**Step 4.** A success message with the `Intger` appended with the `InitRoomCommand#MESSAGE_SUCCESS` constant is displayed on the UI. A new `CommandResult`
+returns this message.
+
+The activity diagram below illustrates the `findEmptyRoom`.
+![ActivityDiagramForRoomFeature](images/ActivityDiagramForRoomFeature.png)
+
+The Sequence Diagram for `initRooms` is shown below.
+ ![SequenceDiagramForSequenceDiagram](images/Room_SequenceDiagram.png)
+ 
 #### 4.2.3 Implementation of AllocateRoomCommand
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
