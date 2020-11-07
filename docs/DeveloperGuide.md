@@ -174,7 +174,7 @@ The `Model` component,
   * stores a `UserPref` object that represents the user’s preferences.
   * stores a `PatientRecords` object that stores the data of all the patients. 
   * stores a `RoomList` object that stores the data of all the rooms.
-  * stores a `RoomTaskRecords` object that stores all the `RoomTaskAssociation` objects, which keep track of the room that a task belongs to2.
+  * stores a `RoomTaskRecords` object that stores all the `RoomTaskAssociation` objects, which keep track of the room that a task belongs to.
   * exposes unmodifiable `ObservableList<Patient>`, `ObservableList<Room>` and `ObservableList<RoomTaskAssociation>` which can be observed. This means that the UI can be bound to the lists so that the UI automatically updates when data in the lists changes.
   * does not depend on any of the three components.
 
@@ -182,7 +182,7 @@ The concrete class `ModelManager` implements `Model` interface and manages the d
 
 Below is a class diagram for `ModelManager`.
 
-![Structure of the Model Component]() <br>
+![Structure of the Model Component](images/ModelClassDiagram.png) <br>
 _Figure XX. Class Diagram for Model Component_
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -209,7 +209,7 @@ _Figure XX. Class Diagram for RoomList_
 
 The `RoomTaskRecords` class is in charge of maintaining the data regarding the association of a task in a room. The `RoomTaskAssociation` class acts as an association class that ties `Task` and `Room` together so that the `Task` object does not need to know of the details of `Room` and we are still able to identify the room number that `Task` belongs to and its index in `Room`. The class diagram for `RoomTaskRecords` is shown below.
 
-![Class Diagram For RoomTaskRecords]() <br>
+![Class Diagram For RoomTaskRecords](images/RoomTaskRecordsClassDiagrams.png) <br>
 _Figure XX. Class Diagram for RoomTaskRecords_
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `RoomTaskRecords` class implements the interface ReadOnlyList &lt;RoomTaskAssociation&gt;. However, due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
