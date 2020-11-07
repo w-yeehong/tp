@@ -25,7 +25,7 @@ public class UniqueRoomList implements Iterable<Room> {
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
     private final ObservableList<Room> internalList = FXCollections.observableArrayList((Room room) -> {
-        Observable[] updatedTasks = new Observable[]{room.getFilteredTasks()};
+        Observable[] updatedTasks = new Observable[]{room.getReadOnlyTasks()};
         return updatedTasks;
     });
     private final ObservableList<Room> internalUnmodifiableList =
@@ -278,7 +278,7 @@ public class UniqueRoomList implements Iterable<Room> {
             if (patientName.equals(patientNameInRoom)) {
                 Room roomToClear = internalList.get(i - 1);
                 setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber(),
-                        false, Optional.empty(), roomToClear.getRoomTasks()));
+                        false, Optional.empty(), new RoomTasks(roomToClear.getReadOnlyTasks())));
                 break;
             }
         }

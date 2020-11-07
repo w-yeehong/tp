@@ -15,15 +15,20 @@ public class TaskCard extends UiPart<Region> {
     private static final String FXML = "TaskListCard.fxml";
 
     public final int roomNumber;
+    public final int taskIndex;
+    public final int totalNumberOfTasksInRoom;
     public final Task task;
 
     private final String roomIdText = "[Room %1$d]";
+    private final String taskIdText = "Task %1$d of %2$d";
     private final String dueAtText = "Due Date: %1$s";
 
     @FXML
     private HBox cardPane;
     @FXML
     private Label roomId;
+    @FXML
+    private Label taskId;
     @FXML
     private TextField description;
     @FXML
@@ -35,9 +40,11 @@ public class TaskCard extends UiPart<Region> {
      * @param roomNumber The room number of the room in which the task is found.
      * @param task The task.
      */
-    public TaskCard(int roomNumber, Task task) {
+    public TaskCard(int roomNumber, int taskIndex, int totalNumberOfTasksInRoom, Task task) {
         super(FXML);
         this.roomNumber = roomNumber;
+        this.taskIndex = taskIndex;
+        this.totalNumberOfTasksInRoom = totalNumberOfTasksInRoom;
         this.task = task;
         setTaskCard(task);
     }
@@ -49,6 +56,7 @@ public class TaskCard extends UiPart<Region> {
      */
     private void setTaskCard(Task task) {
         roomId.setText(String.format(roomIdText, roomNumber));
+        taskId.setText(String.format(taskIdText, taskIndex, totalNumberOfTasksInRoom));
         description.setText(task.getDescription().toString());
         dueAt.setText(String.format(dueAtText, task.getDueAt().toString()));
     }
@@ -67,6 +75,8 @@ public class TaskCard extends UiPart<Region> {
 
         // state check
         return roomNumber == ((TaskCard) other).roomNumber
+                && taskIndex == ((TaskCard) other).taskIndex
+                && totalNumberOfTasksInRoom == ((TaskCard) other).totalNumberOfTasksInRoom
                 && task.equals(((TaskCard) other).task);
     }
 }

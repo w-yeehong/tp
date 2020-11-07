@@ -17,16 +17,13 @@ public class TypicalTasks {
 
     public static final Task REMIND_PATIENT = new TaskBuilder()
             .withDescription("Remind Alice to change bedsheets.")
-            .withDateTimeDue(Optional.of("20201230 2359"))
-            .withRoomNumber(2).build();
+            .withDateTimeDue(Optional.of("20201230 2359")).build();
     public static final Task RESTOCK_SUPPLY = new TaskBuilder()
             .withDescription("Room #1 is running low on masks and needs to be restocked.")
-            .withDateTimeDue(Optional.of("20200925"))
-            .withRoomNumber(1).build();
+            .withDateTimeDue(Optional.of("20200925")).build();
     public static final Task CALL_EMBASSY = new TaskBuilder()
             .withDescription("Call the U.S. embassy for Bob.")
-            .withDateTimeDue(Optional.of("20201014 1800"))
-            .withRoomNumber(3).build();
+            .withDateTimeDue(Optional.of("20201014 1800")).build();
 
     // Manually added
     public static final Task FIX_SHOWER = new TaskBuilder()

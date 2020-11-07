@@ -20,18 +20,15 @@ public class JsonAdaptedTask {
 
     private String description;
     private String dueAt;
-    private int taskRoomNumber;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given Task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description,
-                           @JsonProperty("dueAt") String dueAt,
-                           @JsonProperty("roomNumber") int taskRoomNumber) throws IllegalValueException {
+                           @JsonProperty("dueAt") String dueAt) throws IllegalValueException {
         this.description = description;
         this.dueAt = dueAt;
-        this.taskRoomNumber = taskRoomNumber;
     }
 
     /**
@@ -40,7 +37,6 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         this.description = source.getDescription().value;
         this.dueAt = source.getDueAt().getVal();
-        this.taskRoomNumber = source.getTaskRoomNumber();
     }
 
     /**
@@ -59,6 +55,6 @@ public class JsonAdaptedTask {
         } catch (IllegalArgumentException i) {
             throw new IllegalValueException(DATE_WRONG_FORMAT);
         }
-        return new Task(new Description(description), dateTimeDue, taskRoomNumber);
+        return new Task(new Description(description), dateTimeDue);
     }
 }

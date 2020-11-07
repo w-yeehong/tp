@@ -16,7 +16,6 @@ import seedu.address.testutil.Assert;
 class JsonAdaptedTaskTest {
     public static final String VALID_DESCRIPTION = REMIND_PATIENT.getDescription().value;
     public static final String INVALID_DUE_DATE = "two thirty";
-    public static final int VALID_ROOM_NUMBER = 3;
 
     @Test
     public void toModelType_success_remindPatient() throws Exception {
@@ -39,7 +38,7 @@ class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_invalidDueDate_throwsIllegalValueException() throws IllegalValueException {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_DESCRIPTION, INVALID_DUE_DATE, VALID_ROOM_NUMBER);
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_DESCRIPTION, INVALID_DUE_DATE);
         String expectedMessage = JsonAdaptedTask.DATE_WRONG_FORMAT;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }

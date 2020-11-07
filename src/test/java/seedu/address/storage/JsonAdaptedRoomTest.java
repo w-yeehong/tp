@@ -62,7 +62,7 @@ class JsonAdaptedRoomTest {
 
     @Test
     public void toModelType_invalidDueDate_throwsIllegalValueException() throws Exception {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_DESCRIPTION, INVALID_DUE_DATE, VALID_ROOM_NUM);
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_DESCRIPTION, INVALID_DUE_DATE);
         List<JsonAdaptedTask> tasks = new ArrayList<>();
         tasks.add(task);
         JsonSerializableTaskList taskList = new JsonSerializableTaskList(tasks);
@@ -75,7 +75,7 @@ class JsonAdaptedRoomTest {
 
     @Test
     public void toModelType_invalidPatient_throwsIllegalValueException() throws Exception {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_DESCRIPTION, VALID_DUE_DATE, VALID_ROOM_NUM);
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_DESCRIPTION, VALID_DUE_DATE);
         List<JsonAdaptedTask> tasks = new ArrayList<>();
         tasks.add(task);
         JsonSerializableTaskList taskList = new JsonSerializableTaskList(tasks);
