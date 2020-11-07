@@ -257,7 +257,7 @@ Field | Description
 `NAME` | The name of the patient to be deleted. It is case-insensitive and must match exactly with the name of the patient that was input into Covigent previously.
 
 **:information_source: Important Information:** <br />
-* If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent.
+* If the patient to be deleted was allocated a room previously, the room will be updated to unoccupied in Covigent but the tasks (if any) in that room will remain unchanged.
 <br />
 
 **Example(s):**
