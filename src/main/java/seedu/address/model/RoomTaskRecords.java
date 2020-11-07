@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomTaskAssociation;
 import seedu.address.model.task.Task;

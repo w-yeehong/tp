@@ -1,5 +1,7 @@
 package seedu.address.model.room;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.address.model.task.Task;
 
 /**
@@ -22,6 +24,8 @@ public class RoomTaskAssociation {
      * @param taskIndex The index of the task in the room.
      */
     public RoomTaskAssociation(Room room, Task task, int taskIndex) {
+        requireAllNonNull(room, task);
+        assert taskIndex > 0 : "Task index must be greater than 0.";
         this.room = room;
         this.task = task;
         this.taskIndex = taskIndex;
@@ -44,5 +48,21 @@ public class RoomTaskAssociation {
      */
     public int getTotalTasksInRoom() {
         return room.getReadOnlyTasks().size();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RoomTaskAssociation)) {
+            return false;
+        }
+
+        RoomTaskAssociation otherRoomTaskAssociation = (RoomTaskAssociation) other;
+        return room.equals(otherRoomTaskAssociation.room)
+                && task.equals(otherRoomTaskAssociation.task)
+                && taskIndex == otherRoomTaskAssociation.taskIndex;
     }
 }
