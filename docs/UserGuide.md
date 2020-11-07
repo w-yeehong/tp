@@ -1,12 +1,14 @@
-# Covigent - User Guide
-
 1. [Introduction](#1-introduction)
 1. [About this Guide](#2-about-this-guide)<br />
    2.1. [What's in Covigent](#21-what-is-in-covigent)<br />
    2.2. [Formatting in the Guide](#22-formatting-in-the-guide)<br />
 1. [Getting Started](#3-getting-started)<br />
    3.1. [Setting Up](#31-setting-up)<br />
-   3.2. [Using Covigent](#32-using-covigent)<br />
+   3.2. [Parts of the Graphical User Interface](#32-parts-of-the-graphical-user-interface)<br />
+         3.2.1. [Patients Tab](#321-patients-tab)<br />
+         3.2.2. [Rooms Tab](#322-rooms-tab)<br />
+         3.2.3. [Tasks Tab](#323-tasks-tab)<br />
+   3.3. [Tutorial on How to Use Covigent](#33-tutorial-on-how-to-use-covigent)<br />
 1. [Glossary](#4-glossary)
 1. [Features](#5-features)<br />
     5.1. [Command Format](#51-command-format)<br />
@@ -102,16 +104,16 @@ Lastly, our miscellaneous features will ensure that you can seek [help](#55-view
 ### 2.2 Formatting in the Guide
 
 Note the following formatting used in this document:
-* ![icon](images/ug/icon_info.png) This symbol indicates important information.
-
-* ![icon](images/ug/italics.PNG) 
-Italicised words are used to indicate examples of input that the user can key in.
+* ![icon](images/ug/icon_info.png)
+This symbol indicates important information.
 
 * ![icon](images/ug/icon_keyword.png) 
-A grey highlight (called a mark-up) indicates that this is a field or command
-that can be typed into the command line and executed by Covigent.
+A grey highlight (called a mark-up) indicates a keyword. It denotes either i) a field or command that can be typed into the Command Box and executed by Covigent; or ii) the name of a file.
 
-* ![icon](images/ug/HyperLink_words.PNG) 
+* ![icon](images/ug/icon_italics.png) 
+Italicised words indicate text that is displayed on the Graphical User Interface.
+
+* ![icon](images/ug/icon_hyperlink.png)
 A light blue font color indicates that this is a Hyperlink that you can click on
 and be transferred to the corresponding section in Covigent.
 
@@ -129,32 +131,160 @@ The setup is minimal and can be completed in 4 simple steps. Follow the instruct
 
 The following steps to set up Covigent are applicable to Windows, Mac OS X, and Linux.
 
-1. Install _Java 11_ or a later version. The latest version of _Java_ can be found [here](https://java.com/en/download/).
+1. Install Java 11 or a later version. The latest version of Java can be found [here](https://java.com/en/download/).
 
-1. Download the latest version of Covigent from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). Look for the file `covigent.jar`.
-
-1. Copy the file to the folder you want to use as the home folder of Covigent.
-
-1. Double-click on _covigent.jar_ to start Covigent.
-
-### 3.2 Using Covigent
-
-Covigent has numerous features, including adding quarantined individuals, creating rooms, assigning tasks to rooms, and more.
-Every feature has a corresponding command. Using a feature is as simple as typing a command in the command box (see Figure 2) and pressing Enter to execute it.
-
+1. Download the latest version of Covigent from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). To do so, look for the file `covigent.jar` and click on it.
+Please refer to Figure 2 if you require assistance with locating the file. Figure 2 shows how to download version 1.3 of Covigent. `covigent.jar` has been highlighted in red for your convenience.
 <p align="center">
-    <img src="images/ug/f2_commandbox.png" width="800" height="100">
+    <img src="images/ug/f2_downloadcovigent.png" width="500" height="230">
     <br />
-    <i>Figure 2. Command Box of Covigent</i>
+    <i>Figure 2. How to Download Covigent</i>
 </p>
 
-Some example commands you may try:
+3. You may move `covigent.jar` to any other folder. Your save data and preferences for Covigent will be saved to the same folder.
 
-   * **`addpatient`** `n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35` : Adds a quarantined individual named _John Doe_ with age _35_, phone number _98765432_, period of stay _20200910-20200924_, and temperature _37.4_.
-   * **`initroom`** `5` : Creates 5 rooms in the quarantine facility.
-   * **`addtask`** `r/3 d/Restock supplies dd/20201230 2359` : Adds a task to room 3 with description _Restock supplies_ and due date _20201230 2359_.
+4. Double-click on `covigent.jar` to start Covigent. Here is what you will see if everything goes right:
+<p align="center">
+    <img src="images/ug/f3_startingcovigent.png" width="400" height="300">
+    <br />
+    <i>Figure 3. Covigent after Starting Up</i>
+</p>
 
-For more details of each command, please refer to the section on [Section 5, Features](#5-features).
+In case there are any problems during setup, please refer to [Section 7, "FAQ"](#7-faq) for instructions to resolve them.
+
+### 3.2 Parts of the Graphical User Interface
+
+The user interface of Covigent comprises 3 main tabs: Patients, Rooms, and Tasks. The tabs respectively display information on the
+quarantined individuals, the rooms in the quarantine facility, and the tasks assigned to the rooms. A tab turns a deeper shade of pink
+when you click on it to indicate that you are currently in the tab. For example, Figure 4 shows how the Tasks tab changes colours when you click on it.
+<p align="center">
+    <img src="images/ug/f4_covigenttabs.png" width="100" height="300">
+    <br />
+    <i>Figure 4. User Interface of Covigent when a Tab is Clicked</i>
+</p>
+
+#### 3.2.1 Patients Tab
+
+The main purpose of the Patients tab is to display information about the quarantined individuals.
+
+When you first start Covigent, you will find yourself in the Patients tab. You may notice that there is already some sample data for quarantined
+individuals. There is no need to worry! The data can be edited or deleted to suit your needs later. If you urgently need to change the data,
+please proceed to [Section 5.2.3, "Edit Patient Details"](#523-edit-patient-details-editpatient) for the relevant instructions.
+
+Using the Patients tab is easy. Click on any of the quarantined individuals. This will highlight that individual and display her information.
+Figure 5 illustrates what happens when you click on a quarantined individual _David Li_. Observe that his details appear on the right of the
+user interface, in the Details Panel.
+
+<p align="center">
+    <img src="images/ug/f5_patientstab.png" width="600" height="280">
+    <br />
+    <i>Figure 5. Highlighted Individual in Patients Tab</i>
+</p>
+
+#### 3.2.2 Rooms Tab
+
+The main purpose of the Rooms tab is to display information about the rooms in the quarantine facility. Each room contains 1 quarantined
+individual and multiple tasks.
+
+When you first start Covigent and click into the Rooms tab, it will be empty. Rest assured that this is normal. Once you learn how to add rooms
+to Covigent, the Rooms tab will be populated in no time. You may refer to [Section 3.3, "Tutorial on How to Use Covigent"](#33-tutorial-on-how-to-use-covigent)
+for step-by-step guidance or [Section 5.3.1, "Initialise Rooms in Hotel"](#531-initialise-rooms-in-hotel-initroom) if you prefer a more hands-on approach.
+
+Using the Rooms tab is easy. Click on any of the rooms. This will highlight that room and display the quarantined individual and tasks allocated
+to the room. Figure 6 shows what happens when you click on _Room #2_. The details of the quarantined individual _Alex Yeoh_ and task _Sanitise the room_ 
+are displayed on the right of the user interface, in the Details Panel.
+
+<p align="center">
+    <img src="images/ug/f6_roomstab.png" width="600" height="280">
+    <br />
+    <i>Figure 6. Highlighted Room in Rooms Tab</i>
+</p>
+
+#### 3.2.3 Tasks Tab
+
+The main purpose of the Tasks tab is to display information about the tasks assigned to the rooms. When you have too many tasks, it is common
+to forget which room you have allocated a certain task to. The Tasks tab provides a quick overview of all the tasks in Covigent such that you do not
+have to look through each room to find a specific task.
+
+When you first start Covigent and click into the Tasks tab, it will be empty. Do not panic! This is the default behaviour. As you add more tasks to the rooms,
+those tasks will start to appear in the Tasks tab. You may refer to [Section 3.3, "Tutorial on How to Use Covigent"](#33-tutorial-on-how-to-use-covigent)
+for step-by-step guidance or [Section 5.4.1, "Add a Task to a Room"](#541-add-a-task-to-a-room-addtask) if you prefer a more hands-on approach.
+
+Using the Tasks tab is easy. Simply read the description and due date of the tasks directly from the user interface. For tasks with very long
+descriptions, the user interface is unable to fully display them. In those cases, you may highlight the descriptions with your cursor and drag right to scroll through them.
+Alternatively, you may triple-click on the descriptions, followed by a right click to copy them. Refer to Figure 7 for an example of the latter method.
+
+<p align="center">
+    <img src="images/ug/f7_taskstab.png" width="600" height="280">
+    <br />
+    <i>Figure 7. Copying a Long Description in Tasks Tab</i>
+</p>
+
+### 3.3 Tutorial on How to Use Covigent
+
+Covigent has numerous features, including adding quarantined individuals, creating rooms, assigning tasks to rooms, and more.
+Every feature has a corresponding command. Using a feature is as simple as typing a command in the Command Box (see Figure 8) and pressing Enter to execute it.
+
+<p align="center">
+    <img src="images/ug/f8_commandbox.png" width="800" height="100">
+    <br />
+    <i>Figure 8. Command Box of Covigent</i>
+</p>
+
+You have heard so much about the potential of Covigent. Excited? Without further ado, let's give these features a try! We will role-play the
+following scenario to get you acquainted with a few common commands: your hotel has 10 rooms; a guest is arriving today and will quarantine with
+your hotel for 14 days; and you must not forget to sanitise the room the day after he leaves.
+
+You may copy-and-paste the following commands (bold and in grey highlights) into the Command Box. Do not forget to press Enter, or the command will not execute!
+
+1. **`initroom 10`** : Let's set up the hotel room first. This command creates _10_ rooms in Covigent. If you proceed to the Rooms tab, you will see that 10 rooms
+have been created (see Figure 9).
+
+<p align="center">
+   <img src="images/ug/f9_initroomexample.png" width="500" height="400">
+   <br />
+   <i>Figure 9. Creating Hotel Rooms in Covigent</i>
+</p>
+
+2. **`addpatient n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35 c/Vegan`** : The guest has arrived. You have taken his temperature and need to enter his details into Covigent.
+This command adds a new quarantined individual named _John Doe_ with age _35_, phone number _98765432_, period of stay _10 Sep 2020 to 24 Sep 2020_, temperature _37.4_, and a comment that he is _Vegan_.
+If you proceed to the Patients tab, you will see that _John Doe's_ entry has been added.
+
+<p align="center">
+   <img src="images/ug/f10_addpatientexample.png" width="500" height="400">
+   <br />
+   <i>Figure 10. Adding a Patient to Covigent</i>
+</p>
+
+3. **`findemptyroom`** : You would like to assign _John Doe_ a room but are unsure which rooms are empty. This command will search for an empty room.
+Proceed to the Rooms tab. The result can be seen in Figure 11.
+
+<p align="center">
+    <img src="images/ug/f11_findemptyroomexample.png" width="500" height="400">
+    <br />
+    <i>Figure 11. Finding an Empty Room in Covigent</i>
+</p>
+
+4. **`allocateroom 1 n/John Doe`** : Now that you know _Room #1_ is empty, let's assign _Room #1_ to _John Doe_. This command will do exactly that.
+Notice that _Room #1_ is now occupied and _John Doe's_ details are reflected in the Details Panel on the right of the user interface.
+
+<p align="center">
+   <img src="images/ug/f12_allocateroomexample.png" width="500" height="400">
+   <br />
+   <i>Figure 12. Allocating a Room to a Patient in Covigent</i>
+</p>
+
+5. **`addtask r/1 d/Sanitise the room dd/20200925 1800`** : Finally, we would like a reminder to sanitise the room after _John Doe_ leaves.
+This command adds a task to _Room #1_ with description _Sanitise the room_ and due date _25 Sep 2020 1800_. Notice that the Details Panel
+reflects the task now (see Figure 12). You may also click on the Tasks tab to view the newly added task.
+
+<p align="center">
+   <img src="images/ug/f13_addtaskexample.png" width="500" height="400">
+   <br />
+   <i>Figure 13. Adding a Task to Covigent</i>
+</p>
+
+If you are curious about what other features are available in Covigent, please visit [Section 5, Features](#5-features).
 
 _Written by: Yee Hong_
 
@@ -169,11 +299,12 @@ _Written by: Yee Hong_
 
 _Written by: Yun Qing_
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Features
 
-This section covers all the commands that you can type into the command box of Covigent. The commands are categorised into [patient features](#52-patients), [room features](#53-room) and [task features](#54-room). If it is the first time that you are using the command, we recommend that you refer to [Command Format](#51-command-format) to find out how to interpret the format of the commands.
+This section covers all the commands that you can type into the Command Box of Covigent. The commands are categorised into [patient features](#52-patients), [room features](#53-room) and [task features](#54-room). If it is the first time that you are using the command, we recommend that you refer to [Command Format](#51-command-format) to find out how to interpret the format of the commands.
 
 _Written by: Yun Qing_
 
@@ -222,27 +353,27 @@ Field | Description
 <br />
 
 **Step By Step Usage:** <br />
-1. Navigate to the Patients tab under the navigation bar as shown in Figure 3.
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 14.
     <p align="center">
-        <img src="images/ug/patienttab.png" width="380" height="300">
+        <img src="images/ug/navigatepatienttab.png" width="380" height="300">
         <br />
-       <i>Figure 3. Navigation to Patients tab</i>
+       <i>Figure 14. Navigation to Patients Tab</i>
     </p>
-2. Using the first example, key in the command into the command box as shown below.
+2. Using the first example, key in the command into the Command Box as shown below.
     <p align="center">
-        <img src="images/ug/f4_addpatientcommand.png" width="700" height="150">
+        <img src="images/ug/f15_addpatientcommand.png" width="700" height="150">
         <br />
-       <i>Figure 4. <code>addpatient</code> command in Command Box</i>
+       <i>Figure 15. <code>addpatient</code> command in Command Box</i>
     </p>
-3. Press `enter` to run the command.
-4. The result box displays the sucess message shown in Figure 5 and the newly added patient can now be found in the list of patients in Covigent.
+3. Press Enter to run the command.
+4. The result box displays the sucess message shown in Figure 16 and the newly added patient can now be found in the list of patients in Covigent.
 5. To view the details of the newly added patient, click on the newly added patient in the patient list.
     <p align="center">
-        <img src="images/ug/f5_addpatientsuccess.png" width="620" height="400">
+        <img src="images/ug/f16_addpatientsuccess.png" width="620" height="400">
         <br />
-        <i>Figure 5. A Successful Execution of <code>addpatient</code> command</i>
+        <i>Figure 16. A Successful Execution of <code>addpatient</code> command</i>
     </p>
-6. If you do not see the success message as shown in Figure 5, please repeat step 2 onwards.
+6. If you do not see the success message as shown in Figure 16, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -265,26 +396,26 @@ Field | Description
 <br />
 
 **Step By Step Usage:** <br />
-1. Navigate to the Patients tab under the navigation bar as shown in Figure 6.
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 17.
     <p align="center">
-        <img src="images/ug/patienttab.png" width="380" height="300">
+        <img src="images/ug/navigatepatienttab.png" width="380" height="300">
         <br />
-       <i>Figure 6. Navigation to Patients tab</i>
+       <i>Figure 17. Navigation to Patients Tab</i>
     </p>
-1. Using the first example, key in the command into the command box as shown below.
+1. Using the first example, key in the command into the Command Box as shown below.
     <p align="center">
-        <img src="images/ug/f7_deletepatientcommand.png" width="700" height="150">
+        <img src="images/ug/f18_deletepatientcommand.png" width="700" height="150">
         <br />
-       <i>Figure 7. <code>deletepatient</code> command in Command Box</i>
+       <i>Figure 18. <code>deletepatient</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command.
-1. The result box displays the success message shown in Figure 8 and the deleted patient can no longer be found in the list of patients in Covigent.
+1. Press Enter to run the command.
+1. The result box displays the success message shown in Figure 19 and the deleted patient can no longer be found in the list of patients in Covigent.
     <p align="center">
-        <img src="images/ug/f8_deletepatientsuccess.png" width="620" height="400">
+        <img src="images/ug/f19_deletepatientsuccess.png" width="620" height="400">
         <br />
-        <i>Figure 8. A Successful Execution of <code>deletepatient</code></i>
+        <i>Figure 19. A Successful Execution of <code>deletepatient</code></i>
     </p>
-1. If you do not see the success message as shown in Figure 8, please repeat step 2 onwards.
+1. If you do not see the success message as shown in Figure 19, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -314,25 +445,25 @@ Field | Description
 1. `editpatient alex t/36.7 a/21 d/20200303-20200315` The temperature, age and period of stay of the patient named Alex will be updated to _36.7_, _21_ and _20200303-20200315_ respectively.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Patients tab under the navigation bar as shown in Figure 9.
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 20.
     <p align="center">
-        <img src="images/ug/patienttab.png" width="380" height="300">
+        <img src="images/ug/navigatepatienttab.png" width="380" height="300">
         <br />
-       <i>Figure 9. Navigation to Patients tab</i>
+       <i>Figure 20. Navigation to Patients Tab</i>
     </p>
-1. Using the first example, key in the command into the command box as shown below.
+1. Using the first example, key in the command into the Command Box as shown below.
     <p align="center">
-        <img src="images/ug/f10_editpatientcommand.PNG" width="700" height="150">
+        <img src="images/ug/f21_editpatientcommand.png" width="700" height="150">
         <br />
-       <i>Figure 10. <code>editpatient</code> command in Command Box</i>
+       <i>Figure 21. <code>editpatient</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command.
-1.  The result box displays the success message shown in Figure 11 and the patient has been edited in Covigent.
+1. Press Enter to run the command.
+1.  The result box displays the success message shown in Figure 22 and the patient has been edited in Covigent.
 1. The details of the newly edited patient will be shown in the details panel.
     <p align="center">
-        <img src="images/ug/f11_editpatientsuccess.PNG" width="620" height="400">
+        <img src="images/ug/f22_editpatientsuccess.PNG" width="620" height="400">
         <br />
-        <i>Figure 11. A Successful Execution of <code>editpatient</code> command</i>
+        <i>Figure 22. A Successful Execution of <code>editpatient</code> command</i>
     </p>
 1. If you do not see the success message as shown in Figure 11, please repeat step 2 onwards.
 
@@ -360,30 +491,30 @@ Field | Description
 
 **Step By Step Usage:**  <br />
 
-1. Navigate to the Patients tab under the navigation bar as shown in Figure 12.
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 23.
     <p align="center">
-        <img src="images/ug/patienttab.png" width="380" height="300">
+        <img src="images/ug/navigatepatienttab.png" width="380" height="300">
         <br />
-       <i>Figure 12. Navigation to Patients tab</i>
+       <i>Figure 23. Navigation to Patients Tab</i>
     </p>
 1. Before the search, this is what you see in the list of patient.
     <p align="center">
-        <img src="images/ug/f13_patientuibeforesearch.PNG" width="380" height="300">
+        <img src="images/ug/f24_patientuibeforesearch.PNG" width="380" height="300">
         <br />
-       <i>Figure 13. Patient List before <code>searchpatient</code> command </i>
+       <i>Figure 24. Patient List before <code>searchpatient</code> command </i>
     </p>
-1. Using the second example, key in the command into the command box as shown below.
+1. Using the second example, key in the command into the Command Box as shown below.
     <p align="center">
-        <img src="images/ug/f14_searchpatientcommand.PNG" width="700" height="150">
+        <img src="images/ug/f25_searchpatientcommand.PNG" width="700" height="150">
         <br />
-       <i>Figure 14. <code>searchpatient</code> command in Command Box</i>
+       <i>Figure 25. <code>searchpatient</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command. 
-1. The result box displays the success message shown in Figure 15 and you can find the patients with temperatures in the inputted temperature range in Covigent.
+1. Press Enter to run the command. 
+1. The result box displays the success message shown in Figure 26 and you can find the patients with temperatures in the inputted temperature range in Covigent.
     <p align="center">
-        <img src="images/ug/f15_searchpatient.png" width="480" height="400">
+        <img src="images/ug/f26_searchpatient.png" width="480" height="400">
         <br />
-        <i>Figure 15. A Successful Execution of <code>searchpatient</code></i>
+        <i>Figure 26. A Successful Execution of <code>searchpatient</code></i>
     </p>
 
 _Written by: Wai Lok_
@@ -399,24 +530,24 @@ You can use this command to look at the list of all patients in the patient tab.
 
 **Step By Step Usage:**  <br />
 
-1. Navigate to the Patients tab under the navigation bar as shown in Figure 16.
+1. Navigate to the Patients tab under the navigation bar as shown in Figure 27.
     <p align="center">
-        <img src="images/ug/patienttab.png" width="380" height="300">
+        <img src="images/ug/navigatepatienttab.png" width="380" height="300">
         <br />
-       <i>Figure 16. Navigation to Patients tab</i>
+       <i>Figure 27. Navigation to Patients Tab</i>
     </p>
-1. Key in the command into the command box as shown below.
+1. Key in the command into the Command Box as shown below.
     <p align="center">
-        <img src="images/ug/f17_listpatientcommand.png" width="480" height="400">
+        <img src="images/ug/f28_listpatientcommand.png" width="600" height="150">
         <br />
-        <i>Figure 17. <code>listpatient</code> command in Command Box</i>
+        <i>Figure 28. <code>listpatient</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command.
-1. The result box displays the sucess message shown in Figure 18 and you can find the full list of patient in Covigent.
+1. Press Enter to run the command.
+1. The result box displays the sucess message shown in Figure 29 and you can find the full list of patient in Covigent.
     <p align="center">
-        <img src="images/ug/f18_listpatient.png" width="480" height="400">
+        <img src="images/ug/f29_listpatient.png" width="480" height="400">
         <br />
-        <i>Figure 18. A Successful Execution of <code>listpatient</code></i>
+        <i>Figure 29. A Successful Execution of <code>listpatient</code></i>
     </p>
 
 _Written by: Wai Lok_
@@ -448,24 +579,24 @@ Field | Description
 1. `initroom 400`. 400 rooms are initialised in Covigent.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Rooms tab under the navigation bar as shown in Figure 19.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure 30.
     <p align="center">
-        <img src="images/ug/roomstab.png" width="380" height="300">
+        <img src="images/ug/navigateroomstab.png" width="380" height="300">
         <br />
-       <i>Figure 19. Navigation to Rooms tab</i>
+       <i>Figure 30. Navigation to Rooms Tab</i>
     </p>
-1. Using the first example, key in the command into the command box as shown below.
+1. Using the first example, key in the command into the Command Box as shown below.
     <p align="center">
-        <img src="images/ug/f20_initroomcommand.png" width="380" height="200">
+        <img src="images/ug/f31_initroomcommand.png" width="380" height="200">
         <br />
-       <i>Figure 20. Navigation to Rooms tab</i>
+       <i>Figure 31. Navigation to Rooms Tab</i>
     </p>
-1. Press `enter` to run the command.
+1. Press Enter to run the command.
 1. The result box shows a success message "Initialise the number of rooms to 400 rooms in the application.".
     <p align="center">
-        <img src="images/ug/f21_initroom.png" width="550" height="400">
+        <img src="images/ug/f32_initroom.png" width="550" height="400">
         <br />
-        <i>Figure 21. A Successful Execution of <code>initroom</code></i>
+        <i>Figure 32. A Successful Execution of <code>initroom</code></i>
     </p> 
 
 _Written by: Noorul Azlina_
@@ -490,27 +621,27 @@ Field | Description
 1. `allocateroom 1 n/-`. The previous patient will be removed from Room #1.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Rooms tab under the navigation bar as shown in Figure 22.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure 33.
     <p align="center">
-        <img src="images/ug/roomstab.png" width="380" height="300">
+        <img src="images/ug/navigateroomstab.png" width="380" height="300">
         <br />
-       <i>Figure 22. Navigation to Rooms tab</i>
+       <i>Figure 33. Navigation to Rooms Tab</i>
     </p>
-1. Using the first example, key in the command into the command box as shown below.
+1. Using the first example, key in the command into the Command Box as shown below.
     <p align="center">
-        <img src="images/ug/f23_allocateroomcommand.PNG" width="700" height="150">
+        <img src="images/ug/f34_allocateroomcommand.PNG" width="700" height="150">
         <br />
-       <i>Figure 23. <code>allocateroom</code> command in Command Box</i>
+       <i>Figure 34. <code>allocateroom</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command.
-1. The result box displays the sucess message shown in Figure 24 and the patient is allocated to the room.
+1. Press Enter to run the command.
+1. The result box displays the sucess message shown in Figure 35 and the patient is allocated to the room.
 The room with the newly allocated patient is shown in the room details panel.
     <p align="center">
-        <img src="images/ug/f24_allocateroomsuccess.PNG" width="620" height="400">
+        <img src="images/ug/f35_allocateroomsuccess.PNG" width="620" height="400">
         <br />
-        <i>Figure 24. A Successful Execution of <code>allocateroom</code> for Room Number</i>
+        <i>Figure 35. A Successful Execution of <code>allocateroom</code> for Room Number</i>
     </p>
-1. If you do not see the success message as shown in Figure 24, please repeat step 2 onwards.
+1. If you do not see the success message as shown in Figure 35, please repeat step 2 onwards.
 
 _Written by: Ming De_
 
@@ -528,26 +659,26 @@ Field | Description
 1. `searchroom r/6` The room details of room number 6 will be searched.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Rooms tab under the navigation bar as shown in Figure 25.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure 36.
     <p align="center">
-        <img src="images/ug/roomstab.png" width="380" height="300">
+        <img src="images/ug/navigateroomstab.png" width="380" height="300">
         <br />
-       <i>Figure 25. Navigation to Rooms tab</i>
+       <i>Figure 36. Navigation to Rooms Tab</i>
     </p>
-1. Using the first example, key in the command into the command box as shown below.
+1. Using the first example, key in the command into the Command Box as shown below.
     <p align="center">
-        <img src="images/ug/f26_searchroomnumbercommand.png" width="700" height="150">
+        <img src="images/ug/f37_searchroomnumbercommand.png" width="700" height="150">
         <br />
-       <i>Figure 26. <code>searchroom</code> command in Command Box</i>
+       <i>Figure 37. <code>searchroom</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command.
-1. The result box displays the sucess message shown in Figure 27 and the room with the specified room number is shown in the room details panel.
+1. Press Enter to run the command.
+1. The result box displays the success message shown in Figure 38 and the room with the specified room number is shown in the room details panel.
     <p align="center">
-        <img src="images/ug/f27_searchroomnumbersuccess.png" width="620" height="400">
+        <img src="images/ug/f38_searchroomnumbersuccess.png" width="620" height="400">
         <br />
-        <i>Figure 27. A Successful Execution of <code>searchroom</code> for Room Number</i>
+        <i>Figure 38. A Successful Execution of <code>searchroom</code> for Room Number</i>
     </p>
-1. If you do not see the success message as shown in Figure 27, please repeat step 2 onwards.
+1. If you do not see the success message as shown in Figure 38, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -565,26 +696,26 @@ Field | Description
 1. `searchroom n/Mary Doe` The room details of the room that Mary Doe resides in will be searched.
 
 **Step By Step Usage:** <br />
-1. Navigate to the Rooms tab under the navigation bar as shown in Figure 28.
+1. Navigate to the Rooms tab under the navigation bar as shown in Figure 39.
     <p align="center">
-        <img src="images/ug/roomstab.png" width="380" height="300">
+        <img src="images/ug/f14_roomstab.png" width="380" height="300">
         <br />
-       <i>Figure 28. Navigation to Rooms tab</i>
+       <i>Figure 39. Navigation to Rooms Tab</i>
     </p>
-1. Using the first example, key in the command into the command box as shown below.
+1. Using the first example, key in the command into the Command Box as shown below.
     <p align="center">
-        <img src="images/ug/f29_searchroompatientcommand.png" width="700" height="150">
+        <img src="images/ug/f40_searchroompatientcommand.png" width="700" height="150">
         <br />
-       <i>Figure 29. <code>searchroom</code> command in Command Box</i>
+       <i>Figure 40. <code>searchroom</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command. 
-1. The result box displays the success message shown in Figure 30 and the room that the specified patient resides in is shown in the room details panel.
+1. Press Enter to run the command. 
+1. The result box displays the success message shown in Figure 41 and the room that the specified patient resides in is shown in the room details panel.
     <p align="center">
-        <img src="images/ug/f30_searchroompatientsuccess.png" width="620" height="400">
+        <img src="images/ug/f41_searchroompatientsuccess.png" width="620" height="400">
         <br />
-        <i>Figure 30. A Successful Execution of <code>searchroom</code> for Patient</i>
+        <i>Figure 41. A Successful Execution of <code>searchroom</code> for Patient</i>
     </p>
-1. If you do not see the success message as shown in Figure 30, please repeat step 2 onwards.
+1. If you do not see the success message as shown in Figure 41, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
 
@@ -600,24 +731,24 @@ Format: `listroom` All the rooms in Covigent.
 <br />
 
 **Step By Step Usage:** <br />
-1. Navigate to Rooms tab under the navigation bar as shown in Figure 28
+1. Navigate to Rooms tab under the navigation bar as shown in Figure 42
     <p align="center">
-        <img src="images/ug/roomstab.png" width="550" height="400">
+        <img src="images/ug/f14_roomstab.png" width="550" height="400">
         <br />
-        <i>Figure 31. Navigation to Rooms tab</i>
+        <i>Figure 42. Navigation to Rooms Tab</i>
     </p>
-1. Next, type the command `listroom` in the command box as shown below
+1. Next, type the command `listroom` in the Command Box as shown below
     <p align="center">
-        <img src="images/ug/f32_listroomcommand.png" width="550" height="200">
+        <img src="images/ug/f43_listroomcommand.png" width="550" height="200">
         <br />
-        <i>Figure 32. <code>listroom</code> command in Command Box</i>
+        <i>Figure 43. <code>listroom</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command
+1. Press Enter to run the command
 1. The result box shows a success message "All rooms are listed."
     <p align="center">
-        <img src="images/ug/f33_listroom.png" width="550" height="400">
+        <img src="images/ug/f44_listroom.png" width="550" height="400">
         <br />
-        <i>Figure 33. A Successful Execution of <code>listroom</code></i>
+        <i>Figure 44. A Successful Execution of <code>listroom</code></i>
     </p>
 
 _Written by: Noorul Azlina_
@@ -634,24 +765,24 @@ Format: `findemptyroom` The unoccupied room in Covigent with the lowest room num
 
 **Step By Step Usage:** <br />
 
-1. Navigate to Rooms tab under the navigation bar as shown in Figure 34.
+1. Navigate to Rooms tab under the navigation bar as shown in Figure 45.
     <p align="center">
-        <img src="images/ug/roomstab.png" width="550" height="400">
+        <img src="images/ug/f14_roomstab.png" width="550" height="400">
         <br />
-        <i>Figure 34. Navigation to Rooms tab</i>
+        <i>Figure 45. Navigation to Rooms Tab</i>
     </p>
-1. Next, type the command `findemptyroom` in the command box as shown below
+1. Next, type the command `findemptyroom` in the Command Box as shown below
     <p align="center">
-        <img src="images/ug/f35_findemptyroomcommand.png" width="550" height="200">
+        <img src="images/ug/f46_findemptyroomcommand.png" width="550" height="200">
         <br />
-        <i>Figure 35. <code>findemptyroom</code> command in Command Box</i>
+        <i>Figure 46. <code>findemptyroom</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command
+1. Press Enter to run the command
 1. The result box shows a success message that "Room Number 4 is empty"
     <p align="center">
-        <img src="images/ug/f36_findemptyroom.png" width="550" height="400">
+        <img src="images/ug/f47_findemptyroom.png" width="550" height="400">
         <br />
-        <i>Figure 36. A Successful Execution of <code>findemptyroom</code></i>
+        <i>Figure 47. A Successful Execution of <code>findemptyroom</code></i>
     </p> 
 
 _Written by: Noorul Azlina_
@@ -753,7 +884,7 @@ Field | Description
 
 **Example(s):**
 1. `edittask r/3 t/1 d/Return a call to the patient. dd/12/1/2021 1500` The description and due date of the first task (Task 1) in Room #3 are updated to _Return a call to the patient._ and _12 Jan 2021 1500_ respectively.
-1. `edittask r/2 t/2 dd/12-1-2021` The due date for the second task (Task 2) of Room #2 is updated to _12 Jan 2021 0000_.
+1. `edittask r/2 t/2 dd/12/1/2021` The due date for the second task (Task 2) of Room #2 is updated to _12 Jan 2021 0000_.
 
 **Step By Step Usage:** <br />
 * Using the first example, the result box displays the message _Task 1 edited from Room 3. Description: Return a call to the patient. Due Date: 12 Jan 2021 1500_.
@@ -825,13 +956,13 @@ Field | Description
         <br />
        <i>Figure 60. Navigation to Tasks tab</i>
     </p>
-1. Using the example,  key in the command into the command box as shown below.
+1. Using the example,  key in the command into the Command Box as shown below.
     <p align="center">
         <img src="images/ug/searchtaskcommand.PNG" width="700" height="150">
         <br />
        <i>Figure 61. <code>searchtask</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command.
+1. Press Enter to run the command.
 1. With reference to Figure 62, the result box displays the message, "Tasks before the due date found.".
 1. Now you can find tasks before and including 12 January 2021 0000 can now be found in the list of tasks in Covigent.
     <p align="center">
@@ -859,13 +990,13 @@ You can use this command to look at the list of all tasks in the task tab.
     <br />
    <i>Figure 63. Navigation to Tasks tab</i>
 </p>
-2. Key in the command into the command box as shown below.
+2. Key in the command into the Command Box as shown below.
 <p align="center">
     <img src="images/ug/listtaskcommand.PNG" width="480" height="400">
     <br />
     <i>Figure 64. <code>listtask</code> command in Command Box</i>
 </p>
-3. Press `enter` to run the command.
+3. Press Enter to run the command.
 4. Now you can find the full list of patient in Covigent.
 <p align="center">
     <img src="images/ug/listtask.PNG" width="480" height="400">
@@ -877,19 +1008,19 @@ _Written by: Wai Lok_
 
 ### 5.5 View help: `help`
 
-If you encounter any issues using Covigent and need to access this user guide again, simply key in `help` into the command box.
+If you encounter any issues using Covigent and need to access this user guide again, simply key in `help` into the Command Box.
 
 **Format:** `help`
 
 **Step By Step Usage:**  <br />
 
-1. Key in the command into the command box as shown below.
+1. Key in the command into the Command Box as shown below.
     <p align="center">
         <img src="images/ug/helpcommand.PNG" width="750" height="150">
         <br />
         <i>Figure xx. <code>help</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command.
+1. Press Enter to run the command.
 1. The result box displays the message as shown in Figure xx.
     <p align="center">
         <img src="images/ug/helpresultdisplay.png" width="750" height="150">
@@ -912,13 +1043,13 @@ You can use this command to exit from Covigent.
 **Format:** `exit`
 
 **Step By Step Usage:**<br />
-1. Key in the command into the command box as shown below.
+1. Key in the command into the Command Box as shown below.
     <p align="center">
         <img src="images/ug/exitcommand.PNG" width="750" height="150">
         <br />
         <i>Figure xx. <code>exit</code> command in Command Box</i>
     </p>
-1. Press `enter` to run the command.
+1. Press Enter to run the command.
 1. Covigent exits and closes.
 
 _Written by: MingDe_
