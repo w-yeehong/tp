@@ -102,7 +102,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 <p align="center">
     <img src="images/dg/LogicClassDiagram.png">
     <br />
-    <i>Figure 2. Class diagram of Logic</> component</i>
+    <i>Figure 2. Class diagram of Logic component</i>
 </p>
 
 **How the architecture components interact with each other**
@@ -112,7 +112,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <p align="center">
     <img src="images/dg/ArchitectureSequenceDiagram.png" width="574">
     <br />
-    <i>Figure 3. Sequence diagram of deletepatient alex</> command</i>
+    <i>Figure 3. Sequence diagram of deletepatient alex command</i>
 </p>
 
 The sections below give more details of each component.
@@ -139,7 +139,7 @@ Below is a class diagram for `Ui`
 <p align="center">
     <img src="images/dg/UiClassDiagram.png">
     <br />
-    <i>Figure 4. Class diagram of Ui</> component</i>
+    <i>Figure 4. Class diagram of Ui component</i>
 </p>
 
 **API** :
@@ -150,7 +150,7 @@ Below shows the interaction with `Model`
 <p align="center">
     <img src="images/dg/UiClassDiagram1.png">
     <br />
-    <i>Figure 5. Structure of Ui</> component</i>
+    <i>Figure 5. Structure of Ui component</i>
 </p>
 
 _Written by: Wai Lok_
@@ -166,7 +166,7 @@ The diagram below shows the structure of the `Logic` component and how it intera
 <p align="center">
     <img src="images/dg/LogicClassDiagram.png">
     <br />
-    <i>Figure 6. Structure of the Logic</> Component</i>
+    <i>Figure 6. Structure of the Logic Component</i>
 </p>
 
 **API** :
