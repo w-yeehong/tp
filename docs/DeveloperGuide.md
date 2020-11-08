@@ -38,6 +38,7 @@
     A3. [Use Cases](#a3-use-cases)<br>
     A4. [Non-Functional Requirements](#a4-non-functional-requirements)<br>
     A5. [Glossary](#a5-glossary)<br>
+    A6. [Instructions for Manual Testing](#a6-instructions-for-manual-testing)<br>
     
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
@@ -814,3 +815,91 @@ Use case ends.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Patient**: An individual residing in the quarantine facility
 * **Task**: Task is to be completed by staff of the quarantine facility
+
+## A6. Instructions for manual testing
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+### Launch and shutdown
+
+1. **Initial Launch**
+
+   1. Download the jar file and copy into an empty folder
+
+   1. Double-click the jar file <br><br>
+   **Expected**: Shows the GUI with a set of sample patients. 
+
+1. **Saving Window Preferences**
+   
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   
+   1. Re-launch the app by double-clicking the jar file. <br><br>
+   **Expected**: The most recent window size and location is retained.
+   
+1. **Storage**
+   
+   1. Launch the application and make a change that changes the state of the program, such as `addpatient` or `initroom`. Close the window.
+   
+   1. Re-launch the app by double-clicking the jar file.<br><br>
+   **Expected**: The app should re-launch into the same state as when it was closed.
+
+### Adding a patient
+
+1. **Adding a patient to Covigent**
+
+   1. Prerequisites: User is viewing the patient tab.
+
+   1. Test case: `addpatient n/John Doe t/37.0 d/20200101-20200114 p/91234567 a/22`<br>
+      **Expected**: Patient John Doe is added to the list. Details of the newly added patient is shown in the result box and the details panel. 
+
+   1. Test case: `addpatient n/John Doe`<br>
+      **Expected**: No patient is added. Error details shown in the result box. 
+
+   1. Other incorrect add patient commands to try: `addpatient n/John Doe t/37.0 d/20200101-20190114 p/91234567 a/22`
+      **Expected**: Similar to previous.
+
+1. **Allocating a patient to a room in Covigent**
+    
+    1. Prerequisites: User is viewing the room tab. Patient details has already been input into Covigent. Rooms must already have been initalized.
+
+    1. Test case: `allocateroom 1 n/John Doe`<br>
+    **Expected**: Patient John Doe is allocated to Room #1. Details of the room will be shown in the details panel. 
+
+   1. Test case: `allocateroom n/John Doe`<br>
+    **Expected**: No patient is allocated to room. Error details shown in the result box. 
+    
+### Saving data
+
+1. **Dealing with missing data files**
+
+   1. Run the app once and play around with the application. Once a change is made, the program will generate a data files in `./data/`.
+
+   1. In ./data/, delete `covigentapp.json` and `roomInformation.json`.
+   
+   1. Re-launch the app.<br><br>
+   **Expected**: Default Patient information should now be present in the Patient tab. No Rooms present in Room tab.
+
+1. **Corrupted data files**
+    
+    1. Run the app once and play around with the application. Once a change is made, the program will generate a data files in `./data/`.
+    
+    1. In `./data/`, open `covigentapp.json`. On line 2, delete the `[`: <br>
+        ```
+        1 {
+        2   "patients" : [ {
+        3 ...
+       ```
+       should become 
+       
+       ```
+       1 {
+       2   "patients" : {
+       3 ...
+        ```
+   1. Re-launch the app.<br><br> 
+   **Expected**: Go to the Patient tab and the tab should not have any data. `covigentapp.json` still exists.
