@@ -65,7 +65,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 3.1 Architecture: High Level View
 
-<p align="center">
+<p align="left">
     <img src="images/dg/ArchitectureDiagram.png" width="450">
     <br />
     <i>Figure 1. Architecture diagram of Covigent</i>
@@ -99,7 +99,7 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-<p align="center">
+<p align="left">
     <img src="images/dg/LogicClassDiagram.png">
     <br />
     <i>Figure 2. Class diagram of `Logic` component</i>
@@ -109,7 +109,11 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/dg/ArchitectureSequenceDiagram.png" width="574" />
+<p align="left">
+    <img src="images/dg/ArchitectureSequenceDiagram.png" width="574">
+    <br />
+    <i>Figure 3. Sequence diagram of `deletepatient alex`</i>
+</p>
 
 The sections below give more details of each component.
 
