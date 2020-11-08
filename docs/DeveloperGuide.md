@@ -245,10 +245,11 @@ The information of the `Patient` and `Room` feature of Covigent is stored locall
 
 The class diagrams for the above stated adapted classes are shown below
  ![Structure of the JsonSerializableRoomRecords](images/JsonSerializableRoomRecords.png)
- Fig of `JsonSerializableRoomRecords`
+ Fig XX of `JsonSerializableRoomRecords`
  
  ![Structure of the JsonSerializablePatientRecords](images/JsonSerializablePatientRecords.png)
- Fig of `JsonSerializableTaskList`
+ 
+ Fig XX of `JsonSerializableTaskList`
  
  _Written by: Noorul Azlina_
 
@@ -489,7 +490,7 @@ The activity diagram below illustrates the `initRoom`.
 ![ActivityDiagramForRoomFeature](images/ActivityDiagramForInitRoom.png)
 
 The Sequence Diagram for `initRooms` is shown below.
- ![SequenceDiagramForSequenceDiagram](images/SequenceDiagramForInitRoom.png)
+![SequenceDiagramForSequenceDiagram](images/SequenceDiagramForInitRoom.png)
  
   _Written By: Noorul Azlina_
 #### 4.2.4 Implementation of AllocateRoomCommand
