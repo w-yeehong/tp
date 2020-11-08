@@ -65,7 +65,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 3.1 Architecture: High Level View
 
-<img src="images/dg/ArchitectureDiagram.png" width="450" />
+<p align="center">
+    <img src="images/dg/ArchitectureDiagram.png" width="450">
+    <br />
+    <i>Figure 1. Architecture diagram of Covigent</i>
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -95,7 +99,11 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/dg/LogicClassDiagram.png)
+<p align="center">
+    <img src="images/dg/LogicClassDiagram.png">
+    <br />
+    <i>Figure 2. Class diagram of `Logic` component</i>
+</p>
 
 **How the architecture components interact with each other**
 
