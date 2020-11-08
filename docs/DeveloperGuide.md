@@ -278,7 +278,7 @@ A `Patient` object in Covigent contains the following attributes, which is also 
 5. Phone
 6. Comment  
 
- ![Class Diagram for Patient](images/PatientClassDiagram.png)
+ ![Class Diagram for Patient](images/dg/PatientClassDiagram.png)
 _Figure XX. Class Diagram for Patient_
 
 #### Design Considerations for Patient 
