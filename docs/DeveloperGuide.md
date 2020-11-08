@@ -65,7 +65,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 3.1 Architecture: High Level View
 
-<p align="left">
+<p align="center">
     <img src="images/dg/ArchitectureDiagram.png" width="450">
     <br />
     <i>Figure 1. Architecture diagram of Covigent</i>
@@ -99,20 +99,20 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-<p align="left">
+<p align="center">
     <img src="images/dg/LogicClassDiagram.png">
     <br />
-    <i>Figure 2. Class diagram of `Logic` component</i>
+    <i>Figure 2. Class diagram of Logic</> component</i>
 </p>
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<p align="left">
+<p align="center">
     <img src="images/dg/ArchitectureSequenceDiagram.png" width="574">
     <br />
-    <i>Figure 3. Sequence diagram of `deletepatient alex`</i>
+    <i>Figure 3. Sequence diagram of deletepatient alex</> command</i>
 </p>
 
 The sections below give more details of each component.
@@ -136,14 +136,22 @@ The `MainWindow` is made up of
 * A `ResultDisplay` that displays the robot response.
 * A `StatusBarFooter` that displays the status bar footer.<br>
 Below is a class diagram for `Ui`
-![Structure of the UI Component](images/dg/UiClassDiagram.png)
+<p align="center">
+    <img src="images/dg/UiClassDiagram.png">
+    <br />
+    <i>Figure 4. Class diagram of Ui</> component</i>
+</p>
+
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The `UI` component,
-* Listens for changes to `Model` data so that the `UI` can be updated with the modified data.
+The `UI` component listens for changes to `Model` data so that the `UI` can be updated with the modified data.
 Below shows the interaction with `Model`
-![Structure of the UI Component](images/dg/UiClassDiagram1.png)
+<p align="center">
+    <img src="images/dg/UiClassDiagram1.png">
+    <br />
+    <i>Figure 5. Structure of Ui</> component</i>
+</p>
 
 _Written by: Wai Lok_
 
@@ -155,8 +163,11 @@ the `Logic` component does most of the heavy-lifting in terms of deciding what t
 return to the `Ui`.<br>
 The diagram below shows the structure of the `Logic` component and how it interacts with its internal parts.
 
-![Structure of the Logic Component](images/dg/LogicClassDiagram.png)
-*Figure 4. Structure of the Logic Component*
+<p align="center">
+    <img src="images/dg/LogicClassDiagram.png">
+    <br />
+    <i>Figure 6. Structure of the Logic</> Component</i>
+</p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -170,8 +181,11 @@ and return a `Command` object.
 
 Shown below is the Sequence Diagram within the `Logic` component for the API call: `execute("deletepatient alex")`.
 
-![Interactions Inside the Logic Component for the `deletepatient alex` Command](images/dg/DeletePatientSequenceDiagram.png)
-*Figure 5. Interactions inside the `Logic` Component for the `deletepatient alex` Command*
+<p align="center">
+    <img src="images/dg/DeletePatientSequenceDiagram.png">
+    <br />
+    <i>Figure 7. Interactions inside the Logic Component for the deletepatient alex Command</i>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -195,8 +209,11 @@ The concrete class `ModelManager` implements `Model` interface and manages the d
 
 Below is a class diagram for `ModelManager`.
 
-![Structure of the Model Component](images/dg/ModelClassDiagram.png) <br>
-_Figure XX. Class Diagram for Model Component_
+<p align="center">
+    <img src="images/dg/ModelClassDiagram.png">
+    <br />
+    <i>Figure 7. Class Diagram for Model Component</i>
+</p>
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -204,17 +221,22 @@ The breakdown for each type of data in `ModelManager`, which include `PatientRec
 
 The `PatientRecords` class is in charge of maintaining the data of the patients and in ensuring the uniqueness of patients according to their names. Below is a class diagram for `PatientRecords`. 
 
-![Class Diagram For PatientRecords](images/dg/PatientRecordsClassDiagram.png) <br>
-_Figure XX. Class Diagram for PatientRecords_
+<p align="center">
+    <img src="images/dg/PatientRecordsClassDiagram.png">
+    <br />
+    <i>Figure 8. Class Diagram for PatientRecords</i>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `PatientRecords` class implements the interface ReadOnlyList&lt;Patient&gt; but due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
 </div>
 <br>
 
 The `RoomList` class is in charge of maintaining the data in the rooms and in ensuring the uniqueness of rooms according to the room numbers. As each room stores the data of the patient who resides in the room and the tasks meant for the room, it incorporates data from both `Patient` and `RoomTasks`. `RoomTasks` class is in charge of maintaining the data of the tasks in a room. The full details of `Patient` can be found in the previous class diagram for `PatientRecords` so it is no longer reflected in the class diagram for `RoomList`. The class diagram for `RoomList` is shown below.  
-
-![Class Diagram For RoomList](images/dg/RoomListClassDiagram.png) <br>
-_Figure XX. Class Diagram for RoomList_
+<p align="center">
+    <img src="images/dg/RoomListClassDiagram.png">
+    <br />
+    <i>Figure 9. Class Diagram for RoomList</i>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `RoomList` class implements the interface ReadOnlyList &lt;Room&gt; and the `RoomTasks` class implements the interface ReadOnlyList&lt;Task&gt;. However, due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
 </div>
@@ -222,8 +244,11 @@ _Figure XX. Class Diagram for RoomList_
 
 The `RoomTaskRecords` class is in charge of maintaining the data regarding the association of a task in a room. The `RoomTaskAssociation` class acts as an association class that ties `Task` and `Room` together so that the `Task` object does not need to know of the details of `Room` and we are still able to identify the room number that `Task` belongs to and its index in `Room`. The class diagram for `RoomTaskRecords` is shown below.
 
-![Class Diagram For RoomTaskRecords](images/dg/RoomTaskRecordsClassDiagrams.png) <br>
-_Figure XX. Class Diagram for RoomTaskRecords_
+<p align="center">
+    <img src="images/dg/RoomTaskRecordsClassDiagrams.png">
+    <br />
+    <i>Figure 10. Class Diagram for RoomTaskRecords</i>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `RoomTaskRecords` class implements the interface ReadOnlyList &lt;RoomTaskAssociation&gt;. However, due to a limitation of PlantUML, the interface is reflected as simply `ReadOnlyList`.
 </div>
@@ -234,7 +259,11 @@ _Figure XX. Class Diagram for RoomTaskRecords_
 
 ### 3.5 Storage Component
 
-![Structure of the Storage Component](images/dg/UML_Storage_Diagram.png)
+<p align="center">
+    <img src="images/dg/UML_Storage_Diagram.png">
+    <br />
+    <i>Figure 11. Structure of the Storage Component</i>
+</p>
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -251,17 +280,26 @@ The `Storage` component,
 The information of the `Patient` and `Room` feature of Covigent is stored locally in the Json format. This is done by adapting the Patient and Room feature into JsonSerializablePatientRecords and JsonSerializableRoomRecords respectively.
 
 The class diagram for StorageManager is shown below
-![Structure of the StorageManage Component](images/dg/UML_Diagram_StorageManager.png)
+<p align="center">
+    <img src="images/dg/UML_Diagram_StorageManager.png">
+    <br />
+    <i>Figure 12. Structure of the StorageManager Component</i>
+</p>
 
 The information of the `Patient` and `Room` feature of Covigent is stored locally in the Json format. This is done by adapting the Patient and Room feature into JsonSerializablePatientRecords and JsonSerializableRoomRecords respectively.
 
 The class diagrams for the above stated adapted classes are shown below
- ![Structure of the JsonSerializableRoomRecords](images/dg/JsonSerializableRoomRecords.png)
- Fig XX of `JsonSerializableRoomRecords`
+ <p align="center">
+     <img src="images/dg/JsonSerializableRoomRecords.png">
+     <br />
+     <i>Figure 13. Structure of the JsonSerializableRoomRecords</i>
+ </p>
  
- ![Structure of the JsonSerializablePatientRecords](images/dg/JsonSerializablePatientRecords.png)
- 
- Fig XX of `JsonSerializableTaskList`
+  <p align="center">
+      <img src="images/dg/JsonSerializablePatientRecords.png">
+      <br />
+      <i>Figure 14. Structure of the JsonSerializablePatientRecords</i>
+  </p>
  
  _Written by: Noorul Azlina_
 
@@ -290,8 +328,11 @@ A `Patient` object in Covigent contains the following attributes, which is also 
 5. Phone
 6. Comment  
 
- ![Class Diagram for Patient](images/dg/PatientClassDiagram.png)
-_Figure XX. Class Diagram for Patient_
+  <p align="center">
+      <img src="images/dg/PatientClassDiagram.png">
+      <br />
+      <i>Figure 15. Class Diagram for Patient</i>
+  </p>
 
 #### Design Considerations for Patient 
 
@@ -359,8 +400,11 @@ The following is a detailed explanation of the operations that `AddPatientComman
 
 The sequence diagram for `AddPatientCommand` can be found below.
 
- ![Sequence Diagram for AddPatientCommand](images/dg/AddPatientSequenceDiagram.png)
-_Figure XX. Sequence Diagram for AddPatientCommand_
+  <p align="center">
+      <img src="images/dg/AddPatientSequenceDiagram.png">
+      <br />
+      <i>Figure 16. Sequence Diagram for AddPatientCommand</i>
+  </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Due to space limitation in PlantUML diagram, the addpatient command example given in the sequence diagram only consists of two patient attributes, name and age.
 </div>
@@ -470,7 +514,11 @@ We will illustrate the progress of one of the above commands for simplicity.
 
 #### 4.2.2 Room Feature
 The class diagram for RoomList is shown below.
-![UMLDiagramForRoomFeature](images/dg/UML_RoomFeature.png)
+  <p align="center">
+      <img src="images/dg/UML_RoomFeature.png">
+      <br />
+      <i>Figure 17. Class diagram for RoomList</i>
+  </p>
 
 From the diagram above, the `RoomList` contains of one `UniqueRoomList`. This `UniqueRoomList` is a wrapper class around the `RoomList`
 which contains an ObservableList of `Patient` and PriorityQueue of `Patient`. The `RoomList` can contain from about 1 to 500 rooms.
@@ -500,12 +548,21 @@ in the reduced number of rooms
 returns this message.
 
 The activity diagram below illustrates the `initRoom`.
-![ActivityDiagramForRoomFeature](images/dg/ActivityDiagramForInitRoom.png)
+  <p align="center">
+      <img src="images/dg/ActivityDiagramForInitRoom.png">
+      <br />
+      <i>Figure 18. Activity diagram for initRoom</i>
+  </p>
 
 The Sequence Diagram for `initRooms` is shown below.
-![SequenceDiagramForSequenceDiagram](images/dg/SequenceDiagramForInitRoom.png)
+  <p align="center">
+      <img src="images/dg/SequenceDiagramForInitRoom.png">
+      <br />
+      <i>Figure 19. Sequence diagram for initRoom</i>
+  </p>
  
   _Written By: Noorul Azlina_
+  
 #### 4.2.4 Implementation of AllocateRoomCommand
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
@@ -525,12 +582,18 @@ method.
 new `CommandResult` will be returned with the message.
 
 The activity diagram below illustrates `allocateRoomCommand`.
-![Activity Diagram For AllocateRoom](images/dg/AllocateRoomActivityDiagram.png)
-_Figure XX. Activity Diagram for AllocateRoomCommand_
+  <p align="center">
+      <img src="images/dg/AllocateRoomActivityDiagram.png">
+      <br />
+      <i>Figure 20. Activity Diagram for AllocateRoomCommand</i>
+  </p>
  
 The sequence diagram for `AllocateRoomCommand` is shown below.
-![Sequence Diagram for AllocateRoomCommand](images/dg/AllocateRoomSequenceDiagram.png)
-_Figure XX. Sequence Diagram for AllocateRoomCommand_
+  <p align="center">
+      <img src="images/dg/AllocateRoomSequenceDiagram.png">
+      <br />
+      <i>Figure 21. Sequence Diagram for AllocateRoomCommand</i>
+  </p>
  
 _Written by Mingde_
 
