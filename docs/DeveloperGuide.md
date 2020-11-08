@@ -15,9 +15,10 @@
           4.1.3 [Search Patient](#413-search-patient)<br>
     4.2  [Room Feature](#42-room-feature)<br>
           4.2.1 [Overview](#421-overview)<br>
-          4.2.2 [Initialize Room](#422-implementation-of-initroomcommand)<br>
-          4.2.3 [Allocate Room](#423-implementation-of-allocateroomcommand)<br>
-          4.2.4 [GUI](#424-search-room)<br>
+          4.2.2 [Initialize Room](#422-room-feature)<br>
+          4.2.3 [Initialize Room](#423-implementation-of-initroomcommand)<br>
+          4.2.4 [Allocate Room](#424-implementation-of-allocateroomcommand)<br>
+          4.2.5 [GUI](#425-implementation-of-gui)<br>
     4.3  [Task Feature](#43-task-feature)<br>
           4.3.1 [Add Task](#431-add-task)<br>
           4.3.2 [List Task](#432-list-task)<br>
@@ -491,7 +492,7 @@ The Sequence Diagram for `initRooms` is shown below.
  ![SequenceDiagramForSequenceDiagram](images/SequenceDiagramForInitRoom.png)
  
   _Written By: Noorul Azlina_
-#### 4.2.3 Implementation of AllocateRoomCommand
+#### 4.2.4 Implementation of AllocateRoomCommand
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
 **Step 1.** The `AllocateRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
@@ -519,7 +520,7 @@ _Figure XX. Sequence Diagram for AllocateRoomCommand_
  
 _Written by Mingde_
 
-#### 4.2.4 Implementation of GUI
+#### 4.2.5 Implementation of GUI
 The GUI for room feature is based on a `ListView` that updates whenever the `RoomList` is updated and a `scroll pane` that
 displays the details of the room. To ensure that the information displayed in the `scroll pane` is updated dynamically, 
 we employ the use of `Listeners` that listens for changes and notify the `scroll pane` to update.
