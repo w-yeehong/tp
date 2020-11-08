@@ -15,7 +15,7 @@
           4.1.3 [Search Patient](#413-search-patient)<br>
     4.2  [Room Feature](#42-room-feature)<br>
           4.2.1 [Overview](#421-overview)<br>
-          4.2.2 [Initialize Room](#422-room-feature)<br>
+          4.2.2 [Room Feature](#422-room-feature)<br>
           4.2.3 [Initialize Room](#423-implementation-of-initroomcommand)<br>
           4.2.4 [Allocate Room](#424-implementation-of-allocateroomcommand)<br>
           4.2.5 [GUI](#425-implementation-of-gui)<br>
@@ -26,7 +26,7 @@
           4.3.4 [Edit Task](#434-edit-task)<br>
           4.3.5 [Search Task](#435-search-task)<br>
     4.4  [Storage Feature(KIV)]<br>
-    4.5  [Logging Feature(KIV)]<br>
+    4.5  [Logging Feature](#45-logging-feature)<br>
     4.6  [Miscellaneous Feature](#46-miscellaneous-feature)<br>
           4.6.1 [Support for Multiple Date-Time Formats](#461-support-for-multiple-date-time-formats)<br>
     4.7  [Configuration Feature](#47-configuration-feature)<br>
