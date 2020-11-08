@@ -452,10 +452,25 @@ The features comprise of five commands namely,
 * `FindEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
 We will illustrate the progress of one of the above commands for simplicity.
- 
- _Written By: Noorul Azlina_
- 
-#### 4.2.2 Implementation of InitRoomCommand
+
+#### 4.2.2 Room Feature
+The class diagram for RoomList is shown below.
+![UMLDiagramForRoomFeature](images/UML_RoomFeature.png)
+
+From the diagram above, the `RoomList` contains of one `UniqueRoomList`. This `UniqueRoomList` is a wrapper class around the `RoomList`
+which contains an ObservableList of `Patient` and PriorityQueue of `Patient`. The `RoomList` can contain from about 1 to 500 rooms.
+
+In turn, the `Room` class contains non-nullable attributes which are roomNumber, isOccupied, patient and tasks:
+1. **roomNumber**
+This gives the room number of the Room object
+2. **isOccupied**
+This gives the information of whether the Room is occupied or not. If there is a `Patient` inside the `Room`, then the isOccupied is true, else false
+3. **patient**
+This gives the patient details and it is stored as an Optional object. If there is no `Patient`, then the Optional.empty() is assigned.
+4. **tasks**
+This gives all the tasks that are assigned to a specific room. The number of tasks assigned can be zero.
+
+#### 4.2.3 Implementation of InitRoomCommand
 The following is a detailed explanation of the operations that `InitRoomCommand` performs.
 
 **Step 1.** The `InitRoomCommand#execute(Model model)` method is executed and it check if the `Integer`defined when instantiating
@@ -469,12 +484,13 @@ in the reduced number of rooms
 **Step 4.** A success message with the `Intger` appended with the `InitRoomCommand#MESSAGE_SUCCESS` constant is displayed on the UI. A new `CommandResult`
 returns this message.
 
-The activity diagram below illustrates the `findEmptyRoom`.
-![ActivityDiagramForRoomFeature](images/ActivityDiagramForRoomFeature.png)
+The activity diagram below illustrates the `initRoom`.
+![ActivityDiagramForRoomFeature](images/ActivityDiagramForInitRoom.png)
 
 The Sequence Diagram for `initRooms` is shown below.
- ![SequenceDiagramForSequenceDiagram](images/Room_SequenceDiagram.png)
+ ![SequenceDiagramForSequenceDiagram](images/SequenceDiagramForInitRoom.png)
  
+  _Written By: Noorul Azlina_
 #### 4.2.3 Implementation of AllocateRoomCommand
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
