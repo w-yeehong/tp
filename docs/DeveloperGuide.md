@@ -603,6 +603,8 @@ The GUI for room feature is based on a `ListView` that updates whenever the `Roo
 displays the details of the room. To ensure that the information displayed in the `scroll pane` is updated dynamically, 
 we employ the use of `Listeners` that listens for changes and notify the `scroll pane` to update.
 
+_Written by: Ming De_
+
 ### 4.3 Task Feature
 
 The task feature involves the CRUD of `Task` objects.
