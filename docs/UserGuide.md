@@ -134,21 +134,21 @@ The following steps to set up Covigent are applicable to Windows, Mac OS X, and 
 1. Install Java 11 or a later version. The latest version of Java can be found [here](https://java.com/en/download/).
 
 1. Download the latest version of Covigent from [here](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases). To do so, look for the file `covigent.jar` and click on it.
-Please refer to Figure 2 if you require assistance with locating the file. Figure 2 shows how to download version 1.3 of Covigent. `covigent.jar` has been highlighted in red for your convenience.
-<p align="center">
-    <img src="images/ug/f2_downloadcovigent.png" width="500" height="230">
-    <br />
-    <i>Figure 2. How to Download Covigent</i>
-</p>
+    Please refer to Figure 2 if you require assistance with locating the file. Figure 2 shows how to download version 1.3 of Covigent. `covigent.jar` has been highlighted in red for your convenience.
+    <p align="center">
+        <img src="images/ug/f2_downloadcovigent.png" width="500" height="230">
+        <br />
+        <i>Figure 2. How to Download Covigent</i>
+    </p>
 
-3. You may move `covigent.jar` to any other folder. Your save data and preferences for Covigent will be saved to the same folder.
+1. You may move `covigent.jar` to any other folder. Your save data and preferences for Covigent will be saved to the same folder.
 
-4. Double-click on `covigent.jar` to start Covigent. Here is what you will see if everything goes right:
-<p align="center">
-    <img src="images/ug/f3_startingcovigent.png" width="400" height="300">
-    <br />
-    <i>Figure 3. Covigent after Starting Up</i>
-</p>
+1. Double-click on `covigent.jar` to start Covigent. Here is what you will see if everything goes right:
+    <p align="center">
+        <img src="images/ug/f3_startingcovigent.png" width="400" height="300">
+        <br />
+        <i>Figure 3. Covigent after Starting Up</i>
+    </p>
 
 In case there are any problems during setup, please refer to [Section 7, "FAQ"](#7-faq) for instructions to resolve them.
 
@@ -238,51 +238,51 @@ your hotel for 14 days; and you must not forget to sanitise the room the day aft
 You may copy-and-paste the following commands (bold and in grey highlights) into the Command Box. Do not forget to press Enter, or the command will not execute!
 
 1. **`initroom 10`** : Let's set up the hotel room first. This command creates _10_ rooms in Covigent. If you proceed to the Rooms tab, you will see that 10 rooms
-have been created (see Figure 9).
+   have been created (see Figure 9).
 
-<p align="center">
-   <img src="images/ug/f9_initroomexample.png" width="500" height="400">
-   <br />
-   <i>Figure 9. Creating Hotel Rooms in Covigent</i>
-</p>
+    <p align="center">
+       <img src="images/ug/f9_initroomexample.png" width="500" height="400">
+       <br />
+       <i>Figure 9. Creating Hotel Rooms in Covigent</i>
+    </p>
 
 2. **`addpatient n/John Doe t/37.4 d/20200910-20200924 p/98765432 a/35 c/Vegan`** : The guest has arrived. You have taken his temperature and need to enter his details into Covigent.
-This command adds a new patient named _John Doe_ with age _35_, phone number _98765432_, period of stay _10 Sep 2020 to 24 Sep 2020_, temperature _37.4_, and a comment that he is _Vegan_.
-If you proceed to the Patients tab, you will see that _John Doe's_ entry has been added.
+   This command adds a new patient named _John Doe_ with age _35_, phone number _98765432_, period of stay _10 Sep 2020 to 24 Sep 2020_, temperature _37.4_, and a comment that he is _Vegan_.
+   If you proceed to the Patients tab, you will see that _John Doe's_ entry has been added.
 
-<p align="center">
-   <img src="images/ug/f10_addpatientexample.png" width="500" height="400">
-   <br />
-   <i>Figure 10. Adding a Patient to Covigent</i>
-</p>
+    <p align="center">
+       <img src="images/ug/f10_addpatientexample.png" width="500" height="400">
+       <br />
+       <i>Figure 10. Adding a Patient to Covigent</i>
+    </p>
 
 3. **`findemptyroom`** : You would like to assign _John Doe_ a room but are unsure which rooms are empty. This command will search for an empty room.
-Proceed to the Rooms tab. The result can be seen in Figure 11.
+   Proceed to the Rooms tab. The result can be seen in Figure 11.
 
-<p align="center">
-    <img src="images/ug/f11_findemptyroomexample.png" width="500" height="400">
-    <br />
-    <i>Figure 11. Finding an Empty Room in Covigent</i>
-</p>
+    <p align="center">
+        <img src="images/ug/f11_findemptyroomexample.png" width="500" height="400">
+        <br />
+        <i>Figure 11. Finding an Empty Room in Covigent</i>
+    </p>
 
 4. **`allocateroom 1 n/John Doe`** : Now that you know _Room #1_ is empty, let's assign _Room #1_ to _John Doe_. This command will do exactly that.
-Notice that _Room #1_ is now occupied and _John Doe's_ details are reflected in the Details Panel on the right of the user interface.
+   Notice that _Room #1_ is now occupied and _John Doe's_ details are reflected in the Details Panel on the right of the user interface.
 
-<p align="center">
-   <img src="images/ug/f12_allocateroomexample.png" width="500" height="400">
-   <br />
-   <i>Figure 12. Allocating a Room to a Patient in Covigent</i>
-</p>
+    <p align="center">
+       <img src="images/ug/f12_allocateroomexample.png" width="500" height="400">
+       <br />
+       <i>Figure 12. Allocating a Room to a Patient in Covigent</i>
+    </p>
 
 5. **`addtask r/1 d/Sanitise the room dd/20200925 1800`** : Finally, we would like a reminder to sanitise the room after _John Doe_ leaves.
-This command adds a task to _Room #1_ with description _Sanitise the room_ and due date _25 Sep 2020 1800_. Notice that the Details Panel
-reflects the task now (see Figure 12). You may also click on the Tasks tab to view the newly added task.
+   This command adds a task to _Room #1_ with description _Sanitise the room_ and due date _25 Sep 2020 1800_. Notice that the Details Panel
+   reflects the task now (see Figure 12). You may also click on the Tasks tab to view the newly added task.
 
-<p align="center">
-   <img src="images/ug/f13_addtaskexample.png" width="500" height="400">
-   <br />
-   <i>Figure 13. Adding a Task to Covigent</i>
-</p>
+    <p align="center">
+       <img src="images/ug/f13_addtaskexample.png" width="500" height="400">
+       <br />
+       <i>Figure 13. Adding a Task to Covigent</i>
+    </p>
 
 If you are curious about what other features are available in Covigent, please visit [Section 5, Features](#5-features).
 
