@@ -18,7 +18,6 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,17 +27,15 @@ public class ModelManager implements Model {
 
     private final PatientRecords patientRecords;
     private final RoomList roomList;
-    private final TaskList taskList;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Room> filteredRooms;
-    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given patient records, room records and userPrefs.
      */
-    public ModelManager(ReadOnlyPatientRecords patientRecords, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyRoomList roomList, ReadOnlyTaskList taskList) {
+    public ModelManager(ReadOnlyList<Patient> patientRecords, ReadOnlyList<Room> roomList,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(patientRecords, userPrefs);
 
@@ -47,15 +44,14 @@ public class ModelManager implements Model {
         this.patientRecords = new PatientRecords(patientRecords);
         this.roomList = new RoomList(roomList);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.taskList = new TaskList(taskList);
-        filteredPatients = new FilteredList<>(this.patientRecords.getPatientList());
-        filteredRooms = new FilteredList<>(this.roomList.asUnmodifiableObservableList());
-        filteredTasks = new FilteredList<>(this.taskList.asUnmodifiableObservableList());
+        filteredPatients = new FilteredList<>(this.patientRecords.getReadOnlyList());
+        filteredRooms = new FilteredList<>(this.roomList.getReadOnlyList());
     }
 
     public ModelManager() {
-        this(new PatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        this(new PatientRecords(), new RoomList(), new UserPrefs());
     }
+
 
     //=========== UserPrefs ==================================================================================
 
@@ -95,21 +91,21 @@ public class ModelManager implements Model {
     //=========== Patient Records ================================================================================
 
     @Override
-    public void setPatientRecords(ReadOnlyPatientRecords patientRecords) {
+    public void setPatientRecords(ReadOnlyList<Patient> patientRecords) {
         this.patientRecords.resetData(patientRecords);
     }
 
     @Override
-    public ReadOnlyPatientRecords getPatientRecords() {
+    public ReadOnlyList<Patient> getPatientRecords() {
         return patientRecords;
     }
 
     //=========== RoomList ================================================================================
+
     @Override
-    public void setRoomList(ReadOnlyRoomList rooms) {
+    public void setRoomList(ReadOnlyList<Room> rooms) {
         this.roomList.resetData(rooms);
     }
-
 
     //=========== Patients ====================================================================================
 
@@ -119,6 +115,7 @@ public class ModelManager implements Model {
         return patientRecords.hasPatient(patient);
     }
 
+    //@@author chiamyunqing
     @Override
     public Optional<Patient> getPatientWithName(Name nameOfPatient) {
         requireNonNull(nameOfPatient);
@@ -128,7 +125,10 @@ public class ModelManager implements Model {
     @Override
     public void deletePatient(Patient target) {
         patientRecords.removePatient(target);
+        //model's responsibility to update room list when patient is updated
+        this.updateRoomListWhenPatientsChanges(target, null);
     }
+    //@@author chiamyunqing
 
     @Override
     public void addPatient(Patient patient) {
@@ -139,15 +139,16 @@ public class ModelManager implements Model {
     @Override
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
-
         patientRecords.setPatient(target, editedPatient);
     }
 
+    //@@author LeeMingDe
     @Override
     public boolean isPatientAssignedToRoom(Name name) {
+        requireNonNull(name);
         for (Room room : roomList.getRoomObservableList()) {
-            if (room.getPatient() != null) {
-                Name patientNameInRoom = room.getPatient().getName();
+            if (room.getPatient().isPresent()) {
+                Name patientNameInRoom = room.getPatient().get().getName();
                 if (patientNameInRoom.equals(name)) {
                     return true;
                 }
@@ -155,6 +156,7 @@ public class ModelManager implements Model {
         }
         return false;
     }
+    //@@author LeeMingDe
 
     //=========== Filtered Patient List Accessors =============================================================
 
@@ -172,18 +174,31 @@ public class ModelManager implements Model {
     //=========== Room List ========================================================================================
 
     @Override
+    public int getNumOfExcessOccupiedRooms() {
+        return roomList.getNumOfExcessOccupiedRooms();
+    }
+
+    @Override
+    public boolean hasSpaceForRooms() {
+        return roomList.hasSpaceForRooms();
+    }
+    @Override
     public int getNumOfRooms() {
         return roomList.getNumOfRooms();
     }
-
+    @Override
+    public void setInitNumOfRooms(int numOfRooms) {
+        roomList.setPreferredNumOfRooms(numOfRooms);
+    }
     @Override
     public void addRooms(int num) {
         roomList.addRooms(num);
     }
 
+    //@@author LeeMingDe
     @Override
     public boolean hasRoom(Room room) {
-        requireAllNonNull(room);
+        requireNonNull(room);
         return roomList.containsRoom(room);
     }
 
@@ -192,16 +207,20 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedRoom);
         roomList.setSingleRoom(target, editedRoom);
     }
+    //@@author LeeMingDe
 
+    //@@author chiamyunqing
     @Override
-    public void clearRoom(Name patientName) {
-        assert(isPatientAssignedToRoom(patientName));
-        roomList.clearRoom(patientName);
+    public void removePatientFromRoom(Name patientName) {
+        assert (isPatientAssignedToRoom(patientName));
+        roomList.removePatientFromRoom(patientName);
     }
+    //@@author chiamyunqing
 
+    //@@author LeeMingDe
     @Override
     public Index checkIfRoomPresent(Integer roomNumber) {
-        ObservableList<Room> roomObservableList = this.getRoomList();
+        ObservableList<Room> roomObservableList = this.getRoomListObservableList();
         Index index = Index.fromZeroBased(0);
         for (int i = 1; i <= roomObservableList.size(); i++) {
             int roomNum = roomObservableList.get(i - 1).getRoomNumber();
@@ -216,11 +235,12 @@ public class ModelManager implements Model {
 
     @Override
     public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
+        requireNonNull(patientToEdit);
         ObservableList<Room> roomObservableList = this.roomList.getRoomObservableList();
         for (int i = 0; i < roomObservableList.size(); i++) {
-            Patient patient = roomObservableList.get(i).getPatient();
-            if (isPatientAssignedToRoom(patientToEdit.getName()) && patient != null
-                && patient.isSamePatient(patientToEdit)) {
+            Optional<Patient> patient = roomObservableList.get(i).getPatient();
+            if (isPatientAssignedToRoom(patientToEdit.getName()) && patient.isPresent()
+                    && patient.get().isSamePatient(patientToEdit)) {
                 Room updatedRoom = roomObservableList.get(i);
                 if (editedPatient == null) {
                     updatedRoom.setOccupied(false);
@@ -231,14 +251,22 @@ public class ModelManager implements Model {
             }
         }
     }
+    //@@author LeeMingDe
+
+    //@@author w-yeehong
+    @Override
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        assert (roomNumber > 0) : "Room number should be greater than 0.";
+        return roomList.getRoomWithRoomNumber(roomNumber);
+    }
+    //@@author w-yeehong
 
     //=========== Filtered RoomList Accessors ==========================================================================
 
     @Override
-    public ObservableList<Room> getRoomList() {
-        return roomList.asUnmodifiableObservableList();
+    public ObservableList<Room> getRoomListObservableList() {
+        return roomList.getReadOnlyList();
     }
-
 
     @Override
     public RoomList getModifiableRoomList() {
@@ -262,56 +290,45 @@ public class ModelManager implements Model {
 
     }
 
-
     //=========== Tasks ========================================================================================
+
+    //@@author w-yeehong
+    @Override
+    public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
+        requireAllNonNull(taskIndex, room);
+        return room.getTaskWithTaskIndex(taskIndex);
+    }
 
     @Override
     public void addTaskToRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-        roomList.addTaskToRoom(task, room);
-    }
-
-    @Override
-    public void addTask(Task task) {
-        requireAllNonNull(task);
-        taskList.add(task);
-        filteredTasks.setPredicate(PREDICATE_SHOW_ALL_TASKS);
+        assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
+        room.addTask(task);
     }
 
     @Override
     public void deleteTaskFromRoom(Task task, Room room) {
         requireAllNonNull(task, room);
-        roomList.deleteTaskFromRoom(task, room);
+        assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
+        room.deleteTask(task);
     }
 
     @Override
     public void setTaskToRoom(Task target, Task editedTask, Room room) {
         requireAllNonNull(target, editedTask, room);
-        roomList.setTaskToRoom(target, editedTask, room);
+        assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
+        room.setTask(target, editedTask);
     }
 
-    @Override
-    public void deleteTask(Task taskToDelete) {
-        requireAllNonNull(taskToDelete);
-        taskList.remove(taskToDelete);
-    }
+    //@@author w-yeehong
 
     @Override
-    public void setTask(Task taskToEdit, Task editedTask) {
-        requireAllNonNull(taskToEdit, editedTask);
-        taskList.setTask(taskToEdit, editedTask);
+    public void updateFilteredTaskList(Predicate<Task> datePredicate) {
+        for (int i = 0; i < roomList.getNumOfRooms(); i++) {
+            roomList.getRoomObservableList().get(i).setPredicateOnRoomTasks(datePredicate);
+        }
     }
 
-    @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
-    }
-
-    @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
-    }
     //=========== Miscellaneous ========================================================================================
 
     @Override

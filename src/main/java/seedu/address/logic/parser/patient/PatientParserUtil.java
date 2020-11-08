@@ -32,6 +32,22 @@ public class PatientParserUtil {
     }
 
     /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Phone parsePhone(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(trimmedPhone);
+    }
+
+    //@@author chiamyunqing
+    /**
      * Parses a {@code String temperature} into a {@code Temperature}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -47,21 +63,6 @@ public class PatientParserUtil {
     }
 
     /**
-     * Parses a {@code String temperature} into a {@code Temperature}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code temperature} is invalid.
-     */
-    public static TemperatureRange parseTemperatureRange(String tempRange) throws ParseException {
-        requireNonNull(tempRange);
-        String trimmedTempRange = tempRange.trim();
-        if (!TemperatureRange.isValidTemperatureRange(trimmedTempRange)) {
-            throw new ParseException(TemperatureRange.MESSAGE_CONSTRAINTS_TEMPERATURERANGE);
-        }
-        return new TemperatureRange(trimmedTempRange);
-    }
-
-    /**
      * Parses a {@code String period of stay} into a {@code PeriodOfStay}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -71,7 +72,7 @@ public class PatientParserUtil {
         requireNonNull(periodOfStay);
         String trimmedPeriodOfStay = periodOfStay.trim();
         if (!PeriodOfStay.isValidPeriodOfStay(trimmedPeriodOfStay)) {
-            throw new ParseException(PeriodOfStay.MESSAGE_CONSTRAINTS);
+            throw new ParseException(PeriodOfStay.getErrorMessage(trimmedPeriodOfStay));
         }
         return new PeriodOfStay(trimmedPeriodOfStay);
     }
@@ -86,24 +87,9 @@ public class PatientParserUtil {
         requireNonNull(age);
         String trimmedAge = age.trim();
         if (!Age.isValidAge(trimmedAge)) {
-            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Age.getErrorMessage(trimmedAge));
         }
         return new Age(trimmedAge);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
     }
 
     /**
@@ -113,10 +99,28 @@ public class PatientParserUtil {
      * @return an "-" comment if no comment is added
      */
     public static Comment parseComment(String comment) {
-        if (comment == null) {
+        if (comment == null || comment.trim().length() == 0) {
             return new Comment("-");
         } else {
             return new Comment(comment.trim());
         }
     }
+    //@@author chiamyunqing
+
+    //@@author raymondge
+    /**
+     * Parses a {@code String temperature} into a {@code Temperature}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code temperature} is invalid.
+     */
+    public static TemperatureRange parseTemperatureRange(String tempRange) throws ParseException {
+        requireNonNull(tempRange);
+        String trimmedTempRange = tempRange.trim();
+        if (!TemperatureRange.isValidTemperatureRange(trimmedTempRange)) {
+            throw new ParseException(TemperatureRange.MESSAGE_CONSTRAINTS_TEMPERATURERANGE);
+        }
+        return new TemperatureRange(trimmedTempRange);
+    }
+    //@@author raymondge
 }

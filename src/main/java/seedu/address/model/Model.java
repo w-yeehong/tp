@@ -23,6 +23,7 @@ public interface Model {
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
 
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -56,18 +57,20 @@ public interface Model {
     /**
      * Replaces patient records with the data in {@code covigentApp}.
      */
-    void setPatientRecords(ReadOnlyPatientRecords patientRecords);
+    void setPatientRecords(ReadOnlyList<Patient> patientRecords);
 
     /** Returns the patient records */
-    ReadOnlyPatientRecords getPatientRecords();
+    ReadOnlyList<Patient> getPatientRecords();
 
     /**
      * Returns true if a patient with the same identity as {@code patient} exists in the patient records.
      */
     boolean hasPatient(Patient patient);
 
+    void setInitNumOfRooms(int numOfRooms);
     /**
-     * Returns the patient with the {@code nameOfPatient} if it exists.
+     * Returns the patient with the {@code nameOfPatient} if it exists. Otherwise, an empty optional
+     * is returned.
      */
     Optional<Patient> getPatientWithName(Name nameOfPatient);
 
@@ -114,15 +117,28 @@ public interface Model {
     /**
      * Replaces room list with the data in {@code covigentApp}.
      */
-    void setRoomList(ReadOnlyRoomList rooms);
+    void setRoomList(ReadOnlyList<Room> rooms);
 
     /**
      * Returns total number of rooms in the application's {@code RoomList}.
      */
     int getNumOfRooms();
 
+    /**
+     * @param num is the number of rooms to define in a hotel.
+     */
     void addRooms(int num);
 
+    /**
+     * Returns whether a decrease in number of rooms would have space for existing rooms
+     */
+    boolean hasSpaceForRooms();
+
+    /**
+     * Returns number of occupied rooms whose room number is more than the number of rooms to be defined
+     * using initRoom command
+     */
+    int getNumOfExcessOccupiedRooms();
     /**
      * Returns true if a room with the same identity as {@code room} exists in Covigent.
      *
@@ -130,6 +146,12 @@ public interface Model {
      * @return true if {@code room} is in Covigent; false otherwise.
      */
     boolean hasRoom(Room room);
+
+    /**
+     * Returns the room with the {@code roomNumber} if it exists. Otherwise, an empty optional
+     * is returned.
+     */
+    Optional<Room> getRoomWithRoomNumber(int roomNumber);
 
     /**
      * Replaces the given room {@code target} with {@code editedRoom}.
@@ -143,12 +165,9 @@ public interface Model {
     void setSingleRoom(Room target, Room editedRoom);
 
     /**
-     * Clears the room with the given patient name {@code patientName}.
-     *
-     * @param patientName must be in a room.
+     * Removes the patient with the given name {@code patientName} from the room.
      */
-    void clearRoom(Name patientName);
-
+    void removePatientFromRoom(Name patientName);
 
     /**
      * Checks if the given room number is present in the application.
@@ -170,7 +189,7 @@ public interface Model {
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code RoomList}.
      */
-    ObservableList<Room> getRoomList();
+    ObservableList<Room> getRoomListObservableList();
 
     RoomList getModifiableRoomList();
 
@@ -180,19 +199,22 @@ public interface Model {
      */
     ObservableList<Room> getFilteredRoomList();
 
-    ObservableList<Task> getFilteredTaskList();
-
     /**
      * Updates the filter of the filtered rooms to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRoomList(Predicate<Room> predicate);
 
-    void updateFilteredTaskList(Predicate<Task> predicate);
     /**
      * Returns Priority Queue of rooms
      */
     PriorityQueue<Room> getRooms();
+
+    /**
+     * Returns the task with the {@code taskIndex} in {code room} if it exists.
+     * Otherwise, an empty optional is returned.
+     */
+    Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room);
 
     /**
      * Adds {@code task} to {@code room}.
@@ -202,14 +224,6 @@ public interface Model {
      * @param room The room to which the task should be added.
      */
     void addTaskToRoom(Task task, Room room);
-
-    /**
-     * Adds {@code task}.
-     * The room must exist in {@code CovigentApp}.
-     *
-     * @param task The task to add.
-     */
-    void addTask(Task task);
 
     /**
      * Deletes {@code task} from {@code room}.
@@ -233,19 +247,9 @@ public interface Model {
     void setTaskToRoom(Task target, Task editedTask, Room room);
 
     /**
-     * Deletes {@code task}.
-     * The room must exist in Covigent.
+     * Update the filterTaskList with {@code datePredicate}.
      *
-     * @param taskToDelete The task to delete.
+     * @param datePredicate The dueDate predicate.
      */
-    void deleteTask(Task taskToDelete);
-
-    /**
-     * Sets {@code task}.
-     * The room must exist in Covigent.
-     *
-     * @param taskToEdit The task to edit.
-     * @param editedTask the edited task.
-     */
-    void setTask(Task taskToEdit, Task editedTask);
+    void updateFilteredTaskList(Predicate<Task> datePredicate);
 }

@@ -1,11 +1,13 @@
 package seedu.address.storage;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.room.Room;
-
+//@@author itssodium
 public class JsonAdaptedRoom {
 
     public static final String PATIENT_PRESENT_IS_OCCUPIED_FALSE = "When patient is present isOccupied cannot be false";
@@ -43,10 +45,10 @@ public class JsonAdaptedRoom {
     public JsonAdaptedRoom(Room source) {
         this.roomNumber = source.getRoomNumber();
         this.isOccupied = source.isOccupied();
-        if (source.getPatient() != null) {
-            this.patient = new JsonAdaptedPatient(source.getPatient());
+        if (source.getPatient().isPresent()) {
+            this.patient = new JsonAdaptedPatient(source.getPatient().get());
         }
-        this.tasks = new JsonSerializableTaskList(source.getTaskList());
+        this.tasks = new JsonSerializableTaskList(source.getReadOnlyList());
     }
 
     /**
@@ -61,22 +63,33 @@ public class JsonAdaptedRoom {
         if (this.patient == null && isOccupied) {
             throw new IllegalValueException(PATIENT_ABSENT_IS_OCCUPIED_TRUE);
         }
-        if (patient != null) {
-            try {
-                patient.toModelType();
-            } catch (IllegalValueException i) {
-                throw new IllegalValueException(PATIENT_WRONG_FORMAT);
-            }
+        if (patient != null && isPatientInWrongFormat()) {
+            throw new IllegalValueException(PATIENT_WRONG_FORMAT);
         }
-        try {
-            tasks.toModelType();
-        } catch (IllegalValueException i) {
+        if (isTaskNotInCorrectFormat()) {
             throw new IllegalValueException(DATE_WRONG_FORMAT_IN_TASKS);
         }
         if (this.patient == null) {
-            return new Room(roomNumber, isOccupied, null, tasks.toModelType());
+            return new Room(roomNumber, isOccupied, Optional.empty(), tasks.toModelType());
         }
-        return new Room(roomNumber, isOccupied, patient.toModelType(), tasks.toModelType());
+        return new Room(roomNumber, isOccupied, Optional.of(patient.toModelType()), tasks.toModelType());
     }
 
+    private boolean isPatientInWrongFormat() {
+        try {
+            patient.toModelType();
+            return false;
+        } catch (IllegalValueException i) {
+            return true;
+        }
+    }
+
+    private boolean isTaskNotInCorrectFormat() {
+        try {
+            tasks.toModelType();
+            return false;
+        } catch (IllegalValueException i) {
+            return true;
+        }
+    }
 }

@@ -1,35 +1,35 @@
 package seedu.address.logic.parser.patient;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.AGE_DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.COMMENT_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.COMMENT_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_AGE_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_PERIOD_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_TEMP_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.PERIOD_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.PERIOD_DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.TEMP_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.TEMP_DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_AGE_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_AGE_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PERIOD_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PERIOD_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_BOB;
 import static seedu.address.logic.commands.patient.EditPatientCommand.MESSAGE_PATIENT_NOT_EDITED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.command.PatientCommandTestUtil.AGE_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.AGE_DESC_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.COMMENT_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.COMMENT_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.INVALID_AGE_DESC;
+import static seedu.address.testutil.command.PatientCommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.testutil.command.PatientCommandTestUtil.INVALID_PERIOD_DESC;
+import static seedu.address.testutil.command.PatientCommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.testutil.command.PatientCommandTestUtil.INVALID_TEMP_DESC;
+import static seedu.address.testutil.command.PatientCommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.PERIOD_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.PERIOD_DESC_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.TEMP_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.TEMP_DESC_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_AGE_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_AGE_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PERIOD_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PERIOD_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_TEMP_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_TEMP_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +41,10 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
+//@author LeeMingDe
+/**
+ * Contains unit tests for EditPatientCommandParser.
+ */
 public class EditPatientCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
@@ -64,9 +68,9 @@ public class EditPatientCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, VALID_NAME_AMY + INVALID_AGE_DESC,
-                Age.MESSAGE_CONSTRAINTS); // invalid age
+                Age.MESSAGE_INVALID_AGE_RANGE); // invalid age
         assertParseFailure(parser, VALID_NAME_AMY + INVALID_PERIOD_DESC,
-                PeriodOfStay.MESSAGE_CONSTRAINTS); // invalid period
+                PeriodOfStay.MESSAGE_INVALID_DATE); // invalid period
         assertParseFailure(parser, VALID_NAME_AMY + INVALID_TEMP_DESC,
                 Temperature.MESSAGE_CONSTRAINTS); // invalid temperature
 
@@ -179,3 +183,4 @@ public class EditPatientCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }
+//@author LeeMingDe

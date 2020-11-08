@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.patient;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.showPatientAtIndex;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.TaskList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListPatientCommand.
@@ -25,9 +24,9 @@ public class ListPatientCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalPatientRecords(),
-                new UserPrefs(), new RoomList(), new TaskList());
+                new RoomList(), new UserPrefs());
         expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+                new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
     }
 
     @Test

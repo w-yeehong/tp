@@ -1,21 +1,24 @@
 package seedu.address.model.patient;
 
-import static seedu.address.logic.commands.NewCommandTestUtil.COMMENT;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_AGE_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PERIOD_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_TEMP_BOB;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.COMMENT;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_AGE_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PERIOD_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_TEMP_BOB;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PatientBuilder;
 
+//@@author chiamyunqing
+/**
+ * Test cases for patient.
+ */
 public class PatientTest {
-
 
     @Test
     public void isSamePatient() { //patient is same as long as they have same name
@@ -25,16 +28,15 @@ public class PatientTest {
         // null -> returns false
         Assertions.assertFalse(ALICE.isSamePatient(null));
 
-        // same name, different phone and temp -> returns true
-        Patient editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB)
-                .withTemperature(VALID_TEMP_BOB).build();
-        Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
-
-        // different name -> returns false
-        editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different name -> false
+        Patient editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB).build();
         Assertions.assertFalse(ALICE.isSamePatient(editedAlice));
 
-        //different period of stay but same name, phone and age -> returns true
+        //different phone but other attributes same -> returns true
+        editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
+
+        //different period of stay but other attributes same -> returns true
         editedAlice = new PatientBuilder(ALICE).withPeriodOfStay(VALID_PERIOD_BOB).build();
         Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
 
@@ -43,14 +45,13 @@ public class PatientTest {
                 .withAge(VALID_AGE_BOB).withPeriodOfStay(VALID_PERIOD_BOB).build();
         Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
 
-        //same name, same phone, same age, same period of stay, diff temp -> returns true
+        //differnet temperature but other attributes same -> returns true
         editedAlice = new PatientBuilder(ALICE).withTemperature(VALID_TEMP_BOB).build();
         Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
 
         //diff comments but all attributes same -> returns true
         editedAlice = new PatientBuilder(ALICE).withComment(COMMENT).build();
         Assertions.assertTrue(ALICE.isSamePatient(editedAlice));
-
     }
 
     @Test

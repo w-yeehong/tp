@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.testutil.RoomBuilder;
 
@@ -27,7 +28,8 @@ public class RoomIntegrationTest {
 
     @Test
     public void addTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> room.addTask(null));
+        Task nullTask = null;
+        assertThrows(NullPointerException.class, () -> room.addTask(nullTask));
     }
 
     @Test

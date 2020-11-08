@@ -21,7 +21,7 @@ public class TemperatureRangePredicate implements Predicate<Patient> {
 
     @Override
     public boolean test(Patient patient) {
-        double temperature = patient.getTemperature().value;
+        double temperature = patient.getTemperature().getValue();
         return startingTemperature <= temperature && endingTemperature >= temperature;
     }
 

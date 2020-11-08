@@ -14,13 +14,15 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.PatientRecords;
-import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.stubs.ModelStub;
 
+/**
+ * Contains unit tests for AddPatientCommand.
+ */
 public class AddPatientCommandTest {
-
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddPatientCommand(null));
@@ -109,7 +111,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public ReadOnlyPatientRecords getPatientRecords() {
+        public ReadOnlyList<Patient> getPatientRecords() {
             return new PatientRecords();
         }
 

@@ -2,6 +2,7 @@ package seedu.address.model.patient;
 
 import static java.util.Objects.requireNonNull;
 
+//@@author chiamyunqing
 /**
  * Represents important comments of the Patient in the app.
  * Guarantees: immutable; is an optional attribute of patient.
@@ -11,10 +12,12 @@ public class Comment {
 
     /**
      * Constructs a {@code Comment}.
-     * @param comment A valid comment
+     *
+     * @param comment A comment that is represented by any string.
      */
     public Comment(String comment) {
         requireNonNull(comment);
+        assert(comment.length() != 0);
         value = comment;
     }
 

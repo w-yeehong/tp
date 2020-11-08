@@ -2,21 +2,21 @@ package seedu.address.logic.commands.patient;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.NewCommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.showPatientAtIndex;
+import static seedu.address.testutil.command.PatientCommandTestUtil.DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.DESC_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -25,17 +25,18 @@ import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.task.TaskList;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalPatients;
 
+//@author LeeMingDe
 /**
- * Contains integration tests and unit tests for EditPatientCommand.
+ * Contains integration tests (interaction with only PatientRecords in the Model) and unit tests for
+ * {@code EditPatientCommand}.
  */
 public class EditPatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new RoomList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -45,8 +46,8 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()), new UserPrefs(),
-                new RoomList(), new TaskList());
+        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()),
+                new RoomList(), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
@@ -63,8 +64,8 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()), new UserPrefs(),
-                new RoomList(), new TaskList());
+        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()),
+                new RoomList(), new UserPrefs());
         expectedModel.setPatient(TypicalPatients.GEORGE, editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -78,8 +79,8 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()), new UserPrefs(),
-                new RoomList(), new TaskList());
+        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()),
+                new RoomList(), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -95,8 +96,8 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()), new UserPrefs(),
-                new RoomList(), new TaskList());
+        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()),
+                new RoomList(), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -116,7 +117,7 @@ public class EditPatientCommandTest {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
         // Edit patient in filtered list into a duplicate in address book
-        Patient patientInList = model.getPatientRecords().getPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+        Patient patientInList = model.getPatientRecords().getReadOnlyList().get(INDEX_SECOND_PATIENT.getZeroBased());
         EditPatientCommand editCommand = new EditPatientCommand(new Name("Alice Pauline"),
                 new EditPatientDescriptorBuilder(patientInList).build());
 
@@ -128,7 +129,7 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditPatientCommand editCommand = new EditPatientCommand(new Name("Unknown"), descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME);
     }
 
     @Test
@@ -147,7 +148,7 @@ public class EditPatientCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // Different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ExitCommand()));
 
         // Different index -> returns false
         assertFalse(standardCommand.equals(new EditPatientCommand(new Name("Bob Choo"), DESC_AMY)));
@@ -155,5 +156,5 @@ public class EditPatientCommandTest {
         // Different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditPatientCommand(new Name("Amy Bee"), DESC_BOB)));
     }
-
 }
+//@author LeeMingDe

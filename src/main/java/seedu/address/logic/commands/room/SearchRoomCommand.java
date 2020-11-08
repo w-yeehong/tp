@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ROOM_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENT_NO_ROOM;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.room.RoomCliSyntax.PREFIX_ROOM_NUMBER;
@@ -17,8 +17,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
 
+//@@author chiamyunqing
 /**
- * Searches a room according to the given room number.
+ * Searches a room by the given room number or by the patient name who resides in the room.
  */
 public class SearchRoomCommand extends Command {
 
@@ -40,6 +41,7 @@ public class SearchRoomCommand extends Command {
     /**
      * Creates a SearchRoomCommand to look for the specified room based on the inputs
      * in searchRoomDescriptor.
+     *
      * @param descriptor Details to search the room with.
      */
     public SearchRoomCommand(SearchRoomDescriptor descriptor) {
@@ -56,7 +58,7 @@ public class SearchRoomCommand extends Command {
             Integer roomNumber = descriptor.roomNumber;
             Index index = model.checkIfRoomPresent(roomNumber);
             if (index.getZeroBased() == 0) {
-                throw new CommandException(MESSAGE_INVALID_ROOM_NOT_FOUND);
+                throw new CommandException(MESSAGE_INVALID_ROOM_NUMBER);
             }
             model.updateFilteredRoomList(room -> room.getRoomNumber() == roomNumber);
             return new CommandResult(MESSAGE_SUCCESS);
@@ -65,12 +67,12 @@ public class SearchRoomCommand extends Command {
 
         Name patientName = descriptor.patientName;
         if (model.getPatientWithName(patientName).isEmpty()) {
-            throw new CommandException(MESSAGE_INVALID_PATIENT_NAME_INPUT);
+            throw new CommandException(MESSAGE_INVALID_PATIENT_NAME);
         } else if (!model.isPatientAssignedToRoom(patientName)) {
             throw new CommandException(MESSAGE_PATIENT_NO_ROOM);
         }
         model.updateFilteredRoomList(room -> room.isOccupied()
-                && room.getPatient().getName().equals(patientName));
+                && room.getPatient().get().getName().equals(patientName));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

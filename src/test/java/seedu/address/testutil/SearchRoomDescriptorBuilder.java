@@ -3,6 +3,10 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.room.SearchRoomCommand.SearchRoomDescriptor;
 import seedu.address.model.patient.Name;
 
+//@@author chiamyunqing
+/**
+ * Builds SearchRoomDescriptor for testing.
+ */
 public class SearchRoomDescriptorBuilder {
 
     private SearchRoomDescriptor descriptor;

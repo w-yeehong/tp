@@ -41,11 +41,11 @@ public class PatientUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getTemperature().ifPresent(temperature -> sb.append(PREFIX_TEMP).append(temperature.value)
+        descriptor.getTemperature().ifPresent(temperature -> sb.append(PREFIX_TEMP).append(temperature.getValue())
                                     .append(" "));
         descriptor.getPeriodOfStay().ifPresent(periodOfStay -> sb.append(PREFIX_PERIOD_OF_STAY)
                                     .append(periodOfStay.toString()).append(" "));
-        descriptor.getAge().ifPresent(age -> sb.append(PREFIX_AGE).append(age.value).append(" "));
+        descriptor.getAge().ifPresent(age -> sb.append(PREFIX_AGE).append(age.getValue()).append(" "));
         descriptor.getComment().ifPresent(comment -> sb.append(PREFIX_COMMENTS).append(comment.value).append(" "));
         return sb.toString();
     }

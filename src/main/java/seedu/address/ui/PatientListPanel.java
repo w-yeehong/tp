@@ -13,6 +13,8 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
 
+//@@author chiamyunqing-reused
+//Reused from RoomListPanel class
 /**
  * Panel containing the list of patients.
  */
@@ -56,7 +58,7 @@ public class PatientListPanel extends UiPart<Region> {
                         patientListView.getSelectionModel().select(indexToChange);
                         patientListView.getFocusModel().focus(indexToChange);
                         patientDetailsPanel = new PatientDetailsPanel(patientToDisplay);
-                        patientDetailsPanelPlaceholder.getChildren().add(patientDetailsPanel.getRoot());
+                        patientDetailsPanelPlaceholder.getChildren().setAll(patientDetailsPanel.getRoot());
                     }
                 }
             }
@@ -72,7 +74,7 @@ public class PatientListPanel extends UiPart<Region> {
     public void handleMouseClick(MouseEvent mouseEvent) {
         Patient patientToDisplay = patientListView.getSelectionModel().getSelectedItem();
         patientDetailsPanel = new PatientDetailsPanel(patientToDisplay);
-        patientDetailsPanelPlaceholder.getChildren().add(patientDetailsPanel.getRoot());
+        patientDetailsPanelPlaceholder.getChildren().setAll(patientDetailsPanel.getRoot());
     }
 
     /**

@@ -1,12 +1,12 @@
 package seedu.address.logic.parser.patient;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NewCommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.NewCommandTestUtil.PERIOD_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.NewCommandTestUtil.TEMP_DESC_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.patient.PatientCliSyntax.PREFIX_TEMP_RANGE;
+import static seedu.address.testutil.command.PatientCommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.testutil.command.PatientCommandTestUtil.PERIOD_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.testutil.command.PatientCommandTestUtil.TEMP_DESC_AMY;
 
 import org.junit.jupiter.api.Test;
 

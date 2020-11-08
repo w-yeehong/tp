@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -16,35 +15,11 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
  *
  * Supports a minimal set of list operations.
  */
-public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
+public class TaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
-    /**
-     * Create a TaskList Object.
-     */
-    public TaskList(){}
-
-    /**
-     * Create a TaskList Object.
-     * @param readOnlyTaskList
-     */
-    public TaskList(ReadOnlyTaskList readOnlyTaskList) {
-        this();
-        resetData(readOnlyTaskList);
-    }
-
-    /**
-     * Reset the data.
-     * @param readOnlyTaskList
-     */
-    public void resetData(ReadOnlyTaskList readOnlyTaskList) {
-        requireNonNull(readOnlyTaskList);
-        ObservableList<Task> taskLists = readOnlyTaskList.getTaskObservableList();
-        internalList.addAll(taskLists);
-    }
 
     /**
      * Returns true if the list contains an equivalent task as the given argument.
@@ -60,6 +35,14 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     public void add(Task toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+    }
+
+    /**
+     * Adds all tasks in {@code tasks} to the list.
+     */
+    public void add(List<Task> tasks) {
+        requireAllNonNull(tasks);
+        internalList.addAll(tasks);
     }
 
     /**
@@ -100,9 +83,14 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
         requireAllNonNull(tasks);
         internalList.setAll(tasks);
     }
-    public ObservableList<Task> getInternalList() {
-        return this.internalList;
+
+    /**
+     * Returns true if the list is empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
     }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -118,18 +106,10 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        if (internalUnmodifiableList.isEmpty()) {
-            builder.append("-");
-            return builder.toString().trim();
-        }
-        // TODO: add method to get task details with numbering and indentation; remove numbering from toString()
-        int taskIndex = 1;
+
         for (Task task : internalList) {
-            // Results in "1. <task>\n2. <task>..."
-            builder.append(taskIndex++);
-            builder.append(". ");
             builder.append(task);
-            builder.append("\n\n");
+            builder.append("\n");
         }
 
         return builder.toString().trim();
@@ -147,8 +127,4 @@ public class TaskList implements Iterable<Task>, ReadOnlyTaskList {
         return internalList.hashCode();
     }
 
-    @Override
-    public ObservableList<Task> getTaskObservableList() {
-        return this.internalList;
-    }
 }

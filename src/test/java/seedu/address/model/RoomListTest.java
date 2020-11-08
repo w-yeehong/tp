@@ -1,9 +1,12 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalRooms.ROOM7_PATIENT_ALICE_NO_TASK;
 
-import java.util.PriorityQueue;
+import java.util.Collections;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,77 +14,47 @@ import seedu.address.model.room.Room;
 
 class RoomListTest {
 
+    private final RoomList roomList = new RoomList();
+
     @Test
-    void testEquals() {
-        PriorityQueue<Room> rooms = new PriorityQueue<>();
-        Room[] arrayOfRooms = new Room[10];
-        RoomList roomList1 = new RoomList(rooms, 10);
-        RoomList roomList2 = new RoomList(rooms, 10);
-        //same object -> returns true
-        assertTrue(roomList1.equals(roomList1));
-
-        //diff object, but same fields -> returns true
-        assertTrue(roomList1.equals(roomList2));
-
-        //null object -> returns false
-        assertFalse(roomList1.equals(null));
-
-        roomList2 = new RoomList(rooms, 10);
-        PriorityQueue<Room> rooms1 = new PriorityQueue<>();
-        rooms1.add(new Room(1));
-        roomList2.setRooms(rooms1);
-        //different Priority Queue of rooms -> returns false
-        assertFalse(roomList1.equals(roomList2));
-
-        roomList2 = new RoomList(rooms, 10);
-        roomList2.setNumOfRooms(100);
-        //different number of rooms -> returns false
-        assertFalse(roomList1.equals(roomList2));
+    public void constructor() {
+        assertEquals(Collections.emptyList(), roomList.getRoomObservableList());
     }
 
     @Test
-    void testPriorityQueueEquals() {
+    public void resetData_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> roomList.resetData(null));
+    }
+
+    @Test
+    public void numOfRoom_emptyRoomList() {
+        assertEquals(0, roomList.getNumOfRooms());
+    }
+
+    //@@author w-yeehong
+    @Test
+    public void getRoomWithRoomNumber_roomNotInList() {
         RoomList roomList = new RoomList();
-        PriorityQueue<Room> rooms1 = new PriorityQueue<>();
-        PriorityQueue<Room> rooms2 = new PriorityQueue<>();
 
-        //same PriorityQueue -> returns true
-        assertTrue(roomList.equals(rooms1, rooms1));
+        // EP for room number: [MIN_INT...0], [1...MAX_INT]
 
-        //2 empty PriorityQueue of rooms -> returns true
-        assertTrue(roomList.equals(rooms1, rooms2));
+        // EP [1...MAX_INT] -> returns empty optional
+        Optional<Room> validRoom = roomList.getRoomWithRoomNumber(1);
+        assertTrue(validRoom.isEmpty());
 
-        for (int i = 0; i < 10; i++) {
-            Room room = new Room(i);
-            rooms1.add(room);
-            rooms2.add(room);
-        }
+        // EP [MIN_INT...0] -> throws AssertionError
+        assertThrows(AssertionError.class, () -> roomList.getRoomWithRoomNumber(0));
 
-
-        //2 PriorityQueue of rooms with same content -> returns true
-        assertTrue(roomList.equals(rooms1, rooms2));
-
-        for (int i = 0; i < 10; i++) {
-            Room room = new Room(i);
-            rooms1.add(room);
-            rooms2.add(room);
-        }
-
-        Room room = rooms2.poll();
-
-        //2 PriorityQueue of different size -> returns false
-        assertFalse(roomList.equals(rooms1, rooms2));
-
-        for (int i = 0; i < 10; i++) {
-            Room r = new Room(i);
-            rooms1.add(r);
-            rooms2.add(r);
-        }
-        rooms2.add(room);
-        rooms1.poll();
-        rooms1.add(new Room(100));
-        //2 PriorityQueue of different content -> returns false
-        assertFalse(roomList.equals(rooms1, rooms2));
-
+        // EP [MIN_INT...0] -> throws AssertionError
+        assertThrows(AssertionError.class, () -> roomList.getRoomWithRoomNumber(-1));
     }
+
+    @Test
+    public void getRoomWithRoomNumber_roomInList_returnsRoom() {
+        RoomList roomList = new RoomList();
+        roomList.addRooms(ROOM7_PATIENT_ALICE_NO_TASK);
+        Optional<Room> optionalRoom = roomList.getRoomWithRoomNumber(7);
+        assertTrue(optionalRoom.map(room -> room.getRoomNumber() == 7).orElse(false));
+    }
+    //@@author w-yeehong
 }

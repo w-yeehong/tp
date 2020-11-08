@@ -9,8 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyPatientRecords;
-import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RoomList;
 import seedu.address.model.patient.Name;
@@ -22,6 +21,7 @@ import seedu.address.model.task.Task;
  * A default model stub that has all of the methods failing.
  */
 public class ModelStub implements Model {
+
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         throw new AssertionError("This method should not be called.");
@@ -58,17 +58,22 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setPatientRecords(ReadOnlyPatientRecords newData) {
+    public void setPatientRecords(ReadOnlyList<Patient> newData) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ReadOnlyPatientRecords getPatientRecords() {
+    public ReadOnlyList<Patient> getPatientRecords() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public boolean hasPatient(Patient patient) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setInitNumOfRooms(int numOfRooms) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -103,7 +108,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setRoomList(ReadOnlyRoomList rooms) {
+    public void setRoomList(ReadOnlyList<Room> rooms) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -118,7 +123,22 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasSpaceForRooms() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public int getNumOfExcessOccupiedRooms() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasRoom(Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -128,7 +148,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void clearRoom(Name patientName) {
+    public void removePatientFromRoom(Name patientName) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -143,7 +163,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Room> getRoomList() {
+    public ObservableList<Room> getRoomListObservableList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -163,27 +183,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return null;
-    }
-
-    @Override
     public void updateFilteredRoomList(Predicate<Room> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-
+    public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
+        throw new AssertionError("This method should not be called.");
     }
 
     public void addTaskToRoom(Task task, Room room) {
         throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void addTask(Task task) {
-
     }
 
     @Override
@@ -197,13 +207,8 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deleteTask(Task taskToDelete) {
-
-    }
-
-    @Override
-    public void setTask(Task taskToEdit, Task editedTask) {
-
+    public void updateFilteredTaskList(Predicate<Task> datePredicate) {
+        throw new AssertionError("This method should not be called.");
     }
 
 }

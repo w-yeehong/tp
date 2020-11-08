@@ -221,21 +221,32 @@ _Figure XX. Class Diagram for RoomTaskRecords_
 
 ### 3.5 Storage Component
 
-![Structure of the Storage Component](images/UML_Storage.png)
+![Structure of the Storage Component](images/UML_Storage_Diagram.png)
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-The Storage API is responsible for reading and writing data in Json format. This allows the application to remember the information in a readable format of json when the user closes the application. The Storage API acts as a façade that handles interaction regarding storage related components. 
+The `Storage` API handles the reading and writing of data in Json format, enabling Covigent to remember information stored by user even when the application is closed. The Storage API behaves like a façade by handling the storage classes and interfaces.
 
-The Storage component,
- * Can save Room and Patient Objects in json format
- * Reads Room and Patient Objects in json format
+The `Storage` interface class diagram is shown below, and as it can be seen it inherits from specific storage interfaces.
+
+The `Storage` component,
+  *	Saves `UserPref` objects in Json format 
+  *	Reads `UserPred` objects in Json format
+  *	Saves `RoomRecords` and `PatientRecords` data in json format 
+  *	Reads `RoomRecords` and `PatientRecords` data in json format 
+
+The information of the `Patient` and `Room` feature of Covigent is stored locally in the Json format. This is done by adapting the Patient and Room feature into JsonSerializablePatientRecords and JsonSerializableRoomRecords respectively.
+
+The class diagram for StorageManager is shown below
+![Structure of the StorageManage Component](images/UML_Diagram_StorageManager.png)
+
+The information of the `Patient` and `Room` feature of Covigent is stored locally in the Json format. This is done by adapting the Patient and Room feature into JsonSerializablePatientRecords and JsonSerializableRoomRecords respectively.
+
+The class diagrams for the above stated adapted classes are shown below
+ ![Structure of the JsonSerializableRoomRecords](images/JsonSerializableRoomRecords.png)
+ Fig of `JsonSerializableRoomRecords`
  
- ![Structure of the JsonSerializableRoomList](images/JsonSerializableRoomList.png)
- Fig of `JsonSerializableRoomList`
- ![Structure of the JsonSerializablePatientList](images/JsonSerializableRoomList.png)
- Fig of `JsonSerializablePatientList`
- ![Structure of the JsonSerializableTaskList](images/JsonSerializableTaskList.png)
+ ![Structure of the JsonSerializablePatientRecords](images/JsonSerializablePatientRecords.png)
  Fig of `JsonSerializableTaskList`
  
  _Written by: Noorul Azlina_
@@ -442,16 +453,44 @@ The features comprise of five commands namely,
 
 We will illustrate the progress of one of the above commands for simplicity.
 
-The activity diagram below illustrates the `findEmptyRoom`.
-![ActivityDiagramForRoomFeature](images/ActivityDiagramForRoomFeature.png)
- 
- The Sequence Diagram for `initRooms` is shown below.
- ![SequenceDiagramForSequenceDiagram](images/Room_SequenceDiagram.png)
- 
- _Written By: Noorul Azlina_
- 
-#### 4.2.2 Implementation of InitRoomCommand
+#### 4.2.2 Room Feature
+The class diagram for RoomList is shown below.
+![UMLDiagramForRoomFeature](images/UML_RoomFeature.png)
 
+From the diagram above, the `RoomList` contains of one `UniqueRoomList`. This `UniqueRoomList` is a wrapper class around the `RoomList`
+which contains an ObservableList of `Patient` and PriorityQueue of `Patient`. The `RoomList` can contain from about 1 to 500 rooms.
+
+In turn, the `Room` class contains non-nullable attributes which are roomNumber, isOccupied, patient and tasks:
+1. **roomNumber**
+This gives the room number of the Room object
+2. **isOccupied**
+This gives the information of whether the Room is occupied or not. If there is a `Patient` inside the `Room`, then the isOccupied is true, else false
+3. **patient**
+This gives the patient details and it is stored as an Optional object. If there is no `Patient`, then the Optional.empty() is assigned.
+4. **tasks**
+This gives all the tasks that are assigned to a specific room. The number of tasks assigned can be zero.
+
+#### 4.2.3 Implementation of InitRoomCommand
+The following is a detailed explanation of the operations that `InitRoomCommand` performs.
+
+**Step 1.** The `InitRoomCommand#execute(Model model)` method is executed and it check if the `Integer`defined when instantiating
+If it is a positive integer and the number of rooms is more than or equal to the existing number of occupied rooms, InitRoomCommand is valid. 
+The checking of the number of rooms is done by `Model#hasSpaceForRooms()`. If this is true then `Integer` is valid, else it is invalid.
+
+**Step 2.** The stated number of rooms is then set to `Integer`, if `Integer` is greater than the existing number of rooms then excess rooms are added to the back of the 
+UniqueRoomList. If the number of rooms is less than the `Integer` and there are occupied rooms the information of patients in that room is transferred to an empty room 
+in the reduced number of rooms
+
+**Step 4.** A success message with the `Intger` appended with the `InitRoomCommand#MESSAGE_SUCCESS` constant is displayed on the UI. A new `CommandResult`
+returns this message.
+
+The activity diagram below illustrates the `initRoom`.
+![ActivityDiagramForRoomFeature](images/ActivityDiagramForInitRoom.png)
+
+The Sequence Diagram for `initRooms` is shown below.
+ ![SequenceDiagramForSequenceDiagram](images/SequenceDiagramForInitRoom.png)
+ 
+  _Written By: Noorul Azlina_
 #### 4.2.3 Implementation of AllocateRoomCommand
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 

@@ -38,7 +38,7 @@ public class UniquePatientList implements Iterable<Patient> {
         return internalList.stream().anyMatch(toCheck::isSamePatient);
     }
 
-
+    //@@author chiamyunqing
     /**
      * Returns the patient with the input name.
      * @param name of patient to find.
@@ -54,6 +54,7 @@ public class UniquePatientList implements Iterable<Patient> {
         return Optional.empty();
     }
 
+    //@@author
     /**
      * Adds a patient to the list.
      * The patient must not already exist in the list.

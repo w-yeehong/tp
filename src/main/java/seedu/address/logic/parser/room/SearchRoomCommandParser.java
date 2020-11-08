@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.PatientParserUtil;
 import seedu.address.model.patient.Name;
 
+//@@author chiamyunqing
 /**
  * Parses input arguments and creates a new SearchRoomCommand object.
  */
@@ -43,7 +44,7 @@ public class SearchRoomCommandParser implements Parser<SearchRoomCommand> {
             return new SearchRoomCommand(descriptor);
         }
         //definitely have prefix room number if no prefix name
-        Integer roomNumber = ParserUtil.parsePositiveInteger(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
+        Integer roomNumber = ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
         descriptor.setRoomNumber(roomNumber);
         return new SearchRoomCommand(descriptor);
 

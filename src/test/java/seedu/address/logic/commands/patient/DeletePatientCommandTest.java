@@ -2,10 +2,10 @@ package seedu.address.logic.commands.patient;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.NewCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,15 +16,15 @@ import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.task.TaskList;
 
+//@@author chiamyunqing
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests (interaction with only PatientRecords in the Model) and unit tests for
+ * {@code DeletePatientCommand}.
  */
 public class DeletePatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new RoomList(), new UserPrefs());
 
     @Test
     public void execute_validNameUnfilteredList_success() {
@@ -35,7 +35,7 @@ public class DeletePatientCommandTest {
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
 
         ModelManager expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+                new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
         expectedModel.deletePatient(patientToDelete);
 
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);
@@ -45,7 +45,7 @@ public class DeletePatientCommandTest {
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
         Name invalidPatientName = new Name("Obviously invalid name");
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(invalidPatientName);
-        assertCommandFailure(deletePatientCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME_INPUT);
+        assertCommandFailure(deletePatientCommand, model, Messages.MESSAGE_INVALID_PATIENT_NAME);
     }
 
     @Test

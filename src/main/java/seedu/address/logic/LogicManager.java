@@ -13,10 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CovigentAppParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
-import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 
@@ -63,7 +62,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPatientRecords getCovigentApp() {
+    public ReadOnlyList<Patient> getCovigentApp() {
         return model.getPatientRecords();
     }
 
@@ -74,7 +73,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Room> getRoomList() {
-        return model.getRoomList();
+        return model.getRoomListObservableList();
     }
 
     @Override
@@ -95,10 +94,5 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Room> getFilteredRoomList() {
         return model.getFilteredRoomList();
-    }
-
-    @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return model.getFilteredTaskList();
     }
 }
