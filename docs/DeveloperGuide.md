@@ -188,9 +188,10 @@ Shown below is the Sequence Diagram within the `Logic` component for the API cal
     <i>Figure 7. Interactions inside the Logic Component for the deletepatient alex Command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-<br>
+<div markdown="span" class="alert alert-info"></div>
+:information_source: **Note:** The lifeline for `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<br />
+
 _Written by: Ming De_
 
 
@@ -607,39 +608,23 @@ _Written by: Ming De_
 
 ### 4.3 Task Feature
 
-The task feature involves the CRUD of `Task` objects.
+The task feature in Covigent allows hotel staff to manage and organize time-critical work related to a room in a quarantine facility.
+Every room can be allocated any number of tasks, with each task keeping track of the description of the work and a due date by which
+it should be completed.
 
-The feature comprises five commands, namely
-* [`AddTaskCommand`](#431-add-task) - Adding tasks
-* [`ListTaskCommand`](#432-list-task) - Listing tasks
-* [`EditTaskCommand`](#433-edit-task) - Editing tasks
-* [`DeleteTaskCommand`](#434-delete-task) - Deleting tasks
-* [`SearchTaskCommand`](#435-search-task) - Searching for tasks
+It is important to note that Covigent handles tasks on a per-room basis. Tasks not specific to any room (e.g. tasks related to the operations
+of the quarantine facility) are out of scope.
 
-#### 4.3.1 Add Task 
+#### 4.3.1 Implementation of Task Feature
 
-**Implementation**
-The following is a detailed explanation of the operations that `AddTaskCommand` performs.
+At a higher level, tasks share a composition type relationship with rooms. That is, if a room is deleted, all tasks in that room are similarly deleted.
+We have implemented the task feature based on the class diagram in Figure xx.
 
-**Step 1.** The `AddTaskCommand#execute(Model model)` method is executed and it checks if the `Name` defined when instantiating
-`EditPatientCommand(Name patientToBeEdited, EditPatientDescriptor editPatientDescriptor)` is valid. The `EditPatientDescriptor` holds
-the edited information of the `Patient`.
+Figure xx. Class Diagram for Task
 
-**Step 2.** A new `Patient` with the updated values will be created and the patient is then searched through `UniquePatientList#internalList`
-using the `Model#hasPatient(Patient patient)` method to check if the patient already exists. If the patient already exists,
-`CommandException` will be thrown with an error message.
+Each `Room` contains a `RoomTasks` class, which is a wrapper around `TaskList`. `TaskList` can contain any number of tasks.  
 
-**Step 3.** The newly created `Patient` will replace the existing patient object through the `Model#setPatient(Patient target, Patient editedPatient)`
-method.
-
-**Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
-new `CommandResult` will be returned with the message.
-
-#### 4.3.2 List Task 
-
-#### 4.3.3 Edit Task 
-
-#### 4.3.4 Delete Task 
+##### 4.3.2 
 
 #### 4.3.5 Search Task
 
@@ -868,12 +853,6 @@ testers are expected to do more *exploratory* testing.
 1. **Allocating a patient to a room in Covigent**
     
     1. Prerequisites: User is viewing the room tab. Patient details has already been input into Covigent. Rooms must already have been initalized.
-
-    1. Test case: `allocateroom 1 n/John Doe`<br>
-    **Expected**: Patient John Doe is allocated to Room #1. Details of the room will be shown in the details panel. 
-
-   1. Test case: `allocateroom n/John Doe`<br>
-    **Expected**: No patient is allocated to room. Error details shown in the result box. 
     
 ### Saving data
 
@@ -905,3 +884,4 @@ testers are expected to do more *exploratory* testing.
         ```
    1. Re-launch the app.<br><br> 
    **Expected**: Go to the Patient tab and the tab should not have any data. `covigentapp.json` still exists.
+
