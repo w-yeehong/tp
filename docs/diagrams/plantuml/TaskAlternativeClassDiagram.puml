@@ -9,16 +9,12 @@ Interface ReadOnlyList <<Interface>> {
 }
 
 Package Room <<Rectangle>> {
-    Class Room
-    Class RoomTasks {
-        +addTask(Task)
-        +removeTask(Task)
+    Class Room {
+        +addtask(Task)
+        +deleteTask(Task)
         +setTask(Task, editedTask: Task)
     }
 }
-
-Room *--r> "1" RoomTasks
-RoomTasks -.|> ReadOnlyList
 
 Package Task <<Rectangle>> {
     Class Task
@@ -27,8 +23,9 @@ Package Task <<Rectangle>> {
     Class DateTimeDue
 }
 
-RoomTasks ..> Task
-RoomTasks *--l> "1" TaskList
+TaskList -.|> ReadOnlyList
+
+Room *--r> "1" TaskList
 TaskList *--> "*" Task
 Task *--> "1" Description
 Task *--> "0..1" DateTimeDue
